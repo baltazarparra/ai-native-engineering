@@ -1,15 +1,299 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
+import Grid from '../components/Grid/Grid.astro';
+import Button from '../components/Button/Button.astro';
+import Card from '../components/Card/Card.astro';
+import Badge from '../components/Badge/Badge.astro';
+import Footer from '../components/Footer/Footer.astro';
+import { sessions } from '../data/sessions';
 
 const base = import.meta.env.BASE_URL;
+
+function levelToBadgeVariant(level: string) {
+  const map = {
+    beginner: 'yellow',
+    intermediate: 'blue',
+    advanced: 'green',
+  } as const;
+  return map[level as keyof typeof map] || 'default';
+}
+
+function levelToLabel(level: string) {
+  const map = {
+    beginner: 'iniciante',
+    intermediate: 'intermediario',
+    advanced: 'avancado',
+  } as const;
+  return map[level as keyof typeof map] || level;
+}
+
+const phases = [
+  { label: 'Consulta', desc: 'Perguntar e explorar' },
+  { label: 'Autocomplete', desc: 'Sugestoes no editor' },
+  { label: 'Vibe Coding', desc: 'Gerar a partir de linguagem natural' },
+  { label: 'SDD', desc: 'Especificacao antes de execucao' },
+  { label: 'Harness', desc: 'Sistema de trabalho do agente' },
+];
 ---
 
-<BaseLayout title="AI-Native Engineering">
+<BaseLayout
+  title="Engenharia de Software na Era da IA"
+  description="Um guia pratico pra quem quer usar IA de verdade no dia a dia de desenvolvimento, sem hype e sem medo."
+>
   <main>
-    <h1>AI-Native Engineering</h1>
-    <p>Sem hype. Sem buzzword vazia. Só o mapa que importa.</p>
-    <nav>
-      <a href={`${base}sessions/dummy-session`}>Sessão de Teste</a>
-    </nav>
+    <!-- hero -->
+    <SectionBlock as="header" padding="xl" maxWidth="lg">
+      <Badge variant="green">100% gratuito e open source</Badge>
+      <h1 class="hero-title">Engenharia de Software na Era da IA</h1>
+      <p class="hero-tagline">
+        Um guia pratico pra quem quer usar IA de verdade no dia a dia de
+        desenvolvimento, sem hype e sem medo.
+      </p>
+      <div class="hero-ctas">
+        <Button href={`${base}sessions/ai-native-engineer`} size="lg">
+          Comecar pela Sessao 0
+        </Button>
+        <Button href="#sessoes" variant="secondary" size="lg">
+          Ver todas as sessoes
+        </Button>
+      </div>
+    </SectionBlock>
+
+    <!-- why this exists -->
+    <SectionBlock padding="lg" alt>
+      <h2>Por que esse site existe?</h2>
+      <div class="narrative">
+        <p>
+          IA ja entrou no trabalho de software. Mais de 80% dos profissionais
+          usam alguma ferramenta de IA no dia a dia. Produtividade subiu, mas
+          confianca nao acompanhou no mesmo ritmo.
+        </p>
+        <p>
+          Muita gente esta usando IA sem entender as categorias, sem saber
+          diferenciar modelo de produto, e sem um mapa mental claro de como tudo
+          isso se conecta.
+        </p>
+        <p>
+          Esse site existe pra organizar o caos. Sem jargao desnecessario, sem
+          favorecimento de ferramenta. So o mapa que importa.
+        </p>
+      </div>
+    </SectionBlock>
+
+    <!-- session cards -->
+    <SectionBlock padding="xl" id="sessoes">
+      <h2>Sessoes</h2>
+      <p>
+        6 sessoes que cobrem tudo o que voce precisa saber. Cada uma funciona
+        sozinha, mas juntas formam o mapa completo.
+      </p>
+      <Grid columns={3} gap="lg" align="stretch">
+        {
+          sessions.map((session) => (
+            <Card
+              title={session.title}
+              href={`${base}sessions/${session.slug}`}
+              accent={session.accent}
+            >
+              <Fragment slot="meta">
+                <Badge variant={levelToBadgeVariant(session.level)} size="sm">
+                  {levelToLabel(session.level)}
+                </Badge>
+                <Badge size="sm">{session.readingTime} min</Badge>
+              </Fragment>
+              <p>{session.summary}</p>
+              <Fragment slot="footer">
+                <span class="session-order">Sessao {session.order}</span>
+              </Fragment>
+            </Card>
+          ))
+        }
+      </Grid>
+    </SectionBlock>
+
+    <!-- maturity preview -->
+    <SectionBlock padding="xl" alt>
+      <h2>Como a IA evoluiu no desenvolvimento</h2>
+      <p>Nao e so sobre usar IA. E sobre como o uso amadurece.</p>
+      <div class="maturity-track">
+        {
+          phases.map((phase, i) => (
+            <div class="maturity-step">
+              <span class={`maturity-number maturity-number-${i + 1}`}>
+                {i + 1}
+              </span>
+              <span class="maturity-label">{phase.label}</span>
+              <span class="maturity-desc">{phase.desc}</span>
+            </div>
+          ))
+        }
+      </div>
+      <div class="maturity-cta">
+        <Button href={`${base}sessions/maturidade`} variant="secondary">
+          Ver a evolucao completa
+        </Button>
+      </div>
+    </SectionBlock>
+
+    <!-- how to study -->
+    <SectionBlock padding="lg">
+      <h2>Como estudar</h2>
+      <p>
+        Nao precisa seguir ordem. Cada sessao funciona sozinha. Mas se quiser um
+        caminho, aqui vao algumas sugestoes.
+      </p>
+      <Grid columns={3} gap="md" align="stretch">
+        <Card title="Sou de produto/design/QA" expandable accent="yellow">
+          <p>
+            Comece pela Sessao 0, depois va direto pra Sessao 1 (glossario) e
+            Sessao 4 (maturidade). Isso ja da o mapa mental que voce precisa.
+          </p>
+        </Card>
+        <Card title="Sou dev iniciante" expandable accent="blue">
+          <p>
+            Siga na ordem: 0, 1, 2, 3, 4, 5. Cada sessao constroi em cima da
+            anterior.
+          </p>
+        </Card>
+        <Card title="Ja uso IA no trabalho" expandable accent="green">
+          <p>
+            Va direto pra Sessao 4 (maturidade) e depois Sessao 5 (como operar).
+            O glossario e as ferramentas voce ja conhece.
+          </p>
+        </Card>
+      </Grid>
+    </SectionBlock>
+
+    <!-- footer -->
+    <Footer />
   </main>
 </BaseLayout>
+
+<style>
+  .hero-title {
+    margin-top: var(--space-md);
+  }
+
+  .hero-tagline {
+    font-size: var(--text-xl);
+    color: var(--color-text-muted);
+    max-width: 42ch;
+    margin-block: var(--space-lg);
+    line-height: var(--leading-relaxed);
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .narrative {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .maturity-track {
+    display: flex;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  .maturity-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-xs);
+    flex: 1;
+    position: relative;
+  }
+
+  .maturity-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 1.25rem;
+    left: calc(50% + 1.5rem);
+    width: calc(100% - 3rem);
+    border-top: var(--border-thin);
+  }
+
+  .maturity-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--border-thick);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    flex-shrink: 0;
+  }
+
+  .maturity-number-1 {
+    background-color: var(--color-accent-1);
+  }
+  .maturity-number-2 {
+    background-color: var(--color-accent-2);
+    color: var(--color-white);
+  }
+  .maturity-number-3 {
+    background-color: var(--color-accent-3);
+  }
+  .maturity-number-4 {
+    background-color: var(--color-accent-4);
+  }
+  .maturity-number-5 {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  .maturity-label {
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-base);
+  }
+
+  .maturity-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .maturity-cta {
+    text-align: center;
+  }
+
+  .session-order {
+    font-family: var(--font-heading);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 767px) {
+    .hero-ctas {
+      flex-direction: column;
+    }
+
+    .maturity-track {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .maturity-step {
+      flex-direction: row;
+      text-align: left;
+      gap: var(--space-md);
+    }
+
+    .maturity-step:not(:last-child)::after {
+      display: none;
+    }
+  }
+</style>

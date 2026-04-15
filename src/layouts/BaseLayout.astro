@@ -4,10 +4,16 @@ import '../styles/globals.css';
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = 'AI-Native Engineering: o mapa que importa' } =
-  Astro.props;
+const {
+  title,
+  description = 'AI-Native Engineering: o mapa que importa',
+  ogImage,
+} = Astro.props;
+
+const ogImageUrl = ogImage || new URL('og-default.png', Astro.site).href;
 ---
 
 <!doctype html>
@@ -16,6 +22,12 @@ const { title, description = 'AI-Native Engineering: o mapa que importa' } =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
