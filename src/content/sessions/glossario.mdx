@@ -2,13 +2,233 @@
 title: 'Novas terminologias populares'
 slug: 'glossario'
 order: 1
-summary: 'Prompt, token, contexto, alucinacao, RAG, fine-tuning. O glossario que organiza o vocabulario sem jargao desnecessario.'
+summary: 'Prompt, token, contexto, agente. O glossario que organiza o vocabulario sem jargao desnecessario.'
 readingTime: 15
 level: 'beginner'
 tags: ['glossario', 'terminologia', 'fundamentos']
 heroLabel: 'Vocabulario essencial'
-references: []
+references:
+  ['openai-tokenizer', 'anthropic-claude-docs', 'anthropic-prompt-engineering']
 updatedAt: 2026-04-15
 ---
 
-Conteudo completo em breve.
+## Se essas palavras parecem tudo a mesma coisa
+
+LLM, modelo, token, prompt, contexto, agente, MCP, harness. Se voce ja ouviu essas palavras numa reuniao e fingiu que entendeu, essa sessao e pra voce.
+
+O vocabulario de IA no desenvolvimento de software cresceu rapido. O problema nao e a quantidade de termos. E que muita gente usa as mesmas palavras pra falar de coisas diferentes. Um PM fala "modelo" querendo dizer o produto (tipo ChatGPT). Um dev fala "modelo" querendo dizer a rede neural por tras (tipo GPT-4o). Os dois acham que estao falando a mesma coisa. Nao estao.
+
+Essa sessao organiza os termos que importam em 2026. Nao e um dicionario completo. E o minimo que voce precisa saber pra participar de conversas sobre IA sem se perder.
+
+Cada termo tem duas explicacoes: uma simples (pra entender rapido) e uma tecnica (pra quem quer mais profundidade). Leia a que fizer mais sentido pra voce.
+
+## Os termos que importam
+
+### Fundamentos de IA
+
+#### LLM
+
+**Simples**: Um programa de computador treinado pra ler e escrever texto. Voce manda uma pergunta, ele gera uma resposta.
+
+**Tecnico**: Large Language Model. Rede neural com bilhoes de parametros treinada em grandes volumes de texto. Gera saida token a token com base em probabilidade condicional sobre a sequencia de entrada.
+
+**Exemplo**: Quando voce pede pro ChatGPT explicar um bug, o LLM por tras (GPT-4o, por exemplo) processa seu texto e gera uma resposta palavra por palavra.
+
+**Erro comum**: Achar que LLM e sinonimo de ChatGPT. ChatGPT e um produto. GPT-4o e o LLM dentro dele. Sao coisas diferentes.
+
+#### Modelo
+
+**Simples**: O "cerebro" treinado que processa texto. Diferentes modelos tem diferentes capacidades, velocidades e custos.
+
+**Tecnico**: Conjunto de pesos e arquitetura de rede neural resultante de um processo de treinamento. Cada modelo tem caracteristicas proprias de raciocinio, velocidade, janela de contexto e custo de inferencia.
+
+**Exemplo**: Claude Sonnet e um modelo. Claude (o chat) e o produto. Voce interage com o produto, mas quem "pensa" e o modelo.
+
+**Erro comum**: Confundir modelo com produto. Quando um PM fala "vamos usar o Claude", ele provavelmente quer dizer o produto. Quando um dev fala, pode estar falando do modelo especifico (Sonnet, Opus, Haiku).
+
+#### Inferencia
+
+**Simples**: O processo de pedir pro modelo gerar uma resposta. Cada vez que voce manda uma mensagem, uma inferencia acontece.
+
+**Tecnico**: Execucao do modelo sobre uma entrada (prompt) para gerar uma saida (completion). Consome recursos computacionais e e cobrada por token processado na maioria das APIs.
+
+**Exemplo**: Voce pergunta "como funciona async/await em TypeScript?" e recebe uma explicacao. Essa geracao de resposta e uma inferencia.
+
+**Erro comum**: Achar que inferencia e instantanea e gratuita. Cada inferencia custa tempo e dinheiro. Modelos maiores custam mais por inferencia.
+
+#### Token
+
+**Simples**: Um pedaco de texto que o modelo processa. Pode ser uma palavra inteira, parte de uma palavra, ou um caractere especial.
+
+**Tecnico**: Unidade atomica de processamento de um LLM. O texto e dividido em tokens pelo tokenizer do modelo. Em media, 1 token equivale a ~4 caracteres em ingles ou ~3 caracteres em portugues.
+
+**Exemplo**: A frase "Bom dia" pode virar 2-3 tokens. Um arquivo de codigo com 500 linhas pode ter 3000-5000 tokens. Isso importa porque modelos tem limite de tokens.
+
+**Erro comum**: Ignorar a contagem de tokens. Se voce manda um arquivo gigante pro modelo e ele "esquece" o comeco, provavelmente estourou a janela de contexto.
+
+#### Contexto
+
+**Simples**: Tudo que o modelo "ve" quando gera uma resposta: sua pergunta, o historico da conversa, instrucoes do sistema, arquivos anexados.
+
+**Tecnico**: Sequencia completa de tokens fornecida ao modelo como entrada, incluindo system prompt, historico de mensagens e entrada atual. Limitada pela janela de contexto (context window) do modelo, medida em tokens.
+
+**Exemplo**: Se voce manda um prompt com 3 arquivos de codigo e pede uma revisao, o contexto e tudo junto: seu pedido + os 3 arquivos. Se passar do limite, o modelo ignora ou corta o que nao cabe.
+
+**Erro comum**: Achar que o modelo "lembra" de conversas anteriores. Ele so sabe o que esta no contexto atual. Se voce comecar uma conversa nova, ele nao sabe nada do que veio antes.
+
+### Interacao com IA
+
+#### Prompt
+
+**Simples**: O texto que voce manda pro modelo. Pode ser uma pergunta, um pedido, uma instrucao, ou tudo junto.
+
+**Tecnico**: Entrada textual fornecida ao modelo para gerar uma completion. Pode incluir instrucoes, exemplos (few-shot), restricoes e formato esperado. A qualidade do prompt influencia diretamente a qualidade da saida.
+
+**Exemplo**: Prompt ruim: "faz um componente". Prompt melhor: "cria um componente React de botao com variantes primary e secondary, usando CSS Modules, com prop disabled e testes unitarios".
+
+**Erro comum**: Achar que prompt e so "a pergunta". Prompt inclui contexto, restricoes, exemplos e formato. Quanto mais estruturado, melhor o resultado.
+
+#### System prompt
+
+**Simples**: Instrucoes iniciais que definem como o modelo deve se comportar. E como um briefing antes da conversa comecar.
+
+**Tecnico**: Mensagem com role "system" enviada no inicio da conversa que define comportamento, tom, restricoes e capacidades do assistente. Tem prioridade sobre mensagens do usuario na maioria dos modelos.
+
+**Exemplo**: Um system prompt pode dizer: "Voce e um revisor de codigo senior. Responda sempre em portugues. Aponte problemas de seguranca primeiro." Isso molda todas as respostas seguintes.
+
+**Erro comum**: Ignorar o system prompt e reclamar que o modelo "nao entende o que voce quer". Muitas vezes o problema e a falta de instrucoes claras no system prompt.
+
+### Ferramentas e interfaces
+
+#### IDE
+
+**Simples**: O editor de codigo onde voce escreve software. VS Code, Cursor, Windsurf sao exemplos.
+
+**Tecnico**: Integrated Development Environment. Ambiente de desenvolvimento que integra editor de texto, terminal, debugger, controle de versao e extensoes. No contexto de IA, IDEs modernas integram LLMs diretamente na interface de edicao.
+
+**Exemplo**: Cursor e uma IDE que tem IA embutida. VS Code com extensao do Copilot vira uma IDE com IA. A diferenca e onde a integracao acontece: nativa ou via plugin.
+
+**Erro comum**: Achar que IDE com IA e automaticamente melhor que terminal com IA. Sao interfaces diferentes pra workflows diferentes. Nenhuma e universalmente superior.
+
+#### CLI
+
+**Simples**: Interface de linha de comando. Voce digita texto no terminal e recebe texto de volta. Ferramentas como Claude Code rodam assim.
+
+**Tecnico**: Command Line Interface. Interface textual onde o usuario interage via comandos digitados. No contexto de IA, CLIs como Claude Code e Codex CLI operam diretamente no sistema de arquivos e terminal, com acesso a ferramentas do sistema.
+
+**Exemplo**: Em vez de clicar em menus, voce digita "claude code review src/api.ts" no terminal. A IA le o arquivo, analisa e responde ali mesmo.
+
+**Erro comum**: Achar que CLI e so pra devs hardcore. CLIs de IA modernas sao conversacionais e acessiveis. A curva de entrada e menor do que parece.
+
+#### Autocomplete
+
+**Simples**: Quando a IA sugere o proximo trecho de codigo enquanto voce digita. Tipo o autocomplete do celular, mas pra codigo.
+
+**Tecnico**: Sistema de completamento de codigo que usa LLMs para prever e sugerir trechos de codigo baseado no contexto do arquivo atual, arquivos abertos e historico de edicao. Funciona em tempo real durante a digitacao.
+
+**Exemplo**: Voce comeca a digitar "function validate" e a IA sugere o corpo inteiro da funcao baseado no nome e no contexto do arquivo. Voce aceita com Tab ou ignora.
+
+**Erro comum**: Aceitar toda sugestao sem ler. Autocomplete e estatisticamente provavel, nao necessariamente correto. Cada sugestao precisa de uma olhada rapida.
+
+#### Contexto de codigo
+
+**Simples**: As informacoes sobre seu projeto que a IA usa pra entender o que voce esta fazendo: arquivos abertos, estrutura de pastas, dependencias.
+
+**Tecnico**: Conjunto de informacoes do repositorio fornecido ao modelo como parte do contexto: arvore de arquivos, conteudo de arquivos relevantes, tipos, imports, testes, configuracoes. Ferramentas diferentes coletam contexto de codigo de formas diferentes.
+
+**Exemplo**: Quando o Cursor sugere codigo, ele olha nao so o arquivo atual mas tambem os imports, tipos definidos em outros arquivos e padroes do projeto. Quanto melhor o contexto, melhor a sugestao.
+
+**Erro comum**: Achar que a IA "conhece" todo seu projeto automaticamente. Cada ferramenta tem limites de quanto contexto consegue incluir. Projetos grandes precisam de curadoria do que vai pro contexto.
+
+### Agentes e sistemas
+
+#### Agente
+
+**Simples**: Um programa que usa IA pra tomar decisoes e executar acoes sozinho, nao so responder perguntas.
+
+**Tecnico**: Sistema que combina um LLM com ferramentas (tool use) e logica de controle para executar tarefas de forma autonoma. O agente interpreta objetivos, planeja passos, executa acoes via ferramentas e itera ate atingir o resultado ou falhar.
+
+**Exemplo**: Voce pede "refatora esse modulo pra usar o padrao repository". O agente le os arquivos, planeja as mudancas, edita o codigo, roda os testes e reporta o resultado. Tudo sem voce intervir em cada passo.
+
+**Erro comum**: Confundir chatbot com agente. Um chatbot responde perguntas. Um agente executa tarefas. A diferenca e autonomia e acesso a ferramentas.
+
+#### Agente de codigo
+
+**Simples**: Um agente especializado em escrever, editar e revisar codigo. Tem acesso ao seu projeto e pode fazer mudancas diretamente.
+
+**Tecnico**: Agente de IA com acesso a ferramentas de desenvolvimento: leitura/escrita de arquivos, execucao de comandos no terminal, navegacao no repositorio, execucao de testes. Opera dentro do contexto de um projeto de software.
+
+**Exemplo**: Claude Code e um agente de codigo. Voce descreve o que quer, ele le seus arquivos, escreve codigo, roda testes e commita. Cursor em modo agente tambem funciona assim.
+
+**Erro comum**: Dar autonomia total sem supervisao. Agentes de codigo sao poderosos mas precisam de revisao humana. O output precisa ser validado antes de ir pra producao.
+
+#### MCP
+
+**Simples**: Um padrao que permite que ferramentas de IA se conectem a servicos externos de forma organizada. Tipo um USB pra IA.
+
+**Tecnico**: Model Context Protocol. Protocolo aberto que padroniza como aplicacoes de IA se conectam a fontes de dados e ferramentas externas. Define um formato comum para servidores de contexto que podem ser consumidos por qualquer cliente compativel.
+
+**Exemplo**: Um servidor MCP de GitHub permite que qualquer ferramenta de IA (Claude Code, Cursor, etc.) acesse issues, PRs e repositorios sem cada ferramenta precisar implementar a integracao do zero.
+
+**Erro comum**: Achar que MCP ja e um padrao universal consolidado. E relativamente novo e ainda esta em evolucao. Nem todas as ferramentas suportam, e o ecossistema de servidores ainda esta crescendo.
+
+#### Harness
+
+**Simples**: O sistema completo de trabalho de um agente de IA: instrucoes, ferramentas, regras, contexto. E o "ambiente" onde o agente opera.
+
+**Tecnico**: Camada de orquestracao que define como um agente de codigo opera: system prompt, ferramentas disponiveis, regras de projeto, contexto persistente, validacoes automaticas, agentes especializados e criterios de aceite. Nao e um padrao universal; o termo e usado aqui pra descrever essa camada.
+
+**Exemplo**: Um harness pode incluir: um CLAUDE.md com regras do projeto, um pre-commit hook que roda testes, um system prompt que define tom e padroes, e acesso a ferramentas especificas via MCP.
+
+**Erro comum**: Tratar harness como algo que voce "instala". E uma pratica, nao um produto. Voce constroi o harness do seu time ao longo do tempo, ajustando conforme o projeto evolui.
+
+## Por que isso importa
+
+Vocabulario compartilhado nao e perfumaria. E infraestrutura de comunicacao.
+
+Quando um PM pede "usa o modelo mais rapido", ele pode estar querendo dizer "usa o mais barato" ou "usa o que responde mais rapido" ou "usa o que eu vi no Twitter". Se o time nao tem vocabulario alinhado, cada um interpreta do seu jeito e o resultado e retrabalho.
+
+Isso e especialmente critico em 2026 porque:
+
+- **Times multidisciplinares estao tomando decisoes sobre IA juntos**. Dev, QA, PM, designer. Todos precisam de um minimo de vocabulario compartilhado.
+- **Ferramentas estao mudando rapido**. O que era "autocomplete" virou "agente". Se voce nao atualiza o vocabulario, perde o contexto.
+- **Fornecedores usam jargao de proposito**. "IA generativa", "foundation model", "multimodal". Sem entender os termos, voce nao consegue avaliar o que estao vendendo.
+
+## Exemplo aplicado
+
+Uma reuniao real entre PM, QA e dev:
+
+**PM**: "A gente precisa usar IA pra acelerar os testes."
+
+**QA**: "Tipo o que? Gerar casos de teste? Rodar testes automaticos? Analisar resultados?"
+
+**Dev**: "A gente pode usar um agente de codigo pra gerar testes a partir da spec. Mas precisa de contexto de codigo bom. Se o projeto nao tem tipos, o modelo vai chutar."
+
+**PM**: "Entao o modelo precisa ver nosso codigo?"
+
+**Dev**: "Sim. O modelo recebe o codigo como contexto. Quanto mais organizado o projeto, melhor o output. Mas tem limite de tokens, entao nao da pra mandar tudo de uma vez."
+
+**QA**: "E se der errado? O modelo pode gerar teste que passa mas nao testa nada."
+
+**Dev**: "Exato. Por isso a gente revisa. A inferencia gera um rascunho. A validacao e humana."
+
+Percebe como o vocabulario alinhado muda a qualidade da conversa? Sem ele, o PM teria pedido "bota IA nos testes" e cada um teria feito algo diferente.
+
+## Onde isso quebra
+
+- **Jargao como barreira**: Se voce usa termos tecnicos pra impressionar em vez de comunicar, esta criando barreira, nao vocabulario. A definicao simples existe por um motivo.
+- **Definicoes rigidas demais**: Esses termos estao em evolucao. O que "agente" significa hoje pode mudar em 6 meses. Nao trate esse glossario como lei.
+- **Decorar sem entender**: Saber que token e "unidade atomica de processamento" nao ajuda se voce nao entende por que isso importa na pratica (limite de contexto, custo por inferencia).
+
+## Bloco interativo
+
+Em breve: cards interativos pra explorar cada termo com definicao simples, tecnica, exemplo e erro comum.
+
+## O que levar daqui
+
+- Vocabulario alinhado e pre-requisito pra colaboracao efetiva com IA
+- Cada termo tem uma versao simples e uma tecnica. Use a que fizer sentido pro seu publico
+- Produto e modelo sao coisas diferentes. ChatGPT e o produto, GPT-4o e o modelo
+- Contexto e limitado. O modelo so sabe o que voce coloca na janela de contexto
+- Agente e diferente de chatbot. A diferenca e autonomia e acesso a ferramentas
+- Esses termos estao em evolucao. Revise seu entendimento periodicamente

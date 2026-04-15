@@ -6,7 +6,7 @@
     "type": "artigo",
     "source": "Addy Osmani",
     "category": "ai-native-engineer",
-    "relatedSessions": ["ai-native-engineer"],
+    "relatedSessions": ["ai-native-engineer", "maturidade"],
     "priority": 1
   },
   {
@@ -15,8 +15,8 @@
     "url": "https://docs.anthropic.com",
     "type": "documentacao",
     "source": "Anthropic",
-    "category": "ai-native-engineer",
-    "relatedSessions": ["ai-native-engineer", "modelos"],
+    "category": "modelos",
+    "relatedSessions": ["ai-native-engineer", "modelos", "como-operar"],
     "priority": 1
   },
   {
@@ -25,8 +25,228 @@
     "url": "https://www.youtube.com/watch?v=JhCl-GeT4jw",
     "type": "video",
     "source": "Andrej Karpathy",
-    "category": "ai-native-engineer",
+    "category": "maturidade",
     "relatedSessions": ["ai-native-engineer", "maturidade"],
     "priority": 1
+  },
+  {
+    "id": "openai-tokenizer",
+    "title": "OpenAI Tokenizer",
+    "url": "https://platform.openai.com/tokenizer",
+    "type": "documentacao",
+    "source": "OpenAI",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "modelos"],
+    "priority": 2
+  },
+  {
+    "id": "anthropic-prompt-engineering",
+    "title": "Prompt Engineering Guide",
+    "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering",
+    "type": "documentacao",
+    "source": "Anthropic",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "como-operar"],
+    "priority": 1
+  },
+  {
+    "id": "openai-docs",
+    "title": "OpenAI API Documentation",
+    "url": "https://platform.openai.com/docs",
+    "type": "documentacao",
+    "source": "OpenAI",
+    "category": "modelos",
+    "relatedSessions": ["modelos"],
+    "priority": 1
+  },
+  {
+    "id": "google-gemini-docs",
+    "title": "Gemini API Documentation",
+    "url": "https://ai.google.dev/docs",
+    "type": "documentacao",
+    "source": "Google",
+    "category": "modelos",
+    "relatedSessions": ["modelos"],
+    "priority": 2
+  },
+  {
+    "id": "meta-llama-docs",
+    "title": "Llama Models",
+    "url": "https://llama.meta.com",
+    "type": "documentacao",
+    "source": "Meta",
+    "category": "modelos",
+    "relatedSessions": ["modelos"],
+    "priority": 2
+  },
+  {
+    "id": "vellum-llm-leaderboard",
+    "title": "LLM Leaderboard and Comparison",
+    "url": "https://www.vellum.ai/llm-leaderboard",
+    "type": "artigo",
+    "source": "Vellum",
+    "category": "modelos",
+    "relatedSessions": ["modelos"],
+    "priority": 3
+  },
+  {
+    "id": "cursor-docs",
+    "title": "Cursor Documentation",
+    "url": "https://docs.cursor.com",
+    "type": "documentacao",
+    "source": "Cursor",
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas", "como-operar"],
+    "priority": 1
+  },
+  {
+    "id": "github-copilot-docs",
+    "title": "GitHub Copilot Documentation",
+    "url": "https://docs.github.com/en/copilot",
+    "type": "documentacao",
+    "source": "GitHub",
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
+    "priority": 1
+  },
+  {
+    "id": "claude-code-docs",
+    "title": "Claude Code Documentation",
+    "url": "https://docs.anthropic.com/en/docs/claude-code",
+    "type": "documentacao",
+    "source": "Anthropic",
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
+    "priority": 1
+  },
+  {
+    "id": "opencode-github",
+    "title": "OpenCode - Open source AI coding assistant",
+    "url": "https://github.com/opencode-ai/opencode",
+    "type": "documentacao",
+    "source": "OpenCode",
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
+    "priority": 3
+  },
+  {
+    "id": "shimony-sdd",
+    "title": "Spec-Driven Development with AI",
+    "url": "https://addyo.substack.com/p/spec-driven-development",
+    "type": "artigo",
+    "source": "Addy Osmani",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade", "como-operar"],
+    "priority": 1
+  },
+  {
+    "id": "mckinsey-ai-developer-productivity",
+    "title": "The economic potential of generative AI: The next productivity frontier",
+    "url": "https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier",
+    "type": "pesquisa",
+    "source": "McKinsey",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 2
+  },
+  {
+    "id": "mcp-spec",
+    "title": "Model Context Protocol Specification",
+    "url": "https://modelcontextprotocol.io",
+    "type": "documentacao",
+    "source": "Anthropic",
+    "category": "glossario",
+    "relatedSessions": ["glossario"],
+    "priority": 2
+  },
+  {
+    "id": "karpathy-tokenization",
+    "title": "Let's build the GPT Tokenizer",
+    "url": "https://www.youtube.com/watch?v=zduSFxRajkE",
+    "type": "video",
+    "source": "Andrej Karpathy",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "modelos"],
+    "priority": 2
+  },
+  {
+    "id": "openai-prompt-engineering",
+    "title": "Prompt Engineering Guide",
+    "url": "https://platform.openai.com/docs/guides/prompt-engineering",
+    "type": "documentacao",
+    "source": "OpenAI",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "como-operar"],
+    "priority": 2
+  },
+  {
+    "id": "deepseek-docs",
+    "title": "DeepSeek Platform Documentation",
+    "url": "https://platform.deepseek.com/docs",
+    "type": "documentacao",
+    "source": "DeepSeek",
+    "category": "modelos",
+    "relatedSessions": ["modelos"],
+    "priority": 3
+  },
+  {
+    "id": "windsurf-docs",
+    "title": "Windsurf Documentation",
+    "url": "https://docs.windsurf.com",
+    "type": "documentacao",
+    "source": "Windsurf",
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
+    "priority": 3
+  },
+  {
+    "id": "karpathy-vibe-coding",
+    "title": "Vibe Coding",
+    "url": "https://x.com/karpathy/status/1886192184808149383",
+    "type": "artigo",
+    "source": "Andrej Karpathy",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 2
+  },
+  {
+    "id": "stackoverflow-ai-survey-2024",
+    "title": "Stack Overflow Developer Survey 2024 - AI",
+    "url": "https://survey.stackoverflow.co/2024/ai",
+    "type": "pesquisa",
+    "source": "Stack Overflow",
+    "category": "ai-native-engineer",
+    "relatedSessions": ["ai-native-engineer", "ferramentas"],
+    "priority": 2
+  },
+  {
+    "id": "codex-cli-docs",
+    "title": "Codex CLI Documentation",
+    "url": "https://github.com/openai/codex",
+    "type": "documentacao",
+    "source": "OpenAI",
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
+    "priority": 2
+  },
+  {
+    "id": "google-ai-assisted-development",
+    "title": "How Google uses AI for internal development",
+    "url": "https://blog.google/technology/ai/google-ai-development-tools",
+    "type": "artigo",
+    "source": "Google",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade", "como-operar"],
+    "priority": 3
+  },
+  {
+    "id": "github-copilot-research",
+    "title": "Research: Quantifying GitHub Copilot's impact on developer productivity",
+    "url": "https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness",
+    "type": "pesquisa",
+    "source": "GitHub",
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas", "ai-native-engineer"],
+    "priority": 2
   }
 ]
