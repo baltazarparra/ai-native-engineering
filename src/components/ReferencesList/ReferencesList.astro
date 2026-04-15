@@ -1,0 +1,81 @@
+---
+import styles from './ReferencesList.module.css';
+import Badge from '../Badge/Badge.astro';
+
+interface Reference {
+  id: string;
+  title: string;
+  url: string;
+  type: 'artigo' | 'documentacao' | 'talk' | 'video' | 'pesquisa';
+  source: string;
+  category: string;
+  priority?: number;
+}
+
+interface Props {
+  references: Reference[];
+}
+
+const { references } = Astro.props;
+
+if (references.length === 0) return;
+
+const typeLabels: Record<string, string> = {
+  artigo: 'Artigos',
+  documentacao: 'Documentacao',
+  talk: 'Talks',
+  video: 'Videos',
+  pesquisa: 'Pesquisa',
+};
+
+const typeBadgeVariant: Record<
+  string,
+  'default' | 'yellow' | 'blue' | 'green' | 'coral'
+> = {
+  artigo: 'default',
+  documentacao: 'blue',
+  talk: 'yellow',
+  video: 'coral',
+  pesquisa: 'green',
+};
+
+// group by type, sort by priority within each group
+const grouped = Object.entries(
+  references.reduce(
+    (acc, ref) => {
+      if (!acc[ref.type]) acc[ref.type] = [];
+      acc[ref.type].push(ref);
+      return acc;
+    },
+    {} as Record<string, Reference[]>,
+  ),
+).map(([type, refs]) => ({
+  type,
+  label: typeLabels[type] || type,
+  refs: refs.sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99)),
+}));
+---
+
+<div class={styles.references} id="referencias">
+  <h2 class={styles.heading}>Quer se aprofundar?</h2>
+  {
+    grouped.map((group) => (
+      <div class={styles.group}>
+        <h3 class={styles.groupLabel}>{group.label}</h3>
+        <ul class={styles.list}>
+          {group.refs.map((ref) => (
+            <li class={styles.item}>
+              <a href={ref.url} target="_blank" rel="noopener noreferrer">
+                {ref.title}
+              </a>
+              <span class={styles.source}>({ref.source})</span>
+              <Badge variant={typeBadgeVariant[ref.type]} size="sm">
+                {ref.type}
+              </Badge>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>

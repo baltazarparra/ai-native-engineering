@@ -7,8 +7,51 @@ readingTime: 12
 level: 'beginner'
 tags: ['fundamentos', 'ai-native', 'mindset']
 heroLabel: 'Ponto de partida'
-references: []
+references:
+  ['osmani-ai-native', 'anthropic-claude-docs', 'karpathy-ai-native-dev']
 updatedAt: 2026-04-15
 ---
 
-Conteudo completo em breve.
+## Por que isso importa
+
+A maioria dos profissionais de tecnologia ja usa alguma ferramenta de IA no dia a dia. Autocomplete no editor, chat pra tirar duvidas, geracao de codigo a partir de descricoes em texto. Mas usar uma ferramenta e operar com ela de forma nativa sao coisas diferentes.
+
+Um AI-Native Engineer nao e alguem que sabe mais prompts ou que usa mais ferramentas. E alguem que reorganizou o fluxo de trabalho pra tirar proveito real do que a IA faz bem, e sabe identificar onde ela atrapalha.
+
+Isso importa porque a diferenca entre "usar IA" e "trabalhar de forma AI-native" e a diferenca entre copiar respostas do ChatGPT e construir um sistema que funciona com agentes coordenados.
+
+## Exemplo aplicado
+
+Imagine que voce precisa criar uma API de autenticacao. Um dev que "usa IA" abre o chat, pede "cria uma API de auth com JWT", copia o resultado e cola no projeto. Talvez funcione. Talvez nao.
+
+Um AI-Native Engineer faz diferente:
+
+1. Escreve uma especificacao clara do que precisa (endpoints, fluxos, restricoes)
+2. Passa a spec pro agente de codigo com contexto do projeto
+3. Revisa o output com olho critico, nao aceita tudo automaticamente
+4. Usa a IA pra gerar testes a partir da spec original
+5. Itera com feedback especifico quando algo nao bate
+
+A diferenca nao e a ferramenta. E o processo.
+
+## Onde isso quebra
+
+Cuidado com esses anti-padroes:
+
+- **Aceitar tudo sem revisar**: IA gera codigo plausivel, nao codigo correto. Se voce aceita sem ler, esta terceirizando a responsabilidade, nao o trabalho.
+- **Prompt como substituto de pensamento**: "faz pra mim" nao e especificacao. Quanto mais vago o pedido, mais generico o resultado.
+- **Achar que IA substitui experiencia**: IA acelera quem ja sabe o que quer. Pra quem nao sabe, ela amplifica a confusao.
+
+> Ferramenta boa com processo ruim produz resultado ruim mais rapido.
+
+## Bloco interativo
+
+Em breve: um self-assessment interativo pra voce mapear onde esta no espectro de maturidade AI-native.
+
+## O que levar daqui
+
+- AI-Native nao e sobre usar mais IA, e sobre integrar IA no fluxo de trabalho de forma estruturada
+- A diferenca esta no processo, nao na ferramenta
+- Revisar output de IA e tao importante quanto gerar
+- Especificacao clara antes de pedir qualquer coisa pra IA produz resultados melhores
+- Comece identificando onde IA realmente ajuda no seu trabalho, nao onde e moda usar

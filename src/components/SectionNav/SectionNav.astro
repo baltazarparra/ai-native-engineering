@@ -1,0 +1,87 @@
+---
+import styles from './SectionNav.module.css';
+---
+
+<nav class={styles.nav} aria-label="Navegacao da sessao">
+  <ul class={styles.list} id="section-nav-list"></ul>
+</nav>
+
+<script>
+  function initSectionNav() {
+    const list = document.getElementById('section-nav-list');
+    if (!list) return;
+
+    // collect headings from fixed layout sections and MDX body
+    const contentHeadings = Array.from(
+      document.querySelectorAll('.session-content h2[id]'),
+    ) as HTMLElement[];
+
+    interface NavEntry {
+      id: string;
+      text: string;
+    }
+
+    const entries: NavEntry[] = [];
+
+    // add "resumo" if it exists
+    const resumoEl = document.getElementById('resumo');
+    if (resumoEl) {
+      const resumoHeading = resumoEl.querySelector('h2');
+      entries.push({
+        id: 'resumo',
+        text: resumoHeading?.textContent?.trim() || 'Resumo',
+      });
+    }
+
+    // add MDX h2 headings
+    for (const h2 of contentHeadings) {
+      entries.push({ id: h2.id, text: h2.textContent?.trim() || '' });
+    }
+
+    // add "referencias" if it exists
+    const refEl = document.getElementById('referencias');
+    if (refEl) {
+      entries.push({ id: 'referencias', text: 'Referencias' });
+    }
+
+    if (entries.length === 0) return;
+
+    // build nav links
+    for (const entry of entries) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = `#${entry.id}`;
+      a.textContent = entry.text;
+      a.dataset.section = entry.id;
+      li.appendChild(a);
+      list.appendChild(li);
+    }
+
+    // observe sections
+    const links = list.querySelectorAll('a[data-section]');
+
+    const observer = new IntersectionObserver(
+      (observerEntries) => {
+        for (const entry of observerEntries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            links.forEach((link) => {
+              if (link instanceof HTMLElement) {
+                link.dataset.active =
+                  link.dataset.section === id ? 'true' : 'false';
+              }
+            });
+          }
+        }
+      },
+      { rootMargin: '-20% 0px -70% 0px' },
+    );
+
+    for (const entry of entries) {
+      const el = document.getElementById(entry.id);
+      if (el) observer.observe(el);
+    }
+  }
+
+  initSectionNav();
+</script>

@@ -4,7 +4,7 @@ import react from '@astrojs/react';
 
 export default defineConfig({
   site: 'https://baltazarparra.github.io',
-  base: '/ai-native-engineering',
+  base: '/ai-native-engineering/',
   integrations: [mdx(), react()],
   output: 'static',
 });

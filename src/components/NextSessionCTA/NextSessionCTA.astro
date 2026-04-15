@@ -1,0 +1,37 @@
+---
+import styles from './NextSessionCTA.module.css';
+import Button from '../Button/Button.astro';
+
+interface Props {
+  nextTitle?: string;
+  nextSlug?: string;
+  nextHeroLabel?: string;
+  isLast?: boolean;
+}
+
+const { nextTitle, nextSlug, nextHeroLabel, isLast = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<div class={styles.cta}>
+  {
+    isLast ? (
+      <>
+        <span class={styles.label}>Voce chegou ao fim</span>
+        <p class={styles.title}>Parabens! Agora e hora de aplicar.</p>
+        <Button href={base} size="lg">
+          Voltar pra home
+        </Button>
+      </>
+    ) : (
+      <>
+        <span class={styles.label}>Proxima sessao</span>
+        {nextHeroLabel && <span class={styles.heroLabel}>{nextHeroLabel}</span>}
+        <p class={styles.title}>{nextTitle}</p>
+        <Button href={`${base}sessions/${nextSlug}`} size="lg">
+          Continuar
+        </Button>
+      </>
+    )
+  }
+</div>

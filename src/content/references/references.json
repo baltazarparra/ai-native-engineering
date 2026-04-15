@@ -8,5 +8,25 @@
     "category": "ai-native-engineer",
     "relatedSessions": ["ai-native-engineer"],
     "priority": 1
+  },
+  {
+    "id": "anthropic-claude-docs",
+    "title": "Claude Documentation",
+    "url": "https://docs.anthropic.com",
+    "type": "documentacao",
+    "source": "Anthropic",
+    "category": "ai-native-engineer",
+    "relatedSessions": ["ai-native-engineer", "modelos"],
+    "priority": 1
+  },
+  {
+    "id": "karpathy-ai-native-dev",
+    "title": "Software in the era of AI",
+    "url": "https://www.youtube.com/watch?v=JhCl-GeT4jw",
+    "type": "video",
+    "source": "Andrej Karpathy",
+    "category": "ai-native-engineer",
+    "relatedSessions": ["ai-native-engineer", "maturidade"],
+    "priority": 1
   }
 ]

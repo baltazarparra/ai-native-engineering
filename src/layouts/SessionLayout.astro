@@ -1,37 +1,221 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
+import Badge from '../components/Badge/Badge.astro';
+import SectionNav from '../components/SectionNav/SectionNav.astro';
+import ReferencesList from '../components/ReferencesList/ReferencesList.astro';
+import NextSessionCTA from '../components/NextSessionCTA/NextSessionCTA.astro';
+import Footer from '../components/Footer/Footer.astro';
+
+interface Reference {
+  id: string;
+  title: string;
+  url: string;
+  type: 'artigo' | 'documentacao' | 'talk' | 'video' | 'pesquisa';
+  source: string;
+  category: string;
+  priority?: number;
+}
 
 interface Props {
   title: string;
   summary: string;
   readingTime: number;
-  level: string;
+  level: 'beginner' | 'intermediate' | 'advanced';
   heroLabel: string;
   updatedAt: Date;
+  tags: string[];
+  order: number;
+  references: Reference[];
+  nextSession: { title: string; slug: string; heroLabel: string } | null;
 }
 
-const { title, summary, readingTime, level, heroLabel, updatedAt } =
-  Astro.props;
+const {
+  title,
+  summary,
+  readingTime,
+  level,
+  heroLabel,
+  updatedAt,
+  references,
+  nextSession,
+} = Astro.props;
+
+const levelLabels: Record<string, string> = {
+  beginner: 'iniciante',
+  intermediate: 'intermediario',
+  advanced: 'avancado',
+};
+
+const levelVariants: Record<string, 'yellow' | 'blue' | 'green'> = {
+  beginner: 'yellow',
+  intermediate: 'blue',
+  advanced: 'green',
+};
 ---
 
 <BaseLayout title={`${title} | AI-Native Engineering`} description={summary}>
-  <main>
-    <article>
-      <header>
-        <span>{heroLabel}</span>
-        <h1>{title}</h1>
-        <p>{summary}</p>
-        <div>
-          <span>{level}</span>
-          <span>{readingTime} min de leitura</span>
-          <time datetime={updatedAt.toISOString()}>
-            Atualizado em {updatedAt.toLocaleDateString('pt-BR')}
-          </time>
-        </div>
-      </header>
-      <section>
+  <main class="session-page">
+    <!-- hero -->
+    <SectionBlock as="header" padding="xl">
+      <Badge variant="default">{heroLabel}</Badge>
+      <h1 class="session-title">{title}</h1>
+      <div class="session-meta">
+        <Badge variant={levelVariants[level]} size="sm">
+          {levelLabels[level]}
+        </Badge>
+        <Badge size="sm">{readingTime} min de leitura</Badge>
+        <time class="session-date" datetime={updatedAt.toISOString()}>
+          Atualizado em{' '}
+          {
+            updatedAt.toLocaleDateString('pt-BR', {
+              month: 'long',
+              year: 'numeric',
+            })
+          }
+        </time>
+      </div>
+    </SectionBlock>
+
+    <!-- summary -->
+    <SectionBlock padding="lg" alt id="resumo">
+      <h2>Em 30 segundos</h2>
+      <p class="summary-text">{summary}</p>
+    </SectionBlock>
+
+    <!-- body: sidebar + content -->
+    <div class="session-body">
+      <aside class="session-sidebar">
+        <SectionNav />
+      </aside>
+      <article class="session-content">
         <slot />
-      </section>
-    </article>
+      </article>
+    </div>
+
+    <!-- references -->
+    {
+      references.length > 0 && (
+        <SectionBlock padding="xl" alt>
+          <ReferencesList references={references} />
+        </SectionBlock>
+      )
+    }
+
+    <!-- next session -->
+    {
+      nextSession ? (
+        <NextSessionCTA
+          nextTitle={nextSession.title}
+          nextSlug={nextSession.slug}
+          nextHeroLabel={nextSession.heroLabel}
+        />
+      ) : (
+        <NextSessionCTA isLast />
+      )
+    }
+
+    <Footer />
   </main>
 </BaseLayout>
+
+<style>
+  .session-title {
+    margin-top: var(--space-md);
+  }
+
+  .session-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .session-date {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .summary-text {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-md);
+    max-width: 68ch;
+  }
+
+  .session-body {
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+    padding-block: var(--space-xl);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .session-sidebar {
+    display: none;
+  }
+
+  /* prose styles for MDX slot content */
+  .session-content :global(h2) {
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-md);
+    scroll-margin-top: var(--space-xl);
+  }
+
+  .session-content :global(h3) {
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  .session-content :global(p) {
+    margin-bottom: var(--space-md);
+  }
+
+  .session-content :global(ul),
+  .session-content :global(ol) {
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-lg);
+  }
+
+  .session-content :global(li) {
+    margin-bottom: var(--space-xs);
+  }
+
+  .session-content :global(blockquote) {
+    border-left: 4px solid var(--color-accent-1);
+    padding-left: var(--space-lg);
+    margin-block: var(--space-lg);
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+
+  .session-content :global(hr) {
+    border: none;
+    border-top: var(--border-thin);
+    margin-block: var(--space-2xl);
+  }
+
+  .session-content :global(img) {
+    border: var(--border-thin);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .session-content :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .session-body {
+      grid-template-columns: 220px 1fr;
+      padding-inline: var(--space-xl);
+    }
+
+    .session-sidebar {
+      display: block;
+    }
+  }
+</style>

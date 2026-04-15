@@ -2,16 +2,40 @@
 import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
 import SessionLayout from '../../layouts/SessionLayout.astro';
+import { sessions } from '../../data/sessions';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const sessions = await getCollection('sessions');
-  return sessions.map((session) => ({
-    params: { slug: session.data.slug },
-    props: { session },
-  }));
+  const sessionEntries = await getCollection('sessions');
+  const allReferences = await getCollection('references');
+
+  return sessionEntries.map((session) => {
+    // resolve reference IDs to full objects
+    const resolvedRefs = session.data.references
+      .map((refId: string) => {
+        const ref = allReferences.find((r) => r.id === refId);
+        return ref ? ref.data : null;
+      })
+      .filter(Boolean);
+
+    // compute next session from ordered data
+    const currentOrder = session.data.order;
+    const nextSessionData = sessions.find((s) => s.order === currentOrder + 1);
+    const nextSession = nextSessionData
+      ? {
+          title: nextSessionData.title,
+          slug: nextSessionData.slug,
+          heroLabel: nextSessionData.heroLabel,
+        }
+      : null;
+
+    return {
+      params: { slug: session.data.slug },
+      props: { session, resolvedRefs, nextSession },
+    };
+  });
 };
 
-const { session } = Astro.props;
+const { session, resolvedRefs, nextSession } = Astro.props;
 const { Content } = await render(session);
 ---
 
@@ -22,6 +46,10 @@ const { Content } = await render(session);
   level={session.data.level}
   heroLabel={session.data.heroLabel}
   updatedAt={session.data.updatedAt}
+  tags={session.data.tags}
+  order={session.data.order}
+  references={resolvedRefs}
+  nextSession={nextSession}
 >
   <Content />
 </SessionLayout>
