@@ -1,0 +1,133 @@
+.card {
+  background-color: var(--color-bg);
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/* accent top stripes */
+
+.accent-yellow {
+  border-top: 6px solid var(--color-accent-1);
+}
+
+.accent-blue {
+  border-top: 6px solid var(--color-accent-2);
+}
+
+.accent-green {
+  border-top: 6px solid var(--color-accent-3);
+}
+
+.accent-coral {
+  border-top: 6px solid var(--color-accent-4);
+}
+
+/* linkable card */
+
+.linkable {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.linkable:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+  background-color: inherit;
+}
+
+.linkable:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* card zones */
+
+.header {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: var(--border-thin);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xl);
+  color: var(--color-primary);
+  line-height: var(--leading-snug);
+}
+
+.body {
+  padding: var(--space-lg);
+}
+
+.footer {
+  padding: var(--space-md) var(--space-lg);
+  border-top: var(--border-thin);
+  background-color: var(--color-bg-alt);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+}
+
+/* expandable variant (details/summary) */
+
+.expandable {
+  list-style: none;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary::marker {
+  display: none;
+  content: '';
+}
+
+.indicator {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-thin);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.indicator::before {
+  content: '+';
+}
+
+.expandable[open] .indicator::before {
+  content: '\00d7';
+}
+
+.expandableBody {
+  padding: 0 var(--space-lg) var(--space-lg);
+  border-top: var(--border-thin);
+}

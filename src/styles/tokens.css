@@ -1,17 +1,21 @@
 :root {
-  /* colors (placeholder, finalized in phase 2) */
+  /* colors */
   --color-bg: #faf5ee;
   --color-bg-alt: #f0e9df;
   --color-text: #1a1a1a;
-  --color-text-muted: #555555;
+  --color-text-muted: #4a4a4a;
   --color-primary: #000000;
-  --color-accent-1: #ffcc00;
-  --color-accent-2: #3366ff;
-  --color-accent-3: #00cc66;
+  --color-accent-1: #f5c518; /* yellow */
+  --color-accent-2: #2952e8; /* electric blue */
+  --color-accent-3: #00b34a; /* acid green */
+  --color-accent-4: #ff5c5c; /* coral */
   --color-border: #000000;
   --color-shadow: #000000;
+  --color-focus: #2952e8;
+  --color-white: #ffffff;
 
   /* spacing */
+  --space-2xs: 0.125rem;
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
@@ -19,11 +23,12 @@
   --space-xl: 2rem;
   --space-2xl: 3rem;
   --space-3xl: 4rem;
+  --space-4xl: 6rem;
 
   /* fonts */
-  --font-heading: system-ui, -apple-system, sans-serif;
-  --font-body: system-ui, -apple-system, sans-serif;
-  --font-mono: 'SF Mono', 'Fira Code', monospace;
+  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   /* font sizes */
   --text-xs: 0.75rem;
@@ -34,18 +39,49 @@
   --text-2xl: 1.5rem;
   --text-3xl: 2rem;
   --text-4xl: 2.5rem;
+  --text-5xl: 3.5rem;
+
+  /* font weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* line heights */
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
 
   /* borders */
   --border-thin: 2px solid var(--color-border);
   --border-thick: 4px solid var(--color-border);
 
-  /* shadows (neo brutalism: hard offset, no blur) */
+  /* shadows (neo brutalism: hard offset, zero blur) */
   --shadow-sm: 2px 2px 0 var(--color-shadow);
   --shadow-md: 4px 4px 0 var(--color-shadow);
   --shadow-lg: 6px 6px 0 var(--color-shadow);
+  --shadow-xl: 8px 8px 0 var(--color-shadow);
 
   /* radii */
+  --radius-none: 0;
   --radius-sm: 2px;
   --radius-md: 4px;
   --radius-lg: 8px;
+
+  /* container widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1200px;
+
+  /* transitions */
+  --transition-fast: 120ms ease;
+  --transition-normal: 200ms ease;
+
+  /* z-index */
+  --z-base: 0;
+  --z-above: 10;
+  --z-sticky: 100;
+  --z-overlay: 1000;
 }

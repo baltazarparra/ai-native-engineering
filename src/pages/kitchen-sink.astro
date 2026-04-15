@@ -1,0 +1,297 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
+import Grid from '../components/Grid/Grid.astro';
+import Button from '../components/Button/Button.astro';
+import Card from '../components/Card/Card.astro';
+import Badge from '../components/Badge/Badge.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Kitchen Sink | Dev"
+  description="Pagina de dev pra ver todos os componentes"
+>
+  <main>
+    <SectionBlock padding="xl">
+      <h1>Kitchen Sink</h1>
+      <p>
+        Todos os componentes do design system em todos os estados. Essa pagina e
+        temporaria, vai sumir depois da Phase 2.
+      </p>
+    </SectionBlock>
+
+    <!-- typography -->
+    <SectionBlock padding="xl" alt>
+      <h2>Tipografia</h2>
+      <h1>Heading 1 - Space Grotesk Bold</h1>
+      <h2>Heading 2 - O subtitulo grandao</h2>
+      <h3>Heading 3 - Secoes dentro de secoes</h3>
+      <h4>Heading 4 - Labels importantes</h4>
+      <h5>Heading 5 - Detalhes</h5>
+      <h6>Heading 6 - O menor que existe</h6>
+      <p>
+        Paragrafo normal em Inter 400. A gente precisa garantir que esse texto e
+        confortavel de ler em qualquer tela. Linha comprida demais cansa, curta
+        demais quebra o ritmo. 68ch de max-width resolve isso.
+      </p>
+      <p>
+        <strong>Texto em negrito (Inter 600)</strong> pra quando precisa de enfase.
+      </p>
+      <p>
+        E aqui um <code>trecho de codigo inline</code> em JetBrains Mono.
+      </p>
+      <pre><code>// bloco de codigo
+const resultado = await modelo.gerar(prompt);
+console.log(resultado);</code></pre>
+    </SectionBlock>
+
+    <!-- colors -->
+    <SectionBlock padding="xl">
+      <h2>Paleta de cores</h2>
+      <p>
+        As cores de acento so funcionam como fundo com texto preto (exceto azul
+        que usa branco).
+      </p>
+      <Grid columns={4} gap="md">
+        <div
+          style="background: var(--color-bg); border: var(--border-thick); padding: 1rem;"
+        >
+          bg<br />#faf5ee
+        </div>
+        <div
+          style="background: var(--color-bg-alt); border: var(--border-thick); padding: 1rem;"
+        >
+          bg-alt<br />#f0e9df
+        </div>
+        <div
+          style="background: var(--color-primary); color: var(--color-bg); border: var(--border-thick); padding: 1rem;"
+        >
+          primary<br />#000000
+        </div>
+        <div
+          style="background: var(--color-text-muted); color: var(--color-bg); border: var(--border-thick); padding: 1rem;"
+        >
+          muted<br />#4a4a4a
+        </div>
+        <div
+          style="background: var(--color-accent-1); border: var(--border-thick); padding: 1rem;"
+        >
+          accent-1<br />#f5c518
+        </div>
+        <div
+          style="background: var(--color-accent-2); color: white; border: var(--border-thick); padding: 1rem;"
+        >
+          accent-2<br />#2952e8
+        </div>
+        <div
+          style="background: var(--color-accent-3); border: var(--border-thick); padding: 1rem;"
+        >
+          accent-3<br />#00b34a
+        </div>
+        <div
+          style="background: var(--color-accent-4); border: var(--border-thick); padding: 1rem;"
+        >
+          accent-4<br />#ff5c5c
+        </div>
+      </Grid>
+    </SectionBlock>
+
+    <!-- badges -->
+    <SectionBlock padding="xl" alt>
+      <h2>Badges / Labels</h2>
+      <div
+        style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;"
+      >
+        <Badge>default</Badge>
+        <Badge variant="yellow">beginner</Badge>
+        <Badge variant="blue">intermediate</Badge>
+        <Badge variant="green">advanced</Badge>
+        <Badge variant="coral">anti-padrao</Badge>
+        <Badge size="sm">tag pequena</Badge>
+        <Badge size="sm" variant="yellow">5 min de leitura</Badge>
+      </div>
+    </SectionBlock>
+
+    <!-- buttons -->
+    <SectionBlock padding="xl">
+      <h2>Botoes</h2>
+
+      <h3>Primary</h3>
+      <div
+        style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: var(--space-xl);"
+      >
+        <Button size="sm">Pequeno</Button>
+        <Button>Normal</Button>
+        <Button size="lg">Grandao</Button>
+        <Button disabled>Desabilitado</Button>
+      </div>
+
+      <h3>Secondary</h3>
+      <div
+        style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: var(--space-xl);"
+      >
+        <Button variant="secondary" size="sm">Pequeno</Button>
+        <Button variant="secondary">Normal</Button>
+        <Button variant="secondary" size="lg">Grandao</Button>
+      </div>
+
+      <h3>Ghost</h3>
+      <div
+        style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: var(--space-xl);"
+      >
+        <Button variant="ghost">Link disfarcado</Button>
+      </div>
+
+      <h3>Full width</h3>
+      <div style="margin-bottom: var(--space-xl);">
+        <Button fullWidth>Botao que ocupa tudo</Button>
+      </div>
+
+      <h3>Como link</h3>
+      <Button href={base}>Voltar pra home</Button>
+    </SectionBlock>
+
+    <!-- cards -->
+    <SectionBlock padding="xl" alt>
+      <h2>Cards</h2>
+
+      <h3>Cards simples com acentos</h3>
+      <Grid columns={3} gap="lg">
+        <Card title="Card sem acento">
+          <p>Conteudo padrao do card. Borda preta grossa, sombra dura.</p>
+        </Card>
+        <Card title="Card amarelo" accent="yellow">
+          <p>Esse tem a faixa amarela no topo.</p>
+          <Fragment slot="footer">
+            <Button variant="secondary" size="sm">Ver mais</Button>
+          </Fragment>
+        </Card>
+        <Card title="Card azul" accent="blue">
+          <p>Faixa azul eletrico.</p>
+          <Fragment slot="meta">
+            <Badge variant="blue">intermediate</Badge>
+            <Badge size="sm">8 min</Badge>
+          </Fragment>
+        </Card>
+      </Grid>
+    </SectionBlock>
+
+    <SectionBlock padding="xl">
+      <h3>Card como link</h3>
+      <Grid columns={2} gap="lg">
+        <Card title="Clicavel inteiro" href={base} accent="green">
+          <p>Esse card todo e um link. Hover levanta, click empurra.</p>
+        </Card>
+        <Card title="Outro link" href={base} accent="coral">
+          <p>Coral pra coisas de anti-padrao.</p>
+        </Card>
+      </Grid>
+    </SectionBlock>
+
+    <SectionBlock padding="xl" alt>
+      <h3>Cards expandiveis</h3>
+      <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+        <Card title="O que e um LLM?" expandable accent="yellow">
+          <p>
+            <strong>Versao simples:</strong> e um programa de computador treinado
+            pra ler e escrever texto.
+          </p>
+          <p>
+            <strong>Versao tecnica:</strong> Large Language Model. Rede neural treinada
+            em grandes volumes de texto que gera saida token a token com base em probabilidade
+            condicional.
+          </p>
+        </Card>
+        <Card title="O que e um agente?" expandable accent="blue" open>
+          <p>Esse ja comeca aberto pra mostrar que da.</p>
+        </Card>
+      </div>
+    </SectionBlock>
+
+    <!-- grid demos -->
+    <SectionBlock padding="xl">
+      <h2>Grid</h2>
+
+      <h3>2 colunas</h3>
+      <Grid columns={2} gap="md">
+        <div
+          style="background: var(--color-accent-1); border: var(--border-thick); padding: 1rem;"
+        >
+          Col 1
+        </div>
+        <div
+          style="background: var(--color-accent-3); border: var(--border-thick); padding: 1rem;"
+        >
+          Col 2
+        </div>
+      </Grid>
+
+      <h3>3 colunas</h3>
+      <Grid columns={3} gap="md">
+        <div
+          style="background: var(--color-accent-1); border: var(--border-thick); padding: 1rem;"
+        >
+          1
+        </div>
+        <div
+          style="background: var(--color-accent-2); border: var(--border-thick); padding: 1rem; color: white;"
+        >
+          2
+        </div>
+        <div
+          style="background: var(--color-accent-3); border: var(--border-thick); padding: 1rem;"
+        >
+          3
+        </div>
+      </Grid>
+
+      <h3>4 colunas</h3>
+      <Grid columns={4} gap="sm">
+        <div style="border: var(--border-thick); padding: 1rem;">A</div>
+        <div style="border: var(--border-thick); padding: 1rem;">B</div>
+        <div style="border: var(--border-thick); padding: 1rem;">C</div>
+        <div style="border: var(--border-thick); padding: 1rem;">D</div>
+      </Grid>
+    </SectionBlock>
+
+    <!-- section block variants -->
+    <SectionBlock padding="sm">
+      <h2>SectionBlock padding="sm"</h2>
+      <p>Menos respiro.</p>
+    </SectionBlock>
+    <SectionBlock padding="xl" alt>
+      <h2>SectionBlock padding="xl" alt</h2>
+      <p>Mais respiro, fundo alternativo.</p>
+    </SectionBlock>
+
+    <!-- focus and keyboard -->
+    <SectionBlock padding="xl">
+      <h2>Foco e teclado</h2>
+      <p>
+        Navega com Tab por tudo aqui embaixo. O foco tem que ser MUITO obvio.
+      </p>
+      <div
+        style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;"
+      >
+        <Button>Foco aqui</Button>
+        <Button variant="secondary">E aqui</Button>
+        <Button variant="ghost">E aqui tambem</Button>
+        <a href="#">Link normal</a>
+      </div>
+    </SectionBlock>
+
+    <!-- links -->
+    <SectionBlock padding="xl" alt>
+      <h2>Links</h2>
+      <p>
+        Um <a href="#">link normal inline</a> dentro de texto. Tem que ser obvio que
+        e clicavel sem precisar de cor sozinha pra indicar.
+      </p>
+      <p>
+        Outro paragrafo com <a href="#">mais um link</a> pra ver o padrao se repetindo.
+      </p>
+    </SectionBlock>
+  </main>
+</BaseLayout>

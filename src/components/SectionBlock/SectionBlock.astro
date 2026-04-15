@@ -1,0 +1,31 @@
+---
+import styles from './SectionBlock.module.css';
+
+interface Props {
+  padding?: 'sm' | 'md' | 'lg' | 'xl';
+  alt?: boolean;
+  contained?: boolean;
+  maxWidth?: 'md' | 'lg' | 'xl';
+  as?: 'section' | 'div' | 'aside' | 'header' | 'footer';
+}
+
+const {
+  padding = 'lg',
+  alt = false,
+  contained = true,
+  maxWidth = 'lg',
+  as: Element = 'section',
+} = Astro.props;
+---
+
+<Element
+  class:list={[
+    styles.section,
+    styles[`padding-${padding}`],
+    alt && styles.alt,
+    contained && styles.contained,
+    contained && styles[`width-${maxWidth}`],
+  ]}
+>
+  <slot />
+</Element>

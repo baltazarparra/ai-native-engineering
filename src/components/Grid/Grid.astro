@@ -1,0 +1,24 @@
+---
+import styles from './Grid.module.css';
+
+interface Props {
+  columns?: 1 | 2 | 3 | 4;
+  gap?: 'sm' | 'md' | 'lg' | 'xl';
+  minItemWidth?: string;
+  align?: 'start' | 'center' | 'stretch';
+}
+
+const { columns = 3, gap = 'lg', minItemWidth, align = 'start' } = Astro.props;
+---
+
+<div
+  class:list={[
+    styles.grid,
+    minItemWidth ? styles.autoFit : styles[`cols-${columns}`],
+    styles[`gap-${gap}`],
+    styles[`align-${align}`],
+  ]}
+  style={minItemWidth ? `--min-item-width: ${minItemWidth}` : undefined}
+>
+  <slot />
+</div>

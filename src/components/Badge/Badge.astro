@@ -1,0 +1,22 @@
+---
+import styles from './Badge.module.css';
+
+interface Props {
+  variant?: 'default' | 'yellow' | 'blue' | 'green' | 'coral';
+  size?: 'sm' | 'md';
+  as?: 'span' | 'a' | 'time';
+  href?: string;
+}
+
+const { variant = 'default', size = 'md', as, href, ...rest } = Astro.props;
+
+const Element = href ? 'a' : as || 'span';
+---
+
+<Element
+  class:list={[styles.badge, styles[variant], size === 'sm' && styles.sm]}
+  href={href}
+  {...rest}
+>
+  <slot />
+</Element>

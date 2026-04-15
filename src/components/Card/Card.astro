@@ -1,0 +1,74 @@
+---
+import styles from './Card.module.css';
+
+interface Props {
+  title?: string;
+  expandable?: boolean;
+  accent?: 'yellow' | 'blue' | 'green' | 'coral';
+  href?: string;
+  open?: boolean;
+}
+
+const { title, expandable = false, accent, href, open = false } = Astro.props;
+
+const accentClass = accent ? styles[`accent-${accent}`] : undefined;
+---
+
+{
+  expandable ? (
+    <details
+      class:list={[styles.card, styles.expandable, accentClass]}
+      open={open}
+    >
+      <summary class={styles.summary}>
+        <span class={styles.title}>{title}</span>
+        <span class={styles.indicator} />
+      </summary>
+      <div class={styles.expandableBody}>
+        <slot />
+      </div>
+    </details>
+  ) : href ? (
+    <a href={href} class:list={[styles.card, styles.linkable, accentClass]}>
+      {title && (
+        <div class={styles.header}>
+          <h3 class={styles.title}>{title}</h3>
+        </div>
+      )}
+      {Astro.slots.has('meta') && (
+        <div class={styles.meta}>
+          <slot name="meta" />
+        </div>
+      )}
+      <div class={styles.body}>
+        <slot />
+      </div>
+      {Astro.slots.has('footer') && (
+        <div class={styles.footer}>
+          <slot name="footer" />
+        </div>
+      )}
+    </a>
+  ) : (
+    <div class:list={[styles.card, accentClass]}>
+      {title && (
+        <div class={styles.header}>
+          <h3 class={styles.title}>{title}</h3>
+        </div>
+      )}
+      {Astro.slots.has('meta') && (
+        <div class={styles.meta}>
+          <slot name="meta" />
+        </div>
+      )}
+      <div class={styles.body}>
+        <slot />
+      </div>
+      {Astro.slots.has('footer') && (
+        <div class={styles.footer}>
+          <slot name="footer" />
+        </div>
+      )}
+    </div>
+  )
+}
