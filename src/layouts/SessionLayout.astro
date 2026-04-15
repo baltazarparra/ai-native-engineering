@@ -1,0 +1,37 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  summary: string;
+  readingTime: number;
+  level: string;
+  heroLabel: string;
+  updatedAt: Date;
+}
+
+const { title, summary, readingTime, level, heroLabel, updatedAt } =
+  Astro.props;
+---
+
+<BaseLayout title={`${title} | AI-Native Engineering`} description={summary}>
+  <main>
+    <article>
+      <header>
+        <span>{heroLabel}</span>
+        <h1>{title}</h1>
+        <p>{summary}</p>
+        <div>
+          <span>{level}</span>
+          <span>{readingTime} min de leitura</span>
+          <time datetime={updatedAt.toISOString()}>
+            Atualizado em {updatedAt.toLocaleDateString('pt-BR')}
+          </time>
+        </div>
+      </header>
+      <section>
+        <slot />
+      </section>
+    </article>
+  </main>
+</BaseLayout>

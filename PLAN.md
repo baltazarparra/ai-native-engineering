@@ -1,4 +1,3 @@
-
 # PLAN.md — AI-Native Engineer Learning Site
 
 ## 1. Project summary
@@ -6,6 +5,7 @@
 Criar um site interativo, estático e responsivo, publicado via GitHub Pages, para ensinar em linguagem humana e acessível o que uma pessoa precisa entender para operar como um **AI-Native Engineer** em 2026.
 
 O produto não deve falar só com desenvolvedores seniores. Ele precisa funcionar para:
+
 - pessoas não técnicas que atuam em produto digital, como QA, PM, Product Designer, Tech Recruiter ou liderança de produto;
 - pessoas de baixa senioridade em tecnologia;
 - devs iniciantes que ainda confundem ferramenta, modelo, agente, CLI e workflow.
@@ -21,12 +21,14 @@ A proposta central é simples:
 O mercado já trata IA como parte normal do trabalho de software, mas ainda existe uma lacuna grande entre **usar IA** e **trabalhar bem com IA**.
 
 Os dados mais recentes mostram um cenário bem claro:
+
 - o uso de IA no desenvolvimento já é massivo;
 - produtividade percebida subiu;
 - confiança não subiu no mesmo ritmo;
 - times precisam de processo, validação e contexto, não só acesso a ferramenta.
 
 Isso muda o foco do site. O conteúdo não deve vender hype. Deve ensinar:
+
 1. o vocabulário certo;
 2. a diferença entre ferramenta, modelo e workflow;
 3. como a prática evoluiu de consulta simples até agentes;
@@ -43,6 +45,7 @@ Vamos usar uma definição prática, inspirada por Addy Osmani:
 > um AI-Native Engineer é alguém que integra IA profundamente no workflow diário e passa a pensar em cada tarefa perguntando se a IA pode ajudar a fazer aquilo de forma mais rápida, melhor ou diferente.
 
 Mas o site não deve tratar isso como slogan. Ele deve deixar claro que isso vem junto com:
+
 - supervisão humana;
 - validação;
 - clareza de objetivo;
@@ -68,6 +71,7 @@ e não apenas
 **pessoa que escreve bons prompts**.
 
 Esse operador precisa entender pelo menos cinco camadas:
+
 1. linguagem e conceitos;
 2. categorias de ferramentas;
 3. capacidades e limites dos modelos;
@@ -79,7 +83,9 @@ Esse operador precisa entender pelo menos cinco camadas:
 ## 4. Público-alvo
 
 ### Primário
+
 Pessoas de produto digital e tecnologia que não são especialistas profundos em engenharia, mas precisam entender o novo cenário:
+
 - QA
 - Product Manager
 - Product Ops
@@ -89,11 +95,13 @@ Pessoas de produto digital e tecnologia que não são especialistas profundos em
 - liderança de tecnologia em transição
 
 ### Secundário
+
 - devs juniores e plenos;
 - pessoas curiosas tentando entrar no tema;
 - profissionais que usam IA no trabalho mas ainda não têm um mapa mental claro.
 
 ### Perfil de consumo esperado
+
 - entra pelo celular, mas também pode estudar no desktop;
 - quer explicações diretas, humanas e sem jargão desnecessário;
 - tolera profundidade, desde que exista progressão;
@@ -117,7 +125,9 @@ Ao final do site, a pessoa deve conseguir:
 ## 6. Princípios de conteúdo
 
 ### 6.1 Linguagem
+
 A linguagem do site deve ser:
+
 - orgânica;
 - humana;
 - direta;
@@ -126,7 +136,9 @@ A linguagem do site deve ser:
 - sem formalidade excessiva.
 
 ### 6.2 Didática
+
 Cada página precisa seguir progressão de profundidade:
+
 1. explicação curta e simples;
 2. por que isso importa;
 3. exemplo real;
@@ -135,13 +147,16 @@ Cada página precisa seguir progressão de profundidade:
 6. referências.
 
 ### 6.3 Forma de explicar
+
 Sempre que possível:
+
 - usar comparações simples;
 - explicar sigla antes de aprofundar;
 - mostrar uma versão “curta” e depois uma “mais técnica”;
 - trazer exemplos de QA, PM e times de produto, não só exemplos de dev hardcore.
 
 ### 6.4 Regra editorial importante
+
 O site não deve parecer fanboy de ferramenta.
 
 Ele deve mostrar categorias e padrões.
@@ -154,6 +169,7 @@ Ferramentas entram como exemplos concretos do mercado, não como verdade definit
 ## Página inicial `/`
 
 A home deve funcionar como:
+
 - manifesto curto;
 - mapa de navegação;
 - índice visual das sessões;
@@ -162,36 +178,46 @@ A home deve funcionar como:
 ### Estrutura da home
 
 #### 7.1 Hero
+
 Conteúdo:
+
 - título forte;
 - subtítulo explicando a promessa;
 - CTA principal: “Começar pelo básico”;
 - CTA secundário: “Ver o mapa completo”.
 
 Possível direção de copy:
+
 - “O que você realmente precisa entender para trabalhar com engenharia em um mundo de agentes”
 - “Sem hype. Sem buzzword vazia. Só o mapa que importa.”
 
 #### 7.2 Bloco “Por que isso existe”
+
 Explica em linguagem simples:
+
 - IA já entrou no trabalho de software;
 - muita gente está usando, pouca gente entende o todo;
 - o site existe para organizar esse caos.
 
 #### 7.3 Bloco “Mapa da jornada”
+
 Cards clicáveis para cada sessão.
 
 #### 7.4 Bloco “Como estudar”
+
 Explica que:
+
 - dá para ler linearmente;
 - dá para navegar por dúvida;
 - cada sessão termina com referências.
 
 #### 7.5 Bloco “Maturidade”
+
 Uma visualização resumida da evolução:
 Consulta → Autocomplete → Vibe Coding → SDD → Harness Engineering
 
 #### 7.6 Footer editorial
+
 - créditos;
 - fontes;
 - versão do conteúdo;
@@ -202,18 +228,22 @@ Consulta → Autocomplete → Vibe Coding → SDD → Harness Engineering
 ## 8. Sessões do produto
 
 ## Sessão 0 — O que é um AI-Native Engineer
+
 **Slug:** `/ai-native-engineer/`
 
 Essa sessão deve existir antes ou logo após o hero, porque ela enquadra todo o resto.
 
 ### Objetivo
+
 Responder:
+
 - o que o mercado espera hoje;
 - por que isso não significa “todo mundo virou engenheiro”;
 - por que o papel humano ainda importa;
 - por que contexto, revisão e decisão continuam centrais.
 
 ### Estrutura da página
+
 - definição curta;
 - definição expandida;
 - “o que mudou no trabalho”;
@@ -222,6 +252,7 @@ Responder:
 - bloco de anti-padrões.
 
 ### Interações
+
 - self-assessment com 5 a 7 perguntas;
 - score local simples, salvo em `localStorage`;
 - resultado com três perfis:
@@ -232,12 +263,15 @@ Responder:
 ---
 
 ## Sessão 1 — Novas terminologias populares
+
 **Slug:** `/glossario/`
 
 ### Objetivo
+
 Dar alfabetização mínima para qualquer pessoa conseguir continuar o site sem se perder.
 
 ### Conceitos obrigatórios
+
 - LLM
 - modelo
 - inferência
@@ -255,6 +289,7 @@ Dar alfabetização mínima para qualquer pessoa conseguir continuar o site sem 
 - harness
 
 ### Estrutura da página
+
 - intro curta: “se essas palavras parecem tudo a mesma coisa, você não está sozinho”
 - grid de cards;
 - cada card abre:
@@ -264,13 +299,16 @@ Dar alfabetização mínima para qualquer pessoa conseguir continuar o site sem 
   - erro comum.
 
 ### Interações
+
 - hover/click cards;
 - modo “explicação curta” e “explicação técnica”;
 - mini quiz no final;
 - botão “ver isso em ferramentas reais”.
 
 ### Observação editorial
+
 “Harness” e “SDD” devem ser tratados com honestidade:
+
 - explicar que são termos usados em certos círculos;
 - deixar claro que nem sempre há uma padronização universal;
 - definir como o site vai usar esses termos.
@@ -278,35 +316,42 @@ Dar alfabetização mínima para qualquer pessoa conseguir continuar o site sem 
 ---
 
 ## Sessão 2 — Ferramentas: IDEs vs CLI
+
 **Slug:** `/ferramentas/`
 
 ### Objetivo
+
 Ajudar o usuário a entender categorias de ferramentas, e não apenas decorar nomes.
 
 ### Eixo didático principal
+
 - ferramentas integradas ao editor/IDE;
 - ferramentas centradas em terminal/CLI;
 - agentes que operam com mais autonomia;
 - onde cada uma faz mais sentido.
 
 ### Exemplos de IDE / agent-first IDE
+
 - Cursor
 - Antigravity
 - GitHub Copilot no editor
 
 ### Exemplos de terminal / CLI
+
 - Claude Code
 - Codex CLI
 - OpenCode
 - GitHub Copilot CLI como adjacente
 
 ### O que essa página precisa ensinar
+
 - IDE dá contexto visual e fluxo mais familiar;
 - CLI tende a dar mais sensação de controle operacional e proximidade com ambiente real;
 - algumas ferramentas cruzam superfícies e não ficam presas a uma categoria pura;
 - a escolha da ferramenta muda menos do que o workflow, o critério e a validação.
 
 ### Estrutura da página
+
 - comparação por categorias;
 - tabela simples:
   - onde roda
@@ -317,6 +362,7 @@ Ajudar o usuário a entender categorias de ferramentas, e não apenas decorar no
 - bloco “não escolha por hype, escolha por fricção do seu fluxo”.
 
 ### Interações
+
 - filtros por tipo de usuário:
   - não técnico
   - junior
@@ -326,18 +372,22 @@ Ajudar o usuário a entender categorias de ferramentas, e não apenas decorar no
 - toggle “ver por interface” vs “ver por workflow”.
 
 ### Tom importante
+
 Essa página deve deixar claro:
 **ferramenta não substitui método**.
 
 ---
 
 ## Sessão 3 — LLMs e os modelos mais usados nesse contexto
+
 **Slug:** `/modelos/`
 
 ### Objetivo
+
 Explicar o que é um modelo e como pensar sobre modelo sem virar refém de benchmark.
 
 ### O que a página precisa ensinar
+
 - produto e modelo são coisas diferentes;
 - o usuário geralmente interage com um produto que embute um ou mais modelos;
 - modelos variam em:
@@ -351,13 +401,16 @@ Explicar o que é um modelo e como pensar sobre modelo sem virar refém de bench
 - existe melhor modelo para certo tipo de tarefa.
 
 ### Organização sugerida
+
 Ao invés de focar em ranking, focar em perfis:
+
 - modelos rápidos para consulta e exploração;
 - modelos fortes para planejamento e arquitetura;
 - modelos fortes para edição e execução de código;
 - modelos open/open-weight como camada importante do ecossistema.
 
 ### Interações
+
 - seletor de tarefa:
   - explicar conceito
   - revisar código
@@ -367,68 +420,83 @@ Ao invés de focar em ranking, focar em perfis:
 - a UI mostra quais características do modelo importam mais para cada caso.
 
 ### Cuidado editorial
+
 Evitar transformar a página em leaderboard.
 O objetivo é ensinar leitura crítica, não culto a fornecedor.
 
 ---
 
 ## Sessão 4 — A evolução do desenvolvimento com IA
+
 **Slug:** `/maturidade/`
 
 Essa é a sessão mais importante do produto.
 
 ### Objetivo
+
 Explicar a progressão histórica e prática do uso de IA no desenvolvimento.
 
 ### Fases obrigatórias
 
 #### Fase 1 — IA para consulta
+
 Uso:
+
 - perguntar conceitos;
 - resumir docs;
 - explorar ideias;
 - pedir exemplos.
 
 Valor:
+
 - acelera aprendizado;
 - reduz tempo de pesquisa;
 - ajuda quem não sabe por onde começar.
 
 Problemas:
+
 - superficialidade;
 - alucinação;
 - falsa sensação de entendimento;
 - dependência sem construção de critério.
 
 #### Fase 2 — IA para autocomplete e pair assistance
+
 Uso:
+
 - completar código;
 - sugerir função;
 - refator pequeno;
 - explicar trecho.
 
 Valor:
+
 - acelera loop local;
 - bom para tarefas pequenas;
 - reduz atrito de digitação e boilerplate.
 
 Problemas:
+
 - contexto parcial;
 - sugestões localmente boas e globalmente ruins;
 - acelera produção de dívida se o time não revisa bem.
 
 #### Fase 3 — Vibe coding
+
 Uso:
+
 - falar em linguagem natural o que quer;
 - deixar a ferramenta gerar bastante coisa;
 - explorar protótipos, MVPs, spikes, microprodutos.
 
 Valor:
+
 - compressão radical de tempo de prototipagem;
 - baixo atrito de entrada;
 - ótimo para experimentar.
 
 Problemas:
+
 - arquitetura frágil;
 - inconsistência;
 - falsa confiança;
@@ -436,31 +504,38 @@ Problemas:
 - debugging e manutenção podem custar caro depois.
 
 #### Fase 4 — SDD como evolução do vibe coding
+
 Usaremos SDD aqui como **Spec-Driven Development**.
 
 O site deve explicar com honestidade:
+
 - isso não é uma sigla universal como HTTP ou SQL;
 - aqui ela representa um modo de trabalhar guiado por especificação, critérios e artefatos.
 
 Uso:
+
 - descrever objetivo, escopo, restrições, critérios de aceite, contexto e plano;
 - pedir execução a partir disso.
 
 Valor:
+
 - reduz ambiguidade;
 - melhora consistência;
 - aumenta chance de saída útil;
 - ajuda colaboração entre humano e agente.
 
 Problemas:
+
 - exige disciplina;
 - mais fricção no começo;
 - especificação ruim continua gerando resultado ruim.
 
 #### Fase 5 — Harness Engineering
+
 Aqui vamos usar “Harness Engineering” como a camada em que o time para de pensar só em prompt e começa a pensar no **sistema de trabalho do agente**.
 
 A página deve explicar que, na prática, isso envolve:
+
 - instruções;
 - ferramentas;
 - modelo;
@@ -474,18 +549,21 @@ A página deve explicar que, na prática, isso envolve:
 Essa leitura conversa com a forma como o Cursor descreve agent harnesses: instruções, tools e model orquestrados juntos.
 
 Valor:
+
 - escala qualidade;
 - reduz variação;
 - ajuda repetibilidade;
 - permite workflows mais consistentes entre pessoas e times.
 
 Problemas:
+
 - maior complexidade operacional;
 - risco de excesso de framework;
 - precisa de manutenção;
 - não salva time sem bons fundamentos de engenharia.
 
 ### Estrutura da página
+
 - timeline ou stepper;
 - cada fase com:
   - o que é;
@@ -495,6 +573,7 @@ Problemas:
   - o que a próxima fase tenta resolver.
 
 ### Interações
+
 - slider horizontal ou stepper vertical;
 - modo “antes e depois”;
 - casos práticos:
@@ -506,14 +585,17 @@ Problemas:
 ---
 
 ## Sessão 5 — Como operar de forma AI-native na prática
+
 **Slug:** `/como-operar/`
 
 Essa sessão fecha o raciocínio.
 
 ### Objetivo
+
 Traduzir teoria em prática cotidiana.
 
 ### O que deve ensinar
+
 - começar com plano;
 - definir objetivo verificável;
 - passar contexto suficiente;
@@ -523,6 +605,7 @@ Traduzir teoria em prática cotidiana.
 - construir uma base de regras, prompts úteis, checklists e artefatos repetíveis.
 
 ### Estrutura
+
 - workflow recomendado;
 - checklist “antes de pedir”;
 - checklist “antes de aceitar”;
@@ -534,6 +617,7 @@ Traduzir teoria em prática cotidiana.
   - tech lead
 
 ### Interações
+
 - gerador de checklist;
 - toggle por perfil;
 - “playbook card” copiável.
@@ -584,12 +668,14 @@ Cada sessão termina com uma área fixa chamada:
 **“Quer se aprofundar?”**
 
 ### Organização da área
+
 - 2 a 4 links “comece aqui”
 - 2 a 4 links “docs e fontes primárias”
 - 1 a 3 links “vídeos / talks”
 - 1 bloco “leitura crítica” quando fizer sentido
 
 ### Regras de curadoria
+
 - priorizar fonte primária;
 - evitar youtuber genérico como fonte central;
 - sempre que houver doc oficial, dar preferência;
@@ -608,12 +694,14 @@ Cada sessão termina com uma área fixa chamada:
 ## 11.1 Princípio central
 
 A interface deve usar Neo Brutalism não como fantasia visual, mas como linguagem coerente para:
+
 - chamar atenção;
 - parecer contemporânea;
 - manter identidade forte;
 - reforçar clareza estrutural.
 
 A pesquisa aponta um conjunto de características recorrentes:
+
 - alto contraste;
 - layout em blocos;
 - cores fortes;
@@ -628,22 +716,27 @@ Mas existe um ponto crítico:
 ### 11.2 Tradução prática para este projeto
 
 #### Paleta
+
 Usar no máximo:
+
 - 1 cor base clara;
 - preto forte;
 - 2 ou 3 acentos vibrantes.
 
 Sugestão de direção:
+
 - fundo claro levemente quente;
 - preto puro para contorno e tipografia principal;
 - acentos como amarelo, azul elétrico, verde ácido ou coral.
 
 #### Tipografia
+
 - headlines com peso alto;
 - corpo com fonte neutra e muito legível;
 - evitar fonte “maluca” em parágrafos.
 
 #### Bordas e sombras
+
 - bordas pretas grossas;
 - sombras deslocadas em uma direção;
 - sem blur;
@@ -651,18 +744,21 @@ Sugestão de direção:
 - sem excesso de gradiente.
 
 #### Layout
+
 - cards grandes;
 - grids com ritmo forte;
 - leve assimetria controlada;
 - bastante respiro entre blocos.
 
 #### Componentes
+
 - botões com estados claros;
 - links visíveis;
 - hover simples e óbvio;
 - foco de teclado muito aparente.
 
 #### Ilustrações e ornamentos
+
 - formas geométricas simples;
 - adesivos, selos e labels podem existir;
 - usar pouco;
@@ -674,12 +770,15 @@ Neo Brutalism aqui deve ser:
 **impactante no primeiro olhar, mas fácil de usar no quinto minuto**.
 
 Ou seja:
+
 - nada de sacrificar leitura;
 - nada de esconder navegação;
 - nada de interações misteriosas.
 
 ### 11.4 Diretrizes responsivas
+
 No mobile:
+
 - priorizar leitura linear;
 - colapsar grids em pilha;
 - manter contraste e toque confortável;
@@ -687,7 +786,9 @@ No mobile:
 - preservar o peso visual sem esmagar o conteúdo.
 
 ### 11.5 Acessibilidade
+
 Mesmo com visual forte:
+
 - contraste WCAG aceitável;
 - foco visível;
 - navegação por teclado;
@@ -702,6 +803,7 @@ Mesmo com visual forte:
 O site deve ser interativo, mas não virar playground gratuito.
 
 ### Interações recomendadas
+
 - cards expansíveis;
 - stepper de maturidade;
 - filtros de comparação;
@@ -712,6 +814,7 @@ O site deve ser interativo, mas não virar playground gratuito.
 - sticky nav por sessão.
 
 ### Interações a evitar no MVP
+
 - parallax pesado;
 - smooth scroll intrusivo;
 - transições que atrasam leitura;
@@ -719,7 +822,9 @@ O site deve ser interativo, mas não virar playground gratuito.
 - canvas/3D sem valor pedagógico real.
 
 ### Regra
+
 Toda interação precisa cumprir um de três papéis:
+
 1. explicar melhor;
 2. organizar melhor;
 3. aumentar retenção sem reduzir clareza.
@@ -739,6 +844,7 @@ Se não cumprir um desses papéis, sai.
 Este projeto é mais conteúdo-first do que app-first.
 
 Precisamos de:
+
 - páginas estáticas reais;
 - bom carregamento;
 - boa indexação;
@@ -748,6 +854,7 @@ Precisamos de:
 - deploy fácil em GitHub Pages.
 
 Astro encaixa muito bem porque:
+
 - tem guia oficial para deploy em GitHub Pages;
 - suporta `base` e `site` para repositório ou domínio customizado;
 - funciona muito bem para sites de conteúdo;
@@ -758,6 +865,7 @@ Astro encaixa muito bem porque:
 ### 13.2 Por que não usar uma SPA React pura como primeira escolha
 
 Uma SPA com Vite + React funcionaria, mas não é a melhor primeira escolha para este caso porque:
+
 - o projeto é fortemente editorial;
 - ter páginas geradas estaticamente é melhor para conteúdo e manutenção;
 - usar React para tudo tende a subir JS sem necessidade;
@@ -766,6 +874,7 @@ Uma SPA com Vite + React funcionaria, mas não é a melhor primeira escolha para
 ### 13.3 Onde React entra
 
 React entra somente nas ilhas interativas:
+
 - comparadores;
 - quizzes;
 - stepper de maturidade;
@@ -774,7 +883,9 @@ React entra somente nas ilhas interativas:
 - progress UI.
 
 ### 13.4 Motion
+
 Usar `motion` apenas onde a animação realmente melhora compreensão:
+
 - entrada de cards;
 - mudança de estado;
 - transições entre fases;
@@ -783,9 +894,11 @@ Usar `motion` apenas onde a animação realmente melhora compreensão:
 Para hover simples e pequenos efeitos, preferir CSS.
 
 ### 13.5 Estilo
+
 Não usar Tailwind como camada principal do visual.
 
 Motivo:
+
 - o projeto pede linguagem visual autoral;
 - Neo Brutalism exige decisões visuais mais cuidadas;
 - CSS Modules + design tokens deixam o sistema mais explícito e menos “cara de template”.
@@ -863,6 +976,7 @@ Tailwind pode acelerar, mas aqui a chance de o resultado ficar genérico aumenta
 ## 15. Modelo de conteúdo
 
 ## Collection: `sessions`
+
 Cada sessão em MDX com frontmatter:
 
 ```yaml
@@ -879,6 +993,7 @@ updatedAt:
 ```
 
 ### Vantagens
+
 - conteúdo separado da UI;
 - fácil manutenção;
 - tipagem;
@@ -886,8 +1001,10 @@ updatedAt:
 - pode crescer sem acoplar tudo no código.
 
 ## Collection: `references`
+
 Pode começar em JSON/YAML e depois migrar se precisar.
 Campos:
+
 - title
 - url
 - type
@@ -901,6 +1018,7 @@ Campos:
 ## 16. Componentes centrais
 
 ### Home
+
 - Hero
 - WhyThisExists
 - JourneyMap
@@ -909,6 +1027,7 @@ Campos:
 - FooterSources
 
 ### Session pages
+
 - SessionHero
 - SectionNav
 - PlainLanguageSummary
@@ -919,6 +1038,7 @@ Campos:
 - NextSessionCTA
 
 ### Interativos
+
 - GlossaryCardGrid
 - ToolComparison
 - ModelTaskMatcher
@@ -931,7 +1051,9 @@ Campos:
 ## 17. SEO, performance e distribuição
 
 ### SEO
+
 Mesmo sendo projeto educacional e de referência, SEO importa:
+
 - títulos claros;
 - metadados por sessão;
 - OG tags;
@@ -939,13 +1061,16 @@ Mesmo sendo projeto educacional e de referência, SEO importa:
 - slug limpo.
 
 ### Performance
+
 Objetivo:
+
 - excelente leitura no mobile;
 - baixo JS;
 - imagens mínimas;
 - tipografia bem carregada.
 
 ### Regras
+
 - islands só onde necessário;
 - preferir SVG e CSS a assets pesados;
 - evitar biblioteca grande por detalhe visual;
@@ -956,13 +1081,16 @@ Objetivo:
 ## 18. Responsividade
 
 ### Breakpoints sugeridos
+
 - mobile: até 767px
 - tablet: 768px até 1023px
 - desktop: 1024px+
 - wide: 1440px+
 
 ### Estratégia
+
 No mobile:
+
 - home mais linear;
 - cards em coluna;
 - tabela vira bloco comparativo;
@@ -970,6 +1098,7 @@ No mobile:
 - animações reduzidas.
 
 No desktop:
+
 - grid forte;
 - maior experimentação visual;
 - navegação lateral ou sticky contextual nas páginas longas.
@@ -979,7 +1108,9 @@ No desktop:
 ## 19. Plano de implementação
 
 ## Fase 0 — Discovery e base conceitual
+
 ### Entregáveis
+
 - fechamento de escopo;
 - mapa das sessões;
 - decisões editoriais;
@@ -988,6 +1119,7 @@ No desktop:
 - wireframe low-fi.
 
 ### Saída esperada
+
 - estrutura do conteúdo aprovada;
 - stack fechada;
 - sem código visual ainda.
@@ -995,7 +1127,9 @@ No desktop:
 ---
 
 ## Fase 1 — Fundação do projeto
+
 ### Entregáveis
+
 - Astro configurado;
 - TS configurado;
 - MDX configurado;
@@ -1005,6 +1139,7 @@ No desktop:
 - deploy inicial em GH Pages.
 
 ### Critérios
+
 - rota principal funcionando;
 - uma sessão de exemplo renderizando;
 - deploy automático no push.
@@ -1012,7 +1147,9 @@ No desktop:
 ---
 
 ## Fase 2 — Sistema visual Neo Brutalism
+
 ### Entregáveis
+
 - paleta;
 - tipografia;
 - grid;
@@ -1023,6 +1160,7 @@ No desktop:
 - sistema de spacing.
 
 ### Critérios
+
 - linguagem visual consistente;
 - mobile first validado;
 - sem perda de legibilidade.
@@ -1030,7 +1168,9 @@ No desktop:
 ---
 
 ## Fase 3 — Home page
+
 ### Entregáveis
+
 - hero;
 - bloco de contexto;
 - cards de sessões;
@@ -1038,6 +1178,7 @@ No desktop:
 - footer com fontes.
 
 ### Critérios
+
 - home explica o produto sozinha;
 - CTA claro;
 - navegação óbvia.
@@ -1045,7 +1186,9 @@ No desktop:
 ---
 
 ## Fase 4 — Templates de sessão
+
 ### Entregáveis
+
 - layout de páginas de detalhe;
 - sticky nav;
 - área de resumo;
@@ -1053,12 +1196,15 @@ No desktop:
 - padrão de blocos narrativos.
 
 ### Critérios
+
 - qualquer sessão nova pode ser criada sem reinventar layout.
 
 ---
 
 ## Fase 5 — Conteúdo núcleo
+
 ### Entregáveis
+
 - sessão AI-native engineer;
 - glossário;
 - ferramentas;
@@ -1067,6 +1213,7 @@ No desktop:
 - como operar.
 
 ### Critérios
+
 - todas as sessões publicadas;
 - linguagem consistente;
 - sem placeholders críticos.
@@ -1074,7 +1221,9 @@ No desktop:
 ---
 
 ## Fase 6 — Interatividade
+
 ### Entregáveis
+
 - glossary cards;
 - comparador de ferramentas;
 - matcher de modelos por tarefa;
@@ -1083,13 +1232,16 @@ No desktop:
 - progress tracker.
 
 ### Critérios
+
 - cada interação melhora entendimento;
 - sem comprometer performance.
 
 ---
 
 ## Fase 7 — Polimento final
+
 ### Entregáveis
+
 - acessibilidade;
 - ajuste de contraste;
 - `prefers-reduced-motion`;
@@ -1100,6 +1252,7 @@ No desktop:
 - revisão de links.
 
 ### Critérios
+
 - experiência sólida no mobile;
 - deploy estável;
 - conteúdo confiável.
@@ -1109,6 +1262,7 @@ No desktop:
 ## 20. Definition of Done
 
 Uma versão MVP está pronta quando:
+
 - a home estiver completa;
 - todas as sessões principais existirem;
 - cada sessão tiver conteúdo, bloco interativo e referências;
@@ -1123,32 +1277,42 @@ Uma versão MVP está pronta quando:
 ## 21. Riscos principais
 
 ### 21.1 Risco de conteúdo virar buzzword soup
+
 Mitigação:
+
 - exemplos concretos;
 - explicação simples antes da técnica;
 - anti-padrões em toda sessão.
 
 ### 21.2 Risco de Neo Brutalism atrapalhar leitura
+
 Mitigação:
+
 - contraste validado;
 - paleta limitada;
 - corpo de texto neutro;
 - whitespace generoso.
 
 ### 21.3 Risco de ferramenta dominar a narrativa
+
 Mitigação:
+
 - ensinar categorias;
 - usar ferramentas como exemplos;
 - focar em workflow.
 
 ### 21.4 Risco de interatividade virar peso morto
+
 Mitigação:
+
 - só entrar se explicar melhor;
 - JS mínimo;
 - islands localizadas.
 
 ### 21.5 Risco de conteúdo ficar velho rápido
+
 Mitigação:
+
 - falar em padrões e capacidades;
 - citar ferramentas como snapshots do mercado;
 - incluir `updatedAt` por sessão;
@@ -1159,6 +1323,7 @@ Mitigação:
 ## 22. Não objetivos do MVP
 
 Não faz parte do primeiro escopo:
+
 - autenticação;
 - busca complexa;
 - CMS headless;
@@ -1191,6 +1356,7 @@ O produto deve se posicionar como:
 
 Ele não deve competir com docs oficiais.
 Ele deve funcionar como:
+
 - mapa;
 - tradução;
 - filtro crítico;
@@ -1201,6 +1367,7 @@ Ele deve funcionar como:
 ## 25. Seed references para usar na curadoria inicial
 
 ### Mercado e AI-native engineering
+
 - Addy Osmani — The AI-Native Software Engineer  
   https://addyo.substack.com/p/the-ai-native-software-engineer
 - Stack Overflow Developer Survey 2025 — AI  
@@ -1215,6 +1382,7 @@ Ele deve funcionar como:
   https://octoverse.github.com/
 
 ### Tooling references
+
 - Cursor — Best practices for coding with agents  
   https://cursor.com/blog/agent-best-practices
 - Cursor docs  
@@ -1231,12 +1399,14 @@ Ele deve funcionar como:
   https://github.com/features/copilot
 
 ### Design / Neo Brutalism
+
 - Nielsen Norman Group — Neobrutalism: Definition and Best Practices  
   https://www.nngroup.com/articles/neobrutalism/
 - Bejamas — Neubrutalism UI trend  
   https://bejamas.com/blog/neubrutalism-web-design-trend
 
 ### Stack / deployment
+
 - Astro — Deploy to GitHub Pages  
   https://docs.astro.build/en/guides/deploy/github/
 - Astro — Content Collections  
@@ -1253,13 +1423,17 @@ Ele deve funcionar como:
 ## 26. Decisão final
 
 ### Produto
+
 Fazer um site educacional interativo, em PT-BR, focado em clareza e leitura crítica sobre AI-native engineering.
 
 ### Estrutura
+
 Home editorial + páginas de detalhe por sessão.
 
 ### Conteúdo
+
 Começar com:
+
 1. O que é AI-native engineer
 2. Glossário
 3. Ferramentas
@@ -1268,13 +1442,17 @@ Começar com:
 6. Como operar na prática
 
 ### Design
+
 Neo Brutalism controlado, com foco em clareza.
 
 ### Stack
+
 Astro + TypeScript + MDX + Content Collections + React islands + Motion + CSS Modules.
 
 ### Deploy
+
 GitHub Pages com GitHub Actions.
 
 ### Regra-mãe
+
 **Ensinar sem idolatrar ferramenta. Explicar sem academizar. Impactar visualmente sem prejudicar leitura.**

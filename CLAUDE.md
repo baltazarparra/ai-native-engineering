@@ -41,8 +41,8 @@ Deploy: GitHub Actions → GitHub Pages (auto-deploy on push to main).
 ```yaml
 title: string
 slug: string
-order: number        # publication/navigation order
-summary: string      # 30-second plain-language summary
+order: number # publication/navigation order
+summary: string # 30-second plain-language summary
 readingTime: number
 level: beginner | intermediate | advanced
 tags: string[]
@@ -54,6 +54,7 @@ updatedAt: date
 ## Site Structure
 
 6 sessions, each at its own route:
+
 - `/ai-native-engineer/` — What is an AI-Native Engineer (Session 0)
 - `/glossario/` — Terminology (Session 1)
 - `/ferramentas/` — Tools: IDEs vs CLI (Session 2)

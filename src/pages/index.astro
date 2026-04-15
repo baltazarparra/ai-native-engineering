@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="AI-Native Engineering">
+  <main>
+    <h1>AI-Native Engineering</h1>
+    <p>Sem hype. Sem buzzword vazia. Só o mapa que importa.</p>
+    <nav>
+      <a href={`${base}sessions/dummy-session`}>Sessão de Teste</a>
+    </nav>
+  </main>
+</BaseLayout>

@@ -20,29 +20,29 @@ Este site existe para fechar essa lacuna: organizar o caos, traduzir a terminolo
 
 O site é organizado em 6 sessões progressivas:
 
-| # | Sessão | Rota | O que ensina |
-|---|--------|------|--------------|
-| 0 | O que é um AI-Native Engineer | `/ai-native-engineer/` | Definição, o que mudou, o que não mudou, self-assessment |
-| 1 | Glossário | `/glossario/` | LLM, modelo, token, prompt, agente, harness, MCP e mais |
-| 2 | Ferramentas | `/ferramentas/` | IDEs vs CLI, categorias, comparação por perfil de usuário |
-| 3 | Modelos | `/modelos/` | Produto vs modelo, perfis por tarefa, leitura crítica de benchmarks |
-| 4 | Maturidade | `/maturidade/` | Consulta → Autocomplete → Vibe Coding → SDD → Harness Engineering |
-| 5 | Como operar | `/como-operar/` | Workflow, checklists, playbooks por perfil |
+| #   | Sessão                        | Rota                   | O que ensina                                                        |
+| --- | ----------------------------- | ---------------------- | ------------------------------------------------------------------- |
+| 0   | O que é um AI-Native Engineer | `/ai-native-engineer/` | Definição, o que mudou, o que não mudou, self-assessment            |
+| 1   | Glossário                     | `/glossario/`          | LLM, modelo, token, prompt, agente, harness, MCP e mais             |
+| 2   | Ferramentas                   | `/ferramentas/`        | IDEs vs CLI, categorias, comparação por perfil de usuário           |
+| 3   | Modelos                       | `/modelos/`            | Produto vs modelo, perfis por tarefa, leitura crítica de benchmarks |
+| 4   | Maturidade                    | `/maturidade/`         | Consulta → Autocomplete → Vibe Coding → SDD → Harness Engineering   |
+| 5   | Como operar                   | `/como-operar/`        | Workflow, checklists, playbooks por perfil                          |
 
 Cada sessão segue um template fixo: resumo em 30 segundos → explicação principal → por que importa → exemplo real → onde quebra → bloco interativo → referências.
 
 ## Stack
 
-| Camada | Tecnologia |
-|--------|-----------|
-| Framework | [Astro](https://astro.build) |
-| Linguagem | TypeScript |
-| Conteúdo | MDX + Content Collections |
-| Interatividade | React (islands apenas onde necessário) |
-| Animação | [Motion](https://motion.dev) |
-| Estilos | CSS Modules + CSS Variables + design tokens |
-| Lint/Format | ESLint + Prettier |
-| Deploy | GitHub Actions → GitHub Pages |
+| Camada         | Tecnologia                                  |
+| -------------- | ------------------------------------------- |
+| Framework      | [Astro](https://astro.build)                |
+| Linguagem      | TypeScript                                  |
+| Conteúdo       | MDX + Content Collections                   |
+| Interatividade | React (islands apenas onde necessário)      |
+| Animação       | [Motion](https://motion.dev)                |
+| Estilos        | CSS Modules + CSS Variables + design tokens |
+| Lint/Format    | ESLint + Prettier                           |
+| Deploy         | GitHub Actions → GitHub Pages               |
 
 ### Por que Astro
 

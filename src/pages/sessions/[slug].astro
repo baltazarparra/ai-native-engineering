@@ -1,0 +1,27 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import SessionLayout from '../../layouts/SessionLayout.astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const sessions = await getCollection('sessions');
+  return sessions.map((session) => ({
+    params: { slug: session.data.slug },
+    props: { session },
+  }));
+};
+
+const { session } = Astro.props;
+const { Content } = await render(session);
+---
+
+<SessionLayout
+  title={session.data.title}
+  summary={session.data.summary}
+  readingTime={session.data.readingTime}
+  level={session.data.level}
+  heroLabel={session.data.heroLabel}
+  updatedAt={session.data.updatedAt}
+>
+  <Content />
+</SessionLayout>
