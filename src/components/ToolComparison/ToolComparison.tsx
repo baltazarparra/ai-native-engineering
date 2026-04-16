@@ -1,23 +1,63 @@
 import { useState, useMemo } from 'react';
-import { tools } from '../../data/tools';
+import { toolsByLang } from '../../data/tools';
 import type { ToolCategory } from '../../data/tools';
+import type { Lang } from '../../lib/i18n';
 import styles from './ToolComparison.module.css';
 
 type CategoryFilter = 'all' | ToolCategory;
 
-const CATEGORIES: { value: CategoryFilter; label: string }[] = [
-  { value: 'all', label: 'Todas' },
-  { value: 'ide', label: 'IDEs' },
-  { value: 'cli', label: 'CLI' },
-];
-
-const PROFILES = [
-  { value: 'all', label: 'Todos' },
-  { value: 'junior', label: 'Dev junior' },
-  { value: 'senior', label: 'Dev senior' },
-  { value: 'qa', label: 'QA' },
-  { value: 'lead', label: 'Lideranca' },
-];
+const LABELS = {
+  'pt-BR': {
+    categories: [
+      { value: 'all', label: 'Todas' },
+      { value: 'ide', label: 'IDEs' },
+      { value: 'cli', label: 'CLI' },
+    ] satisfies { value: CategoryFilter; label: string }[],
+    profiles: [
+      { value: 'all', label: 'Todos' },
+      { value: 'junior', label: 'Dev junior' },
+      { value: 'senior', label: 'Dev senior' },
+      { value: 'qa', label: 'QA' },
+      { value: 'lead', label: 'Lideranca' },
+    ],
+    categoryLabel: 'Categoria:',
+    categoryAria: 'Filtrar por categoria',
+    profileLabel: 'Perfil:',
+    profileAria: 'Filtrar por perfil',
+    count: (visible: number, total: number) =>
+      `Mostrando ${visible} de ${total} ferramentas`,
+    whereItRuns: 'Onde roda:',
+    bestFor: 'Melhor pra:',
+    strengths: 'Onde brilha',
+    risks: 'Onde tropeca',
+    empty: 'Nenhuma ferramenta encontrada com esses filtros.',
+  },
+  en: {
+    categories: [
+      { value: 'all', label: 'All' },
+      { value: 'ide', label: 'IDEs' },
+      { value: 'cli', label: 'CLI' },
+    ] satisfies { value: CategoryFilter; label: string }[],
+    profiles: [
+      { value: 'all', label: 'All' },
+      { value: 'junior', label: 'Junior dev' },
+      { value: 'senior', label: 'Senior dev' },
+      { value: 'qa', label: 'QA' },
+      { value: 'lead', label: 'Leadership' },
+    ],
+    categoryLabel: 'Category:',
+    categoryAria: 'Filter by category',
+    profileLabel: 'Profile:',
+    profileAria: 'Filter by profile',
+    count: (visible: number, total: number) =>
+      `Showing ${visible} of ${total} tools`,
+    whereItRuns: 'Where it runs:',
+    bestFor: 'Best for:',
+    strengths: 'Where it shines',
+    risks: 'Where it trips',
+    empty: 'No tool found with these filters.',
+  },
+} as const;
 
 function matchesProfile(targetUsers: string[], profile: string): boolean {
   const lower = targetUsers.map((u) => u.toLowerCase());
@@ -42,16 +82,29 @@ function matchesProfile(targetUsers: string[], profile: string): boolean {
   }
 }
 
-const CATEGORY_LABELS: Record<ToolCategory, string> = {
-  ide: 'IDE',
-  cli: 'CLI',
-  agent: 'Agente',
+const CATEGORY_LABELS: Record<Lang, Record<ToolCategory, string>> = {
+  'pt-BR': {
+    ide: 'IDE',
+    cli: 'CLI',
+    agent: 'Agente',
+  },
+  en: {
+    ide: 'IDE',
+    cli: 'CLI',
+    agent: 'Agent',
+  },
 };
 
-export default function ToolComparison() {
+interface Props {
+  lang?: Lang;
+}
+
+export default function ToolComparison({ lang = 'pt-BR' }: Props) {
   const [category, setCategory] = useState<CategoryFilter>('all');
   const [profile, setProfile] = useState('all');
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const tools = toolsByLang[lang];
+  const labels = LABELS[lang];
 
   const filtered = useMemo(() => {
     return tools.filter((tool) => {
@@ -66,13 +119,13 @@ export default function ToolComparison() {
     <div className={styles.container}>
       <div className={styles.filters}>
         <div className={styles.filterGroup}>
-          <span className={styles.filterLabel}>Categoria:</span>
+          <span className={styles.filterLabel}>{labels.categoryLabel}</span>
           <div
             className={styles.filterButtons}
             role="group"
-            aria-label="Filtrar por categoria"
+            aria-label={labels.categoryAria}
           >
-            {CATEGORIES.map((c) => (
+            {labels.categories.map((c) => (
               <button
                 key={c.value}
                 className={`${styles.filterBtn} ${category === c.value ? styles.filterActive : ''}`}
@@ -85,13 +138,13 @@ export default function ToolComparison() {
           </div>
         </div>
         <div className={styles.filterGroup}>
-          <span className={styles.filterLabel}>Perfil:</span>
+          <span className={styles.filterLabel}>{labels.profileLabel}</span>
           <div
             className={styles.filterButtons}
             role="group"
-            aria-label="Filtrar por perfil"
+            aria-label={labels.profileAria}
           >
-            {PROFILES.map((p) => (
+            {labels.profiles.map((p) => (
               <button
                 key={p.value}
                 className={`${styles.filterBtn} ${profile === p.value ? styles.filterActive : ''}`}
@@ -106,7 +159,7 @@ export default function ToolComparison() {
       </div>
 
       <p className={styles.count}>
-        Mostrando {filtered.length} de {tools.length} ferramentas
+        {labels.count(filtered.length, tools.length)}
       </p>
 
       <div className={styles.grid}>
@@ -122,7 +175,7 @@ export default function ToolComparison() {
                 <div className={styles.cardTitle}>
                   <span className={styles.toolName}>{tool.name}</span>
                   <span className={styles.badge}>
-                    {CATEGORY_LABELS[tool.category]}
+                    {CATEGORY_LABELS[lang][tool.category]}
                   </span>
                 </div>
                 <span className={styles.indicator}>
@@ -132,10 +185,10 @@ export default function ToolComparison() {
 
               <div className={styles.cardBody}>
                 <p className={styles.meta}>
-                  <strong>Onde roda:</strong> {tool.whereItRuns}
+                  <strong>{labels.whereItRuns}</strong> {tool.whereItRuns}
                 </p>
                 <p className={styles.meta}>
-                  <strong>Melhor pra:</strong> {tool.bestFor}
+                  <strong>{labels.bestFor}</strong> {tool.bestFor}
                 </p>
               </div>
 
@@ -144,7 +197,7 @@ export default function ToolComparison() {
                   <div className={styles.columns}>
                     <div className={styles.column}>
                       <strong className={styles.columnTitle}>
-                        Onde brilha
+                        {labels.strengths}
                       </strong>
                       <ul className={styles.list}>
                         {tool.strengths.map((s, i) => (
@@ -154,7 +207,7 @@ export default function ToolComparison() {
                     </div>
                     <div className={styles.column}>
                       <strong className={styles.columnTitle}>
-                        Onde tropeca
+                        {labels.risks}
                       </strong>
                       <ul className={styles.list}>
                         {tool.commonRisks.map((r, i) => (
@@ -170,11 +223,7 @@ export default function ToolComparison() {
         })}
       </div>
 
-      {filtered.length === 0 && (
-        <p className={styles.empty}>
-          Nenhuma ferramenta encontrada com esses filtros.
-        </p>
-      )}
+      {filtered.length === 0 && <p className={styles.empty}>{labels.empty}</p>}
     </div>
   );
 }

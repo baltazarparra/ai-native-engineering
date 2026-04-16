@@ -7,6 +7,8 @@ const sessions = defineCollection({
   schema: z.object({
     title: z.string(),
     slug: z.string(),
+    lang: z.enum(['pt-BR', 'en']),
+    translationKey: z.string(),
     order: z.number(),
     summary: z.string(),
     readingTime: z.number(),

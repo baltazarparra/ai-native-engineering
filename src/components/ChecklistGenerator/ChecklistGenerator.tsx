@@ -1,16 +1,53 @@
 import { useState, useMemo, useCallback } from 'react';
-import { profiles, tasks, getChecklist } from '../../data/checklists';
+import {
+  profilesByLang,
+  tasksByLang,
+  getChecklist,
+} from '../../data/checklists';
+import type { Lang } from '../../lib/i18n';
 import styles from './ChecklistGenerator.module.css';
 
-export default function ChecklistGenerator() {
+const LABELS = {
+  'pt-BR': {
+    profileStep: '1. Qual e seu perfil?',
+    profileAria: 'Perfil',
+    taskStep: '2. Que tipo de tarefa?',
+    taskAria: 'Tipo de tarefa',
+    before: 'Antes de pedir',
+    after: 'Antes de aceitar',
+    copy: 'Copiar checklist',
+    copyBefore: 'ANTES DE PEDIR:',
+    copyAfter: 'ANTES DE ACEITAR:',
+  },
+  en: {
+    profileStep: '1. What is your profile?',
+    profileAria: 'Profile',
+    taskStep: '2. What kind of task?',
+    taskAria: 'Task type',
+    before: 'Before asking',
+    after: 'Before accepting',
+    copy: 'Copy checklist',
+    copyBefore: 'BEFORE ASKING:',
+    copyAfter: 'BEFORE ACCEPTING:',
+  },
+} as const;
+
+interface Props {
+  lang?: Lang;
+}
+
+export default function ChecklistGenerator({ lang = 'pt-BR' }: Props) {
   const [selectedProfile, setSelectedProfile] = useState<string | null>(null);
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
   const [checked, setChecked] = useState<Set<string>>(new Set());
+  const labels = LABELS[lang];
+  const profiles = profilesByLang[lang];
+  const tasks = tasksByLang[lang];
 
   const checklist = useMemo(() => {
     if (!selectedProfile || !selectedTask) return [];
-    return getChecklist(selectedProfile, selectedTask);
-  }, [selectedProfile, selectedTask]);
+    return getChecklist(selectedProfile, selectedTask, lang);
+  }, [selectedProfile, selectedTask, lang]);
 
   const beforeItems = useMemo(
     () => checklist.filter((i) => i.category === 'antes-de-pedir'),
@@ -43,12 +80,12 @@ export default function ChecklistGenerator() {
 
   const handleCopy = useCallback(async () => {
     const lines: string[] = [];
-    lines.push('ANTES DE PEDIR:');
+    lines.push(labels.copyBefore);
     beforeItems.forEach((item) => {
       lines.push(`${checked.has(item.id) ? '[x]' : '[ ]'} ${item.text}`);
     });
     lines.push('');
-    lines.push('ANTES DE ACEITAR:');
+    lines.push(labels.copyAfter);
     afterItems.forEach((item) => {
       lines.push(`${checked.has(item.id) ? '[x]' : '[ ]'} ${item.text}`);
     });
@@ -58,13 +95,17 @@ export default function ChecklistGenerator() {
     } catch {
       // clipboard unavailable
     }
-  }, [beforeItems, afterItems, checked]);
+  }, [beforeItems, afterItems, checked, labels]);
 
   return (
     <div className={styles.container}>
       <div className={styles.step}>
-        <span className={styles.stepLabel}>1. Qual e seu perfil?</span>
-        <div className={styles.buttons} role="group" aria-label="Perfil">
+        <span className={styles.stepLabel}>{labels.profileStep}</span>
+        <div
+          className={styles.buttons}
+          role="group"
+          aria-label={labels.profileAria}
+        >
           {profiles.map((p) => (
             <button
               key={p.id}
@@ -80,11 +121,11 @@ export default function ChecklistGenerator() {
 
       {selectedProfile && (
         <div className={styles.step}>
-          <span className={styles.stepLabel}>2. Que tipo de tarefa?</span>
+          <span className={styles.stepLabel}>{labels.taskStep}</span>
           <div
             className={styles.buttons}
             role="group"
-            aria-label="Tipo de tarefa"
+            aria-label={labels.taskAria}
           >
             {tasks.map((t) => (
               <button
@@ -103,7 +144,7 @@ export default function ChecklistGenerator() {
       {checklist.length > 0 && (
         <div className={styles.checklistCard}>
           <div className={styles.checklistSection}>
-            <h4 className={styles.sectionTitle}>Antes de pedir</h4>
+            <h4 className={styles.sectionTitle}>{labels.before}</h4>
             {beforeItems.map((item) => (
               <label key={item.id} className={styles.checkItem}>
                 <input
@@ -122,7 +163,7 @@ export default function ChecklistGenerator() {
           </div>
 
           <div className={styles.checklistSection}>
-            <h4 className={styles.sectionTitle}>Antes de aceitar</h4>
+            <h4 className={styles.sectionTitle}>{labels.after}</h4>
             {afterItems.map((item) => (
               <label key={item.id} className={styles.checkItem}>
                 <input
@@ -141,7 +182,7 @@ export default function ChecklistGenerator() {
           </div>
 
           <button className={styles.copyBtn} onClick={handleCopy}>
-            Copiar checklist
+            {labels.copy}
           </button>
         </div>
       )}

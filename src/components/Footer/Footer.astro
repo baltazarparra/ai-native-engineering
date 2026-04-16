@@ -1,10 +1,18 @@
 ---
 import styles from './Footer.module.css';
+import type { Lang } from '../../lib/i18n';
+import { ui } from '../../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'pt-BR' } = Astro.props;
 ---
 
 <footer class={styles.footer}>
   <div class={styles.inner}>
-    <span class={styles.tagline}>Feito com Astro e cafe</span>
+    <span class={styles.tagline}>{ui[lang].footer.tagline}</span>
     <span class={styles.links}>
       <a href="https://github.com/baltazarparra/ai-native-engineering">GitHub</a
       >

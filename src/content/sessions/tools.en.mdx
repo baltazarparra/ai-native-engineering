@@ -1,0 +1,220 @@
+---
+title: 'Tools: IDEs vs CLI'
+slug: 'tools'
+lang: 'en'
+translationKey: 'tools'
+order: 2
+summary: 'Cursor, Windsurf, GitHub Copilot, Claude Code. What each tool does, where it shines, and where it trips.'
+readingTime: 18
+level: 'beginner'
+tags: ['tools', 'ide', 'cli', 'comparison']
+heroLabel: 'Tool map'
+references:
+  ['cursor-docs', 'github-copilot-docs', 'claude-code-docs', 'opencode-github']
+updatedAt: 2026-04-15
+---
+
+import ToolComparison from '../../components/ToolComparison/ToolComparison.tsx';
+
+## Three categories, not an infinite list
+
+Every week there is a new AI tool for software development. If you try to track all of them, you will spend more time evaluating tools than building software.
+
+Instead of listing everything, it is more useful to think in three categories:
+
+1. **AI-native IDEs**: code editors with AI built into the editing experience. You keep writing code in the editor, but AI suggests, edits, and chats with you there. Examples: Cursor, Windsurf, VS Code with GitHub Copilot.
+
+2. **AI CLIs**: command-line tools that operate in the terminal. You describe what you want in text, the tool reads files, runs commands, and makes changes directly. Examples: Claude Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+
+3. **Autonomous agents**: the difference from CLIs is the level of autonomy. A CLI can read and edit files. An agent plans, executes, tests, iterates, and chooses next steps. Some CLIs behave like agents. The line is getting blurry.
+
+The right category depends on how you work, not on which tool is "best".
+
+## Why this matters
+
+Choosing a tool because of hype is the fastest way to get frustrated. The right tool is the one that removes friction from your actual workflow.
+
+A junior developer learning React may benefit most from an IDE with integrated AI: autocomplete, inline explanations, contextual suggestions. A senior developer refactoring 50 files may want a coding agent in the terminal. A QA engineer generating test scenarios can use either.
+
+The question is not "which tool is best?" The question is "which tool removes the most friction for the task I am doing right now?"
+
+## Real example
+
+A team of four working on the same project:
+
+**Ana, junior dev**, uses Cursor. She is learning the project patterns, and autocomplete helps her see how things fit. Inline chat answers questions without leaving the editor. Agent mode helps when the task gets bigger.
+
+**Carlos, senior dev**, uses Claude Code in the terminal. He likes working across many files, running tests automatically, and doing refactors that touch multiple modules. The terminal gives direct access to git, tests, and lint.
+
+**Marina, QA**, uses GitHub Copilot in VS Code. She already knows VS Code and does not want to switch editors. Autocomplete helps write tests faster. Copilot chat helps her understand code while reviewing.
+
+**Pedro, tech lead**, uses Claude Code for big tasks and Cursor for quick edits. He switches tools based on the task.
+
+None of them is wrong. Each one chose based on workflow friction.
+
+## The market snapshot
+
+This is a snapshot for April 2026. Tools change quickly. Treat this as a map, not a forever truth.
+
+### Cursor
+
+**What it is**: A desktop IDE based on VS Code, with AI built into the editing interface.
+
+**Where it runs**: Desktop editor, as a VS Code fork.
+
+**Who it fits**: Junior devs, senior devs, full-stack devs. Anyone who wants AI in the editing flow without leaving the editor.
+
+**Where it shines**:
+
+- AI is built into the editing interface, not bolted on as an afterthought
+- Good automatic code context
+- Inline chat and visual diff editing
+- Agent mode for larger tasks
+
+**Where it trips**:
+
+- Subscription cost may not make sense for every profile
+- Strong dependency on the VS Code ecosystem
+- Suggestions can be accepted without enough review
+
+### Windsurf
+
+**What it is**: A desktop IDE with integrated AI and a focus on assisted workflows.
+
+**Where it runs**: Desktop editor, as a VS Code fork.
+
+**Who it fits**: Junior and senior devs who want a clean AI-assisted experience.
+
+**Where it shines**:
+
+- Clean interface with integrated AI
+- Assisted workflows
+- Friendly onboarding for people getting started
+
+**Where it trips**:
+
+- Smaller ecosystem than Cursor
+- Fewer extensions and third-party integrations
+
+### GitHub Copilot
+
+**What it is**: An AI extension for existing editors. It is not a new editor; it is a plugin.
+
+**Where it runs**: VS Code, JetBrains, Neovim, and other editors.
+
+**Who it fits**: Junior devs, senior devs, QA engineers automating tests. Anyone who already has a favorite editor.
+
+**Where it shines**:
+
+- Works in most popular editors
+- Very fast autocomplete
+- Built-in chat for quick questions
+- Easy to adopt in large teams
+
+**Where it trips**:
+
+- Autocomplete can become a crutch
+- Suggestions do not always include full project context
+- Accepting without reading is the number one risk
+
+### Claude Code
+
+**What it is**: A coding agent that runs in the terminal. It plans, executes, tests, and iterates.
+
+**Where it runs**: Terminal / command line.
+
+**Who it fits**: Senior devs, tech leads, terminal-first developers, and anyone doing multi-file work.
+
+**Where it shines**:
+
+- Operates directly on the file system
+- Plans before executing
+- Can use system tools like git, tests, and lint
+- Strong fit for large refactors and multi-file tasks
+
+**Where it trips**:
+
+- Higher learning curve for people who do not use the terminal
+- Needs supervision around destructive operations
+- Context quality depends on how well the project is structured
+
+### Codex CLI
+
+**What it is**: A terminal coding agent in the OpenAI ecosystem.
+
+**Where it runs**: Terminal / command line.
+
+**Who it fits**: Senior devs and developers already using the OpenAI ecosystem.
+
+**Where it shines**:
+
+- Integrates with OpenAI models and workflows
+- Has terminal and file system access
+- Model can be configured by task
+
+**Where it trips**:
+
+- Ecosystem is still evolving
+- API keys and usage cost matter
+
+### OpenCode
+
+**What it is**: An open source option for AI-assisted development in the terminal.
+
+**Where it runs**: Terminal / command line.
+
+**Who it fits**: Developers who prefer open source tools and senior devs who want more transparency.
+
+**Where it shines**:
+
+- Open source and transparent
+- Configurable with different model providers
+- Clear view into what the tool is doing
+
+**Where it trips**:
+
+- Smaller community
+- Less polish than commercial alternatives
+- Documentation can be thinner
+
+### GitHub Copilot CLI
+
+**What it is**: A GitHub CLI extension for AI-assisted terminal commands.
+
+**Where it runs**: Terminal as a GitHub CLI extension.
+
+**Who it fits**: Developers already using GitHub CLI, DevOps, and QA.
+
+**Where it shines**:
+
+- Integrated with GitHub
+- Useful for discovering terminal commands
+- Low friction for people already using `gh`
+
+**Where it trips**:
+
+- More limited than full coding agents
+- Focused on commands, not whole projects
+
+## Where this breaks
+
+- **Endless switching syndrome**: Trying tools is healthy. Switching tools every week is procrastination wearing a productivity costume. Pick one, use it for two weeks, then evaluate.
+
+- **One-tool thinking**: "I use Cursor, so I do not need terminal agents." Or "I use Claude Code, so I do not need an IDE." Tools are complementary. Experienced people often use more than one.
+
+- **Tool is not method**: The best AI IDE does not replace knowing what to ask for. If you cannot specify the work, no tool will guess it cleanly.
+
+- **Trusting autocomplete too much**: Autocomplete is optimized to look plausible. Every suggestion accepted without reading is a possible production bug.
+
+## Interactive block
+
+<ToolComparison lang="en" client:visible />
+
+## Takeaway
+
+- AI dev tools fall into three practical categories: integrated IDEs, CLIs, and agents
+- The right tool is the one that reduces friction in your workflow, not the one with the most hype
+- Experienced people often use more than one tool
+- Clear specs come before tools
+- Autocomplete is a suggestion, not an answer. Read before accepting
+- This map is from April 2026. Tools change fast, so revisit it

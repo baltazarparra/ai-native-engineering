@@ -4,9 +4,10 @@ import styles from './ProgressTracker.module.css';
 
 interface Props {
   sessionSlug: string;
+  ariaLabel: string;
 }
 
-export default function ProgressTracker({ sessionSlug }: Props) {
+export default function ProgressTracker({ sessionSlug, ariaLabel }: Props) {
   const [progress, setProgress] = useState(0);
   const [completed, setCompleted] = useLocalStorage<Record<string, boolean>>(
     'ai-native-completed-sessions',
@@ -39,7 +40,7 @@ export default function ProgressTracker({ sessionSlug }: Props) {
       aria-valuenow={progress}
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-label="Progresso de leitura"
+      aria-label={ariaLabel}
     >
       <div className={styles.fill} style={{ width: `${progress}%` }} />
     </div>

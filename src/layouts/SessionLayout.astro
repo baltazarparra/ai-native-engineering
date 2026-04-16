@@ -7,6 +7,9 @@ import ReferencesList from '../components/ReferencesList/ReferencesList.astro';
 import NextSessionCTA from '../components/NextSessionCTA/NextSessionCTA.astro';
 import Footer from '../components/Footer/Footer.astro';
 import ProgressTracker from '../components/ProgressTracker/ProgressTracker.tsx';
+import type { Lang } from '../lib/i18n';
+import { languages, ui } from '../lib/i18n';
+import { getSessionAlternateLinks } from '../data/sessions';
 
 interface Reference {
   id: string;
@@ -21,6 +24,8 @@ interface Reference {
 interface Props {
   title: string;
   slug: string;
+  lang: Lang;
+  translationKey: string;
   summary: string;
   readingTime: number;
   level: 'beginner' | 'intermediate' | 'advanced';
@@ -35,6 +40,8 @@ interface Props {
 const {
   title,
   slug,
+  lang,
+  translationKey,
   summary,
   readingTime,
   level,
@@ -44,21 +51,34 @@ const {
   nextSession,
 } = Astro.props;
 
-const levelLabels: Record<string, string> = {
-  beginner: 'iniciante',
-  intermediate: 'intermediario',
-  advanced: 'avancado',
-};
-
 const levelVariants: Record<string, 'yellow' | 'blue' | 'green'> = {
   beginner: 'yellow',
   intermediate: 'blue',
   advanced: 'green',
 };
+
+const labels = ui[lang];
+const alternateLinks = getSessionAlternateLinks(translationKey);
+const formattedUpdatedAt = updatedAt.toLocaleDateString(
+  languages[lang].dateLocale,
+  {
+    month: 'long',
+    year: 'numeric',
+  },
+);
 ---
 
-<BaseLayout title={`${title} | AI-Native Engineering`} description={summary}>
-  <ProgressTracker client:idle sessionSlug={slug} />
+<BaseLayout
+  title={`${title} | AI-Native Engineering`}
+  description={summary}
+  lang={lang}
+  alternateLinks={alternateLinks}
+>
+  <ProgressTracker
+    client:idle
+    sessionSlug={`${lang}:${slug}`}
+    ariaLabel={labels.progressLabel}
+  />
   <main id="main-content" class="session-page">
     <!-- hero -->
     <SectionBlock as="header" padding="xl">
@@ -66,31 +86,26 @@ const levelVariants: Record<string, 'yellow' | 'blue' | 'green'> = {
       <h1 class="session-title">{title}</h1>
       <div class="session-meta">
         <Badge variant={levelVariants[level]} size="sm">
-          {levelLabels[level]}
+          {labels.levels[level]}
         </Badge>
-        <Badge size="sm">{readingTime} min de leitura</Badge>
+        <Badge size="sm">{labels.readingMinutes(readingTime)}</Badge>
         <time class="session-date" datetime={updatedAt.toISOString()}>
-          Atualizado em{' '}
-          {
-            updatedAt.toLocaleDateString('pt-BR', {
-              month: 'long',
-              year: 'numeric',
-            })
-          }
+          {labels.updatedAt}
+          {formattedUpdatedAt}
         </time>
       </div>
     </SectionBlock>
 
     <!-- summary -->
     <SectionBlock padding="lg" alt id="resumo">
-      <h2>Em 30 segundos</h2>
+      <h2>{labels.summaryHeading}</h2>
       <p class="summary-text">{summary}</p>
     </SectionBlock>
 
     <!-- body: sidebar + content -->
     <div class="session-body">
       <aside class="session-sidebar">
-        <SectionNav />
+        <SectionNav lang={lang} />
       </aside>
       <article class="session-content">
         <slot />
@@ -101,7 +116,7 @@ const levelVariants: Record<string, 'yellow' | 'blue' | 'green'> = {
     {
       references.length > 0 && (
         <SectionBlock padding="xl" alt>
-          <ReferencesList references={references} />
+          <ReferencesList references={references} lang={lang} />
         </SectionBlock>
       )
     }
@@ -110,16 +125,17 @@ const levelVariants: Record<string, 'yellow' | 'blue' | 'green'> = {
     {
       nextSession ? (
         <NextSessionCTA
+          lang={lang}
           nextTitle={nextSession.title}
           nextSlug={nextSession.slug}
           nextHeroLabel={nextSession.heroLabel}
         />
       ) : (
-        <NextSessionCTA isLast />
+        <NextSessionCTA lang={lang} isLast />
       )
     }
 
-    <Footer />
+    <Footer lang={lang} />
   </main>
 </BaseLayout>
 

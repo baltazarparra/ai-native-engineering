@@ -1,35 +1,44 @@
 ---
 import styles from './NextSessionCTA.module.css';
 import Button from '../Button/Button.astro';
+import type { Lang } from '../../lib/i18n';
+import { getHomeHref, getSessionHref, ui } from '../../lib/i18n';
 
 interface Props {
+  lang?: Lang;
   nextTitle?: string;
   nextSlug?: string;
   nextHeroLabel?: string;
   isLast?: boolean;
 }
 
-const { nextTitle, nextSlug, nextHeroLabel, isLast = false } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const {
+  lang = 'pt-BR',
+  nextTitle,
+  nextSlug,
+  nextHeroLabel,
+  isLast = false,
+} = Astro.props;
+const labels = ui[lang].nextSession;
 ---
 
 <div class={styles.cta}>
   {
     isLast ? (
       <>
-        <span class={styles.label}>Voce chegou ao fim</span>
-        <p class={styles.title}>Parabens! Agora e hora de aplicar.</p>
-        <Button href={base} size="lg">
-          Voltar pra home
+        <span class={styles.label}>{labels.lastLabel}</span>
+        <p class={styles.title}>{labels.lastTitle}</p>
+        <Button href={getHomeHref(lang)} size="lg">
+          {labels.home}
         </Button>
       </>
     ) : (
       <>
-        <span class={styles.label}>Proxima sessao</span>
+        <span class={styles.label}>{labels.label}</span>
         {nextHeroLabel && <span class={styles.heroLabel}>{nextHeroLabel}</span>}
         <p class={styles.title}>{nextTitle}</p>
-        <Button href={`${base}sessions/${nextSlug}`} size="lg">
-          Continuar
+        <Button href={getSessionHref(lang, nextSlug || '')} size="lg">
+          {labels.continue}
         </Button>
       </>
     )

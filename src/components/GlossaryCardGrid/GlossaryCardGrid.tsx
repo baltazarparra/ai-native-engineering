@@ -1,13 +1,45 @@
 import { useState, useMemo } from 'react';
-import { glossary } from '../../data/glossary';
+import { glossaryByLang } from '../../data/glossary';
+import type { Lang } from '../../lib/i18n';
 import styles from './GlossaryCardGrid.module.css';
 
 const ACCENTS = ['yellow', 'blue', 'green', 'coral'] as const;
 
-export default function GlossaryCardGrid() {
+const LABELS = {
+  'pt-BR': {
+    searchPlaceholder: 'Buscar termo...',
+    searchAria: 'Buscar termo no glossario',
+    modeAria: 'Tipo de definicao',
+    simple: 'Simples',
+    technical: 'Tecnico',
+    empty: (query: string) => `Nenhum termo encontrado pra "${query}".`,
+    example: 'Exemplo:',
+    commonMistake: 'Erro comum:',
+    relatedTerms: 'Termos relacionados:',
+  },
+  en: {
+    searchPlaceholder: 'Search term...',
+    searchAria: 'Search glossary term',
+    modeAria: 'Definition type',
+    simple: 'Simple',
+    technical: 'Technical',
+    empty: (query: string) => `No term found for "${query}".`,
+    example: 'Example:',
+    commonMistake: 'Common mistake:',
+    relatedTerms: 'Related terms:',
+  },
+} as const;
+
+interface Props {
+  lang?: Lang;
+}
+
+export default function GlossaryCardGrid({ lang = 'pt-BR' }: Props) {
   const [searchQuery, setSearchQuery] = useState('');
   const [mode, setMode] = useState<'simple' | 'technical'>('simple');
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const glossary = glossaryByLang[lang];
+  const labels = LABELS[lang];
 
   const filtered = useMemo(() => {
     if (!searchQuery.trim()) return glossary;
@@ -28,37 +60,35 @@ export default function GlossaryCardGrid() {
         <input
           type="text"
           className={styles.search}
-          placeholder="Buscar termo..."
+          placeholder={labels.searchPlaceholder}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          aria-label="Buscar termo no glossario"
+          aria-label={labels.searchAria}
         />
         <div
           className={styles.toggle}
           role="group"
-          aria-label="Tipo de definicao"
+          aria-label={labels.modeAria}
         >
           <button
             className={`${styles.toggleBtn} ${mode === 'simple' ? styles.toggleActive : ''}`}
             onClick={() => setMode('simple')}
             aria-pressed={mode === 'simple'}
           >
-            Simples
+            {labels.simple}
           </button>
           <button
             className={`${styles.toggleBtn} ${mode === 'technical' ? styles.toggleActive : ''}`}
             onClick={() => setMode('technical')}
             aria-pressed={mode === 'technical'}
           >
-            Tecnico
+            {labels.technical}
           </button>
         </div>
       </div>
 
       {filtered.length === 0 && (
-        <p className={styles.empty}>
-          Nenhum termo encontrado pra "{searchQuery}".
-        </p>
+        <p className={styles.empty}>{labels.empty(searchQuery)}</p>
       )}
 
       <div className={styles.grid}>
@@ -93,16 +123,16 @@ export default function GlossaryCardGrid() {
               {isExpanded && (
                 <div className={styles.expandedBody}>
                   <div className={styles.detail}>
-                    <strong>Exemplo:</strong>
+                    <strong>{labels.example}</strong>
                     <p>{term.example}</p>
                   </div>
                   <div className={styles.detail}>
-                    <strong>Erro comum:</strong>
+                    <strong>{labels.commonMistake}</strong>
                     <p>{term.commonMistake}</p>
                   </div>
                   {term.relatedTerms.length > 0 && (
                     <div className={styles.related}>
-                      <strong>Termos relacionados:</strong>
+                      <strong>{labels.relatedTerms}</strong>
                       <div className={styles.relatedTags}>
                         {term.relatedTerms.map((rt) => (
                           <button

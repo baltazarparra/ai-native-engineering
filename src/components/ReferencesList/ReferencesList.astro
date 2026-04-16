@@ -1,6 +1,8 @@
 ---
 import styles from './ReferencesList.module.css';
 import Badge from '../Badge/Badge.astro';
+import type { Lang } from '../../lib/i18n';
+import { ui } from '../../lib/i18n';
 
 interface Reference {
   id: string;
@@ -14,19 +16,13 @@ interface Reference {
 
 interface Props {
   references: Reference[];
+  lang?: Lang;
 }
 
-const { references } = Astro.props;
+const { references, lang = 'pt-BR' } = Astro.props;
+const labels = ui[lang].references;
 
 if (references.length === 0) return;
-
-const typeLabels: Record<string, string> = {
-  artigo: 'Artigos',
-  documentacao: 'Documentacao',
-  talk: 'Talks',
-  video: 'Videos',
-  pesquisa: 'Pesquisa',
-};
 
 const typeBadgeVariant: Record<
   string,
@@ -51,13 +47,13 @@ const grouped = Object.entries(
   ),
 ).map(([type, refs]) => ({
   type,
-  label: typeLabels[type] || type,
+  label: labels.groupLabels[type as keyof typeof labels.groupLabels] || type,
   refs: refs.sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99)),
 }));
 ---
 
 <div class={styles.references} id="referencias">
-  <h2 class={styles.heading}>Quer se aprofundar?</h2>
+  <h2 class={styles.heading}>{labels.heading}</h2>
   {
     grouped.map((group) => (
       <div class={styles.group}>
@@ -70,7 +66,7 @@ const grouped = Object.entries(
               </a>
               <span class={styles.source}>({ref.source})</span>
               <Badge variant={typeBadgeVariant[ref.type]} size="sm">
-                {ref.type}
+                {labels.badgeLabels[ref.type]}
               </Badge>
             </li>
           ))}

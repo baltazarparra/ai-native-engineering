@@ -1,3 +1,5 @@
+import type { Lang } from '../lib/i18n';
+
 export interface GlossaryTerm {
   id: string;
   term: string;
@@ -212,3 +214,206 @@ export const glossary: GlossaryTerm[] = [
     relatedTerms: ['agente-de-codigo', 'mcp', 'system-prompt'],
   },
 ];
+
+export const glossaryEn: GlossaryTerm[] = [
+  {
+    id: 'llm',
+    term: 'LLM',
+    simpleDefinition:
+      'A computer program trained to read and write text. You send a question, it generates an answer.',
+    technicalDefinition:
+      'Large Language Model. A neural network with billions of parameters trained on large text corpora. It generates output token by token based on conditional probability over the input sequence.',
+    example:
+      'When you ask ChatGPT to explain a bug, the LLM behind it processes your text and generates the answer piece by piece.',
+    commonMistake:
+      'Treating LLM as a synonym for ChatGPT. ChatGPT is a product. GPT-4o is an LLM inside it.',
+    relatedTerms: ['model', 'token', 'inference', 'context'],
+  },
+  {
+    id: 'modelo',
+    term: 'Model',
+    simpleDefinition:
+      'The trained "brain" that processes text. Different models have different capabilities, speeds, and costs.',
+    technicalDefinition:
+      'The weights and architecture produced by a training process. Each model has its own reasoning profile, speed, context window, and inference cost.',
+    example:
+      'Claude Sonnet is a model. Claude is the product. You interact with the product, but the model generates the response.',
+    commonMistake:
+      'Confusing model and product. Ask whether someone means the chat product, the API, or a specific model.',
+    relatedTerms: ['LLM', 'inference', 'token'],
+  },
+  {
+    id: 'inferencia',
+    term: 'Inference',
+    simpleDefinition:
+      'The act of asking the model to generate a response. Every message that gets an answer triggers inference.',
+    technicalDefinition:
+      'Running the model over an input prompt to produce a completion. It consumes compute and is often billed by tokens.',
+    example:
+      'You ask how async/await works and receive an explanation. That generation step is inference.',
+    commonMistake:
+      'Assuming inference is instant and free. Larger models usually cost more time and money per request.',
+    relatedTerms: ['model', 'token', 'prompt'],
+  },
+  {
+    id: 'token',
+    term: 'Token',
+    simpleDefinition:
+      'A chunk of text the model processes. It can be a word, part of a word, or a special character.',
+    technicalDefinition:
+      'The atomic processing unit of an LLM. Text is split into tokens by the model tokenizer before inference.',
+    example:
+      'A 500-line code file can be thousands of tokens. That matters because context windows have limits.',
+    commonMistake:
+      'Ignoring token count. If a giant prompt makes the model forget the beginning, the context window probably overflowed.',
+    relatedTerms: ['context', 'LLM', 'inference'],
+  },
+  {
+    id: 'contexto',
+    term: 'Context',
+    simpleDefinition:
+      'Everything the model can see while generating an answer: your prompt, chat history, system instructions, files.',
+    technicalDefinition:
+      'The complete token sequence provided as input to the model, bounded by the context window.',
+    example:
+      'For a code review, context can include your request plus the files you attached or selected.',
+    commonMistake:
+      'Thinking the model remembers everything. It only knows what is in the current context unless the product adds memory.',
+    relatedTerms: ['token', 'prompt', 'system prompt', 'code context'],
+  },
+  {
+    id: 'prompt',
+    term: 'Prompt',
+    simpleDefinition:
+      'The text you send to the model. It can be a question, a request, an instruction, or all of that together.',
+    technicalDefinition:
+      'Textual input used to generate a completion. It can include instructions, examples, constraints, and output format.',
+    example:
+      'Bad: "make a component". Better: "create a React button with primary and secondary variants, CSS Modules, disabled prop, and tests".',
+    commonMistake:
+      'Thinking a prompt is only the question. Good prompts include context, constraints, examples, and expected format.',
+    relatedTerms: ['system prompt', 'context', 'token'],
+  },
+  {
+    id: 'system-prompt',
+    term: 'System prompt',
+    simpleDefinition:
+      'Initial instructions that shape how the model should behave. A briefing before the conversation starts.',
+    technicalDefinition:
+      'A system-role message that defines behavior, tone, constraints, and capabilities for the assistant.',
+    example:
+      'A system prompt can say: "You are a senior code reviewer. Point out security issues first."',
+    commonMistake:
+      'Ignoring system instructions and then blaming the model for not understanding the job.',
+    relatedTerms: ['prompt', 'context'],
+  },
+  {
+    id: 'ide',
+    term: 'IDE',
+    simpleDefinition:
+      'The code editor where you write software. VS Code, Cursor, and Windsurf are examples.',
+    technicalDefinition:
+      'Integrated Development Environment. In AI tooling, IDEs integrate LLMs into editing, chat, and code actions.',
+    example:
+      'Cursor has AI built in. VS Code with Copilot becomes AI-assisted through an extension.',
+    commonMistake:
+      'Assuming an AI IDE is always better than a terminal tool. They serve different workflows.',
+    relatedTerms: ['CLI', 'autocomplete', 'code context'],
+  },
+  {
+    id: 'cli',
+    term: 'CLI',
+    simpleDefinition:
+      'Command-line interface. You type in the terminal and get text back. Tools like Claude Code run this way.',
+    technicalDefinition:
+      'A text interface where users interact through commands. AI CLIs can read files, edit files, run tests, and use system tools.',
+    example:
+      'You ask a terminal agent to review `src/api.ts`; it reads the file and responds in the terminal.',
+    commonMistake:
+      'Thinking CLI means only hardcore devs. Modern AI CLIs are conversational and much more approachable.',
+    relatedTerms: ['IDE', 'coding agent'],
+  },
+  {
+    id: 'autocomplete',
+    term: 'Autocomplete',
+    simpleDefinition:
+      'AI suggests the next piece of code while you type. Like phone autocomplete, but for code.',
+    technicalDefinition:
+      'Code completion powered by LLMs using current file, open files, and editor context.',
+    example:
+      'You type `function validate` and the tool suggests an implementation based on nearby code.',
+    commonMistake:
+      'Accepting every suggestion without reading it. Autocomplete is likely, not necessarily correct.',
+    relatedTerms: ['IDE', 'code context'],
+  },
+  {
+    id: 'contexto-de-codigo',
+    term: 'Code context',
+    simpleDefinition:
+      'The project information AI uses: open files, folder structure, dependencies, types, tests.',
+    technicalDefinition:
+      'Repository information included in the model context, such as file tree, relevant file contents, imports, types, tests, and configs.',
+    example:
+      'Cursor can use imports and nearby files to suggest code that fits your project better than generic chat output.',
+    commonMistake:
+      'Assuming AI automatically knows the whole project. Every tool has context limits.',
+    relatedTerms: ['context', 'IDE', 'autocomplete'],
+  },
+  {
+    id: 'agente',
+    term: 'Agent',
+    simpleDefinition:
+      'A program that uses AI to make decisions and take actions, not just answer questions.',
+    technicalDefinition:
+      'A system combining an LLM, tools, and control logic to plan, act, observe, and iterate toward a goal.',
+    example:
+      'You ask for a refactor. The agent reads files, plans edits, changes code, runs tests, and reports back.',
+    commonMistake:
+      'Confusing chatbot and agent. A chatbot responds; an agent does work through tools.',
+    relatedTerms: ['coding agent', 'LLM', 'harness'],
+  },
+  {
+    id: 'agente-de-codigo',
+    term: 'Coding agent',
+    simpleDefinition:
+      'An agent specialized in writing, editing, and reviewing code. It can access your project directly.',
+    technicalDefinition:
+      'An AI agent with development tools: file read/write, terminal commands, repository navigation, and test execution.',
+    example:
+      'Claude Code and Codex CLI are coding agents. Cursor agent mode also follows this pattern.',
+    commonMistake:
+      'Giving full autonomy without validation. Coding agents are powerful, but output still needs review.',
+    relatedTerms: ['agent', 'CLI', 'IDE', 'harness'],
+  },
+  {
+    id: 'mcp',
+    term: 'MCP',
+    simpleDefinition:
+      'A standard that lets AI tools connect to external services in an organized way. Kind of like USB for AI tools.',
+    technicalDefinition:
+      'Model Context Protocol. An open protocol for connecting AI applications to data sources and tools through shared server interfaces.',
+    example:
+      'A GitHub MCP server can let compatible AI tools access issues, PRs, and repositories.',
+    commonMistake:
+      'Treating MCP as fully settled and universal. It is useful, but the ecosystem is still evolving.',
+    relatedTerms: ['agent', 'harness', 'context'],
+  },
+  {
+    id: 'harness',
+    term: 'Harness',
+    simpleDefinition:
+      'The complete work system around an AI agent: instructions, tools, rules, context, and validation.',
+    technicalDefinition:
+      'The orchestration layer around a coding agent: system prompt, available tools, project rules, persistent context, automated checks, and acceptance criteria.',
+    example:
+      'A harness can include `CLAUDE.md`, pre-commit checks, MCP tools, and project-specific instructions.',
+    commonMistake:
+      'Treating harness as something you install. It is a practice you build around the work.',
+    relatedTerms: ['coding agent', 'MCP', 'system prompt'],
+  },
+];
+
+export const glossaryByLang: Record<Lang, GlossaryTerm[]> = {
+  'pt-BR': glossary,
+  en: glossaryEn,
+};

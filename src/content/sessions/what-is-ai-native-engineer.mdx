@@ -1,0 +1,92 @@
+---
+title: 'What is an AI-Native Engineer?'
+slug: 'what-is-ai-native-engineer'
+lang: 'en'
+translationKey: 'ai-native-engineer'
+order: 0
+summary: 'The starting point. What changes when AI becomes part of the workflow, not just an extra tool on the side.'
+readingTime: 12
+level: 'beginner'
+tags: ['fundamentals', 'ai-native', 'mindset']
+heroLabel: 'Starting point'
+references:
+  [
+    'osmani-ai-native',
+    'anthropic-claude-docs',
+    'karpathy-ai-native-dev',
+    'stackoverflow-ai-survey-2024',
+  ]
+updatedAt: 2026-04-15
+---
+
+import SelfAssessment from '../../components/SelfAssessment/SelfAssessment.tsx';
+
+## What defines an AI-Native Engineer
+
+It is not about how many tools you use. It is not about knowing more prompts. It is about how you organize the work.
+
+An AI-Native Engineer treats AI as part of the workflow, not as a bonus tab on the side. That means three things:
+
+1. **Knowing what to delegate and what not to delegate**. AI is good at drafting, exploring options, and automating repetitive work. AI is bad at judging business trade-offs, reading team politics, or deciding what should not be built.
+
+2. **Having a process, not just a tool**. The difference between a developer who uses Copilot and an AI-Native Engineer is the same difference between someone who owns a hammer and someone who knows how to build a house. A tool without a process is just noise.
+
+3. **Reviewing with a sharp eye**. AI generates code that compiles, text that sounds right, and suggestions that look reasonable on the surface. The job is to look under the surface.
+
+This applies to devs, QA, PMs, and designers. The maturity gap is not only technical. It is a mindset gap.
+
+### What changed
+
+Before AI entered the workflow, a senior developer stood out through typing speed, API memory, and years of pattern matching. Now typing speed matters less because the model types with you. API memory matters less because the model has a lot of docs-shaped knowledge. Pattern matching can be partially delegated.
+
+What became more valuable: specifying clearly, evaluating output critically, and understanding the system as a whole. In other words, thinking became more important than typing.
+
+### What did not change
+
+Fundamentals are still fundamental. If you do not understand how a database works, you will not know whether the AI-generated query will melt production. If you do not understand requirements, you will not write a useful spec.
+
+AI amplifies what you already know. If you know very little, it amplifies confusion. If you know a lot, it amplifies leverage.
+
+## Why this matters
+
+Most people in tech already use some AI tool day to day: autocomplete in the editor, chat for questions, code generation from natural language. But using a tool and operating natively with it are different things.
+
+An AI-Native Engineer is not someone who knows more magic prompts or uses more tools. It is someone who reshaped the workflow to use what AI is good at, and can spot where AI gets in the way.
+
+That matters because the difference between "using AI" and "working AI-native" is the difference between copying ChatGPT answers and building a system where agents can work inside clear constraints.
+
+## Real example
+
+Imagine you need to create an authentication API. A developer who "uses AI" opens a chat, asks "create an auth API with JWT", copies the result, and pastes it into the project. Maybe it works. Maybe it does not.
+
+An AI-Native Engineer does it differently:
+
+1. Writes a clear spec for what is needed: endpoints, flows, constraints
+2. Gives the spec to a coding agent with project context
+3. Reviews the output critically instead of accepting everything
+4. Uses AI to generate tests from the original spec
+5. Iterates with specific feedback when something does not match
+
+The difference is not the tool. It is the process.
+
+## Where this breaks
+
+Watch out for these anti-patterns:
+
+- **Accepting everything without review**: AI generates plausible code, not guaranteed-correct code. If you accept without reading, you outsourced responsibility, not work.
+- **Prompting instead of thinking**: "Do this for me" is not a spec. The vaguer the request, the more generic the result.
+- **Believing AI replaces experience**: AI accelerates people who know what they want. For people who do not, it often accelerates confusion.
+
+> A good tool with a bad process produces bad results faster.
+
+## Interactive block
+
+<SelfAssessment lang="en" client:visible />
+
+## Takeaway
+
+- AI-native is not about using more AI. It is about integrating AI into the workflow in a structured way
+- The difference is in the process, not the tool
+- Reviewing AI output matters as much as generating it
+- Clear specs before requests produce better results
+- Start by finding where AI genuinely helps your work, not where it is trendy to use

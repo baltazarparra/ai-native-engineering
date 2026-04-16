@@ -1,15 +1,15 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
-import Grid from '../components/Grid/Grid.astro';
-import Button from '../components/Button/Button.astro';
-import Card from '../components/Card/Card.astro';
-import Badge from '../components/Badge/Badge.astro';
-import Footer from '../components/Footer/Footer.astro';
-import { getSessions } from '../data/sessions';
-import { getHomeAlternateLinks, getSessionHref } from '../lib/i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
+import Grid from '../../components/Grid/Grid.astro';
+import Button from '../../components/Button/Button.astro';
+import Card from '../../components/Card/Card.astro';
+import Badge from '../../components/Badge/Badge.astro';
+import Footer from '../../components/Footer/Footer.astro';
+import { getSessions } from '../../data/sessions';
+import { getHomeAlternateLinks, getSessionHref } from '../../lib/i18n';
 
-const lang = 'pt-BR';
+const lang = 'en';
 const sessions = getSessions(lang);
 
 function levelToBadgeVariant(level: string) {
@@ -21,76 +21,67 @@ function levelToBadgeVariant(level: string) {
   return map[level as keyof typeof map] || 'default';
 }
 
-function levelToLabel(level: string) {
-  const map = {
-    beginner: 'iniciante',
-    intermediate: 'intermediario',
-    advanced: 'avancado',
-  } as const;
-  return map[level as keyof typeof map] || level;
-}
-
 const phases = [
-  { label: 'Consulta', desc: 'Perguntar e explorar' },
-  { label: 'Autocomplete', desc: 'Sugestoes no editor' },
-  { label: 'Vibe Coding', desc: 'Gerar a partir de linguagem natural' },
-  { label: 'SDD', desc: 'Especificacao antes de execucao' },
-  { label: 'Harness', desc: 'Sistema de trabalho do agente' },
+  { label: 'Ask', desc: 'Ask and explore' },
+  { label: 'Autocomplete', desc: 'Suggestions in the editor' },
+  { label: 'Vibe Coding', desc: 'Generate from natural language' },
+  { label: 'SDD', desc: 'Spec before execution' },
+  { label: 'Harness', desc: 'The agent work system' },
 ];
 ---
 
 <BaseLayout
-  title="Engenharia de Software na Era da IA"
-  description="Um guia pratico pra quem quer usar IA de verdade no dia a dia de desenvolvimento, sem hype e sem medo."
+  title="Software Engineering in the Age of AI"
+  description="A practical guide for using AI in real software work, without hype and without panic."
   lang={lang}
   alternateLinks={getHomeAlternateLinks()}
 >
   <main id="main-content">
-    <!-- hero -->
     <SectionBlock as="header" padding="xl" maxWidth="lg">
-      <Badge variant="green">100% gratuito e open source</Badge>
-      <h1 class="hero-title">Engenharia de Software na Era da IA</h1>
+      <Badge variant="green">100% free and open source</Badge>
+      <h1 class="hero-title">Software Engineering in the Age of AI</h1>
       <p class="hero-tagline">
-        Um guia pratico pra quem quer usar IA de verdade no dia a dia de
-        desenvolvimento, sem hype e sem medo.
+        A practical guide for using AI in real software work, without hype and
+        without panic.
       </p>
       <div class="hero-ctas">
-        <Button href={getSessionHref(lang, 'ai-native-engineer')} size="lg">
-          Comecar pela Sessao 0
+        <Button
+          href={getSessionHref(lang, 'what-is-ai-native-engineer')}
+          size="lg"
+        >
+          Start with Session 0
         </Button>
-        <Button href="#sessoes" variant="secondary" size="lg">
-          Ver todas as sessoes
+        <Button href="#sessions" variant="secondary" size="lg">
+          See all sessions
         </Button>
       </div>
     </SectionBlock>
 
-    <!-- why this exists -->
     <SectionBlock padding="lg" alt>
-      <h2>Por que esse site existe?</h2>
+      <h2>Why this site exists</h2>
       <div class="narrative">
         <p>
-          IA ja entrou no trabalho de software. Mais de 80% dos profissionais
-          usam alguma ferramenta de IA no dia a dia. Produtividade subiu, mas
-          confianca nao acompanhou no mesmo ritmo.
+          AI is already inside software work. A lot of people use some AI tool
+          every day. Productivity moved fast, but confidence did not always keep
+          up.
         </p>
         <p>
-          Muita gente esta usando IA sem entender as categorias, sem saber
-          diferenciar modelo de produto, e sem um mapa mental claro de como tudo
-          isso se conecta.
+          Teams are using AI without understanding the categories, without
+          separating models from products, and without a clear map of how the
+          pieces fit together.
         </p>
         <p>
-          Esse site existe pra organizar o caos. Sem jargao desnecessario, sem
-          favorecimento de ferramenta. So o mapa que importa.
+          This site exists to organize the mess. No vendor worship, no jargon
+          theater. Just the map that matters.
         </p>
       </div>
     </SectionBlock>
 
-    <!-- session cards -->
-    <SectionBlock padding="xl" id="sessoes">
-      <h2>Sessoes</h2>
+    <SectionBlock padding="xl" id="sessions">
+      <h2>Sessions</h2>
       <p>
-        6 sessoes que cobrem tudo o que voce precisa saber. Cada uma funciona
-        sozinha, mas juntas formam o mapa completo.
+        6 sessions covering the things you actually need to know. Each one works
+        on its own, but together they give you the full map.
       </p>
       <Grid columns={3} gap="lg" align="stretch">
         {
@@ -102,13 +93,13 @@ const phases = [
             >
               <Fragment slot="meta">
                 <Badge variant={levelToBadgeVariant(session.level)} size="sm">
-                  {levelToLabel(session.level)}
+                  {session.level}
                 </Badge>
                 <Badge size="sm">{session.readingTime} min</Badge>
               </Fragment>
               <p>{session.summary}</p>
               <Fragment slot="footer">
-                <span class="session-order">Sessao {session.order}</span>
+                <span class="session-order">Session {session.order}</span>
               </Fragment>
             </Card>
           ))
@@ -116,10 +107,9 @@ const phases = [
       </Grid>
     </SectionBlock>
 
-    <!-- maturity preview -->
     <SectionBlock padding="xl" alt>
-      <h2>Como a IA evoluiu no desenvolvimento</h2>
-      <p>Nao e so sobre usar IA. E sobre como o uso amadurece.</p>
+      <h2>How AI matured in software development</h2>
+      <p>Using AI is not the point. Maturing how you use it is the point.</p>
       <div class="maturity-track">
         {
           phases.map((phase, i) => (
@@ -134,42 +124,40 @@ const phases = [
         }
       </div>
       <div class="maturity-cta">
-        <Button href={getSessionHref(lang, 'maturidade')} variant="secondary">
-          Ver a evolucao completa
+        <Button href={getSessionHref(lang, 'maturity')} variant="secondary">
+          See the full evolution
         </Button>
       </div>
     </SectionBlock>
 
-    <!-- how to study -->
     <SectionBlock padding="lg">
-      <h2>Como estudar</h2>
+      <h2>How to study</h2>
       <p>
-        Nao precisa seguir ordem. Cada sessao funciona sozinha. Mas se quiser um
-        caminho, aqui vao algumas sugestoes.
+        You do not need to read in order. Each session stands alone. But if you
+        want a path, here are a few good ones.
       </p>
       <Grid columns={3} gap="md" align="stretch">
-        <Card title="Sou de produto/design/QA" expandable accent="yellow">
+        <Card title="I work in product/design/QA" expandable accent="yellow">
           <p>
-            Comece pela Sessao 0, depois va direto pra Sessao 1 (glossario) e
-            Sessao 4 (maturidade). Isso ja da o mapa mental que voce precisa.
+            Start with Session 0, then jump to Session 1 (glossary) and Session
+            4 (maturity). That gives you the mental map first.
           </p>
         </Card>
-        <Card title="Sou dev iniciante" expandable accent="blue">
+        <Card title="I am a junior dev" expandable accent="blue">
           <p>
-            Siga na ordem: 0, 1, 2, 3, 4, 5. Cada sessao constroi em cima da
-            anterior.
+            Go in order: 0, 1, 2, 3, 4, 5. Each session builds on the previous
+            one.
           </p>
         </Card>
-        <Card title="Ja uso IA no trabalho" expandable accent="green">
+        <Card title="I already use AI at work" expandable accent="green">
           <p>
-            Va direto pra Sessao 4 (maturidade) e depois Sessao 5 (como operar).
-            O glossario e as ferramentas voce ja conhece.
+            Go straight to Session 4 (maturity), then Session 5 (how to
+            operate). You probably know the glossary and tool landscape already.
           </p>
         </Card>
       </Grid>
     </SectionBlock>
 
-    <!-- footer -->
     <Footer lang={lang} />
   </main>
 </BaseLayout>

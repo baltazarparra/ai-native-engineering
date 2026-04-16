@@ -1,8 +1,22 @@
 ---
 import styles from './SectionNav.module.css';
+import type { Lang } from '../../lib/i18n';
+import { ui } from '../../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'pt-BR' } = Astro.props;
+const labels = ui[lang].sectionNav;
 ---
 
-<nav class={styles.nav} aria-label="Navegacao da sessao">
+<nav
+  class={styles.nav}
+  aria-label={labels.ariaLabel}
+  data-summary-fallback={labels.summaryFallback}
+  data-references-label={labels.references}
+>
   <ul class={styles.list} id="section-nav-list"></ul>
 </nav>
 
@@ -10,6 +24,11 @@ import styles from './SectionNav.module.css';
   function initSectionNav() {
     const list = document.getElementById('section-nav-list');
     if (!list) return;
+    const nav = list.closest('nav');
+    const summaryFallback =
+      nav?.getAttribute('data-summary-fallback') || 'Resumo';
+    const referencesLabel =
+      nav?.getAttribute('data-references-label') || 'Referencias';
 
     // collect headings from fixed layout sections and MDX body
     const contentHeadings = Array.from(
@@ -29,7 +48,7 @@ import styles from './SectionNav.module.css';
       const resumoHeading = resumoEl.querySelector('h2');
       entries.push({
         id: 'resumo',
-        text: resumoHeading?.textContent?.trim() || 'Resumo',
+        text: resumoHeading?.textContent?.trim() || summaryFallback,
       });
     }
 
@@ -41,7 +60,7 @@ import styles from './SectionNav.module.css';
     // add "referencias" if it exists
     const refEl = document.getElementById('referencias');
     if (refEl) {
-      entries.push({ id: 'referencias', text: 'Referencias' });
+      entries.push({ id: 'referencias', text: referencesLabel });
     }
 
     if (entries.length === 0) return;

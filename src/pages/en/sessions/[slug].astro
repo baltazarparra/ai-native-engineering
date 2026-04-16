@@ -1,17 +1,16 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
-import SessionLayout from '../../layouts/SessionLayout.astro';
-import { getSessionByOrder } from '../../data/sessions';
+import SessionLayout from '../../../layouts/SessionLayout.astro';
+import { getSessionByOrder } from '../../../data/sessions';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const sessionEntries = (await getCollection('sessions')).filter(
-    (session) => session.data.lang === 'pt-BR',
+    (session) => session.data.lang === 'en',
   );
   const allReferences = await getCollection('references');
 
   return sessionEntries.map((session) => {
-    // resolve reference IDs to full objects
     const resolvedRefs = session.data.references
       .map((refId: string) => {
         const ref = allReferences.find((r) => r.id === refId);
@@ -19,7 +18,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       })
       .filter(Boolean);
 
-    // compute next session from ordered data
     const currentOrder = session.data.order;
     const nextSessionData = getSessionByOrder(
       session.data.lang,

@@ -1,27 +1,41 @@
 ---
 import '../styles/globals.css';
+import SiteHeader from '../components/SiteHeader/SiteHeader.astro';
+import type { AlternateLink, Lang } from '../lib/i18n';
+import { languages, ui } from '../lib/i18n';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
   noindex?: boolean;
+  lang?: Lang;
+  alternateLinks?: AlternateLink[];
+  showHeader?: boolean;
 }
 
 const {
   title,
-  description = 'AI-Native Engineering: o mapa que importa',
+  lang = 'pt-BR',
+  description = ui[lang].siteDescription,
   ogImage,
   noindex = false,
+  alternateLinks = [],
+  showHeader = true,
 } = Astro.props;
 
 const ogImageUrl =
   ogImage ||
   new URL(`${import.meta.env.BASE_URL}og-default.png`, Astro.site).href;
+
+const absoluteAlternateLinks = alternateLinks.map((link) => ({
+  ...link,
+  href: new URL(link.href, Astro.site).href,
+}));
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={languages[lang].htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,8 +51,14 @@ const ogImageUrl =
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={languages[lang].locale} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={Astro.url.href} />
+    {
+      absoluteAlternateLinks.map((link) => (
+        <link rel="alternate" hreflang={link.lang} href={link.href} />
+      ))
+    }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -48,7 +68,8 @@ const ogImageUrl =
     <title>{title}</title>
   </head>
   <body>
-    <a href="#main-content" class="skip-link">Pular para o conteudo</a>
+    <a href="#main-content" class="skip-link">{ui[lang].skipToContent}</a>
+    {showHeader && <SiteHeader lang={lang} alternateLinks={alternateLinks} />}
     <slot />
   </body>
 </html>

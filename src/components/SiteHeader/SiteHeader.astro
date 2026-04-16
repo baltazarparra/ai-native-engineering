@@ -1,0 +1,47 @@
+---
+import type { AlternateLink, Lang } from '../../lib/i18n';
+import { getHomeHref, languages, supportedLangs, ui } from '../../lib/i18n';
+import styles from './SiteHeader.module.css';
+
+interface Props {
+  lang: Lang;
+  alternateLinks?: AlternateLink[];
+}
+
+const { lang, alternateLinks = [] } = Astro.props;
+const labels = ui[lang];
+
+function getHref(targetLang: Lang) {
+  return (
+    alternateLinks.find((link) => link.lang === targetLang)?.href ||
+    getHomeHref(targetLang)
+  );
+}
+---
+
+<header class={styles.header}>
+  <div class={styles.inner}>
+    <a class={styles.brand} href={getHomeHref(lang)}>AI-Native Engineering</a>
+    <nav class={styles.langNav} aria-label={labels.languageNav}>
+      {
+        supportedLangs.map((targetLang) => {
+          const isCurrent = targetLang === lang;
+          return (
+            <a
+              class:list={[styles.langLink, isCurrent && styles.active]}
+              href={getHref(targetLang)}
+              aria-current={isCurrent ? 'true' : undefined}
+              aria-label={
+                isCurrent
+                  ? `${languages[targetLang].label}: ${labels.currentLanguage}`
+                  : languages[targetLang].label
+              }
+            >
+              {languages[targetLang].shortLabel}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</header>

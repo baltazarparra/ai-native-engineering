@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
-import { models } from '../../data/models';
+import { modelsByLang } from '../../data/models';
+import type { Lang } from '../../lib/i18n';
 import styles from './ModelTaskMatcher.module.css';
 
 interface TaskType {
@@ -8,66 +9,136 @@ interface TaskType {
   keywords: string[];
 }
 
-const TASK_TYPES: TaskType[] = [
-  {
-    id: 'explore',
-    label: 'Explorar ideias',
-    keywords: [
-      'explorar',
-      'ideias',
-      'rapido',
-      'rapidamente',
-      'conversacion',
-      'gerar',
-      'primeira versao',
-    ],
+const TASK_TYPES: Record<Lang, TaskType[]> = {
+  'pt-BR': [
+    {
+      id: 'explore',
+      label: 'Explorar ideias',
+      keywords: [
+        'explorar',
+        'ideias',
+        'rapido',
+        'rapidamente',
+        'conversacion',
+        'gerar',
+        'primeira versao',
+      ],
+    },
+    {
+      id: 'code',
+      label: 'Escrever codigo',
+      keywords: [
+        'codigo',
+        'escrever',
+        'revisar',
+        'desenvolvimento',
+        'dia a dia',
+      ],
+    },
+    {
+      id: 'review',
+      label: 'Revisar arquitetura',
+      keywords: ['revisar', 'arquitetura', 'refactor', 'analise', 'critica'],
+    },
+    {
+      id: 'plan',
+      label: 'Planejar implementacao',
+      keywords: [
+        'planejar',
+        'arquitetura',
+        'sistemas',
+        'logico',
+        'complexo',
+        'profundo',
+        'raciocinio',
+      ],
+    },
+    {
+      id: 'analyze',
+      label: 'Analisar documentos longos',
+      keywords: [
+        'analisar',
+        'documentos',
+        'longos',
+        'fontes',
+        'sintetizar',
+        'informacao',
+      ],
+    },
+    {
+      id: 'privacy',
+      label: 'Privacidade / rodar local',
+      keywords: ['privacidade', 'local', 'fine-tuning', 'open', 'sem custo'],
+    },
+    {
+      id: 'budget',
+      label: 'Orcamento limitado',
+      keywords: ['custo baixo', 'orcamento', 'open', 'sem custo', 'limitado'],
+    },
+  ],
+  en: [
+    {
+      id: 'explore',
+      label: 'Explore ideas',
+      keywords: ['exploring', 'ideas', 'quickly', 'drafting', 'conversation'],
+    },
+    {
+      id: 'code',
+      label: 'Write code',
+      keywords: ['code', 'writing', 'reviewing', 'development', 'day-to-day'],
+    },
+    {
+      id: 'review',
+      label: 'Review architecture',
+      keywords: ['reviewing', 'architecture', 'refactors', 'analysis'],
+    },
+    {
+      id: 'plan',
+      label: 'Plan implementation',
+      keywords: ['planning', 'architecture', 'complex', 'logic', 'reasoning'],
+    },
+    {
+      id: 'analyze',
+      label: 'Analyze long docs',
+      keywords: ['analyzing', 'documents', 'sources', 'synthesizing'],
+    },
+    {
+      id: 'privacy',
+      label: 'Privacy / local run',
+      keywords: ['privacy', 'locally', 'fine-tuning', 'open'],
+    },
+    {
+      id: 'budget',
+      label: 'Limited budget',
+      keywords: ['low-cost', 'budget', 'open', 'cost'],
+    },
+  ],
+};
+
+const LABELS = {
+  'pt-BR': {
+    choose: 'Escolha um tipo de tarefa pra ver quais modelos se encaixam.',
+    selected:
+      'Modelos destacados se encaixam melhor nessa tarefa. Clique em outro tipo pra comparar.',
+    taskAria: 'Tipo de tarefa',
+    product: 'Produto:',
+    match: 'Bom pra essa tarefa',
+    strengths: 'Pontos fortes:',
+    limitations: 'Limitacoes:',
+    bestFor: 'Melhor pra:',
   },
-  {
-    id: 'code',
-    label: 'Escrever codigo',
-    keywords: ['codigo', 'escrever', 'revisar', 'desenvolvimento', 'dia a dia'],
+  en: {
+    choose: 'Choose a task type to see which models fit.',
+    selected:
+      'Highlighted models fit this task better. Pick another task to compare.',
+    taskAria: 'Task type',
+    product: 'Product:',
+    match: 'Good fit for this task',
+    strengths: 'Strengths:',
+    limitations: 'Limitations:',
+    bestFor: 'Best for:',
   },
-  {
-    id: 'review',
-    label: 'Revisar arquitetura',
-    keywords: ['revisar', 'arquitetura', 'refactor', 'analise', 'critica'],
-  },
-  {
-    id: 'plan',
-    label: 'Planejar implementacao',
-    keywords: [
-      'planejar',
-      'arquitetura',
-      'sistemas',
-      'logico',
-      'complexo',
-      'profundo',
-      'raciocinio',
-    ],
-  },
-  {
-    id: 'analyze',
-    label: 'Analisar documentos longos',
-    keywords: [
-      'analisar',
-      'documentos',
-      'longos',
-      'fontes',
-      'sintetizar',
-      'informacao',
-    ],
-  },
-  {
-    id: 'privacy',
-    label: 'Privacidade / rodar local',
-    keywords: ['privacidade', 'local', 'fine-tuning', 'open', 'sem custo'],
-  },
-  {
-    id: 'budget',
-    label: 'Orcamento limitado',
-    keywords: ['custo baixo', 'orcamento', 'open', 'sem custo', 'limitado'],
-  },
-];
+} as const;
 
 function scoreModel(bestFor: string[], keywords: string[]): number {
   const joined = bestFor.join(' ').toLowerCase();
@@ -76,11 +147,18 @@ function scoreModel(bestFor: string[], keywords: string[]): number {
   }, 0);
 }
 
-export default function ModelTaskMatcher() {
+interface Props {
+  lang?: Lang;
+}
+
+export default function ModelTaskMatcher({ lang = 'pt-BR' }: Props) {
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const models = modelsByLang[lang];
+  const taskTypes = TASK_TYPES[lang];
+  const labels = LABELS[lang];
 
-  const task = TASK_TYPES.find((t) => t.id === selectedTask);
+  const task = taskTypes.find((t) => t.id === selectedTask);
 
   const scored = useMemo(() => {
     if (!task)
@@ -98,13 +176,11 @@ export default function ModelTaskMatcher() {
   return (
     <div className={styles.container}>
       <p className={styles.instruction}>
-        {selectedTask
-          ? 'Modelos destacados se encaixam melhor nessa tarefa. Clique em outro tipo pra comparar.'
-          : 'Escolha um tipo de tarefa pra ver quais modelos se encaixam.'}
+        {selectedTask ? labels.selected : labels.choose}
       </p>
 
-      <div className={styles.tasks} role="group" aria-label="Tipo de tarefa">
-        {TASK_TYPES.map((t) => (
+      <div className={styles.tasks} role="group" aria-label={labels.taskAria}>
+        {taskTypes.map((t) => (
           <button
             key={t.id}
             className={`${styles.taskBtn} ${selectedTask === t.id ? styles.taskActive : ''}`}
@@ -141,16 +217,18 @@ export default function ModelTaskMatcher() {
               </button>
 
               <div className={styles.cardBody}>
-                <p className={styles.product}>Produto: {model.productName}</p>
+                <p className={styles.product}>
+                  {labels.product} {model.productName}
+                </p>
                 {selectedTask && matches && (
-                  <span className={styles.matchBadge}>Bom pra essa tarefa</span>
+                  <span className={styles.matchBadge}>{labels.match}</span>
                 )}
               </div>
 
               {isExpanded && (
                 <div className={styles.expandedBody}>
                   <div className={styles.section}>
-                    <strong>Pontos fortes:</strong>
+                    <strong>{labels.strengths}</strong>
                     <ul className={styles.list}>
                       {model.strengths.map((s, i) => (
                         <li key={i}>{s}</li>
@@ -158,7 +236,7 @@ export default function ModelTaskMatcher() {
                     </ul>
                   </div>
                   <div className={styles.section}>
-                    <strong>Limitacoes:</strong>
+                    <strong>{labels.limitations}</strong>
                     <ul className={styles.list}>
                       {model.weaknesses.map((w, i) => (
                         <li key={i}>{w}</li>
@@ -166,7 +244,7 @@ export default function ModelTaskMatcher() {
                     </ul>
                   </div>
                   <div className={styles.section}>
-                    <strong>Melhor pra:</strong>
+                    <strong>{labels.bestFor}</strong>
                     <ul className={styles.list}>
                       {model.bestFor.map((b, i) => (
                         <li key={i}>{b}</li>
