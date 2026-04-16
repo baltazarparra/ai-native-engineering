@@ -2,7 +2,7 @@
 import styles from './NextSessionCTA.module.css';
 import Button from '../Button/Button.astro';
 import type { Lang } from '../../lib/i18n';
-import { getHomeHref, getSessionHref, ui } from '../../lib/i18n';
+import { getProjectHref, getSessionHref, ui } from '../../lib/i18n';
 
 interface Props {
   lang?: Lang;
@@ -28,7 +28,7 @@ const labels = ui[lang].nextSession;
       <>
         <span class={styles.label}>{labels.lastLabel}</span>
         <p class={styles.title}>{labels.lastTitle}</p>
-        <Button href={getHomeHref(lang)} size="lg">
+        <Button href={getProjectHref(lang)} size="lg">
           {labels.home}
         </Button>
       </>

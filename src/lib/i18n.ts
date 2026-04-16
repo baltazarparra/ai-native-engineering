@@ -70,8 +70,8 @@ export const ui = {
     },
     nextSession: {
       lastLabel: 'Você chegou ao fim',
-      lastTitle: 'Parabéns! Agora é hora de aplicar.',
-      home: 'Voltar pra home',
+      lastTitle: 'Agora é hora de colocar em prática.',
+      home: 'Ir para o projeto prático',
       label: 'Próxima sessão',
       continue: 'Continuar',
     },
@@ -112,7 +112,7 @@ export const ui = {
       reset: 'Recomeçar',
     },
     footer: {
-      tagline: 'Feito com Astro e café',
+      tagline: 'baltz',
     },
   },
   en: {
@@ -153,8 +153,8 @@ export const ui = {
     },
     nextSession: {
       lastLabel: 'You made it to the end',
-      lastTitle: 'Nice. Now put it to work.',
-      home: 'Back home',
+      lastTitle: 'Now put it to work.',
+      home: 'Go to the hands-on project',
       label: 'Next session',
       continue: 'Keep going',
     },
