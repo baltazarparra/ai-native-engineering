@@ -16,58 +16,58 @@ references:
     'karpathy-ai-native-dev',
     'stackoverflow-ai-survey-2024',
   ]
-updatedAt: 2026-04-15
+updatedAt: 2026-04-16
 ---
 
 import SelfAssessment from '../../components/SelfAssessment/SelfAssessment.tsx';
 
 ## O que define um AI-Native Engineer
 
-Se você tira a IA do seu dia e o trabalho continua igual, você está usando IA como acessório. Um AI-Native Engineer reorganizou o fluxo inteiro ao redor do que a IA faz bem. Três coisas definem esse perfil:
+Pensa no seu dia de trabalho. Se você tirar a IA e nada mudar, ela é só um extra. Um AI-Native Engineer trabalha de um jeito que a IA faz parte do processo, não fica de enfeite. Três coisas definem esse perfil:
 
-1. **Saber o que delegar**. IA é boa em rascunhos, opções e automação. Ruim em trade-offs de negócio, contexto de time e decidir o que não construir.
+1. **Saber o que pedir pra IA e o que fazer você mesmo**. IA é boa pra gerar rascunhos, listar opções e automatizar o que é repetitivo. Mas ela não sabe o que é prioridade no seu time, nem o que faz sentido construir agora.
 
-2. **Ter processo, não só ferramenta**. Ferramenta sem processo é só barulho.
+2. **Ter um jeito de trabalhar, não só uma ferramenta instalada**. Ferramenta sem processo é só barulho.
 
-3. **Revisar com olho crítico**. IA gera código que compila e texto que parece correto. O trabalho é olhar por baixo da superfície.
+3. **Conferir tudo que a IA entrega**. Ela gera código que roda e texto que parece certo. Mas "parecer certo" não é a mesma coisa que "estar certo".
 
-Vale pra dev, QA, PM, designer. A diferença não é técnica, é de mentalidade.
+Isso vale pra dev, QA, PM, designer. Não é sobre saber programar melhor. É sobre mudar a forma de trabalhar.
 
 ### O que mudou
 
-Antes, um dev sênior se diferenciava por velocidade de digitação, memória de APIs e pattern matching. Agora o modelo digita por você, sabe a documentação e faz parte do pattern matching. O que subiu de valor: especificar com clareza, avaliar output criticamente e entender o sistema como um todo. Pensar ficou mais importante que digitar.
+Antes, um dev mais experiente se destacava porque digitava rápido, lembrava de cabeça como as bibliotecas funcionavam e reconhecia soluções que já tinha visto. Agora a IA faz boa parte disso por você. O que ficou mais valioso é outra coisa: saber explicar com clareza o que você precisa, avaliar se o resultado faz sentido e entender como as peças do sistema se encaixam. Pensar ficou mais importante que digitar.
 
 ### O que não mudou
 
-Fundamentos continuam fundamentais. Quem não entende como um banco de dados funciona não vai saber avaliar se o código que a IA gerou vai travar em produção. Quem não entende requisitos não vai saber escrever uma spec que produza resultado útil.
+O básico continua sendo básico. Se você não entende como os dados são guardados, não vai perceber que o código da IA vai dar problema quando tiver muitos usuários. Se você não entende o que o usuário precisa, não vai conseguir explicar pra IA o que ela deve fazer.
 
-IA amplifica o que você já sabe. Se você sabe pouco, ela amplifica a confusão. Se você sabe muito, ela amplifica a produtividade.
+IA amplifica o que você já sabe. Se você sabe pouco, ela amplifica a confusão. Se você sabe muito, ela multiplica sua produtividade.
 
 ## Por que isso importa
 
-A maioria dos profissionais de tecnologia já usa alguma ferramenta de IA no dia a dia: autocomplete, chat, geração de código. Mas usar uma ferramenta e operar com ela de forma nativa são coisas diferentes.
+A maioria das pessoas em tecnologia já usa alguma IA no dia a dia: sugestão de código enquanto digita, chat pra tirar dúvidas, geração de texto. Mas usar uma ferramenta de vez em quando e trabalhar com ela integrada no seu fluxo são coisas bem diferentes.
 
-Isso importa porque a diferença entre "usar IA" e "trabalhar de forma AI-native" é a diferença entre copiar respostas do ChatGPT e construir um sistema que funciona com agentes coordenados.
+A diferença entre "usar IA" e "trabalhar de forma AI-native" é parecida com a diferença entre copiar uma resposta do ChatGPT e montar um processo onde a IA trabalha junto com você em cada etapa, com instruções claras e revisão constante.
 
 ## Exemplo aplicado
 
-Um AI-Native Engineer faz diferente:
+Veja como um AI-Native Engineer resolve uma tarefa:
 
-1. Escreve uma especificação clara do que precisa (endpoints, fluxos, restrições)
-2. Passa a spec pro agente de código com contexto do projeto
-3. Revisa o output com olho crítico, não aceita tudo automaticamente
-4. Usa a IA pra gerar testes a partir da spec original
-5. Itera com feedback específico quando algo não bate
+1. Antes de abrir a IA, escreve o que precisa ser feito, como deve funcionar e o que não pode acontecer
+2. Passa essa descrição pra uma ferramenta de IA que já conhece o projeto
+3. Lê o resultado com atenção — não aceita tudo de primeira
+4. Pede pra IA criar testes baseados na descrição original
+5. Quando algo não fica bom, dá um retorno específico em vez de só pedir "de novo"
 
 A diferença não é a ferramenta. É o processo.
 
 ## Onde isso quebra
 
-Cuidado com esses anti-padrões:
+Cuidado com essas armadilhas:
 
-- **Aceitar tudo sem revisar**: IA gera código plausível, não código correto. Se você aceita sem ler, está terceirizando a responsabilidade, não o trabalho.
-- **Prompt como substituto de pensamento**: "faz pra mim" não é especificação. Quanto mais vago o pedido, mais genérico o resultado.
-- **Achar que IA substitui experiência**: IA acelera quem já sabe o que quer. Pra quem não sabe, ela amplifica a confusão.
+- **Aceitar tudo sem ler**: a IA gera resultado que parece bom, mas nem sempre está certo. Se você aceita sem conferir, está passando a responsabilidade pra frente, não o trabalho.
+- **Pedir sem pensar antes**: "faz isso pra mim" não é uma instrução útil. Quanto mais vago o pedido, mais genérico e inútil o resultado.
+- **Achar que IA substitui conhecimento**: a IA acelera quem já sabe o que quer. Pra quem ainda não sabe, ela gera mais confusão do que solução.
 
 > Ferramenta boa com processo ruim produz resultado ruim mais rápido.
 
@@ -77,6 +77,6 @@ Cuidado com esses anti-padrões:
 
 ## O que levar daqui
 
-- Antes de digitar um prompt, escreva o que você quer, com que restrições e como vai avaliar o resultado.
-- Identifique onde IA realmente ajuda no seu trabalho, não onde é moda usar.
-- Revise todo output de IA como se um júnior tivesse escrito. Se não consegue avaliar a qualidade, estude o fundamento, não a ferramenta.
+- Antes de abrir a IA, escreva o que você quer, quais são os limites e como vai saber se o resultado ficou bom.
+- Descubra onde a IA realmente ajuda no seu trabalho — não onde todo mundo está usando por moda.
+- Confira tudo que a IA entrega como se fosse o trabalho de alguém que ainda está aprendendo. Se você não consegue avaliar a qualidade, estude o assunto primeiro — a ferramenta vem depois.
