@@ -5,15 +5,19 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
   description = 'AI-Native Engineering: o mapa que importa',
   ogImage,
+  noindex = false,
 } = Astro.props;
 
-const ogImageUrl = ogImage || new URL('og-default.png', Astro.site).href;
+const ogImageUrl =
+  ogImage ||
+  new URL(`${import.meta.env.BASE_URL}og-default.png`, Astro.site).href;
 ---
 
 <!doctype html>
@@ -22,12 +26,19 @@ const ogImageUrl = ogImage || new URL('og-default.png', Astro.site).href;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={`${import.meta.env.BASE_URL}favicon.svg`}
+    />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={Astro.url.href} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -37,6 +48,7 @@ const ogImageUrl = ogImage || new URL('og-default.png', Astro.site).href;
     <title>{title}</title>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Pular para o conteudo</a>
     <slot />
   </body>
 </html>

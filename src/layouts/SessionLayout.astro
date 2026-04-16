@@ -59,7 +59,7 @@ const levelVariants: Record<string, 'yellow' | 'blue' | 'green'> = {
 
 <BaseLayout title={`${title} | AI-Native Engineering`} description={summary}>
   <ProgressTracker client:idle sessionSlug={slug} />
-  <main class="session-page">
+  <main id="main-content" class="session-page">
     <!-- hero -->
     <SectionBlock as="header" padding="xl">
       <Badge variant="default">{heroLabel}</Badge>

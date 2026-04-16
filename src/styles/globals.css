@@ -186,6 +186,30 @@ pre code {
   color: var(--color-primary);
 }
 
+/* --- skip link --- */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  z-index: var(--z-overlay);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-base);
+  text-decoration: none;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-md);
+}
+
+.skip-link:focus {
+  top: var(--space-md);
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
 /* --- reduced motion --- */
 
 @media (prefers-reduced-motion: reduce) {

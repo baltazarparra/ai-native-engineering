@@ -20,12 +20,12 @@ Deploy: GitHub Actions → GitHub Pages (auto-deploy on push to main).
 
 ## Tech Stack & Architecture
 
-**Astro + TypeScript + MDX + React islands + CSS Modules + Motion**
+**Astro + TypeScript + MDX + React islands + CSS Modules**
 
 - **Astro** is the framework — chosen because this is content-first, not app-first. Ships minimal JS via island architecture.
 - **React** is used only for interactive islands (quizzes, comparators, steppers, filters) — not for page-level rendering.
 - **CSS Modules + CSS Variables + design tokens** — no Tailwind. The Neo Brutalism visual language requires authorial control that utility-first CSS undermines.
-- **Motion** (framer-motion successor) for meaningful animations only — prefer CSS for simple hover/transition effects.
+- **CSS-only animations** — all transitions and animations use pure CSS. No JavaScript animation library.
 - **Content Collections** with schema validation for all session content (MDX with typed frontmatter).
 
 ### Key Architecture Decisions

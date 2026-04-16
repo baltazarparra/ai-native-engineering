@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
+import Button from '../components/Button/Button.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="404 — Pagina nao encontrada | AI-Native Engineering">
+  <main id="main-content">
+    <SectionBlock padding="xl">
+      <div class="error-page">
+        <span class="error-code">404</span>
+        <h1>Essa pagina nao existe</h1>
+        <p>
+          Pode ser um link antigo, um erro de digitacao ou uma pagina que mudou
+          de lugar. Sem estresse — o conteudo que voce procura provavelmente
+          esta na home.
+        </p>
+        <div class="error-actions">
+          <Button href={base} size="lg">Voltar para a home</Button>
+          <Button href={`${base}#sessoes`} variant="secondary"
+            >Ver as sessoes</Button
+          >
+        </div>
+      </div>
+    </SectionBlock>
+  </main>
+</BaseLayout>
+
+<style>
+  .error-page {
+    text-align: center;
+    padding-block: var(--space-3xl);
+  }
+
+  .error-code {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    font-size: 8rem;
+    line-height: 1;
+    color: var(--color-accent-1);
+    -webkit-text-stroke: 3px var(--color-primary);
+    paint-order: stroke fill;
+  }
+
+  .error-page h1 {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .error-page p {
+    margin-inline: auto;
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+  }
+
+  .error-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+  }
+
+  @media (max-width: 767px) {
+    .error-code {
+      font-size: 5rem;
+    }
+
+    .error-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
