@@ -28,6 +28,8 @@ export interface AlternateLink {
 }
 
 export const defaultLang: Lang = 'pt-BR';
+export const languagePreferenceStorageKey =
+  'ai-native-engineering:preferred-language';
 export const supportedLangs = Object.keys(languages) as Lang[];
 
 export const ui = {

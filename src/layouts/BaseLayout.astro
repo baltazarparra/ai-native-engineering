@@ -2,7 +2,13 @@
 import '../styles/globals.css';
 import SiteHeader from '../components/SiteHeader/SiteHeader.astro';
 import type { AlternateLink, Lang } from '../lib/i18n';
-import { languages, ui } from '../lib/i18n';
+import {
+  defaultLang,
+  languages,
+  languagePreferenceStorageKey,
+  supportedLangs,
+  ui,
+} from '../lib/i18n';
 
 interface Props {
   title: string;
@@ -32,6 +38,93 @@ const absoluteAlternateLinks = alternateLinks.map((link) => ({
   ...link,
   href: new URL(link.href, Astro.site).href,
 }));
+
+const languageRedirectAlternates = Object.fromEntries(
+  alternateLinks
+    .filter((link): link is AlternateLink & { lang: Lang } =>
+      supportedLangs.includes(link.lang as Lang),
+    )
+    .map((link) => [link.lang, link.href]),
+) as Partial<Record<Lang, string>>;
+
+const languageRedirectConfig = {
+  currentLang: lang,
+  defaultLang,
+  storageKey: languagePreferenceStorageKey,
+  alternateHrefs: languageRedirectAlternates,
+};
+
+const languageRedirectScript = `
+(function () {
+  var config = ${JSON.stringify(languageRedirectConfig)};
+  var storedLang = null;
+
+  try {
+    storedLang = window.localStorage.getItem(config.storageKey);
+  } catch (error) {
+    storedLang = null;
+  }
+
+  function isAvailable(lang) {
+    return Boolean(lang && config.alternateHrefs[lang]);
+  }
+
+  function getBrowserLang() {
+    var browserLangs =
+      navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || ''];
+
+    for (var i = 0; i < browserLangs.length; i += 1) {
+      var browserLang = String(browserLangs[i] || '')
+        .toLowerCase()
+        .replace('_', '-');
+
+      if (browserLang === 'pt' || browserLang.indexOf('pt-') === 0) {
+        return 'pt-BR';
+      }
+
+      if (browserLang === 'en' || browserLang.indexOf('en-') === 0) {
+        return 'en';
+      }
+    }
+
+    return config.defaultLang;
+  }
+
+  function rememberChoice(event) {
+    var target = event.target;
+    var link =
+      target && target.closest
+        ? target.closest('[data-language-choice]')
+        : null;
+
+    if (!link) return;
+
+    try {
+      window.localStorage.setItem(
+        config.storageKey,
+        link.getAttribute('data-language-choice')
+      );
+    } catch (error) {}
+  }
+
+  document.addEventListener('click', rememberChoice);
+
+  var targetLang = isAvailable(storedLang) ? storedLang : getBrowserLang();
+  var hasStoredPreference = isAvailable(storedLang);
+
+  if (!isAvailable(targetLang) || targetLang === config.currentLang) return;
+  if (config.currentLang !== config.defaultLang && !hasStoredPreference) return;
+
+  var targetUrl = new URL(config.alternateHrefs[targetLang], window.location.href);
+  targetUrl.hash = window.location.hash;
+
+  if (targetUrl.href !== window.location.href) {
+    window.location.replace(targetUrl.href);
+  }
+})();
+`;
 ---
 
 <!doctype html>
@@ -58,6 +151,11 @@ const absoluteAlternateLinks = alternateLinks.map((link) => ({
       absoluteAlternateLinks.map((link) => (
         <link rel="alternate" hreflang={link.lang} href={link.href} />
       ))
+    }
+    {
+      Object.keys(languageRedirectAlternates).length > 1 && (
+        <script is:inline set:html={languageRedirectScript} />
+      )
     }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

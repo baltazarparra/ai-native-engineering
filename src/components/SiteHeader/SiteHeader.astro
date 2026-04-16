@@ -30,6 +30,7 @@ function getHref(targetLang: Lang) {
             <a
               class:list={[styles.langLink, isCurrent && styles.active]}
               href={getHref(targetLang)}
+              data-language-choice={targetLang}
               aria-current={isCurrent ? 'true' : undefined}
               aria-label={
                 isCurrent
