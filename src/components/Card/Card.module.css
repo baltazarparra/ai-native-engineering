@@ -37,7 +37,8 @@
 .linkable {
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
 }
 
@@ -74,6 +75,10 @@
 .body {
   padding: var(--space-lg);
   min-width: 0;
+}
+
+.linkable .body {
+  flex: 1 1 auto;
 }
 
 .footer {
