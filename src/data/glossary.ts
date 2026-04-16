@@ -41,8 +41,7 @@ export const glossary: GlossaryTerm[] = [
   {
     id: 'inferencia',
     term: 'Inferência',
-    simpleDefinition:
-      'O processo de pedir pro modelo gerar uma resposta.',
+    simpleDefinition: 'O processo de pedir pro modelo gerar uma resposta.',
     technicalDefinition:
       'Execução do modelo sobre uma entrada (prompt) para gerar uma saída (completion). Consome recursos computacionais e é cobrada por token processado na maioria das APIs.',
     example:
@@ -245,8 +244,7 @@ export const glossaryEn: GlossaryTerm[] = [
   {
     id: 'inferencia',
     term: 'Inference',
-    simpleDefinition:
-      'The act of asking the model to generate a response.',
+    simpleDefinition: 'The act of asking the model to generate a response.',
     technicalDefinition:
       'Running the model over an input prompt to produce a completion. It consumes compute and is often billed by tokens.',
     example:
@@ -278,7 +276,7 @@ export const glossaryEn: GlossaryTerm[] = [
     example:
       'For a code review, context can include your request plus the files you attached or selected.',
     commonMistake:
-      'Thinking the model remembers everything. It only knows what\'s in the current context.',
+      "Thinking the model remembers everything. It only knows what's in the current context.",
     relatedTerms: ['token', 'prompt', 'system prompt', 'code context'],
   },
   {
@@ -395,7 +393,7 @@ export const glossaryEn: GlossaryTerm[] = [
     example:
       'A GitHub MCP server can let compatible AI tools access issues, PRs, and repositories.',
     commonMistake:
-      'Treating MCP as fully settled and universal. It\'s useful, but the ecosystem is still evolving.',
+      "Treating MCP as fully settled and universal. It's useful, but the ecosystem is still evolving.",
     relatedTerms: ['agent', 'harness', 'context'],
   },
   {
@@ -408,7 +406,7 @@ export const glossaryEn: GlossaryTerm[] = [
     example:
       'A harness can include `CLAUDE.md`, pre-commit checks, MCP tools, and project-specific instructions.',
     commonMistake:
-      'Treating harness as something you install. It\'s a practice you build around the work.',
+      "Treating harness as something you install. It's a practice you build around the work.",
     relatedTerms: ['coding agent', 'MCP', 'system prompt'],
   },
 ];

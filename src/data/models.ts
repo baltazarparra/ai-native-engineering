@@ -39,10 +39,7 @@ export const models: ModelProfile[] = [
       'Raciocínio profundo e estruturado',
       'Bom em problemas complexos e multi-passo',
     ],
-    weaknesses: [
-      'Mais lento que GPT-4o',
-      'Custo mais alto por inferência',
-    ],
+    weaknesses: ['Mais lento que GPT-4o', 'Custo mais alto por inferência'],
     bestFor: [
       'Planejar arquitetura de sistemas',
       'Resolver problemas lógicos complexos',
@@ -62,10 +59,7 @@ export const models: ModelProfile[] = [
       'Pode ser conservador demais',
       'Contexto grande mas não ilimitado',
     ],
-    bestFor: [
-      'Escrever e revisar código',
-      'Seguir especificações detalhadas',
-    ],
+    bestFor: ['Escrever e revisar código', 'Seguir especificações detalhadas'],
   },
   {
     id: 'claude-opus',
@@ -77,14 +71,8 @@ export const models: ModelProfile[] = [
       'Excelente em tarefas complexas e longas',
       'Forte em análise crítica e revisão',
     ],
-    weaknesses: [
-      'Mais lento e mais caro',
-      'Excessivo pra tarefas simples',
-    ],
-    bestFor: [
-      'Planejar refactors grandes',
-      'Revisar arquitetura',
-    ],
+    weaknesses: ['Mais lento e mais caro', 'Excessivo pra tarefas simples'],
+    bestFor: ['Planejar refactors grandes', 'Revisar arquitetura'],
   },
   {
     id: 'gemini-2-5',
@@ -100,10 +88,7 @@ export const models: ModelProfile[] = [
       'Qualidade de código pode variar',
       'Menos previsível em instruções complexas',
     ],
-    bestFor: [
-      'Analisar documentos longos',
-      'Tarefas com muitas fontes',
-    ],
+    bestFor: ['Analisar documentos longos', 'Tarefas com muitas fontes'],
   },
   {
     id: 'llama',
@@ -138,10 +123,7 @@ export const models: ModelProfile[] = [
       'Ecossistema menor',
       'Menos integração com ferramentas populares',
     ],
-    bestFor: [
-      'Código com custo baixo',
-      'Projetos com orçamento limitado',
-    ],
+    bestFor: ['Código com custo baixo', 'Projetos com orçamento limitado'],
   },
 ];
 
@@ -156,14 +138,8 @@ export const modelsEn: ModelProfile[] = [
       'Good at general tasks and conversation',
       'Supports images and audio',
     ],
-    weaknesses: [
-      'Complex reasoning can be shallow',
-      'Can be too verbose',
-    ],
-    bestFor: [
-      'Exploring ideas quickly',
-      'Conversational and multimodal tasks',
-    ],
+    weaknesses: ['Complex reasoning can be shallow', 'Can be too verbose'],
+    bestFor: ['Exploring ideas quickly', 'Conversational and multimodal tasks'],
   },
   {
     id: 'o3',
@@ -174,14 +150,8 @@ export const modelsEn: ModelProfile[] = [
       'Deep and structured reasoning',
       'Good at complex multi-step problems',
     ],
-    weaknesses: [
-      'Slower than GPT-4o',
-      'Higher inference cost',
-    ],
-    bestFor: [
-      'Planning system architecture',
-      'Solving complex logic problems',
-    ],
+    weaknesses: ['Slower than GPT-4o', 'Higher inference cost'],
+    bestFor: ['Planning system architecture', 'Solving complex logic problems'],
   },
   {
     id: 'claude-sonnet',
@@ -193,14 +163,8 @@ export const modelsEn: ModelProfile[] = [
       'Strong at code and long instructions',
       'Follows instructions precisely',
     ],
-    weaknesses: [
-      'Can be too conservative',
-      'Large context, but not infinite',
-    ],
-    bestFor: [
-      'Writing and reviewing code',
-      'Following detailed specs',
-    ],
+    weaknesses: ['Can be too conservative', 'Large context, but not infinite'],
+    bestFor: ['Writing and reviewing code', 'Following detailed specs'],
   },
   {
     id: 'claude-opus',
@@ -212,14 +176,8 @@ export const modelsEn: ModelProfile[] = [
       'Excellent for long, complex tasks',
       'Strong at critical analysis and review',
     ],
-    weaknesses: [
-      'Slower and more expensive',
-      'Overkill for simple tasks',
-    ],
-    bestFor: [
-      'Planning large refactors',
-      'Reviewing architecture',
-    ],
+    weaknesses: ['Slower and more expensive', 'Overkill for simple tasks'],
+    bestFor: ['Planning large refactors', 'Reviewing architecture'],
   },
   {
     id: 'gemini-2-5',
@@ -235,10 +193,7 @@ export const modelsEn: ModelProfile[] = [
       'Code quality can vary',
       'Less predictable with complex instructions',
     ],
-    bestFor: [
-      'Analyzing long documents',
-      'Tasks with many sources',
-    ],
+    bestFor: ['Analyzing long documents', 'Tasks with many sources'],
   },
   {
     id: 'llama',
@@ -254,10 +209,7 @@ export const modelsEn: ModelProfile[] = [
       'Requires powerful hardware',
       'Quality below top proprietary models',
     ],
-    bestFor: [
-      'Projects with privacy needs',
-      'Experimenting without API cost',
-    ],
+    bestFor: ['Projects with privacy needs', 'Experimenting without API cost'],
   },
   {
     id: 'deepseek',
@@ -269,14 +221,8 @@ export const modelsEn: ModelProfile[] = [
       'Strong at code and reasoning',
       'Low cost via own API',
     ],
-    weaknesses: [
-      'Smaller ecosystem',
-      'Fewer integrations with popular tools',
-    ],
-    bestFor: [
-      'Low-cost code generation',
-      'Budget-limited projects',
-    ],
+    weaknesses: ['Smaller ecosystem', 'Fewer integrations with popular tools'],
+    bestFor: ['Low-cost code generation', 'Budget-limited projects'],
   },
 ];
 

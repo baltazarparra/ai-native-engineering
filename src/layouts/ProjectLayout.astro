@@ -1,0 +1,219 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
+import Badge from '../components/Badge/Badge.astro';
+import SectionNav from '../components/SectionNav/SectionNav.astro';
+import Footer from '../components/Footer/Footer.astro';
+import ProgressTracker from '../components/ProgressTracker/ProgressTracker.tsx';
+import type { Lang } from '../lib/i18n';
+import { ui, getProjectAlternateLinks } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const labels = ui[lang].project;
+const alternateLinks = getProjectAlternateLinks();
+---
+
+<BaseLayout
+  title={`${labels.title} | AI-Native Engineering`}
+  description={labels.summary}
+  lang={lang}
+  alternateLinks={alternateLinks}
+>
+  <ProgressTracker
+    client:idle
+    sessionSlug={`${lang}:projeto-pratico`}
+    ariaLabel={ui[lang].progressLabel}
+  />
+  <main id="main-content" class="project-page">
+    <SectionBlock as="header" padding="xl">
+      <Badge variant="coral">{labels.heroLabel}</Badge>
+      <h1 class="project-title">{labels.heading}</h1>
+      <div class="project-meta">
+        <Badge variant="green" size="sm">prática guiada</Badge>
+        <Badge size="sm">{labels.readingTime}</Badge>
+      </div>
+      <p class="project-summary">{labels.summary}</p>
+    </SectionBlock>
+
+    <div class="project-body">
+      <aside class="project-sidebar">
+        <SectionNav lang={lang} />
+      </aside>
+      <article class="session-content">
+        <slot />
+      </article>
+    </div>
+
+    <Footer lang={lang} />
+  </main>
+</BaseLayout>
+
+<style>
+  .project-title {
+    margin-top: var(--space-md);
+    max-width: 20ch;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .project-summary {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-md);
+    max-width: 68ch;
+    color: var(--color-text-muted);
+  }
+
+  .project-body {
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+    padding-block: var(--space-xl);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-xl);
+    min-width: 0;
+  }
+
+  .project-sidebar {
+    display: none;
+    min-width: 0;
+  }
+
+  .session-content {
+    min-width: 0;
+  }
+
+  .session-content :global(h2) {
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-md);
+    scroll-margin-top: var(--space-xl);
+  }
+
+  .session-content :global(h3) {
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  .session-content :global(p) {
+    margin-bottom: var(--space-md);
+  }
+
+  .session-content :global(ul),
+  .session-content :global(ol) {
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-lg);
+  }
+
+  .session-content :global(li) {
+    margin-bottom: var(--space-xs);
+  }
+
+  .session-content :global(astro-island) {
+    display: block;
+    max-width: 100%;
+    min-width: 0;
+    margin-block: var(--space-xl) var(--space-2xl);
+  }
+
+  .session-content :global(blockquote) {
+    border-left: 4px solid var(--color-accent-1);
+    padding-left: var(--space-lg);
+    margin-block: var(--space-lg);
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+
+  .session-content :global(hr) {
+    border: none;
+    border-top: var(--border-thin);
+    margin-block: var(--space-2xl);
+  }
+
+  .session-content :global(img) {
+    border: var(--border-thin);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .session-content :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .session-content :global(.checkpoint) {
+    border: var(--border-thick);
+    border-left: 6px solid var(--color-accent-3);
+    background-color: var(--color-bg-alt);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    margin-block: var(--space-lg);
+  }
+
+  .session-content :global(.checkpoint strong) {
+    font-family: var(--font-heading);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .session-content :global(.prompt-example) {
+    border: var(--border-thin);
+    background-color: var(--color-bg-alt);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    margin-block: var(--space-md);
+  }
+
+  .session-content :global(.prompt-good) {
+    border-left: 6px solid var(--color-accent-3);
+  }
+
+  .session-content :global(.prompt-bad) {
+    border-left: 6px solid var(--color-accent-4);
+  }
+
+  .session-content :global(.prompt-example strong) {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  @media (min-width: 1024px) {
+    .project-body {
+      grid-template-columns: 220px minmax(0, 1fr);
+      padding-inline: var(--space-xl);
+      padding-block: var(--space-3xl);
+      gap: var(--space-2xl);
+    }
+
+    .project-sidebar {
+      display: block;
+    }
+
+    .session-content :global(h2) {
+      margin-top: var(--space-4xl);
+      margin-bottom: var(--space-lg);
+    }
+
+    .session-content :global(h3) {
+      margin-top: var(--space-3xl);
+      margin-bottom: var(--space-md);
+    }
+
+    .session-content :global(p),
+    .session-content :global(ul),
+    .session-content :global(ol) {
+      margin-bottom: var(--space-lg);
+    }
+  }
+</style>

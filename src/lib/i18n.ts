@@ -75,6 +75,19 @@ export const ui = {
       label: 'Próxima sessão',
       continue: 'Continuar',
     },
+    project: {
+      title: 'Projeto Prático',
+      heroLabel: 'Mão na massa',
+      heading: 'Construa seu primeiro projeto com um agente de código',
+      summary:
+        'Um guia prático para criar, planejar e publicar um projeto do zero usando o fluxo agêntico de desenvolvimento.',
+      readingTime: '45 min (prática guiada)',
+      navAriaLabel: 'Navegação do projeto',
+      checkpointLabel: 'Checkpoint',
+      homeCta: 'Ir para o projeto prático',
+      homeDesc:
+        'Já viu a teoria? Agora crie um projeto do zero com seu agente de código e publique no GitHub Pages.',
+    },
     footer: {
       tagline: 'Feito com Astro e café',
     },
@@ -122,6 +135,19 @@ export const ui = {
       label: 'Next session',
       continue: 'Keep going',
     },
+    project: {
+      title: 'Hands-on Project',
+      heroLabel: 'Hands-on',
+      heading: 'Build your first project with a code agent',
+      summary:
+        'A practical guide to creating, planning, and publishing a project from scratch using the agentic development workflow.',
+      readingTime: '45 min (guided practice)',
+      navAriaLabel: 'Project navigation',
+      checkpointLabel: 'Checkpoint',
+      homeCta: 'Go to the hands-on project',
+      homeDesc:
+        'Done with theory? Build a project from scratch with your code agent and publish it to GitHub Pages.',
+    },
     footer: {
       tagline: 'Built with Astro and coffee',
     },
@@ -147,6 +173,26 @@ export function getHomeHref(lang: Lang): string {
 export function getSessionHref(lang: Lang, slug: string): string {
   const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
   return withBase(`${prefix}sessions/${slug}`);
+}
+
+const projectSlugs: Record<Lang, string> = {
+  'pt-BR': 'projeto',
+  en: 'project',
+};
+
+export function getProjectHref(lang: Lang): string {
+  const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
+  return withBase(`${prefix}${projectSlugs[lang]}`);
+}
+
+export function getProjectAlternateLinks(): AlternateLink[] {
+  const links: AlternateLink[] = supportedLangs.map((lang) => ({
+    lang,
+    href: getProjectHref(lang),
+    label: languages[lang].label,
+  }));
+  links.push({ lang: 'x-default' as const, href: getProjectHref(defaultLang) });
+  return links;
 }
 
 export function getHomeAlternateLinks(): AlternateLink[] {

@@ -7,7 +7,11 @@ import Card from '../components/Card/Card.astro';
 import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
 import { getSessions } from '../data/sessions';
-import { getHomeAlternateLinks, getSessionHref } from '../lib/i18n';
+import {
+  getHomeAlternateLinks,
+  getSessionHref,
+  getProjectHref,
+} from '../lib/i18n';
 
 const lang = 'pt-BR';
 const sessions = getSessions(lang);
@@ -70,13 +74,13 @@ const phases = [
       <div class="narrative">
         <p>
           A maioria dos times de software já usa IA no dia a dia, mas muita
-          gente ainda não sabe a diferença entre modelo e produto, não entende as
-          categorias de ferramentas e não tem um mapa claro de como tudo se
+          gente ainda não sabe a diferença entre modelo e produto, não entende
+          as categorias de ferramentas e não tem um mapa claro de como tudo se
           conecta.
         </p>
         <p>
-          Esse site existe pra organizar esse caos. Sem jargão desnecessário, sem
-          favorecimento de ferramenta. Só o mapa que importa.
+          Esse site existe pra organizar esse caos. Sem jargão desnecessário,
+          sem favorecimento de ferramenta. Só o mapa que importa.
         </p>
       </div>
     </SectionBlock>
@@ -112,8 +116,24 @@ const phases = [
       </Grid>
     </SectionBlock>
 
-    <!-- maturity preview -->
+    <!-- projeto prático -->
     <SectionBlock padding="xl" alt>
+      <div class="project-cta-block">
+        <Badge variant="coral">Novo</Badge>
+        <h2>Projeto Prático</h2>
+        <p>
+          Já viu a teoria? Agora crie um projeto do zero com seu agente de
+          código e publique no GitHub Pages. Um guia prático que ensina o fluxo
+          agêntico de verdade.
+        </p>
+        <Button href={getProjectHref(lang)} size="lg">
+          Ir para o projeto prático
+        </Button>
+      </div>
+    </SectionBlock>
+
+    <!-- maturity preview -->
+    <SectionBlock padding="xl">
       <h2>Como a IA evoluiu no desenvolvimento</h2>
       <p>Não é só sobre usar IA. É sobre como o uso amadurece.</p>
       <div class="maturity-track">
@@ -282,6 +302,22 @@ const phases = [
     font-weight: var(--weight-medium);
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+  }
+
+  .project-cta-block {
+    text-align: center;
+    max-width: 42ch;
+    margin-inline: auto;
+  }
+
+  .project-cta-block h2 {
+    margin-top: var(--space-sm);
+  }
+
+  .project-cta-block p {
+    margin-block: var(--space-md) var(--space-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
   }
 
   h2 + p {

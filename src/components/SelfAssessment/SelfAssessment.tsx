@@ -86,7 +86,7 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
       text: 'Before asking AI for something, you...',
       options: [
         { label: 'Type whatever comes to mind', points: 0 },
-        { label: 'Think about the goal but don\'t structure much', points: 1 },
+        { label: "Think about the goal but don't structure much", points: 1 },
         { label: 'Write goal, context, and constraints first', points: 2 },
       ],
     },
@@ -104,8 +104,8 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
     {
       text: 'Does your project have AI rules or instructions (rules files, CLAUDE.md)?',
       options: [
-        { label: 'I don\'t know what that is', points: 0 },
-        { label: 'I\'ve heard of it but don\'t use it', points: 1 },
+        { label: "I don't know what that is", points: 0 },
+        { label: "I've heard of it but don't use it", points: 1 },
         { label: 'Yes, and we update it as the project evolves', points: 2 },
       ],
     },
@@ -114,7 +114,7 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
       options: [
         { label: 'I always use the same one', points: 0 },
         {
-          label: 'I have preferences but don\'t think much about it',
+          label: "I have preferences but don't think much about it",
           points: 1,
         },
         {
@@ -124,7 +124,7 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
       ],
     },
     {
-      text: 'When the AI result isn\'t good, you...',
+      text: "When the AI result isn't good, you...",
       options: [
         { label: 'Give up and do it manually', points: 0 },
         { label: 'Try to rewrite the prompt', points: 1 },
@@ -175,7 +175,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     exploring: {
       name: 'Exploring',
       description:
-        'You\'re starting to bring AI into your work and still figuring out what helps and what doesn\'t. That\'s normal — the key right now is to experiment with intention.',
+        "You're starting to bring AI into your work and still figuring out what helps and what doesn't. That's normal — the key right now is to experiment with intention.",
       suggestion:
         'Start with the glossary (Session 1) to get the vocabulary down, then explore tools (Session 2) to see what fits your workflow.',
       accent: 'yellow',
@@ -191,9 +191,9 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     structuring: {
       name: 'Structuring',
       description:
-        'You build systems where AI operates in a structured way — with rules files, automated validation, and model selection by task. You\'re already AI-native.',
+        "You build systems where AI operates in a structured way — with rules files, automated validation, and model selection by task. You're already AI-native.",
       suggestion:
-        'Review Session 4 to calibrate your team\'s position. Use this site as a shared reference to align everyone.',
+        "Review Session 4 to calibrate your team's position. Use this site as a shared reference to align everyone.",
       accent: 'green',
     },
   },

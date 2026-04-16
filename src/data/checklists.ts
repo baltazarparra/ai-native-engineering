@@ -430,7 +430,7 @@ const EXTRA_ITEMS_EN: Record<string, Record<string, ChecklistItem[]>> = {
       },
       {
         id: 'pm-impact',
-        text: 'I checked that the fix doesn\'t affect other features',
+        text: "I checked that the fix doesn't affect other features",
         category: 'antes-de-aceitar',
       },
     ],

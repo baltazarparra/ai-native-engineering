@@ -118,7 +118,8 @@ const TASK_TYPES: Record<Lang, TaskType[]> = {
 const LABELS = {
   'pt-BR': {
     choose: 'Escolha um tipo de tarefa pra ver os modelos que se encaixam.',
-    selected: 'Modelos destacados se encaixam melhor. Clique em outro tipo pra comparar.',
+    selected:
+      'Modelos destacados se encaixam melhor. Clique em outro tipo pra comparar.',
     taskAria: 'Tipo de tarefa',
     product: 'Produto:',
     match: 'Bom pra essa tarefa',

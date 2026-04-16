@@ -7,7 +7,11 @@ import Card from '../../components/Card/Card.astro';
 import Badge from '../../components/Badge/Badge.astro';
 import Footer from '../../components/Footer/Footer.astro';
 import { getSessions } from '../../data/sessions';
-import { getHomeAlternateLinks, getSessionHref } from '../../lib/i18n';
+import {
+  getHomeAlternateLinks,
+  getSessionHref,
+  getProjectHref,
+} from '../../lib/i18n';
 
 const lang = 'en';
 const sessions = getSessions(lang);
@@ -104,6 +108,21 @@ const phases = [
     </SectionBlock>
 
     <SectionBlock padding="xl" alt>
+      <div class="project-cta-block">
+        <Badge variant="coral">New</Badge>
+        <h2>Hands-on Project</h2>
+        <p>
+          Done with theory? Build a project from scratch with your code agent
+          and publish it to GitHub Pages. A practical guide that teaches the
+          real agentic workflow.
+        </p>
+        <Button href={getProjectHref(lang)} size="lg">
+          Go to the hands-on project
+        </Button>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="xl">
       <h2>How AI matured in software development</h2>
       <p>Using AI isn't the point. Maturing how you use it is the point.</p>
       <div class="maturity-track">
@@ -270,6 +289,22 @@ const phases = [
     font-weight: var(--weight-medium);
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+  }
+
+  .project-cta-block {
+    text-align: center;
+    max-width: 42ch;
+    margin-inline: auto;
+  }
+
+  .project-cta-block h2 {
+    margin-top: var(--space-sm);
+  }
+
+  .project-cta-block p {
+    margin-block: var(--space-md) var(--space-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
   }
 
   h2 + p {

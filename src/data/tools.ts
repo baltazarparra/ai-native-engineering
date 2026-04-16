@@ -106,14 +106,8 @@ export const tools: Tool[] = [
     whereItRuns: 'Terminal / linha de comando',
     bestFor: 'Alternativa open source pra dev assistido no terminal',
     targetUsers: ['dev que prefere ferramentas open source', 'dev sênior'],
-    strengths: [
-      'Open source',
-      'Configurável com vários provedores',
-    ],
-    commonRisks: [
-      'Comunidade menor',
-      'Menos polish que opções comerciais',
-    ],
+    strengths: ['Open source', 'Configurável com vários provedores'],
+    commonRisks: ['Comunidade menor', 'Menos polish que opções comerciais'],
   },
   {
     id: 'github-copilot-cli',
@@ -215,10 +209,7 @@ export const toolsEn: Tool[] = [
       'Terminal and file system access',
       'Configurable model',
     ],
-    commonRisks: [
-      'Ecosystem still evolving',
-      'Depends on API keys and cost',
-    ],
+    commonRisks: ['Ecosystem still evolving', 'Depends on API keys and cost'],
   },
   {
     id: 'opencode',
@@ -227,14 +218,8 @@ export const toolsEn: Tool[] = [
     whereItRuns: 'Terminal / command line',
     bestFor: 'Open-source AI-assisted terminal dev',
     targetUsers: ['open source tool users', 'senior dev'],
-    strengths: [
-      'Open source',
-      'Configurable with multiple providers',
-    ],
-    commonRisks: [
-      'Smaller community',
-      'Less polish than commercial options',
-    ],
+    strengths: ['Open source', 'Configurable with multiple providers'],
+    commonRisks: ['Smaller community', 'Less polish than commercial options'],
   },
   {
     id: 'github-copilot-cli',
