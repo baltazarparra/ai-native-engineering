@@ -147,6 +147,24 @@ const themeInitScript = `
   document.documentElement.setAttribute('data-theme', theme);
 })();
 `;
+
+const themePersistScript = `
+(function () {
+  var key = ${JSON.stringify(themeStorageKey)};
+  function readTheme() {
+    try {
+      return window.localStorage.getItem(key);
+    } catch (error) {
+      return null;
+    }
+  }
+  document.addEventListener('astro:before-swap', function (event) {
+    var stored = readTheme();
+    var theme = stored === 'dark' ? 'dark' : 'light';
+    event.newDocument.documentElement.setAttribute('data-theme', theme);
+  });
+})();
+`;
 ---
 
 <!doctype html>
@@ -155,6 +173,7 @@ const themeInitScript = `
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline set:html={themeInitScript} />
+    <script is:inline set:html={themePersistScript} />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link
