@@ -14,8 +14,6 @@
   padding: var(--space-xl);
   background-color: var(--color-bg);
   box-shadow: var(--shadow-md);
-  animation: var(--motion-key-panel-in) var(--motion-enter) var(--ease-out-back)
-    both;
   transition:
     background-color var(--transition-normal),
     box-shadow var(--transition-fast),
@@ -61,7 +59,6 @@
   background-color: var(--color-accent-3);
   border-radius: 3px;
   transition: width var(--motion-slow) var(--ease-standard);
-  animation: var(--motion-key-fill-kick) var(--motion-slow) var(--ease-standard);
 }
 
 .hint {
@@ -93,7 +90,7 @@
 
 .checkItem:hover {
   background-color: var(--color-bg-alt);
-  transform: translateX(3px);
+  transform: translateX(2px);
 }
 
 .checkItem:has(.checkbox:checked) {
@@ -169,14 +166,14 @@
 }
 
 .nextBtn:hover {
-  transform: var(--motion-lift-md) rotate(-0.25deg);
+  transform: var(--motion-lift-md);
   box-shadow: var(--shadow-lg);
   background-color: var(--color-accent-1);
   color: var(--color-primary);
 }
 
 .nextBtn:active {
-  transform: var(--motion-press) scale(0.98);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }

@@ -31,7 +31,7 @@
 }
 
 .search:hover {
-  transform: translate(-1px, -1px);
+  transform: var(--motion-lift-sm);
   box-shadow: var(--shadow-md);
 }
 
@@ -107,15 +107,13 @@
   overflow: hidden;
   transform-origin: center;
   will-change: transform, box-shadow;
-  animation: var(--motion-key-pop-in) var(--motion-enter) var(--ease-out-back)
-    both;
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
 }
 
 .card:hover {
-  transform: var(--motion-lift-md) rotate(-0.2deg);
+  transform: var(--motion-lift-md);
   box-shadow: var(--shadow-lg);
 }
 
@@ -190,7 +188,7 @@
 .cardHeader[aria-expanded='true'] .indicator {
   background-color: var(--color-primary);
   color: var(--color-bg);
-  transform: rotate(90deg);
+  transform: rotate(45deg);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);
 }
@@ -267,12 +265,12 @@
 
 .tag:hover {
   background-color: var(--color-accent-1);
-  transform: translate(-1px, -1px);
+  transform: var(--motion-lift-sm);
   box-shadow: 1px 1px 0 var(--color-shadow);
 }
 
 .tag:active {
-  transform: translate(1px, 1px);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }

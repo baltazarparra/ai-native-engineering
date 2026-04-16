@@ -56,12 +56,12 @@
 
 .filterBtn:hover {
   background-color: var(--color-bg-alt);
-  transform: translate(-1px, -1px);
+  transform: var(--motion-lift-sm);
   box-shadow: var(--shadow-sm);
 }
 
 .filterBtn:active {
-  transform: translate(1px, 1px);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }
@@ -75,13 +75,13 @@
   background-color: var(--color-primary);
   color: var(--color-white);
   border-color: var(--color-primary);
-  transform: translate(1px, 1px);
+  transform: var(--motion-press);
   box-shadow: none;
 }
 
 .filterActive:hover {
   background-color: var(--color-primary);
-  transform: translate(1px, 1px);
+  transform: var(--motion-press);
   box-shadow: none;
 }
 
@@ -89,8 +89,6 @@
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   margin: 0;
-  animation: var(--motion-key-details-in) var(--motion-normal)
-    var(--ease-standard);
 }
 
 .grid {
@@ -116,8 +114,6 @@
   overflow: hidden;
   transform-origin: center;
   will-change: transform, box-shadow, opacity;
-  animation: var(--motion-key-pop-in) var(--motion-enter) var(--ease-out-back)
-    both;
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
@@ -125,7 +121,7 @@
 }
 
 .card:hover {
-  transform: var(--motion-lift-md) rotate(-0.2deg);
+  transform: var(--motion-lift-md);
   box-shadow: var(--shadow-lg);
 }
 
@@ -206,7 +202,7 @@
 .cardHeader[aria-expanded='true'] .indicator {
   background-color: var(--color-primary);
   color: var(--color-bg);
-  transform: rotate(90deg);
+  transform: rotate(45deg);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);
 }

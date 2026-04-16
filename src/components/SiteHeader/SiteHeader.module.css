@@ -70,7 +70,7 @@
 }
 
 .langNav:hover {
-  transform: translate(-1px, -1px);
+  transform: var(--motion-lift-sm);
   box-shadow: var(--shadow-md);
 }
 

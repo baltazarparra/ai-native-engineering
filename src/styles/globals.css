@@ -238,53 +238,53 @@ pre code {
 @keyframes brutal-rise-in {
   from {
     opacity: 0;
-    transform: translateY(18px) rotate(-0.35deg);
+    transform: translateY(8px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0);
   }
 }
 
 @keyframes brutal-pop-in {
   0% {
     opacity: 0;
-    transform: translate(6px, 8px) scale(0.96);
+    transform: translateY(4px) scale(0.985);
   }
 
   70% {
     opacity: 1;
-    transform: translate(-1px, -1px) scale(1.01);
+    transform: translateY(0) scale(1.005);
   }
 
   100% {
     opacity: 1;
-    transform: translate(0, 0) scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
 @keyframes brutal-panel-in {
   0% {
     opacity: 0;
-    transform: translate(10px, 8px);
+    transform: translateY(6px);
   }
 
   68% {
     opacity: 1;
-    transform: translate(-2px, -2px);
+    transform: translateY(0);
   }
 
   100% {
     opacity: 1;
-    transform: translate(0, 0);
+    transform: translateY(0);
   }
 }
 
 @keyframes brutal-details-in {
   from {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-4px);
   }
 
   to {
@@ -295,11 +295,11 @@ pre code {
 
 @keyframes brutal-scale-pop {
   0% {
-    transform: scale(0.82);
+    transform: scale(0.96);
   }
 
   70% {
-    transform: scale(1.14);
+    transform: scale(1.025);
   }
 
   100% {
@@ -318,19 +318,5 @@ pre code {
 
   100% {
     box-shadow: 0 0 0 var(--color-shadow);
-  }
-}
-
-main > header {
-  animation: brutal-pop-in var(--motion-enter) var(--ease-out-back) both;
-}
-
-@supports (animation-timeline: view()) {
-  main > section,
-  main > .session-body,
-  main > .chapter-body {
-    animation: brutal-rise-in var(--motion-enter) var(--ease-standard) both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 24%;
   }
 }

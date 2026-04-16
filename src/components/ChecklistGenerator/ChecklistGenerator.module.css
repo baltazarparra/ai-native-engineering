@@ -9,8 +9,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  animation: var(--motion-key-details-in) var(--motion-normal)
-    var(--ease-standard);
 }
 
 .stepLabel {
@@ -48,12 +46,12 @@
 
 .selectBtn:hover {
   background-color: var(--color-bg-alt);
-  transform: translate(-1px, -1px);
+  transform: var(--motion-lift-sm);
   box-shadow: var(--shadow-sm);
 }
 
 .selectBtn:active {
-  transform: translate(1px, 1px);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }
@@ -67,13 +65,13 @@
   background-color: var(--color-primary);
   color: var(--color-white);
   border-color: var(--color-primary);
-  transform: translate(1px, 1px);
+  transform: var(--motion-press);
   box-shadow: none;
 }
 
 .selectActive:hover {
   background-color: var(--color-primary);
-  transform: translate(1px, 1px);
+  transform: var(--motion-press);
   box-shadow: none;
 }
 
@@ -124,7 +122,7 @@
 
 .checkItem:hover {
   background-color: var(--color-bg-alt);
-  transform: translateX(3px);
+  transform: translateX(2px);
 }
 
 .checkItem:has(.checkbox:checked) {
@@ -176,12 +174,12 @@
 }
 
 .copyBtn:hover {
-  transform: var(--motion-lift-md) rotate(-0.25deg);
+  transform: var(--motion-lift-md);
   box-shadow: var(--shadow-md);
 }
 
 .copyBtn:active {
-  transform: var(--motion-press) scale(0.98);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }

@@ -40,12 +40,12 @@
 
 .taskBtn:hover {
   background-color: var(--color-bg-alt);
-  transform: translate(-1px, -1px);
+  transform: var(--motion-lift-sm);
   box-shadow: var(--shadow-sm);
 }
 
 .taskBtn:active {
-  transform: translate(1px, 1px);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }
@@ -59,13 +59,13 @@
   background-color: var(--color-accent-2);
   color: var(--color-white);
   border-color: var(--color-accent-2);
-  transform: translate(1px, 1px);
+  transform: var(--motion-press);
   box-shadow: none;
 }
 
 .taskActive:hover {
   background-color: var(--color-accent-2);
-  transform: translate(1px, 1px);
+  transform: var(--motion-press);
   box-shadow: none;
 }
 
@@ -92,8 +92,6 @@
   overflow: hidden;
   transform-origin: center;
   will-change: transform, box-shadow, opacity;
-  animation: var(--motion-key-pop-in) var(--motion-enter) var(--ease-out-back)
-    both;
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
@@ -101,7 +99,7 @@
 }
 
 .card:hover {
-  transform: var(--motion-lift-md) rotate(-0.2deg);
+  transform: var(--motion-lift-md);
   box-shadow: var(--shadow-lg);
 }
 
@@ -111,7 +109,7 @@
 
 .dimmed:hover {
   opacity: 0.7;
-  transform: translate(-1px, -1px);
+  transform: var(--motion-lift-sm);
   box-shadow: var(--shadow-md);
 }
 
@@ -192,7 +190,7 @@
 .cardHeader[aria-expanded='true'] .indicator {
   background-color: var(--color-primary);
   color: var(--color-bg);
-  transform: rotate(90deg);
+  transform: rotate(45deg);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);
 }
@@ -221,7 +219,6 @@
   background-color: var(--color-accent-3);
   color: var(--color-white);
   overflow-wrap: break-word;
-  animation: var(--motion-key-pop-in) var(--motion-normal) var(--ease-out-back);
 }
 
 .expandedBody {

@@ -78,12 +78,12 @@
 .primary:hover {
   background-color: var(--color-accent-1);
   color: var(--color-primary);
-  transform: var(--motion-lift-md) rotate(-0.35deg);
+  transform: var(--motion-lift-md);
   box-shadow: var(--shadow-lg);
 }
 
 .primary:active {
-  transform: var(--motion-press) scale(0.98);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }
@@ -98,12 +98,12 @@
 
 .secondary:hover {
   background-color: var(--color-accent-1);
-  transform: var(--motion-lift-sm) rotate(-0.25deg);
+  transform: var(--motion-lift-sm);
   box-shadow: var(--shadow-md);
 }
 
 .secondary:active {
-  transform: var(--motion-press) scale(0.98);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }
@@ -128,7 +128,7 @@
 }
 
 .ghost:active {
-  transform: translate(1px, 1px) scale(0.99);
+  transform: var(--motion-press);
   transition-duration: var(--motion-instant);
 }
 
@@ -137,7 +137,7 @@
 .button:focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 3px;
-  transform: translate(-1px, -1px);
+  transform: var(--motion-lift-sm);
   box-shadow: var(--shadow-lg);
 }
 

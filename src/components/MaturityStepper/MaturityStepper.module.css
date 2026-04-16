@@ -33,12 +33,12 @@
 }
 
 .navBtn:hover:not(:disabled) {
-  transform: var(--motion-lift-md) rotate(-0.25deg);
+  transform: var(--motion-lift-md);
   box-shadow: var(--shadow-md);
 }
 
 .navBtn:active:not(:disabled) {
-  transform: var(--motion-press) scale(0.96);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }
@@ -112,7 +112,7 @@
 .stepActive .stepCircle {
   background-color: var(--color-accent-1);
   color: var(--color-primary);
-  transform: scale(1.12);
+  transform: scale(1.06);
   box-shadow: var(--shadow-sm);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);

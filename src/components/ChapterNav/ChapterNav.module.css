@@ -41,7 +41,7 @@
 .link:hover {
   background-color: var(--color-bg-alt);
   color: var(--color-text);
-  transform: translateX(3px);
+  transform: translateX(2px);
 }
 
 .linkCurrent {

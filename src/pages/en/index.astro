@@ -228,7 +228,7 @@ const phases = [
   }
 
   .maturity-step:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
   }
 
   .maturity-step:not(:last-child)::after {
@@ -239,7 +239,6 @@ const phases = [
     width: calc(100% - 3rem);
     border-top: var(--border-thin);
     transform-origin: left center;
-    animation: brutal-rise-in var(--motion-enter) var(--ease-standard) both;
   }
 
   .maturity-number {
@@ -258,11 +257,10 @@ const phases = [
     transition:
       transform var(--motion-normal) var(--ease-out-back),
       box-shadow var(--transition-fast);
-    animation: brutal-pop-in var(--motion-enter) var(--ease-out-back) both;
   }
 
   .maturity-step:hover .maturity-number {
-    transform: rotate(-3deg) scale(1.08);
+    transform: translateY(-1px);
     box-shadow: var(--shadow-md);
   }
 

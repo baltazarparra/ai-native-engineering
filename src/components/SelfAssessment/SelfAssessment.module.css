@@ -32,7 +32,7 @@
 .dotActive {
   background-color: var(--color-accent-1);
   border-color: var(--color-accent-1);
-  transform: scale(1.35);
+  transform: scale(1.18);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);
 }
@@ -81,12 +81,12 @@
 }
 
 .optionBtn:hover {
-  transform: var(--motion-lift-md) rotate(-0.15deg);
+  transform: var(--motion-lift-md);
   box-shadow: var(--shadow-md);
 }
 
 .optionBtn:active {
-  transform: var(--motion-press) scale(0.99);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }
@@ -132,7 +132,7 @@
 }
 
 .navBtn:active:not(:disabled) {
-  transform: var(--motion-press) scale(0.98);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }
@@ -165,12 +165,12 @@
 }
 
 .finishBtn:hover:not(:disabled) {
-  transform: var(--motion-lift-md) rotate(-0.25deg);
+  transform: var(--motion-lift-md);
   box-shadow: var(--shadow-md);
 }
 
 .finishBtn:active:not(:disabled) {
-  transform: var(--motion-press) scale(0.98);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }
@@ -262,7 +262,7 @@
 }
 
 .resetBtn:active {
-  transform: var(--motion-press) scale(0.98);
+  transform: var(--motion-press);
   box-shadow: none;
   transition-duration: var(--motion-instant);
 }

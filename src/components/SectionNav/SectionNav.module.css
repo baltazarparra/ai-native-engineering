@@ -29,7 +29,7 @@
 .list a:hover {
   color: var(--color-primary);
   background-color: transparent;
-  transform: translateX(3px);
+  transform: translateX(2px);
 }
 
 .list a[data-active='true'] {

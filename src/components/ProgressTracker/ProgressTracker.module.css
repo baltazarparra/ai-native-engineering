@@ -20,12 +20,11 @@
   position: absolute;
   top: 0;
   right: -2px;
-  width: 4px;
+  width: 3px;
   height: 100%;
   background-color: var(--color-primary);
   opacity: 0;
-  animation: var(--motion-key-fill-kick) var(--motion-slow) var(--ease-standard)
-    infinite;
+  transition: opacity var(--transition-fast);
 }
 
 .fillActive::after {
