@@ -6,6 +6,8 @@ import Button from '../../components/Button/Button.astro';
 import Card from '../../components/Card/Card.astro';
 import Badge from '../../components/Badge/Badge.astro';
 import Footer from '../../components/Footer/Footer.astro';
+import HeroStickers from '../../components/HeroStickers/HeroStickers';
+import HeroGhostCursors from '../../components/HeroGhostCursors/HeroGhostCursors';
 import { getSessions } from '../../data/sessions';
 import {
   getHomeAlternateLinks,
@@ -42,22 +44,28 @@ const phases = [
 >
   <main id="main-content">
     <SectionBlock as="header" padding="xl" maxWidth="lg">
-      <Badge variant="green">100% free and open source</Badge>
-      <h1 class="hero-title">Software Engineering in the Age of AI</h1>
-      <p class="hero-tagline">
-        A practical guide for using AI in real software work, without hype and
-        without panic.
-      </p>
-      <div class="hero-ctas">
-        <Button
-          href={getSessionHref(lang, 'what-is-ai-native-engineer')}
-          size="lg"
-        >
-          Start with Session 0
-        </Button>
-        <Button href="#sessions" variant="secondary" size="lg">
-          See all sessions
-        </Button>
+      <div class="hero-layer">
+        <HeroGhostCursors client:idle />
+        <HeroStickers client:idle lang={lang} />
+        <div class="hero-content">
+          <Badge variant="green">100% free and open source</Badge>
+          <h1 class="hero-title">Software Engineering in the Age of AI</h1>
+          <p class="hero-tagline">
+            A practical guide for using AI in real software work, without hype
+            and without panic.
+          </p>
+          <div class="hero-ctas">
+            <Button
+              href={getSessionHref(lang, 'what-is-ai-native-engineer')}
+              size="lg"
+            >
+              Start with Session 0
+            </Button>
+            <Button href="#sessions" variant="secondary" size="lg">
+              See all sessions
+            </Button>
+          </div>
+        </div>
       </div>
     </SectionBlock>
 
@@ -177,6 +185,16 @@ const phases = [
 </BaseLayout>
 
 <style>
+  .hero-layer {
+    position: relative;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    isolation: isolate;
+  }
+
   .hero-title {
     margin-top: var(--space-md);
   }

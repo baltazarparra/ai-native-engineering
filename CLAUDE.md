@@ -31,7 +31,7 @@ Deploy: GitHub Actions → GitHub Pages (auto-deploy on push to main).
 - **Astro** is the framework. It was chosen because this is content-first, not app-first. Ships minimal JS via island architecture.
 - **React** is used only for interactive islands (quizzes, comparators, steppers, filters), not for page-level rendering.
 - **CSS Modules + CSS Variables + design tokens**. No Tailwind. The Neo Brutalism visual language requires authorial control that utility-first CSS undermines.
-- **CSS-only animations**. All transitions and animations use pure CSS. No JavaScript animation library.
+- **CSS-first animations**. Decorative and state-transition animations must be pure CSS. JavaScript animation is reserved for _interactive physics_ (drag, pointer tracking, procedural motion): use `motion` (drag only) or bespoke `requestAnimationFrame` loops. Do not introduce other animation libraries (GSAP, anime, react-spring, etc) without explicit approval.
 - **Content Collections** with schema validation for all session content (MDX with typed frontmatter).
 
 ### Key Architecture Decisions

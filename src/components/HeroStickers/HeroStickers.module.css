@@ -1,0 +1,67 @@
+.layer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 4;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.sticker {
+  --sticker-size: 96px;
+  --sticker-half: 48px;
+  position: absolute;
+  width: var(--sticker-size);
+  height: var(--sticker-size);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  pointer-events: auto;
+  font-family: inherit;
+  color: inherit;
+}
+
+.sticker:active {
+  cursor: grabbing;
+}
+
+.sticker:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.emoji {
+  font-size: 56px;
+  line-height: 1;
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 2px #fff)
+    drop-shadow(0 0 2px #fff);
+}
+
+@media (max-width: 767px) {
+  .sticker {
+    --sticker-size: 72px;
+    --sticker-half: 36px;
+  }
+
+  .emoji {
+    font-size: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticker {
+    transition: none;
+  }
+}

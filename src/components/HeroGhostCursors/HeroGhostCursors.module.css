@@ -1,0 +1,32 @@
+.layer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.ghost {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  will-change: transform;
+  filter: drop-shadow(2px 2px 0 #000);
+}
+
+.desktopOnly {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .desktopOnly {
+    display: none;
+  }
+}
