@@ -142,7 +142,7 @@
 
 .stepActive .stepCircle {
   background-color: var(--color-accent-1);
-  color: var(--color-primary);
+  color: var(--color-fg-on-yellow);
   transform: scale(1.06);
   box-shadow: var(--shadow-sm);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
@@ -150,8 +150,8 @@
 }
 
 .stepDone .stepCircle {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);
 }
@@ -238,7 +238,7 @@
   font-size: var(--text-base);
   font-weight: var(--weight-bold);
   text-decoration: none;
-  color: var(--color-primary);
+  color: var(--color-fg-on-yellow);
   background-color: var(--color-accent-1);
   border: var(--border-thick);
   border-radius: var(--radius-md);
@@ -252,7 +252,7 @@
   transform: var(--motion-lift-md);
   box-shadow: var(--shadow-lg);
   background-color: var(--color-accent-1);
-  color: var(--color-primary);
+  color: var(--color-fg-on-yellow);
 }
 
 .panelCta:active {

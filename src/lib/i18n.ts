@@ -38,6 +38,11 @@ export const ui = {
     siteDescription: 'AI-Native Engineering: o mapa que importa',
     skipToContent: 'Pular para o conteúdo',
     languageNav: 'Selecionar idioma',
+    themeToggle: {
+      navLabel: 'Tema claro ou escuro',
+      activateDark: 'Ativar modo escuro',
+      activateLight: 'Ativar modo claro',
+    },
     currentLanguage: 'Idioma atual',
     repositoryLink: 'Repositório do projeto no GitHub',
     progressLabel: 'Progresso de leitura',
@@ -126,6 +131,11 @@ export const ui = {
     siteDescription: 'AI-Native Engineering: the map that actually matters',
     skipToContent: 'Skip to content',
     languageNav: 'Choose language',
+    themeToggle: {
+      navLabel: 'Light or dark theme',
+      activateDark: 'Turn on dark mode',
+      activateLight: 'Turn on light mode',
+    },
     currentLanguage: 'Current language',
     repositoryLink: 'Project repository on GitHub',
     progressLabel: 'Reading progress',

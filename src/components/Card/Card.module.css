@@ -48,6 +48,10 @@
   background-color: inherit;
 }
 
+.linkable:hover .title {
+  transform: translateX(2px);
+}
+
 .linkable:active {
   transform: var(--motion-press);
   box-shadow: none;
@@ -161,8 +165,8 @@
 }
 
 .expandable[open] .indicator {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
   transform: rotate(45deg);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);

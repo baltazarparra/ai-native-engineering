@@ -72,15 +72,15 @@
 }
 
 .filterActive {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border-color: var(--color-primary);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
+  border-color: var(--color-ink);
   transform: var(--motion-press);
   box-shadow: none;
 }
 
 .filterActive:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-ink);
   transform: var(--motion-press);
   box-shadow: none;
 }
@@ -177,6 +177,7 @@
   border: var(--border-thin);
   border-radius: var(--radius-sm);
   background-color: var(--color-accent-1);
+  color: var(--color-fg-on-yellow);
   overflow-wrap: break-word;
 }
 
@@ -200,8 +201,8 @@
 }
 
 .cardHeader[aria-expanded='true'] .indicator {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
   transform: rotate(45deg);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);

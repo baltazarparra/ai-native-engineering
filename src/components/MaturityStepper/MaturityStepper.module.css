@@ -111,7 +111,7 @@
 
 .stepActive .stepCircle {
   background-color: var(--color-accent-1);
-  color: var(--color-primary);
+  color: var(--color-fg-on-yellow);
   transform: scale(1.06);
   box-shadow: var(--shadow-sm);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
@@ -119,8 +119,8 @@
 }
 
 .stepDone .stepCircle {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);
 }

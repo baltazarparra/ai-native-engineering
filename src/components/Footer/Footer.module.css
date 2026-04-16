@@ -64,7 +64,7 @@
 
 .socialLink:hover {
   background-color: var(--color-accent-2);
-  color: var(--color-primary);
+  color: var(--color-fg-on-blue);
   box-shadow: var(--shadow-md);
   transform: var(--motion-lift-sm);
 }

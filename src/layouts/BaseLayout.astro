@@ -10,6 +10,7 @@ import {
   supportedLangs,
   ui,
 } from '../lib/i18n';
+import { themeStorageKey } from '../lib/theme';
 
 interface Props {
   title: string;
@@ -129,6 +130,26 @@ const languageRedirectScript = `
   }
 })();
 `;
+
+const themeInitScript = `
+(function () {
+  var key = ${JSON.stringify(themeStorageKey)};
+  var stored = null;
+  try {
+    stored = window.localStorage.getItem(key);
+  } catch (error) {
+    stored = null;
+  }
+  var theme =
+    stored === 'dark' || stored === 'light'
+      ? stored
+      : window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+`;
 ---
 
 <!doctype html>
@@ -136,6 +157,7 @@ const languageRedirectScript = `
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline set:html={themeInitScript} />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link

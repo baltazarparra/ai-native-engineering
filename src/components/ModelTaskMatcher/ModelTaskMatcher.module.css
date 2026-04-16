@@ -57,7 +57,7 @@
 
 .taskActive {
   background-color: var(--color-accent-2);
-  color: var(--color-white);
+  color: var(--color-fg-on-blue);
   border-color: var(--color-accent-2);
   transform: var(--motion-press);
   box-shadow: none;
@@ -188,8 +188,8 @@
 }
 
 .cardHeader[aria-expanded='true'] .indicator {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
   transform: rotate(45deg);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);
@@ -217,7 +217,7 @@
   border: var(--border-thin);
   border-radius: var(--radius-sm);
   background-color: var(--color-accent-3);
-  color: var(--color-white);
+  color: var(--color-fg-on-green);
   overflow-wrap: break-word;
 }
 

@@ -70,14 +70,14 @@
 /* primary */
 
 .primary {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
   box-shadow: var(--shadow-md);
 }
 
 .primary:hover {
   background-color: var(--color-accent-1);
-  color: var(--color-primary);
+  color: var(--color-fg-on-yellow);
   transform: var(--motion-lift-md);
   box-shadow: var(--shadow-lg);
 }
@@ -91,13 +91,14 @@
 /* secondary */
 
 .secondary {
-  background-color: var(--color-bg);
-  color: var(--color-primary);
+  background-color: var(--color-surface-raised);
+  color: var(--color-ink);
   box-shadow: var(--shadow-sm);
 }
 
 .secondary:hover {
   background-color: var(--color-accent-1);
+  color: var(--color-fg-on-yellow);
   transform: var(--motion-lift-sm);
   box-shadow: var(--shadow-md);
 }
@@ -112,7 +113,7 @@
 
 .ghost {
   background-color: transparent;
-  color: var(--color-primary);
+  color: var(--color-ink);
   border-color: transparent;
   box-shadow: none;
   text-decoration: underline;

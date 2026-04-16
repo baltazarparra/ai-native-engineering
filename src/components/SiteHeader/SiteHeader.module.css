@@ -78,7 +78,7 @@
 
 .iconLink:hover {
   background-color: var(--color-accent-2);
-  color: var(--color-primary);
+  color: var(--color-fg-on-blue);
   box-shadow: var(--shadow-md);
   transform: var(--motion-lift-sm);
 }
@@ -143,7 +143,7 @@
 
 .langLink:hover {
   background-color: var(--color-accent-1);
-  color: var(--color-primary);
+  color: var(--color-fg-on-yellow);
   transform: translateY(-1px);
 }
 
@@ -153,13 +153,13 @@
 }
 
 .active {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
 }
 
 .active:hover {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
 }
 
 .flagIcon {

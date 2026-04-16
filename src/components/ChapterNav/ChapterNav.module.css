@@ -84,15 +84,15 @@
 
 .linkCurrent .number {
   background-color: var(--color-accent-1);
-  color: var(--color-primary);
+  color: var(--color-fg-on-yellow);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);
 }
 
 .linkDone .number {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border-color: var(--color-primary);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
+  border-color: var(--color-ink);
 }
 
 .title {

@@ -22,7 +22,7 @@
   right: -2px;
   width: 3px;
   height: 100%;
-  background-color: var(--color-primary);
+  background-color: var(--color-ink);
   opacity: 0;
   transition: opacity var(--transition-fast);
 }

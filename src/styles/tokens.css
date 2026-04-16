@@ -1,18 +1,48 @@
 :root {
-  /* colors */
-  --color-bg: #faf5ee;
-  --color-bg-alt: #f0e9df;
+  color-scheme: light;
+
+  /* --- neutral surfaces (warm paper) --- */
+  --color-surface: #faf5ee;
+  --color-surface-alt: #f0e9df;
+  --color-surface-raised: #ffffff;
+
+  /* --- text --- */
   --color-text: #1a1a1a;
   --color-text-muted: #4a4a4a;
-  --color-primary: #000000;
+  --color-heading: #000000;
+
+  /* --- brutalist ink (borders, inverted blocks, shadows) --- */
+  --color-ink: #000000;
+  --color-shadow: var(--color-ink);
+  --color-fg-on-ink: var(--color-surface);
+
+  /* --- accents --- */
   --color-accent-1: #f5c518; /* yellow */
   --color-accent-2: #2952e8; /* electric blue */
   --color-accent-3: #00b34a; /* acid green */
   --color-accent-4: #ff5c5c; /* coral */
-  --color-border: #000000;
-  --color-shadow: #000000;
+
+  /* --- fixed text on colored backgrounds (same role across themes) --- */
+  --color-fg-on-yellow: #000000;
+  --color-fg-on-blue: #ffffff;
+  --color-fg-on-green: #000000;
+  --color-fg-on-coral: #000000;
+
+  /* --- code (never inverts; stays dark in both themes) --- */
+  --color-code-bg: #1a1612;
+  --color-code-fg: #f6ecd9;
+  --color-code-border: var(--color-ink);
+
+  /* --- focus --- */
   --color-focus: #2952e8;
-  --color-white: #ffffff;
+
+  /* --- legacy aliases (don't edit downstream CSS that references these) --- */
+  --color-bg: var(--color-surface);
+  --color-bg-alt: var(--color-surface-alt);
+  --color-white: var(--color-surface-raised);
+  --color-primary: var(--color-ink);
+  --color-border: var(--color-ink);
+  --color-fg-on-accent: var(--color-fg-on-blue);
 
   /* spacing */
   --space-2xs: 0.125rem;
@@ -103,4 +133,42 @@
   --z-above: 10;
   --z-sticky: 100;
   --z-overlay: 1000;
+}
+
+/* --- dark: "burnt paper / coffee" --- */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-surface: #1a1612;
+  --color-surface-alt: #221c17;
+  --color-surface-raised: #2a2420;
+
+  --color-text: #efe4d3;
+  --color-text-muted: #b1a692;
+  --color-heading: #fff6e6;
+
+  --color-ink: #f2e6d1;
+  /* shadow mirrors ink so the brutalist offset reads on dark surfaces */
+  --color-shadow: var(--color-ink);
+  /* text on inverted "ink" blocks (primary button, active tabs, skip-link) */
+  --color-fg-on-ink: var(--color-surface);
+
+  /* accents: slight luminance/saturation tweak for readability on dark */
+  --color-accent-1: #e6b82a;
+  --color-accent-2: #8da4ff;
+  --color-accent-3: #4dd07f;
+  --color-accent-4: #ff8a8a;
+
+  /* fixed text-on-accent: same semantic as light */
+  --color-fg-on-yellow: #1a1612;
+  /* accent-2 lightens in dark, so text on blue must go dark */
+  --color-fg-on-blue: #1a1612;
+  --color-fg-on-green: #0e0c0a;
+  --color-fg-on-coral: #1a1612;
+
+  /* code stays dark in both themes, just a touch deeper than the page */
+  --color-code-bg: #0f0c0a;
+  --color-code-fg: #f2e6d1;
+
+  --color-focus: #9ab0ff;
 }

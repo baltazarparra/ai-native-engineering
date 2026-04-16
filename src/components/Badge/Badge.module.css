@@ -37,20 +37,20 @@
 
 .yellow {
   background-color: var(--color-accent-1);
-  color: var(--color-primary);
+  color: var(--color-fg-on-yellow);
 }
 
 .blue {
   background-color: var(--color-accent-2);
-  color: var(--color-white);
+  color: var(--color-fg-on-blue);
 }
 
 .green {
   background-color: var(--color-accent-3);
-  color: var(--color-primary);
+  color: var(--color-fg-on-green);
 }
 
 .coral {
   background-color: var(--color-accent-4);
-  color: var(--color-primary);
+  color: var(--color-fg-on-coral);
 }

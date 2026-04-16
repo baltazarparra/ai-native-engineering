@@ -81,8 +81,8 @@
 }
 
 .toggleActive {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
   transform: translateY(1px);
 }
 
@@ -186,8 +186,8 @@
 }
 
 .cardHeader[aria-expanded='true'] .indicator {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
   transform: rotate(45deg);
   animation: var(--motion-key-scale-pop) var(--motion-normal)
     var(--ease-out-back);

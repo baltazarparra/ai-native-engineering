@@ -72,7 +72,7 @@ h6 {
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   text-wrap: balance;
-  color: var(--color-primary);
+  color: var(--color-heading);
   overflow-wrap: break-word;
   hyphens: auto;
 }
@@ -159,10 +159,17 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary);
-  background-color: var(--color-accent-1);
-  text-decoration-color: var(--color-primary);
   text-underline-offset: 5px;
+}
+
+/* brutalist yellow highlight: scoped to anchors inside prose so block-wrapping
+   links (Card.linkable, CTA anchors, etc.) don't inherit a dark text color over
+   their own dark surfaces. :where() keeps specificity at 0 so component CSS
+   Modules continue to win naturally. */
+:where(p, li, dd, blockquote, figcaption, summary) a:hover {
+  color: var(--color-fg-on-yellow);
+  background-color: var(--color-accent-1);
+  text-decoration-color: var(--color-fg-on-yellow);
 }
 
 a:active {
@@ -192,16 +199,17 @@ pre {
 }
 
 code {
-  background-color: var(--color-bg-alt);
+  background-color: var(--color-surface-alt);
   padding: var(--space-2xs) var(--space-xs);
   border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-code-border);
+  color: var(--color-text);
   overflow-wrap: anywhere;
 }
 
 pre {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background-color: var(--color-code-bg);
+  color: var(--color-code-fg);
   padding: var(--space-md);
   border: var(--border-thick);
   box-shadow: var(--shadow-md);
@@ -221,7 +229,7 @@ pre code {
 
 ::selection {
   background-color: var(--color-accent-1);
-  color: var(--color-primary);
+  color: var(--color-fg-on-yellow);
 }
 
 /* --- skip link --- */
@@ -232,8 +240,8 @@ pre code {
   left: var(--space-md);
   z-index: var(--z-overlay);
   padding: var(--space-sm) var(--space-md);
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background-color: var(--color-ink);
+  color: var(--color-fg-on-ink);
   font-family: var(--font-heading);
   font-weight: var(--weight-bold);
   font-size: var(--text-base);
