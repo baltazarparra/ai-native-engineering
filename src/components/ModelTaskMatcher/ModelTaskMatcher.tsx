@@ -117,9 +117,8 @@ const TASK_TYPES: Record<Lang, TaskType[]> = {
 
 const LABELS = {
   'pt-BR': {
-    choose: 'Escolha um tipo de tarefa pra ver quais modelos se encaixam.',
-    selected:
-      'Modelos destacados se encaixam melhor nessa tarefa. Clique em outro tipo pra comparar.',
+    choose: 'Escolha um tipo de tarefa pra ver os modelos que se encaixam.',
+    selected: 'Modelos destacados se encaixam melhor. Clique em outro tipo pra comparar.',
     taskAria: 'Tipo de tarefa',
     product: 'Produto:',
     match: 'Bom pra essa tarefa',
@@ -128,9 +127,8 @@ const LABELS = {
     bestFor: 'Melhor pra:',
   },
   en: {
-    choose: 'Choose a task type to see which models fit.',
-    selected:
-      'Highlighted models fit this task better. Pick another task to compare.',
+    choose: 'Pick a task type to see which models fit.',
+    selected: 'Highlighted models fit best. Pick another task to compare.',
     taskAria: 'Task type',
     product: 'Product:',
     match: 'Good fit for this task',

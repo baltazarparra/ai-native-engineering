@@ -5,7 +5,7 @@ lang: 'en'
 translationKey: 'ai-native-engineer'
 order: 0
 summary: 'The starting point. What changes when AI becomes part of the workflow, not just an extra tool on the side.'
-readingTime: 12
+readingTime: 9
 level: 'beginner'
 tags: ['fundamentals', 'ai-native', 'mindset']
 heroLabel: 'Starting point'
@@ -23,23 +23,21 @@ import SelfAssessment from '../../components/SelfAssessment/SelfAssessment.tsx';
 
 ## What defines an AI-Native Engineer
 
-It's not about how many tools you use. It's not about knowing more prompts. It's about how you organize the work.
+It's not about how many tools you use or how many prompts you know. It's about how you organize the work.
 
 An AI-Native Engineer treats AI as part of the workflow, not as a bonus tab on the side. That means three things:
 
-1. **Knowing what to delegate and what not to delegate**. AI is good at drafting, exploring options, and automating repetitive work. AI is bad at judging business trade-offs, reading team politics, or deciding what should not be built.
+1. **Knowing what to delegate**. AI is good at drafting, exploring options, and automating repetitive work. It's bad at business trade-offs, team politics, or deciding what not to build.
 
-2. **Having a process, not just a tool**. The difference between a developer who uses Copilot and an AI-Native Engineer is the same difference between someone who owns a hammer and someone who knows how to build a house. A tool without a process is just noise.
+2. **Having a process, not just a tool**. A tool without a process is just noise.
 
-3. **Reviewing with a sharp eye**. AI generates code that compiles, text that sounds right, and suggestions that look reasonable on the surface. The job is to look under the surface.
+3. **Reviewing with a sharp eye**. AI generates code that compiles and text that sounds right. The job is to look under the surface.
 
-This applies to devs, QA, PMs, and designers. The maturity gap isn't only technical. It's a mindset gap.
+This applies to devs, QA, PMs, and designers. The maturity gap isn't technical — it's a mindset gap.
 
 ### What changed
 
-Before AI entered the workflow, a senior developer stood out through typing speed, API memory, and years of pattern matching. Now typing speed matters less because the model types with you. API memory matters less because the model has a lot of docs-shaped knowledge. Pattern matching can be partially delegated.
-
-What became more valuable: specifying clearly, evaluating output critically, and understanding the system as a whole. In other words, thinking became more important than typing.
+Before AI, a senior dev stood out through typing speed, API memory, and pattern matching. Now the model types with you, knows the docs, and handles part of the pattern matching. What became more valuable: specifying clearly, evaluating output critically, and understanding the system as a whole. Thinking became more important than typing.
 
 ### What didn't change
 
@@ -49,19 +47,15 @@ AI amplifies what you already know. If you know very little, it amplifies confus
 
 ## Why this matters
 
-Most people in tech already use some AI tool day to day: autocomplete in the editor, chat for questions, code generation from natural language. But using a tool and operating natively with it are different things.
+Most people in tech already use some AI tool day to day — autocomplete, chat for questions, code generation from natural language. But using a tool and operating natively with it are different things.
 
-An AI-Native Engineer isn't someone who knows more magic prompts or uses more tools. It's someone who reshaped the workflow to use what AI is good at, and can spot where AI gets in the way.
-
-That matters because the difference between "using AI" and "working AI-native" is the difference between copying ChatGPT answers and building a system where agents can work inside clear constraints.
+That matters because the difference between "using AI" and "working AI-native" is the difference between copying ChatGPT answers and building a system where agents work inside clear constraints.
 
 ## Real example
 
-Imagine you need to create an authentication API. A developer who "uses AI" opens a chat, asks "create an auth API with JWT", copies the result, and pastes it into the project. Maybe it works. Maybe it doesn't.
-
 An AI-Native Engineer does it differently:
 
-1. Writes a clear spec for what is needed: endpoints, flows, constraints
+1. Writes a clear spec for what's needed: endpoints, flows, constraints
 2. Gives the spec to a coding agent with project context
 3. Reviews the output critically instead of accepting everything
 4. Uses AI to generate tests from the original spec
@@ -85,8 +79,6 @@ Watch out for these anti-patterns:
 
 ## Takeaway
 
-- AI-native isn't about using more AI. It's about integrating AI into the workflow in a structured way
-- The difference is in the process, not the tool
-- Reviewing AI output matters as much as generating it
-- Clear specs before requests produce better results
-- Start by finding where AI genuinely helps your work, not where it is trendy to use
+- Before typing a prompt, write down what you want, your constraints, and how you'll evaluate the result.
+- Find where AI genuinely helps your work — not where it's trendy to use.
+- Review all AI output as if a junior wrote it. If you can't evaluate the quality, study the fundamentals, not the tool.

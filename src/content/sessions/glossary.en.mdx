@@ -5,7 +5,7 @@ lang: 'en'
 translationKey: 'glossary'
 order: 1
 summary: 'Prompt, token, context, agent. A glossary that keeps the vocabulary useful without turning it into jargon soup.'
-readingTime: 15
+readingTime: 11
 level: 'beginner'
 tags: ['glossary', 'terminology', 'fundamentals']
 heroLabel: 'Essential vocabulary'
@@ -18,13 +18,9 @@ import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid
 
 ## If these words all sound the same
 
-LLM, model, token, prompt, context, agent, MCP, harness. If you have heard these words in a meeting and quietly pretended to follow along, this session is for you.
+LLM, model, token, prompt, context, agent, MCP, harness. If you've heard these in a meeting and quietly pretended to follow along, this session is for you.
 
-The AI vocabulary around software development grew fast. The problem isn't the number of terms. The problem is that people use the same words for different things. A PM says "model" and means the product, like ChatGPT. A developer says "model" and means the neural network behind it, like GPT-4o. Both think they're talking about the same thing. They're not.
-
-This session organizes the terms that matter in 2026. It's not a complete dictionary. It's the minimum you need to join AI conversations without getting lost.
-
-Each term has two explanations: a simple one for fast understanding, and a technical one for more depth. Read the one that fits where you are.
+The AI vocabulary around software grew fast, but the problem isn't the number of terms — it's that people use the same words for different things. A PM says "model" meaning the product (ChatGPT). A dev says "model" meaning the neural network (GPT-4o). Here's the minimum you need to join those conversations without getting lost.
 
 ## The terms that matter
 
@@ -32,75 +28,75 @@ Each term has two explanations: a simple one for fast understanding, and a techn
 
 #### LLM
 
-**Simple**: A computer program trained to read and write text. You send a question, it generates an answer.
+**Simple**: A program trained to read and write text. You send a question, it generates an answer.
 
-**Technical**: Large Language Model. A neural network with billions of parameters trained on large text corpora. It generates output token by token based on conditional probability over the input sequence.
+**Technical**: Large Language Model. A neural network with billions of parameters trained on large text corpora. Generates output token by token based on conditional probability.
 
 **Example**: When you ask ChatGPT to explain a bug, the LLM behind it processes your text and generates the answer piece by piece.
 
-**Common mistake**: Treating LLM as a synonym for ChatGPT. ChatGPT is a product. GPT-4o is an LLM inside it. Different things.
+**Common mistake**: Treating LLM as a synonym for ChatGPT. ChatGPT is a product; GPT-4o is the LLM inside it.
 
 #### Model
 
 **Simple**: The trained "brain" that processes text. Different models have different capabilities, speeds, and costs.
 
-**Technical**: The weights and architecture produced by a training process. Each model has its own profile for reasoning, speed, context window, and inference cost.
+**Technical**: The weights and architecture produced by training. Each model has its own profile for reasoning, speed, context window, and cost.
 
-**Example**: Claude Sonnet is a model. Claude is the product. You interact with the product, but the model is what generates the response.
+**Example**: Claude Sonnet is a model. Claude is the product. You interact with the product, but the model generates the response.
 
-**Common mistake**: Confusing model and product. When someone says "let's use Claude", ask whether they mean the chat product, the API, or a specific model.
+**Common mistake**: Confusing model and product. When someone says "let's use Claude", ask whether they mean the chat, the API, or a specific model.
 
 #### Inference
 
-**Simple**: The act of asking the model to generate a response. Every time you send a message and receive output, inference happened.
+**Simple**: Asking the model to generate a response. Every message you send triggers an inference.
 
-**Technical**: Running the model over an input prompt to produce a completion. It consumes compute and is usually billed by tokens in APIs.
+**Technical**: Running the model over an input prompt to produce a completion. It consumes compute and is usually billed per token.
 
 **Example**: You ask "how does async/await work in TypeScript?" and get an explanation. That generation step is inference.
 
-**Common mistake**: Assuming inference is instant and free. It costs time and money. Larger models usually cost more.
+**Common mistake**: Assuming inference is instant and free. It costs time and money — larger models cost more.
 
 #### Token
 
-**Simple**: A chunk of text the model processes. It can be a word, part of a word, or a special character.
+**Simple**: A chunk of text the model processes — a word, part of a word, or a special character.
 
-**Technical**: The atomic processing unit of an LLM. Text is split by a tokenizer. Roughly, 1 token is about 4 characters in English, though it varies.
+**Technical**: The atomic processing unit of an LLM. Text is split by a tokenizer. Roughly 1 token ≈ 4 characters in English.
 
 **Example**: A 500-line code file can be thousands of tokens. This matters because every model has token limits.
 
-**Common mistake**: Ignoring token count. If you paste a giant file and the model "forgets" the start, you probably hit the context window.
+**Common mistake**: Ignoring token count. If you paste a huge file and the model "forgets" the start, you've probably hit the context window.
 
 #### Context
 
 **Simple**: Everything the model can see when generating an answer: your message, chat history, system instructions, attached files.
 
-**Technical**: The full token sequence given to the model as input, including system prompt, conversation history, and current input. It's bounded by the context window.
+**Technical**: The full token sequence given as input, including system prompt, conversation history, and current message. Bounded by the context window.
 
-**Example**: If you ask for a code review and include three files, the context is your request plus those files. If it doesn't fit, something gets cut.
+**Example**: If you ask for a code review with three files attached, the context is your request plus those files. If it doesn't fit, something gets cut.
 
-**Common mistake**: Thinking the model remembers previous conversations. It only knows what is in the current context unless the product adds memory around it.
+**Common mistake**: Thinking the model remembers past conversations. It only knows what's in the current context.
 
 ### Working with AI
 
 #### Prompt
 
-**Simple**: The text you send to the model. It can be a question, a request, an instruction, or all of that together.
+**Simple**: The text you send to the model — question, request, instruction, or all three.
 
-**Technical**: Textual input provided to the model to generate a completion. It can include instructions, examples, constraints, and output format.
+**Technical**: Textual input provided to generate a completion. Can include instructions, examples, constraints, and output format.
 
-**Example**: Bad prompt: "make a component". Better prompt: "create a React button component with primary and secondary variants, CSS Modules, a disabled prop, and unit tests".
+**Example**: Bad prompt: "make a component". Better: "create a React button with primary/secondary variants, CSS Modules, a disabled prop, and tests".
 
-**Common mistake**: Thinking the prompt is only "the question". A prompt also includes context, constraints, examples, and expected format.
+**Common mistake**: Thinking the prompt is just "the question". It also includes context, constraints, examples, and format.
 
 #### System prompt
 
-**Simple**: Initial instructions that shape how the model should behave. Think of it as the briefing before the conversation starts.
+**Simple**: Initial instructions that shape how the model behaves — a briefing before the conversation starts.
 
-**Technical**: A message with the system role that defines behavior, tone, constraints, and capabilities for the assistant.
+**Technical**: A message with the system role that defines behavior, tone, constraints, and capabilities. Takes priority over user messages.
 
-**Example**: "You are a senior code reviewer. Point out security issues first." That shapes the rest of the interaction.
+**Example**: "You're a senior code reviewer. Point out security issues first." That shapes every response.
 
-**Common mistake**: Ignoring system instructions and then blaming the model for not understanding the job.
+**Common mistake**: Skipping system instructions and then blaming the model for not understanding the job.
 
 ### Tools and interfaces
 
@@ -108,41 +104,41 @@ Each term has two explanations: a simple one for fast understanding, and a techn
 
 **Simple**: The code editor where you write software. VS Code, Cursor, and Windsurf are examples.
 
-**Technical**: Integrated Development Environment. In the AI context, modern IDEs integrate LLMs directly into editing, chat, and code actions.
+**Technical**: Integrated Development Environment. In the AI context, modern IDEs embed LLMs directly into editing and code actions.
 
-**Example**: Cursor is an IDE with AI built in. VS Code with Copilot becomes an AI-assisted IDE through an extension.
+**Example**: Cursor has AI built in. VS Code with Copilot becomes an AI IDE through an extension.
 
-**Common mistake**: Assuming an AI IDE is automatically better than a terminal tool. They are different interfaces for different workflows.
+**Common mistake**: Assuming an AI IDE is automatically better than a terminal tool. They're different interfaces for different workflows.
 
 #### CLI
 
-**Simple**: Command-line interface. You type in the terminal and get text back. Tools like Claude Code run this way.
+**Simple**: Command-line interface. You type in the terminal, get text back. Claude Code runs this way.
 
-**Technical**: A text interface where the user interacts through commands. AI CLIs can read files, edit files, run tests, and use system tools.
+**Technical**: A text interface where you interact through commands. AI CLIs can read/edit files, run tests, and use system tools.
 
-**Example**: Instead of clicking through menus, you ask a terminal agent to review `src/api.ts`. It reads the file and responds in the terminal.
+**Example**: Instead of clicking menus, you ask a terminal agent to review `src/api.ts`. It reads the file and responds inline.
 
-**Common mistake**: Thinking CLI means "only for hardcore devs". Modern AI CLIs are conversational and much more approachable than old-school command walls.
+**Common mistake**: Thinking CLI means "only for hardcore devs". Modern AI CLIs are conversational and approachable.
 
 #### Autocomplete
 
 **Simple**: AI suggests the next piece of code while you type. Like phone autocomplete, but for code.
 
-**Technical**: Code completion powered by LLMs, using the current file, open files, and editor context to predict useful code.
+**Technical**: Code completion powered by LLMs, using the current file and open files to predict useful code in real time.
 
-**Example**: You start typing `function validate` and the tool suggests the body based on the surrounding code.
+**Example**: You start typing `function validate` and the tool suggests the full body based on surrounding code.
 
 **Common mistake**: Accepting every suggestion without reading it. Autocomplete is likely, not necessarily correct.
 
 #### Code context
 
-**Simple**: The information about your project that AI uses to understand what you are doing: open files, folder structure, types, dependencies.
+**Simple**: Project information AI uses to understand your work: open files, folder structure, types, dependencies.
 
-**Technical**: Repository information included in the model context: file tree, relevant file contents, imports, types, tests, configs.
+**Technical**: Repository information included in the model's context: file tree, relevant contents, imports, types, tests, configs.
 
-**Example**: Cursor can use imports and nearby files to suggest code that fits your project better than a generic chat answer.
+**Example**: Cursor uses imports and nearby files to suggest code that fits your project better than a generic chat answer.
 
-**Common mistake**: Assuming AI automatically knows the whole project. Every tool has limits. Large projects need context curation.
+**Common mistake**: Assuming AI knows the whole project automatically. Every tool has context limits.
 
 ### Agents and systems
 
@@ -152,51 +148,49 @@ Each term has two explanations: a simple one for fast understanding, and a techn
 
 **Technical**: A system combining an LLM, tools, and control logic to execute tasks autonomously. It plans, acts, observes, and iterates.
 
-**Example**: You ask for a refactor. The agent reads files, plans changes, edits code, runs tests, and reports back.
+**Example**: You ask for a refactor. The agent reads files, edits code, runs tests, and reports back.
 
-**Common mistake**: Confusing chatbot and agent. A chatbot responds. An agent does work through tools.
+**Common mistake**: Confusing chatbot and agent. A chatbot responds; an agent does work through tools.
 
 #### Coding agent
 
-**Simple**: An agent specialized in writing, editing, and reviewing code. It has access to your project and can make changes directly.
+**Simple**: An agent specialized in writing, editing, and reviewing code, with direct access to your project.
 
-**Technical**: An AI agent with developer tools: file read/write, terminal commands, repository navigation, test execution.
+**Technical**: An AI agent with developer tools: file read/write, terminal commands, repo navigation, test execution.
 
-**Example**: Claude Code and Codex CLI are coding agents. Cursor agent mode also works in this pattern.
+**Example**: Claude Code and Codex CLI are coding agents. Cursor's agent mode works the same way.
 
-**Common mistake**: Giving full autonomy without supervision. Coding agents are powerful, but their output still needs validation.
+**Common mistake**: Giving full autonomy without review. Output still needs validation before reaching production.
 
 #### MCP
 
-**Simple**: A standard that lets AI tools connect to external services in a clean way. Kind of like USB for AI tools.
+**Simple**: A standard that lets AI tools connect to external services cleanly. Like USB for AI.
 
-**Technical**: Model Context Protocol. An open protocol for connecting AI applications to data sources and tools through shared server interfaces.
+**Technical**: Model Context Protocol. An open protocol for connecting AI apps to data sources and tools through shared server interfaces.
 
-**Example**: An MCP server for GitHub lets compatible AI tools access issues, PRs, and repos without every tool building its own integration.
+**Example**: An MCP server for GitHub lets any compatible tool access issues, PRs, and repos without building its own integration.
 
-**Common mistake**: Treating MCP as fully settled and universal. It's useful, but the ecosystem is still evolving.
+**Common mistake**: Treating MCP as fully settled. It's useful, but the ecosystem is still evolving.
 
 #### Harness
 
-**Simple**: The complete work system around an AI agent: instructions, tools, rules, context, validation. The environment where the agent operates.
+**Simple**: The complete work system around an AI agent: instructions, tools, rules, context. The environment where it operates.
 
 **Technical**: The orchestration layer around a coding agent: system prompt, tools, project rules, persistent context, automated checks, acceptance criteria.
 
-**Example**: A harness can include `CLAUDE.md`, pre-commit checks, MCP tools, and a prompt that defines project rules.
+**Example**: A harness might include `CLAUDE.md`, pre-commit checks, MCP tools, and a prompt defining project rules.
 
-**Common mistake**: Treating harness as something you install. It's a practice you build around the work.
+**Common mistake**: Treating harness as something you install. It's a practice you build over time.
 
 ## Why this matters
 
-Shared vocabulary isn't decoration. It's communication infrastructure.
+Shared vocabulary isn't decoration — it's communication infrastructure.
 
-When a PM says "use the faster model", they might mean cheaper, lower latency, or the model they saw on social media. If the team doesn't share vocabulary, everyone interprets the request differently and the result is rework.
+When a PM says "use the faster model", they might mean cheaper, lower latency, or the one they saw on social media. Without shared vocabulary, everyone interprets differently and the result is rework.
 
-This is especially important because:
-
-- **Multidisciplinary teams make AI decisions together**. Dev, QA, PM, design. Everyone needs enough vocabulary to participate.
-- **Tools are changing fast**. What used to be autocomplete became agents. If your vocabulary is stale, your decisions get stale too.
-- **Vendors use jargon on purpose**. If you don't understand the terms, you can't evaluate what they're selling.
+- **Multidisciplinary teams decide on AI together** — dev, QA, PM, and design all need enough vocabulary to participate.
+- **Tools change fast** — what was autocomplete became agents; stale vocabulary leads to stale decisions.
+- **Vendors use jargon on purpose** — if you don't understand the terms, you can't evaluate what they're selling.
 
 ## Real example
 
@@ -204,25 +198,23 @@ A real meeting between PM, QA, and dev:
 
 **PM**: "We need AI to speed up testing."
 
-**QA**: "What kind of testing? Generate cases? Run automated tests? Analyze failures?"
+**QA**: "What kind? Generate cases? Run automated tests? Analyze failures?"
 
 **Dev**: "We can use a coding agent to generate tests from the spec, but it needs good code context. If the project has weak types, the model will guess."
 
 **PM**: "So the model needs to see our code?"
 
-**Dev**: "Yes. The code becomes context. The better organized the project, the better the output. But there are token limits, so we can't send everything all at once."
+**Dev**: "Yes. The code becomes context. The better organized the project, the better the output. But there are token limits, so we can't send everything at once."
 
 **QA**: "And if it generates tests that pass but test nothing?"
 
-**Dev**: "Exactly. The inference gives us a draft. Validation is still our job."
-
-That is what aligned vocabulary changes: the conversation becomes specific enough to act on.
+**Dev**: "Exactly. Inference gives us a draft. Validation is still our job."
 
 ## Where this breaks
 
-- **Jargon as a wall**: If you use technical terms to impress instead of communicate, you are creating a barrier. The simple definition exists for a reason.
-- **Definitions that are too rigid**: These terms are still moving. Do not treat this glossary as law.
-- **Memorizing without understanding**: Knowing that a token is an "atomic processing unit" doesn't help unless you understand why token limits and cost matter.
+- **Jargon as a wall**: Technical terms used to impress instead of communicate create barriers, not vocabulary.
+- **Definitions too rigid**: These terms are still moving. Don't treat this glossary as law.
+- **Memorizing without understanding**: Knowing the technical definition doesn't help unless you grasp why it matters in practice.
 
 ## Interactive block
 
@@ -230,9 +222,9 @@ That is what aligned vocabulary changes: the conversation becomes specific enoug
 
 ## Takeaway
 
-- Shared vocabulary is a prerequisite for effective AI collaboration
-- Each term has a simple and technical version. Use the one that fits your audience
-- Product and model are different things. ChatGPT is a product; GPT-4o is a model
-- Context is limited. The model only knows what fits in the context window
-- Agent isn't the same as chatbot. The difference is autonomy and tool access
-- These terms are evolving. Revisit them regularly
+- Shared vocabulary is a prerequisite for AI collaboration, not a nice-to-have
+- Match the explanation to the audience: simple for PMs/stakeholders, technical for devs
+- Product and model are different things — separating them avoids confusion about cost and capability
+- Context is limited; the model only knows what fits in the window
+- Agent isn't chatbot; the difference is autonomy and tool access
+- Revisit these terms regularly — meanings evolve fast

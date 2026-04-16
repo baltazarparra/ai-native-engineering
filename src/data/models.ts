@@ -20,16 +20,13 @@ export const models: ModelProfile[] = [
       'Rápido e versátil',
       'Bom em tarefas gerais e conversação',
       'Suporte a imagens e áudio',
-      'Amplamente disponível via API e produto',
     ],
     weaknesses: [
-      'Raciocínio complexo pode ser superficial',
+      'Raciocínio complexo pode ser raso',
       'Pode ser verboso demais',
-      'Custo intermediário',
     ],
     bestFor: [
       'Explorar ideias rapidamente',
-      'Gerar primeira versão de textos',
       'Tarefas conversacionais e multimodais',
     ],
   },
@@ -41,17 +38,14 @@ export const models: ModelProfile[] = [
     strengths: [
       'Raciocínio profundo e estruturado',
       'Bom em problemas complexos e multi-passo',
-      'Forte em matemática e lógica',
     ],
     weaknesses: [
       'Mais lento que GPT-4o',
       'Custo mais alto por inferência',
-      'Pode over-think tarefas simples',
     ],
     bestFor: [
       'Planejar arquitetura de sistemas',
       'Resolver problemas lógicos complexos',
-      'Análise profunda de código',
     ],
   },
   {
@@ -63,16 +57,14 @@ export const models: ModelProfile[] = [
       'Equilíbrio entre velocidade e qualidade',
       'Forte em código e instruções longas',
       'Segue instruções com precisão',
-      'Bom custo-benefício',
     ],
     weaknesses: [
-      'Pode ser conservador demais em respostas',
-      'Janela de contexto grande mas não ilimitada',
+      'Pode ser conservador demais',
+      'Contexto grande mas não ilimitado',
     ],
     bestFor: [
       'Escrever e revisar código',
       'Seguir especificações detalhadas',
-      'Tarefas do dia a dia de desenvolvimento',
     ],
   },
   {
@@ -84,16 +76,14 @@ export const models: ModelProfile[] = [
       'Raciocínio profundo e nuançado',
       'Excelente em tarefas complexas e longas',
       'Forte em análise crítica e revisão',
-      'Bom em manter coerência em contextos grandes',
     ],
     weaknesses: [
       'Mais lento e mais caro',
-      'Pode ser excessivo pra tarefas simples',
+      'Excessivo pra tarefas simples',
     ],
     bestFor: [
       'Planejar refactors grandes',
       'Revisar arquitetura',
-      'Tarefas que exigem raciocínio profundo',
     ],
   },
   {
@@ -104,8 +94,7 @@ export const models: ModelProfile[] = [
     strengths: [
       'Janela de contexto muito grande',
       'Forte em tarefas multimodais',
-      'Bom em pesquisa e síntese de informação',
-      'Integração com ecossistema Google',
+      'Bom em pesquisa e síntese',
     ],
     weaknesses: [
       'Qualidade de código pode variar',
@@ -113,8 +102,7 @@ export const models: ModelProfile[] = [
     ],
     bestFor: [
       'Analisar documentos longos',
-      'Tarefas que envolvem muitas fontes',
-      'Explorar e sintetizar informação',
+      'Tarefas com muitas fontes',
     ],
   },
   {
@@ -123,20 +111,17 @@ export const models: ModelProfile[] = [
     modelName: 'Llama 4',
     provider: 'Meta',
     strengths: [
-      'Open-weight: pode rodar localmente',
+      'Open-weight: roda local, customizável',
       'Sem custos de API',
       'Privacidade total dos dados',
-      'Customizável via fine-tuning',
     ],
     weaknesses: [
-      'Requer hardware potente pra rodar modelos grandes',
-      'Qualidade inferior aos melhores modelos proprietários',
-      'Setup mais complexo',
+      'Requer hardware potente pra rodar',
+      'Qualidade abaixo dos melhores proprietários',
     ],
     bestFor: [
       'Projetos com requisitos de privacidade',
-      'Experimentação sem custo de API',
-      'Fine-tuning pra domínios específicos',
+      'Experimentar sem custo de API',
     ],
   },
   {
@@ -148,16 +133,13 @@ export const models: ModelProfile[] = [
       'Open-weight com qualidade competitiva',
       'Forte em código e raciocínio',
       'Custo baixo via API própria',
-      'Boa alternativa open pros modelos proprietários',
     ],
     weaknesses: [
       'Ecossistema menor',
       'Menos integração com ferramentas populares',
-      'Disponibilidade pode variar por região',
     ],
     bestFor: [
-      'Geração de código com custo baixo',
-      'Alternativa open a modelos proprietários',
+      'Código com custo baixo',
       'Projetos com orçamento limitado',
     ],
   },
@@ -173,16 +155,13 @@ export const modelsEn: ModelProfile[] = [
       'Fast and versatile',
       'Good at general tasks and conversation',
       'Supports images and audio',
-      'Widely available through product and API',
     ],
     weaknesses: [
       'Complex reasoning can be shallow',
       'Can be too verbose',
-      'Medium cost',
     ],
     bestFor: [
       'Exploring ideas quickly',
-      'Drafting first versions of text',
       'Conversational and multimodal tasks',
     ],
   },
@@ -194,17 +173,14 @@ export const modelsEn: ModelProfile[] = [
     strengths: [
       'Deep and structured reasoning',
       'Good at complex multi-step problems',
-      'Strong at math and logic',
     ],
     weaknesses: [
       'Slower than GPT-4o',
       'Higher inference cost',
-      'Can overthink simple tasks',
     ],
     bestFor: [
       'Planning system architecture',
       'Solving complex logic problems',
-      'Deep code analysis',
     ],
   },
   {
@@ -213,19 +189,17 @@ export const modelsEn: ModelProfile[] = [
     modelName: 'Claude Sonnet',
     provider: 'Anthropic',
     strengths: [
-      'Strong speed and quality balance',
+      'Strong speed-quality balance',
       'Strong at code and long instructions',
       'Follows instructions precisely',
-      'Good cost-benefit profile',
     ],
     weaknesses: [
       'Can be too conservative',
-      'Large context window, but not infinite',
+      'Large context, but not infinite',
     ],
     bestFor: [
       'Writing and reviewing code',
       'Following detailed specs',
-      'Day-to-day development tasks',
     ],
   },
   {
@@ -237,13 +211,14 @@ export const modelsEn: ModelProfile[] = [
       'Deep and nuanced reasoning',
       'Excellent for long, complex tasks',
       'Strong at critical analysis and review',
-      'Good coherence across large contexts',
     ],
-    weaknesses: ['Slower and more expensive', 'Overkill for simple tasks'],
+    weaknesses: [
+      'Slower and more expensive',
+      'Overkill for simple tasks',
+    ],
     bestFor: [
       'Planning large refactors',
       'Reviewing architecture',
-      'Tasks that need deep reasoning',
     ],
   },
   {
@@ -253,9 +228,8 @@ export const modelsEn: ModelProfile[] = [
     provider: 'Google',
     strengths: [
       'Very large context window',
-      'Strong multimodal profile',
-      'Good at research and information synthesis',
-      'Integrates with the Google ecosystem',
+      'Strong multimodal capabilities',
+      'Good at research and synthesis',
     ],
     weaknesses: [
       'Code quality can vary',
@@ -263,8 +237,7 @@ export const modelsEn: ModelProfile[] = [
     ],
     bestFor: [
       'Analyzing long documents',
-      'Tasks involving many sources',
-      'Exploring and synthesizing information',
+      'Tasks with many sources',
     ],
   },
   {
@@ -273,20 +246,17 @@ export const modelsEn: ModelProfile[] = [
     modelName: 'Llama 4',
     provider: 'Meta',
     strengths: [
-      'Open-weight and can run locally',
-      'No API cost when self-hosted',
-      'Strong data privacy options',
-      'Customizable through fine-tuning',
+      'Open-weight: runs locally, customizable',
+      'No API cost self-hosted',
+      'Full data privacy',
     ],
     weaknesses: [
-      'Large models require powerful hardware',
-      'Quality below the strongest proprietary models',
-      'Setup is more complex',
+      'Requires powerful hardware',
+      'Quality below top proprietary models',
     ],
     bestFor: [
-      'Projects with privacy requirements',
-      'Experimentation without API cost',
-      'Fine-tuning for specific domains',
+      'Projects with privacy needs',
+      'Experimenting without API cost',
     ],
   },
   {
@@ -297,17 +267,14 @@ export const modelsEn: ModelProfile[] = [
     strengths: [
       'Open-weight with competitive quality',
       'Strong at code and reasoning',
-      'Low cost through its own API',
-      'Good open alternative to proprietary models',
+      'Low cost via own API',
     ],
     weaknesses: [
       'Smaller ecosystem',
       'Fewer integrations with popular tools',
-      'Availability can vary by region',
     ],
     bestFor: [
       'Low-cost code generation',
-      'Open alternative to proprietary models',
       'Budget-limited projects',
     ],
   },

@@ -5,7 +5,7 @@ lang: 'en'
 translationKey: 'how-to-operate'
 order: 5
 summary: 'Real workflows, project examples, and what changes day to day when you operate AI-native.'
-readingTime: 25
+readingTime: 18
 level: 'advanced'
 tags: ['practice', 'workflow', 'operation', 'advanced']
 heroLabel: 'In practice'
@@ -25,18 +25,14 @@ import ChecklistGenerator from '../../components/ChecklistGenerator/ChecklistGen
 
 The previous sessions explained what AI is, how models work, which tools exist, and how maturity evolves. That helps you understand the map. But understanding and operating are different things.
 
-This session is about operating. What you do before asking AI for something. What you check before accepting the result. How different profiles, dev, QA, PM, tech lead, bring AI into real work. And how to build repeatable artifacts instead of depending on luck.
-
-There is no universal recipe. What works for a senior dev in a large project is different from what works for a PM validating an idea. But the principles apply to everyone.
+There's no universal recipe. What works for a senior dev in a large project is different from what works for a PM validating an idea. But the principles apply to everyone.
 
 ## Why this matters
 
-Knowing models exist without knowing how to ask is like having a map and not knowing how to walk. Knowing agents are powerful without knowing how to validate output is like having a car and not knowing how to brake.
-
 Most AI frustration comes from two places:
 
-1. **Bad input**: the request was vague, so the answer was generic. That's not just the model's fault. It's a specification problem.
-2. **Missing validation**: the output was accepted without checking, and the issue appeared in production. That's not just the tool's fault. It's a process problem.
+1. **Bad input**: the request was vague, so the answer was generic. That's not the model's fault. It's a specification problem.
+2. **Missing validation**: the output was accepted without checking, and the issue appeared in production. That's not the tool's fault. It's a process problem.
 
 This session attacks both: what to do before asking, and what to do before accepting.
 
@@ -50,8 +46,6 @@ Not what you want AI to do. What final outcome do you need?
 
 "Generate a modal component" isn't a useful goal. "I need a confirmation modal shown when a user tries to delete an account, with cancel and confirm actions, and background scroll locked" is a goal.
 
-The second version gives the model enough information to generate something useful. The first creates a generic modal you will need to adapt.
-
 ### 2. What is the context?
 
 What does the model need to know beyond the request?
@@ -60,8 +54,6 @@ What does the model need to know beyond the request?
 - Which framework or library are we using?
 - Which team conventions matter?
 - Is there something similar in the project that should be used as reference?
-
-More relevant context usually improves output. Relevant is the key word. Sending 50 files doesn't help if 45 are noise.
 
 ### 3. What are the constraints?
 
@@ -72,7 +64,7 @@ What should the model not do?
 - "Do not change the public interface of this module"
 - "Use CSS Modules, not Tailwind"
 
-Constraints prevent the model from making decisions you will need to undo later.
+Constraints prevent the model from making decisions you'll need to undo later.
 
 ### 4. What output format do you expect?
 
@@ -83,15 +75,13 @@ How should the result come back?
 - With explanation or only code?
 - Folder structure or everything in one file?
 
-Models are good at following format when you specify it. If you don't specify it, they choose for you.
-
 ## Before accepting: the validation checklist
 
 The model generated something. Before accepting, check it.
 
 ### Do tests pass?
 
-If the project has tests, run them. If the model generated tests, read the tests before trusting them. A test that passes but tests nothing is worse than no test because it creates fake confidence.
+If the project has tests, run them. If the model generated tests, read them first — a test that passes but tests nothing creates fake confidence.
 
 ### Do types pass?
 
@@ -99,13 +89,11 @@ Run typecheck. AI can generate code that looks right but only fails at compile t
 
 ### Does lint pass?
 
-AI can generate working code that ignores project conventions. Lint catches things like import order, naming, and style rules.
+Lint catches what AI ignores: import order, naming, and style rules.
 
 ### Did you read the code?
 
-Not skimmed. Read. Every line you didn't read can hide a bug, security issue, or design decision that doesn't fit your context.
-
-This doesn't need to take half an hour. For a 50-line component, two minutes of focused reading can be enough. The point isn't accepting on autopilot.
+Not skimmed. Read. Every unread line can hide a bug, security issue, or design decision that doesn't fit your context. For a 50-line component, two minutes is enough.
 
 ### Does it solve the original problem?
 
@@ -120,36 +108,22 @@ Compare the output with the original goal. The model can generate something tech
 **How she operates**:
 
 1. Writes a draft spec with the requirements she knows
-2. Sends it to the model: "Review this spec and point out gaps. Which edge cases did I miss? What questions will devs ask?"
-3. The model flags missing details: OS-level notification settings, retry behavior, notification priority
-4. Beatriz updates the spec and sends it to the team
+2. Sends it to the model: "Review this spec and point out gaps. Which edge cases did I miss?"
+3. The model flags missing details: OS-level settings, retry behavior, notification priority
+4. Updates the spec and sends it to the team
 
-**What she doesn't do**: ask the model to write the whole spec from zero. The domain understanding comes from her. The model helps find holes.
-
-### QA: using AI to generate test scenarios
-
-**Situation**: Marina is QA and needs test scenarios for a payments API.
-
-**How she operates**:
-
-1. Gets the API spec: endpoints, payloads, error codes
-2. Asks the model to generate Gherkin scenarios for success, errors, and edge cases
-3. Reviews the generated scenarios: some are useful, some redundant, some irrelevant
-4. Adjusts the list and adds scenarios the model missed because they depend on internal context
-
-**What she doesn't do**: accept all scenarios blindly. The model is good at volume. She is good at relevance.
+**What she doesn't do**: ask the model to write the spec from zero. The domain knowledge is hers; the model finds holes.
 
 ### Junior dev: learning and implementing
 
-**Situation**: Lucas is a junior dev implementing pagination in an API he has never touched.
+**Situation**: Lucas is a junior dev implementing pagination in an API he's never touched.
 
 **How he operates**:
 
 1. Reads the existing API code first
 2. Asks the model to explain cursor pagination versus offset/limit
-3. Understands the trade-offs and chooses cursor-based pagination
-4. Asks the model to implement it using existing project types
-5. Reviews the code, runs tests, and adjusts what doesn't match team conventions
+3. Chooses cursor-based and asks for the implementation using existing project types
+4. Reviews the code, runs tests, and adjusts what doesn't match team conventions
 
 **What he doesn't do**: ask "make pagination" before understanding the concept.
 
@@ -161,23 +135,10 @@ Compare the output with the original goal. The model can generate something tech
 
 1. Migrates the first controller manually to define the pattern
 2. Writes a rules file describing the migration conventions
-3. Uses a coding agent to migrate the remaining controllers one by one
-4. Reviews diffs and validates tests
+3. Uses a coding agent to migrate the remaining controllers one by one, validating tests each time
+4. Reviews diffs: did the agent follow the pattern? Do tests pass?
 
 **What he doesn't do**: say "migrate everything" without defining the pattern first.
-
-### Tech lead: standardizing and scaling
-
-**Situation**: Pedro wants the team to work AI-native in a consistent way.
-
-**How he operates**:
-
-1. Creates a project rules file with coding conventions, test patterns, architecture, and what to avoid
-2. Documents common workflows, like creating endpoints or adding components
-3. Sets up automated validation: pre-commit checks, CI, typecheck, lint
-4. Reviews PRs for design decisions instead of formatting
-
-**What he doesn't do**: control which tool every developer uses. He defines project-level standards and validation. Tools can vary; output quality can't.
 
 ## Building repeatable artifacts
 
@@ -185,37 +146,27 @@ What separates "using AI sometimes" from "operating AI-native" is having artifac
 
 ### Rules files
 
-Files that tell the agent how to operate in the project. `CLAUDE.md` for Claude Code, Cursor rules files (like files in `.cursor/rules/`), and similar project instructions. They contain conventions, patterns, constraints, and things to avoid.
-
-A good rules file is specific and short. "Use TypeScript strict mode. CSS Modules, not Tailwind. Tests with Vitest. Components in PascalCase." Bad: "write good code".
+Files that tell the agent how to operate in the project (`CLAUDE.md`, `.cursor/rules/`). A good rules file is specific and short: "TypeScript strict. CSS Modules. Tests with Vitest. Components in PascalCase."
 
 ### Prompt templates
 
-Prompts you reuse for common situations:
-
-- "Given this endpoint spec, generate tests in this format"
-- "Review this PR focusing on security, performance, and readability"
-- "Explain this module in three paragraphs for someone new to the project"
-
-Templates aren't rigid. They're starting points.
+Reusable prompts for common situations: generating tests from specs, reviewing PRs for security and performance, explaining modules to newcomers. They're starting points, not rigid scripts.
 
 ### Validation checklists
 
-The "before accepting" checklist can live in the repo, in the PR template, or in CI steps. The important part is that it exists and people actually use it.
+The "before accepting" checklist can live in the repo, in the PR template, or in CI steps. The important part is that it exists and people use it.
 
 ### Validation scripts
 
-Commands that automate checks: `npm run typecheck && npm run lint && npm run test`. A pre-commit hook can run them. CI can block merges. The more automated, the less it depends on human discipline.
+Commands that automate checks: `npm run typecheck && npm run lint && npm run test`. Pre-commit hooks and CI that block merges make the process less dependent on discipline.
 
 ## Where this breaks
 
-- **Checklists as bureaucracy**. If the checklist becomes a ritual you fill without thinking, it lost the point.
+- **Checklists as bureaucracy**. If the checklist becomes a ritual you fill without thinking, it's lost the point.
 
-- **Skipping validation when rushed**. "I know it is fine, no need to run tests" is how many production bugs are born.
+- **Skipping validation when rushed**. "I know it's fine, no need to run tests" is how many production bugs are born.
 
-- **One-size-fits-all workflows**. A senior dev's workflow isn't a PM's workflow. Principles are shared; execution is different.
-
-- **Automating too early**. If you don't know the right process yet, automation freezes the wrong process. Do it manually, find the pattern, then automate.
+- **Automating too early**. If you don't know the right process yet, automation freezes the wrong one. Do it manually, find the pattern, then automate.
 
 ## Interactive block
 
@@ -225,7 +176,5 @@ Commands that automate checks: `npm run typecheck && npm run lint && npm run tes
 
 - Before asking: define goal, context, constraints, and format
 - Before accepting: run tests, typecheck, lint, and read the code
-- Different profiles operate differently. PMs refine specs, QA generates scenarios, devs implement, tech leads standardize
-- Repeatable artifacts make the process consistent
-- Project-level standards matter more than individual tools
-- Do not automate before understanding the process. Manual first, then pattern, then automation
+- Start with a rules file for your project — highest return on effort
+- Manual first, then pattern, then automation — in that order

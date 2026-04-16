@@ -19,7 +19,6 @@ const PHASES: Phase[] = [
       'Você abre um chat de IA (ChatGPT, Claude, Gemini) e faz perguntas. Copia a resposta e cola no seu trabalho. A IA funciona como um Google melhorado.',
     whereFits: [
       'Dúvidas rápidas sobre APIs e sintaxe',
-      'Gerar snippets simples pra adaptar',
       'Explorar ideias antes de implementar',
       'PM pedindo resumo de documento técnico',
     ],
@@ -37,9 +36,8 @@ const PHASES: Phase[] = [
     description:
       'Você instala uma extensão de IA no editor (Copilot, Cursor, Windsurf) e ela sugere código enquanto você digita. A IA vem até você, no contexto do que você está escrevendo.',
     whereFits: [
-      'Completar funções que seguem padrões claros',
-      'Escrever testes unitários simples',
-      'Gerar boilerplate (forms, handlers)',
+      'Completar funções com padrões claros',
+      'Gerar boilerplate e testes simples',
       'Descobrir APIs enquanto digita',
     ],
     whereBreaks: [
@@ -56,8 +54,7 @@ const PHASES: Phase[] = [
     description:
       'Você descreve o que quer em texto natural e a IA gera blocos inteiros de código. Em vez de digitar linha por linha, você diz o que precisa e a IA escreve.',
     whereFits: [
-      'Protótipos rápidos que não vão pra produção',
-      'MVPs onde velocidade importa mais que qualidade',
+      'Protótipos e MVPs onde velocidade importa mais',
       'Explorar abordagens antes de escolher',
       'PM ou designer criando protótipos funcionais',
     ],
@@ -76,8 +73,7 @@ const PHASES: Phase[] = [
       'Você escreve uma especificação antes de pedir qualquer coisa pra IA. A spec define endpoints, tipos, restrições, comportamentos. O output é validado contra a spec, não contra a "vibe".',
     whereFits: [
       'Features com complexidade real',
-      'Times com múltiplas pessoas no mesmo módulo',
-      'Projetos com revisão crítica (compliance, segurança)',
+      'Times compartilhando módulos ou com revisão crítica',
       'QA gerando cenários de teste a partir de specs',
     ],
     whereBreaks: [
@@ -94,8 +90,7 @@ const PHASES: Phase[] = [
     description:
       'Você constrói um sistema completo pro agente: instruções persistentes, ferramentas configuradas, validação automática, critérios de aceite. O agente opera dentro do sistema com autonomia controlada.',
     whereFits: [
-      'Projetos grandes com convenções estabelecidas',
-      'Times com testes, lint e CI funcionando',
+      'Projetos grandes com testes, lint e CI',
       'Refactors de grande escala',
       'Workflows repetíveis executados com frequência',
     ],
@@ -118,7 +113,6 @@ const PHASES_BY_LANG: Record<Lang, Phase[]> = {
         'You open an AI chat and ask questions. You copy the answer into your work. AI works like a better search engine.',
       whereFits: [
         'Quick questions about APIs and syntax',
-        'Simple snippets you will adapt',
         'Exploring ideas before implementation',
         'PM summarizing a technical document',
       ],
@@ -137,8 +131,7 @@ const PHASES_BY_LANG: Record<Lang, Phase[]> = {
         'You use an AI extension or AI IDE and it suggests code while you type. AI comes to you inside the file context.',
       whereFits: [
         'Completing functions with clear patterns',
-        'Writing simple unit tests',
-        'Generating boilerplate',
+        'Generating boilerplate and simple tests',
         'Discovering APIs while typing',
       ],
       whereBreaks: [
@@ -155,8 +148,7 @@ const PHASES_BY_LANG: Record<Lang, Phase[]> = {
       description:
         'You describe what you want in natural language and AI generates whole blocks of code. You guide the outcome instead of typing every line.',
       whereFits: [
-        'Quick prototypes that won\'t go to production',
-        'MVPs where speed matters more than quality',
+        'Prototypes and MVPs where speed matters most',
         'Exploring approaches before choosing one',
         'PMs or designers creating functional prototypes',
       ],
@@ -175,8 +167,7 @@ const PHASES_BY_LANG: Record<Lang, Phase[]> = {
         'You write a spec before asking AI to implement. The spec defines endpoints, types, constraints, behavior, and edge cases.',
       whereFits: [
         'Features with real complexity',
-        'Teams sharing work in the same module',
-        'Projects with critical review needs',
+        'Teams sharing modules or needing critical review',
         'QA generating scenarios from specs',
       ],
       whereBreaks: [
@@ -193,8 +184,7 @@ const PHASES_BY_LANG: Record<Lang, Phase[]> = {
       description:
         'You build a full system around the agent: persistent instructions, configured tools, automated validation, and acceptance criteria.',
       whereFits: [
-        'Large projects with established conventions',
-        'Teams with tests, lint, and CI working',
+        'Large projects with tests, lint, and CI',
         'Large-scale refactors',
         'Repeated workflows executed often',
       ],

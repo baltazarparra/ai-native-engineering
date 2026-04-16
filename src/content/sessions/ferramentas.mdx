@@ -5,7 +5,7 @@ lang: 'pt-BR'
 translationKey: 'tools'
 order: 2
 summary: 'Cursor, Windsurf, GitHub Copilot, Claude Code. O que cada ferramenta faz, onde brilha e onde tropeça.'
-readingTime: 18
+readingTime: 14
 level: 'beginner'
 tags: ['ferramentas', 'ide', 'cli', 'comparativo']
 heroLabel: 'Mapa de ferramentas'
@@ -18,15 +18,13 @@ import ToolComparison from '../../components/ToolComparison/ToolComparison.tsx';
 
 ## Três categorias, não uma lista infinita
 
-Toda semana aparece uma ferramenta nova de IA pra desenvolvimento. Se você tentar acompanhar todas, vai gastar mais tempo avaliando ferramentas do que escrevendo código.
-
 Em vez de listar tudo que existe, é mais útil pensar em três categorias:
 
-1. **IDEs com IA integrada**: editores de código que embutem IA na interface de edição. Você continua escrevendo código no editor, mas a IA sugere, edita e conversa com você ali dentro. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot.
+1. **IDEs com IA integrada**: editores de código que embutem IA na interface de edição. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot.
 
-2. **CLIs de IA**: ferramentas de linha de comando que operam no terminal. Você descreve o que quer em texto, a ferramenta lê seus arquivos, executa comandos e faz mudanças diretamente. Exemplos: Claude Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+2. **CLIs de IA**: ferramentas de linha de comando que leem seus arquivos, executam comandos e fazem mudanças diretamente. Exemplos: Claude Code, Codex CLI, OpenCode, GitHub Copilot CLI.
 
-3. **Agentes autônomos**: a diferença pra CLIs é o nível de autonomia. Um CLI pode ler e editar arquivos. Um agente planeja, executa, testa, itera e decide próximos passos sozinho. Algumas CLIs operam como agentes (Claude Code, Codex CLI em modo autônomo). A linha entre CLI e agente está ficando borrada.
+3. **Agentes autônomos**: diferente de CLIs pelo nível de autonomia — planejam, executam, testam e decidem próximos passos sozinhos. A linha entre CLI e agente está ficando borrada.
 
 A categoria certa depende de como você trabalha, não de qual ferramenta é "melhor".
 
@@ -34,21 +32,19 @@ A categoria certa depende de como você trabalha, não de qual ferramenta é "me
 
 Escolher ferramenta por hype é o jeito mais rápido de se frustrar. A ferramenta certa é a que reduz fricção no seu workflow específico.
 
-Um dev júnior que está aprendendo React provavelmente se beneficia mais de uma IDE com IA integrada (autocomplete, explicações inline, sugestões contextuais). Um dev sênior que está fazendo um refactor de 50 arquivos provavelmente quer um agente de código no terminal. Um QA que precisa gerar cenários de teste pode usar tanto um quanto outro.
-
 A questão não é "qual é a melhor ferramenta". É "qual ferramenta reduz mais fricção pra tarefa que eu estou fazendo agora".
 
 ## Exemplo aplicado
 
 Time de 4 pessoas trabalhando no mesmo projeto:
 
-**Dev júnior (Ana)** usa Cursor. Ela está aprendendo os padrões do projeto e o autocomplete ajuda a descobrir como as coisas funcionam. O chat inline responde dúvidas sem sair do editor. O modo agente ajuda quando ela precisa implementar algo mais complexo.
+**Dev júnior (Ana)** usa Cursor. O autocomplete e o chat inline ajudam a aprender os padrões do projeto sem sair do editor.
 
-**Dev sênior (Carlos)** usa Claude Code no terminal. Ele prefere trabalhar com múltiplos arquivos ao mesmo tempo, rodar testes automaticamente e fazer refactors que tocam muitos módulos. O terminal dá acesso direto a git, testes e lint sem trocar de janela.
+**Dev sênior (Carlos)** usa Claude Code no terminal. Prefere trabalhar com múltiplos arquivos, rodando testes e fazendo refactors com acesso direto a git e lint.
 
-**QA (Marina)** usa GitHub Copilot no VS Code. Ela já conhece bem o VS Code e não quer trocar de editor. O autocomplete ajuda a escrever testes mais rápido. O chat do Copilot ajuda a entender trechos de código quando ela precisa revisar.
+**QA (Marina)** usa GitHub Copilot no VS Code. Já conhece o editor e o autocomplete ajuda a escrever testes mais rápido.
 
-**Tech lead (Pedro)** usa Claude Code pra tarefas grandes (planejar refactors, revisar arquitetura) e Cursor pra edições rápidas. Ele troca de ferramenta conforme a tarefa.
+**Tech lead (Pedro)** usa Claude Code pra tarefas grandes e Cursor pra edições rápidas. Troca de ferramenta conforme a tarefa.
 
 Nenhum deles está errado. Cada um escolheu pela fricção do próprio workflow.
 
@@ -67,15 +63,13 @@ O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso 
 **Onde brilha**:
 
 - IA embutida na interface de edição, não é plugin
-- Bom contexto de código automático
 - Chat inline e edição com diff visual
 - Modo agente pra tarefas maiores
 
 **Onde tropeça**:
 
-- Custo da assinatura pode não compensar pra todos os perfis — mas isso não é defeito da ferramenta, é como qualquer SaaS funciona
+- Custo da assinatura pode não compensar pra todos os perfis
 - Dependência do ecossistema VS Code
-- Sugestões podem ser aceitas sem revisão (o risco é humano, não da ferramenta)
 
 ### Windsurf
 
@@ -88,12 +82,11 @@ O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso 
 **Onde brilha**:
 
 - Interface limpa com IA integrada
-- Fluxos de trabalho assistidos
 - Boa experiência de onboarding pra quem tá começando
 
 **Onde tropeça**:
 
-- Ecossistema menor que Cursor — natural pra quem chegou depois, e tende a crescer
+- Ecossistema menor que Cursor
 - Menos extensões e integração com ferramentas de terceiros
 
 ### GitHub Copilot
@@ -108,12 +101,10 @@ O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso 
 
 - Integra com qualquer editor popular
 - Autocomplete muito rápido
-- Chat embutido pra perguntas rápidas
 - Fácil de adotar em times grandes (licença corporativa)
 
 **Onde tropeça**:
 
-- Autocomplete pode virar muleta se você aceita tudo — mas a disciplina de revisar é sua, não do Copilot
 - Sugestões nem sempre consideram o contexto completo do projeto
 - Aceitar sem ler é o risco número um
 
@@ -129,14 +120,12 @@ O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso 
 
 - Opera diretamente no sistema de arquivos
 - Planeja antes de executar
-- Acesso a ferramentas do sistema (git, testes, lint)
 - Bom pra refactors grandes e tarefas multi-arquivo
 
 **Onde tropeça**:
 
-- Curva de entrada pra quem não usa terminal — mas conforto com terminal é um investimento que vale a pena
+- Curva de entrada pra quem não usa terminal
 - Precisa de supervisão em operações destrutivas
-- Contexto depende de como você estrutura o projeto (CLAUDE.md, rules files)
 
 ### Codex CLI
 
@@ -150,11 +139,10 @@ O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso 
 
 - Integra com ecossistema OpenAI
 - Acesso ao terminal e sistema de arquivos
-- Modelo configurável
 
 **Onde tropeça**:
 
-- Ecossistema ainda em evolução — o que hoje é limitação amanhã pode ser diferencial
+- Ecossistema ainda em evolução
 - Depende de API key e custos de uso
 
 ### OpenCode
@@ -169,13 +157,11 @@ O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso 
 
 - Open source e transparente
 - Configurável com diferentes provedores de modelo
-- Transparência total no que a ferramenta faz
 
 **Onde tropeça**:
 
 - Comunidade menor
-- Menos polish que alternativas comerciais — é o tradeoff clássico do open source: mais controle, menos conveniência
-- Documentação pode ser mais escassa
+- Menos polish que alternativas comerciais
 
 ### GitHub Copilot CLI
 
@@ -188,23 +174,20 @@ O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso 
 **Onde brilha**:
 
 - Integrado com ecossistema GitHub
-- Bom pra descobrir comandos de terminal
 - Baixa fricção pra quem já usa gh
 
 **Onde tropeça**:
 
-- Escopo mais limitado que agentes completos — mas isso é intencional, não é defeito
+- Escopo mais limitado que agentes completos
 - Focado em comandos, não em projetos inteiros
 
 ## Onde isso quebra
 
-- **Síndrome da troca infinita**: Experimentar ferramentas é saudável. Trocar de ferramenta toda semana é procrastinação disfarçada de produtividade. Escolha uma, use por duas semanas, depois avalie.
+- **Síndrome da troca infinita**: Experimentar ferramentas é saudável. Trocar toda semana é procrastinação disfarçada de produtividade. Escolha uma, use por duas semanas, depois avalie.
 
-- **Pensamento de ferramenta única**: "Eu uso Cursor, então não preciso de terminal." Ou "Eu uso Claude Code, então não preciso de IDE." Ferramentas são complementares. A maioria dos profissionais experientes usa mais de uma.
+- **Pensamento de ferramenta única**: "Eu uso Cursor, então não preciso de terminal." Ferramentas são complementares. A maioria dos profissionais experientes usa mais de uma.
 
-- **Ferramenta não é método**: Ter a melhor IDE com IA não substitui saber o que pedir. Se você não sabe especificar o que quer, nenhuma ferramenta vai adivinhar. A ferramenta executa, você direciona.
-
-- **Confiar demais no autocomplete**: Autocomplete é otimizado pra parecer correto, não pra estar correto. Cada sugestão aceita sem ler é um bug em potencial que você vai descobrir em produção.
+- **Ferramenta não é método**: Ter a melhor IDE com IA não substitui saber o que pedir. A ferramenta executa, você direciona.
 
 ## Bloco interativo
 
@@ -212,7 +195,7 @@ O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso 
 
 ## O que levar daqui
 
-- Escolha a ferramenta pela fricção que ela elimina no seu workflow — não pelo hype ou pela novidade
-- Use mais de uma ferramenta: IDE pra edição contextual, terminal pra tarefas grandes. Combine conforme a tarefa
-- Invista em saber especificar o que você quer. Especificação clara importa mais do que a ferramenta
-- Trate toda sugestão como rascunho: leia, entenda e revise antes de aceitar. Esse mapa é de abril de 2026 — revise periodicamente
+- Escolha pela fricção que a ferramenta elimina no seu workflow, não pelo hype
+- Use mais de uma ferramenta: IDE pra edição contextual, terminal pra tarefas grandes
+- Especificação clara importa mais do que a ferramenta
+- Trate toda sugestão como rascunho — este mapa é de abril de 2026, revise periodicamente

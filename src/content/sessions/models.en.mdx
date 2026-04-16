@@ -5,7 +5,7 @@ lang: 'en'
 translationKey: 'models'
 order: 3
 summary: 'GPT, Claude, Gemini, Llama. How they work at a useful level, what makes them different, and how to choose.'
-readingTime: 20
+readingTime: 15
 level: 'intermediate'
 tags: ['llm', 'models', 'gpt', 'claude', 'gemini']
 heroLabel: 'Understanding models'
@@ -26,13 +26,7 @@ import ModelTaskMatcher from '../../components/ModelTaskMatcher/ModelTaskMatcher
 
 This is the number one confusion. It costs time and leads to bad decisions.
 
-**ChatGPT** is a product. You open it in the browser, type a question, and get an answer. Inside, ChatGPT uses models such as GPT-4o or o3. When OpenAI releases a new model, the product can stay the same while the "brain" changes.
-
-**Claude** is a product. Inside, it uses models such as Sonnet, Opus, and Haiku. Each has a different profile for speed, cost, and capability.
-
-**Gemini** is a Google product. Inside, it uses models such as Gemini 2.5 Pro.
-
-Why does this matter? Because when someone says "let's use ChatGPT", it's not clear whether they mean the free product, the paid API, GPT-4o, or o3, which may be slower but better at reasoning. Those are different things with different costs and capabilities.
+**ChatGPT** is a product. You open it in the browser, type a question, and get an answer. Inside, ChatGPT uses models like GPT-4o or o3. When OpenAI releases a new model, the product stays the same while the "brain" changes. The same logic applies to **Claude** (Sonnet, Opus, Haiku) and **Gemini** (Gemini 2.5 Pro).
 
 Simple rule: **product is where you interact. Model is what generates the answer.**
 
@@ -42,35 +36,23 @@ You don't need neural-network math to work with LLMs. But four concepts change h
 
 ### Training
 
-Models are trained on huge volumes of text: books, articles, code, web pages. During training, the model learns statistical patterns about how words and tokens relate to each other. It doesn't "understand" text the way a human does. It calculates which token is likely to come next.
-
-That explains why models are good at generating text that looks right, and why they sometimes generate something plausible but wrong. They optimize for likely, not true.
+Models are trained on huge volumes of text: books, articles, code, web pages. The model learns statistical patterns — it calculates which token is likely to come next. That's why models generate text that looks right but is sometimes plausible and wrong: they optimize for likely, not true.
 
 ### Tokens and context window
 
-The model doesn't read text like you do. It splits everything into tokens and processes those tokens. Each model has a limit for how many tokens it can process at once. That limit is the context window.
-
-If you send a 10,000-line file and the context window only fits 5,000 lines, something gets cut. That's not a bug. It's a physical limit of the model.
-
-In 2026, context windows range from around 128K tokens to 1M+ tokens in some models. That sounds huge, but a medium software project can contain millions of tokens. You still need to choose what goes into context.
+The model splits text into tokens and processes them one at a time. Each model has a limit for how many tokens it can handle at once — the context window. In 2026, windows range from ~128K to ~1M+ tokens, but a medium software project can contain millions. You still need to choose what goes into context.
 
 ### Inference and cost
 
-Every time you send a message and receive an answer, that is inference. Inference consumes compute, which becomes cost in APIs.
-
-Cost is usually calculated by tokens: input plus output. Larger, more capable models cost more. A fast cheap model may be better for simple tasks. An expensive model may be worth it for complex reasoning.
-
-"Use the best model for everything" can cost 10x more than "use the right model for each task".
+Every message sent and answer received is an inference, and each inference costs money via APIs. Larger models cost more per token. "Use the best model for everything" can cost 10x more than "use the right model for each task".
 
 ### Real limitations
 
-Models don't know what they don't know. They generate answers even when they lack enough information. That is hallucination: invented information that sounds correct.
-
-Models also have a knowledge cutoff. If you ask about a library released yesterday, the model may invent based on patterns instead of facts.
+Models don't know what they don't know — they generate answers even without enough information. That's hallucination. Models also have a knowledge cutoff: ask about something released yesterday and the model may invent an answer based on patterns, not facts.
 
 ## Profiles by task, not rankings
 
-There is no single best model. There is the right model for the task. Think in profiles:
+There's no single best model. There's the right model for the task. Think in profiles:
 
 ### GPT-4o (OpenAI)
 
@@ -78,9 +60,9 @@ There is no single best model. There is the right model for the task. Think in p
 
 **Profile**: Fast and versatile. Good at general tasks, conversation, and multimodal work.
 
-**Best for**: Exploring ideas quickly, drafting text, conversational and multimodal tasks.
+**Best for**: Exploring ideas quickly, conversational and multimodal tasks.
 
-**Limitations**: Deep reasoning can be shallow. Can be too verbose. Medium cost.
+**Limitations**: Deep reasoning can be shallow. Medium cost.
 
 ### o3 (OpenAI)
 
@@ -88,9 +70,9 @@ There is no single best model. There is the right model for the task. Think in p
 
 **Profile**: Deep, structured reasoning for complex multi-step problems.
 
-**Best for**: Planning system architecture, solving logic-heavy problems, deep code analysis.
+**Best for**: Planning system architecture, deep code analysis.
 
-**Limitations**: Slower than GPT-4o. Higher inference cost. Can overthink simple tasks.
+**Limitations**: Slower and more expensive than GPT-4o. Can overthink simple tasks.
 
 ### Claude Sonnet (Anthropic)
 
@@ -98,7 +80,7 @@ There is no single best model. There is the right model for the task. Think in p
 
 **Profile**: Strong balance of speed and quality. Strong at code and long instructions.
 
-**Best for**: Writing and reviewing code, following detailed specs, day-to-day development tasks.
+**Best for**: Writing and reviewing code, following detailed specs.
 
 **Limitations**: Can be conservative. Large context, but not infinite.
 
@@ -108,7 +90,7 @@ There is no single best model. There is the right model for the task. Think in p
 
 **Profile**: Deep, nuanced reasoning. Strong for long and complex tasks.
 
-**Best for**: Planning large refactors, reviewing architecture, work that needs deeper reasoning.
+**Best for**: Planning large refactors, reviewing architecture.
 
 **Limitations**: Slower and more expensive. Too much for simple tasks.
 
@@ -118,7 +100,7 @@ There is no single best model. There is the right model for the task. Think in p
 
 **Profile**: Very large context window. Strong multimodal and research profile.
 
-**Best for**: Analyzing long documents, working across many sources, exploring and synthesizing information.
+**Best for**: Analyzing long documents, exploring and synthesizing information.
 
 **Limitations**: Code quality can vary. Less predictable with complex instructions.
 
@@ -128,9 +110,9 @@ There is no single best model. There is the right model for the task. Think in p
 
 **Profile**: Open-weight. Can run locally without depending on an external API.
 
-**Best for**: Privacy-sensitive projects, experimentation without API cost, domain fine-tuning.
+**Best for**: Privacy-sensitive projects, domain fine-tuning.
 
-**Limitations**: Requires strong hardware for large models. Lower quality than the best proprietary models. Setup is harder.
+**Limitations**: Requires strong hardware. Lower quality than the best proprietary models.
 
 ### DeepSeek V3 (DeepSeek)
 
@@ -138,39 +120,29 @@ There is no single best model. There is the right model for the task. Think in p
 
 **Profile**: Open-weight with competitive quality. Strong at code and reasoning.
 
-**Best for**: Lower-cost code generation, open alternatives to proprietary models, budget-limited projects.
+**Best for**: Lower-cost code generation, budget-limited projects.
 
-**Limitations**: Smaller ecosystem. Fewer integrations with popular tools. Availability can vary by region.
+**Limitations**: Smaller ecosystem. Availability can vary by region.
 
 ## Why this matters
 
-Understanding models isn't about becoming an AI specialist. It's about making informed decisions.
-
-If you are a PM choosing a tool for the team, you need to know that behind each product there is a model with a profile, cost, and limitation.
-
-If you are a developer choosing between o3 and GPT-4o for a task, you need to know that o3 may be better for reasoning, but too expensive for simple autocomplete-style work.
-
-If you are QA generating tests, you need to know that a model can produce tests that pass but test nothing useful, because it optimizes for plausible output.
-
-Model literacy is the difference between using AI in the dark and using AI on purpose.
+Understanding models isn't about becoming an AI specialist. It's about making informed decisions — knowing which model is behind the tool, what it costs, and where it fails. Model literacy is the difference between using AI in the dark and using AI on purpose.
 
 ## Real example
 
 Same project, three tasks, three models:
 
-**Task 1: Explore a feature idea**. The PM wants to know whether webhook support makes sense. They use GPT-4o in ChatGPT for a quick conversation about trade-offs, alternatives, and complexity. Fast, cheap, good for exploration.
+**Task 1: Explore a feature idea**. The PM uses GPT-4o in ChatGPT for a quick conversation about webhook trade-offs and complexity. Fast, cheap, good for exploration.
 
-**Task 2: Plan the implementation**. The tech lead decides it is worth doing. They use Claude Opus to analyze the current architecture and propose an implementation plan across affected modules. Slower and more expensive, but the deeper reasoning is worth it.
+**Task 2: Plan the implementation**. The tech lead uses Claude Opus to analyze the architecture and propose a plan across affected modules. Slower and pricier, but the deeper reasoning is worth it.
 
-**Task 3: Implement the code**. The developer uses Claude Sonnet through a coding agent. Sonnet is fast enough for iteration and strong at code. No need to use the deepest model for every function.
+**Task 3: Implement the code**. The developer uses Claude Sonnet through a coding agent. Fast enough for iteration and strong at code — no need for Opus on every function.
 
-Three different models. None of them is "the best". Each is right for the task.
+Three different models. None is "the best". Each is right for the task.
 
 ## Where this breaks
 
 - **Benchmark worship**: Benchmarks measure standardized tasks, not your project. A leaderboard is a signal, not an answer.
-
-- **Vendor lock-in**: Building the whole workflow around one provider is risky. Providers change prices, deprecate models, and alter APIs. Flexibility is useful.
 
 - **Bigger isn't better**: The most expensive model isn't automatically best for your task. Using Opus for a tiny autocomplete is like driving a truck to buy bread.
 
@@ -183,9 +155,6 @@ Three different models. None of them is "the best". Each is right for the task.
 ## Takeaway
 
 - Product is where you interact. Model is what generates the response
-- Models don't "understand" text like humans. They calculate probabilities
-- Context window is limited. You need to choose what the model sees
-- There is no best model. There is the right model for each task
-- Cost matters. Using the most expensive model for everything is waste
+- Choose the model by the task, not the ranking — fast models handle most daily work
+- Factor in cost and context window before sending everything to the priciest model
 - Every model hallucinates. Human review is *not* optional
-- Benchmarks are a signal, not a decision

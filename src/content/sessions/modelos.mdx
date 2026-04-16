@@ -5,7 +5,7 @@ lang: 'pt-BR'
 translationKey: 'models'
 order: 3
 summary: 'GPT, Claude, Gemini, Llama. Como funcionam por cima, o que diferencia um do outro e como escolher.'
-readingTime: 20
+readingTime: 15
 level: 'intermediate'
 tags: ['llm', 'modelos', 'gpt', 'claude', 'gemini']
 heroLabel: 'Entendendo modelos'
@@ -26,13 +26,7 @@ import ModelTaskMatcher from '../../components/ModelTaskMatcher/ModelTaskMatcher
 
 Essa é a confusão número um. E a que mais custa tempo e decisões erradas.
 
-**ChatGPT** é um produto. Você abre no navegador, digita uma pergunta, recebe uma resposta. Por dentro, o ChatGPT usa modelos como GPT-4o ou o3. Quando a OpenAI lança um modelo novo, o produto continua o mesmo, mas o "cérebro" muda.
-
-**Claude** é um produto. Por dentro, usa modelos como Sonnet, Opus, Haiku. Cada um com perfil diferente de velocidade, custo e capacidade.
-
-**Gemini** é um produto do Google. Por dentro, usa modelos como Gemini 2.5 Pro.
-
-Por que isso importa? Porque quando alguém fala "vamos usar o ChatGPT", não fica claro se estão falando do produto gratuito, da API paga, do modelo GPT-4o, ou do modelo o3 que é mais lento mas melhor em raciocínio. São coisas diferentes com custos e capacidades diferentes.
+**ChatGPT** é um produto. Você abre no navegador, digita uma pergunta, recebe uma resposta. Por dentro, o ChatGPT usa modelos como GPT-4o ou o3. Quando a OpenAI lança um modelo novo, o produto continua o mesmo, mas o "cérebro" muda. A mesma lógica vale pro **Claude** (com modelos como Sonnet, Opus, Haiku) e pro **Gemini** (com modelos como Gemini 2.5 Pro).
 
 A regra simples: **produto é onde você interage. Modelo é quem "pensa".**
 
@@ -42,31 +36,19 @@ Você não precisa entender matemática de redes neurais pra trabalhar com LLMs.
 
 ### Treinamento
 
-Modelos são treinados em volumes enormes de texto: livros, artigos, código, páginas web. Durante o treinamento, o modelo aprende padrões estatísticos sobre como palavras e tokens se relacionam. Ele não "entende" o texto como um humano. Ele calcula qual token tem mais probabilidade de vir depois do anterior.
-
-Isso explica por que modelos são bons em gerar texto que parece correto e às vezes geram texto que é plausível mas errado. Eles otimizam pra "provável", não pra "verdadeiro".
+Modelos são treinados em volumes enormes de texto: livros, artigos, código, páginas web. O modelo aprende padrões estatísticos — ele calcula qual token tem mais probabilidade de vir depois do anterior. Isso explica por que modelos geram texto que parece correto mas às vezes é plausível e errado: eles otimizam pra "provável", não pra "verdadeiro".
 
 ### Tokens e janela de contexto
 
-O modelo não lê texto como você. Ele divide tudo em tokens (pedaços de texto) e processa um de cada vez. Cada modelo tem um limite de quantos tokens consegue processar de uma vez. Esse limite é a janela de contexto.
-
-Se você manda um arquivo de 10.000 linhas pro modelo e a janela de contexto só cabe 5.000 linhas, algo vai ser cortado. Isso não é um bug, é uma limitação física do modelo.
-
-Em 2026, janelas de contexto vão de ~128K tokens (comum) até ~1M+ tokens (Gemini 2.5 Pro). Parece muito, mas um projeto médio de software pode ter milhões de tokens. Você ainda precisa escolher o que vai no contexto.
+O modelo divide texto em tokens e processa um de cada vez. Cada modelo tem um limite de quantos tokens consegue processar de uma vez — a janela de contexto. Em 2026, janelas vão de ~128K tokens até ~1M+, mas um projeto médio de software pode ter milhões de tokens. Você ainda precisa escolher o que vai no contexto.
 
 ### Inferência e custo
 
-Cada vez que você manda uma mensagem pro modelo e recebe uma resposta, isso é uma inferência. Cada inferência custa computação, que se traduz em dinheiro nas APIs.
-
-O custo é calculado por token (entrada + saída). Modelos maiores e mais capazes custam mais por inferência. Um modelo rápido e barato pode ser melhor pra tarefas simples. Um modelo caro pode ser necessário pra tarefas complexas.
-
-Isso importa porque "usar o melhor modelo pra tudo" pode custar 10x mais do que "usar o modelo certo pra cada tarefa".
+Cada mensagem enviada e resposta recebida é uma inferência, e cada inferência custa dinheiro nas APIs. Modelos maiores custam mais por token. "Usar o melhor modelo pra tudo" pode custar 10x mais do que "usar o modelo certo pra cada tarefa".
 
 ### Limitações reais
 
-Modelos não sabem o que não sabem. Eles geram respostas mesmo quando não têm informação suficiente. Isso se chama alucinação (gerar informação que parece correta mas é inventada).
-
-Modelos têm um corte de conhecimento (knowledge cutoff). Eles não sabem sobre eventos que aconteceram depois do treinamento. Se você pergunta sobre uma biblioteca lançada ontem, o modelo pode inventar uma resposta baseada em padrões, não em fatos.
+Modelos não sabem o que não sabem — geram respostas mesmo sem informação suficiente. Isso se chama alucinação. Modelos também têm corte de conhecimento: se você pergunta sobre algo lançado ontem, o modelo pode inventar uma resposta baseada em padrões, não em fatos.
 
 ## Perfis por tarefa, não ranking
 
@@ -78,9 +60,9 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 
 **Perfil**: Rápido e versátil. Bom em tarefas gerais, conversação, e multimodal (imagens, áudio).
 
-**Melhor pra**: Explorar ideias rapidamente, gerar primeira versão de textos, tarefas conversacionais e multimodais.
+**Melhor pra**: Explorar ideias rapidamente, tarefas conversacionais e multimodais.
 
-**Limitações**: Raciocínio complexo pode ser superficial. Pode ser verboso demais. Custo intermediário.
+**Limitações**: Raciocínio complexo pode ser superficial. Custo intermediário.
 
 ### o3 (OpenAI)
 
@@ -88,9 +70,9 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 
 **Perfil**: Raciocínio profundo e estruturado. Otimizado pra problemas complexos e multi-passo.
 
-**Melhor pra**: Planejar arquitetura de sistemas, resolver problemas lógicos complexos, análise profunda de código.
+**Melhor pra**: Planejar arquitetura de sistemas, análise profunda de código.
 
-**Limitações**: Mais lento que GPT-4o. Custo mais alto por inferência. Pode over-think tarefas simples.
+**Limitações**: Mais lento e mais caro que GPT-4o. Pode over-think tarefas simples.
 
 ### Claude Sonnet (Anthropic)
 
@@ -98,9 +80,9 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 
 **Perfil**: Equilíbrio entre velocidade e qualidade. Forte em código e instruções longas.
 
-**Melhor pra**: Escrever e revisar código, seguir especificações detalhadas, tarefas do dia a dia de desenvolvimento.
+**Melhor pra**: Escrever e revisar código, seguir especificações detalhadas.
 
-**Limitações**: Pode ser conservador demais em respostas. Janela de contexto grande mas não ilimitada.
+**Limitações**: Pode ser conservador demais. Janela de contexto grande mas não ilimitada.
 
 ### Claude Opus (Anthropic)
 
@@ -108,9 +90,9 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 
 **Perfil**: Raciocínio profundo e nuançado. Excelente em tarefas complexas e longas.
 
-**Melhor pra**: Planejar refactors grandes, revisar arquitetura, tarefas que exigem raciocínio profundo.
+**Melhor pra**: Planejar refactors grandes, revisar arquitetura.
 
-**Limitações**: Mais lento e mais caro. Pode ser excessivo pra tarefas simples.
+**Limitações**: Mais lento e mais caro. Excessivo pra tarefas simples.
 
 ### Gemini 2.5 Pro (Google)
 
@@ -118,7 +100,7 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 
 **Perfil**: Janela de contexto muito grande. Forte em multimodal e pesquisa.
 
-**Melhor pra**: Analisar documentos longos, tarefas que envolvem muitas fontes, explorar e sintetizar informação.
+**Melhor pra**: Analisar documentos longos, explorar e sintetizar informação.
 
 **Limitações**: Qualidade de código pode variar. Menos previsível em instruções complexas.
 
@@ -128,9 +110,9 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 
 **Perfil**: Open-weight. Pode rodar localmente sem depender de API externa.
 
-**Melhor pra**: Projetos com requisitos de privacidade, experimentação sem custo de API, fine-tuning pra domínios específicos.
+**Melhor pra**: Projetos com requisitos de privacidade, fine-tuning pra domínios específicos.
 
-**Limitações**: Requer hardware potente pra rodar modelos grandes. Qualidade inferior aos melhores modelos proprietários. Setup mais complexo.
+**Limitações**: Requer hardware potente. Qualidade inferior aos melhores modelos proprietários.
 
 ### DeepSeek V3 (DeepSeek)
 
@@ -138,43 +120,33 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 
 **Perfil**: Open-weight com qualidade competitiva. Forte em código e raciocínio.
 
-**Melhor pra**: Geração de código com custo baixo, alternativa open a modelos proprietários, projetos com orçamento limitado.
+**Melhor pra**: Geração de código com custo baixo, projetos com orçamento limitado.
 
-**Limitações**: Ecossistema menor. Menos integração com ferramentas populares. Disponibilidade pode variar por região.
+**Limitações**: Ecossistema menor. Disponibilidade pode variar por região.
 
 ## Por que isso importa
 
-Entender modelos não é sobre virar especialista em IA. É sobre tomar decisões informadas.
-
-Se você é PM e precisa decidir qual ferramenta o time vai usar, precisa entender que por trás de cada ferramenta tem um modelo com perfil, custo e limitação diferente.
-
-Se você é dev e está escolhendo entre o3 e GPT-4o pra uma tarefa, precisa saber que o3 é melhor pra raciocínio mas 3x mais caro. Pra um autocomplete simples, GPT-4o é suficiente.
-
-Se você é QA e está gerando testes com IA, precisa saber que o modelo pode gerar testes que passam mas não testam nada útil, porque ele otimiza pra "parecer correto", não pra "cobrir casos críticos".
-
-Entender modelos é a diferença entre usar IA no escuro e usar IA com intenção.
+Entender modelos não é sobre virar especialista em IA. É sobre tomar decisões informadas — saber qual modelo está por trás da ferramenta, quanto custa, e onde ele falha. Entender modelos é a diferença entre usar IA no escuro e usar IA com intenção.
 
 ## Exemplo aplicado
 
 Mesmo projeto, três tarefas diferentes, três modelos diferentes:
 
-**Tarefa 1: Explorar uma ideia de feature**. O PM quer entender se faz sentido adicionar suporte a webhooks. Ele abre o ChatGPT (GPT-4o) e tem uma conversa rápida sobre trade-offs, alternativas e complexidade. Rápido, barato, bom pra exploração.
+**Tarefa 1: Explorar uma ideia de feature**. O PM abre o ChatGPT (GPT-4o) pra uma conversa rápida sobre trade-offs e complexidade de adicionar webhooks. Rápido, barato, bom pra exploração.
 
-**Tarefa 2: Planejar a implementação**. O tech lead decide que faz sentido. Ele usa Claude Opus pra analisar a arquitetura atual e propor um plano de implementação que considera todos os módulos afetados. O modelo é mais lento e caro, mas o raciocínio profundo justifica pra essa tarefa.
+**Tarefa 2: Planejar a implementação**. O tech lead usa Claude Opus pra analisar a arquitetura atual e propor um plano que considera todos os módulos afetados. Mais lento e caro, mas o raciocínio profundo justifica.
 
-**Tarefa 3: Implementar o código**. O dev usa Claude Sonnet via Claude Code pra escrever o código. Sonnet é rápido o suficiente pra iteração e forte em código. Não precisa do raciocínio profundo do Opus pra cada função individual.
+**Tarefa 3: Implementar o código**. O dev usa Claude Sonnet via Claude Code. Rápido pra iteração e forte em código — não precisa do Opus pra cada função individual.
 
-Três modelos diferentes. Nenhum deles é "o melhor". Cada um é o certo pra aquela tarefa.
+Três modelos diferentes. Nenhum é "o melhor". Cada um é o certo pra aquela tarefa.
 
 ## Onde isso quebra
 
-- **Adoração de benchmark**: Rankings de benchmark medem performance em tarefas padronizadas, não no seu projeto específico. Um modelo que lidera um benchmark pode ser péssimo pra o que você precisa. Benchmarks são um sinal, não uma resposta.
+- **Adoração de benchmark**: Rankings medem performance em tarefas padronizadas, não no seu projeto. Benchmarks são um sinal, não uma resposta.
 
-- **Vendor lock-in**: Construir todo o workflow em cima de um único provedor é arriscado. Provedores mudam preços, descontinuam modelos, e alteram APIs. Ter flexibilidade pra trocar de modelo é uma vantagem, não um luxo.
+- **Maior não é melhor**: O modelo mais caro não é automaticamente o melhor pra sua tarefa. Usar Opus pra um autocomplete é como usar um caminhão pra ir na padaria.
 
-- **Maior não é melhor**: O modelo mais caro não é automaticamente o melhor pra sua tarefa. Muitas tarefas do dia a dia são bem servidas por modelos rápidos e baratos. Usar Opus pra um autocomplete é como usar um caminhão pra ir na padaria.
-
-- **Ignorar limitações**: Todo modelo alucina. Todo modelo tem corte de conhecimento. Todo modelo pode gerar código que compila mas não funciona. Se você ignora isso, vai descobrir em produção.
+- **Ignorar limitações**: Todo modelo alucina. Todo modelo tem corte de conhecimento. Todo modelo pode gerar código que compila mas não funciona.
 
 ## Bloco interativo
 
@@ -182,7 +154,7 @@ Três modelos diferentes. Nenhum deles é "o melhor". Cada um é o certo pra aqu
 
 ## O que levar daqui
 
-- Separe produto de modelo na sua cabeça — saiba qual modelo está por trás da ferramenta que você usa e o que ele faz bem
-- Escolha o modelo pela tarefa, não pelo ranking — modelos rápidos e baratos resolvem a maioria das tarefas do dia a dia
+- Separe produto de modelo — saiba qual modelo está por trás da ferramenta que você usa
+- Escolha o modelo pela tarefa, não pelo ranking — modelos rápidos resolvem a maioria do dia a dia
 - Leve custo e janela de contexto em conta antes de mandar tudo pro modelo mais caro
 - Nunca confie cegamente — todo modelo alucina, revisão humana não é opcional

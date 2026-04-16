@@ -5,7 +5,7 @@ lang: 'pt-BR'
 translationKey: 'how-to-operate'
 order: 5
 summary: 'Checklists, workflows e exemplos reais de como diferentes perfis operam com IA no dia a dia.'
-readingTime: 25
+readingTime: 18
 level: 'advanced'
 tags: ['pratica', 'workflow', 'operacao', 'avancado']
 heroLabel: 'Na prática'
@@ -25,13 +25,9 @@ import ChecklistGenerator from '../../components/ChecklistGenerator/ChecklistGen
 
 As sessões anteriores explicaram o que é IA, como modelos funcionam, quais ferramentas existem e quais são os níveis de maturidade. Tudo isso é útil pra entender. Mas entender e operar são coisas diferentes.
 
-Essa sessão é sobre operar. O que você faz antes de pedir algo pra IA. O que você verifica antes de aceitar o resultado. Como diferentes perfis (dev, QA, PM, tech lead) integram IA no trabalho real. E como construir artefatos que tornam o processo repetível em vez de depender de sorte.
-
 Não tem uma receita universal. O que funciona pra um dev sênior em um projeto grande é diferente do que funciona pra um PM validando uma ideia. Mas tem princípios que se aplicam a todo mundo.
 
 ## Por que isso importa
-
-Saber que modelos existem sem saber como pedir é como ter um mapa sem saber andar. Saber que agentes são poderosos sem saber validar o output é como ter um carro sem saber frear.
 
 A maioria das frustrações com IA vem de dois lugares:
 
@@ -50,8 +46,6 @@ Não o que você quer que a IA faça. O que você quer como resultado final.
 
 "Gera um componente de modal" não é objetivo. "Preciso de um modal de confirmação que aparece quando o usuário tenta deletar uma conta, com botões de cancelar e confirmar, que bloqueia o scroll do fundo" é um objetivo.
 
-A diferença é que o segundo prompt dá pro modelo informação suficiente pra gerar algo útil. O primeiro vai gerar um modal genérico que você vai ter que adaptar.
-
 ### 2. Qual é o contexto?
 
 O que o modelo precisa saber além do pedido?
@@ -60,8 +54,6 @@ O que o modelo precisa saber além do pedido?
 - Qual framework ou biblioteca estamos usando?
 - Quais convenções o time segue? (nomes de variáveis, estrutura de pastas, patterns)
 - Existe algo parecido no projeto que pode servir de referência?
-
-Quanto mais contexto relevante, melhor o resultado. Mas "relevante" é a palavra-chave. Mandar 50 arquivos pro modelo não ajuda se 45 são irrelevantes.
 
 ### 3. Quais são as restrições?
 
@@ -83,33 +75,29 @@ Como você quer receber o resultado?
 - Com explicação do raciocínio ou só o código?
 - Estrutura de pastas ou tudo no mesmo arquivo?
 
-Modelos são bons em seguir formato quando você especifica. Se você não especifica, eles escolhem por conta própria — e nem sempre escolhem o que você queria.
-
 ## Antes de aceitar: o checklist de validação
 
 O modelo gerou algo. Antes de aceitar, passe por essas verificações:
 
 ### Testes passam?
 
-Se o projeto tem testes, rode. Se o modelo gerou testes novos, leia os testes antes de rodar. Teste que passa mas não testa nada é pior que não ter teste, porque dá falsa confiança.
+Se o projeto tem testes, rode. Se o modelo gerou testes novos, leia antes de rodar — teste que passa mas não testa nada dá falsa confiança.
 
 ### Tipos batem?
 
-Rode o typecheck (tsc, mypy, ou equivalente). O modelo pode gerar código que parece correto mas tem tipos incompatíveis que só aparecem na compilação.
+Rode o typecheck. O modelo pode gerar código que parece correto mas tem tipos incompatíveis que só aparecem na compilação.
 
 ### Lint passa?
 
-O modelo pode gerar código que funciona mas não segue as convenções do projeto. Lint pega isso: nomes de variáveis errados, imports fora de ordem, padrões não seguidos.
+Lint pega o que o modelo ignora: nomes de variáveis errados, imports fora de ordem, padrões não seguidos.
 
 ### Você leu o código?
 
-Não skimmou. Leu. Cada linha que você não leu é uma linha que pode ter um bug, uma vulnerabilidade de segurança, ou uma decisão de design que não faz sentido no seu contexto.
-
-Isso não precisa levar meia hora. Pra um componente de 50 linhas, 2 minutos de leitura atenta são suficientes. O ponto é não aceitar no automático.
+Não skimmou. Leu. Cada linha não lida pode ter um bug, vulnerabilidade, ou decisão de design que não faz sentido no seu contexto. Pra um componente de 50 linhas, 2 minutos bastam.
 
 ### Faz o que foi pedido?
 
-Compare o resultado com o objetivo original. O modelo pode ter gerado algo tecnicamente correto mas que não resolve o problema. "Modal que abre e fecha" é tecnicamente correto, mas se você pediu "modal de confirmação de delete com bloqueio de scroll", falta coisa.
+Compare o resultado com o objetivo original. O modelo pode gerar algo tecnicamente correto que não resolve o problema.
 
 ## Exemplo aplicado
 
@@ -119,25 +107,12 @@ Compare o resultado com o objetivo original. O modelo pode ter gerado algo tecni
 
 **Como ela opera**:
 
-1. Escreve um rascunho da spec em texto com os requisitos que ela conhece
-2. Manda pro modelo com o prompt: "Revisa essa spec e aponta lacunas. Quais cenários de borda eu não cobri? Quais perguntas o time de dev vai ter quando ler isso?"
-3. O modelo aponta: "Não está claro o que acontece se o usuário desabilitar notificações no OS. Não menciona retry em caso de falha. Não define prioridade de notificações."
-4. Beatriz complementa a spec com as lacunas e manda pro time
+1. Escreve um rascunho da spec com os requisitos que conhece
+2. Manda pro modelo: "Revisa essa spec e aponta lacunas. Quais cenários de borda eu não cobri?"
+3. O modelo aponta gaps: notificações desabilitadas no OS, retry em falha, prioridade
+4. Complementa a spec e manda pro time
 
-**O que ela não faz**: não pede pro modelo "escreve uma spec de notificações push do zero". O rascunho vem dela porque ela conhece o domínio. O modelo ajuda a encontrar buracos.
-
-### QA: usando IA pra gerar cenários de teste
-
-**Situação**: Marina é QA e precisa cobrir uma API de pagamentos com cenários de teste.
-
-**Como ela opera**:
-
-1. Pega a spec da API (endpoints, payloads, códigos de erro)
-2. Manda pro modelo com: "Baseado nessa spec, gera cenários de teste em formato Gherkin. Inclua cenários de sucesso, erro, e edge cases. Foca em: validação de input, estados inconsistentes, timeouts."
-3. O modelo gera 25 cenários. Ela revisa cada um: 20 fazem sentido, 3 são redundantes, 2 não se aplicam ao contexto
-4. Ela ajusta os cenários e adiciona 3 que o modelo não pensou (porque dependem de conhecimento interno do sistema)
-
-**O que ela não faz**: não aceita os 25 cenários sem revisar. Não confia que o modelo cobriu tudo. O modelo é bom em gerar volume, ela é boa em filtrar relevância.
+**O que ela não faz**: pedir pro modelo escrever a spec do zero. O domínio é dela; o modelo ajuda a encontrar buracos.
 
 ### Dev júnior: aprender e implementar
 
@@ -145,13 +120,12 @@ Compare o resultado com o objetivo original. O modelo pode ter gerado algo tecni
 
 **Como ele opera**:
 
-1. Primeiro, lê o código existente da API pra entender a estrutura
-2. Pede pro modelo: "Explica como a paginação por cursor funciona versus offset/limit. Quais são os trade-offs?"
-3. Entende o conceito, decide usar cursor-based
-4. Pede pro modelo: "Implementa paginação por cursor nesse handler. Usa os tipos que já existem no projeto" (passa o arquivo do handler + os tipos)
-5. Revisa o código gerado, roda os testes, ajusta o que não bate com as convenções do time
+1. Lê o código existente da API pra entender a estrutura
+2. Pede pro modelo explicar cursor pagination versus offset/limit
+3. Decide usar cursor-based e pede a implementação passando o handler + tipos do projeto
+4. Revisa o código, roda os testes, ajusta o que não bate com as convenções do time
 
-**O que ele não faz**: não pede "faz paginação" sem entender o conceito primeiro. Não aceita o código sem ler e testar. Usa a IA pra aprender e implementar, não pra substituir o aprendizado.
+**O que ele não faz**: pedir "faz paginação" sem entender o conceito primeiro.
 
 ### Dev sênior: acelerar e revisar
 
@@ -160,62 +134,39 @@ Compare o resultado com o objetivo original. O modelo pode ter gerado algo tecni
 **Como ele opera**:
 
 1. Migra o primeiro controller manualmente pra definir o padrão
-2. Escreve um CLAUDE.md ou rules file com as convenções da migração: "Cada controller deve usar Fastify schema validation em vez de middleware Express. Manter os mesmos endpoints. Testes existentes devem continuar passando."
-3. Usa um agente de código pra migrar os 14 restantes, um por um, validando testes a cada migração
-4. Revisa os diffs no final: o agente seguiu o padrão? Os testes passam? Tem algo que não faz sentido?
+2. Escreve um rules file com as convenções da migração
+3. Usa um agente de código pra migrar os 14 restantes, validando testes a cada migração
+4. Revisa os diffs: o agente seguiu o padrão? Os testes passam?
 
-**O que ele não faz**: não manda "migra tudo de Express pra Fastify" sem definir o padrão primeiro. Não confia que o agente vai acertar tudo. Define o padrão, delega a execução, valida o resultado.
-
-### Tech lead: padronizar e escalar
-
-**Situação**: Pedro é tech lead e quer que o time inteiro opere de forma AI-native de forma consistente.
-
-**Como ele opera**:
-
-1. Cria um CLAUDE.md ou rules file no repo com regras do projeto: convenções de código, padrões de teste, arquitetura, o que evitar
-2. Documenta os workflows mais comuns: "pra criar um endpoint novo, siga esses passos", "pra adicionar um componente, use esse template"
-3. Configura validação automática: pre-commit hooks que rodam testes e lint, CI que verifica tipos
-4. Revisa PRs focando em decisões de design, não em formatação (o lint cuida disso)
-
-**O que ele não faz**: não tenta controlar como cada dev usa a ferramenta. Define padrões no nível do projeto (rules files, CI, validação). Cada dev escolhe a ferramenta que preferir, mas o output precisa passar pelas mesmas verificações.
+**O que ele não faz**: mandar "migra tudo" sem definir o padrão primeiro.
 
 ## Construindo artefatos repetíveis
 
-O que separa "usar IA às vezes" de "operar AI-native" é ter artefatos que tornam o processo repetível. Alguns exemplos:
+O que separa "usar IA às vezes" de "operar AI-native" é ter artefatos que tornam o processo repetível.
 
 ### Rules files
 
-Arquivos que definem como o agente deve operar no seu projeto. CLAUDE.md pra Claude Code, rules files do Cursor (como arquivos em `.cursor/rules/`). Contêm convenções, padrões, restrições. O agente lê automaticamente e segue.
-
-Bom rules file é específico e curto. "Use TypeScript strict mode. CSS Modules, não Tailwind. Testes com Vitest. Nomes de componentes em PascalCase." Ruim é vago: "Escreva bom código."
+Arquivos que definem como o agente deve operar no seu projeto (CLAUDE.md, `.cursor/rules/`). Um bom rules file é específico e curto: "TypeScript strict. CSS Modules. Testes com Vitest. Componentes em PascalCase."
 
 ### Templates de prompt
 
-Prompts que você usa repetidamente em situações padrão. Em vez de escrever do zero toda vez, você tem templates:
-
-- "Dado esse endpoint (cole a spec), gera testes em formato X"
-- "Revisa esse PR focando em: segurança, performance, legibilidade"
-- "Explica o que esse módulo faz em 3 parágrafos pra alguém que nunca viu o projeto"
-
-Templates não são rígidos. São pontos de partida que você adapta.
+Prompts reutilizáveis pra situações comuns: gerar testes a partir de specs, revisar PRs com foco em segurança e performance, explicar módulos pra quem é novo no projeto. São pontos de partida, não scripts rígidos.
 
 ### Checklists de validação
 
-O checklist de "antes de aceitar" que vimos acima. Pode ser um arquivo no repo, um comentário no PR template, ou um passo no CI. O ponto é que exista e seja seguido.
+O checklist de "antes de aceitar" pode ser um arquivo no repo, um comentário no PR template, ou um passo no CI. O ponto é que exista e seja seguido.
 
 ### Scripts de validação
 
-Comandos que automatizam a verificação: `npm run typecheck && npm run lint && npm run test`. Um pre-commit hook que roda isso automaticamente. Um CI que bloqueia merge se falhar. Quanto mais automatizado, menos depende de disciplina humana.
+Comandos que automatizam verificação: `npm run typecheck && npm run lint && npm run test`. Pre-commit hooks e CI que bloqueiam merge tornam o processo menos dependente de disciplina.
 
 ## Onde isso quebra
 
-- **Checklists como burocracia**. Se o checklist vira um ritual que você preenche sem pensar, ele perdeu o propósito. O valor não é marcar checkboxes. É verificar de verdade.
+- **Checklists como burocracia**. Se o checklist vira um ritual que você preenche sem pensar, perdeu o propósito. O valor é verificar de verdade.
 
 - **Pular validação quando tá com pressa**. "Eu sei que tá certo, não preciso rodar os testes." Essa frase é responsável por mais bugs em produção do que qualquer modelo de IA.
 
-- **One-size-fits-all**. O workflow de um dev sênior não é o workflow de um PM. Os princípios são os mesmos (especificar bem, validar o output), mas a execução é diferente. Não force todo mundo a usar as mesmas ferramentas da mesma forma.
-
-- **Automatizar cedo demais**. Se você não sabe qual é o processo certo, automatizar é congelar o processo errado. Primeiro faça manualmente, depois identifique os padrões, depois automatize.
+- **Automatizar cedo demais**. Se você não sabe qual é o processo certo, automatizar é congelar o processo errado. Primeiro faça manualmente, depois identifique padrões, depois automatize.
 
 ## Bloco interativo
 
@@ -223,7 +174,7 @@ Comandos que automatizam a verificação: `npm run typecheck && npm run lint && 
 
 ## O que levar daqui
 
-- Antes de pedir qualquer coisa pra IA, defina objetivo, contexto, restrições e formato — esse checklist vale mais que qualquer hack de prompt
-- Rode testes, typecheck e lint antes de aceitar output — não aceite no automático
-- Comece construindo um rules file pro seu projeto, mesmo que simples — é o artefato com maior retorno por esforço
-- Primeiro faça o processo manualmente, depois identifique padrões, depois automatize — nessa ordem
+- Antes de pedir: defina objetivo, contexto, restrições e formato
+- Antes de aceitar: rode testes, typecheck e lint — não aceite no automático
+- Comece com um rules file pro seu projeto — é o artefato com maior retorno por esforço
+- Primeiro manual, depois padrão, depois automação — nessa ordem
