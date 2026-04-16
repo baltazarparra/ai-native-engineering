@@ -191,6 +191,11 @@ const phases = [
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-md);
+    max-width: 100%;
+  }
+
+  .hero-ctas > * {
+    min-width: 0;
   }
 
   .narrative {
@@ -205,6 +210,7 @@ const phases = [
     gap: var(--space-lg);
     margin-top: var(--space-xl);
     margin-bottom: var(--space-xl);
+    min-width: 0;
   }
 
   .maturity-step {
@@ -214,6 +220,7 @@ const phases = [
     text-align: center;
     gap: var(--space-xs);
     flex: 1;
+    min-width: 0;
     position: relative;
   }
 
@@ -262,11 +269,13 @@ const phases = [
     font-family: var(--font-heading);
     font-weight: var(--weight-bold);
     font-size: var(--text-base);
+    overflow-wrap: anywhere;
   }
 
   .maturity-desc {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+    overflow-wrap: break-word;
   }
 
   .maturity-cta {

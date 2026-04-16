@@ -1,5 +1,6 @@
 .references {
   margin-top: var(--space-lg);
+  min-width: 0;
 }
 
 .heading {
@@ -30,10 +31,14 @@
   padding: var(--space-sm) var(--space-md);
   border-left: 4px solid var(--color-accent-1);
   background-color: var(--color-bg);
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .item a {
   font-weight: var(--weight-semibold);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .source {

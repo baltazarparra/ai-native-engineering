@@ -2,12 +2,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+  min-width: 0;
 }
 
 .stepperRow {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) 2.5rem;
   align-items: center;
   gap: var(--space-sm);
+  min-width: 0;
 }
 
 .navBtn {
@@ -52,9 +55,8 @@
   display: flex;
   align-items: center;
   gap: var(--space-2xs);
-  flex: 1;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  min-width: 0;
+  overflow-x: visible;
   scrollbar-width: none;
 }
 
@@ -67,12 +69,12 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-2xs);
-  padding: var(--space-xs);
+  padding: var(--space-2xs);
   border: none;
   background: none;
   cursor: pointer;
-  flex: 1;
-  min-width: 60px;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .step:focus-visible {
@@ -113,7 +115,11 @@
   font-size: var(--text-xs);
   font-weight: var(--weight-medium);
   color: var(--color-text-muted);
-  white-space: nowrap;
+  max-width: 100%;
+  line-height: var(--leading-snug);
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .stepActive .stepLabel {
@@ -126,7 +132,8 @@
   border: var(--border-thick);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
-  padding: var(--space-lg);
+  padding: var(--space-md);
+  min-width: 0;
 }
 
 .phaseTitle {
@@ -147,9 +154,14 @@
   flex-direction: column;
   gap: var(--space-md);
   margin-bottom: var(--space-lg);
+  min-width: 0;
 }
 
 @media (min-width: 640px) {
+  .panel {
+    padding: var(--space-lg);
+  }
+
   .columns {
     flex-direction: row;
     gap: var(--space-xl);
@@ -157,6 +169,13 @@
 
   .column {
     flex: 1;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 479px) {
+  .stepLabel {
+    display: none;
   }
 }
 

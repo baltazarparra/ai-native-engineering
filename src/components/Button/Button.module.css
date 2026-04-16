@@ -3,16 +3,20 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
+  max-width: 100%;
+  min-width: 0;
   font-family: var(--font-heading);
   font-weight: var(--weight-bold);
   font-size: var(--text-base);
-  line-height: 1;
+  line-height: var(--leading-snug);
   text-decoration: none;
   border: var(--border-thick);
   border-radius: var(--radius-md);
   cursor: pointer;
   position: relative;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
+  overflow-wrap: break-word;
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast),

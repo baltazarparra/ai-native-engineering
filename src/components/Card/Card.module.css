@@ -1,4 +1,6 @@
 .card {
+  width: 100%;
+  min-width: 0;
   background-color: var(--color-bg);
   border: var(--border-thick);
   border-radius: var(--radius-md);
@@ -33,6 +35,7 @@
   text-decoration: none;
   color: inherit;
   display: block;
+  min-width: 0;
 }
 
 .linkable:hover {
@@ -51,6 +54,7 @@
 .header {
   padding: var(--space-md) var(--space-lg);
   border-bottom: var(--border-thin);
+  min-width: 0;
 }
 
 .title {
@@ -59,16 +63,19 @@
   font-size: var(--text-xl);
   color: var(--color-primary);
   line-height: var(--leading-snug);
+  overflow-wrap: break-word;
 }
 
 .body {
   padding: var(--space-lg);
+  min-width: 0;
 }
 
 .footer {
   padding: var(--space-md) var(--space-lg);
   border-top: var(--border-thin);
   background-color: var(--color-bg-alt);
+  min-width: 0;
 }
 
 .meta {
@@ -76,6 +83,7 @@
   flex-wrap: wrap;
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-lg);
+  min-width: 0;
 }
 
 /* expandable variant (details/summary) */
@@ -93,6 +101,8 @@
   cursor: pointer;
   list-style: none;
   user-select: none;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .summary::-webkit-details-marker {

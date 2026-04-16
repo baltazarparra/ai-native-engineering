@@ -276,6 +276,7 @@ export default function MaturityStepper({ lang = 'pt-BR' }: Props) {
               role="tab"
               aria-selected={i === active}
               aria-controls={`phase-panel-${i}`}
+              aria-label={p.title}
               className={`${styles.step} ${i === active ? styles.stepActive : ''} ${i < active ? styles.stepDone : ''}`}
               onClick={() => setActive(i)}
               tabIndex={i === active ? 0 : -1}

@@ -2,14 +2,16 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
+  max-width: 100%;
   font-family: var(--font-heading);
   font-weight: var(--weight-medium);
   font-size: var(--text-sm);
-  line-height: 1;
+  line-height: var(--leading-snug);
   padding: var(--space-xs) var(--space-sm);
   border: var(--border-thin);
   border-radius: var(--radius-sm);
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: break-word;
   text-decoration: none;
 }
 

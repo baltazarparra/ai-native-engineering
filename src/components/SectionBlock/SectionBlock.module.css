@@ -1,5 +1,6 @@
 .section {
   padding-inline: var(--space-md);
+  min-width: 0;
 }
 
 .alt {
@@ -9,6 +10,7 @@
 .contained {
   max-width: var(--container-lg);
   margin-inline: auto;
+  min-width: 0;
 }
 
 .width-md {
@@ -48,5 +50,21 @@
 @media (min-width: 1024px) {
   .section {
     padding-inline: var(--space-xl);
+  }
+
+  .padding-sm {
+    padding-block: var(--space-xl);
+  }
+
+  .padding-md {
+    padding-block: var(--space-2xl);
+  }
+
+  .padding-lg {
+    padding-block: var(--space-3xl);
+  }
+
+  .padding-xl {
+    padding-block: var(--space-4xl);
   }
 }
