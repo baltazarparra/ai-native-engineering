@@ -31,6 +31,8 @@ export const defaultLang: Lang = 'pt-BR';
 export const languagePreferenceStorageKey =
   'ai-native-engineering:preferred-language';
 export const supportedLangs = Object.keys(languages) as Lang[];
+export const repositoryUrl =
+  'https://github.com/baltazarparra/ai-native-engineering';
 
 export const ui = {
   'pt-BR': {
@@ -39,6 +41,10 @@ export const ui = {
     languageNav: 'Selecionar idioma',
     currentLanguage: 'Idioma atual',
     progressLabel: 'Progresso de leitura',
+    repoCta: {
+      label: 'Dar star',
+      ariaLabel: 'Dar star no repositorio no GitHub',
+    },
     summaryHeading: 'Em 30 segundos',
     readingMinutes: (minutes: number) => `${minutes} min de leitura`,
     updatedAt: 'Atualizado em',
@@ -86,6 +92,10 @@ export const ui = {
     languageNav: 'Choose language',
     currentLanguage: 'Current language',
     progressLabel: 'Reading progress',
+    repoCta: {
+      label: 'Star repo',
+      ariaLabel: 'Star this repository on GitHub',
+    },
     summaryHeading: 'In 30 seconds',
     readingMinutes: (minutes: number) => `${minutes} min read`,
     updatedAt: 'Updated',

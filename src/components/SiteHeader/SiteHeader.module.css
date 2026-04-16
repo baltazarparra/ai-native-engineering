@@ -11,6 +11,7 @@
   margin-inline: auto;
   padding: var(--space-sm) var(--space-md);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
@@ -34,6 +35,14 @@
   color: var(--color-primary);
   background-color: transparent;
   text-decoration: underline;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  flex-shrink: 0;
 }
 
 .langNav {
@@ -77,6 +86,13 @@
 .active:hover {
   background-color: var(--color-primary);
   color: var(--color-bg);
+}
+
+@media (max-width: 479px) {
+  .actions {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 @media (min-width: 768px) {

@@ -23,15 +23,9 @@
   font-weight: var(--weight-medium);
 }
 
-.links a {
-  color: var(--color-accent-2);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.links a:hover {
-  background-color: var(--color-accent-1);
-  color: var(--color-primary);
+.links {
+  display: inline-flex;
+  align-items: center;
 }
 
 .copy {

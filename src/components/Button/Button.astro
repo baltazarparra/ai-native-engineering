@@ -5,6 +5,9 @@ interface Props {
   variant?: 'primary' | 'secondary' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
+  target?: string;
+  rel?: string;
+  'aria-label'?: string;
   fullWidth?: boolean;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
@@ -14,6 +17,9 @@ const {
   variant = 'primary',
   size = 'md',
   href,
+  target,
+  rel,
+  'aria-label': ariaLabel,
   fullWidth = false,
   type = 'button',
   disabled = false,
@@ -32,6 +38,9 @@ const Element = href ? 'a' : 'button';
     disabled && styles.disabled,
   ]}
   href={href}
+  target={href ? target : undefined}
+  rel={href ? rel : undefined}
+  aria-label={ariaLabel}
   type={!href ? type : undefined}
   disabled={!href && disabled ? true : undefined}
   aria-disabled={href && disabled ? 'true' : undefined}

@@ -1,6 +1,13 @@
 ---
+import Button from '../Button/Button.astro';
 import type { AlternateLink, Lang } from '../../lib/i18n';
-import { getHomeHref, languages, supportedLangs, ui } from '../../lib/i18n';
+import {
+  getHomeHref,
+  languages,
+  repositoryUrl,
+  supportedLangs,
+  ui,
+} from '../../lib/i18n';
 import styles from './SiteHeader.module.css';
 
 interface Props {
@@ -22,27 +29,39 @@ function getHref(targetLang: Lang) {
 <header class={styles.header}>
   <div class={styles.inner}>
     <a class={styles.brand} href={getHomeHref(lang)}>AI-Native Engineering</a>
-    <nav class={styles.langNav} aria-label={labels.languageNav}>
-      {
-        supportedLangs.map((targetLang) => {
-          const isCurrent = targetLang === lang;
-          return (
-            <a
-              class:list={[styles.langLink, isCurrent && styles.active]}
-              href={getHref(targetLang)}
-              data-language-choice={targetLang}
-              aria-current={isCurrent ? 'true' : undefined}
-              aria-label={
-                isCurrent
-                  ? `${languages[targetLang].label}: ${labels.currentLanguage}`
-                  : languages[targetLang].label
-              }
-            >
-              {languages[targetLang].shortLabel}
-            </a>
-          );
-        })
-      }
-    </nav>
+    <div class={styles.actions}>
+      <Button
+        variant="secondary"
+        size="sm"
+        href={repositoryUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={labels.repoCta.ariaLabel}
+      >
+        {labels.repoCta.label}
+      </Button>
+      <nav class={styles.langNav} aria-label={labels.languageNav}>
+        {
+          supportedLangs.map((targetLang) => {
+            const isCurrent = targetLang === lang;
+            return (
+              <a
+                class:list={[styles.langLink, isCurrent && styles.active]}
+                href={getHref(targetLang)}
+                data-language-choice={targetLang}
+                aria-current={isCurrent ? 'true' : undefined}
+                aria-label={
+                  isCurrent
+                    ? `${languages[targetLang].label}: ${labels.currentLanguage}`
+                    : languages[targetLang].label
+                }
+              >
+                {languages[targetLang].shortLabel}
+              </a>
+            );
+          })
+        }
+      </nav>
+    </div>
   </div>
 </header>
