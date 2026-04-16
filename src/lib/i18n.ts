@@ -96,6 +96,8 @@ export const ui = {
       checkpointsOf: (done: number, total: number) =>
         `${done} de ${total} checkpoints`,
       complete: 'Capítulo concluído!',
+      checkpointHint:
+        'Complete todos os checkpoints para desbloquear o próximo capítulo.',
       nextUp: 'Próximo',
       goToChapter: 'Ir para o capítulo',
       backToOverview: 'Voltar para a visão geral',
@@ -179,6 +181,7 @@ export const ui = {
       checkpointsOf: (done: number, total: number) =>
         `${done} of ${total} checkpoints`,
       complete: 'Chapter complete!',
+      checkpointHint: 'Complete all checkpoints to unlock the next chapter.',
       nextUp: 'Next up',
       goToChapter: 'Go to chapter',
       backToOverview: 'Back to overview',

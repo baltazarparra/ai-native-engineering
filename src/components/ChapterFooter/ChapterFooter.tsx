@@ -29,6 +29,10 @@ export default function ChapterFooter({ chapterNumber, lang }: Props) {
   const doneCount = checkpoints.filter((cp) => checked[cp.id]).length;
   const allComplete =
     checkpoints.length > 0 && doneCount === checkpoints.length;
+  const progressPct =
+    checkpoints.length > 0
+      ? Math.round((doneCount / checkpoints.length) * 100)
+      : 0;
 
   const nextChapter = CHAPTERS.find(
     (ch) => ch.number === chapterNumber + 1 && !ch.isReference,
@@ -58,18 +62,57 @@ export default function ChapterFooter({ chapterNumber, lang }: Props) {
     );
   }
 
+  const nextLabel = nextChapter
+    ? `${labels.nextUp}: ${nextChapter.title[lang]}`
+    : labels.backToOverview;
+
+  const nextHref = nextChapter
+    ? getChapterHref(nextChapter.number, lang)
+    : getProjectHref(lang);
+
   return (
     <div className={styles.container}>
-      {!allComplete && (
-        <div className={styles.checkpointCard}>
+      {isProjectComplete && chapterNumber === 4 ? (
+        <div className={styles.congratsCard}>
+          <span className={styles.congratsIcon}>🎉</span>
+          <h4 className={styles.congratsTitle}>{labels.congrats}</h4>
+          <p className={styles.congratsDesc}>{labels.congratsDesc}</p>
+          <a href={getProjectHref(lang)} className={styles.overviewLink}>
+            &larr; {labels.backToOverview}
+          </a>
+        </div>
+      ) : (
+        <div
+          className={`${styles.checkpointCard} ${allComplete ? styles.checkpointCardDone : ''}`}
+        >
           <div className={styles.checkpointHeader}>
             <h4 className={styles.checkpointTitle}>
-              {labels.chapterLabel(chapterNumber)}
+              {allComplete
+                ? labels.complete
+                : labels.chapterLabel(chapterNumber)}
             </h4>
             <span className={styles.checkpointCount}>
               {labels.checkpointsOf(doneCount, checkpoints.length)}
             </span>
           </div>
+
+          <div
+            className={styles.progressBar}
+            role="progressbar"
+            aria-valuenow={progressPct}
+            aria-valuemin={0}
+            aria-valuemax={100}
+          >
+            <div
+              className={styles.progressFill}
+              style={{ width: `${progressPct}%` }}
+            />
+          </div>
+
+          {!allComplete && (
+            <p className={styles.hint}>{labels.checkpointHint}</p>
+          )}
+
           <div className={styles.checkpoints}>
             {checkpoints.map((cp) => (
               <label key={cp.id} className={styles.checkItem}>
@@ -85,48 +128,20 @@ export default function ChapterFooter({ chapterNumber, lang }: Props) {
               </label>
             ))}
           </div>
+
+          {allComplete ? (
+            <a href={nextHref} className={styles.nextBtn}>
+              {nextLabel} &rarr;
+            </a>
+          ) : (
+            <span className={styles.nextBtnDisabled}>{nextLabel} &rarr;</span>
+          )}
         </div>
       )}
 
-      {allComplete && !isProjectComplete && nextChapter && (
-        <div className={styles.completeCard}>
-          <span className={styles.completeIcon}>✓</span>
-          <h4 className={styles.completeTitle}>{labels.complete}</h4>
-          <a
-            href={getChapterHref(nextChapter.number, lang)}
-            className={styles.nextBtn}
-          >
-            {labels.nextUp}: {nextChapter.title[lang]} &rarr;
-          </a>
-        </div>
-      )}
-
-      {allComplete && !nextChapter && !isProjectComplete && (
-        <div className={styles.completeCard}>
-          <span className={styles.completeIcon}>✓</span>
-          <h4 className={styles.completeTitle}>{labels.complete}</h4>
-          <a href={getProjectHref(lang)} className={styles.nextBtn}>
-            {labels.backToOverview}
-          </a>
-        </div>
-      )}
-
-      {isProjectComplete && chapterNumber === 4 && (
-        <div className={styles.congratsCard}>
-          <span className={styles.congratsIcon}>🎉</span>
-          <h4 className={styles.congratsTitle}>{labels.congrats}</h4>
-          <p className={styles.congratsDesc}>{labels.congratsDesc}</p>
-          <a href={getProjectHref(lang)} className={styles.overviewLink}>
-            &larr; {labels.backToOverview}
-          </a>
-        </div>
-      )}
-
-      {!allComplete && (
-        <a href={getProjectHref(lang)} className={styles.overviewLink}>
-          &larr; {labels.backToOverview}
-        </a>
-      )}
+      <a href={getProjectHref(lang)} className={styles.overviewLink}>
+        &larr; {labels.backToOverview}
+      </a>
     </div>
   );
 }

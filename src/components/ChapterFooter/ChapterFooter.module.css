@@ -9,17 +9,23 @@
 
 .checkpointCard {
   border: var(--border-thick);
+  border-left: 6px solid var(--color-accent-3);
   border-radius: var(--radius-md);
-  padding: var(--space-lg);
+  padding: var(--space-xl);
   background-color: var(--color-bg);
   box-shadow: var(--shadow-md);
+}
+
+.checkpointCardDone {
+  border-left-color: var(--color-accent-3);
+  background-color: var(--color-bg-alt, var(--color-bg));
 }
 
 .checkpointHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 .checkpointTitle {
@@ -35,27 +41,51 @@
   font-weight: var(--weight-medium);
 }
 
+.progressBar {
+  height: 6px;
+  background-color: var(--color-border, #ddd);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: var(--space-md);
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--color-accent-3);
+  border-radius: 3px;
+  transition: width var(--transition-normal, 0.3s ease);
+}
+
+.hint {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-md) 0;
+  font-style: italic;
+}
+
 .checkpoints {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 .checkItem {
   display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: var(--text-base);
+  align-items: flex-start;
+  gap: var(--space-md);
+  font-size: var(--text-lg);
   cursor: pointer;
   line-height: var(--leading-normal);
 }
 
 .checkbox {
   flex-shrink: 0;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
   accent-color: var(--color-accent-3);
   cursor: pointer;
+  margin-top: 0.15em;
 }
 
 .checkedText {
@@ -92,7 +122,7 @@
 
 .nextBtn {
   display: inline-block;
-  padding: var(--space-sm) var(--space-xl);
+  padding: var(--space-md) var(--space-xl);
   font-family: var(--font-heading);
   font-size: var(--text-base);
   font-weight: var(--weight-bold);
@@ -102,6 +132,7 @@
   border: var(--border-thick);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
+  text-align: center;
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
@@ -117,6 +148,25 @@
 .nextBtn:active {
   transform: translate(2px, 2px);
   box-shadow: none;
+}
+
+.nextBtnDisabled {
+  display: inline-block;
+  padding: var(--space-md) var(--space-xl);
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+  color: var(--color-text-muted);
+  background-color: var(--color-border, #ddd);
+  border: var(--border-thick);
+  border-color: var(--color-text-muted);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+  text-align: center;
+  cursor: not-allowed;
+  opacity: 0.6;
+  user-select: none;
 }
 
 .congratsCard {
@@ -165,6 +215,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .nextBtn {
+    transition: none;
+  }
+
+  .progressFill {
     transition: none;
   }
 }
