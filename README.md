@@ -20,29 +20,29 @@ This site exists to close that gap: to organize the chaos, translate the termino
 
 The site is organized into 6 progressive sessions:
 
-| #   | Session                         | Route                  | What It Teaches                                                     |
-| --- | ------------------------------- | ---------------------- | ------------------------------------------------------------------- |
-| 0   | What Is an AI-Native Engineer   | `/ai-native-engineer/` | Definition, what changed, what did not change, self-assessment      |
-| 1   | Glossary                        | `/glossario/`          | LLM, model, token, prompt, agent, harness, MCP, and more            |
-| 2   | Tools                           | `/ferramentas/`        | IDEs vs CLI, categories, comparison by user profile                 |
-| 3   | Models                          | `/modelos/`            | Product vs model, task profiles, critical reading of benchmarks     |
-| 4   | Maturity                        | `/maturidade/`         | Query → Autocomplete → Vibe Coding → SDD → Harness Engineering      |
-| 5   | How to Operate                  | `/como-operar/`        | Workflow, checklists, profile-based playbooks                       |
+| #   | Session                       | Route                  | What It Teaches                                                 |
+| --- | ----------------------------- | ---------------------- | --------------------------------------------------------------- |
+| 0   | What Is an AI-Native Engineer | `/ai-native-engineer/` | Definition, what changed, what did not change, self-assessment  |
+| 1   | Glossary                      | `/glossario/`          | LLM, model, token, prompt, agent, harness, MCP, and more        |
+| 2   | Tools                         | `/ferramentas/`        | IDEs vs CLI, categories, comparison by user profile             |
+| 3   | Models                        | `/modelos/`            | Product vs model, task profiles, critical reading of benchmarks |
+| 4   | Maturity                      | `/maturidade/`         | Query → Autocomplete → Vibe Coding → SDD → Harness Engineering  |
+| 5   | How to Operate                | `/como-operar/`        | Workflow, checklists, profile-based playbooks                   |
 
 Each session follows a fixed template: 30-second summary → main explanation → why it matters → real example → where it breaks → interactive block → references.
 
 ## Stack
 
-| Layer          | Technology                                  |
-| -------------- | ------------------------------------------- |
-| Framework      | [Astro](https://astro.build)                |
-| Language       | TypeScript                                  |
-| Content        | MDX + Content Collections                   |
-| Interactivity  | React (islands only where needed)           |
-| Animation      | [Motion](https://motion.dev)                |
-| Styles         | CSS Modules + CSS Variables + design tokens |
-| Lint/Format    | ESLint + Prettier                           |
-| Deploy         | GitHub Actions → GitHub Pages               |
+| Layer         | Technology                                  |
+| ------------- | ------------------------------------------- |
+| Framework     | [Astro](https://astro.build)                |
+| Language      | TypeScript                                  |
+| Content       | MDX + Content Collections                   |
+| Interactivity | React (islands only where needed)           |
+| Animation     | [Motion](https://motion.dev)                |
+| Styles        | CSS Modules + CSS Variables + design tokens |
+| Lint/Format   | ESLint + Prettier                           |
+| Deploy        | GitHub Actions → GitHub Pages               |
 
 ### Why Astro
 

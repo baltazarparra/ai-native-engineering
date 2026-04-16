@@ -1,90 +1,90 @@
 # PLAN.md: AI-Native Engineer Learning Site
 
-## 1. Project summary
+## 1. Project Summary
 
-Criar um site interativo, estático e responsivo, publicado via GitHub Pages, para ensinar em linguagem humana e acessível o que uma pessoa precisa entender para operar como um **AI-Native Engineer** em 2026.
+Create an interactive, static, responsive website, published through GitHub Pages, that teaches in accessible human language what a person needs to understand to operate as an **AI-Native Engineer** in 2026.
 
-O produto não deve falar só com desenvolvedores seniores. Ele precisa funcionar para:
+The product must not speak only to senior developers. It needs to work for:
 
-- pessoas não técnicas que atuam em produto digital, como QA, PM, Product Designer, Tech Recruiter ou liderança de produto;
-- pessoas de baixa senioridade em tecnologia;
-- devs iniciantes que ainda confundem ferramenta, modelo, agente, CLI e workflow.
+- non-technical people working in digital product, such as QA, PMs, Product Designers, Tech Recruiters, and product leadership;
+- people with low seniority in technology;
+- beginner developers who still confuse tools, models, agents, CLIs, and workflows.
 
-A proposta central é simples:
+The central proposal is simple:
 
-**explicar o mercado, traduzir a terminologia, mostrar o mapa das ferramentas, organizar a evolução do uso de IA no desenvolvimento e deixar claro que AI-native não é “pedir código”, e sim operar com contexto, critério, validação e fluxo.**
-
----
-
-## 2. Tese do produto
-
-O mercado já trata IA como parte normal do trabalho de software, mas ainda existe uma lacuna grande entre **usar IA** e **trabalhar bem com IA**.
-
-Os dados mais recentes mostram um cenário bem claro:
-
-- o uso de IA no desenvolvimento já é massivo;
-- produtividade percebida subiu;
-- confiança não subiu no mesmo ritmo;
-- times precisam de processo, validação e contexto, não só acesso a ferramenta.
-
-Isso muda o foco do site. O conteúdo não deve vender hype. Deve ensinar:
-
-1. o vocabulário certo;
-2. a diferença entre ferramenta, modelo e workflow;
-3. como a prática evoluiu de consulta simples até agentes;
-4. por que verificação, planejamento e harness/importância de contexto viraram peças centrais.
+**explain the market, translate the terminology, map the tooling landscape, organize the evolution of AI usage in development, and make clear that AI-native is not "asking for code", but operating with context, judgment, validation, and flow.**
 
 ---
 
-## 3. Base de leitura de mercado
+## 2. Product Thesis
 
-### 3.1 O que vamos assumir como definição prática de AI-Native Engineer
+The market already treats AI as a normal part of software work, but there is still a large gap between **using AI** and **working well with AI**.
 
-Vamos usar uma definição prática, inspirada por Addy Osmani:
+The latest data points to a clear scenario:
 
-> um AI-Native Engineer é alguém que integra IA profundamente no workflow diário e passa a pensar em cada tarefa perguntando se a IA pode ajudar a fazer aquilo de forma mais rápida, melhor ou diferente.
+- AI usage in development is already massive;
+- perceived productivity has increased;
+- trust has not increased at the same pace;
+- teams need process, validation, and context, not just access to tools.
 
-Mas o site não deve tratar isso como slogan. Ele deve deixar claro que isso vem junto com:
+This changes the focus of the site. The content must not sell hype. It must teach:
 
-- supervisão humana;
-- validação;
-- clareza de objetivo;
-- boa estrutura de projeto;
-- capacidade de revisar saída e não apenas aceitar.
-
-### 3.2 O que os dados de mercado sugerem
-
-A leitura combinada das fontes indica:
-
-- Adoção já deixou de ser nicho. O Stack Overflow 2025 mostra que 84% dos respondentes usam ou planejam usar IA no processo de desenvolvimento, e 51% dos desenvolvedores profissionais usam IA diariamente.
-- O relatório DORA 2025 mostra adoção de 90% entre profissionais de software, com mais de 80% relatando ganho de produtividade e 59% relatando impacto positivo em qualidade.
-- Ao mesmo tempo, a confiança está atrás da adoção. O Stack Overflow 2025 mostra mais gente desconfiando da acurácia das saídas de IA do que confiando nelas.
-- A maior frustração reportada pelos devs é “solução quase certa, mas não totalmente”, seguida por debugging mais custoso de código gerado por IA.
-- A Anthropic mostra que coding continua sendo um dos usos mais fortes das suas plataformas, e que tarefas de correção, modificação de software e construção de apps com foco em interface estão entre os usos mais relevantes.
-
-### 3.3 Interpretação estratégica
-
-Então o site precisa ensinar um modelo mental mais maduro:
-
-**AI-native engineer = operador de sistemas de trabalho com IA**
-e não apenas
-**pessoa que escreve bons prompts**.
-
-Esse operador precisa entender pelo menos cinco camadas:
-
-1. linguagem e conceitos;
-2. categorias de ferramentas;
-3. capacidades e limites dos modelos;
-4. estágios de maturidade do uso de IA no desenvolvimento;
-5. mecanismos de controle: contexto, validação, regras, testes, harness e revisão.
+1. the right vocabulary;
+2. the difference between tool, model, and workflow;
+3. how practice evolved from simple consultation to agents;
+4. why verification, planning, and harness/context engineering became central pieces.
 
 ---
 
-## 4. Público-alvo
+## 3. Market Reading Baseline
 
-### Primário
+### 3.1 Practical Definition of AI-Native Engineer
 
-Pessoas de produto digital e tecnologia que não são especialistas profundos em engenharia, mas precisam entender o novo cenário:
+We will use a practical definition inspired by Addy Osmani:
+
+> an AI-Native Engineer is someone who integrates AI deeply into the daily workflow and starts thinking about every task by asking whether AI can help do it faster, better, or differently.
+
+But the site must not treat this as a slogan. It must make clear that this comes with:
+
+- human supervision;
+- validation;
+- goal clarity;
+- good project structure;
+- the ability to review output, not just accept it.
+
+### 3.2 What Market Data Suggests
+
+The combined reading of the sources indicates:
+
+- Adoption is no longer niche. Stack Overflow 2025 shows that 84% of respondents use or plan to use AI in the development process, and 51% of professional developers use AI daily.
+- The DORA 2025 report shows 90% adoption among software professionals, with more than 80% reporting productivity gains and 59% reporting positive impact on quality.
+- At the same time, trust trails adoption. Stack Overflow 2025 shows more people distrusting the accuracy of AI outputs than trusting them.
+- The biggest frustration reported by developers is a "solution that is almost right, but not quite", followed by more costly debugging of AI-generated code.
+- Anthropic shows that coding remains one of the strongest uses of its platforms, and that correction, software modification, and UI-focused app-building tasks are among the most relevant uses.
+
+### 3.3 Strategic Interpretation
+
+The site therefore needs to teach a more mature mental model:
+
+**AI-native engineer = operator of AI-assisted work systems**
+and not merely
+**person who writes good prompts**.
+
+That operator needs to understand at least five layers:
+
+1. language and concepts;
+2. tool categories;
+3. model capabilities and limits;
+4. maturity stages of AI usage in development;
+5. control mechanisms: context, validation, rules, tests, harness, and review.
+
+---
+
+## 4. Target Audience
+
+### Primary
+
+People in digital product and technology who are not deep engineering specialists, but need to understand the new landscape:
 
 - QA
 - Product Manager
@@ -92,833 +92,835 @@ Pessoas de produto digital e tecnologia que não são especialistas profundos em
 - Tech Recruiter
 - Product Designer
 - Founder
-- liderança de tecnologia em transição
+- technology leadership in transition
 
-### Secundário
+### Secondary
 
-- devs juniores e plenos;
-- pessoas curiosas tentando entrar no tema;
-- profissionais que usam IA no trabalho mas ainda não têm um mapa mental claro.
+- junior and mid-level developers;
+- curious people trying to enter the topic;
+- professionals who use AI at work but still do not have a clear mental map.
 
-### Perfil de consumo esperado
+### Expected Consumption Profile
 
-- entra pelo celular, mas também pode estudar no desktop;
-- quer explicações diretas, humanas e sem jargão desnecessário;
-- tolera profundidade, desde que exista progressão;
-- quer referências para se aprofundar depois.
-
----
-
-## 5. Objetivos do usuário
-
-Ao final do site, a pessoa deve conseguir:
-
-- explicar o que é LLM, modelo, agente, CLI, IDE e harness sem parecer que decorou buzzword;
-- diferenciar ferramentas de IDE e ferramentas de terminal;
-- entender que “modelo” não é a mesma coisa que “produto”;
-- reconhecer as fases do uso de IA no desenvolvimento;
-- entender por que vibe coding apareceu, por que ele falha em vários contextos e por que surgem abordagens mais estruturadas;
-- perceber que AI-native engineering é tanto sobre engenharia de contexto e validação quanto sobre geração de código.
+- enters on mobile, but may also study on desktop;
+- wants direct, human explanations without unnecessary jargon;
+- tolerates depth, as long as there is progression;
+- wants references to go deeper later.
 
 ---
 
-## 6. Princípios de conteúdo
+## 5. User Goals
 
-### 6.1 Linguagem
+By the end of the site, the person should be able to:
 
-A linguagem do site deve ser:
-
-- orgânica;
-- humana;
-- direta;
-- em PT-BR natural;
-- sem parecer aula acadêmica;
-- sem formalidade excessiva.
-
-### 6.2 Didática
-
-Cada página precisa seguir progressão de profundidade:
-
-1. explicação curta e simples;
-2. por que isso importa;
-3. exemplo real;
-4. onde isso quebra;
-5. como pensar melhor sobre o tema;
-6. referências.
-
-### 6.3 Forma de explicar
-
-Sempre que possível:
-
-- usar comparações simples;
-- explicar sigla antes de aprofundar;
-- mostrar uma versão “curta” e depois uma “mais técnica”;
-- trazer exemplos de QA, PM e times de produto, não só exemplos de dev hardcore.
-
-### 6.4 Regra editorial importante
-
-O site não deve parecer fanboy de ferramenta.
-
-Ele deve mostrar categorias e padrões.
-Ferramentas entram como exemplos concretos do mercado, não como verdade definitiva.
+- explain what LLM, model, agent, CLI, IDE, and harness mean without sounding like they memorized buzzwords;
+- differentiate IDE tools from terminal tools;
+- understand that "model" is not the same as "product";
+- recognize the phases of AI usage in development;
+- understand why vibe coding appeared, why it fails in several contexts, and why more structured approaches emerge;
+- perceive that AI-native engineering is as much about context engineering and validation as it is about code generation.
 
 ---
 
-## 7. Arquitetura de informação
+## 6. Content Principles
 
-## Página inicial `/`
+### 6.1 Language
 
-A home deve funcionar como:
+The site language should be:
 
-- manifesto curto;
-- mapa de navegação;
-- índice visual das sessões;
-- ponto de entrada democrático.
+- organic;
+- human;
+- direct;
+- natural in the target locale;
+- not academic;
+- not excessively formal.
 
-### Estrutura da home
+Harness and operational documentation must remain in English. User-facing educational content may follow the page locale, with PT-BR as the primary audience and English supported where localized routes exist.
+
+### 6.2 Teaching Approach
+
+Each page needs to follow a progression of depth:
+
+1. short and simple explanation;
+2. why it matters;
+3. real example;
+4. where it breaks;
+5. how to think better about the topic;
+6. references.
+
+### 6.3 Explanation Style
+
+Whenever possible:
+
+- use simple comparisons;
+- explain acronyms before going deeper;
+- show a "short" version and then a "more technical" version;
+- bring examples from QA, PM, and product teams, not only hardcore development examples.
+
+### 6.4 Important Editorial Rule
+
+The site must not look like a tool fanboy.
+
+It must show categories and patterns.
+Tools enter as concrete market examples, not as definitive truth.
+
+---
+
+## 7. Information Architecture
+
+## Home Page `/`
+
+The home page should work as:
+
+- a short manifesto;
+- a navigation map;
+- a visual index of the sessions;
+- a democratic entry point.
+
+### Home Structure
 
 #### 7.1 Hero
 
-Conteúdo:
+Content:
 
-- título forte;
-- subtítulo explicando a promessa;
-- CTA principal: “Começar pelo básico”;
-- CTA secundário: “Ver o mapa completo”.
+- strong title;
+- subtitle explaining the promise;
+- primary CTA: "Start with the basics";
+- secondary CTA: "See the full map".
 
-Possível direção de copy:
+Possible copy direction:
 
-- “O que você realmente precisa entender para trabalhar com engenharia em um mundo de agentes”
-- “Sem hype. Sem buzzword vazia. Só o mapa que importa.”
+- "What you actually need to understand to work in engineering in a world of agents"
+- "No hype. No empty buzzwords. Just the map that matters."
 
-#### 7.2 Bloco “Por que isso existe”
+#### 7.2 "Why This Exists" Block
 
-Explica em linguagem simples:
+Explains in simple language:
 
-- IA já entrou no trabalho de software;
-- muita gente está usando, pouca gente entende o todo;
-- o site existe para organizar esse caos.
+- AI has already entered software work;
+- many people are using it, few understand the whole picture;
+- the site exists to organize this chaos.
 
-#### 7.3 Bloco “Mapa da jornada”
+#### 7.3 "Journey Map" Block
 
-Cards clicáveis para cada sessão.
+Clickable cards for each session.
 
-#### 7.4 Bloco “Como estudar”
+#### 7.4 "How to Study" Block
 
-Explica que:
+Explains that:
 
-- dá para ler linearmente;
-- dá para navegar por dúvida;
-- cada sessão termina com referências.
+- it can be read linearly;
+- it can be navigated by question;
+- each session ends with references.
 
-#### 7.5 Bloco “Maturidade”
+#### 7.5 "Maturity" Block
 
-Uma visualização resumida da evolução:
-Consulta → Autocomplete → Vibe Coding → SDD → Harness Engineering
+A summarized visualization of the evolution:
+Consultation → Autocomplete → Vibe Coding → SDD → Harness Engineering
 
-#### 7.6 Footer editorial
+#### 7.6 Editorial Footer
 
-- créditos;
-- fontes;
-- versão do conteúdo;
-- data da última revisão.
+- credits;
+- sources;
+- content version;
+- last revision date.
 
 ---
 
-## 8. Sessões do produto
+## 8. Product Sessions
 
-## Sessão 0: O que é um AI-Native Engineer
+## Session 0: What Is an AI-Native Engineer
 
 **Slug:** `/ai-native-engineer/`
 
-Essa sessão deve existir antes ou logo após o hero, porque ela enquadra todo o resto.
+This session must exist before or immediately after the hero, because it frames everything else.
 
-### Objetivo
+### Objective
 
-Responder:
+Answer:
 
-- o que o mercado espera hoje;
-- por que isso não significa “todo mundo virou engenheiro”;
-- por que o papel humano ainda importa;
-- por que contexto, revisão e decisão continuam centrais.
+- what the market expects today;
+- why this does not mean "everyone became an engineer";
+- why the human role still matters;
+- why context, review, and decision-making remain central.
 
-### Estrutura da página
+### Page Structure
 
-- definição curta;
-- definição expandida;
-- “o que mudou no trabalho”;
-- “o que não mudou”;
-- checklist: “você já está operando de forma AI-native?”;
-- bloco de anti-padrões.
+- short definition;
+- expanded definition;
+- "what changed in the work";
+- "what did not change";
+- checklist: "are you already operating in an AI-native way?";
+- anti-pattern block.
 
-### Interações
+### Interactions
 
-- self-assessment com 5 a 7 perguntas;
-- score local simples, salvo em `localStorage`;
-- resultado com três perfis:
-  - explorando
-  - operando
-  - estruturando
+- self-assessment with 5 to 7 questions;
+- simple local score, saved in `localStorage`;
+- result with three profiles:
+  - exploring
+  - operating
+  - structuring
 
 ---
 
-## Sessão 1: Novas terminologias populares
+## Session 1: Popular New Terminology
 
 **Slug:** `/glossario/`
 
-### Objetivo
+### Objective
 
-Dar alfabetização mínima para qualquer pessoa conseguir continuar o site sem se perder.
+Provide minimum literacy so anyone can continue through the site without getting lost.
 
-### Conceitos obrigatórios
+### Required Concepts
 
 - LLM
-- modelo
-- inferência
-- contexto
+- model
+- inference
+- context
 - token
 - prompt
 - system prompt
 - IDE
 - CLI
-- agente
-- agente de código
+- agent
+- code agent
 - autocomplete
-- contexto de código
+- code context
 - MCP
 - harness
 
-### Estrutura da página
+### Page Structure
 
-- intro curta: “se essas palavras parecem tudo a mesma coisa, você não está sozinho”
-- grid de cards;
-- cada card abre:
-  - definição simples;
-  - definição mais técnica;
-  - exemplo real;
-  - erro comum.
+- short intro: "if these words all sound the same, you are not alone"
+- card grid;
+- each card opens:
+  - simple definition;
+  - more technical definition;
+  - real example;
+  - common mistake.
 
-### Interações
+### Interactions
 
 - hover/click cards;
-- modo “explicação curta” e “explicação técnica”;
-- mini quiz no final;
-- botão “ver isso em ferramentas reais”.
+- "short explanation" and "technical explanation" mode;
+- mini quiz at the end;
+- button: "see this in real tools".
 
-### Observação editorial
+### Editorial Note
 
-“Harness” e “SDD” devem ser tratados com honestidade:
+"Harness" and "SDD" must be handled honestly:
 
-- explicar que são termos usados em certos círculos;
-- deixar claro que nem sempre há uma padronização universal;
-- definir como o site vai usar esses termos.
+- explain that they are terms used in certain circles;
+- make clear that there is not always universal standardization;
+- define how the site will use these terms.
 
 ---
 
-## Sessão 2: Ferramentas: IDEs vs CLI
+## Session 2: Tools: IDEs vs CLI
 
 **Slug:** `/ferramentas/`
 
-### Objetivo
+### Objective
 
-Ajudar o usuário a entender categorias de ferramentas, e não apenas decorar nomes.
+Help the user understand categories of tools, not just memorize names.
 
-### Eixo didático principal
+### Main Teaching Axis
 
-- ferramentas integradas ao editor/IDE;
-- ferramentas centradas em terminal/CLI;
-- agentes que operam com mais autonomia;
-- onde cada uma faz mais sentido.
+- tools integrated into the editor/IDE;
+- terminal/CLI-centered tools;
+- agents that operate with more autonomy;
+- where each one makes more sense.
 
-### Exemplos de IDE / agent-first IDE
+### IDE / Agent-First IDE Examples
 
 - Cursor
 - Antigravity
-- GitHub Copilot no editor
+- GitHub Copilot in the editor
 
-### Exemplos de terminal / CLI
+### Terminal / CLI Examples
 
 - Claude Code
 - Codex CLI
 - OpenCode
-- GitHub Copilot CLI como adjacente
+- GitHub Copilot CLI as adjacent
 
-### O que essa página precisa ensinar
+### What This Page Needs to Teach
 
-- IDE dá contexto visual e fluxo mais familiar;
-- CLI tende a dar mais sensação de controle operacional e proximidade com ambiente real;
-- algumas ferramentas cruzam superfícies e não ficam presas a uma categoria pura;
-- a escolha da ferramenta muda menos do que o workflow, o critério e a validação.
+- IDEs provide visual context and a more familiar flow;
+- CLIs tend to provide more operational control and proximity to the real environment;
+- some tools cross surfaces and do not stay in a pure category;
+- tool choice matters less than workflow, judgment, and validation.
 
-### Estrutura da página
+### Page Structure
 
-- comparação por categorias;
-- tabela simples:
-  - onde roda
-  - melhor para
-  - tipo de usuário
-  - pontos fortes
-  - risco comum
-- bloco “não escolha por hype, escolha por fricção do seu fluxo”.
+- comparison by category;
+- simple table:
+  - where it runs
+  - best for
+  - user type
+  - strengths
+  - common risk
+- block: "do not choose by hype, choose by the friction in your flow".
 
-### Interações
+### Interactions
 
-- filtros por tipo de usuário:
-  - não técnico
+- filters by user type:
+  - non-technical
   - junior
-  - dev experiente
-  - liderança
-- comparador de ferramentas com cards expansíveis;
-- toggle “ver por interface” vs “ver por workflow”.
+  - experienced developer
+  - leadership
+- tool comparator with expandable cards;
+- toggle: "view by interface" vs "view by workflow".
 
-### Tom importante
+### Important Tone
 
-Essa página deve deixar claro:
-**ferramenta não substitui método**.
+This page must make clear:
+**tools do not replace method**.
 
 ---
 
-## Sessão 3: LLMs e os modelos mais usados nesse contexto
+## Session 3: LLMs and the Models Most Used in This Context
 
 **Slug:** `/modelos/`
 
-### Objetivo
+### Objective
 
-Explicar o que é um modelo e como pensar sobre modelo sem virar refém de benchmark.
+Explain what a model is and how to think about models without becoming hostage to benchmarks.
 
-### O que a página precisa ensinar
+### What This Page Needs to Teach
 
-- produto e modelo são coisas diferentes;
-- o usuário geralmente interage com um produto que embute um ou mais modelos;
-- modelos variam em:
-  - raciocínio
-  - velocidade
-  - custo
-  - janela de contexto
-  - habilidade em código
-  - confiabilidade em follow-through
-- não existe “melhor modelo” absoluto;
-- existe melhor modelo para certo tipo de tarefa.
+- product and model are different things;
+- the user usually interacts with a product that embeds one or more models;
+- models vary in:
+  - reasoning
+  - speed
+  - cost
+  - context window
+  - code ability
+  - follow-through reliability
+- there is no absolute "best model";
+- there is a best model for a given type of task.
 
-### Organização sugerida
+### Suggested Organization
 
-Ao invés de focar em ranking, focar em perfis:
+Instead of focusing on rankings, focus on profiles:
 
-- modelos rápidos para consulta e exploração;
-- modelos fortes para planejamento e arquitetura;
-- modelos fortes para edição e execução de código;
-- modelos open/open-weight como camada importante do ecossistema.
+- fast models for consultation and exploration;
+- strong models for planning and architecture;
+- strong models for editing and code execution;
+- open/open-weight models as an important ecosystem layer.
 
-### Interações
+### Interactions
 
-- seletor de tarefa:
-  - explicar conceito
-  - revisar código
-  - planejar feature
-  - executar refactor
-  - gerar primeira versão
-- a UI mostra quais características do modelo importam mais para cada caso.
+- task selector:
+  - explain concept
+  - review code
+  - plan feature
+  - execute refactor
+  - generate first version
+- the UI shows which model characteristics matter most for each case.
 
-### Cuidado editorial
+### Editorial Care
 
-Evitar transformar a página em leaderboard.
-O objetivo é ensinar leitura crítica, não culto a fornecedor.
+Avoid turning the page into a leaderboard.
+The objective is to teach critical reading, not vendor worship.
 
 ---
 
-## Sessão 4: A evolução do desenvolvimento com IA
+## Session 4: The Evolution of AI-Assisted Development
 
 **Slug:** `/maturidade/`
 
-Essa é a sessão mais importante do produto.
+This is the most important session in the product.
 
-### Objetivo
+### Objective
 
-Explicar a progressão histórica e prática do uso de IA no desenvolvimento.
+Explain the historical and practical progression of AI usage in development.
 
-### Fases obrigatórias
+### Required Phases
 
-#### Fase 1: IA para consulta
+#### Phase 1: AI for Consultation
 
-Uso:
+Usage:
 
-- perguntar conceitos;
-- resumir docs;
-- explorar ideias;
-- pedir exemplos.
+- ask about concepts;
+- summarize docs;
+- explore ideas;
+- request examples.
 
-Valor:
+Value:
 
-- acelera aprendizado;
-- reduz tempo de pesquisa;
-- ajuda quem não sabe por onde começar.
+- accelerates learning;
+- reduces research time;
+- helps people who do not know where to start.
 
-Problemas:
+Problems:
 
-- superficialidade;
-- alucinação;
-- falsa sensação de entendimento;
-- dependência sem construção de critério.
+- superficiality;
+- hallucination;
+- false feeling of understanding;
+- dependency without building judgment.
 
-#### Fase 2: IA para autocomplete e pair assistance
+#### Phase 2: AI for Autocomplete and Pair Assistance
 
-Uso:
+Usage:
 
-- completar código;
-- sugerir função;
-- refator pequeno;
-- explicar trecho.
+- complete code;
+- suggest a function;
+- perform small refactors;
+- explain snippets.
 
-Valor:
+Value:
 
-- acelera loop local;
-- bom para tarefas pequenas;
-- reduz atrito de digitação e boilerplate.
+- accelerates the local loop;
+- good for small tasks;
+- reduces typing and boilerplate friction.
 
-Problemas:
+Problems:
 
-- contexto parcial;
-- sugestões localmente boas e globalmente ruins;
-- acelera produção de dívida se o time não revisa bem.
+- partial context;
+- suggestions that are locally good and globally bad;
+- accelerates debt production if the team does not review well.
 
-#### Fase 3: Vibe coding
+#### Phase 3: Vibe Coding
 
-Uso:
+Usage:
 
-- falar em linguagem natural o que quer;
-- deixar a ferramenta gerar bastante coisa;
-- explorar protótipos, MVPs, spikes, microprodutos.
+- describe what you want in natural language;
+- let the tool generate a lot;
+- explore prototypes, MVPs, spikes, and micro-products.
 
-Valor:
+Value:
 
-- compressão radical de tempo de prototipagem;
-- baixo atrito de entrada;
-- ótimo para experimentar.
+- radical compression of prototyping time;
+- low entry friction;
+- great for experimentation.
 
-Problemas:
+Problems:
 
-- arquitetura frágil;
-- inconsistência;
-- falsa confiança;
-- facilidade para gerar produto que parece pronto mas não está;
-- debugging e manutenção podem custar caro depois.
+- fragile architecture;
+- inconsistency;
+- false confidence;
+- easy to generate a product that looks ready but is not;
+- debugging and maintenance can become expensive later.
 
-#### Fase 4: SDD como evolução do vibe coding
+#### Phase 4: SDD as an Evolution of Vibe Coding
 
-Usaremos SDD aqui como **Spec-Driven Development**.
+We will use SDD here as **Spec-Driven Development**.
 
-O site deve explicar com honestidade:
+The site must explain honestly:
 
-- isso não é uma sigla universal como HTTP ou SQL;
-- aqui ela representa um modo de trabalhar guiado por especificação, critérios e artefatos.
+- this is not a universal acronym like HTTP or SQL;
+- here it represents a way of working guided by specification, criteria, and artifacts.
 
-Uso:
+Usage:
 
-- descrever objetivo, escopo, restrições, critérios de aceite, contexto e plano;
-- pedir execução a partir disso.
+- describe goal, scope, constraints, acceptance criteria, context, and plan;
+- request execution based on that.
 
-Valor:
+Value:
 
-- reduz ambiguidade;
-- melhora consistência;
-- aumenta chance de saída útil;
-- ajuda colaboração entre humano e agente.
+- reduces ambiguity;
+- improves consistency;
+- increases the chance of useful output;
+- helps collaboration between human and agent.
 
-Problemas:
+Problems:
 
-- exige disciplina;
-- mais fricção no começo;
-- especificação ruim continua gerando resultado ruim.
+- requires discipline;
+- adds more friction at the beginning;
+- bad specification still generates bad results.
 
-#### Fase 5: Harness Engineering
+#### Phase 5: Harness Engineering
 
-Aqui vamos usar “Harness Engineering” como a camada em que o time para de pensar só em prompt e começa a pensar no **sistema de trabalho do agente**.
+Here we will use "Harness Engineering" as the layer where the team stops thinking only about prompts and starts thinking about the **agent work system**.
 
-A página deve explicar que, na prática, isso envolve:
+The page must explain that, in practice, this involves:
 
-- instruções;
-- ferramentas;
-- modelo;
-- regras;
-- contexto persistente;
-- validações;
-- agentes especializados;
-- arquivos de apoio;
-- avaliação do resultado.
+- instructions;
+- tools;
+- model;
+- rules;
+- persistent context;
+- validations;
+- specialized agents;
+- support files;
+- evaluation of the result.
 
-Essa leitura conversa com a forma como o Cursor descreve agent harnesses: instruções, tools e model orquestrados juntos.
+This reading aligns with how Cursor describes agent harnesses: instructions, tools, and model orchestrated together.
 
-Valor:
+Value:
 
-- escala qualidade;
-- reduz variação;
-- ajuda repetibilidade;
-- permite workflows mais consistentes entre pessoas e times.
+- scales quality;
+- reduces variation;
+- supports repeatability;
+- enables more consistent workflows across people and teams.
 
-Problemas:
+Problems:
 
-- maior complexidade operacional;
-- risco de excesso de framework;
-- precisa de manutenção;
-- não salva time sem bons fundamentos de engenharia.
+- higher operational complexity;
+- risk of excessive framework;
+- requires maintenance;
+- does not save a team without good engineering fundamentals.
 
-### Estrutura da página
+### Page Structure
 
-- timeline ou stepper;
-- cada fase com:
-  - o que é;
-  - por que surgiu;
-  - onde funciona;
-  - onde quebra;
-  - o que a próxima fase tenta resolver.
+- timeline or stepper;
+- each phase with:
+  - what it is;
+  - why it emerged;
+  - where it works;
+  - where it breaks;
+  - what the next phase tries to solve.
 
-### Interações
+### Interactions
 
-- slider horizontal ou stepper vertical;
-- modo “antes e depois”;
-- casos práticos:
-  - “preciso subir um MVP”
-  - “preciso refatorar sistema legado”
-  - “preciso manter produto em produção”
-- a UI mostra qual fase sozinha não é suficiente.
+- horizontal slider or vertical stepper;
+- "before and after" mode;
+- practical cases:
+  - "I need to launch an MVP"
+  - "I need to refactor a legacy system"
+  - "I need to maintain a product in production"
+- the UI shows which phase alone is not enough.
 
 ---
 
-## Sessão 5: Como operar de forma AI-native na prática
+## Session 5: How to Operate AI-Natively in Practice
 
 **Slug:** `/como-operar/`
 
-Essa sessão fecha o raciocínio.
+This session closes the reasoning loop.
 
-### Objetivo
+### Objective
 
-Traduzir teoria em prática cotidiana.
+Translate theory into daily practice.
 
-### O que deve ensinar
+### What It Should Teach
 
-- começar com plano;
-- definir objetivo verificável;
-- passar contexto suficiente;
-- pedir execução em etapas quando necessário;
-- validar saída com testes, lint, typecheck, review e leitura humana;
-- tratar IA como colaborador acelerador, não como autoridade final;
-- construir uma base de regras, prompts úteis, checklists e artefatos repetíveis.
+- start with a plan;
+- define a verifiable goal;
+- provide enough context;
+- ask for step-by-step execution when necessary;
+- validate output with tests, lint, typecheck, review, and human reading;
+- treat AI as an accelerating collaborator, not as the final authority;
+- build a base of rules, useful prompts, checklists, and repeatable artifacts.
 
-### Estrutura
+### Structure
 
-- workflow recomendado;
-- checklist “antes de pedir”;
-- checklist “antes de aceitar”;
-- exemplos por perfil:
+- recommended workflow;
+- "before asking" checklist;
+- "before accepting" checklist;
+- examples by profile:
   - PM
   - QA
-  - junior dev
-  - senior dev
+  - junior developer
+  - senior developer
   - tech lead
 
-### Interações
+### Interactions
 
-- gerador de checklist;
-- toggle por perfil;
-- “playbook card” copiável.
-
----
-
-## 9. Template padrão das páginas de detalhe
-
-Toda página de sessão deve seguir uma estrutura consistente:
-
-1. **Hero da sessão**
-   - título
-   - subtítulo
-   - nível de dificuldade
-   - tempo de leitura
-
-2. **Resumo em linguagem simples**
-   - “em 30 segundos”
-
-3. **Explicação principal**
-   - narrativa curta e clara
-
-4. **Por que isso importa**
-   - impacto prático
-
-5. **Exemplo aplicado**
-   - caso de uso real
-
-6. **Onde isso quebra**
-   - riscos e anti-padrões
-
-7. **Bloco interativo**
-   - comparação, quiz, timeline ou simulador
-
-8. **Resumo final**
-   - “o que levar daqui”
-
-9. **Referências**
-   - artigos
-   - vídeos
-   - docs oficiais
+- checklist generator;
+- profile toggle;
+- copyable "playbook card".
 
 ---
 
-## 10. Estratégia de referências ao fim de cada sessão
+## 9. Standard Template for Detail Pages
 
-Cada sessão termina com uma área fixa chamada:
-**“Quer se aprofundar?”**
+Every session page must follow a consistent structure:
 
-### Organização da área
+1. **Session hero**
+   - title
+   - subtitle
+   - difficulty level
+   - reading time
 
-- 2 a 4 links “comece aqui”
-- 2 a 4 links “docs e fontes primárias”
-- 1 a 3 links “vídeos / talks”
-- 1 bloco “leitura crítica” quando fizer sentido
+2. **Plain-language summary**
+   - "in 30 seconds"
 
-### Regras de curadoria
+3. **Main explanation**
+   - short and clear narrative
 
-- priorizar fonte primária;
-- evitar youtuber genérico como fonte central;
-- sempre que houver doc oficial, dar preferência;
-- usar 1 ou 2 leituras críticas para equilibrar discurso;
-- mostrar tipo do link:
-  - artigo
-  - documentação
+4. **Why this matters**
+   - practical impact
+
+5. **Applied example**
+   - real use case
+
+6. **Where this breaks**
+   - risks and anti-patterns
+
+7. **Interactive block**
+   - comparison, quiz, timeline, or simulator
+
+8. **Final summary**
+   - "what to take away"
+
+9. **References**
+   - articles
+   - videos
+   - official docs
+
+---
+
+## 10. Reference Strategy at the End of Each Session
+
+Each session ends with a fixed area called:
+**"Want to go deeper?"**
+
+### Area Organization
+
+- 2 to 4 "start here" links
+- 2 to 4 "docs and primary sources" links
+- 1 to 3 "videos / talks" links
+- 1 "critical reading" block when it makes sense
+
+### Curation Rules
+
+- prioritize primary sources;
+- avoid generic YouTubers as central sources;
+- whenever official docs exist, prefer them;
+- use 1 or 2 critical readings to balance the discourse;
+- show the link type:
+  - article
+  - documentation
   - talk
-  - vídeo
-  - pesquisa
+  - video
+  - research
 
 ---
 
-## 11. Direção visual: Neo Brutalism
+## 11. Visual Direction: Neo Brutalism
 
-## 11.1 Princípio central
+## 11.1 Central Principle
 
-A interface deve usar Neo Brutalism não como fantasia visual, mas como linguagem coerente para:
+The interface should use Neo Brutalism not as visual costume, but as a coherent language to:
 
-- chamar atenção;
-- parecer contemporânea;
-- manter identidade forte;
-- reforçar clareza estrutural.
+- attract attention;
+- feel contemporary;
+- keep a strong identity;
+- reinforce structural clarity.
 
-A pesquisa aponta um conjunto de características recorrentes:
+Research points to a recurring set of characteristics:
 
-- alto contraste;
-- layout em blocos;
-- cores fortes;
-- bordas grossas;
-- tipografia grande;
-- elementos “raw” ou menos polidos;
-- sombras duras, simples e deslocadas.
+- high contrast;
+- block-based layout;
+- strong colors;
+- thick borders;
+- large typography;
+- raw or less polished elements;
+- hard, simple, offset shadows.
 
-Mas existe um ponto crítico:
-**sem equilíbrio, o estilo pode virar ruído e prejudicar acessibilidade e entendimento**.
+But there is a critical point:
+**without balance, the style can become noise and harm accessibility and understanding**.
 
-### 11.2 Tradução prática para este projeto
+### 11.2 Practical Translation for This Project
 
-#### Paleta
+#### Palette
 
-Usar no máximo:
+Use at most:
 
-- 1 cor base clara;
-- preto forte;
-- 2 ou 3 acentos vibrantes.
+- 1 light base color;
+- strong black;
+- 2 or 3 vibrant accents.
 
-Sugestão de direção:
+Suggested direction:
 
-- fundo claro levemente quente;
-- preto puro para contorno e tipografia principal;
-- acentos como amarelo, azul elétrico, verde ácido ou coral.
+- slightly warm light background;
+- pure black for outlines and primary typography;
+- accents such as yellow, electric blue, acid green, or coral.
 
-#### Tipografia
+#### Typography
 
-- headlines com peso alto;
-- corpo com fonte neutra e muito legível;
-- evitar fonte “maluca” em parágrafos.
+- heavy-weight headlines;
+- neutral and very readable body font;
+- avoid "weird" fonts in paragraphs.
 
-#### Bordas e sombras
+#### Borders and Shadows
 
-- bordas pretas grossas;
-- sombras deslocadas em uma direção;
-- sem blur;
-- sem glassmorphism;
-- sem excesso de gradiente.
+- thick black borders;
+- shadows offset in one direction;
+- no blur;
+- no glassmorphism;
+- no excessive gradients.
 
 #### Layout
 
-- cards grandes;
-- grids com ritmo forte;
-- leve assimetria controlada;
-- bastante respiro entre blocos.
+- large cards;
+- grids with strong rhythm;
+- slight controlled asymmetry;
+- generous breathing room between blocks.
 
-#### Componentes
+#### Components
 
-- botões com estados claros;
-- links visíveis;
-- hover simples e óbvio;
-- foco de teclado muito aparente.
+- buttons with clear states;
+- visible links;
+- simple and obvious hover;
+- very apparent keyboard focus.
 
-#### Ilustrações e ornamentos
+#### Illustrations and Ornaments
 
-- formas geométricas simples;
-- adesivos, selos e labels podem existir;
-- usar pouco;
-- não poluir áreas densas de conteúdo.
+- simple geometric shapes;
+- stickers, seals, and labels may exist;
+- use sparingly;
+- do not pollute dense content areas.
 
-### 11.3 Regra mais importante de UX
+### 11.3 Most Important UX Rule
 
-Neo Brutalism aqui deve ser:
-**impactante no primeiro olhar, mas fácil de usar no quinto minuto**.
+Neo Brutalism here should be:
+**striking at first glance, but easy to use by the fifth minute**.
 
-Ou seja:
+That means:
 
-- nada de sacrificar leitura;
-- nada de esconder navegação;
-- nada de interações misteriosas.
+- never sacrifice readability;
+- never hide navigation;
+- never use mysterious interactions.
 
-### 11.4 Diretrizes responsivas
+### 11.4 Responsive Guidelines
 
-No mobile:
+On mobile:
 
-- priorizar leitura linear;
-- colapsar grids em pilha;
-- manter contraste e toque confortável;
-- reduzir elementos decorativos;
-- preservar o peso visual sem esmagar o conteúdo.
+- prioritize linear reading;
+- collapse grids into stacks;
+- keep contrast and comfortable touch targets;
+- reduce decorative elements;
+- preserve visual weight without crushing the content.
 
-### 11.5 Acessibilidade
+### 11.5 Accessibility
 
-Mesmo com visual forte:
+Even with a strong visual style:
 
-- contraste WCAG aceitável;
-- foco visível;
-- navegação por teclado;
-- sem depender apenas de cor para estado;
-- textos e CTAs sempre legíveis.
-
----
-
-## 12. Interação e Creative Development
-
-O site deve ser interativo, mas não virar playground gratuito.
-
-### Interações recomendadas
-
-- cards expansíveis;
-- stepper de maturidade;
-- filtros de comparação;
-- quizzes rápidos;
-- checklists interativos;
-- microanimações de hover e entrada;
-- progresso de leitura;
-- sticky nav por sessão.
-
-### Interações a evitar no MVP
-
-- parallax pesado;
-- smooth scroll intrusivo;
-- transições que atrasam leitura;
-- loaders desnecessários;
-- canvas/3D sem valor pedagógico real.
-
-### Regra
-
-Toda interação precisa cumprir um de três papéis:
-
-1. explicar melhor;
-2. organizar melhor;
-3. aumentar retenção sem reduzir clareza.
-
-Se não cumprir um desses papéis, sai.
+- acceptable WCAG contrast;
+- visible focus;
+- keyboard navigation;
+- do not rely only on color to represent state;
+- text and CTAs always readable.
 
 ---
 
-## 13. Melhor stack técnica para GitHub Pages
+## 12. Interaction and Creative Development
 
-## Recomendação principal
+The site should be interactive, but it must not become a free-form playground.
 
-**Astro + TypeScript + MDX + Content Collections + React islands + Motion + CSS Modules / tokens CSS**
+### Recommended Interactions
 
-### 13.1 Por que Astro é a melhor escolha aqui
+- expandable cards;
+- maturity stepper;
+- comparison filters;
+- quick quizzes;
+- interactive checklists;
+- hover and entrance micro-animations;
+- reading progress;
+- sticky nav per session.
 
-Este projeto é mais conteúdo-first do que app-first.
+### Interactions to Avoid in the MVP
 
-Precisamos de:
+- heavy parallax;
+- intrusive smooth scroll;
+- transitions that delay reading;
+- unnecessary loaders;
+- canvas/3D without real pedagogical value.
 
-- páginas estáticas reais;
-- bom carregamento;
-- boa indexação;
-- rotas simples;
-- detalhamento por página;
-- componentes interativos apenas onde fizer sentido;
-- deploy fácil em GitHub Pages.
+### Rule
 
-Astro encaixa muito bem porque:
+Every interaction must fulfill one of three roles:
 
-- tem guia oficial para deploy em GitHub Pages;
-- suporta `base` e `site` para repositório ou domínio customizado;
-- funciona muito bem para sites de conteúdo;
-- permite usar MDX para conteúdo rico;
-- permite usar content collections com schema, validação e tipagem;
-- permite hidratar só os blocos interativos como islands, mantendo o resto leve.
+1. explain better;
+2. organize better;
+3. increase retention without reducing clarity.
 
-### 13.2 Por que não usar uma SPA React pura como primeira escolha
+If it does not fulfill one of these roles, it is removed.
 
-Uma SPA com Vite + React funcionaria, mas não é a melhor primeira escolha para este caso porque:
+---
 
-- o projeto é fortemente editorial;
-- ter páginas geradas estaticamente é melhor para conteúdo e manutenção;
-- usar React para tudo tende a subir JS sem necessidade;
-- a principal necessidade de interatividade é localizada, não global.
+## 13. Best Technical Stack for GitHub Pages
 
-### 13.3 Onde React entra
+## Main Recommendation
 
-React entra somente nas ilhas interativas:
+**Astro + TypeScript + MDX + Content Collections + React islands + Motion + CSS Modules / CSS tokens**
 
-- comparadores;
+### 13.1 Why Astro Is the Best Choice Here
+
+This project is more content-first than app-first.
+
+We need:
+
+- real static pages;
+- good loading performance;
+- good indexing;
+- simple routes;
+- per-page detail;
+- interactive components only where they make sense;
+- easy deployment to GitHub Pages.
+
+Astro fits very well because:
+
+- it has an official guide for GitHub Pages deployment;
+- it supports `base` and `site` for repository pages or custom domains;
+- it works very well for content sites;
+- it allows MDX for rich content;
+- it supports content collections with schema, validation, and typing;
+- it allows hydrating only interactive blocks as islands, keeping everything else light.
+
+### 13.2 Why Not Use a Pure React SPA as the First Choice
+
+A Vite + React SPA would work, but it is not the best first choice for this case because:
+
+- the project is strongly editorial;
+- statically generated pages are better for content and maintenance;
+- using React for everything tends to increase JavaScript unnecessarily;
+- the main interactivity need is local, not global.
+
+### 13.3 Where React Enters
+
+React enters only in interactive islands:
+
+- comparators;
 - quizzes;
-- stepper de maturidade;
-- filtros;
+- maturity stepper;
+- filters;
 - checklists;
 - progress UI.
 
 ### 13.4 Motion
 
-Usar `motion` apenas onde a animação realmente melhora compreensão:
+Use `motion` only where animation truly improves understanding:
 
-- entrada de cards;
-- mudança de estado;
-- transições entre fases;
-- feedback de interação.
+- card entrances;
+- state changes;
+- transitions between phases;
+- interaction feedback.
 
-Para hover simples e pequenos efeitos, preferir CSS.
+For simple hover and small effects, prefer CSS.
 
-### 13.5 Estilo
+### 13.5 Style
 
-Não usar Tailwind como camada principal do visual.
+Do not use Tailwind as the main visual layer.
 
-Motivo:
+Reason:
 
-- o projeto pede linguagem visual autoral;
-- Neo Brutalism exige decisões visuais mais cuidadas;
-- CSS Modules + design tokens deixam o sistema mais explícito e menos “cara de template”.
+- the project needs an authored visual language;
+- Neo Brutalism requires more careful visual decisions;
+- CSS Modules + design tokens make the system more explicit and less template-like.
 
-Tailwind pode acelerar, mas aqui a chance de o resultado ficar genérico aumenta.
+Tailwind can speed things up, but here it increases the chance of a generic result.
 
-### 13.6 Stack resumida
+### 13.6 Stack Summary
 
 - **Framework:** Astro
-- **Linguagem:** TypeScript
-- **Conteúdo:** MDX
-- **Estrutura de conteúdo:** Astro Content Collections
-- **Interatividade:** React islands
-- **Animação:** Motion
-- **Estilos:** CSS Modules + CSS variables + arquivo global de tokens
+- **Language:** TypeScript
+- **Content:** MDX
+- **Content structure:** Astro Content Collections
+- **Interactivity:** React islands
+- **Animation:** Motion
+- **Styles:** CSS Modules + CSS variables + global token file
 - **Lint/format:** ESLint + Prettier
-- **Deploy:** GitHub Actions para GitHub Pages
+- **Deploy:** GitHub Actions to GitHub Pages
 
 ---
 
-## 14. Estrutura técnica sugerida
+## 14. Suggested Technical Structure
 
 ```txt
 /
@@ -972,11 +974,11 @@ Tailwind pode acelerar, mas aqui a chance de o resultado ficar genérico aumenta
 
 ---
 
-## 15. Modelo de conteúdo
+## 15. Content Model
 
 ## Collection: `sessions`
 
-Cada sessão em MDX com frontmatter:
+Each session in MDX with frontmatter:
 
 ```yaml
 title:
@@ -991,18 +993,18 @@ references:
 updatedAt:
 ```
 
-### Vantagens
+### Advantages
 
-- conteúdo separado da UI;
-- fácil manutenção;
-- tipagem;
-- ordem clara;
-- pode crescer sem acoplar tudo no código.
+- content separated from UI;
+- easy maintenance;
+- typing;
+- clear order;
+- can grow without coupling everything into code.
 
 ## Collection: `references`
 
-Pode começar em JSON/YAML e depois migrar se precisar.
-Campos:
+Can start in JSON/YAML and migrate later if needed.
+Fields:
 
 - title
 - url
@@ -1014,7 +1016,7 @@ Campos:
 
 ---
 
-## 16. Componentes centrais
+## 16. Core Components
 
 ### Home
 
@@ -1025,7 +1027,7 @@ Campos:
 - MaturityPreview
 - FooterSources
 
-### Session pages
+### Session Pages
 
 - SessionHero
 - SectionNav
@@ -1036,7 +1038,7 @@ Campos:
 - ReferencesList
 - NextSessionCTA
 
-### Interativos
+### Interactive Components
 
 - GlossaryCardGrid
 - ToolComparison
@@ -1047,324 +1049,324 @@ Campos:
 
 ---
 
-## 17. SEO, performance e distribuição
+## 17. SEO, Performance, and Distribution
 
 ### SEO
 
-Mesmo sendo projeto educacional e de referência, SEO importa:
+Even as an educational and reference project, SEO matters:
 
-- títulos claros;
-- metadados por sessão;
+- clear titles;
+- metadata per session;
 - OG tags;
-- headings corretos;
-- slug limpo.
+- correct headings;
+- clean slugs.
 
 ### Performance
 
-Objetivo:
+Goal:
 
-- excelente leitura no mobile;
-- baixo JS;
-- imagens mínimas;
-- tipografia bem carregada.
+- excellent mobile reading;
+- low JavaScript;
+- minimal images;
+- well-loaded typography.
 
-### Regras
+### Rules
 
-- islands só onde necessário;
-- preferir SVG e CSS a assets pesados;
-- evitar biblioteca grande por detalhe visual;
-- medir Lighthouse em mobile desde cedo.
+- islands only where needed;
+- prefer SVG and CSS over heavy assets;
+- avoid a large library for a small visual detail;
+- measure Lighthouse on mobile early.
 
 ---
 
-## 18. Responsividade
+## 18. Responsiveness
 
-### Breakpoints sugeridos
+### Suggested Breakpoints
 
-- mobile: até 767px
-- tablet: 768px até 1023px
+- mobile: up to 767px
+- tablet: 768px to 1023px
 - desktop: 1024px+
 - wide: 1440px+
 
-### Estratégia
+### Strategy
 
-No mobile:
+On mobile:
 
-- home mais linear;
-- cards em coluna;
-- tabela vira bloco comparativo;
-- sticky nav pode virar dropdown;
-- animações reduzidas.
+- more linear home;
+- cards in a column;
+- table becomes comparative blocks;
+- sticky nav can become a dropdown;
+- reduced animations.
 
-No desktop:
+On desktop:
 
-- grid forte;
-- maior experimentação visual;
-- navegação lateral ou sticky contextual nas páginas longas.
+- strong grid;
+- more visual experimentation;
+- side navigation or contextual sticky navigation on long pages.
 
 ---
 
-## 19. Plano de implementação
+## 19. Implementation Plan
 
-## Fase 0: Discovery e base conceitual
+## Phase 0: Discovery and Conceptual Base
 
-### Entregáveis
+### Deliverables
 
-- fechamento de escopo;
-- mapa das sessões;
-- decisões editoriais;
+- scope closure;
+- session map;
+- editorial decisions;
 - design principles;
-- lista inicial de fontes;
-- wireframe low-fi.
+- initial source list;
+- low-fi wireframe.
 
-### Saída esperada
+### Expected Output
 
-- estrutura do conteúdo aprovada;
-- stack fechada;
-- sem código visual ainda.
-
----
-
-## Fase 1: Fundação do projeto
-
-### Entregáveis
-
-- Astro configurado;
-- TS configurado;
-- MDX configurado;
-- content collections configuradas;
-- tokens CSS;
-- layout base;
-- deploy inicial em GH Pages.
-
-### Critérios
-
-- rota principal funcionando;
-- uma sessão de exemplo renderizando;
-- deploy automático no push.
+- content structure approved;
+- stack decided;
+- no visual code yet.
 
 ---
 
-## Fase 2: Sistema visual Neo Brutalism
+## Phase 1: Project Foundation
 
-### Entregáveis
+### Deliverables
 
-- paleta;
-- tipografia;
+- Astro configured;
+- TS configured;
+- MDX configured;
+- content collections configured;
+- CSS tokens;
+- base layout;
+- initial deployment to GitHub Pages.
+
+### Criteria
+
+- main route working;
+- one example session rendering;
+- automatic deploy on push.
+
+---
+
+## Phase 2: Neo Brutalism Visual System
+
+### Deliverables
+
+- palette;
+- typography;
 - grid;
-- botões;
+- buttons;
 - cards;
-- estados;
-- sombras e bordas;
-- sistema de spacing.
+- states;
+- shadows and borders;
+- spacing system.
 
-### Critérios
+### Criteria
 
-- linguagem visual consistente;
-- mobile first validado;
-- sem perda de legibilidade.
+- consistent visual language;
+- mobile-first validated;
+- no loss of readability.
 
 ---
 
-## Fase 3: Home page
+## Phase 3: Home Page
 
-### Entregáveis
+### Deliverables
 
 - hero;
-- bloco de contexto;
-- cards de sessões;
-- preview da maturidade;
-- footer com fontes.
+- context block;
+- session cards;
+- maturity preview;
+- footer with sources.
 
-### Critérios
+### Criteria
 
-- home explica o produto sozinha;
-- CTA claro;
-- navegação óbvia.
+- home explains the product on its own;
+- clear CTA;
+- obvious navigation.
 
 ---
 
-## Fase 4: Templates de sessão
+## Phase 4: Session Templates
 
-### Entregáveis
+### Deliverables
 
-- layout de páginas de detalhe;
+- detail page layout;
 - sticky nav;
-- área de resumo;
-- área de referências;
-- padrão de blocos narrativos.
+- summary area;
+- references area;
+- narrative block pattern.
 
-### Critérios
+### Criteria
 
-- qualquer sessão nova pode ser criada sem reinventar layout.
-
----
-
-## Fase 5: Conteúdo núcleo
-
-### Entregáveis
-
-- sessão AI-native engineer;
-- glossário;
-- ferramentas;
-- modelos;
-- maturidade;
-- como operar.
-
-### Critérios
-
-- todas as sessões publicadas;
-- linguagem consistente;
-- sem placeholders críticos.
+- any new session can be created without reinventing layout.
 
 ---
 
-## Fase 6: Interatividade
+## Phase 5: Core Content
 
-### Entregáveis
+### Deliverables
+
+- AI-native engineer session;
+- glossary;
+- tools;
+- models;
+- maturity;
+- how to operate.
+
+### Criteria
+
+- all sessions published;
+- consistent language;
+- no critical placeholders.
+
+---
+
+## Phase 6: Interactivity
+
+### Deliverables
 
 - glossary cards;
-- comparador de ferramentas;
-- matcher de modelos por tarefa;
-- stepper de maturidade;
+- tool comparator;
+- model matcher by task;
+- maturity stepper;
 - self-assessment;
 - progress tracker.
 
-### Critérios
+### Criteria
 
-- cada interação melhora entendimento;
-- sem comprometer performance.
+- each interaction improves understanding;
+- no performance compromise.
 
 ---
 
-## Fase 7: Polimento final
+## Phase 7: Final Polish
 
-### Entregáveis
+### Deliverables
 
-- acessibilidade;
-- ajuste de contraste;
+- accessibility;
+- contrast adjustment;
 - SEO;
 - OG images;
 - 404;
-- revisão textual;
-- revisão de links.
+- text review;
+- link review.
 
-### Critérios
+### Criteria
 
-- experiência sólida no mobile;
-- deploy estável;
-- conteúdo confiável.
+- solid mobile experience;
+- stable deploy;
+- reliable content.
 
 ---
 
 ## 20. Definition of Done
 
-Uma versão MVP está pronta quando:
+An MVP version is ready when:
 
-- a home estiver completa;
-- todas as sessões principais existirem;
-- cada sessão tiver conteúdo, bloco interativo e referências;
-- design Neo Brutalism estiver consistente;
-- mobile estiver bom de verdade;
-- Lighthouse não estiver degradado por exagero visual;
-- deploy automático em GitHub Pages estiver funcionando;
-- as páginas forem legíveis e úteis para alguém não técnico.
-
----
-
-## 21. Riscos principais
-
-### 21.1 Risco de conteúdo virar buzzword soup
-
-Mitigação:
-
-- exemplos concretos;
-- explicação simples antes da técnica;
-- anti-padrões em toda sessão.
-
-### 21.2 Risco de Neo Brutalism atrapalhar leitura
-
-Mitigação:
-
-- contraste validado;
-- paleta limitada;
-- corpo de texto neutro;
-- whitespace generoso.
-
-### 21.3 Risco de ferramenta dominar a narrativa
-
-Mitigação:
-
-- ensinar categorias;
-- usar ferramentas como exemplos;
-- focar em workflow.
-
-### 21.4 Risco de interatividade virar peso morto
-
-Mitigação:
-
-- só entrar se explicar melhor;
-- JS mínimo;
-- islands localizadas.
-
-### 21.5 Risco de conteúdo ficar velho rápido
-
-Mitigação:
-
-- falar em padrões e capacidades;
-- citar ferramentas como snapshots do mercado;
-- incluir `updatedAt` por sessão;
-- revisão periódica.
+- the home page is complete;
+- all main sessions exist;
+- every session has content, an interactive block, and references;
+- the Neo Brutalism design is consistent;
+- mobile is genuinely good;
+- Lighthouse is not degraded by visual excess;
+- automatic deployment to GitHub Pages is working;
+- the pages are readable and useful for someone non-technical.
 
 ---
 
-## 22. Não objetivos do MVP
+## 21. Main Risks
 
-Não faz parte do primeiro escopo:
+### 21.1 Risk of Content Becoming Buzzword Soup
 
-- autenticação;
-- busca complexa;
-- CMS headless;
-- gamificação pesada;
-- dark mode obrigatório;
-- internacionalização;
-- ranking de modelos;
-- área de usuário.
+Mitigation:
+
+- concrete examples;
+- simple explanation before technical depth;
+- anti-patterns in every session.
+
+### 21.2 Risk of Neo Brutalism Hurting Readability
+
+Mitigation:
+
+- validated contrast;
+- limited palette;
+- neutral body text;
+- generous whitespace.
+
+### 21.3 Risk of Tools Dominating the Narrative
+
+Mitigation:
+
+- teach categories;
+- use tools as examples;
+- focus on workflow.
+
+### 21.4 Risk of Interactivity Becoming Dead Weight
+
+Mitigation:
+
+- only include it if it explains better;
+- minimal JavaScript;
+- localized islands.
+
+### 21.5 Risk of Content Aging Quickly
+
+Mitigation:
+
+- talk about patterns and capabilities;
+- cite tools as market snapshots;
+- include `updatedAt` per session;
+- periodic review.
 
 ---
 
-## 23. Backlog pós-MVP
+## 22. MVP Non-Goals
 
-- busca local;
-- trilhas por perfil;
-- versão em inglês;
-- página “como montar seu workflow”;
-- glossário global com filtro;
-- changelog de mercado;
+Not part of the first scope:
+
+- authentication;
+- complex search;
+- headless CMS;
+- heavy gamification;
+- mandatory dark mode;
+- internationalization;
+- model ranking;
+- user area.
+
+---
+
+## 23. Post-MVP Backlog
+
+- local search;
+- profile-based learning paths;
+- English version;
+- "how to build your workflow" page;
+- global glossary with filters;
+- market changelog;
 - newsletter;
-- modo print / exportar sessão em PDF.
+- print mode / export session as PDF.
 
 ---
 
-## 24. Recomendação final de posicionamento
+## 24. Final Positioning Recommendation
 
-O produto deve se posicionar como:
+The product should position itself as:
 
-**um site educacional, visualmente forte, editorialmente claro e tecnicamente leve, que transforma um tema confuso em uma jornada compreensível.**
+**an educational, visually strong, editorially clear, and technically lightweight website that turns a confusing topic into an understandable journey.**
 
-Ele não deve competir com docs oficiais.
-Ele deve funcionar como:
+It must not compete with official docs.
+It must work as:
 
-- mapa;
-- tradução;
-- filtro crítico;
-- ponto de partida confiável.
+- map;
+- translation;
+- critical filter;
+- reliable starting point.
 
 ---
 
-## 25. Seed references para usar na curadoria inicial
+## 25. Seed References for Initial Curation
 
-### Mercado e AI-native engineering
+### Market and AI-Native Engineering
 
 - Addy Osmani, The AI-Native Software Engineer
   https://addyo.substack.com/p/the-ai-native-software-engineer
@@ -1372,14 +1374,14 @@ Ele deve funcionar como:
   https://survey.stackoverflow.co/2025/ai
 - Google DORA 2025 summary
   https://blog.google/innovation-and-ai/technology/developers-tools/dora-report-2025/
-- Anthropic, AI’s impact on software development
+- Anthropic, AI's impact on software development
   https://www.anthropic.com/news/impact-software-development
 - Anthropic Economic Index 2026
   https://www.anthropic.com/research/economic-index-march-2026-report
 - GitHub Octoverse 2025
   https://octoverse.github.com/
 
-### Tooling references
+### Tooling References
 
 - Cursor, Best practices for coding with agents
   https://cursor.com/blog/agent-best-practices
@@ -1403,7 +1405,7 @@ Ele deve funcionar como:
 - Bejamas, Neubrutalism UI trend
   https://bejamas.com/blog/neubrutalism-web-design-trend
 
-### Stack / deployment
+### Stack / Deployment
 
 - Astro, Deploy to GitHub Pages
   https://docs.astro.build/en/guides/deploy/github/
@@ -1418,30 +1420,30 @@ Ele deve funcionar como:
 
 ---
 
-## 26. Decisão final
+## 26. Final Decision
 
-### Produto
+### Product
 
-Fazer um site educacional interativo, em PT-BR, focado em clareza e leitura crítica sobre AI-native engineering.
+Build an interactive educational website, primarily for PT-BR users, focused on clarity and critical reading about AI-native engineering.
 
-### Estrutura
+### Structure
 
-Home editorial + páginas de detalhe por sessão.
+Editorial home + detail pages per session.
 
-### Conteúdo
+### Content
 
-Começar com:
+Start with:
 
-1. O que é AI-native engineer
-2. Glossário
-3. Ferramentas
-4. Modelos
-5. Maturidade do uso de IA no desenvolvimento
-6. Como operar na prática
+1. What is an AI-native engineer
+2. Glossary
+3. Tools
+4. Models
+5. Maturity of AI usage in development
+6. How to operate in practice
 
 ### Design
 
-Neo Brutalism controlado, com foco em clareza.
+Controlled Neo Brutalism, focused on clarity.
 
 ### Stack
 
@@ -1449,8 +1451,8 @@ Astro + TypeScript + MDX + Content Collections + React islands + Motion + CSS Mo
 
 ### Deploy
 
-GitHub Pages com GitHub Actions.
+GitHub Pages with GitHub Actions.
 
-### Regra-mãe
+### Mother Rule
 
-**Ensinar sem idolatrar ferramenta. Explicar sem academizar. Impactar visualmente sem prejudicar leitura.**
+**Teach without idolizing tools. Explain without becoming academic. Create visual impact without harming readability.**

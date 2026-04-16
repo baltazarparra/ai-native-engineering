@@ -59,7 +59,7 @@ https://baltazarparra.github.io/
 That repository likely uses a PWA or Workbox configuration that generates `sw.js`. The current navigation fallback likely accepts all routes, equivalent to:
 
 ```js
-allowlist: [/./]
+allowlist: [/./];
 ```
 
 or a `navigateFallback` configuration without a `denylist`.
@@ -90,7 +90,7 @@ Conceptual Workbox example:
 navigateFallbackDenylist: [
   /^\/ai-native-engineering(\/|$)/,
   /^\/another-project(\/|$)/,
-]
+];
 ```
 
 The exact option name may vary depending on the tool used in the target repository.
@@ -207,7 +207,9 @@ To simulate a user with old cache:
 
 ```js
 const registrations = await navigator.serviceWorker.getRegistrations();
-await Promise.all(registrations.map((registration) => registration.unregister()));
+await Promise.all(
+  registrations.map((registration) => registration.unregister()),
+);
 
 const cacheNames = await caches.keys();
 await Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)));
