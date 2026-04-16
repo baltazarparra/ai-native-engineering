@@ -17,18 +17,18 @@ const TASK_TYPES: Record<Lang, TaskType[]> = {
       keywords: [
         'explorar',
         'ideias',
-        'rapido',
+        'rápido',
         'rapidamente',
-        'conversacion',
+        'conversação',
         'gerar',
-        'primeira versao',
+        'primeira versão',
       ],
     },
     {
       id: 'code',
-      label: 'Escrever codigo',
+      label: 'Escrever código',
       keywords: [
-        'codigo',
+        'código',
         'escrever',
         'revisar',
         'desenvolvimento',
@@ -38,19 +38,19 @@ const TASK_TYPES: Record<Lang, TaskType[]> = {
     {
       id: 'review',
       label: 'Revisar arquitetura',
-      keywords: ['revisar', 'arquitetura', 'refactor', 'analise', 'critica'],
+      keywords: ['revisar', 'arquitetura', 'refactor', 'análise', 'crítica'],
     },
     {
       id: 'plan',
-      label: 'Planejar implementacao',
+      label: 'Planejar implementação',
       keywords: [
         'planejar',
         'arquitetura',
         'sistemas',
-        'logico',
+        'lógico',
         'complexo',
         'profundo',
-        'raciocinio',
+        'raciocínio',
       ],
     },
     {
@@ -62,7 +62,7 @@ const TASK_TYPES: Record<Lang, TaskType[]> = {
         'longos',
         'fontes',
         'sintetizar',
-        'informacao',
+        'informação',
       ],
     },
     {
@@ -72,8 +72,8 @@ const TASK_TYPES: Record<Lang, TaskType[]> = {
     },
     {
       id: 'budget',
-      label: 'Orcamento limitado',
-      keywords: ['custo baixo', 'orcamento', 'open', 'sem custo', 'limitado'],
+      label: 'Orçamento limitado',
+      keywords: ['custo baixo', 'orçamento', 'open', 'sem custo', 'limitado'],
     },
   ],
   en: [

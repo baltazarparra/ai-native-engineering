@@ -1,14 +1,14 @@
 ---
-title: 'A evolucao do desenvolvimento com IA'
+title: 'A evolução do desenvolvimento com IA'
 slug: 'maturidade'
 lang: 'pt-BR'
 translationKey: 'maturity'
 order: 4
-summary: 'De copiar resposta do ChatGPT ate orquestrar agentes. As 5 fases de maturidade e onde voce esta.'
+summary: 'De copiar resposta do ChatGPT até orquestrar agentes. As 5 fases de maturidade e onde você está.'
 readingTime: 22
 level: 'intermediate'
 tags: ['maturidade', 'evolucao', 'fases', 'agentes']
-heroLabel: 'Niveis de maturidade'
+heroLabel: 'Níveis de maturidade'
 references:
   [
     'karpathy-ai-native-dev',
@@ -22,211 +22,211 @@ updatedAt: 2026-04-15
 
 import MaturityStepper from '../../components/MaturityStepper/MaturityStepper.tsx';
 
-## De copiar resposta ate orquestrar agentes
+## De copiar resposta até orquestrar agentes
 
-A maioria dos profissionais que trabalha com IA em desenvolvimento esta em algum ponto entre "copiar resposta do ChatGPT" e "orquestrar agentes com validacao automatica". Esses pontos nao sao niveis de senioridade. Sao fases de maturidade no uso de IA como ferramenta de trabalho.
+A maioria dos profissionais que trabalha com IA em desenvolvimento está em algum ponto entre "copiar resposta do ChatGPT" e "orquestrar agentes com validação automática". Esses pontos não são níveis de senioridade. São fases de maturidade no uso de IA como ferramenta de trabalho.
 
-Cinco fases emergiram da pratica. Nao sao uma escala linear que voce precisa subir ate o topo. Cada fase e valida pra certos contextos. Um dev senior pode estar na Fase 2 pra tarefas simples e na Fase 5 pra projetos complexos. Um PM pode operar na Fase 1 pra sempre e ser extremamente efetivo.
+Cinco fases surgiram do que times e profissionais estão fazendo na prática. Não são uma escala linear que você precisa subir até o topo. Cada fase é válida pra certos contextos. Um dev sênior pode estar na Fase 2 pra tarefas simples e na Fase 5 pra projetos complexos. Um PM pode operar na Fase 1 pra sempre e ser extremamente efetivo.
 
-O valor de entender essas fases nao e saber "onde voce esta" como se fosse uma nota. E saber o que cada fase oferece, onde ela quebra, e quando faz sentido ir pra proxima.
+O valor de entender essas fases não é saber "onde você está" como se fosse uma nota. É saber o que cada fase oferece, onde ela quebra, e quando faz sentido ir pra próxima.
 
 ## Por que isso importa
 
 Dois erros comuns:
 
-**Ficar preso na Fase 1 por inércia**. Voce sabe que IA pode fazer mais, mas o "copiar e colar do chat" funciona o suficiente pra nunca mudar. O problema e que voce esta gastando 10x mais tempo do que precisava em tarefas que poderiam ser delegadas.
+**Ficar preso na Fase 1 por inércia**. Você sabe que IA pode fazer mais, mas o "copiar e colar do chat" funciona o suficiente pra nunca mudar. O problema é que você está gastando 10x mais tempo do que precisava em tarefas que poderiam ser delegadas.
 
-**Pular pra Fase 5 por ansiedade**. Voce leu sobre agentes autonomos, harness engineering, MCP servers, e quer implementar tudo no seu projeto de CRUD. O problema e que a complexidade extra nao se paga em projetos simples.
+**Pular pra Fase 5 por ansiedade**. Você leu sobre agentes autônomos, harness engineering, MCP servers, e quer implementar tudo no seu projeto de CRUD. O problema é que a complexidade extra não se paga em projetos simples.
 
-O mapa de fases ajuda a evitar os dois: mostra o que cada fase resolve e onde nao faz sentido forcar a barra.
+O mapa de fases ajuda a evitar os dois: mostra o que cada fase resolve e onde não faz sentido forçar a barra.
 
 ## Fase 1: Consulta
 
-### O que e
+### O que é
 
-Voce abre um chat de IA (ChatGPT, Claude, Gemini) e faz perguntas. Copia a resposta e cola no seu trabalho. A IA funciona como um Google melhorado: voce pergunta, ela responde, voce decide o que fazer com a resposta.
+Você abre um chat de IA (ChatGPT, Claude, Gemini) e faz perguntas. Copia a resposta e cola no seu trabalho. A IA funciona como um Google melhorado: você pergunta, ela responde, você decide o que fazer com a resposta.
 
 ### Por que surgiu
 
-E o ponto de entrada natural. Todo mundo comeca aqui. E a forma mais simples de usar IA porque nao exige nenhuma mudanca no workflow. Voce continua trabalhando do mesmo jeito, so que agora tem um "assistente" pra tirar duvidas.
+É o ponto de entrada natural. Todo mundo começa aqui. É a forma mais simples de usar IA porque não exige nenhuma mudança no workflow. Você continua trabalhando do mesmo jeito, só que agora tem um "assistente" pra tirar dúvidas.
 
 ### Onde funciona
 
-- Tirar duvidas rapidas sobre APIs, sintaxe, conceitos
-- Gerar snippets simples que voce vai adaptar
-- Explorar ideias antes de comecar a implementar
-- Pedir explicacoes sobre codigo que voce nao entende
-- PM pedindo resumo de um documento tecnico
+- Tirar dúvidas rápidas sobre APIs, sintaxe, conceitos
+- Gerar snippets simples que você vai adaptar
+- Explorar ideias antes de começar a implementar
+- Pedir explicações sobre código que você não entende
+- PM pedindo resumo de um documento técnico
 
 ### Onde quebra
 
-- Copiar codigo sem entender o que faz. O modelo gera codigo plausivel, nao codigo correto. Se voce cola sem ler, esta terceirizando a responsabilidade.
-- Sem contexto do projeto. O chat nao sabe nada sobre seu codigo, seus tipos, suas convencoes. A resposta e generica por definicao.
-- Sem iteracao. Voce pergunta, copia, vai embora. Se a resposta nao era boa, voce nao melhora o prompt, voce perde tempo adaptando uma resposta ruim.
+- Copiar código sem entender o que faz. O modelo gera código plausível, não código correto. Se você cola sem ler, está terceirizando a responsabilidade.
+- Sem contexto do projeto. O chat não sabe nada sobre seu código, seus tipos, suas convenções. A resposta é genérica por definição.
+- Sem iteração. Você pergunta, copia, vai embora. Se a resposta não era boa, você não melhora o prompt — você perde tempo adaptando uma resposta ruim.
 
-### O que a proxima fase resolve
+### O que a próxima fase resolve
 
-A proxima fase integra IA no editor, eliminando o copy-paste e dando contexto de codigo automatico.
+A próxima fase integra IA no editor, eliminando o copy-paste e dando contexto de código automático.
 
 ## Fase 2: Autocomplete
 
-### O que e
+### O que é
 
-Voce instala uma extensao de IA no seu editor (GitHub Copilot, Cursor, Windsurf) e ela sugere codigo enquanto voce digita. Em vez de ir ate um chat externo, a IA vem ate voce, no contexto do que voce esta escrevendo.
+Você instala uma extensão de IA no seu editor (GitHub Copilot, Cursor, Windsurf) e ela sugere código enquanto você digita. Em vez de ir até um chat externo, a IA vem até você, no contexto do que você está escrevendo.
 
 ### Por que surgiu
 
-Copy-paste entre chat e editor e lento e perde contexto. Se a IA tiver acesso ao arquivo aberto, ela pode sugerir codigo que ja respeita imports, tipos e padroes do arquivo atual. A friccao cai drasticamente.
+Copy-paste entre chat e editor é lento e perde contexto. Se a IA tiver acesso ao arquivo aberto, ela pode sugerir código que já respeita imports, tipos e padrões do arquivo atual. A fricção cai drasticamente.
 
 ### Onde funciona
 
-- Completar funcoes que seguem padroes claros do arquivo
-- Escrever testes unitarios pra funcoes simples
-- Gerar boilerplate (forms, handlers, configuracoes)
-- Acelerar digitacao de codigo repetitivo
-- Descobrir APIs enquanto digita (a sugestao mostra como usar)
+- Completar funções que seguem padrões claros do arquivo
+- Escrever testes unitários pra funções simples
+- Gerar boilerplate (forms, handlers, configurações)
+- Acelerar digitação de código repetitivo
+- Descobrir APIs enquanto digita (a sugestão mostra como usar)
 
 ### Onde quebra
 
-- **Aceitacao automatica**. O risco numero um do autocomplete e aceitar tudo sem ler. A sugestao parece correta porque e estatisticamente provavel, mas pode estar errada logicamente.
-- **Contexto limitado**. Autocomplete ve o arquivo atual e talvez alguns arquivos abertos. Nao ve a arquitetura do projeto, nao entende regras de negocio, nao sabe quais padroes seu time usa.
-- **Muleta**. Devs que dependem demais de autocomplete podem perder a capacidade de escrever codigo do zero. Se a IA para, voce para?
+- **Aceitação automática**. O risco número um do autocomplete é aceitar tudo sem ler. A sugestão parece correta porque é estatisticamente provável, mas pode estar errada logicamente.
+- **Contexto limitado**. Autocomplete vê o arquivo atual e talvez alguns arquivos abertos. Não vê a arquitetura do projeto, não entende regras de negócio, não sabe quais padrões seu time usa.
+- **Muleta**. Devs que dependem demais de autocomplete podem perder a capacidade de escrever código do zero. Se a IA para, você para?
 
-### O que a proxima fase resolve
+### O que a próxima fase resolve
 
-A proxima fase remove o dev do controle granular de cada linha e coloca a IA pra gerar blocos maiores de codigo a partir de descricoes em texto.
+A próxima fase remove o dev do controle granular de cada linha e coloca a IA pra gerar blocos maiores de código a partir de descrições em texto.
 
 ## Fase 3: Vibe Coding
 
-### O que e
+### O que é
 
-Voce descreve o que quer em texto natural e a IA gera blocos inteiros de codigo. Em vez de digitar linha por linha com autocomplete, voce diz "cria um componente de card com titulo, descricao e botao" e a IA escreve o componente inteiro.
+Você descreve o que quer em texto natural e a IA gera blocos inteiros de código. Em vez de digitar linha por linha com autocomplete, você diz "cria um componente de card com título, descrição e botão" e a IA escreve o componente inteiro.
 
-O termo "vibe coding" veio de um tweet do Andrej Karpathy descrevendo o ato de programar guiado pela "vibe" do que voce quer, delegando a escrita real pro modelo.
+O termo "vibe coding" veio de um tweet do Andrej Karpathy descrevendo o ato de programar guiado pela "vibe" do que você quer, delegando a escrita real pro modelo.
 
 ### Por que surgiu
 
-Autocomplete acelera a digitacao, mas voce ainda precisa saber exatamente o que digitar. Vibe coding e pra quando voce sabe o que quer mas nao quer (ou nao precisa) escrever cada detalhe. E particularmente util pra prototipos, MVPs e exploracoes.
+Autocomplete acelera a digitação, mas você ainda precisa saber exatamente o que digitar. Vibe coding é pra quando você sabe o que quer mas não quer (ou não precisa) escrever cada detalhe. É particularmente útil pra protótipos, MVPs e explorações.
 
 ### Onde funciona
 
-- Prototipos rapidos que nao vao pra producao
+- Protótipos rápidos que não vão pra produção
 - MVPs onde velocidade importa mais que qualidade
 - Explorar abordagens antes de escolher uma
-- Aprender: gerar codigo e estudar como funciona
-- PM ou designer criando prototipos funcionais
+- Aprender: gerar código e estudar como funciona
+- PM ou designer criando protótipos funcionais
 
 ### Onde quebra
 
-- **Sem spec, sem controle**. Se voce so descreve a "vibe" e aceita o resultado, nao tem como garantir que o codigo faz o que deveria. Funciona pra prototipos, nao pra producao.
-- **Divida tecnica instantanea**. Codigo gerado por vibe coding tende a ser funcional mas nao sustentavel. Sem tipos, sem testes, sem tratamento de erro. Se voce colocar em producao sem refatorar, a conta chega rapido.
-- **Falsa sensacao de produtividade**. "Eu gerei 500 linhas em 10 minutos!" Mas dessas 500 linhas, quantas voce leu? Quantas estao corretas? Velocidade de geracao nao e velocidade de entrega.
+- **Sem spec, sem controle**. Se você só descreve a "vibe" e aceita o resultado, não tem como garantir que o código faz o que deveria. Funciona pra protótipos, não pra produção.
+- **Dívida técnica instantânea**. Código gerado por vibe coding tende a ser funcional mas não sustentável. Sem tipos, sem testes, sem tratamento de erro. Se você colocar em produção sem refatorar, a conta chega rápido.
+- **Falsa sensação de produtividade**. "Eu gerei 500 linhas em 10 minutos!" Mas dessas 500 linhas, quantas você leu? Quantas estão corretas? Velocidade de geração não é velocidade de entrega.
 
-### O que a proxima fase resolve
+### O que a próxima fase resolve
 
-A proxima fase substitui a descricao vaga por uma especificacao clara, transformando "faz isso pra mim" em "implementa segundo esta spec".
+A próxima fase substitui a descrição vaga por uma especificação clara, transformando "faz isso pra mim" em "implementa segundo esta spec".
 
 ## Fase 4: Spec-Driven Development
 
-### O que e
+### O que é
 
-Voce escreve uma especificacao antes de pedir qualquer coisa pra IA. A spec define endpoints, tipos, restricoes, comportamentos esperados, casos de borda. Depois voce passa a spec pro agente de codigo e ele implementa. O output e validado contra a spec, nao contra a "vibe".
+Você escreve uma especificação antes de pedir qualquer coisa pra IA. A spec define endpoints, tipos, restrições, comportamentos esperados, casos de borda. Depois você passa a spec pro agente de código e ele implementa. O output é validado contra a spec, não contra a "vibe".
 
-Alguns chamam isso de SDD (Spec-Driven Development). Nao e um padrao da industria consolidado. E uma pratica que esta emergindo em times que trabalham de forma AI-native.
+Alguns chamam isso de SDD (Spec-Driven Development). Não é um padrão da indústria consolidado. É uma prática que está emergindo em times que trabalham de forma AI-native.
 
 ### Por que surgiu
 
-Vibe coding funciona pra prototipos mas nao escala. Quando o projeto tem complexidade real (multiplos modulos, integracao com APIs externas, regras de negocio), voce precisa de algo mais estruturado que "faz um servico de auth". A especificacao e esse algo.
+Vibe coding funciona pra protótipos mas não escala. Quando o projeto tem complexidade real (múltiplos módulos, integração com APIs externas, regras de negócio), você precisa de algo mais estruturado que "faz um serviço de auth". A especificação é esse algo.
 
-O insight e que escrever specs sempre foi importante, mas antes de IA, ninguem "executava" uma spec. Agora, um agente de codigo pode ler uma spec e implementar. A spec virou o input do processo.
+O insight é que escrever specs sempre foi importante, mas antes de IA, ninguém "executava" uma spec. Agora, um agente de código pode ler uma spec e implementar. A spec virou o input do processo.
 
 ### Onde funciona
 
 - Features com complexidade real que precisam de previsibilidade
-- Times onde mais de uma pessoa trabalha no mesmo modulo
-- Projetos onde a revisao de codigo e critica (compliance, seguranca)
-- Quando voce quer output reproduzivel: mesma spec, resultado consistente
-- QA gerando cenarios de teste a partir de specs
+- Times onde mais de uma pessoa trabalha no mesmo módulo
+- Projetos onde a revisão de código é crítica (compliance, segurança)
+- Quando você quer output reproduzível: mesma spec, resultado consistente
+- QA gerando cenários de teste a partir de specs
 
 ### Onde quebra
 
-- **Over-engineering a spec**. Se voce gasta 3 horas escrevendo uma spec pra algo que levaria 15 minutos de codigo, a spec nao esta ajudando. Specs sao pra complexidade, nao pra tarefas triviais.
-- **Spec sem validacao**. Escrever uma spec e mandar pro agente sem validar o output e vibe coding com passos extras. O valor da spec esta em ter criterios claros pra avaliar se o resultado esta correto.
-- **Spec desatualizada**. Se a spec diz uma coisa e o codigo diz outra, qual e a verdade? Specs precisam evoluir com o projeto. Spec congelada vira documentacao morta.
+- **Over-engineering a spec**. Se você gasta 3 horas escrevendo uma spec pra algo que levaria 15 minutos de código, a spec não está ajudando. Specs são pra complexidade, não pra tarefas triviais.
+- **Spec sem validação**. Escrever uma spec e mandar pro agente sem validar o output é vibe coding com passos extras. O valor da spec está em ter critérios claros pra avaliar se o resultado está correto.
+- **Spec desatualizada**. Se a spec diz uma coisa e o código diz outra, qual é a verdade? Specs precisam evoluir com o projeto. Spec congelada vira documentação morta.
 
-### O que a proxima fase resolve
+### O que a próxima fase resolve
 
-A proxima fase automatiza a validacao e orquestracao, tirando do humano a necessidade de rodar manualmente cada checagem.
+A próxima fase automatiza a validação e orquestração, tirando do humano a necessidade de rodar manualmente cada checagem.
 
 ## Fase 5: Harness Engineering
 
-### O que e
+### O que é
 
-Voce constroi um sistema de trabalho completo pro agente de IA: instrucoes persistentes (system prompt, rules files), ferramentas configuradas (MCP servers), validacao automatica (testes, lint, typecheck rodando automaticamente), e criterios de aceite claros. O agente opera dentro desse sistema, e o sistema garante qualidade sem precisar de supervisao constante em cada passo.
+Você constrói um sistema de trabalho completo pro agente de IA: instruções persistentes (system prompt, rules files), ferramentas configuradas (MCP servers), validação automática (testes, lint, typecheck rodando automaticamente), e critérios de aceite claros. O agente opera dentro desse sistema, e o sistema garante qualidade sem precisar de supervisão constante em cada passo.
 
-O termo "harness" nao e padrao da industria. Usamos aqui pra descrever essa camada de orquestracao que voce constroi ao redor do agente.
+O termo "harness" não é padrão da indústria. Usamos aqui pra descrever essa camada de orquestração que você constrói ao redor do agente.
 
 ### Por que surgiu
 
-Na Fase 4, voce escreve a spec e valida o output manualmente. Na Fase 5, a validacao e automatica. Em vez de rodar testes na mao depois que o agente termina, voce configura o sistema pra rodar testes automaticamente como parte do fluxo. O agente gera, o sistema valida, o humano revisa o resultado final.
+Na Fase 4, você escreve a spec e valida o output manualmente. Na Fase 5, a validação é automática. Em vez de rodar testes na mão depois que o agente termina, você configura o sistema pra rodar testes automaticamente como parte do fluxo. O agente gera, o sistema valida, o humano revisa o resultado final.
 
-Isso surgiu porque a quantidade de output que agentes de codigo geram escala mais rapido do que a capacidade humana de revisar. Se voce nao automatiza a validacao, o gargalo vira a revisao humana.
+Isso surgiu porque a quantidade de output que agentes de código geram escala mais rápido do que a capacidade humana de revisar. Se você não automatiza a validação, o gargalo vira a revisão humana.
 
 ### Onde funciona
 
-- Projetos grandes com muitos modulos e convencoes estabelecidas
-- Times que ja tem testes, lint e CI funcionando
+- Projetos grandes com muitos módulos e convenções estabelecidas
+- Times que já têm testes, lint e CI funcionando
 - Refactors de grande escala que tocam dezenas de arquivos
-- Workflows repetiveis que sao executados com frequencia
-- Times onde padronizacao e critica (monorepos, design systems)
+- Workflows repetíveis que são executados com frequência
+- Times onde padronização é crítica (monorepos, design systems)
 
 ### Onde quebra
 
-- **Complexidade prematura**. Se voce tem um projeto pequeno sem testes e sem lint, construir um harness e colocar o telhado antes de levantar as paredes. Comece pelos fundamentos.
-- **Confianca excessiva no sistema**. Automacao de validacao nao elimina a necessidade de revisao humana. Testes podem estar incompletos. Lint nao pega erros logicos. O harness reduz o trabalho de revisao, nao substitui.
-- **Custo de manutencao**. Um harness precisa evoluir com o projeto. Se as regras ficam desatualizadas, o agente segue instrucoes obsoletas. Manter o harness e um investimento continuo.
+- **Complexidade prematura**. Se você tem um projeto pequeno sem testes e sem lint, construir um harness é colocar o telhado antes de levantar as paredes. Comece pelos fundamentos.
+- **Confiança excessiva no sistema**. Automação de validação não elimina a necessidade de revisão humana. Testes podem estar incompletos. Lint não pega erros lógicos. O harness reduz o trabalho de revisão, não substitui.
+- **Custo de manutenção**. Um harness precisa evoluir com o projeto. Se as regras ficam desatualizadas, o agente segue instruções obsoletas. Manter o harness é um investimento contínuo.
 
-### O que muda quando voce chega aqui
+### O que muda quando você chega aqui
 
-Na Fase 1, voce pede uma resposta. Na Fase 5, voce constroi o sistema que produz respostas validadas automaticamente.
+Na Fase 1, você pede uma resposta. Na Fase 5, você constrói o sistema que produz respostas validadas automaticamente.
 
-A mudanca de mentalidade e de "usuario de IA" pra "engenheiro de sistemas de IA". Voce nao esta mais interagindo com um chat. Voce esta construindo o ambiente onde agentes operam com autonomia controlada.
+A mudança de mentalidade é de "usuário de IA" pra "engenheiro de sistemas de IA". Você não está mais interagindo com um chat. Você está construindo o ambiente onde agentes operam com autonomia controlada.
 
-Isso nao e pra todo mundo, nem pra todo projeto. Mas pra quem trabalha em escala, e a diferenca entre operar com IA e ser AI-native.
+Isso não é pra todo mundo, nem pra todo projeto. Mas pra quem trabalha em escala, é a diferença entre operar com IA e ser AI-native.
 
 ## Exemplo aplicado
 
-Tres cenarios reais, cada um com a fase mais adequada:
+Três cenários reais, cada um com a fase mais adequada:
 
-### Cenario 1: MVP de 2 semanas
+### Cenário 1: MVP de 2 semanas
 
-Startup validando uma ideia. O objetivo e ter algo funcionando pra mostrar pra investidores. Nao vai pra producao. Nao tem usuarios reais.
+Startup validando uma ideia. O objetivo é ter algo funcionando pra mostrar pra investidores. Não vai pra produção. Não tem usuários reais.
 
-**Fase adequada: 3 (Vibe Coding)**. Velocidade importa mais que qualidade. Gera o codigo, testa manualmente, itera rapido. Quando (e se) validar a ideia, refatora pra producao na Fase 4.
+**Fase adequada: 3 (Vibe Coding)**. Velocidade importa mais que qualidade. Gera o código, testa manualmente, itera rápido. Quando (e se) validar a ideia, refatora pra produção na Fase 4.
 
-### Cenario 2: Refactor de sistema legado
+### Cenário 2: Refactor de sistema legado
 
-Sistema de 5 anos com 200k linhas de codigo. O time precisa migrar de Express pra Fastify sem quebrar nada. Tem testes, tem CI, tem convencoes documentadas.
+Sistema de 5 anos com 200k linhas de código. O time precisa migrar de Express pra Fastify sem quebrar nada. Tem testes, tem CI, tem convenções documentadas.
 
-**Fase adequada: 5 (Harness Engineering)**. Configura rules files com as convencoes do projeto, conecta testes e lint como validacao automatica, e deixa o agente trabalhar modulo por modulo. Revisao humana focada no que mudou, nao em verificar se os testes rodam.
+**Fase adequada: 5 (Harness Engineering)**. Configura rules files com as convenções do projeto, conecta testes e lint como validação automática, e deixa o agente trabalhar módulo por módulo. Revisão humana focada no que mudou, não em verificar se os testes rodam.
 
-### Cenario 3: Manutencao de producao
+### Cenário 3: Manutenção de produção
 
-Sistema estavel com deploys semanais. Tasks sao bug fixes, features pequenas, atualizacoes de dependencias.
+Sistema estável com deploys semanais. Tasks são bug fixes, features pequenas, atualizações de dependências.
 
-**Fase adequada: 4 (SDD) pra features, 2 (Autocomplete) pra fixes rapidos**. Features novas ganham uma spec leve. Bug fixes sao rapidos o suficiente pra autocomplete resolver. Nao precisa de harness completo pra um time que faz 3-4 PRs por semana.
+**Fase adequada: 4 (SDD) pra features, 2 (Autocomplete) pra fixes rápidos**. Features novas ganham uma spec leve. Bug fixes são rápidos o suficiente pra autocomplete resolver. Não precisa de harness completo pra um time que faz 3-4 PRs por semana.
 
-O ponto e: a fase certa depende do contexto, nao da sua ambicao.
+O ponto é: a fase certa depende do contexto, não da sua ambição.
 
 ## Onde isso quebra
 
-- **Pensamento linear**. "Preciso passar da Fase 2 pra Fase 3 pra Fase 4." Nao. Voce pode estar na Fase 2 pra 80% do trabalho e na Fase 4 pra 20%. As fases nao sao uma escada que voce sobe e nunca volta.
+- **Pensamento linear**. "Preciso passar da Fase 2 pra Fase 3 pra Fase 4." Não. Você pode estar na Fase 2 pra 80% do trabalho e na Fase 4 pra 20%. As fases não são uma escada que você sobe e nunca volta.
 
-- **Over-engineering pra tarefas simples**. Escrever uma spec de 3 paginas pra consertar um typo. Configurar um harness completo pra um script de 50 linhas. A fase precisa ser proporcional a complexidade da tarefa.
+- **Over-engineering pra tarefas simples**. Escrever uma spec de 3 páginas pra consertar um typo. Configurar um harness completo pra um script de 50 linhas. A fase precisa ser proporcional à complexidade da tarefa.
 
-- **Pular validacao**. Em qualquer fase, o output precisa ser validado. Na Fase 1, voce valida lendo a resposta. Na Fase 3, voce valida testando o prototipo. Na Fase 5, o sistema valida automaticamente. Se voce pula a validacao, nao importa em que fase esta: o resultado nao e confiavel.
+- **Pular validação**. Em qualquer fase, o output precisa ser validado. Na Fase 1, você valida lendo a resposta. Na Fase 3, você valida testando o protótipo. Na Fase 5, o sistema valida automaticamente. Se você pula a validação, não importa em que fase está: o resultado não é confiável.
 
-- **Confundir fase com identidade**. "Eu sou um dev Fase 5." Nao. Voce e um dev que escolhe a fase certa pra cada tarefa. A maturidade nao e estar na fase mais alta. E saber qual fase usar quando.
+- **Confundir fase com identidade**. "Eu sou um dev Fase 5." Não. Você é um dev que escolhe a fase certa pra cada tarefa. A maturidade não é estar na fase mais alta. É saber qual fase usar quando.
 
 ## Bloco interativo
 
@@ -234,10 +234,7 @@ O ponto e: a fase certa depende do contexto, nao da sua ambicao.
 
 ## O que levar daqui
 
-- Existem 5 fases de maturidade no uso de IA: Consulta, Autocomplete, Vibe Coding, SDD, Harness Engineering
-- As fases nao sao uma escada linear. Voce pode operar em fases diferentes pra tarefas diferentes
-- Cada fase resolve um problema da anterior e introduz novos trade-offs
-- A fase certa depende da complexidade da tarefa, nao da sua ambicao
-- Validacao e obrigatoria em todas as fases. O que muda e como voce valida
-- Fase 5 nao e pra todo projeto. Complexidade prematura e tao ruim quanto ficar preso na Fase 1
-- A maturidade real e saber qual fase usar quando, nao ficar na fase mais alta o tempo todo
+- Identifique em qual fase você opera hoje pra cada tipo de tarefa — provavelmente não é a mesma pra tudo
+- Na próxima vez que pegar uma tarefa nova, pergunte: "qual fase faz sentido aqui?" em vez de usar a mesma abordagem de sempre
+- Validação é obrigatória em todas as fases — o que muda é se você valida na mão ou o sistema valida pra você
+- A maturidade real é saber quando voltar pra uma fase mais simples, não ficar na mais alta o tempo todo

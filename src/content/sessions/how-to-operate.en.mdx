@@ -35,8 +35,8 @@ Knowing models exist without knowing how to ask is like having a map and not kno
 
 Most AI frustration comes from two places:
 
-1. **Bad input**: the request was vague, so the answer was generic. That is not just the model's fault. It is a specification problem.
-2. **Missing validation**: the output was accepted without checking, and the issue appeared in production. That is not just the tool's fault. It is a process problem.
+1. **Bad input**: the request was vague, so the answer was generic. That's not just the model's fault. It's a specification problem.
+2. **Missing validation**: the output was accepted without checking, and the issue appeared in production. That's not just the tool's fault. It's a process problem.
 
 This session attacks both: what to do before asking, and what to do before accepting.
 
@@ -48,7 +48,7 @@ Before sending anything to AI, answer four questions.
 
 Not what you want AI to do. What final outcome do you need?
 
-"Generate a modal component" is not a useful goal. "I need a confirmation modal shown when a user tries to delete an account, with cancel and confirm actions, and background scroll locked" is a goal.
+"Generate a modal component" isn't a useful goal. "I need a confirmation modal shown when a user tries to delete an account, with cancel and confirm actions, and background scroll locked" is a goal.
 
 The second version gives the model enough information to generate something useful. The first creates a generic modal you will need to adapt.
 
@@ -61,7 +61,7 @@ What does the model need to know beyond the request?
 - Which team conventions matter?
 - Is there something similar in the project that should be used as reference?
 
-More relevant context usually improves output. Relevant is the key word. Sending 50 files does not help if 45 are noise.
+More relevant context usually improves output. Relevant is the key word. Sending 50 files doesn't help if 45 are noise.
 
 ### 3. What are the constraints?
 
@@ -83,7 +83,7 @@ How should the result come back?
 - With explanation or only code?
 - Folder structure or everything in one file?
 
-Models are good at following format when you specify it. If you do not specify it, they choose for you.
+Models are good at following format when you specify it. If you don't specify it, they choose for you.
 
 ## Before accepting: the validation checklist
 
@@ -103,28 +103,28 @@ AI can generate working code that ignores project conventions. Lint catches thin
 
 ### Did you read the code?
 
-Not skimmed. Read. Every line you did not read can hide a bug, security issue, or design decision that does not fit your context.
+Not skimmed. Read. Every line you didn't read can hide a bug, security issue, or design decision that doesn't fit your context.
 
-This does not need to take half an hour. For a 50-line component, two minutes of focused reading can be enough. The point is not accepting on autopilot.
+This doesn't need to take half an hour. For a 50-line component, two minutes of focused reading can be enough. The point isn't accepting on autopilot.
 
 ### Does it solve the original problem?
 
-Compare the output with the original goal. The model can generate something technically correct that does not solve the actual problem.
+Compare the output with the original goal. The model can generate something technically correct that doesn't solve the actual problem.
 
 ## Real examples
 
 ### PM: using AI to refine specs
 
-**Situation**: Ana is a PM writing a spec for push notifications.
+**Situation**: Beatriz is a PM writing a spec for push notifications.
 
 **How she operates**:
 
 1. Writes a draft spec with the requirements she knows
 2. Sends it to the model: "Review this spec and point out gaps. Which edge cases did I miss? What questions will devs ask?"
 3. The model flags missing details: OS-level notification settings, retry behavior, notification priority
-4. Ana updates the spec and sends it to the team
+4. Beatriz updates the spec and sends it to the team
 
-**What she does not do**: ask the model to write the whole spec from zero. The domain understanding comes from her. The model helps find holes.
+**What she doesn't do**: ask the model to write the whole spec from zero. The domain understanding comes from her. The model helps find holes.
 
 ### QA: using AI to generate test scenarios
 
@@ -137,7 +137,7 @@ Compare the output with the original goal. The model can generate something tech
 3. Reviews the generated scenarios: some are useful, some redundant, some irrelevant
 4. Adjusts the list and adds scenarios the model missed because they depend on internal context
 
-**What she does not do**: accept all scenarios blindly. The model is good at volume. She is good at relevance.
+**What she doesn't do**: accept all scenarios blindly. The model is good at volume. She is good at relevance.
 
 ### Junior dev: learning and implementing
 
@@ -149,9 +149,9 @@ Compare the output with the original goal. The model can generate something tech
 2. Asks the model to explain cursor pagination versus offset/limit
 3. Understands the trade-offs and chooses cursor-based pagination
 4. Asks the model to implement it using existing project types
-5. Reviews the code, runs tests, and adjusts what does not match team conventions
+5. Reviews the code, runs tests, and adjusts what doesn't match team conventions
 
-**What he does not do**: ask "make pagination" before understanding the concept.
+**What he doesn't do**: ask "make pagination" before understanding the concept.
 
 ### Senior dev: accelerating and reviewing
 
@@ -164,7 +164,7 @@ Compare the output with the original goal. The model can generate something tech
 3. Uses a coding agent to migrate the remaining controllers one by one
 4. Reviews diffs and validates tests
 
-**What he does not do**: say "migrate everything" without defining the pattern first.
+**What he doesn't do**: say "migrate everything" without defining the pattern first.
 
 ### Tech lead: standardizing and scaling
 
@@ -177,7 +177,7 @@ Compare the output with the original goal. The model can generate something tech
 3. Sets up automated validation: pre-commit checks, CI, typecheck, lint
 4. Reviews PRs for design decisions instead of formatting
 
-**What he does not do**: control which tool every developer uses. He defines project-level standards and validation. Tools can vary; output quality cannot.
+**What he doesn't do**: control which tool every developer uses. He defines project-level standards and validation. Tools can vary; output quality can't.
 
 ## Building repeatable artifacts
 
@@ -185,7 +185,7 @@ What separates "using AI sometimes" from "operating AI-native" is having artifac
 
 ### Rules files
 
-Files that tell the agent how to operate in the project. `CLAUDE.md` for Claude Code, `.cursorrules` for Cursor, and similar project instructions. They contain conventions, patterns, constraints, and things to avoid.
+Files that tell the agent how to operate in the project. `CLAUDE.md` for Claude Code, Cursor rules files (like files in `.cursor/rules/`), and similar project instructions. They contain conventions, patterns, constraints, and things to avoid.
 
 A good rules file is specific and short. "Use TypeScript strict mode. CSS Modules, not Tailwind. Tests with Vitest. Components in PascalCase." Bad: "write good code".
 
@@ -197,7 +197,7 @@ Prompts you reuse for common situations:
 - "Review this PR focusing on security, performance, and readability"
 - "Explain this module in three paragraphs for someone new to the project"
 
-Templates are not rigid. They are starting points.
+Templates aren't rigid. They're starting points.
 
 ### Validation checklists
 
@@ -213,9 +213,9 @@ Commands that automate checks: `npm run typecheck && npm run lint && npm run tes
 
 - **Skipping validation when rushed**. "I know it is fine, no need to run tests" is how many production bugs are born.
 
-- **One-size-fits-all workflows**. A senior dev's workflow is not a PM's workflow. Principles are shared; execution is different.
+- **One-size-fits-all workflows**. A senior dev's workflow isn't a PM's workflow. Principles are shared; execution is different.
 
-- **Automating too early**. If you do not know the right process yet, automation freezes the wrong process. Do it manually, find the pattern, then automate.
+- **Automating too early**. If you don't know the right process yet, automation freezes the wrong process. Do it manually, find the pattern, then automate.
 
 ## Interactive block
 

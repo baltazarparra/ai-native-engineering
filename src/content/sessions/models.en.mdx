@@ -22,7 +22,7 @@ updatedAt: 2026-04-15
 
 import ModelTaskMatcher from '../../components/ModelTaskMatcher/ModelTaskMatcher.tsx';
 
-## Product is not model
+## Product isn't model
 
 This is the number one confusion. It costs time and leads to bad decisions.
 
@@ -32,25 +32,25 @@ This is the number one confusion. It costs time and leads to bad decisions.
 
 **Gemini** is a Google product. Inside, it uses models such as Gemini 2.5 Pro.
 
-Why does this matter? Because when someone says "let's use ChatGPT", it is not clear whether they mean the free product, the paid API, GPT-4o, or o3, which may be slower but better at reasoning. Those are different things with different costs and capabilities.
+Why does this matter? Because when someone says "let's use ChatGPT", it's not clear whether they mean the free product, the paid API, GPT-4o, or o3, which may be slower but better at reasoning. Those are different things with different costs and capabilities.
 
 Simple rule: **product is where you interact. Model is what generates the answer.**
 
 ## How models work, without becoming a scientist
 
-You do not need neural-network math to work with LLMs. But four concepts change how you use every AI tool.
+You don't need neural-network math to work with LLMs. But four concepts change how you use every AI tool.
 
 ### Training
 
-Models are trained on huge volumes of text: books, articles, code, web pages. During training, the model learns statistical patterns about how words and tokens relate to each other. It does not "understand" text the way a human does. It calculates which token is likely to come next.
+Models are trained on huge volumes of text: books, articles, code, web pages. During training, the model learns statistical patterns about how words and tokens relate to each other. It doesn't "understand" text the way a human does. It calculates which token is likely to come next.
 
 That explains why models are good at generating text that looks right, and why they sometimes generate something plausible but wrong. They optimize for likely, not true.
 
 ### Tokens and context window
 
-The model does not read text like you do. It splits everything into tokens and processes those tokens. Each model has a limit for how many tokens it can process at once. That limit is the context window.
+The model doesn't read text like you do. It splits everything into tokens and processes those tokens. Each model has a limit for how many tokens it can process at once. That limit is the context window.
 
-If you send a 10,000-line file and the context window only fits 5,000 lines, something gets cut. That is not a bug. It is a physical limit of the model.
+If you send a 10,000-line file and the context window only fits 5,000 lines, something gets cut. That's not a bug. It's a physical limit of the model.
 
 In 2026, context windows range from around 128K tokens to 1M+ tokens in some models. That sounds huge, but a medium software project can contain millions of tokens. You still need to choose what goes into context.
 
@@ -64,7 +64,7 @@ Cost is usually calculated by tokens: input plus output. Larger, more capable mo
 
 ### Real limitations
 
-Models do not know what they do not know. They generate answers even when they lack enough information. That is hallucination: invented information that sounds correct.
+Models don't know what they don't know. They generate answers even when they lack enough information. That is hallucination: invented information that sounds correct.
 
 Models also have a knowledge cutoff. If you ask about a library released yesterday, the model may invent based on patterns instead of facts.
 
@@ -144,7 +144,7 @@ There is no single best model. There is the right model for the task. Think in p
 
 ## Why this matters
 
-Understanding models is not about becoming an AI specialist. It is about making informed decisions.
+Understanding models isn't about becoming an AI specialist. It's about making informed decisions.
 
 If you are a PM choosing a tool for the team, you need to know that behind each product there is a model with a profile, cost, and limitation.
 
@@ -172,7 +172,7 @@ Three different models. None of them is "the best". Each is right for the task.
 
 - **Vendor lock-in**: Building the whole workflow around one provider is risky. Providers change prices, deprecate models, and alter APIs. Flexibility is useful.
 
-- **Bigger is not better**: The most expensive model is not automatically best for your task. Using Opus for a tiny autocomplete is like driving a truck to buy bread.
+- **Bigger isn't better**: The most expensive model isn't automatically best for your task. Using Opus for a tiny autocomplete is like driving a truck to buy bread.
 
 - **Ignoring limitations**: Every model hallucinates. Every model has a knowledge cutoff. Every model can produce code that compiles but does the wrong thing.
 
@@ -183,9 +183,9 @@ Three different models. None of them is "the best". Each is right for the task.
 ## Takeaway
 
 - Product is where you interact. Model is what generates the response
-- Models do not "understand" text like humans. They calculate probabilities
+- Models don't "understand" text like humans. They calculate probabilities
 - Context window is limited. You need to choose what the model sees
 - There is no best model. There is the right model for each task
 - Cost matters. Using the most expensive model for everything is waste
-- Every model hallucinates. Human review is not optional
+- Every model hallucinates. Human review is *not* optional
 - Benchmarks are a signal, not a decision

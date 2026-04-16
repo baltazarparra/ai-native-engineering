@@ -16,26 +16,26 @@ interface Question {
 const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
   'pt-BR': [
     {
-      text: 'Como voce usa IA no trabalho hoje?',
+      text: 'Como você usa IA no trabalho hoje?',
       options: [
         { label: 'Raramente ou nunca uso', points: 0 },
-        { label: 'Uso chat pra tirar duvidas e gerar snippets', points: 1 },
+        { label: 'Uso chat pra tirar dúvidas e gerar snippets', points: 1 },
         {
-          label: 'Uso agentes de codigo e tenho workflow definido',
+          label: 'Uso agentes de código e tenho workflow definido',
           points: 2,
         },
       ],
     },
     {
-      text: 'Antes de pedir algo pra IA, voce...',
+      text: 'Antes de pedir algo pra IA, você...',
       options: [
-        { label: 'Digito o que vem na cabeca', points: 0 },
-        { label: 'Penso no que quero mas nao estruturo muito', points: 1 },
-        { label: 'Escrevo objetivo, contexto e restricoes antes', points: 2 },
+        { label: 'Digito o que vem na cabeça', points: 0 },
+        { label: 'Penso no que quero mas não estruturo muito', points: 1 },
+        { label: 'Escrevo objetivo, contexto e restrições antes', points: 2 },
       ],
     },
     {
-      text: 'Quando a IA gera codigo, voce...',
+      text: 'Quando a IA gera código, você...',
       options: [
         { label: 'Aceito se parece correto', points: 0 },
         { label: 'Leio por cima e testo manualmente', points: 1 },
@@ -43,18 +43,18 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
       ],
     },
     {
-      text: 'Seu projeto tem regras ou instrucoes pra IA (rules files, CLAUDE.md)?',
+      text: 'Seu projeto tem regras ou instruções pra IA (rules files, CLAUDE.md)?',
       options: [
-        { label: 'Nao sei o que e isso', points: 0 },
-        { label: 'Ja ouvi falar mas nao uso', points: 1 },
+        { label: 'Não sei o que é isso', points: 0 },
+        { label: 'Já ouvi falar mas não uso', points: 1 },
         { label: 'Sim, e atualizo conforme o projeto evolui', points: 2 },
       ],
     },
     {
-      text: 'Como voce escolhe qual modelo ou ferramenta usar pra uma tarefa?',
+      text: 'Como você escolhe qual modelo ou ferramenta usar pra uma tarefa?',
       options: [
         { label: 'Uso sempre o mesmo (ChatGPT, Copilot, etc.)', points: 0 },
-        { label: 'Tenho preferencias mas nao penso muito nisso', points: 1 },
+        { label: 'Tenho preferências mas não penso muito nisso', points: 1 },
         {
           label: 'Escolho modelo e ferramenta pela complexidade da tarefa',
           points: 2,
@@ -62,9 +62,9 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
       ],
     },
     {
-      text: 'Quando o resultado da IA nao e bom, voce...',
+      text: 'Quando o resultado da IA não é bom, você...',
       options: [
-        { label: 'Desisto e faco manualmente', points: 0 },
+        { label: 'Desisto e faço manualmente', points: 0 },
         { label: 'Tento reformular o prompt', points: 1 },
         {
           label: 'Analiso por que falhou e ajusto contexto, spec ou ferramenta',
@@ -86,7 +86,7 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
       text: 'Before asking AI for something, you...',
       options: [
         { label: 'Type whatever comes to mind', points: 0 },
-        { label: 'Think about the goal but do not structure much', points: 1 },
+        { label: 'Think about the goal but don\'t structure much', points: 1 },
         { label: 'Write goal, context, and constraints first', points: 2 },
       ],
     },
@@ -104,8 +104,8 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
     {
       text: 'Does your project have AI rules or instructions (rules files, CLAUDE.md)?',
       options: [
-        { label: 'I do not know what that is', points: 0 },
-        { label: 'I have heard of it but do not use it', points: 1 },
+        { label: 'I don\'t know what that is', points: 0 },
+        { label: 'I\'ve heard of it but don\'t use it', points: 1 },
         { label: 'Yes, and we update it as the project evolves', points: 2 },
       ],
     },
@@ -114,7 +114,7 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
       options: [
         { label: 'I always use the same one', points: 0 },
         {
-          label: 'I have preferences but do not think much about it',
+          label: 'I have preferences but don\'t think much about it',
           points: 1,
         },
         {
@@ -124,7 +124,7 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
       ],
     },
     {
-      text: 'When the AI result is not good, you...',
+      text: 'When the AI result isn\'t good, you...',
       options: [
         { label: 'Give up and do it manually', points: 0 },
         { label: 'Try to rewrite the prompt', points: 1 },
@@ -149,25 +149,25 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     exploring: {
       name: 'Explorando',
       description:
-        'Voce esta comecando a integrar IA no trabalho. O foco agora e experimentar, entender o que funciona e o que nao funciona. Nao tem nada de errado nisso.',
+        'Você está começando a integrar IA no trabalho. O foco agora é experimentar, entender o que funciona e o que não funciona. Não tem nada de errado nisso.',
       suggestion:
-        'Comece pelo glossario (Sessao 1) pra alinhar vocabulario, depois explore as ferramentas (Sessao 2) pra encontrar a que reduz mais friccao no seu workflow.',
+        'Comece pelo glossário (Sessão 1) pra alinhar vocabulário, depois explore as ferramentas (Sessão 2) pra encontrar a que reduz mais fricção no seu workflow.',
       accent: 'yellow',
     },
     operating: {
       name: 'Operando',
       description:
-        'Voce ja tem um workflow com IA. Usa ferramentas com alguma regularidade e sabe a diferenca entre pedir bem e pedir mal. O proximo passo e estruturar.',
+        'Você já tem um workflow com IA. Usa ferramentas com alguma regularidade e sabe a diferença entre pedir bem e pedir mal. O próximo passo é estruturar.',
       suggestion:
-        'Foque na Sessao 4 (Maturidade) pra entender em que fase voce opera. Depois, a Sessao 5 (Como Operar) vai te dar checklists e artefatos pra padronizar.',
+        'Foque na Sessão 4 (Maturidade) pra entender em que fase você opera. Depois, a Sessão 5 (Como Operar) vai te dar checklists e artefatos pra padronizar.',
       accent: 'blue',
     },
     structuring: {
       name: 'Estruturando',
       description:
-        'Voce nao so usa IA, voce constroi sistemas pra IA operar. Rules files, validacao automatica, escolha de modelo por tarefa. Voce ja e AI-native.',
+        'Você não só usa IA, você constrói sistemas pra IA operar. Rules files, validação automática, escolha de modelo por tarefa. Você já é AI-native.',
       suggestion:
-        'Revise a Sessao 4 (Maturidade) pra calibrar. Voce provavelmente ja opera entre Fase 4 e 5. Use esse site como referencia pra alinhar o time.',
+        'Revise a Sessão 4 (Maturidade) pra calibrar. Você provavelmente já opera entre Fase 4 e 5. Use esse site como referência pra alinhar o time.',
       accent: 'green',
     },
   },
@@ -175,7 +175,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     exploring: {
       name: 'Exploring',
       description:
-        'You are starting to bring AI into your work. The focus now is experimenting, noticing what helps, and noticing what gets in the way. Totally normal place to be.',
+        'You\'re starting to bring AI into your work. The focus now is experimenting, noticing what helps, and noticing what gets in the way. Totally normal place to be.',
       suggestion:
         'Start with the glossary (Session 1), then explore tools (Session 2) to find what removes friction from your workflow.',
       accent: 'yellow',
@@ -191,7 +191,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     structuring: {
       name: 'Structuring',
       description:
-        'You do not just use AI. You build systems where AI can operate: rules files, automated validation, model choice by task. You are already AI-native.',
+        'You don\'t just use AI. You build systems where AI can operate: rules files, automated validation, model choice by task. You\'re already AI-native.',
       suggestion:
         'Review Session 4 to calibrate. You probably operate between Phase 4 and 5. Use this site as a shared reference for the team.',
       accent: 'green',
@@ -202,12 +202,12 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
 const LABELS = {
   'pt-BR': {
     profilePrefix: 'Seu perfil:',
-    nextStep: 'Proximo passo:',
-    reset: 'Refazer avaliacao',
+    nextStep: 'Próximo passo:',
+    reset: 'Refazer avaliação',
     questionProgress: (current: number, total: number) =>
       `Pergunta ${current} de ${total}`,
     previous: '\u2190 Anterior',
-    next: 'Proxima \u2192',
+    next: 'Próxima \u2192',
     finish: 'Ver resultado',
   },
   en: {

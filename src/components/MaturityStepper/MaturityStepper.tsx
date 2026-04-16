@@ -16,36 +16,36 @@ const PHASES: Phase[] = [
     title: 'Fase 1: Consulta',
     shortLabel: 'Consulta',
     description:
-      'Voce abre um chat de IA (ChatGPT, Claude, Gemini) e faz perguntas. Copia a resposta e cola no seu trabalho. A IA funciona como um Google melhorado.',
+      'Você abre um chat de IA (ChatGPT, Claude, Gemini) e faz perguntas. Copia a resposta e cola no seu trabalho. A IA funciona como um Google melhorado.',
     whereFits: [
-      'Duvidas rapidas sobre APIs e sintaxe',
+      'Dúvidas rápidas sobre APIs e sintaxe',
       'Gerar snippets simples pra adaptar',
       'Explorar ideias antes de implementar',
-      'PM pedindo resumo de documento tecnico',
+      'PM pedindo resumo de documento técnico',
     ],
     whereBreaks: [
-      'Copiar codigo sem entender o que faz',
-      'Sem contexto do projeto, resposta generica',
-      'Sem iteracao: pergunta, copia, vai embora',
+      'Copiar código sem entender o que faz',
+      'Sem contexto do projeto, resposta genérica',
+      'Sem iteração: pergunta, copia, vai embora',
     ],
     nextFixes:
-      'Integra IA no editor, eliminando copy-paste e dando contexto de codigo automatico.',
+      'Integra IA no editor, eliminando copy-paste e dando contexto de código automático.',
   },
   {
     title: 'Fase 2: Autocomplete',
     shortLabel: 'Autocomplete',
     description:
-      'Voce instala uma extensao de IA no editor (Copilot, Cursor, Windsurf) e ela sugere codigo enquanto voce digita. A IA vem ate voce, no contexto do que voce esta escrevendo.',
+      'Você instala uma extensão de IA no editor (Copilot, Cursor, Windsurf) e ela sugere código enquanto você digita. A IA vem até você, no contexto do que você está escrevendo.',
     whereFits: [
-      'Completar funcoes que seguem padroes claros',
-      'Escrever testes unitarios simples',
+      'Completar funções que seguem padrões claros',
+      'Escrever testes unitários simples',
       'Gerar boilerplate (forms, handlers)',
       'Descobrir APIs enquanto digita',
     ],
     whereBreaks: [
-      'Aceitar sugestoes sem ler',
+      'Aceitar sugestões sem ler',
       'Contexto limitado ao arquivo atual',
-      'Dependencia: se a IA para, voce para?',
+      'Dependência: se a IA para, você para?',
     ],
     nextFixes:
       'Remove o controle granular de cada linha e coloca a IA pra gerar blocos inteiros a partir de texto.',
@@ -54,55 +54,55 @@ const PHASES: Phase[] = [
     title: 'Fase 3: Vibe Coding',
     shortLabel: 'Vibe Coding',
     description:
-      'Voce descreve o que quer em texto natural e a IA gera blocos inteiros de codigo. Em vez de digitar linha por linha, voce diz o que precisa e a IA escreve.',
+      'Você descreve o que quer em texto natural e a IA gera blocos inteiros de código. Em vez de digitar linha por linha, você diz o que precisa e a IA escreve.',
     whereFits: [
-      'Prototipos rapidos que nao vao pra producao',
+      'Protótipos rápidos que não vão pra produção',
       'MVPs onde velocidade importa mais que qualidade',
       'Explorar abordagens antes de escolher',
-      'PM ou designer criando prototipos funcionais',
+      'PM ou designer criando protótipos funcionais',
     ],
     whereBreaks: [
-      'Sem spec, sem controle do que e gerado',
-      'Divida tecnica instantanea (sem tipos, sem testes)',
-      'Falsa sensacao de produtividade',
+      'Sem spec, sem controle do que é gerado',
+      'Dívida técnica instantânea (sem tipos, sem testes)',
+      'Falsa sensação de produtividade',
     ],
     nextFixes:
-      'Substitui descricao vaga por especificacao clara. "Faz pra mim" vira "implementa segundo esta spec".',
+      'Substitui descrição vaga por especificação clara. "Faz pra mim" vira "implementa segundo esta spec".',
   },
   {
     title: 'Fase 4: SDD',
     shortLabel: 'SDD',
     description:
-      'Voce escreve uma especificacao antes de pedir qualquer coisa pra IA. A spec define endpoints, tipos, restricoes, comportamentos. O output e validado contra a spec, nao contra a "vibe".',
+      'Você escreve uma especificação antes de pedir qualquer coisa pra IA. A spec define endpoints, tipos, restrições, comportamentos. O output é validado contra a spec, não contra a "vibe".',
     whereFits: [
       'Features com complexidade real',
-      'Times com multiplas pessoas no mesmo modulo',
-      'Projetos com revisao critica (compliance, seguranca)',
-      'QA gerando cenarios de teste a partir de specs',
+      'Times com múltiplas pessoas no mesmo módulo',
+      'Projetos com revisão crítica (compliance, segurança)',
+      'QA gerando cenários de teste a partir de specs',
     ],
     whereBreaks: [
-      'Over-engineering: spec de 3 paginas pra consertar um typo',
-      'Spec sem validacao do output',
-      'Spec desatualizada vira documentacao morta',
+      'Over-engineering: spec de 3 páginas pra consertar um typo',
+      'Spec sem validação do output',
+      'Spec desatualizada vira documentação morta',
     ],
     nextFixes:
-      'Automatiza a validacao e orquestracao. O sistema valida, nao o humano em cada passo.',
+      'Automatiza a validação e orquestração. O sistema valida, não o humano em cada passo.',
   },
   {
     title: 'Fase 5: Harness Engineering',
     shortLabel: 'Harness',
     description:
-      'Voce constroi um sistema completo pro agente: instrucoes persistentes, ferramentas configuradas, validacao automatica, criterios de aceite. O agente opera dentro do sistema com autonomia controlada.',
+      'Você constrói um sistema completo pro agente: instruções persistentes, ferramentas configuradas, validação automática, critérios de aceite. O agente opera dentro do sistema com autonomia controlada.',
     whereFits: [
-      'Projetos grandes com convencoes estabelecidas',
+      'Projetos grandes com convenções estabelecidas',
       'Times com testes, lint e CI funcionando',
       'Refactors de grande escala',
-      'Workflows repetiveis executados com frequencia',
+      'Workflows repetíveis executados com frequência',
     ],
     whereBreaks: [
       'Complexidade prematura pra projetos simples',
-      'Confianca excessiva na automacao',
-      'Custo de manutencao do harness',
+      'Confiança excessiva na automação',
+      'Custo de manutenção do harness',
     ],
     nextFixes: '',
   },
@@ -155,7 +155,7 @@ const PHASES_BY_LANG: Record<Lang, Phase[]> = {
       description:
         'You describe what you want in natural language and AI generates whole blocks of code. You guide the outcome instead of typing every line.',
       whereFits: [
-        'Quick prototypes that will not go to production',
+        'Quick prototypes that won\'t go to production',
         'MVPs where speed matters more than quality',
         'Exploring approaches before choosing one',
         'PMs or designers creating functional prototypes',
@@ -211,11 +211,11 @@ const PHASES_BY_LANG: Record<Lang, Phase[]> = {
 const LABELS = {
   'pt-BR': {
     previousAria: 'Fase anterior',
-    nextAria: 'Proxima fase',
+    nextAria: 'Próxima fase',
     tabAria: 'Fases de maturidade',
     whereFits: 'Onde funciona',
     whereBreaks: 'Onde quebra',
-    nextFixes: 'O que a proxima fase resolve:',
+    nextFixes: 'O que a próxima fase resolve:',
   },
   en: {
     previousAria: 'Previous phase',

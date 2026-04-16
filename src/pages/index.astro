@@ -32,16 +32,16 @@ function levelToLabel(level: string) {
 
 const phases = [
   { label: 'Consulta', desc: 'Perguntar e explorar' },
-  { label: 'Autocomplete', desc: 'Sugestoes no editor' },
+  { label: 'Autocomplete', desc: 'Sugestões no editor' },
   { label: 'Vibe Coding', desc: 'Gerar a partir de linguagem natural' },
-  { label: 'SDD', desc: 'Especificacao antes de execucao' },
+  { label: 'SDD', desc: 'Especificação antes de execução' },
   { label: 'Harness', desc: 'Sistema de trabalho do agente' },
 ];
 ---
 
 <BaseLayout
   title="Engenharia de Software na Era da IA"
-  description="Um guia pratico pra quem quer usar IA de verdade no dia a dia de desenvolvimento, sem hype e sem medo."
+  description="Um guia prático pra quem quer usar IA de verdade no dia a dia de desenvolvimento, sem hype e sem medo."
   lang={lang}
   alternateLinks={getHomeAlternateLinks()}
 >
@@ -51,15 +51,15 @@ const phases = [
       <Badge variant="green">100% gratuito e open source</Badge>
       <h1 class="hero-title">Engenharia de Software na Era da IA</h1>
       <p class="hero-tagline">
-        Um guia pratico pra quem quer usar IA de verdade no dia a dia de
+        Um guia prático pra quem quer usar IA de verdade no dia a dia de
         desenvolvimento, sem hype e sem medo.
       </p>
       <div class="hero-ctas">
         <Button href={getSessionHref(lang, 'ai-native-engineer')} size="lg">
-          Comecar pela Sessao 0
+          Começar pela Sessão 0
         </Button>
         <Button href="#sessoes" variant="secondary" size="lg">
-          Ver todas as sessoes
+          Ver todas as sessões
         </Button>
       </div>
     </SectionBlock>
@@ -69,27 +69,27 @@ const phases = [
       <h2>Por que esse site existe?</h2>
       <div class="narrative">
         <p>
-          IA ja entrou no trabalho de software. Mais de 80% dos profissionais
+          IA já entrou no trabalho de software. Mais de 80% dos profissionais
           usam alguma ferramenta de IA no dia a dia. Produtividade subiu, mas
-          confianca nao acompanhou no mesmo ritmo.
+          confiança não acompanhou no mesmo ritmo.
         </p>
         <p>
-          Muita gente esta usando IA sem entender as categorias, sem saber
+          Muita gente está usando IA sem entender as categorias, sem saber
           diferenciar modelo de produto, e sem um mapa mental claro de como tudo
           isso se conecta.
         </p>
         <p>
-          Esse site existe pra organizar o caos. Sem jargao desnecessario, sem
-          favorecimento de ferramenta. So o mapa que importa.
+          Esse site existe pra organizar o caos. Sem jargão desnecessário, sem
+          favorecimento de ferramenta. Só o mapa que importa.
         </p>
       </div>
     </SectionBlock>
 
     <!-- session cards -->
     <SectionBlock padding="xl" id="sessoes">
-      <h2>Sessoes</h2>
+      <h2>Sessões</h2>
       <p>
-        6 sessoes que cobrem tudo o que voce precisa saber. Cada uma funciona
+        6 sessões que cobrem tudo o que você precisa saber. Cada uma funciona
         sozinha, mas juntas formam o mapa completo.
       </p>
       <Grid columns={3} gap="lg" align="stretch">
@@ -108,7 +108,7 @@ const phases = [
               </Fragment>
               <p>{session.summary}</p>
               <Fragment slot="footer">
-                <span class="session-order">Sessao {session.order}</span>
+                <span class="session-order">Sessão {session.order}</span>
               </Fragment>
             </Card>
           ))
@@ -119,7 +119,7 @@ const phases = [
     <!-- maturity preview -->
     <SectionBlock padding="xl" alt>
       <h2>Como a IA evoluiu no desenvolvimento</h2>
-      <p>Nao e so sobre usar IA. E sobre como o uso amadurece.</p>
+      <p>Não é só sobre usar IA. É sobre como o uso amadurece.</p>
       <div class="maturity-track">
         {
           phases.map((phase, i) => (
@@ -135,7 +135,7 @@ const phases = [
       </div>
       <div class="maturity-cta">
         <Button href={getSessionHref(lang, 'maturidade')} variant="secondary">
-          Ver a evolucao completa
+          Ver a evolução completa
         </Button>
       </div>
     </SectionBlock>
@@ -144,26 +144,26 @@ const phases = [
     <SectionBlock padding="lg">
       <h2>Como estudar</h2>
       <p>
-        Nao precisa seguir ordem. Cada sessao funciona sozinha. Mas se quiser um
-        caminho, aqui vao algumas sugestoes.
+        Não precisa seguir ordem. Cada sessão funciona sozinha. Mas se quiser um
+        caminho, aqui vão algumas sugestões.
       </p>
       <Grid columns={3} gap="md" align="stretch">
         <Card title="Sou de produto/design/QA" expandable accent="yellow">
           <p>
-            Comece pela Sessao 0, depois va direto pra Sessao 1 (glossario) e
-            Sessao 4 (maturidade). Isso ja da o mapa mental que voce precisa.
+            Comece pela Sessão 0, depois vá direto pra Sessão 1 (glossário) e
+            Sessão 4 (maturidade). Isso já dá o mapa mental que você precisa.
           </p>
         </Card>
         <Card title="Sou dev iniciante" expandable accent="blue">
           <p>
-            Siga na ordem: 0, 1, 2, 3, 4, 5. Cada sessao constroi em cima da
+            Siga na ordem: 0, 1, 2, 3, 4, 5. Cada sessão constrói em cima da
             anterior.
           </p>
         </Card>
         <Card title="Ja uso IA no trabalho" expandable accent="green">
           <p>
-            Va direto pra Sessao 4 (maturidade) e depois Sessao 5 (como operar).
-            O glossario e as ferramentas voce ja conhece.
+            Vá direto pra Sessão 4 (maturidade) e depois Sessão 5 (como operar).
+            O glossário e as ferramentas você já conhece.
           </p>
         </Card>
       </Grid>

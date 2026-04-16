@@ -20,9 +20,9 @@ import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid
 
 LLM, model, token, prompt, context, agent, MCP, harness. If you have heard these words in a meeting and quietly pretended to follow along, this session is for you.
 
-The AI vocabulary around software development grew fast. The problem is not the number of terms. The problem is that people use the same words for different things. A PM says "model" and means the product, like ChatGPT. A developer says "model" and means the neural network behind it, like GPT-4o. Both think they are talking about the same thing. They are not.
+The AI vocabulary around software development grew fast. The problem isn't the number of terms. The problem is that people use the same words for different things. A PM says "model" and means the product, like ChatGPT. A developer says "model" and means the neural network behind it, like GPT-4o. Both think they're talking about the same thing. They're not.
 
-This session organizes the terms that matter in 2026. It is not a complete dictionary. It is the minimum you need to join AI conversations without getting lost.
+This session organizes the terms that matter in 2026. It's not a complete dictionary. It's the minimum you need to join AI conversations without getting lost.
 
 Each term has two explanations: a simple one for fast understanding, and a technical one for more depth. Read the one that fits where you are.
 
@@ -74,9 +74,9 @@ Each term has two explanations: a simple one for fast understanding, and a techn
 
 **Simple**: Everything the model can see when generating an answer: your message, chat history, system instructions, attached files.
 
-**Technical**: The full token sequence given to the model as input, including system prompt, conversation history, and current input. It is bounded by the context window.
+**Technical**: The full token sequence given to the model as input, including system prompt, conversation history, and current input. It's bounded by the context window.
 
-**Example**: If you ask for a code review and include three files, the context is your request plus those files. If it does not fit, something gets cut.
+**Example**: If you ask for a code review and include three files, the context is your request plus those files. If it doesn't fit, something gets cut.
 
 **Common mistake**: Thinking the model remembers previous conversations. It only knows what is in the current context unless the product adds memory around it.
 
@@ -174,7 +174,7 @@ Each term has two explanations: a simple one for fast understanding, and a techn
 
 **Example**: An MCP server for GitHub lets compatible AI tools access issues, PRs, and repos without every tool building its own integration.
 
-**Common mistake**: Treating MCP as fully settled and universal. It is useful, but the ecosystem is still evolving.
+**Common mistake**: Treating MCP as fully settled and universal. It's useful, but the ecosystem is still evolving.
 
 #### Harness
 
@@ -184,19 +184,19 @@ Each term has two explanations: a simple one for fast understanding, and a techn
 
 **Example**: A harness can include `CLAUDE.md`, pre-commit checks, MCP tools, and a prompt that defines project rules.
 
-**Common mistake**: Treating harness as something you install. It is a practice you build around the work.
+**Common mistake**: Treating harness as something you install. It's a practice you build around the work.
 
 ## Why this matters
 
-Shared vocabulary is not decoration. It is communication infrastructure.
+Shared vocabulary isn't decoration. It's communication infrastructure.
 
-When a PM says "use the faster model", they might mean cheaper, lower latency, or the model they saw on social media. If the team does not share vocabulary, everyone interprets the request differently and the result is rework.
+When a PM says "use the faster model", they might mean cheaper, lower latency, or the model they saw on social media. If the team doesn't share vocabulary, everyone interprets the request differently and the result is rework.
 
 This is especially important because:
 
 - **Multidisciplinary teams make AI decisions together**. Dev, QA, PM, design. Everyone needs enough vocabulary to participate.
 - **Tools are changing fast**. What used to be autocomplete became agents. If your vocabulary is stale, your decisions get stale too.
-- **Vendors use jargon on purpose**. If you do not understand the terms, you cannot evaluate what they are selling.
+- **Vendors use jargon on purpose**. If you don't understand the terms, you can't evaluate what they're selling.
 
 ## Real example
 
@@ -210,7 +210,7 @@ A real meeting between PM, QA, and dev:
 
 **PM**: "So the model needs to see our code?"
 
-**Dev**: "Yes. The code becomes context. The better organized the project, the better the output. But there are token limits, so we cannot send everything all at once."
+**Dev**: "Yes. The code becomes context. The better organized the project, the better the output. But there are token limits, so we can't send everything all at once."
 
 **QA**: "And if it generates tests that pass but test nothing?"
 
@@ -222,7 +222,7 @@ That is what aligned vocabulary changes: the conversation becomes specific enoug
 
 - **Jargon as a wall**: If you use technical terms to impress instead of communicate, you are creating a barrier. The simple definition exists for a reason.
 - **Definitions that are too rigid**: These terms are still moving. Do not treat this glossary as law.
-- **Memorizing without understanding**: Knowing that a token is an "atomic processing unit" does not help unless you understand why token limits and cost matter.
+- **Memorizing without understanding**: Knowing that a token is an "atomic processing unit" doesn't help unless you understand why token limits and cost matter.
 
 ## Interactive block
 
@@ -234,5 +234,5 @@ That is what aligned vocabulary changes: the conversation becomes specific enoug
 - Each term has a simple and technical version. Use the one that fits your audience
 - Product and model are different things. ChatGPT is a product; GPT-4o is a model
 - Context is limited. The model only knows what fits in the context window
-- Agent is not the same as chatbot. The difference is autonomy and tool access
+- Agent isn't the same as chatbot. The difference is autonomy and tool access
 - These terms are evolving. Revisit them regularly

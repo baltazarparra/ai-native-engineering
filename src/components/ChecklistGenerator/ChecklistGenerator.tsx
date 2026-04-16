@@ -9,7 +9,7 @@ import styles from './ChecklistGenerator.module.css';
 
 const LABELS = {
   'pt-BR': {
-    profileStep: '1. Qual e seu perfil?',
+    profileStep: '1. Qual é seu perfil?',
     profileAria: 'Perfil',
     taskStep: '2. Que tipo de tarefa?',
     taskAria: 'Tipo de tarefa',

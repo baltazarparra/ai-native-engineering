@@ -34,7 +34,7 @@ export const supportedLangs = Object.keys(languages) as Lang[];
 export const ui = {
   'pt-BR': {
     siteDescription: 'AI-Native Engineering: o mapa que importa',
-    skipToContent: 'Pular para o conteudo',
+    skipToContent: 'Pular para o conteúdo',
     languageNav: 'Selecionar idioma',
     currentLanguage: 'Idioma atual',
     progressLabel: 'Progresso de leitura',
@@ -43,40 +43,40 @@ export const ui = {
     updatedAt: 'Atualizado em',
     levels: {
       beginner: 'iniciante',
-      intermediate: 'intermediario',
-      advanced: 'avancado',
+      intermediate: 'intermediário',
+      advanced: 'avançado',
     },
     sectionNav: {
-      ariaLabel: 'Navegacao da sessao',
+      ariaLabel: 'Navegação da sessão',
       summaryFallback: 'Resumo',
-      references: 'Referencias',
+      references: 'Referências',
     },
     references: {
       heading: 'Quer se aprofundar?',
       groupLabels: {
         artigo: 'Artigos',
-        documentacao: 'Documentacao',
+        documentacao: 'Documentação',
         talk: 'Talks',
-        video: 'Videos',
+        video: 'Vídeos',
         pesquisa: 'Pesquisa',
       },
       badgeLabels: {
         artigo: 'artigo',
         documentacao: 'docs',
         talk: 'talk',
-        video: 'video',
+        video: 'vídeo',
         pesquisa: 'pesquisa',
       },
     },
     nextSession: {
-      lastLabel: 'Voce chegou ao fim',
-      lastTitle: 'Parabens! Agora e hora de aplicar.',
+      lastLabel: 'Você chegou ao fim',
+      lastTitle: 'Parabéns! Agora é hora de aplicar.',
       home: 'Voltar pra home',
-      label: 'Proxima sessao',
+      label: 'Próxima sessão',
       continue: 'Continuar',
     },
     footer: {
-      tagline: 'Feito com Astro e cafe',
+      tagline: 'Feito com Astro e café',
     },
   },
   en: {

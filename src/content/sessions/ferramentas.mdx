@@ -4,7 +4,7 @@ slug: 'ferramentas'
 lang: 'pt-BR'
 translationKey: 'tools'
 order: 2
-summary: 'Cursor, Windsurf, GitHub Copilot, Claude Code. O que cada ferramenta faz, onde brilha e onde tropeca.'
+summary: 'Cursor, Windsurf, GitHub Copilot, Claude Code. O que cada ferramenta faz, onde brilha e onde tropeça.'
 readingTime: 18
 level: 'beginner'
 tags: ['ferramentas', 'ide', 'cli', 'comparativo']
@@ -16,114 +16,114 @@ updatedAt: 2026-04-15
 
 import ToolComparison from '../../components/ToolComparison/ToolComparison.tsx';
 
-## Tres categorias, nao uma lista infinita
+## Três categorias, não uma lista infinita
 
-Toda semana aparece uma ferramenta nova de IA pra desenvolvimento. Se voce tentar acompanhar todas, vai gastar mais tempo avaliando ferramentas do que escrevendo codigo.
+Toda semana aparece uma ferramenta nova de IA pra desenvolvimento. Se você tentar acompanhar todas, vai gastar mais tempo avaliando ferramentas do que escrevendo código.
 
-Em vez de listar tudo que existe, e mais util pensar em tres categorias:
+Em vez de listar tudo que existe, é mais útil pensar em três categorias:
 
-1. **IDEs com IA integrada**: editores de codigo que embutem IA na interface de edicao. Voce continua escrevendo codigo no editor, mas a IA sugere, edita e conversa com voce ali dentro. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot.
+1. **IDEs com IA integrada**: editores de código que embutem IA na interface de edição. Você continua escrevendo código no editor, mas a IA sugere, edita e conversa com você ali dentro. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot.
 
-2. **CLIs de IA**: ferramentas de linha de comando que operam no terminal. Voce descreve o que quer em texto, a ferramenta le seus arquivos, executa comandos e faz mudancas diretamente. Exemplos: Claude Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+2. **CLIs de IA**: ferramentas de linha de comando que operam no terminal. Você descreve o que quer em texto, a ferramenta lê seus arquivos, executa comandos e faz mudanças diretamente. Exemplos: Claude Code, Codex CLI, OpenCode, GitHub Copilot CLI.
 
-3. **Agentes autonomos**: a diferenca pra CLIs e o nivel de autonomia. Um CLI pode ler e editar arquivos. Um agente planeja, executa, testa, itera e decide proximos passos sozinho. Algumas CLIs operam como agentes (Claude Code, Codex CLI em modo autonomo). A linha entre CLI e agente esta ficando borrada.
+3. **Agentes autônomos**: a diferença pra CLIs é o nível de autonomia. Um CLI pode ler e editar arquivos. Um agente planeja, executa, testa, itera e decide próximos passos sozinho. Algumas CLIs operam como agentes (Claude Code, Codex CLI em modo autônomo). A linha entre CLI e agente está ficando borrada.
 
-A categoria certa depende de como voce trabalha, nao de qual ferramenta e "melhor".
+A categoria certa depende de como você trabalha, não de qual ferramenta é "melhor".
 
 ## Por que isso importa
 
-Escolher ferramenta por hype e o jeito mais rapido de se frustrar. A ferramenta certa e a que reduz friccao no seu workflow especifico.
+Escolher ferramenta por hype é o jeito mais rápido de se frustrar. A ferramenta certa é a que reduz fricção no seu workflow específico.
 
-Um dev junior que esta aprendendo React provavelmente se beneficia mais de uma IDE com IA integrada (autocomplete, explicacoes inline, sugestoes contextuais). Um dev senior que esta fazendo um refactor de 50 arquivos provavelmente quer um agente de codigo no terminal. Um QA que precisa gerar cenarios de teste pode usar tanto um quanto outro.
+Um dev júnior que está aprendendo React provavelmente se beneficia mais de uma IDE com IA integrada (autocomplete, explicações inline, sugestões contextuais). Um dev sênior que está fazendo um refactor de 50 arquivos provavelmente quer um agente de código no terminal. Um QA que precisa gerar cenários de teste pode usar tanto um quanto outro.
 
-A questao nao e "qual e a melhor ferramenta". E "qual ferramenta reduz mais friccao pra tarefa que eu estou fazendo agora".
+A questão não é "qual é a melhor ferramenta". É "qual ferramenta reduz mais fricção pra tarefa que eu estou fazendo agora".
 
 ## Exemplo aplicado
 
 Time de 4 pessoas trabalhando no mesmo projeto:
 
-**Dev junior (Ana)** usa Cursor. Ela esta aprendendo os padroes do projeto e o autocomplete ajuda a descobrir como as coisas funcionam. O chat inline responde duvidas sem sair do editor. O modo agente ajuda quando ela precisa implementar algo mais complexo.
+**Dev júnior (Ana)** usa Cursor. Ela está aprendendo os padrões do projeto e o autocomplete ajuda a descobrir como as coisas funcionam. O chat inline responde dúvidas sem sair do editor. O modo agente ajuda quando ela precisa implementar algo mais complexo.
 
-**Dev senior (Carlos)** usa Claude Code no terminal. Ele prefere trabalhar com multiplos arquivos ao mesmo tempo, rodar testes automaticamente e fazer refactors que tocam muitos modulos. O terminal da acesso direto a git, testes e lint sem trocar de janela.
+**Dev sênior (Carlos)** usa Claude Code no terminal. Ele prefere trabalhar com múltiplos arquivos ao mesmo tempo, rodar testes automaticamente e fazer refactors que tocam muitos módulos. O terminal dá acesso direto a git, testes e lint sem trocar de janela.
 
-**QA (Marina)** usa GitHub Copilot no VS Code. Ela ja conhece bem o VS Code e nao quer trocar de editor. O autocomplete ajuda a escrever testes mais rapido. O chat do Copilot ajuda a entender trechos de codigo quando ela precisa revisar.
+**QA (Marina)** usa GitHub Copilot no VS Code. Ela já conhece bem o VS Code e não quer trocar de editor. O autocomplete ajuda a escrever testes mais rápido. O chat do Copilot ajuda a entender trechos de código quando ela precisa revisar.
 
-**Tech lead (Pedro)** usa Claude Code pra tarefas grandes (planejar refactors, revisar arquitetura) e Cursor pra edicoes rapidas. Ele troca de ferramenta conforme a tarefa.
+**Tech lead (Pedro)** usa Claude Code pra tarefas grandes (planejar refactors, revisar arquitetura) e Cursor pra edições rápidas. Ele troca de ferramenta conforme a tarefa.
 
-Nenhum deles esta errado. Cada um escolheu pela friccao do proprio workflow.
+Nenhum deles está errado. Cada um escolheu pela fricção do próprio workflow.
 
 ## As ferramentas do mercado hoje
 
-O que segue e um retrato de abril de 2026. Ferramentas mudam rapido. Use isso como referencia, nao como verdade eterna.
+O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso como referência, não como verdade eterna.
 
 ### Cursor
 
-**O que e**: IDE desktop baseada no VS Code com IA embutida na interface de edicao.
+**O que é**: IDE desktop baseada no VS Code com IA embutida na interface de edição.
 
 **Onde roda**: Editor desktop (fork do VS Code).
 
-**Pra quem**: Dev junior, dev senior, dev fullstack. Quem quer IA integrada no fluxo de edicao sem sair do editor.
+**Pra quem**: Dev júnior, dev sênior, dev fullstack. Quem quer IA integrada no fluxo de edição sem sair do editor.
 
 **Onde brilha**:
 
-- IA embutida na interface de edicao, nao e plugin
-- Bom contexto de codigo automatico
-- Chat inline e edicao com diff visual
+- IA embutida na interface de edição, não é plugin
+- Bom contexto de código automático
+- Chat inline e edição com diff visual
 - Modo agente pra tarefas maiores
 
-**Onde tropeca**:
+**Onde tropeça**:
 
-- Custo da assinatura pode nao compensar pra todos os perfis
-- Dependencia do ecossistema VS Code
-- Sugestoes podem ser aceitas sem revisao (o risco e humano, nao da ferramenta)
+- Custo da assinatura pode não compensar pra todos os perfis — mas isso não é defeito da ferramenta, é como qualquer SaaS funciona
+- Dependência do ecossistema VS Code
+- Sugestões podem ser aceitas sem revisão (o risco é humano, não da ferramenta)
 
 ### Windsurf
 
-**O que e**: IDE desktop com IA integrada, foco em fluxos de trabalho assistidos.
+**O que é**: IDE desktop com IA integrada, foco em fluxos de trabalho assistidos.
 
 **Onde roda**: Editor desktop (fork do VS Code).
 
-**Pra quem**: Dev junior, dev senior. Quem quer uma experiencia limpa com assistencia de IA.
+**Pra quem**: Dev júnior, dev sênior. Quem quer uma experiência limpa com assistência de IA.
 
 **Onde brilha**:
 
 - Interface limpa com IA integrada
 - Fluxos de trabalho assistidos
-- Boa experiencia de onboarding pra quem ta comecando
+- Boa experiência de onboarding pra quem tá começando
 
-**Onde tropeca**:
+**Onde tropeça**:
 
-- Ecossistema menor que Cursor
-- Menos extensoes e integracao com ferramentas de terceiros
+- Ecossistema menor que Cursor — natural pra quem chegou depois, e tende a crescer
+- Menos extensões e integração com ferramentas de terceiros
 
 ### GitHub Copilot
 
-**O que e**: Extensao de IA pra editores existentes. Nao e um editor novo, e um plugin.
+**O que é**: Extensão de IA pra editores existentes. Não é um editor novo, é um plugin.
 
-**Onde roda**: Extensao pra VS Code, JetBrains, Neovim e outros editores.
+**Onde roda**: Extensão pra VS Code, JetBrains, Neovim e outros editores.
 
-**Pra quem**: Dev junior, dev senior, QA automatizando testes. Quem ja tem um editor preferido e nao quer trocar.
+**Pra quem**: Dev júnior, dev sênior, QA automatizando testes. Quem já tem um editor preferido e não quer trocar.
 
 **Onde brilha**:
 
 - Integra com qualquer editor popular
-- Autocomplete muito rapido
-- Chat embutido pra perguntas rapidas
-- Facil de adotar em times grandes (licenca corporativa)
+- Autocomplete muito rápido
+- Chat embutido pra perguntas rápidas
+- Fácil de adotar em times grandes (licença corporativa)
 
-**Onde tropeca**:
+**Onde tropeça**:
 
-- Autocomplete pode virar muleta se voce aceita tudo
-- Sugestoes nem sempre consideram o contexto completo do projeto
-- Aceitar sem ler e o risco numero um
+- Autocomplete pode virar muleta se você aceita tudo — mas a disciplina de revisar é sua, não do Copilot
+- Sugestões nem sempre consideram o contexto completo do projeto
+- Aceitar sem ler é o risco número um
 
 ### Claude Code
 
-**O que e**: Agente de codigo que roda no terminal. Planeja, executa, testa e itera.
+**O que é**: Agente de código que roda no terminal. Planeja, executa, testa e itera.
 
 **Onde roda**: Terminal / linha de comando.
 
-**Pra quem**: Dev senior, tech lead, dev que prefere terminal. Quem faz tarefas complexas com multiplos arquivos.
+**Pra quem**: Dev sênior, tech lead, dev que prefere terminal. Quem faz tarefas complexas com múltiplos arquivos.
 
 **Onde brilha**:
 
@@ -132,79 +132,79 @@ O que segue e um retrato de abril de 2026. Ferramentas mudam rapido. Use isso co
 - Acesso a ferramentas do sistema (git, testes, lint)
 - Bom pra refactors grandes e tarefas multi-arquivo
 
-**Onde tropeca**:
+**Onde tropeça**:
 
-- Curva de entrada pra quem nao usa terminal
-- Precisa de supervisao em operacoes destrutivas
-- Contexto depende de como voce estrutura o projeto (CLAUDE.md, rules files)
+- Curva de entrada pra quem não usa terminal — mas conforto com terminal é um investimento que vale a pena
+- Precisa de supervisão em operações destrutivas
+- Contexto depende de como você estrutura o projeto (CLAUDE.md, rules files)
 
 ### Codex CLI
 
-**O que e**: Agente de codigo no terminal do ecossistema OpenAI.
+**O que é**: Agente de código no terminal do ecossistema OpenAI.
 
 **Onde roda**: Terminal / linha de comando.
 
-**Pra quem**: Dev senior, dev que ja usa ecossistema OpenAI.
+**Pra quem**: Dev sênior, dev que já usa ecossistema OpenAI.
 
 **Onde brilha**:
 
 - Integra com ecossistema OpenAI
 - Acesso ao terminal e sistema de arquivos
-- Modelo configuravel
+- Modelo configurável
 
-**Onde tropeca**:
+**Onde tropeça**:
 
-- Ecossistema ainda em evolucao
+- Ecossistema ainda em evolução — o que hoje é limitação amanhã pode ser diferencial
 - Depende de API key e custos de uso
 
 ### OpenCode
 
-**O que e**: Alternativa open source pra desenvolvimento assistido no terminal.
+**O que é**: Alternativa open source pra desenvolvimento assistido no terminal.
 
 **Onde roda**: Terminal / linha de comando.
 
-**Pra quem**: Dev que prefere ferramentas open source, dev senior.
+**Pra quem**: Dev que prefere ferramentas open source, dev sênior.
 
 **Onde brilha**:
 
 - Open source e transparente
-- Configuravel com diferentes provedores de modelo
-- Transparencia total no que a ferramenta faz
+- Configurável com diferentes provedores de modelo
+- Transparência total no que a ferramenta faz
 
-**Onde tropeca**:
+**Onde tropeça**:
 
 - Comunidade menor
-- Menos polish que alternativas comerciais
-- Documentacao pode ser mais escassa
+- Menos polish que alternativas comerciais — é o tradeoff clássico do open source: mais controle, menos conveniência
+- Documentação pode ser mais escassa
 
 ### GitHub Copilot CLI
 
-**O que e**: Extensao do GitHub CLI (gh) pra comandos assistidos por IA no terminal.
+**O que é**: Extensão do GitHub CLI (gh) pra comandos assistidos por IA no terminal.
 
-**Onde roda**: Terminal como extensao do GitHub CLI.
+**Onde roda**: Terminal como extensão do GitHub CLI.
 
-**Pra quem**: Dev que ja usa GitHub CLI, devops, QA.
+**Pra quem**: Dev que já usa GitHub CLI, devops, QA.
 
 **Onde brilha**:
 
 - Integrado com ecossistema GitHub
 - Bom pra descobrir comandos de terminal
-- Baixa friccao pra quem ja usa gh
+- Baixa fricção pra quem já usa gh
 
-**Onde tropeca**:
+**Onde tropeça**:
 
-- Escopo mais limitado que agentes completos
-- Focado em comandos, nao em projetos inteiros
+- Escopo mais limitado que agentes completos — mas isso é intencional, não é defeito
+- Focado em comandos, não em projetos inteiros
 
 ## Onde isso quebra
 
-- **Sindrome da troca infinita**: Experimentar ferramentas e saudavel. Trocar de ferramenta toda semana e procrastinacao disfarada de produtividade. Escolha uma, use por duas semanas, depois avalie.
+- **Síndrome da troca infinita**: Experimentar ferramentas é saudável. Trocar de ferramenta toda semana é procrastinação disfarçada de produtividade. Escolha uma, use por duas semanas, depois avalie.
 
-- **Pensamento de ferramenta unica**: "Eu uso Cursor, entao nao preciso de terminal." Ou "Eu uso Claude Code, entao nao preciso de IDE." Ferramentas sao complementares. A maioria dos profissionais experientes usa mais de uma.
+- **Pensamento de ferramenta única**: "Eu uso Cursor, então não preciso de terminal." Ou "Eu uso Claude Code, então não preciso de IDE." Ferramentas são complementares. A maioria dos profissionais experientes usa mais de uma.
 
-- **Ferramenta nao e metodo**: Ter a melhor IDE com IA nao substitui saber o que pedir. Se voce nao sabe especificar o que quer, nenhuma ferramenta vai adivinhar. A ferramenta executa, voce direciona.
+- **Ferramenta não é método**: Ter a melhor IDE com IA não substitui saber o que pedir. Se você não sabe especificar o que quer, nenhuma ferramenta vai adivinhar. A ferramenta executa, você direciona.
 
-- **Confiar demais no autocomplete**: Autocomplete e otimizado pra parecer correto, nao pra estar correto. Cada sugestao aceita sem ler e um bug em potencial que voce vai descobrir em producao.
+- **Confiar demais no autocomplete**: Autocomplete é otimizado pra parecer correto, não pra estar correto. Cada sugestão aceita sem ler é um bug em potencial que você vai descobrir em produção.
 
 ## Bloco interativo
 
@@ -212,9 +212,7 @@ O que segue e um retrato de abril de 2026. Ferramentas mudam rapido. Use isso co
 
 ## O que levar daqui
 
-- Ferramentas de IA pra dev se dividem em tres categorias: IDE integrada, CLI, e agentes
-- A ferramenta certa e a que reduz friccao no seu workflow, nao a que tem mais hype
-- A maioria dos profissionais experientes usa mais de uma ferramenta
-- Nenhuma ferramenta substitui saber o que voce quer. Especificacao clara vem antes da ferramenta
-- Autocomplete e sugestao, nao resposta. Leia antes de aceitar
-- Esse mapa e de abril de 2026. Ferramentas mudam rapido. Revise periodicamente
+- Escolha a ferramenta pela fricção que ela elimina no seu workflow — não pelo hype ou pela novidade
+- Use mais de uma ferramenta: IDE pra edição contextual, terminal pra tarefas grandes. Combine conforme a tarefa
+- Invista em saber especificar o que você quer. Especificação clara importa mais do que a ferramenta
+- Trate toda sugestão como rascunho: leia, entenda e revise antes de aceitar. Esse mapa é de abril de 2026 — revise periodicamente

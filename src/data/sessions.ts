@@ -16,29 +16,29 @@ export interface SessionCardData {
 
 export const sessions: SessionCardData[] = [
   {
-    title: 'O que e um AI-Native Engineer',
+    title: 'O que é um AI-Native Engineer',
     slug: 'ai-native-engineer',
     lang: 'pt-BR',
     translationKey: 'ai-native-engineer',
     order: 0,
     summary:
-      'O ponto de partida. O que muda quando IA vira parte do fluxo de trabalho e nao so uma ferramenta auxiliar.',
+      'O ponto de partida. O que muda quando IA vira parte do fluxo de trabalho e não só uma ferramenta auxiliar.',
     readingTime: 12,
     level: 'beginner',
     heroLabel: 'Ponto de partida',
     accent: 'yellow',
   },
   {
-    title: 'Novas terminologias populares',
+    title: 'Glossário: os termos que você precisa conhecer',
     slug: 'glossario',
     lang: 'pt-BR',
     translationKey: 'glossary',
     order: 1,
     summary:
-      'Prompt, token, contexto, alucinacao, RAG, fine-tuning. O glossario que organiza o vocabulario sem jargao desnecessario.',
+      'Prompt, token, contexto, agente. O glossário que organiza o vocabulário sem jargão desnecessário.',
     readingTime: 15,
     level: 'beginner',
-    heroLabel: 'Vocabulario essencial',
+    heroLabel: 'Vocabulário essencial',
     accent: 'blue',
   },
   {
@@ -68,29 +68,29 @@ export const sessions: SessionCardData[] = [
     accent: 'coral',
   },
   {
-    title: 'A evolucao do desenvolvimento com IA',
+    title: 'A evolução do desenvolvimento com IA',
     slug: 'maturidade',
     lang: 'pt-BR',
     translationKey: 'maturity',
     order: 4,
     summary:
-      'De copiar resposta do ChatGPT ate orquestrar agentes. As 5 fases de maturidade e onde voce esta.',
+      'De copiar resposta do ChatGPT até orquestrar agentes. As 5 fases de maturidade e onde você está.',
     readingTime: 22,
     level: 'intermediate',
-    heroLabel: 'Niveis de maturidade',
+    heroLabel: 'Níveis de maturidade',
     accent: 'yellow',
   },
   {
-    title: 'Como operar de forma AI-native na pratica',
+    title: 'Como operar de forma AI-native na prática',
     slug: 'como-operar',
     lang: 'pt-BR',
     translationKey: 'how-to-operate',
     order: 5,
     summary:
-      'Workflows reais, exemplos de projetos e o que muda no dia a dia quando voce opera como AI-native.',
+      'Checklists, workflows e exemplos reais de como diferentes perfis operam com IA no dia a dia.',
     readingTime: 25,
     level: 'advanced',
-    heroLabel: 'Na pratica',
+    heroLabel: 'Na prática',
     accent: 'blue',
   },
   {

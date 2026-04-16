@@ -9,9 +9,9 @@ const LABELS = {
   'pt-BR': {
     searchPlaceholder: 'Buscar termo...',
     searchAria: 'Buscar termo no glossario',
-    modeAria: 'Tipo de definicao',
+    modeAria: 'Tipo de definição',
     simple: 'Simples',
-    technical: 'Tecnico',
+    technical: 'Técnico',
     empty: (query: string) => `Nenhum termo encontrado pra "${query}".`,
     example: 'Exemplo:',
     commonMistake: 'Erro comum:',

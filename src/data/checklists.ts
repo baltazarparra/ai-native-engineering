@@ -19,8 +19,8 @@ export interface ChecklistTask {
 export const profiles: ChecklistProfile[] = [
   { id: 'pm', label: 'PM' },
   { id: 'qa', label: 'QA' },
-  { id: 'junior', label: 'Dev junior' },
-  { id: 'senior', label: 'Dev senior' },
+  { id: 'junior', label: 'Dev júnior' },
+  { id: 'senior', label: 'Dev sênior' },
   { id: 'lead', label: 'Tech lead' },
 ];
 
@@ -51,17 +51,17 @@ export const tasksEn: ChecklistTask[] = [
 const BASE_BEFORE: ChecklistItem[] = [
   {
     id: 'obj',
-    text: 'Defini o objetivo final (nao so o que pedir pra IA)',
+    text: 'Defini o objetivo final (não só o que pedir pra IA)',
     category: 'antes-de-pedir',
   },
   {
     id: 'ctx',
-    text: 'Identifiquei quais arquivos/contextos sao relevantes',
+    text: 'Identifiquei quais arquivos/contextos são relevantes',
     category: 'antes-de-pedir',
   },
   {
     id: 'restrict',
-    text: 'Listei restricoes (o que nao pode mudar, padroes a seguir)',
+    text: 'Listei restrições (o que não pode mudar, padrões a seguir)',
     category: 'antes-de-pedir',
   },
   {
@@ -74,7 +74,7 @@ const BASE_BEFORE: ChecklistItem[] = [
 const BASE_AFTER: ChecklistItem[] = [
   {
     id: 'read',
-    text: 'Li o codigo gerado (nao so skimmei)',
+    text: 'Li o código gerado (não só skimmei)',
     category: 'antes-de-aceitar',
   },
   {
@@ -104,50 +104,50 @@ const EXTRA_ITEMS: Record<string, Record<string, ChecklistItem[]>> = {
     feature: [
       {
         id: 'pm-spec',
-        text: 'Escrevi um rascunho da spec antes de pedir revisao pra IA',
+        text: 'Escrevi um rascunho da spec antes de pedir revisão pra IA',
         category: 'antes-de-pedir',
       },
       {
         id: 'pm-gaps',
-        text: 'Pedi pra IA apontar lacunas e cenarios nao cobertos',
+        text: 'Pedi pra IA apontar lacunas e cenários não cobertos',
         category: 'antes-de-pedir',
       },
       {
         id: 'pm-val',
-        text: 'Validei que a spec revisada cobre requisitos de negocio',
+        text: 'Validei que a spec revisada cobre requisitos de negócio',
         category: 'antes-de-aceitar',
       },
     ],
     bugfix: [
       {
         id: 'pm-repro',
-        text: 'Descrevi passos de reproducao claros',
+        text: 'Descrevi passos de reprodução claros',
         category: 'antes-de-pedir',
       },
       {
         id: 'pm-impact',
-        text: 'Validei que o fix nao impacta outras funcionalidades',
+        text: 'Validei que o fix não impacta outras funcionalidades',
         category: 'antes-de-aceitar',
       },
     ],
     refactor: [
       {
         id: 'pm-why',
-        text: 'Documentei a motivacao do refactor (por que agora)',
+        text: 'Documentei a motivação do refactor (por que agora)',
         category: 'antes-de-pedir',
       },
     ],
     review: [
       {
         id: 'pm-focus',
-        text: 'Pedi pra IA focar em clareza de nomeclatura e legibilidade',
+        text: 'Pedi pra IA focar em clareza de nomenclatura e legibilidade',
         category: 'antes-de-pedir',
       },
     ],
     tests: [
       {
         id: 'pm-scenarios',
-        text: 'Listei cenarios de negocio criticos que precisam cobertura',
+        text: 'Listei cenários de negócio críticos que precisam cobertura',
         category: 'antes-de-pedir',
       },
     ],
@@ -156,38 +156,38 @@ const EXTRA_ITEMS: Record<string, Record<string, ChecklistItem[]>> = {
     feature: [
       {
         id: 'qa-edge',
-        text: 'Pedi cenarios de borda e estados de erro',
+        text: 'Pedi cenários de borda e estados de erro',
         category: 'antes-de-pedir',
       },
       {
         id: 'qa-gherkin',
-        text: 'Pedi formato Gherkin ou estruturado pra cenarios',
+        text: 'Pedi formato Gherkin ou estruturado pra cenários',
         category: 'antes-de-pedir',
       },
       {
         id: 'qa-filter',
-        text: 'Filtrei cenarios redundantes e adicionei os que o modelo nao pensou',
+        text: 'Filtrei cenários redundantes e adicionei os que o modelo não pensou',
         category: 'antes-de-aceitar',
       },
     ],
     bugfix: [
       {
         id: 'qa-regress',
-        text: 'Verifiquei se o fix nao quebrou testes de regressao',
+        text: 'Verifiquei se o fix não quebrou testes de regressão',
         category: 'antes-de-aceitar',
       },
     ],
     refactor: [
       {
         id: 'qa-coverage',
-        text: 'Verifiquei que a cobertura de testes nao diminuiu',
+        text: 'Verifiquei que a cobertura de testes não diminuiu',
         category: 'antes-de-aceitar',
       },
     ],
     review: [
       {
         id: 'qa-testability',
-        text: 'Verifiquei se o codigo e testavel (sem dependencias escondidas)',
+        text: 'Verifiquei se o código é testável (sem dependências escondidas)',
         category: 'antes-de-aceitar',
       },
     ],
@@ -208,17 +208,17 @@ const EXTRA_ITEMS: Record<string, Record<string, ChecklistItem[]>> = {
     feature: [
       {
         id: 'jr-learn',
-        text: 'Primeiro entendi o conceito antes de pedir implementacao',
+        text: 'Primeiro entendi o conceito antes de pedir implementação',
         category: 'antes-de-pedir',
       },
       {
         id: 'jr-ref',
-        text: 'Passei arquivos de referencia do projeto pra IA',
+        text: 'Passei arquivos de referência do projeto pra IA',
         category: 'antes-de-pedir',
       },
       {
         id: 'jr-understand',
-        text: 'Consigo explicar o que o codigo faz sem olhar a IA',
+        text: 'Consigo explicar o que o código faz sem olhar a IA',
         category: 'antes-de-aceitar',
       },
     ],
@@ -232,21 +232,21 @@ const EXTRA_ITEMS: Record<string, Record<string, ChecklistItem[]>> = {
     refactor: [
       {
         id: 'jr-pattern',
-        text: 'Estudei o padrao novo antes de pedir a migracao',
+        text: 'Estudei o padrão novo antes de pedir a migração',
         category: 'antes-de-pedir',
       },
     ],
     review: [
       {
         id: 'jr-ask',
-        text: 'Pedi explicacao pra trechos que nao entendi',
+        text: 'Pedi explicação pra trechos que não entendi',
         category: 'antes-de-pedir',
       },
     ],
     tests: [
       {
         id: 'jr-manual',
-        text: 'Testei manualmente alem dos testes automaticos',
+        text: 'Testei manualmente além dos testes automáticos',
         category: 'antes-de-aceitar',
       },
     ],
@@ -255,12 +255,12 @@ const EXTRA_ITEMS: Record<string, Record<string, ChecklistItem[]>> = {
     feature: [
       {
         id: 'sr-spec',
-        text: 'Escrevi spec com tipos, endpoints e restricoes',
+        text: 'Escrevi spec com tipos, endpoints e restrições',
         category: 'antes-de-pedir',
       },
       {
         id: 'sr-review',
-        text: 'Revisei diffs focando em decisoes de design',
+        text: 'Revisei diffs focando em decisões de design',
         category: 'antes-de-aceitar',
       },
     ],
@@ -272,33 +272,33 @@ const EXTRA_ITEMS: Record<string, Record<string, ChecklistItem[]>> = {
       },
       {
         id: 'sr-side',
-        text: 'Verifiquei side effects em modulos relacionados',
+        text: 'Verifiquei side effects em módulos relacionados',
         category: 'antes-de-aceitar',
       },
     ],
     refactor: [
       {
         id: 'sr-pattern',
-        text: 'Fiz o primeiro caso manualmente pra definir o padrao',
+        text: 'Fiz o primeiro caso manualmente pra definir o padrão',
         category: 'antes-de-pedir',
       },
       {
         id: 'sr-rules',
-        text: 'Criei rules file com convencoes da migracao',
+        text: 'Criei rules file com convenções da migração',
         category: 'antes-de-pedir',
       },
     ],
     review: [
       {
         id: 'sr-security',
-        text: 'Pedi foco em seguranca, performance e legibilidade',
+        text: 'Pedi foco em segurança, performance e legibilidade',
         category: 'antes-de-pedir',
       },
     ],
     tests: [
       {
         id: 'sr-integration',
-        text: 'Incluí testes de integracao alem de unitarios',
+        text: 'Incluí testes de integração além de unitários',
         category: 'antes-de-aceitar',
       },
     ],
@@ -307,7 +307,7 @@ const EXTRA_ITEMS: Record<string, Record<string, ChecklistItem[]>> = {
     feature: [
       {
         id: 'ld-rules',
-        text: 'Rules file do projeto esta atualizado com convencoes',
+        text: 'Rules file do projeto está atualizado com convenções',
         category: 'antes-de-pedir',
       },
       {
@@ -326,26 +326,26 @@ const EXTRA_ITEMS: Record<string, Record<string, ChecklistItem[]>> = {
     refactor: [
       {
         id: 'ld-align',
-        text: 'Alinhou com o time a motivacao e escopo do refactor',
+        text: 'Alinhou com o time a motivação e escopo do refactor',
         category: 'antes-de-pedir',
       },
       {
         id: 'ld-doc',
-        text: 'Atualizei documentacao e rules files com novas convencoes',
+        text: 'Atualizei documentação e rules files com novas convenções',
         category: 'antes-de-aceitar',
       },
     ],
     review: [
       {
         id: 'ld-design',
-        text: 'Foquei em decisoes de design, nao em formatacao',
+        text: 'Foquei em decisões de design, não em formatação',
         category: 'antes-de-aceitar',
       },
     ],
     tests: [
       {
         id: 'ld-coverage',
-        text: 'Verifiquei metricas de cobertura no CI',
+        text: 'Verifiquei métricas de cobertura no CI',
         category: 'antes-de-aceitar',
       },
     ],
@@ -430,7 +430,7 @@ const EXTRA_ITEMS_EN: Record<string, Record<string, ChecklistItem[]>> = {
       },
       {
         id: 'pm-impact',
-        text: 'I checked that the fix does not affect other features',
+        text: 'I checked that the fix doesn\'t affect other features',
         category: 'antes-de-aceitar',
       },
     ],

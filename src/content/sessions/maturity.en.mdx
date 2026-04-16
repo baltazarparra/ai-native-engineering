@@ -24,11 +24,11 @@ import MaturityStepper from '../../components/MaturityStepper/MaturityStepper.ts
 
 ## From copying answers to orchestrating agents
 
-Most people using AI in software development are somewhere between "copy the ChatGPT answer" and "orchestrate agents with automated validation". These are not seniority levels. They are maturity phases for using AI as a work tool.
+Most people using AI in software development are somewhere between "copy the ChatGPT answer" and "orchestrate agents with automated validation". These aren't seniority levels. They're maturity phases for using AI as a work tool.
 
-Five phases have emerged in practice. They are not a ladder you must climb to the top. Each phase is valid in certain contexts. A senior developer can use Phase 2 for simple work and Phase 5 for complex projects. A PM can operate mostly in Phase 1 and still be highly effective.
+Five phases have emerged in practice. They're not a ladder you must climb to the top. Each phase is valid in certain contexts. A senior developer can use Phase 2 for simple work and Phase 5 for complex projects. A PM can operate mostly in Phase 1 and still be highly effective.
 
-The value of this map is not grading yourself. It is understanding what each phase offers, where it breaks, and when it makes sense to move to the next one.
+The value of this map isn't grading yourself. It's understanding what each phase offers, where it breaks, and when it makes sense to move to the next one.
 
 ## Why this matters
 
@@ -36,7 +36,7 @@ Two common mistakes:
 
 **Staying stuck in Phase 1 by inertia**. Copy-paste chat works well enough, so you never change. The cost is that you spend far more time on tasks that could be delegated.
 
-**Jumping to Phase 5 out of anxiety**. You read about autonomous agents, harness engineering, and MCP servers, and suddenly want all of it in a simple CRUD project. The extra complexity does not pay for itself.
+**Jumping to Phase 5 out of anxiety**. You read about autonomous agents, harness engineering, and MCP servers, and suddenly want all of it in a simple CRUD project. The extra complexity doesn't pay for itself.
 
 The phase map helps avoid both. It shows what each phase solves and where forcing the next phase makes no sense.
 
@@ -48,20 +48,20 @@ You open an AI chat and ask questions. You copy the answer and paste it into you
 
 ### Why it appeared
 
-It is the natural entry point. It requires no workflow change. You keep working the same way, but now you have an assistant for questions.
+It's the natural entry point. It requires no workflow change. You keep working the same way, but now you have an assistant for questions.
 
 ### Where it works
 
 - Quick questions about APIs, syntax, and concepts
 - Simple snippets you will adapt
 - Exploring ideas before implementation
-- Explanations for code you do not understand
+- Explanations for code you don't understand
 - PMs summarizing technical documents
 
 ### Where it breaks
 
 - Copying code without understanding it. The model generates plausible code, not guaranteed-correct code.
-- No project context. The chat does not know your types, conventions, or architecture.
+- No project context. The chat doesn't know your types, conventions, or architecture.
 - No iteration. You ask once, copy once, and leave. If the answer was weak, you spend time adapting a weak answer.
 
 ### What the next phase solves
@@ -106,11 +106,11 @@ The term "vibe coding" comes from Andrej Karpathy describing programming guided 
 
 ### Why it appeared
 
-Autocomplete accelerates typing, but you still need to know what to type. Vibe coding is useful when you know the outcome and do not need to handcraft every detail. It shines for prototypes, MVPs, and exploration.
+Autocomplete accelerates typing, but you still need to know what to type. Vibe coding is useful when you know the outcome and don't need to handcraft every detail. It shines for prototypes, MVPs, and exploration.
 
 ### Where it works
 
-- Quick prototypes that will not go to production
+- Quick prototypes that won't go to production
 - MVPs where speed matters more than quality
 - Exploring approaches before choosing one
 - Learning by generating code and reading it
@@ -118,9 +118,9 @@ Autocomplete accelerates typing, but you still need to know what to type. Vibe c
 
 ### Where it breaks
 
-- **No spec, no control**. If you only describe the vibe and accept the result, you cannot guarantee the code does what it should.
+- **No spec, no control**. If you only describe the vibe and accept the result, you can't guarantee the code does what it should.
 - **Instant technical debt**. Generated code may work but lack types, tests, error handling, and maintainable structure.
-- **Fake productivity**. Generating 500 lines in 10 minutes is not the same as shipping useful software.
+- **Fake productivity**. Generating 500 lines in 10 minutes isn't the same as shipping useful software.
 
 ### What the next phase solves
 
@@ -132,11 +132,11 @@ The next phase replaces vague description with a clear spec: not "do this for me
 
 You write a specification before asking AI to implement. The spec defines endpoints, types, constraints, expected behavior, and edge cases. Then a coding agent implements against that spec. Output is validated against the spec, not against a vague feeling.
 
-Some people call this SDD, or Spec-Driven Development. It is not a fully standardized industry practice. It is an emerging pattern in AI-native teams.
+Some people call this SDD, or Spec-Driven Development. It's not a fully standardized industry practice. It's an emerging pattern in AI-native teams.
 
 ### Why it appeared
 
-Vibe coding works for prototypes but does not scale. When the project has real complexity, you need more than "make an auth service". The spec becomes the input to the work system.
+Vibe coding works for prototypes but doesn't scale. When the project has real complexity, you need more than "make an auth service". The spec becomes the input to the work system.
 
 The key shift is that specs used to be documents people read. Now a coding agent can execute from them.
 
@@ -150,13 +150,13 @@ The key shift is that specs used to be documents people read. Now a coding agent
 
 ### Where it breaks
 
-- **Over-engineering the spec**. A three-page spec for a typo is not maturity. It is waste.
+- **Over-engineering the spec**. A three-page spec for a typo isn't maturity. It's waste.
 - **Spec without validation**. Sending a spec to an agent and never checking output is vibe coding with extra steps.
 - **Stale specs**. If the spec and code disagree, which one is true? Specs need to evolve with the project.
 
 ### What the next phase solves
 
-The next phase automates validation and orchestration so the human does not manually run every check.
+The next phase automates validation and orchestration so the human doesn't manually run every check.
 
 ## Phase 5: Harness Engineering
 
@@ -164,13 +164,13 @@ The next phase automates validation and orchestration so the human does not manu
 
 You build a full work system around the agent: persistent instructions, rules files, configured tools, automated validation, and clear acceptance criteria. The agent operates inside that system, and the system catches many issues without constant human supervision.
 
-"Harness" is not an official industry term here. We use it to describe the orchestration layer around the agent.
+"Harness" isn't an official industry term here. We use it to describe the orchestration layer around the agent.
 
 ### Why it appeared
 
 In Phase 4, you write the spec and validate output manually. In Phase 5, validation is automated. Instead of running tests by hand after the agent finishes, the system runs tests as part of the flow.
 
-This appeared because agents generate output faster than humans can review manually. If validation is not automated, review becomes the bottleneck.
+This appeared because agents generate output faster than humans can review manually. If validation isn't automated, review becomes the bottleneck.
 
 ### Where it works
 
@@ -183,20 +183,20 @@ This appeared because agents generate output faster than humans can review manua
 ### Where it breaks
 
 - **Premature complexity**. If the project has no tests or lint, building a harness is putting the roof on before the walls.
-- **Overtrusting automation**. Automated checks reduce review work. They do not replace human judgment.
+- **Overtrusting automation**. Automated checks reduce review work. They don't replace human judgment.
 - **Maintenance cost**. A harness must evolve with the project. Outdated rules make the agent follow outdated instructions.
 
 ### What changes here
 
 In Phase 1, you ask for an answer. In Phase 5, you build the system that produces validated answers.
 
-The mindset changes from "AI user" to "engineer of AI work systems". You are not just chatting with a model. You are building an environment where agents can operate with controlled autonomy.
+The mindset changes from "AI user" to "engineer of AI work systems". You're not just chatting with a model. You're building an environment where agents can operate with controlled autonomy.
 
 ## Real examples
 
 ### Scenario 1: Two-week MVP
 
-A startup is validating an idea. The goal is to show something working to investors. It will not go to production.
+A startup is validating an idea. The goal is to show something working to investors. It won't go to production.
 
 **Best fit: Phase 3, Vibe Coding**. Speed matters more than quality. Generate code, test manually, iterate fast. If the idea works, refactor for production later.
 
@@ -216,13 +216,13 @@ The point: the right phase depends on context, not ambition.
 
 ## Where this breaks
 
-- **Linear thinking**. You do not need to move from Phase 2 to 3 to 4 forever. You can use different phases for different tasks.
+- **Linear thinking**. You don't need to move from Phase 2 to 3 to 4 forever. You can use different phases for different tasks.
 
-- **Over-engineering simple work**. A full harness for a 50-line script is not maturity. The phase should match complexity.
+- **Over-engineering simple work**. A full harness for a 50-line script isn't maturity. The phase should match complexity.
 
 - **Skipping validation**. In every phase, output must be validated. What changes is how you validate.
 
-- **Confusing phase with identity**. You are not a "Phase 5 developer". You are someone who chooses the right phase for the task.
+- **Confusing phase with identity**. You're not a "Phase 5 developer". You're someone who chooses the right phase for the task.
 
 ## Interactive block
 
@@ -231,9 +231,9 @@ The point: the right phase depends on context, not ambition.
 ## Takeaway
 
 - There are 5 maturity phases: Ask, Autocomplete, Vibe Coding, SDD, Harness Engineering
-- The phases are not a linear ladder
+- The phases aren't a linear ladder
 - Each phase solves a problem from the previous phase and introduces new trade-offs
 - The right phase depends on task complexity
 - Validation is mandatory in every phase
-- Phase 5 is not for every project
+- Phase 5 isn't for every project
 - Real maturity is knowing which phase to use when
