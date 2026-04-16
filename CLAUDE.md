@@ -70,7 +70,7 @@ Every session page follows a fixed template: hero → 30s summary → main expla
 - Palette: warm light background, pure black, 2-3 vibrant accents (yellow, electric blue, acid green, or coral)
 - Heavy-weight headlines, neutral readable body text
 - Mobile-first: single column, reduced decoration, comfortable touch targets
-- WCAG contrast compliance, visible focus states, `prefers-reduced-motion` support
+- WCAG contrast compliance and visible focus states
 - Breakpoints: mobile ≤767px, tablet 768-1023px, desktop 1024px+, wide 1440px+
 
 ## Editorial Rules

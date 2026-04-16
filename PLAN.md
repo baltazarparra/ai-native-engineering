@@ -793,7 +793,6 @@ Mesmo com visual forte:
 - foco visível;
 - navegação por teclado;
 - sem depender apenas de cor para estado;
-- animação respeitando `prefers-reduced-motion`;
 - textos e CTAs sempre legíveis.
 
 ---
@@ -1244,7 +1243,6 @@ No desktop:
 
 - acessibilidade;
 - ajuste de contraste;
-- `prefers-reduced-motion`;
 - SEO;
 - OG images;
 - 404;

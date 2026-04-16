@@ -198,7 +198,7 @@ export const ui = {
       reset: 'Start over',
     },
     footer: {
-      tagline: 'Built with Astro and coffee',
+      tagline: 'baltz',
     },
   },
 } as const;

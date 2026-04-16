@@ -276,14 +276,3 @@
     display: none;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .progressFill {
-    transition: none;
-  }
-
-  .navBtn,
-  .panelCta {
-    transition: none;
-  }
-}

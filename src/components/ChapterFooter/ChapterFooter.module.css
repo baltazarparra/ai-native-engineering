@@ -212,13 +212,3 @@
   color: var(--color-primary);
   background-color: transparent;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .nextBtn {
-    transition: none;
-  }
-
-  .progressFill {
-    transition: none;
-  }
-}

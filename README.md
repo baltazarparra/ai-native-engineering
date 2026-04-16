@@ -69,7 +69,7 @@ npm run format     # Prettier
 - Paleta limitada: fundo claro quente, preto puro, 2-3 acentos vibrantes
 - Headlines pesadas, corpo neutro e legível
 - Mobile-first com breakpoints em 768px, 1024px e 1440px
-- WCAG compliance, foco visível, `prefers-reduced-motion`
+- WCAG compliance e foco visível
 
 **Regra central:** impactante no primeiro olhar, fácil de usar no quinto minuto.
 

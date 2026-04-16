@@ -59,7 +59,6 @@ build the visual language as reusable primitives. no pages yet, just the compone
 - all components pass WCAG contrast on the chosen palette
 - components look solid on 375px, 768px, 1024px and 1440px
 - zero JS shipped for these components (pure Astro + CSS)
-- `prefers-reduced-motion` disables any CSS transitions/animations
 
 ---
 
@@ -172,7 +171,6 @@ this is where React islands come in. every interactive block must pass the test:
 - islands hydrate only when needed (`client:visible` or `client:idle`)
 - no island ships more than ~50KB of JS (check bundle)
 - localStorage persistence works for self-assessment and progress tracker
-- animations respect `prefers-reduced-motion`
 - Lighthouse perf stays above 85 on mobile with all islands loaded
 
 ---
