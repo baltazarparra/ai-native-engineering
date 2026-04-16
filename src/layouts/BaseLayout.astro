@@ -140,13 +140,10 @@ const themeInitScript = `
   } catch (error) {
     stored = null;
   }
-  var theme =
-    stored === 'dark' || stored === 'light'
-      ? stored
-      : window.matchMedia &&
-          window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light';
+  /* Light is always the default. Dark mode only engages when the user opts in
+     via the ThemeToggle, which writes 'dark' to localStorage. OS-level
+     prefers-color-scheme is intentionally ignored. */
+  var theme = stored === 'dark' ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', theme);
 })();
 `;
