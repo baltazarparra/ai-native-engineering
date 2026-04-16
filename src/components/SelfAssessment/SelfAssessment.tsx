@@ -149,25 +149,25 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     exploring: {
       name: 'Explorando',
       description:
-        'Você está começando a integrar IA no trabalho. Foco agora: experimentar e entender o que funciona.',
+        'Você está começando a usar IA no trabalho e ainda está descobrindo o que funciona e o que não funciona. Isso é normal — o importante agora é experimentar com intenção.',
       suggestion:
-        'Comece pelo glossário (Sessão 1) e depois explore as ferramentas (Sessão 2).',
+        'Comece pelo glossário (Sessão 1) pra entender os termos, e depois explore as ferramentas (Sessão 2) pra ver o que combina com seu fluxo.',
       accent: 'yellow',
     },
     operating: {
       name: 'Operando',
       description:
-        'Você já tem um workflow com IA e sabe a diferença entre pedir bem e pedir mal. Próximo passo: estruturar.',
+        'Você já tem um fluxo de trabalho com IA e consegue perceber a diferença entre um prompt bem feito e um que não funciona. O próximo passo é dar estrutura a isso.',
       suggestion:
-        'Foque na Sessão 4 (Maturidade) e depois na Sessão 5 (Como Operar) pra checklists e artefatos.',
+        'Foque na Sessão 4 (Maturidade) pra entender onde você está, e depois na Sessão 5 (Como Operar) pra montar seus checklists e artefatos.',
       accent: 'blue',
     },
     structuring: {
       name: 'Estruturando',
       description:
-        'Você constrói sistemas pra IA operar: rules files, validação automática, modelo por tarefa. Já é AI-native.',
+        'Você já constrói sistemas onde a IA opera de forma estruturada — com rules files, validação automática e escolha de modelo por tarefa. Você já é AI-native.',
       suggestion:
-        'Revise a Sessão 4 pra calibrar. Use esse site como referência pra alinhar o time.',
+        'Revise a Sessão 4 pra calibrar sua visão do time. Use esse site como referência compartilhada pra alinhar todo mundo.',
       accent: 'green',
     },
   },
@@ -175,25 +175,25 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     exploring: {
       name: 'Exploring',
       description:
-        'You\'re starting to bring AI into your work. Focus now: experiment and notice what helps.',
+        'You\'re starting to bring AI into your work and still figuring out what helps and what doesn\'t. That\'s normal — the key right now is to experiment with intention.',
       suggestion:
-        'Start with the glossary (Session 1), then explore tools (Session 2).',
+        'Start with the glossary (Session 1) to get the vocabulary down, then explore tools (Session 2) to see what fits your workflow.',
       accent: 'yellow',
     },
     operating: {
       name: 'Operating',
       description:
-        'You have an AI workflow and know the difference between a vague ask and a useful one. Next step: structure.',
+        'You already have an AI workflow and can tell the difference between a useful prompt and a vague one. The next step is giving that workflow some structure.',
       suggestion:
-        'Focus on Session 4 (Maturity), then Session 5 for checklists and artifacts.',
+        'Focus on Session 4 (Maturity) to understand where you stand, then Session 5 for checklists and practical artifacts.',
       accent: 'blue',
     },
     structuring: {
       name: 'Structuring',
       description:
-        'You build systems where AI operates: rules files, automated validation, model choice by task. Already AI-native.',
+        'You build systems where AI operates in a structured way — with rules files, automated validation, and model selection by task. You\'re already AI-native.',
       suggestion:
-        'Review Session 4 to calibrate. Use this site as a shared reference for the team.',
+        'Review Session 4 to calibrate your team\'s position. Use this site as a shared reference to align everyone.',
       accent: 'green',
     },
   },

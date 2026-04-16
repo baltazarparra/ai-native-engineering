@@ -18,7 +18,7 @@ export const glossary: GlossaryTerm[] = [
     simpleDefinition:
       'Um programa de computador treinado pra ler e escrever texto. Você manda uma pergunta, ele gera uma resposta.',
     technicalDefinition:
-      'Large Language Model. Rede neural com bilhões de parâmetros que gera saída token a token com base em probabilidade condicional sobre a entrada.',
+      'Large Language Model. Rede neural com bilhões de parâmetros, treinada em grandes volumes de texto, que gera saída token a token com base em probabilidade condicional sobre a entrada.',
     example:
       'Quando você pede pro ChatGPT explicar um bug, o LLM por trás (GPT-4o) processa seu texto e gera uma resposta palavra por palavra.',
     commonMistake:
@@ -222,7 +222,7 @@ export const glossaryEn: GlossaryTerm[] = [
     simpleDefinition:
       'A computer program trained to read and write text. You send a question, it generates an answer.',
     technicalDefinition:
-      'Large Language Model. A neural network with billions of parameters that generates output token by token based on conditional probability over the input.',
+      'Large Language Model. A neural network with billions of parameters, trained on massive amounts of text, that generates output token by token based on conditional probability over the input.',
     example:
       'When you ask ChatGPT to explain a bug, the LLM behind it processes your text and generates the answer piece by piece.',
     commonMistake:
