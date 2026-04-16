@@ -98,7 +98,8 @@
 
 .optionSelected {
   background-color: var(--color-accent-1);
-  border-color: var(--color-primary);
+  color: var(--color-fg-on-yellow);
+  border-color: var(--color-ink);
   animation: var(--motion-key-panel-in) var(--motion-normal)
     var(--ease-out-back);
 }
@@ -156,6 +157,7 @@
   border: var(--border-thick);
   border-radius: var(--radius-md);
   background-color: var(--color-accent-1);
+  color: var(--color-fg-on-yellow);
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   overflow-wrap: break-word;

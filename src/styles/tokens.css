@@ -135,40 +135,40 @@
   --z-overlay: 1000;
 }
 
-/* --- dark: "burnt paper / coffee" --- */
+/* --- dark: graphite + Arc/Framer brutalism --- */
 [data-theme='dark'] {
   color-scheme: dark;
 
-  --color-surface: #1a1612;
-  --color-surface-alt: #221c17;
-  --color-surface-raised: #2a2420;
+  /* graphite surfaces, clearly stepped */
+  --color-surface: #0f1115;
+  --color-surface-alt: #171a20;
+  --color-surface-raised: #1f232a;
 
-  --color-text: #efe4d3;
-  --color-text-muted: #b1a692;
-  --color-heading: #fff6e6;
+  /* text hierarchy (cool off-white) */
+  --color-text: #dbe0e8;
+  --color-text-muted: #8c94a1;
+  --color-heading: #f2f4f8;
 
-  --color-ink: #f2e6d1;
-  /* shadow mirrors ink so the brutalist offset reads on dark surfaces */
+  /* brutalist cool ink for borders + inverted blocks + hard shadows */
+  --color-ink: #edf0f5;
   --color-shadow: var(--color-ink);
-  /* text on inverted "ink" blocks (primary button, active tabs, skip-link) */
   --color-fg-on-ink: var(--color-surface);
 
-  /* accents: slight luminance/saturation tweak for readability on dark */
-  --color-accent-1: #e6b82a;
-  --color-accent-2: #8da4ff;
-  --color-accent-3: #4dd07f;
-  --color-accent-4: #ff8a8a;
+  /* fresh dark-native accents */
+  --color-accent-1: #c8ff4d; /* electric chartreuse (new brand pop) */
+  --color-accent-2: #7cd7ff; /* icy cyan */
+  --color-accent-3: #5be37a; /* neon green */
+  --color-accent-4: #ff8aa0; /* coral-pink */
 
-  /* fixed text-on-accent: same semantic as light */
-  --color-fg-on-yellow: #1a1612;
-  /* accent-2 lightens in dark, so text on blue must go dark */
-  --color-fg-on-blue: #1a1612;
-  --color-fg-on-green: #0e0c0a;
-  --color-fg-on-coral: #1a1612;
+  /* text on accents: all accents are bright on graphite, text goes dark */
+  --color-fg-on-yellow: #0f1115;
+  --color-fg-on-blue: #0f1115;
+  --color-fg-on-green: #0b0d10;
+  --color-fg-on-coral: #0f1115;
 
-  /* code stays dark in both themes, just a touch deeper than the page */
-  --color-code-bg: #0f0c0a;
-  --color-code-fg: #f2e6d1;
+  /* code stays native to graphite, deeper than surface */
+  --color-code-bg: #0a0c0f;
+  --color-code-fg: #edf0f5;
 
-  --color-focus: #9ab0ff;
+  --color-focus: #7cd7ff;
 }

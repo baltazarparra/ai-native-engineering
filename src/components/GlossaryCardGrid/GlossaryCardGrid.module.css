@@ -265,6 +265,7 @@
 
 .tag:hover {
   background-color: var(--color-accent-1);
+  color: var(--color-fg-on-yellow);
   transform: var(--motion-lift-sm);
   box-shadow: 1px 1px 0 var(--color-shadow);
 }
