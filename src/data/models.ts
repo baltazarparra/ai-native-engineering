@@ -12,43 +12,28 @@ export interface ModelProfile {
 
 export const models: ModelProfile[] = [
   {
-    id: 'gpt-4o',
+    id: 'gpt-5-3-codex',
     productName: 'ChatGPT',
-    modelName: 'GPT-4o',
+    modelName: 'GPT-5.3-Codex',
     provider: 'OpenAI',
     strengths: [
-      'Rápido e versátil',
-      'Bom em tarefas gerais e conversação',
-      'Suporte a imagens e áudio',
+      'Performance de ponta em código e tarefas agênticas',
+      'Pode ser direcionado no meio da tarefa sem perder contexto',
+      'Variante Spark com 1000+ tokens/s pra iteração rápida',
     ],
     weaknesses: [
-      'Raciocínio complexo pode ser raso',
-      'Pode ser verboso demais',
+      'Caro: $2/M input, $10/M output',
+      'Sendo substituído pelo GPT-5.4',
     ],
     bestFor: [
-      'Explorar ideias rapidamente',
-      'Tarefas conversacionais e multimodais',
-    ],
-  },
-  {
-    id: 'o3',
-    productName: 'ChatGPT',
-    modelName: 'o3',
-    provider: 'OpenAI',
-    strengths: [
-      'Raciocínio profundo e estruturado',
-      'Bom em problemas complexos e multi-passo',
-    ],
-    weaknesses: ['Mais lento que GPT-4o', 'Custo mais alto por inferência'],
-    bestFor: [
-      'Planejar arquitetura de sistemas',
-      'Resolver problemas lógicos complexos',
+      'Tarefas complexas de código com múltiplos passos',
+      'Workflows agênticos e autônomos',
     ],
   },
   {
     id: 'claude-sonnet',
     productName: 'Claude',
-    modelName: 'Claude Sonnet',
+    modelName: 'Claude Sonnet 4.6',
     provider: 'Anthropic',
     strengths: [
       'Equilíbrio entre velocidade e qualidade',
@@ -64,12 +49,12 @@ export const models: ModelProfile[] = [
   {
     id: 'claude-opus',
     productName: 'Claude',
-    modelName: 'Claude Opus',
+    modelName: 'Claude Opus 4.7',
     provider: 'Anthropic',
     strengths: [
       'Raciocínio profundo e nuançado',
-      'Excelente em tarefas complexas e longas',
-      'Forte em análise crítica e revisão',
+      'Janela de contexto de 1M tokens',
+      'Forte em análise crítica, revisão e tarefas agênticas',
     ],
     weaknesses: ['Mais lento e mais caro', 'Excessivo pra tarefas simples'],
     bestFor: ['Planejar refactors grandes', 'Revisar arquitetura'],
@@ -125,38 +110,127 @@ export const models: ModelProfile[] = [
     ],
     bestFor: ['Código com custo baixo', 'Projetos com orçamento limitado'],
   },
+  {
+    id: 'claude-haiku',
+    productName: 'Claude',
+    modelName: 'Claude Haiku 4.5',
+    provider: 'Anthropic',
+    strengths: [
+      'Rápido e barato',
+      '73% SWE-bench — nível Sonnet 4 por uma fração do custo',
+      'Suporta extended thinking e uso de ferramentas',
+    ],
+    weaknesses: [
+      'Janela de contexto menor (200K)',
+      'Raciocínio menos profundo que Opus',
+    ],
+    bestFor: [
+      'Tarefas de código rápidas com custo baixo',
+      'Automação em volume e pipelines multi-agente',
+    ],
+  },
+  {
+    id: 'gemma-4',
+    productName: 'Gemma (open-source)',
+    modelName: 'Gemma 4',
+    provider: 'Google',
+    strengths: [
+      'Open source Apache 2.0 — totalmente livre',
+      'Roda em hardware consumer (modelos de 2B a 31B)',
+      'Multimodal e multilingual (140+ idiomas)',
+    ],
+    weaknesses: [
+      'Dificuldade com tarefas agênticas',
+      'Modelo maior (31B) requer 24GB de VRAM',
+    ],
+    bestFor: [
+      'Rodar local com privacidade total',
+      'Projetos open source sem custo de API',
+    ],
+  },
+  {
+    id: 'minimax-m27',
+    productName: 'MiniMax',
+    modelName: 'MiniMax M2.7',
+    provider: 'MiniMax',
+    strengths: [
+      'Custo extremamente baixo: $0.30/$1.20 por M tokens',
+      'Performance competitiva em código (56% SWE-Pro)',
+      'Arquitetura MoE eficiente (230B total, 10B ativos)',
+    ],
+    weaknesses: [
+      'Inferência lenta (46-53 tokens/s)',
+      'Muito verboso — gera 4x mais tokens que o necessário',
+    ],
+    bestFor: [
+      'Código com orçamento muito limitado',
+      'Tarefas de código sem urgência de velocidade',
+    ],
+  },
+  {
+    id: 'glm-51',
+    productName: 'GLM (open-source)',
+    modelName: 'GLM-5.1',
+    provider: 'Z.ai (Zhipu)',
+    strengths: [
+      '#1 no SWE-Bench Pro (58.4%) — supera GPT-5.4 e Opus 4.6',
+      'Licença MIT com pesos abertos no Hugging Face',
+      'Forte em código, raciocínio e tarefas de engenharia',
+    ],
+    weaknesses: [
+      'Só texto — sem suporte multimodal',
+      'Modelo gigante (744B params) — difícil de hospedar localmente',
+    ],
+    bestFor: [
+      'Código e tarefas de engenharia de software',
+      'Projetos que precisam de modelo open source potente',
+    ],
+  },
+  {
+    id: 'composer-2',
+    productName: 'Cursor',
+    modelName: 'Composer 2',
+    provider: 'Anysphere',
+    strengths: [
+      'Supera Opus 4.6 em benchmarks de código',
+      'Muito barato: $0.50/$2.50 por M tokens',
+      'Feito pra edição multi-arquivo e refactors',
+    ],
+    weaknesses: [
+      'Só funciona dentro do Cursor',
+      'Fraco em tarefas que não são código',
+    ],
+    bestFor: [
+      'Escrever e editar código dentro do Cursor',
+      'Refactors de código e edição multi-arquivo',
+    ],
+  },
 ];
 
 export const modelsEn: ModelProfile[] = [
   {
-    id: 'gpt-4o',
+    id: 'gpt-5-3-codex',
     productName: 'ChatGPT',
-    modelName: 'GPT-4o',
+    modelName: 'GPT-5.3-Codex',
     provider: 'OpenAI',
     strengths: [
-      'Fast and versatile',
-      'Good at general tasks and conversation',
-      'Supports images and audio',
+      'Frontier-level coding and agentic performance',
+      'Can be steered mid-task without losing context',
+      'Spark variant with 1000+ tokens/s for fast iteration',
     ],
-    weaknesses: ['Complex reasoning can be shallow', 'Can be too verbose'],
-    bestFor: ['Exploring ideas quickly', 'Conversational and multimodal tasks'],
-  },
-  {
-    id: 'o3',
-    productName: 'ChatGPT',
-    modelName: 'o3',
-    provider: 'OpenAI',
-    strengths: [
-      'Deep and structured reasoning',
-      'Good at complex multi-step problems',
+    weaknesses: [
+      'Expensive: $2/M input, $10/M output',
+      'Being superseded by GPT-5.4',
     ],
-    weaknesses: ['Slower than GPT-4o', 'Higher inference cost'],
-    bestFor: ['Planning system architecture', 'Solving complex logic problems'],
+    bestFor: [
+      'Complex multi-step coding tasks',
+      'Agentic and autonomous workflows',
+    ],
   },
   {
     id: 'claude-sonnet',
     productName: 'Claude',
-    modelName: 'Claude Sonnet',
+    modelName: 'Claude Sonnet 4.6',
     provider: 'Anthropic',
     strengths: [
       'Strong speed-quality balance',
@@ -169,12 +243,12 @@ export const modelsEn: ModelProfile[] = [
   {
     id: 'claude-opus',
     productName: 'Claude',
-    modelName: 'Claude Opus',
+    modelName: 'Claude Opus 4.7',
     provider: 'Anthropic',
     strengths: [
       'Deep and nuanced reasoning',
-      'Excellent for long, complex tasks',
-      'Strong at critical analysis and review',
+      '1M token context window',
+      'Strong at critical analysis, review, and agentic tasks',
     ],
     weaknesses: ['Slower and more expensive', 'Overkill for simple tasks'],
     bestFor: ['Planning large refactors', 'Reviewing architecture'],
@@ -223,6 +297,101 @@ export const modelsEn: ModelProfile[] = [
     ],
     weaknesses: ['Smaller ecosystem', 'Fewer integrations with popular tools'],
     bestFor: ['Low-cost code generation', 'Budget-limited projects'],
+  },
+  {
+    id: 'claude-haiku',
+    productName: 'Claude',
+    modelName: 'Claude Haiku 4.5',
+    provider: 'Anthropic',
+    strengths: [
+      'Fast and cheap',
+      '73% SWE-bench — Sonnet 4 level at a fraction of the cost',
+      'Supports extended thinking and tool use',
+    ],
+    weaknesses: [
+      'Smaller context window (200K)',
+      'Less deep reasoning than Opus',
+    ],
+    bestFor: [
+      'Fast coding tasks at low cost',
+      'High-volume automation and multi-agent pipelines',
+    ],
+  },
+  {
+    id: 'gemma-4',
+    productName: 'Gemma (open-source)',
+    modelName: 'Gemma 4',
+    provider: 'Google',
+    strengths: [
+      'Open source Apache 2.0 — fully free',
+      'Runs on consumer hardware (2B to 31B models)',
+      'Multimodal and multilingual (140+ languages)',
+    ],
+    weaknesses: [
+      'Struggles with agentic tasks',
+      'Larger model (31B) requires 24GB VRAM',
+    ],
+    bestFor: [
+      'Running locally with full privacy',
+      'Open source projects without API cost',
+    ],
+  },
+  {
+    id: 'minimax-m27',
+    productName: 'MiniMax',
+    modelName: 'MiniMax M2.7',
+    provider: 'MiniMax',
+    strengths: [
+      'Extremely low cost: $0.30/$1.20 per M tokens',
+      'Competitive coding performance (56% SWE-Pro)',
+      'Efficient MoE architecture (230B total, 10B active)',
+    ],
+    weaknesses: [
+      'Slow inference (46-53 tokens/s)',
+      'Very verbose — generates 4x more tokens than needed',
+    ],
+    bestFor: [
+      'Code generation on a very tight budget',
+      'Coding tasks without speed urgency',
+    ],
+  },
+  {
+    id: 'glm-51',
+    productName: 'GLM (open-source)',
+    modelName: 'GLM-5.1',
+    provider: 'Z.ai (Zhipu)',
+    strengths: [
+      '#1 on SWE-Bench Pro (58.4%) — surpasses GPT-5.4 and Opus 4.6',
+      'MIT license with open weights on Hugging Face',
+      'Strong at code, reasoning, and engineering tasks',
+    ],
+    weaknesses: [
+      'Text-only — no multimodal support',
+      'Huge model (744B params) — hard to self-host',
+    ],
+    bestFor: [
+      'Code and software engineering tasks',
+      'Projects needing a powerful open source model',
+    ],
+  },
+  {
+    id: 'composer-2',
+    productName: 'Cursor',
+    modelName: 'Composer 2',
+    provider: 'Anysphere',
+    strengths: [
+      'Beats Opus 4.6 on coding benchmarks',
+      'Very cheap: $0.50/$2.50 per M tokens',
+      'Built for multi-file editing and refactors',
+    ],
+    weaknesses: [
+      'Only works inside Cursor',
+      'Weak at non-coding tasks',
+    ],
+    bestFor: [
+      'Writing and editing code inside Cursor',
+      'Code refactors and multi-file editing',
+    ],
   },
 ];
 

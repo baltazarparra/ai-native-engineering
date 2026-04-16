@@ -75,6 +75,11 @@ const TASK_TYPES: Record<Lang, TaskType[]> = {
       label: 'Orçamento limitado',
       keywords: ['custo baixo', 'orçamento', 'open', 'sem custo', 'limitado'],
     },
+    {
+      id: 'agentic',
+      label: 'Trabalho agêntico',
+      keywords: ['agêntico', 'autônomo', 'multi-passo', 'agente', 'pipeline'],
+    },
   ],
   en: [
     {
@@ -111,6 +116,11 @@ const TASK_TYPES: Record<Lang, TaskType[]> = {
       id: 'budget',
       label: 'Limited budget',
       keywords: ['low-cost', 'budget', 'open', 'cost'],
+    },
+    {
+      id: 'agentic',
+      label: 'Agentic work',
+      keywords: ['agentic', 'autonomous', 'multi-step', 'agent', 'pipeline'],
     },
   ],
 };

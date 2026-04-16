@@ -4,7 +4,7 @@ slug: 'modelos'
 lang: 'pt-BR'
 translationKey: 'models'
 order: 3
-summary: 'GPT, Claude, Gemini, Llama. Como funcionam por cima, o que diferencia um do outro e como escolher.'
+summary: 'Codex, Claude, Gemini, Gemma, GLM, Composer. Como funcionam por cima, o que diferencia um do outro e como escolher.'
 readingTime: 15
 level: 'intermediate'
 tags: ['llm', 'modelos', 'gpt', 'claude', 'gemini']
@@ -17,7 +17,7 @@ references:
     'meta-llama-docs',
     'vellum-llm-leaderboard',
   ]
-updatedAt: 2026-04-15
+updatedAt: 2026-04-16
 ---
 
 import ModelTaskMatcher from '../../components/ModelTaskMatcher/ModelTaskMatcher.tsx';
@@ -26,7 +26,7 @@ import ModelTaskMatcher from '../../components/ModelTaskMatcher/ModelTaskMatcher
 
 Essa é a confusão número um. E a que mais custa tempo e decisões erradas.
 
-**ChatGPT** é um produto. Você abre no navegador, digita uma pergunta, recebe uma resposta. Por dentro, o ChatGPT usa modelos como GPT-4o ou o3. Quando a OpenAI lança um modelo novo, o produto continua o mesmo, mas o "cérebro" muda. A mesma lógica vale pro **Claude** (com modelos como Sonnet, Opus, Haiku) e pro **Gemini** (com modelos como Gemini 2.5 Pro).
+**ChatGPT** é um produto. Você abre no navegador, digita uma pergunta, recebe uma resposta. Por dentro, o ChatGPT usa modelos como GPT-5.3-Codex. Quando a OpenAI lança um modelo novo, o produto continua o mesmo, mas o "cérebro" muda. A mesma lógica vale pro **Claude** (com modelos como Sonnet 4.6, Opus 4.7, Haiku 4.5) e pro **Gemini** (com modelos como Gemini 2.5 Pro).
 
 A regra simples: **produto é onde você interage. Modelo é quem "pensa".**
 
@@ -54,27 +54,27 @@ Modelos não sabem o que não sabem e geram respostas mesmo sem informação suf
 
 Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de ranking, pense em perfis:
 
-### GPT-4o (OpenAI)
+### GPT-5.3-Codex (OpenAI)
 
 **Produto**: ChatGPT
 
-**Perfil**: Rápido e versátil. Bom em tarefas gerais, conversação, e multimodal (imagens, áudio).
+**Perfil**: Modelo de código mais avançado da OpenAI. Feito pra tarefas complexas com múltiplos passos, como implementar features inteiras ou debugar problemas difíceis.
 
-**Melhor pra**: Explorar ideias rapidamente, tarefas conversacionais e multimodais.
+**Melhor pra**: Tarefas complexas de código, workflows agênticos e autônomos.
 
-**Limitações**: Raciocínio complexo pode ser superficial. Custo intermediário.
+**Limitações**: Caro ($2/$10 por milhão de tokens). Já está sendo substituído pelo GPT-5.4.
 
-### o3 (OpenAI)
+### Claude Opus 4.7 (Anthropic)
 
-**Produto**: ChatGPT
+**Produto**: Claude
 
-**Perfil**: Raciocínio profundo e estruturado. Otimizado pra problemas complexos e multi-passo.
+**Perfil**: Raciocínio profundo e nuançado. Janela de contexto de 1 milhão de tokens — cabe um projeto inteiro.
 
-**Melhor pra**: Planejar arquitetura de sistemas, análise profunda de código.
+**Melhor pra**: Planejar refactors grandes, revisar arquitetura, tarefas agênticas complexas.
 
-**Limitações**: Mais lento e mais caro que GPT-4o. Pode over-think tarefas simples.
+**Limitações**: Mais lento e mais caro. Excessivo pra tarefas simples.
 
-### Claude Sonnet (Anthropic)
+### Claude Sonnet 4.6 (Anthropic)
 
 **Produto**: Claude
 
@@ -84,15 +84,15 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 
 **Limitações**: Pode ser conservador demais. Janela de contexto grande mas não ilimitada.
 
-### Claude Opus (Anthropic)
+### Claude Haiku 4.5 (Anthropic)
 
 **Produto**: Claude
 
-**Perfil**: Raciocínio profundo e nuançado. Excelente em tarefas complexas e longas.
+**Perfil**: O mais rápido e barato da família Claude. Performance de código surpreendente pra o tamanho — alcança nível do Sonnet 4 em vários benchmarks.
 
-**Melhor pra**: Planejar refactors grandes, revisar arquitetura.
+**Melhor pra**: Tarefas de código rápidas com custo baixo, automação em volume.
 
-**Limitações**: Mais lento e mais caro. Excessivo pra tarefas simples.
+**Limitações**: Janela menor (200K tokens). Raciocínio menos profundo que Opus.
 
 ### Gemini 2.5 Pro (Google)
 
@@ -103,6 +103,16 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 **Melhor pra**: Analisar documentos longos, explorar e sintetizar informação.
 
 **Limitações**: Qualidade de código pode variar. Menos previsível em instruções complexas.
+
+### Gemma 4 (Google)
+
+**Produto**: Gemma (open-source)
+
+**Perfil**: Família de modelos open source do Google. Vai de 2B (roda no celular) a 31B (roda em GPU de 24GB). Licença Apache 2.0 — pode usar sem restrição comercial.
+
+**Melhor pra**: Rodar local com privacidade total, projetos open source sem custo de API.
+
+**Limitações**: Dificuldade com tarefas agênticas. Modelo maior (31B) requer 24GB de VRAM.
 
 ### Llama 4 (Meta)
 
@@ -124,6 +134,36 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 
 **Limitações**: Ecossistema menor. Disponibilidade pode variar por região.
 
+### MiniMax M2.7 (MiniMax)
+
+**Produto**: MiniMax
+
+**Perfil**: Modelo chinês com custo extremamente baixo. Arquitetura MoE com 230B parâmetros mas só 10B ativos por vez, o que barateia muito a inferência.
+
+**Melhor pra**: Código com orçamento muito limitado, tarefas sem urgência de velocidade.
+
+**Limitações**: Inferência lenta (46-53 tokens/s). Muito verboso — gera muito mais texto do que o necessário.
+
+### GLM-5.1 (Z.ai)
+
+**Produto**: GLM (open-source)
+
+**Perfil**: Modelo open source chinês com licença MIT. Líder no SWE-Bench Pro (58.4%), superando GPT-5.4 e Opus 4.6. Pesos abertos no Hugging Face.
+
+**Melhor pra**: Código e tarefas de engenharia de software, projetos que precisam de modelo open source potente.
+
+**Limitações**: Só texto (sem multimodal). Modelo gigante (744B) — difícil de rodar localmente.
+
+### Composer 2 (Anysphere/Cursor)
+
+**Produto**: Cursor
+
+**Perfil**: Modelo feito exclusivamente pro Cursor. Construído sobre o Kimi K2.5 (Moonshot AI) com 1 trilhão de parâmetros e 32B ativos. Supera Opus 4.6 em benchmarks de código por uma fração do custo.
+
+**Melhor pra**: Escrever e editar código dentro do Cursor, refactors de código.
+
+**Limitações**: Só funciona dentro do Cursor — sem API externa. Fraco em tarefas que não são código.
+
 ## Por que isso importa
 
 Entender modelos não é sobre virar especialista em IA. É sobre tomar decisões informadas: saber qual modelo está por trás da ferramenta, quanto custa, e onde ele falha. Entender modelos é a diferença entre usar IA no escuro e usar IA com intenção.
@@ -132,11 +172,11 @@ Entender modelos não é sobre virar especialista em IA. É sobre tomar decisõe
 
 Mesmo projeto, três tarefas diferentes, três modelos diferentes:
 
-**Tarefa 1: Explorar uma ideia de feature**. O PM abre o ChatGPT (GPT-4o) pra uma conversa rápida sobre trade-offs e complexidade de adicionar webhooks. Rápido, barato, bom pra exploração.
+**Tarefa 1: Explorar uma ideia de feature**. O PM abre o Claude (Haiku 4.5) pra uma conversa rápida sobre complexidade de adicionar webhooks. Rápido, barato, bom pra exploração.
 
-**Tarefa 2: Planejar a implementação**. O tech lead usa Claude Opus pra analisar a arquitetura atual e propor um plano que considera todos os módulos afetados. Mais lento e caro, mas o raciocínio profundo justifica.
+**Tarefa 2: Planejar a implementação**. O tech lead usa Claude Opus 4.7 pra analisar a arquitetura atual e propor um plano que considera todos os módulos afetados. Mais lento e caro, mas o raciocínio profundo e a janela de 1M tokens justificam.
 
-**Tarefa 3: Implementar o código**. O dev usa Claude Sonnet via Claude Code. É rápido pra iteração e forte em código, sem precisar do Opus pra cada função individual.
+**Tarefa 3: Implementar o código**. O dev usa Claude Sonnet 4.6 via Claude Code. É rápido pra iteração e forte em código, sem precisar do Opus pra cada função individual.
 
 Três modelos diferentes. Nenhum é "o melhor". Cada um é o certo pra aquela tarefa.
 
