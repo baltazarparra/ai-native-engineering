@@ -11,7 +11,7 @@ tags: ['ferramentas', 'ide', 'cli', 'comparativo']
 heroLabel: 'Mapa de ferramentas'
 references:
   ['cursor-docs', 'github-copilot-docs', 'claude-code-docs', 'opencode-github']
-updatedAt: 2026-04-15
+updatedAt: 2026-04-16
 ---
 
 import ToolComparison from '../../components/ToolComparison/ToolComparison.tsx';
@@ -20,11 +20,11 @@ import ToolComparison from '../../components/ToolComparison/ToolComparison.tsx';
 
 Toda semana aparece ferramenta nova prometendo revolucionar como você programa. Em vez de listar tudo que existe, é mais útil pensar em três categorias:
 
-1. **IDEs com IA integrada**: editores de código que embutem IA na interface de edição. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot.
+1. **IDEs com IA integrada**: editores de código que embutem IA na interface de edição. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot, Google Antigravity.
 
-2. **CLIs de IA**: ferramentas de linha de comando que leem seus arquivos, executam comandos e fazem mudanças diretamente. Exemplos: Claude Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+2. **CLIs de IA**: ferramentas de linha de comando que leem seus arquivos, executam comandos e fazem mudanças diretamente no terminal. Exemplos: Claude Code, Codex CLI, OpenCode, GitHub Copilot CLI.
 
-3. **Agentes autônomos**: têm mais autonomia que CLIs. Planejam, executam, testam e decidem próximos passos sozinhos. A linha entre CLI e agente está ficando borrada.
+3. **Apps e plataformas na nuvem**: você manda uma tarefa, a ferramenta trabalha sozinha num ambiente isolado na nuvem e entrega o resultado como um PR ou diff. Exemplos: Codex App, Google Jules, Devin.
 
 A categoria certa depende de como você trabalha, não de qual ferramenta é "melhor".
 
@@ -109,6 +109,26 @@ O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso 
 - Sugestões nem sempre consideram o contexto completo do projeto
 - Aceitar sem ler é o risco número um
 
+### Google Antigravity
+
+**O que é**: IDE desktop do Google com arquitetura pensada pra agentes. Construída pelo time que o Google adquiriu da Windsurf em 2025.
+
+**Onde roda**: Editor desktop (fork do VS Code).
+
+**Pra quem**: Dev júnior, dev sênior, dev fullstack. Quem quer experimentar fluxo de trabalho com agentes autônomos direto na IDE.
+
+**Onde brilha**:
+
+- Dois modos: Editor (edição normal com IA) e Manager (painel pra orquestrar agentes trabalhando em paralelo)
+- Janela de contexto de 2 milhões de tokens — cabe projetos inteiros na memória
+- Tier gratuito que inclui modelos premium (Gemini 3 Pro, Claude Opus)
+
+**Onde tropeça**:
+
+- Sem suporte a MCP (não conecta com Figma, Linear, Amplitude e outras integrações)
+- Estabilidade ainda inconsistente: erros de memória e agentes parando no meio da tarefa
+- Todo código é processado nos servidores do Google
+
 ### Claude Code
 
 **O que é**: Agente de código que roda no terminal. Planeja, executa, testa e itera.
@@ -181,6 +201,68 @@ O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso 
 
 - Escopo mais limitado que agentes completos
 - Focado em comandos, não em projetos inteiros
+
+### Apps e plataformas na nuvem
+
+Essas ferramentas funcionam diferente das IDEs e CLIs. Você manda uma tarefa bem descrita, a ferramenta trabalha sozinha num ambiente isolado na nuvem (sandbox) e entrega o resultado pronto — geralmente como um pull request pra você revisar. Você não acompanha linha a linha. É mais parecido com delegar uma tarefa pra alguém do time.
+
+### Codex App
+
+**O que é**: App da OpenAI pra delegar tarefas de código pra agentes autônomos na nuvem.
+
+**Onde roda**: App desktop (macOS, Windows) e web. Cada tarefa roda num sandbox isolado.
+
+**Pra quem**: Dev sênior, tech lead. Quem quer rodar múltiplas tarefas em paralelo sem ocupar a própria máquina.
+
+**Onde brilha**:
+
+- Vários agentes trabalhando ao mesmo tempo, cada um isolado via git worktree
+- Sandbox seguro: o agente não tem acesso à internet durante a execução
+- Interface limpa pra acompanhar e gerenciar várias tarefas
+
+**Onde tropeça**:
+
+- Custa $200/mês no tier Pro
+- Precisa de instruções muito claras. Pedidos vagos geram resultados genéricos
+
+### Google Jules
+
+**O que é**: Agente de código assíncrono do Google. Você manda uma tarefa, ele trabalha na nuvem e abre um PR no GitHub.
+
+**Onde roda**: App web (sandbox na nuvem).
+
+**Pra quem**: Dev sênior, tech lead. Quem usa GitHub e quer delegar tarefas sem sair do navegador.
+
+**Onde brilha**:
+
+- Integrado com GitHub: cria branches e PRs automaticamente
+- Assíncrono — trabalha enquanto você faz outra coisa
+- Powered by Gemini
+
+**Onde tropeça**:
+
+- Funciona melhor com tarefas bem definidas e escopadas
+- Ecossistema ainda em evolução
+
+### Devin
+
+**O que é**: Agente autônomo de código da Cognition. Recebe uma tarefa, planeja a execução, escreve código, roda testes e abre PR — tudo sozinho.
+
+**Onde roda**: App web. O agente trabalha num sandbox na nuvem com terminal, editor e browser próprios.
+
+**Pra quem**: Dev sênior, tech lead, times de engenharia. Quem tem backlog de tarefas bem definidas que podem ser delegadas.
+
+**Onde brilha**:
+
+- Autonomia completa: planeja, codifica, testa, debuga e abre PR
+- Timeline de replay: você pode ver tudo que o agente fez, comando por comando
+- Integração com Slack, Teams, Jira e Linear — dá pra atribuir tarefas direto no chat
+
+**Onde tropeça**:
+
+- Qualidade inconsistente em tarefas ambíguas ou criativas
+- Custos difíceis de prever no modelo por uso (ACU)
+- Todo código passa pela infraestrutura da Cognition — atenção com dados sensíveis
 
 ## Onde isso quebra
 

@@ -12,6 +12,7 @@ const LABELS = {
       { value: 'all', label: 'Todas' },
       { value: 'ide', label: 'IDEs' },
       { value: 'cli', label: 'CLI' },
+      { value: 'app', label: 'Apps' },
     ] satisfies { value: CategoryFilter; label: string }[],
     profiles: [
       { value: 'all', label: 'Todos' },
@@ -37,6 +38,7 @@ const LABELS = {
       { value: 'all', label: 'All' },
       { value: 'ide', label: 'IDEs' },
       { value: 'cli', label: 'CLI' },
+      { value: 'app', label: 'Apps' },
     ] satisfies { value: CategoryFilter; label: string }[],
     profiles: [
       { value: 'all', label: 'All' },
@@ -87,11 +89,13 @@ const CATEGORY_LABELS: Record<Lang, Record<ToolCategory, string>> = {
     ide: 'IDE',
     cli: 'CLI',
     agent: 'Agente',
+    app: 'App',
   },
   en: {
     ide: 'IDE',
     cli: 'CLI',
     agent: 'Agent',
+    app: 'App',
   },
 };
 
