@@ -45,13 +45,25 @@
   background-color: var(--color-white);
   cursor: pointer;
   overflow-wrap: break-word;
+  box-shadow: 1px 1px 0 var(--color-shadow);
+  transform-origin: center;
   transition:
     background-color var(--transition-fast),
-    color var(--transition-fast);
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .filterBtn:hover {
   background-color: var(--color-bg-alt);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.filterBtn:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 .filterBtn:focus-visible {
@@ -63,16 +75,22 @@
   background-color: var(--color-primary);
   color: var(--color-white);
   border-color: var(--color-primary);
+  transform: translate(1px, 1px);
+  box-shadow: none;
 }
 
 .filterActive:hover {
   background-color: var(--color-primary);
+  transform: translate(1px, 1px);
+  box-shadow: none;
 }
 
 .count {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   margin: 0;
+  animation: var(--motion-key-details-in) var(--motion-normal)
+    var(--ease-standard);
 }
 
 .grid {
@@ -96,13 +114,18 @@
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   overflow: hidden;
+  transform-origin: center;
+  will-change: transform, box-shadow, opacity;
+  animation: var(--motion-key-pop-in) var(--motion-enter) var(--ease-out-back)
+    both;
   transition:
     transform var(--transition-fast),
-    box-shadow var(--transition-fast);
+    box-shadow var(--transition-fast),
+    opacity var(--transition-normal);
 }
 
 .card:hover {
-  transform: translate(-2px, -2px);
+  transform: var(--motion-lift-md) rotate(-0.2deg);
   box-shadow: var(--shadow-lg);
 }
 
@@ -118,6 +141,11 @@
   cursor: pointer;
   text-align: left;
   min-width: 0;
+  transition: background-color var(--transition-fast);
+}
+
+.cardHeader:hover {
+  background-color: var(--color-bg-alt);
 }
 
 .cardHeader:focus-visible {
@@ -169,6 +197,18 @@
   border: var(--border-thin);
   border-radius: var(--radius-sm);
   flex-shrink: 0;
+  transition:
+    transform var(--motion-normal) var(--ease-snap),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.cardHeader[aria-expanded='true'] .indicator {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  transform: rotate(90deg);
+  animation: var(--motion-key-scale-pop) var(--motion-normal)
+    var(--ease-out-back);
 }
 
 .cardBody {
@@ -190,6 +230,8 @@
   padding: var(--space-md) var(--space-lg) var(--space-lg);
   border-top: var(--border-thin);
   min-width: 0;
+  animation: var(--motion-key-details-in) var(--motion-normal)
+    var(--ease-standard);
 }
 
 .columns {

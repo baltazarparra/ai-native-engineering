@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  animation: var(--motion-key-details-in) var(--motion-normal)
+    var(--ease-standard);
 }
 
 .stepLabel {
@@ -35,13 +37,25 @@
   background-color: var(--color-white);
   cursor: pointer;
   overflow-wrap: break-word;
+  box-shadow: 1px 1px 0 var(--color-shadow);
+  transform-origin: center;
   transition:
     background-color var(--transition-fast),
-    color var(--transition-fast);
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .selectBtn:hover {
   background-color: var(--color-bg-alt);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.selectBtn:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 .selectBtn:focus-visible {
@@ -53,10 +67,14 @@
   background-color: var(--color-primary);
   color: var(--color-white);
   border-color: var(--color-primary);
+  transform: translate(1px, 1px);
+  box-shadow: none;
 }
 
 .selectActive:hover {
   background-color: var(--color-primary);
+  transform: translate(1px, 1px);
+  box-shadow: none;
 }
 
 .checklistCard {
@@ -69,6 +87,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+  animation: var(--motion-key-panel-in) var(--motion-enter) var(--ease-out-back)
+    both;
 }
 
 .checklistSection {
@@ -96,6 +116,19 @@
   line-height: var(--leading-normal);
   min-width: 0;
   overflow-wrap: break-word;
+  border-radius: var(--radius-sm);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.checkItem:hover {
+  background-color: var(--color-bg-alt);
+  transform: translateX(3px);
+}
+
+.checkItem:has(.checkbox:checked) {
+  background-color: color-mix(in srgb, var(--color-accent-3) 18%, transparent);
 }
 
 .checkbox {
@@ -105,6 +138,12 @@
   margin-top: 2px;
   accent-color: var(--color-primary);
   cursor: pointer;
+  transition: transform var(--motion-normal) var(--ease-out-back);
+}
+
+.checkbox:checked {
+  animation: var(--motion-key-scale-pop) var(--motion-normal)
+    var(--ease-out-back);
 }
 
 .checkbox:focus-visible {
@@ -115,6 +154,7 @@
 .checkedText {
   text-decoration: line-through;
   color: var(--color-text-muted);
+  transition: color var(--transition-fast);
 }
 
 .copyBtn {
@@ -136,13 +176,14 @@
 }
 
 .copyBtn:hover {
-  transform: translate(-2px, -2px);
+  transform: var(--motion-lift-md) rotate(-0.25deg);
   box-shadow: var(--shadow-md);
 }
 
 .copyBtn:active {
-  transform: translate(2px, 2px);
+  transform: var(--motion-press) scale(0.98);
   box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 .copyBtn:focus-visible {

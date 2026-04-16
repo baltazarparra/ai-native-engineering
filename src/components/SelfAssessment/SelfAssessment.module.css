@@ -23,11 +23,18 @@
   border-radius: 50%;
   border: var(--border-thin);
   background-color: var(--color-white);
+  transition:
+    transform var(--motion-normal) var(--ease-out-back),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
 .dotActive {
   background-color: var(--color-accent-1);
   border-color: var(--color-accent-1);
+  transform: scale(1.35);
+  animation: var(--motion-key-scale-pop) var(--motion-normal)
+    var(--ease-out-back);
 }
 
 .dotAnswered {
@@ -42,12 +49,16 @@
   line-height: var(--leading-snug);
   margin: 0;
   overflow-wrap: break-word;
+  animation: var(--motion-key-details-in) var(--motion-normal)
+    var(--ease-standard);
 }
 
 .options {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  animation: var(--motion-key-details-in) var(--motion-normal)
+    var(--ease-standard);
 }
 
 .optionBtn {
@@ -62,6 +73,7 @@
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   overflow-wrap: break-word;
+  transform-origin: left center;
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
@@ -69,13 +81,14 @@
 }
 
 .optionBtn:hover {
-  transform: translate(-2px, -2px);
+  transform: var(--motion-lift-md) rotate(-0.15deg);
   box-shadow: var(--shadow-md);
 }
 
 .optionBtn:active {
-  transform: translate(2px, 2px);
+  transform: var(--motion-press) scale(0.99);
   box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 .optionBtn:focus-visible {
@@ -86,6 +99,8 @@
 .optionSelected {
   background-color: var(--color-accent-1);
   border-color: var(--color-primary);
+  animation: var(--motion-key-panel-in) var(--motion-normal)
+    var(--ease-out-back);
 }
 
 .nav {
@@ -112,13 +127,14 @@
 }
 
 .navBtn:hover:not(:disabled) {
-  transform: translate(-2px, -2px);
+  transform: var(--motion-lift-sm);
   box-shadow: var(--shadow-sm);
 }
 
 .navBtn:active:not(:disabled) {
-  transform: translate(2px, 2px);
+  transform: var(--motion-press) scale(0.98);
   box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 .navBtn:disabled {
@@ -149,13 +165,14 @@
 }
 
 .finishBtn:hover:not(:disabled) {
-  transform: translate(-2px, -2px);
+  transform: var(--motion-lift-md) rotate(-0.25deg);
   box-shadow: var(--shadow-md);
 }
 
 .finishBtn:active:not(:disabled) {
-  transform: translate(2px, 2px);
+  transform: var(--motion-press) scale(0.98);
   box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 .finishBtn:disabled {
@@ -180,6 +197,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  animation: var(--motion-key-panel-in) var(--motion-enter) var(--ease-out-back)
+    both;
 }
 
 .accent-yellow {
@@ -238,13 +257,14 @@
 }
 
 .resetBtn:hover {
-  transform: translate(-2px, -2px);
+  transform: var(--motion-lift-sm);
   box-shadow: var(--shadow-sm);
 }
 
 .resetBtn:active {
-  transform: translate(2px, 2px);
+  transform: var(--motion-press) scale(0.98);
   box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 .resetBtn:focus-visible {

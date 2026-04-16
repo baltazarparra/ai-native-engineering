@@ -288,6 +288,7 @@ export default function MaturityStepper({ lang = 'pt-BR' }: Props) {
       </div>
 
       <div
+        key={active}
         id={`phase-panel-${active}`}
         role="tabpanel"
         aria-labelledby={`phase-tab-${active}`}

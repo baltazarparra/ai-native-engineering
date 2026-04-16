@@ -306,9 +306,11 @@ export default function SelfAssessment({ lang = 'pt-BR' }: Props) {
         ))}
       </div>
 
-      <p className={styles.questionText}>{question.text}</p>
+      <p key={`question-${current}`} className={styles.questionText}>
+        {question.text}
+      </p>
 
-      <div className={styles.options}>
+      <div key={`options-${current}`} className={styles.options}>
         {question.options.map((opt, i) => (
           <button
             key={i}

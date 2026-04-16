@@ -120,6 +120,7 @@ export default function ChapterStepper({ lang }: Props) {
       </div>
 
       <div
+        key={active}
         id={`ch-panel-${active}`}
         role="tabpanel"
         aria-labelledby={`ch-tab-${active}`}

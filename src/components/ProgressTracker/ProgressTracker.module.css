@@ -11,5 +11,23 @@
 .fill {
   height: 100%;
   background-color: var(--color-accent-1);
-  transition: width 100ms linear;
+  position: relative;
+  transition: width var(--motion-fast) linear;
+}
+
+.fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -2px;
+  width: 4px;
+  height: 100%;
+  background-color: var(--color-primary);
+  opacity: 0;
+  animation: var(--motion-key-fill-kick) var(--motion-slow) var(--ease-standard)
+    infinite;
+}
+
+.fillActive::after {
+  opacity: 1;
 }

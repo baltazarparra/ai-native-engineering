@@ -4,6 +4,10 @@
   z-index: var(--z-sticky);
   border-bottom: var(--border-thick);
   background-color: var(--color-bg);
+  box-shadow: 0 0 0 var(--color-shadow);
+  transition:
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .inner {
@@ -32,12 +36,17 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transform-origin: left center;
+  transition:
+    transform var(--transition-fast),
+    text-decoration-color var(--transition-fast);
 }
 
 .brand:hover {
   color: var(--color-primary);
   background-color: transparent;
   text-decoration: underline;
+  transform: translateX(2px);
 }
 
 .actions {
@@ -55,6 +64,14 @@
   border: var(--border-thin);
   box-shadow: var(--shadow-sm);
   background-color: var(--color-white);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.langNav:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-md);
 }
 
 .langLink {
@@ -70,6 +87,10 @@
   font-weight: var(--weight-bold);
   line-height: 1;
   text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .langLink + .langLink {
@@ -79,6 +100,12 @@
 .langLink:hover {
   background-color: var(--color-accent-1);
   color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.langLink:active {
+  transform: translateY(1px);
+  transition-duration: var(--motion-instant);
 }
 
 .active {

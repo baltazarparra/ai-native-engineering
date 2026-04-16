@@ -29,13 +29,25 @@
   background-color: var(--color-white);
   cursor: pointer;
   overflow-wrap: break-word;
+  box-shadow: 1px 1px 0 var(--color-shadow);
+  transform-origin: center;
   transition:
     background-color var(--transition-fast),
-    color var(--transition-fast);
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .taskBtn:hover {
   background-color: var(--color-bg-alt);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.taskBtn:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 .taskBtn:focus-visible {
@@ -47,10 +59,14 @@
   background-color: var(--color-accent-2);
   color: var(--color-white);
   border-color: var(--color-accent-2);
+  transform: translate(1px, 1px);
+  box-shadow: none;
 }
 
 .taskActive:hover {
   background-color: var(--color-accent-2);
+  transform: translate(1px, 1px);
+  box-shadow: none;
 }
 
 .grid {
@@ -74,6 +90,10 @@
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   overflow: hidden;
+  transform-origin: center;
+  will-change: transform, box-shadow, opacity;
+  animation: var(--motion-key-pop-in) var(--motion-enter) var(--ease-out-back)
+    both;
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
@@ -81,7 +101,7 @@
 }
 
 .card:hover {
-  transform: translate(-2px, -2px);
+  transform: var(--motion-lift-md) rotate(-0.2deg);
   box-shadow: var(--shadow-lg);
 }
 
@@ -91,6 +111,8 @@
 
 .dimmed:hover {
   opacity: 0.7;
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-md);
 }
 
 .cardHeader {
@@ -105,6 +127,11 @@
   cursor: pointer;
   text-align: left;
   min-width: 0;
+  transition: background-color var(--transition-fast);
+}
+
+.cardHeader:hover {
+  background-color: var(--color-bg-alt);
 }
 
 .cardHeader:focus-visible {
@@ -156,6 +183,18 @@
   border: var(--border-thin);
   border-radius: var(--radius-sm);
   flex-shrink: 0;
+  transition:
+    transform var(--motion-normal) var(--ease-snap),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.cardHeader[aria-expanded='true'] .indicator {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  transform: rotate(90deg);
+  animation: var(--motion-key-scale-pop) var(--motion-normal)
+    var(--ease-out-back);
 }
 
 .cardBody {
@@ -182,6 +221,7 @@
   background-color: var(--color-accent-3);
   color: var(--color-white);
   overflow-wrap: break-word;
+  animation: var(--motion-key-pop-in) var(--motion-normal) var(--ease-out-back);
 }
 
 .expandedBody {
@@ -191,6 +231,8 @@
   flex-direction: column;
   gap: var(--space-md);
   min-width: 0;
+  animation: var(--motion-key-details-in) var(--motion-normal)
+    var(--ease-standard);
 }
 
 .section strong {

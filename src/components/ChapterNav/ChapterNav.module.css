@@ -34,12 +34,14 @@
   line-height: var(--leading-snug);
   transition:
     background-color var(--transition-fast),
-    color var(--transition-fast);
+    color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .link:hover {
   background-color: var(--color-bg-alt);
   color: var(--color-text);
+  transform: translateX(3px);
 }
 
 .linkCurrent {
@@ -70,11 +72,21 @@
   border: var(--border-thin);
   border-radius: 50%;
   background-color: var(--color-white);
+  transition:
+    transform var(--motion-normal) var(--ease-out-back),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.link:hover .number {
+  transform: scale(1.08);
 }
 
 .linkCurrent .number {
   background-color: var(--color-accent-1);
   color: var(--color-primary);
+  animation: var(--motion-key-scale-pop) var(--motion-normal)
+    var(--ease-out-back);
 }
 
 .linkDone .number {

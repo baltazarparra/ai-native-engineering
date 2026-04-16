@@ -33,6 +33,16 @@
   background-color: var(--color-bg);
   min-width: 0;
   overflow-wrap: break-word;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.item:hover {
+  background-color: var(--color-bg-alt);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
 }
 
 .item a {

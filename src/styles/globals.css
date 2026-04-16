@@ -15,6 +15,7 @@ html {
   color: var(--color-text);
   background-color: var(--color-bg);
   overflow-x: clip;
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -134,13 +135,15 @@ a {
   transition:
     color var(--transition-fast),
     text-decoration-color var(--transition-fast),
-    background-color var(--transition-fast);
+    background-color var(--transition-fast),
+    text-underline-offset var(--transition-fast);
 }
 
 a:hover {
   color: var(--color-primary);
   background-color: var(--color-accent-1);
   text-decoration-color: var(--color-primary);
+  text-underline-offset: 5px;
 }
 
 a:active {
@@ -153,6 +156,7 @@ a:active {
   outline: 3px solid var(--color-focus);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
+  transition: outline-offset var(--transition-fast);
 }
 
 :focus:not(:focus-visible) {
@@ -217,10 +221,116 @@ pre code {
   text-decoration: none;
   border: var(--border-thick);
   box-shadow: var(--shadow-md);
+  transition:
+    top var(--motion-normal) var(--ease-out-back),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .skip-link:focus {
   top: var(--space-md);
   outline: 3px solid var(--color-focus);
   outline-offset: 3px;
+  transform: var(--motion-lift-sm);
+  box-shadow: var(--shadow-lg);
+}
+
+@keyframes brutal-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) rotate(-0.35deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes brutal-pop-in {
+  0% {
+    opacity: 0;
+    transform: translate(6px, 8px) scale(0.96);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translate(-1px, -1px) scale(1.01);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes brutal-panel-in {
+  0% {
+    opacity: 0;
+    transform: translate(10px, 8px);
+  }
+
+  68% {
+    opacity: 1;
+    transform: translate(-2px, -2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes brutal-details-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes brutal-scale-pop {
+  0% {
+    transform: scale(0.82);
+  }
+
+  70% {
+    transform: scale(1.14);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes brutal-fill-kick {
+  0% {
+    box-shadow: 0 0 0 var(--color-shadow);
+  }
+
+  45% {
+    box-shadow: 4px 0 0 var(--color-shadow);
+  }
+
+  100% {
+    box-shadow: 0 0 0 var(--color-shadow);
+  }
+}
+
+main > header {
+  animation: brutal-pop-in var(--motion-enter) var(--ease-out-back) both;
+}
+
+@supports (animation-timeline: view()) {
+  main > section,
+  main > .session-body,
+  main > .chapter-body {
+    animation: brutal-rise-in var(--motion-enter) var(--ease-standard) both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 24%;
+  }
 }

@@ -8,6 +8,8 @@
   align-items: center;
   gap: var(--space-md);
   min-width: 0;
+  animation: var(--motion-key-rise-in) var(--motion-enter) var(--ease-standard)
+    both;
 }
 
 .label {
@@ -24,6 +26,8 @@
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   color: var(--color-accent-2);
+  animation: var(--motion-key-pop-in) var(--motion-normal) var(--ease-out-back)
+    both;
 }
 
 .title {
@@ -33,4 +37,9 @@
   color: var(--color-primary);
   max-width: 40ch;
   overflow-wrap: break-word;
+  transition: transform var(--transition-fast);
+}
+
+.cta:hover .title {
+  transform: translateY(-2px);
 }

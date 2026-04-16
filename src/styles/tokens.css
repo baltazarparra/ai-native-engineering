@@ -75,9 +75,28 @@
   --container-lg: 1024px;
   --container-xl: 1200px;
 
+  /* motion */
+  --motion-instant: 80ms;
+  --motion-fast: 140ms;
+  --motion-normal: 240ms;
+  --motion-slow: 420ms;
+  --motion-enter: 560ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out-back: cubic-bezier(0.2, 1.35, 0.32, 1);
+  --ease-snap: cubic-bezier(0.85, -0.2, 0.2, 1.35);
+  --motion-lift-sm: translate(-1px, -1px);
+  --motion-lift-md: translate(-3px, -3px);
+  --motion-press: translate(3px, 3px);
+  --motion-key-rise-in: brutal-rise-in;
+  --motion-key-pop-in: brutal-pop-in;
+  --motion-key-panel-in: brutal-panel-in;
+  --motion-key-details-in: brutal-details-in;
+  --motion-key-scale-pop: brutal-scale-pop;
+  --motion-key-fill-kick: brutal-fill-kick;
+
   /* transitions */
-  --transition-fast: 120ms ease;
-  --transition-normal: 200ms ease;
+  --transition-fast: var(--motion-fast) var(--ease-standard);
+  --transition-normal: var(--motion-normal) var(--ease-standard);
 
   /* z-index */
   --z-base: 0;

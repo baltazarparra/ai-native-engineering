@@ -13,6 +13,18 @@
   white-space: normal;
   overflow-wrap: break-word;
   text-decoration: none;
+  box-shadow: 1px 1px 0 var(--color-shadow);
+  transform-origin: center;
+  animation: var(--motion-key-pop-in) var(--motion-normal) var(--ease-out-back)
+    both;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.badge:where(a, button):hover {
+  transform: var(--motion-lift-sm) rotate(-0.5deg);
+  box-shadow: var(--shadow-sm);
 }
 
 .sm {

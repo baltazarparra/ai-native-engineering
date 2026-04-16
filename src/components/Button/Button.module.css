@@ -17,11 +17,38 @@
   white-space: normal;
   text-align: center;
   overflow-wrap: break-word;
+  overflow: hidden;
+  isolation: isolate;
+  transform-origin: center;
+  will-change: transform, box-shadow;
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
     background-color var(--transition-fast),
-    color var(--transition-fast);
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  inset-inline: var(--space-sm);
+  bottom: var(--space-xs);
+  height: 3px;
+  background-color: currentColor;
+  opacity: 0.22;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition:
+    transform var(--motion-normal) var(--ease-out-back),
+    opacity var(--transition-fast);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.button:hover::after,
+.button:focus-visible::after {
+  transform: scaleX(1);
 }
 
 /* sizes */
@@ -51,13 +78,14 @@
 .primary:hover {
   background-color: var(--color-accent-1);
   color: var(--color-primary);
-  transform: translate(-2px, -2px);
+  transform: var(--motion-lift-md) rotate(-0.35deg);
   box-shadow: var(--shadow-lg);
 }
 
 .primary:active {
-  transform: translate(2px, 2px);
+  transform: var(--motion-press) scale(0.98);
   box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 /* secondary */
@@ -70,13 +98,14 @@
 
 .secondary:hover {
   background-color: var(--color-accent-1);
-  transform: translate(-1px, -1px);
+  transform: var(--motion-lift-sm) rotate(-0.25deg);
   box-shadow: var(--shadow-md);
 }
 
 .secondary:active {
-  transform: translate(2px, 2px);
+  transform: var(--motion-press) scale(0.98);
   box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 /* ghost */
@@ -95,10 +124,12 @@
   background-color: var(--color-bg-alt);
   border-color: var(--color-border);
   text-decoration: none;
+  transform: translateY(-1px);
 }
 
 .ghost:active {
-  transform: translate(1px, 1px);
+  transform: translate(1px, 1px) scale(0.99);
+  transition-duration: var(--motion-instant);
 }
 
 /* focus */
@@ -106,6 +137,8 @@
 .button:focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 3px;
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-lg);
 }
 
 /* disabled */

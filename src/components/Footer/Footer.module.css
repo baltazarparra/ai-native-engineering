@@ -2,6 +2,8 @@
   border-top: var(--border-thick);
   background-color: var(--color-bg-alt);
   padding: var(--space-lg) var(--space-lg);
+  animation: var(--motion-key-rise-in) var(--motion-enter) var(--ease-standard)
+    both;
 }
 
 .inner {

@@ -23,7 +23,8 @@
 .progressFill {
   height: 100%;
   background-color: var(--color-accent-3);
-  transition: width 300ms ease;
+  transition: width var(--motion-slow) var(--ease-standard);
+  animation: var(--motion-key-fill-kick) var(--motion-slow) var(--ease-standard);
 }
 
 .progressText {
@@ -57,19 +58,21 @@
   border-radius: var(--radius-md);
   background-color: var(--color-white);
   cursor: pointer;
+  box-shadow: 1px 1px 0 var(--color-shadow);
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
 }
 
 .navBtn:hover:not(:disabled) {
-  transform: translate(-2px, -2px);
-  box-shadow: var(--shadow-sm);
+  transform: var(--motion-lift-md) rotate(-0.25deg);
+  box-shadow: var(--shadow-md);
 }
 
 .navBtn:active:not(:disabled) {
-  transform: translate(2px, 2px);
+  transform: var(--motion-press) scale(0.96);
   box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 .navBtn:disabled {
@@ -106,6 +109,11 @@
   cursor: pointer;
   flex: 1 1 0;
   min-width: 0;
+  transition: transform var(--transition-fast);
+}
+
+.step:hover {
+  transform: translateY(-2px);
 }
 
 .step:focus-visible {
@@ -127,18 +135,26 @@
   border-radius: 50%;
   background-color: var(--color-white);
   transition:
+    transform var(--motion-normal) var(--ease-out-back),
     background-color var(--transition-fast),
-    color var(--transition-fast);
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .stepActive .stepCircle {
   background-color: var(--color-accent-1);
   color: var(--color-primary);
+  transform: scale(1.12);
+  box-shadow: var(--shadow-sm);
+  animation: var(--motion-key-scale-pop) var(--motion-normal)
+    var(--ease-out-back);
 }
 
 .stepDone .stepCircle {
   background-color: var(--color-primary);
   color: var(--color-white);
+  animation: var(--motion-key-scale-pop) var(--motion-normal)
+    var(--ease-out-back);
 }
 
 .stepRef .stepCircle {
@@ -169,6 +185,8 @@
   box-shadow: var(--shadow-md);
   padding: var(--space-lg);
   min-width: 0;
+  animation: var(--motion-key-panel-in) var(--motion-enter) var(--ease-out-back)
+    both;
 }
 
 .panelHeader {
@@ -232,15 +250,16 @@
 }
 
 .panelCta:hover {
-  transform: translate(-2px, -2px);
+  transform: var(--motion-lift-md) rotate(-0.25deg);
   box-shadow: var(--shadow-lg);
   background-color: var(--color-accent-1);
   color: var(--color-primary);
 }
 
 .panelCta:active {
-  transform: translate(2px, 2px);
+  transform: var(--motion-press) scale(0.98);
   box-shadow: none;
+  transition-duration: var(--motion-instant);
 }
 
 .congratsPanel {

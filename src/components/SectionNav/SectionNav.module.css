@@ -21,12 +21,15 @@
   border-left: 4px solid transparent;
   transition:
     color var(--transition-fast),
-    border-color var(--transition-fast);
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
 }
 
 .list a:hover {
   color: var(--color-primary);
   background-color: transparent;
+  transform: translateX(3px);
 }
 
 .list a[data-active='true'] {

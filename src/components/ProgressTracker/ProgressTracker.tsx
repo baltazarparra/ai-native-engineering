@@ -42,7 +42,10 @@ export default function ProgressTracker({ sessionSlug, ariaLabel }: Props) {
       aria-valuemax={100}
       aria-label={ariaLabel}
     >
-      <div className={styles.fill} style={{ width: `${progress}%` }} />
+      <div
+        className={`${styles.fill} ${progress > 0 ? styles.fillActive : ''}`}
+        style={{ width: `${progress}%` }}
+      />
     </div>
   );
 }
