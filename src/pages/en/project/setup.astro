@@ -1,0 +1,92 @@
+---
+import ChapterLayout from '../../../layouts/ChapterLayout.astro';
+const lang = 'en';
+---
+
+<ChapterLayout chapterNumber={1} lang={lang}>
+  <h2 id="github-cli">GitHub CLI</h2>
+
+  <p>
+    The first step is making sure your code agent can interact with GitHub. The
+    most direct way is the <strong>GitHub CLI</strong> (<code>gh</code>).
+  </p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Ask the agent:</strong>
+    <p>
+      "Help me install the GitHub CLI and authenticate with my GitHub account."
+    </p>
+  </div>
+
+  <p>
+    Optionally, install the <strong>GitHub MCP</strong> in your tool — it gives the
+    agent native access to issues and PRs. But if it doesn't work, move on. The CLI
+    is enough.
+  </p>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      Run <code>gh auth status</code> in your terminal. Your account should show as
+      authenticated.
+    </p>
+  </div>
+
+  ---
+
+  <h2 id="create-repository">Create the repository</h2>
+
+  <div class="prompt-example prompt-bad">
+    <strong>Avoid:</strong>
+    <p>"Create a repo for me."</p>
+  </div>
+
+  <div class="prompt-example prompt-good">
+    <strong>Use:</strong>
+    <p>
+      "Create a public repository on GitHub called 'deezer-explorer' with the
+      description 'Site for exploring artists and discographies via Deezer API'.
+      Clone it locally and open the folder in my development tool."
+    </p>
+  </div>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      Run <code>gh repo view</code> from inside the folder. The repository info should
+      appear.
+    </p>
+  </div>
+
+  ---
+
+  <h2 id="harness">Set up the harness</h2>
+
+  <p>
+    The harness is the file that tells the agent what the project is and what
+    the rules are. Without it, the agent guesses. And guessing creates rework.
+  </p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Ask the agent:</strong>
+    <p>
+      "Create a CLAUDE.md file at the project root with: overview (static site
+      consuming the Deezer API, published on GitHub Pages), sections for
+      development commands, technical decisions (stack not yet decided — maximum
+      simplicity), and quality rules."
+    </p>
+  </div>
+
+  <p>
+    Read the file the agent generated. It needs to make sense to you — if
+    something is confusing or wrong, fix it now.
+  </p>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      The context file (CLAUDE.md or AGENTS.md) exists at the root and clearly
+      describes the project.
+    </p>
+  </div>
+</ChapterLayout>

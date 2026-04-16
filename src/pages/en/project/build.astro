@@ -1,0 +1,74 @@
+---
+import ChapterLayout from '../../../layouts/ChapterLayout.astro';
+const lang = 'en';
+---
+
+<ChapterLayout chapterNumber={3} lang={lang}>
+  <h2 id="sdd-cycle">The cycle for each phase</h2>
+
+  <p>
+    Execute <strong>one phase of the plan at a time</strong>. This is
+    <strong>Spec-Driven Development (SDD)</strong>: defined scope, validation
+    before moving on.
+  </p>
+
+  <ol>
+    <li>
+      Ask the agent to implement the phase (referencing the plan and harness)
+    </li>
+    <li>Review the generated code — read it, run locally, test</li>
+    <li>Adjust what's needed</li>
+    <li>Update the harness if technical decisions were made</li>
+    <li>Move on only when the phase works</li>
+  </ol>
+
+  <div class="prompt-example prompt-good">
+    <strong>Example:</strong>
+    <p>
+      "Implement phase 1 of the plan: [describe the phase]. Follow the rules in
+      CLAUDE.md. Show me how to test that it's working."
+    </p>
+  </div>
+
+  ---
+
+  <h2 id="cors">CORS: the problem that will appear</h2>
+
+  <p>
+    The Deezer API is public and requires no authentication — but <strong
+      >does not support CORS</strong
+    >. This means <code>fetch()</code> from the browser will be blocked. This <strong
+      >will happen</strong
+    >.
+  </p>
+
+  <p>When the error shows up in the console, don't panic. Ask the agent:</p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Prompt to fix CORS:</strong>
+    <p>
+      "The fetch to the Deezer API is being blocked by CORS. Set up a CORS proxy
+      (like corsproxy.io) so requests work in the browser. Explain why this
+      happens."
+    </p>
+  </div>
+
+  <p>
+    CORS is a browser protection, not a bug in your code. Understanding this is
+    part of the learning.
+  </p>
+
+  ---
+
+  <h2 id="validate">Validate functionality</h2>
+
+  <p>Before moving to deploy, all features need to work locally.</p>
+
+  <div class="checkpoint">
+    <strong>✓ Manual test:</strong>
+    <p>
+      Type "Beyoncé" in your site's search. Artists show up? Click one. Albums
+      load with covers? Click an album. Tracklist appears? If yes, move on.
+    </p>
+  </div>
+</ChapterLayout>

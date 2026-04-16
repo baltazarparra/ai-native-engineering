@@ -1,0 +1,79 @@
+---
+import ChapterLayout from '../../layouts/ChapterLayout.astro';
+const lang = 'pt-BR';
+---
+
+<ChapterLayout chapterNumber={2} lang={lang}>
+  <h2 id="funcionalidades">As três funcionalidades</h2>
+
+  <p>O projeto tem um escopo definido:</p>
+
+  <ol>
+    <li>
+      <strong>Busca de artistas</strong> — <code>/search/artist?q=nome</code>
+    </li>
+    <li>
+      <strong>Discografia</strong> — <code>/artist/&#123;id&#125;/albums</code>
+    </li>
+    <li>
+      <strong>Detalhes do álbum</strong> — <code>/album/&#123;id&#125;</code> (tracklist,
+      capa, data)
+    </li>
+  </ol>
+
+  <p>
+    Todos os endpoints são da <strong>API pública do Deezer</strong>. Não
+    precisa de autenticação, mas tem uma questão de CORS que vamos resolver no
+    próximo capítulo.
+  </p>
+
+  ---
+
+  <h2 id="pedir-plano">Pedir o plano ao agente</h2>
+
+  <div class="prompt-example prompt-good">
+    <strong>Prompt:</strong>
+    <p>
+      "Com base no CLAUDE.md, crie um plano de implementação com fases claras e
+      critérios de aceite. O site precisa buscar artistas, mostrar discografia e
+      exibir detalhes de álbuns via API do Deezer, publicável no GitHub Pages.
+      Sugira a stack mais simples que funcione."
+    </p>
+  </div>
+
+  <p>
+    O agente vai propor fases, uma stack e um plano de execução. Não aceite
+    automaticamente.
+  </p>
+
+  ---
+
+  <h2 id="revisar-plano">Revisar e iterar</h2>
+
+  <p>Leia o plano inteiro e se pergunte:</p>
+
+  <ul>
+    <li>As fases fazem sentido? Cada uma é testável individualmente?</li>
+    <li>O escopo é claro? Nenhuma fase é grande demais?</li>
+    <li>
+      A stack é simples o suficiente? Você entende as tecnologias sugeridas?
+    </li>
+  </ul>
+
+  <p>Se algo não faz sentido, itere:</p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Exemplos de ajuste:</strong>
+    <p>"Essa fase está grande, divide em duas."</p>
+    <p>"Não quero essa lib, sugere algo mais simples."</p>
+    <p>"Adiciona critérios de aceite pra cada fase."</p>
+  </div>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      O plano de implementação está salvo no repositório (como PLAN.md ou
+      similar). Você leu e concorda com cada fase.
+    </p>
+  </div>
+</ChapterLayout>

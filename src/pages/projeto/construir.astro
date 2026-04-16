@@ -1,0 +1,77 @@
+---
+import ChapterLayout from '../../layouts/ChapterLayout.astro';
+const lang = 'pt-BR';
+---
+
+<ChapterLayout chapterNumber={3} lang={lang}>
+  <h2 id="ciclo-sdd">O ciclo de cada fase</h2>
+
+  <p>
+    Execute <strong>uma fase do plano por vez</strong>. Isso é
+    <strong>Spec-Driven Development (SDD)</strong>: escopo definido, validação
+    antes de avançar.
+  </p>
+
+  <ol>
+    <li>
+      Peça ao agente para implementar a fase (referenciando o plano e o harness)
+    </li>
+    <li>Revise o código gerado — leia, rode localmente, teste</li>
+    <li>Ajuste o que for necessário</li>
+    <li>Atualize o harness se decisões técnicas foram tomadas</li>
+    <li>Avance só quando a fase funciona</li>
+  </ol>
+
+  <div class="prompt-example prompt-good">
+    <strong>Exemplo:</strong>
+    <p>
+      "Implemente a fase 1 do plano: [descreva a fase]. Siga as regras do
+      CLAUDE.md. Me mostre como testar que está funcionando."
+    </p>
+  </div>
+
+  ---
+
+  <h2 id="cors">CORS: o problema que vai aparecer</h2>
+
+  <p>
+    A API do Deezer é pública e não precisa de autenticação — mas <strong
+      >não suporta CORS</strong
+    >. Isso significa que <code>fetch()</code> direto do browser vai ser bloqueado.
+    Isso <strong>vai acontecer</strong>.
+  </p>
+
+  <p>Quando o erro aparecer no console, não entre em pânico. Peça ao agente:</p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Prompt para resolver CORS:</strong>
+    <p>
+      "O fetch para a API do Deezer está sendo bloqueado por CORS. Configure um
+      CORS proxy (como corsproxy.io) para que as requisições funcionem no
+      browser. Explique por que isso acontece."
+    </p>
+  </div>
+
+  <p>
+    CORS é uma proteção do browser, não um bug do seu código. Entender isso é
+    parte do aprendizado.
+  </p>
+
+  ---
+
+  <h2 id="validar">Validar funcionalidade</h2>
+
+  <p>
+    Antes de avançar para o deploy, todas as funcionalidades precisam funcionar
+    localmente.
+  </p>
+
+  <div class="checkpoint">
+    <strong>✓ Teste manual:</strong>
+    <p>
+      Digite "Beyoncé" na busca do seu site. Artistas aparecem? Clique em um.
+      Álbuns carregam com capas? Clique em um álbum. Tracklist aparece? Se sim,
+      avance.
+    </p>
+  </div>
+</ChapterLayout>

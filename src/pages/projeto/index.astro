@@ -1,297 +1,88 @@
 ---
-import ProjectLayout from '../../layouts/ProjectLayout.astro';
-import ProjectTracker from '../../components/ProjectTracker/ProjectTracker.tsx';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
+import Badge from '../../components/Badge/Badge.astro';
+import Footer from '../../components/Footer/Footer.astro';
+import ChapterStepper from '../../components/ChapterStepper/ChapterStepper.tsx';
+import { ui, getProjectAlternateLinks } from '../../lib/i18n';
 
 const lang = 'pt-BR';
+const labels = ui[lang].project;
+const alternateLinks = getProjectAlternateLinks();
 ---
 
-<ProjectLayout lang={lang}>
-  <h2 id="o-que-voce-vai-construir">O que você vai construir</h2>
+<BaseLayout
+  title={`${labels.title} | AI-Native Engineering`}
+  description={labels.summary}
+  lang={lang}
+  alternateLinks={alternateLinks}
+>
+  <main id="main-content" class="project-landing">
+    <SectionBlock as="header" padding="xl">
+      <Badge variant="coral">{labels.heroLabel}</Badge>
+      <h1 class="landing-title">{labels.heading}</h1>
+      <p class="landing-summary">{labels.summary}</p>
+    </SectionBlock>
 
-  <p>
-    Um site onde você digita o nome de um artista, vê a discografia com capas de
-    álbum, e clica em um álbum para ver a tracklist e detalhes. Tudo consumindo
-    a
-    <strong>API pública do Deezer</strong>, publicado no seu <strong
-      >GitHub Pages</strong
-    >.
-  </p>
+    <SectionBlock padding="lg" alt>
+      <h2 class="section-heading">O que você vai construir</h2>
+      <p>
+        Um site onde você digita o nome de um artista, vê a discografia com
+        capas de álbum, e clica em um álbum para ver a tracklist e detalhes.
+        Tudo consumindo a <strong>API pública do Deezer</strong>, publicado no
+        seu
+        <strong>GitHub Pages</strong>.
+      </p>
+      <p>
+        O projeto é o veículo — o que você vai aprender de verdade é o
+        <strong>fluxo agêntico de desenvolvimento</strong>: contexto,
+        planejamento, execução por partes e publicação.
+      </p>
+    </SectionBlock>
 
-  <p>
-    O projeto é o veículo — o que você vai aprender de verdade é o
-    <strong>fluxo agêntico de desenvolvimento</strong>: contexto, planejamento,
-    execução por partes e publicação, tudo com seu agente de código.
-  </p>
+    <SectionBlock padding="lg">
+      <h2 class="section-heading">Pré-requisitos</h2>
+      <ul class="prereq-list">
+        <li>Conta no <strong>GitHub</strong></li>
+        <li>
+          Ferramenta com IA configurada (Cursor, Windsurf, Claude Code, etc.)
+        </li>
+        <li>LLM configurada na ferramenta (Claude, GPT, Gemini, etc.)</li>
+      </ul>
+    </SectionBlock>
 
-  <h3>Pré-requisitos</h3>
+    <SectionBlock padding="xl" alt>
+      <h2 class="section-heading">Seu progresso</h2>
+      <ChapterStepper client:visible lang={lang} />
+    </SectionBlock>
 
-  <ul>
-    <li>Conta no <strong>GitHub</strong></li>
-    <li>Ferramenta com IA configurada (Cursor, Windsurf, Claude Code, etc.)</li>
-    <li>LLM configurada na ferramenta (Claude, GPT, Gemini, etc.)</li>
-    <li>
-      <strong>GitHub CLI</strong> (<code>gh</code>) — peça ao agente: <em
-        >"Me ajude a instalar a GitHub CLI e autenticar com minha conta do
-        GitHub"</em>
-    </li>
-  </ul>
+    <Footer lang={lang} />
+  </main>
+</BaseLayout>
 
-  <p>
-    Se quiser, instale também o <strong>GitHub MCP</strong> na sua ferramenta — ele
-    dá ao agente acesso nativo a issues e PRs. Mas se não funcionar, continue sem.
-    A CLI já é suficiente para esse projeto.
-  </p>
+<style>
+  .landing-title {
+    margin-top: var(--space-md);
+    max-width: 18ch;
+  }
 
-  <div class="checkpoint">
-    <strong>✓ Checkpoint:</strong>
-    <p>
-      Rode <code>gh auth status</code> no terminal. Sua conta deve aparecer autenticada.
-    </p>
-  </div>
+  .landing-summary {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-md);
+    max-width: 68ch;
+    color: var(--color-text-muted);
+  }
 
-  ---
+  .section-heading {
+    margin-bottom: var(--space-md);
+  }
 
-  <h2 id="preparar-o-terreno">Preparar o terreno</h2>
+  .prereq-list {
+    padding-left: var(--space-lg);
+  }
 
-  <p>
-    Antes de escrever código, você vai criar o repositório e preparar o
-    <strong>harness</strong> — o arquivo que diz ao agente o que é o projeto e quais
-    são as regras. Sem isso, o agente adivinha. E adivinhar gera retrabalho.
-  </p>
-
-  <div class="prompt-example prompt-bad">
-    <strong>Evite:</strong>
-    <p>"Cria um repo pra mim."</p>
-  </div>
-
-  <div class="prompt-example prompt-good">
-    <strong>Use:</strong>
-    <p>
-      "Crie um repositório público no GitHub chamado 'deezer-explorer' com a
-      descrição 'Site para explorar artistas e discografias via API do Deezer'.
-      Clone localmente e abra a pasta na minha ferramenta de desenvolvimento.
-      Depois, crie um arquivo CLAUDE.md na raiz com: visão geral do projeto
-      (site estático, API Deezer, GitHub Pages), seções para comandos de
-      desenvolvimento, decisões técnicas (stack ainda não definida —
-      simplicidade máxima), e regras de qualidade."
-    </p>
-  </div>
-
-  <p>
-    Esse prompt faz três coisas de uma vez: cria o repo, abre no editor e
-    configura o harness. Leia o arquivo que o agente gerou — ele precisa fazer
-    sentido pra você.
-  </p>
-
-  <div class="checkpoint">
-    <strong>✓ Checkpoint:</strong>
-    <p>
-      Repositório existe no GitHub (<code>gh repo view</code>), pasta aberta na
-      sua ferramenta, e um arquivo de contexto (CLAUDE.md ou AGENTS.md) na raiz
-      que descreve o projeto.
-    </p>
-  </div>
-
-  ---
-
-  <h2 id="planejar-com-agente">Planejar com o agente</h2>
-
-  <p>O projeto tem três funcionalidades:</p>
-
-  <ol>
-    <li>
-      <strong>Busca de artistas</strong> — <code>/search/artist?q=nome</code>
-    </li>
-    <li>
-      <strong>Discografia</strong> — <code>/artist/&#123;id&#125;/albums</code>
-    </li>
-    <li>
-      <strong>Detalhes do álbum</strong> — <code>/album/&#123;id&#125;</code> (tracklist,
-      capa, data)
-    </li>
-  </ol>
-
-  <div class="prompt-example prompt-good">
-    <strong>Prompt para planejar:</strong>
-    <p>
-      "Com base no CLAUDE.md, crie um plano de implementação com fases claras e
-      critérios de aceite. O site precisa buscar artistas, mostrar discografia e
-      exibir detalhes de álbuns via API do Deezer, publicável no GitHub Pages.
-      Sugira a stack mais simples que funcione."
-    </p>
-  </div>
-
-  <p>
-    Leia o plano inteiro. As fases fazem sentido? O escopo é claro? A stack é
-    simples o suficiente? Se não, itere: <em
-      >"Essa fase está grande, divide em duas"</em
-    > ou <em>"Não quero essa lib, sugere algo mais simples."</em>
-  </p>
-
-  <div class="checkpoint">
-    <strong>✓ Checkpoint:</strong>
-    <p>
-      Plano de implementação salvo no repositório com fases claras. Você leu e
-      concorda com cada fase.
-    </p>
-  </div>
-
-  ---
-
-  <h2 id="construir-por-partes">Construir por partes</h2>
-
-  <p>
-    Execute <strong>uma fase do plano por vez</strong>. Isso é
-    <strong>Spec-Driven Development (SDD)</strong>: escopo definido, validação
-    antes de avançar. O ciclo de cada fase:
-  </p>
-
-  <ol>
-    <li>
-      Peça ao agente para implementar a fase (referenciando o plano e o harness)
-    </li>
-    <li>Revise o código gerado — leia, rode localmente, teste</li>
-    <li>Ajuste o que for necessário</li>
-    <li>Atualize o harness se decisões técnicas foram tomadas</li>
-    <li>Avance só quando a fase funciona</li>
-  </ol>
-
-  <div class="prompt-example prompt-good">
-    <strong>Exemplo:</strong>
-    <p>
-      "Implemente a fase 1 do plano: [descreva a fase]. Siga as regras do
-      CLAUDE.md. Me mostre como testar que está funcionando."
-    </p>
-  </div>
-
-  <h3>Sobre a API do Deezer e CORS</h3>
-
-  <p>
-    A API do Deezer é pública e não precisa de autenticação — mas <strong
-      >não suporta CORS</strong
-    >. Isso significa que <code>fetch()</code> direto do browser vai ser bloqueado.
-    Quando isso acontecer, peça ao agente:
-  </p>
-
-  <div class="prompt-example prompt-good">
-    <strong>Prompt para resolver CORS:</strong>
-    <p>
-      "O fetch para a API do Deezer está sendo bloqueado por CORS. Configure um
-      CORS proxy (como corsproxy.io) para que as requisições funcionem no
-      browser."
-    </p>
-  </div>
-
-  <div class="checkpoint">
-    <strong>✓ Checkpoint:</strong>
-    <p>
-      Digite "Beyoncé" na busca do seu site. Artistas aparecem? Clique em um.
-      Álbuns carregam com capas? Clique em um álbum. Tracklist aparece? Se sim,
-      avance.
-    </p>
-  </div>
-
-  ---
-
-  <h2 id="publicar">Publicar</h2>
-
-  <p>
-    Seu código precisa estar no GitHub antes do Pages funcionar. Peça ao agente:
-  </p>
-
-  <div class="prompt-example prompt-good">
-    <strong>Prompt:</strong>
-    <p>
-      "Commite todo o código do projeto e faça push para o repositório no
-      GitHub. Depois, configure GitHub Actions para deploy automático no GitHub
-      Pages quando eu fizer push na main."
-    </p>
-  </div>
-
-  <p>Depois do push, valide:</p>
-
-  <ol>
-    <li>
-      <strong>Settings → Pages</strong> no repositório: source = GitHub Actions
-    </li>
-    <li>Aba <strong>Actions</strong>: workflow completou sem erro</li>
-    <li>Acesse <code>https://seu-usuario.github.io/deezer-explorer/</code></li>
-    <li>Teste busca, discografia e detalhes do álbum no site publicado</li>
-  </ol>
-
-  <div class="checkpoint">
-    <strong>✓ Checkpoint:</strong>
-    <p>
-      Site publicado e acessível. As três funcionalidades funcionam na URL do
-      GitHub Pages.
-    </p>
-  </div>
-
-  ---
-
-  <h2 id="onde-isso-quebra">Onde isso quebra</h2>
-
-  <ul>
-    <li>
-      <strong>API não responde</strong> — abra a URL do endpoint direto no browser
-      pra testar. Se não retorna JSON, o problema é a API, não seu código.
-    </li>
-    <li>
-      <strong>CORS bloqueando</strong> — o browser bloqueia requests diretos pra API
-      do Deezer. Use um CORS proxy (veja a seção anterior).
-    </li>
-    <li>
-      <strong>Build falha</strong> — copie o erro completo e peça ao agente: <em
-        >"O build falhou com esse erro. Corrija."</em>
-    </li>
-    <li>
-      <strong>Deploy não aparece</strong> — verifique a aba Actions no GitHub. Se
-      o workflow falhou, peça ao agente para corrigir. Se está em progresso, espere.
-    </li>
-    <li>
-      <strong>Aceitar código sem ler</strong> — a falha mais comum. Se você não entende
-      o que uma parte faz, pergunte ao agente antes de aceitar.
-    </li>
-  </ul>
-
-  ---
-
-  <h2 id="bloco-interativo">Acompanhe seu progresso</h2>
-
-  <ProjectTracker client:visible lang={lang} />
-
-  ---
-
-  <h2 id="o-que-levar-daqui">O que levar daqui</h2>
-
-  <ul>
-    <li>
-      <strong>Contexto antes de código</strong> — o harness é o primeiro artefato,
-      não o primeiro componente
-    </li>
-    <li>
-      <strong>Planejar antes de executar</strong> — um plano iterado com o agente
-      evita retrabalho
-    </li>
-    <li>
-      <strong>Uma fase por vez</strong> — SDD funciona porque cada passo é validável
-    </li>
-    <li>
-      <strong>Prompts com contexto</strong> — a qualidade da interação define a qualidade
-      do resultado
-    </li>
-    <li>
-      <strong>Ler o que o agente gera</strong> — aceitar sem ler é a falha mais comum
-    </li>
-    <li>
-      <strong>Publicar é parte do fluxo</strong> — deploy não é um passo extra, é
-      a conclusão natural
-    </li>
-  </ul>
-
-  <p>
-    Esse fluxo — contexto, planejamento, execução por partes, validação,
-    publicação — é o mesmo que funciona em projetos reais. A escala muda, o
-    processo não.
-  </p>
-</ProjectLayout>
+  .prereq-list li {
+    margin-bottom: var(--space-xs);
+  }
+</style>

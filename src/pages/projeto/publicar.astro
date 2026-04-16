@@ -1,0 +1,77 @@
+---
+import ChapterLayout from '../../layouts/ChapterLayout.astro';
+const lang = 'pt-BR';
+---
+
+<ChapterLayout chapterNumber={4} lang={lang}>
+  <h2 id="push">Push para o GitHub</h2>
+
+  <p>Seu código precisa estar no GitHub antes do Pages funcionar.</p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Prompt:</strong>
+    <p>
+      "Commite todo o código do projeto e faça push para o repositório no
+      GitHub. Depois, configure GitHub Actions para deploy automático no GitHub
+      Pages quando eu fizer push na main."
+    </p>
+  </div>
+
+  ---
+
+  <h2 id="validar-deploy">Validar o deploy</h2>
+
+  <p>Depois do push, valide cada passo:</p>
+
+  <ol>
+    <li>
+      <strong>Settings → Pages</strong> no repositório: source = GitHub Actions
+    </li>
+    <li>Aba <strong>Actions</strong>: workflow completou sem erro</li>
+    <li>Acesse <code>https://seu-usuario.github.io/deezer-explorer/</code></li>
+    <li>Teste busca, discografia e detalhes do álbum no site publicado</li>
+  </ol>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      Site publicado e acessível. As três funcionalidades funcionam na URL do
+      GitHub Pages.
+    </p>
+  </div>
+
+  ---
+
+  <h2 id="o-que-levar">O que levar daqui</h2>
+
+  <ul>
+    <li>
+      <strong>Contexto antes de código</strong> — o harness é o primeiro artefato,
+      não o primeiro componente
+    </li>
+    <li>
+      <strong>Planejar antes de executar</strong> — um plano iterado com o agente
+      evita retrabalho
+    </li>
+    <li>
+      <strong>Uma fase por vez</strong> — SDD funciona porque cada passo é validável
+    </li>
+    <li>
+      <strong>Prompts com contexto</strong> — a qualidade da interação define a qualidade
+      do resultado
+    </li>
+    <li>
+      <strong>Ler o que o agente gera</strong> — aceitar sem ler é a falha mais comum
+    </li>
+    <li>
+      <strong>Publicar é parte do fluxo</strong> — deploy não é um passo extra, é
+      a conclusão natural
+    </li>
+  </ul>
+
+  <p>
+    Esse fluxo — contexto, planejamento, execução por partes, validação,
+    publicação — é o mesmo que funciona em projetos reais. A escala muda, o
+    processo não.
+  </p>
+</ChapterLayout>

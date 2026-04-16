@@ -88,6 +88,29 @@ export const ui = {
       homeDesc:
         'Já viu a teoria? Agora crie um projeto do zero com seu agente de código e publique no GitHub Pages.',
     },
+    chapters: {
+      chapterLabel: (n: number) => `Capítulo ${n}`,
+      navAriaLabel: 'Capítulos do projeto',
+      progressOf: (done: number, total: number) =>
+        `${done} de ${total} completos`,
+      checkpointsOf: (done: number, total: number) =>
+        `${done} de ${total} checkpoints`,
+      complete: 'Capítulo concluído!',
+      nextUp: 'Próximo',
+      goToChapter: 'Ir para o capítulo',
+      backToOverview: 'Voltar para a visão geral',
+      congrats: 'Projeto concluído!',
+      congratsDesc:
+        'Você completou todas as etapas. Seu projeto está publicado e funcionando.',
+      startProject: 'Começar',
+      continueProject: 'Continuar',
+      reference: 'Referência',
+      previousAria: 'Capítulo anterior',
+      nextAria: 'Próximo capítulo',
+      tabAria: 'Capítulos do projeto',
+      resetAria: 'Limpar progresso',
+      reset: 'Recomeçar',
+    },
     footer: {
       tagline: 'Feito com Astro e café',
     },
@@ -147,6 +170,29 @@ export const ui = {
       homeCta: 'Go to the hands-on project',
       homeDesc:
         'Done with theory? Build a project from scratch with your code agent and publish it to GitHub Pages.',
+    },
+    chapters: {
+      chapterLabel: (n: number) => `Chapter ${n}`,
+      navAriaLabel: 'Project chapters',
+      progressOf: (done: number, total: number) =>
+        `${done} of ${total} complete`,
+      checkpointsOf: (done: number, total: number) =>
+        `${done} of ${total} checkpoints`,
+      complete: 'Chapter complete!',
+      nextUp: 'Next up',
+      goToChapter: 'Go to chapter',
+      backToOverview: 'Back to overview',
+      congrats: 'Project complete!',
+      congratsDesc:
+        'You completed every step. Your project is published and working.',
+      startProject: 'Start',
+      continueProject: 'Continue',
+      reference: 'Reference',
+      previousAria: 'Previous chapter',
+      nextAria: 'Next chapter',
+      tabAria: 'Project chapters',
+      resetAria: 'Reset progress',
+      reset: 'Start over',
     },
     footer: {
       tagline: 'Built with Astro and coffee',

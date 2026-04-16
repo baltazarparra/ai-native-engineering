@@ -2,49 +2,58 @@
 import BaseLayout from './BaseLayout.astro';
 import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
 import Badge from '../components/Badge/Badge.astro';
-import SectionNav from '../components/SectionNav/SectionNav.astro';
 import Footer from '../components/Footer/Footer.astro';
 import ProgressTracker from '../components/ProgressTracker/ProgressTracker.tsx';
+import ChapterNav from '../components/ChapterNav/ChapterNav.tsx';
+import ChapterFooter from '../components/ChapterFooter/ChapterFooter.tsx';
 import type { Lang } from '../lib/i18n';
 import { ui, getProjectAlternateLinks } from '../lib/i18n';
+import { CHAPTERS } from '../data/chapters';
 
 interface Props {
+  chapterNumber: number;
   lang: Lang;
 }
 
-const { lang } = Astro.props;
-const labels = ui[lang].project;
+const { chapterNumber, lang } = Astro.props;
+const chapter = CHAPTERS.find((ch) => ch.number === chapterNumber)!;
+const labels = ui[lang].chapters;
 const alternateLinks = getProjectAlternateLinks();
+const badgeVariant = chapter.isReference ? 'blue' : 'coral';
+const badgeText = chapter.isReference
+  ? labels.reference
+  : labels.chapterLabel(chapterNumber);
 ---
 
 <BaseLayout
-  title={`${labels.title} | AI-Native Engineering`}
-  description={labels.summary}
+  title={`${chapter.title[lang]} | ${ui[lang].project.title} | AI-Native Engineering`}
+  description={chapter.description[lang]}
   lang={lang}
   alternateLinks={alternateLinks}
 >
   <ProgressTracker
     client:idle
-    sessionSlug={`${lang}:projeto-pratico`}
+    sessionSlug={`${lang}:projeto-${chapter.id}`}
     ariaLabel={ui[lang].progressLabel}
   />
-  <main id="main-content" class="project-page">
+  <main id="main-content" class="chapter-page">
     <SectionBlock as="header" padding="xl">
-      <Badge variant="coral">{labels.heroLabel}</Badge>
-      <h1 class="project-title">{labels.heading}</h1>
-      <div class="project-meta">
-        <Badge variant="green" size="sm">prática guiada</Badge>
-        <Badge size="sm">{labels.readingTime}</Badge>
-      </div>
-      <p class="project-summary">{labels.summary}</p>
+      <Badge variant={badgeVariant}>{badgeText}</Badge>
+      <h1 class="chapter-title">{chapter.title[lang]}</h1>
+      <p class="chapter-summary">{chapter.description[lang]}</p>
     </SectionBlock>
 
-    <div class="project-body">
-      <aside class="project-sidebar">
-        <SectionNav lang={lang} />
+    <div class="chapter-body">
+      <aside class="chapter-sidebar">
+        <ChapterNav client:idle currentChapter={chapterNumber} lang={lang} />
       </aside>
       <article class="session-content">
         <slot />
+        <ChapterFooter
+          client:visible
+          chapterNumber={chapterNumber}
+          lang={lang}
+        />
       </article>
     </div>
 
@@ -53,20 +62,12 @@ const alternateLinks = getProjectAlternateLinks();
 </BaseLayout>
 
 <style>
-  .project-title {
+  .chapter-title {
     margin-top: var(--space-md);
     max-width: 20ch;
   }
 
-  .project-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-sm);
-    margin-top: var(--space-md);
-  }
-
-  .project-summary {
+  .chapter-summary {
     font-size: var(--text-lg);
     line-height: var(--leading-relaxed);
     margin-top: var(--space-md);
@@ -74,7 +75,7 @@ const alternateLinks = getProjectAlternateLinks();
     color: var(--color-text-muted);
   }
 
-  .project-body {
+  .chapter-body {
     max-width: var(--container-xl);
     margin-inline: auto;
     padding-inline: var(--space-md);
@@ -85,7 +86,7 @@ const alternateLinks = getProjectAlternateLinks();
     min-width: 0;
   }
 
-  .project-sidebar {
+  .chapter-sidebar {
     display: none;
     min-width: 0;
   }
@@ -140,12 +141,6 @@ const alternateLinks = getProjectAlternateLinks();
     margin-block: var(--space-2xl);
   }
 
-  .session-content :global(img) {
-    border: var(--border-thin);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-  }
-
   .session-content :global(h2:first-child) {
     margin-top: 0;
   }
@@ -189,14 +184,14 @@ const alternateLinks = getProjectAlternateLinks();
   }
 
   @media (min-width: 1024px) {
-    .project-body {
+    .chapter-body {
       grid-template-columns: 220px minmax(0, 1fr);
       padding-inline: var(--space-xl);
       padding-block: var(--space-3xl);
       gap: var(--space-2xl);
     }
 
-    .project-sidebar {
+    .chapter-sidebar {
       display: block;
     }
 

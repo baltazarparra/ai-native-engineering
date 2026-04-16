@@ -1,0 +1,170 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-2xl);
+  border-top: var(--border-thin);
+}
+
+.checkpointCard {
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-md);
+}
+
+.checkpointHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.checkpointTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  margin: 0;
+}
+
+.checkpointCount {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-weight: var(--weight-medium);
+}
+
+.checkpoints {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-base);
+  cursor: pointer;
+  line-height: var(--leading-normal);
+}
+
+.checkbox {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--color-accent-3);
+  cursor: pointer;
+}
+
+.checkedText {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+.completeCard {
+  border: var(--border-thick);
+  border-left: 6px solid var(--color-accent-3);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+.completeIcon {
+  font-size: var(--text-3xl);
+  line-height: 1;
+}
+
+.completeTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  margin: 0;
+  color: var(--color-accent-3);
+}
+
+.nextBtn {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-xl);
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+  color: var(--color-primary);
+  background-color: var(--color-accent-1);
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.nextBtn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+  background-color: var(--color-accent-1);
+  color: var(--color-primary);
+}
+
+.nextBtn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.congratsCard {
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  background-color: var(--color-accent-1);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+.congratsIcon {
+  font-size: var(--text-4xl);
+  line-height: 1;
+}
+
+.congratsTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  margin: 0;
+}
+
+.congratsDesc {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  max-width: 40ch;
+}
+
+.overviewLink {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.overviewLink:hover {
+  color: var(--color-primary);
+  background-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nextBtn {
+    transition: none;
+  }
+}

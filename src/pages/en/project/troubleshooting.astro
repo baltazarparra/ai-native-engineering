@@ -1,0 +1,81 @@
+---
+import ChapterLayout from '../../../layouts/ChapterLayout.astro';
+const lang = 'en';
+---
+
+<ChapterLayout chapterNumber={5} lang={lang}>
+  <h2 id="api-not-responding">API not responding</h2>
+
+  <p>
+    Open the endpoint URL directly in your browser (e.g.,
+    <code>https://api.deezer.com/search/artist?q=beyonce</code>). If it doesn't
+    return JSON, the problem is the API, not your code. Wait a few minutes and
+    try again.
+  </p>
+
+  ---
+
+  <h2 id="cors-blocking">CORS blocking</h2>
+
+  <p>
+    The browser blocks direct requests to the Deezer API because it doesn't send
+    CORS headers. The solution is to use a <strong>CORS proxy</strong>
+    that adds the required headers.
+  </p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Ask the agent:</strong>
+    <p>
+      "The fetch to the Deezer API is being blocked by CORS. Set up a CORS proxy
+      (like corsproxy.io) so requests work."
+    </p>
+  </div>
+
+  ---
+
+  <h2 id="build-fails">Build fails</h2>
+
+  <p>Copy the full error from the terminal and paste it for the agent:</p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Prompt:</strong>
+    <p>"The build failed with this error: [paste the error]. Fix it."</p>
+  </div>
+
+  <p>
+    Build errors are usually missing imports, incorrect types, or uninstalled
+    dependencies. The agent resolves most of them directly.
+  </p>
+
+  ---
+
+  <h2 id="deploy-not-showing">Deploy not showing</h2>
+
+  <p>
+    Check the <strong>Actions</strong> tab on GitHub. If the workflow:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Failed</strong> — click the workflow, copy the error, and ask the agent
+      to fix it
+    </li>
+    <li>
+      <strong>In progress</strong> — wait. The first deploy can take a few minutes
+    </li>
+    <li>
+      <strong>Doesn't exist</strong> — GitHub Actions isn't configured. Ask the agent
+      to create the workflow
+    </li>
+  </ul>
+
+  ---
+
+  <h2 id="most-common-mistake">The most common mistake</h2>
+
+  <p>
+    <strong>Accepting code without reading.</strong> If you don't understand what
+    a part does, ask the agent before accepting. Review is what separates using AI
+    from being used by it.
+  </p>
+</ChapterLayout>

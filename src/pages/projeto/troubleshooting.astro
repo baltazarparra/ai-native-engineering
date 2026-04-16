@@ -1,0 +1,82 @@
+---
+import ChapterLayout from '../../layouts/ChapterLayout.astro';
+const lang = 'pt-BR';
+---
+
+<ChapterLayout chapterNumber={5} lang={lang}>
+  <h2 id="api-nao-responde">API não responde</h2>
+
+  <p>
+    Abra a URL do endpoint direto no browser (ex:
+    <code>https://api.deezer.com/search/artist?q=beyonce</code>). Se não retorna
+    JSON, o problema é a API, não seu código. Espere alguns minutos e tente de
+    novo.
+  </p>
+
+  ---
+
+  <h2 id="cors-bloqueando">CORS bloqueando</h2>
+
+  <p>
+    O browser bloqueia requests diretos para a API do Deezer porque ela não
+    envia os headers CORS. A solução é usar um <strong>CORS proxy</strong>
+    que adiciona os headers necessários.
+  </p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Peça ao agente:</strong>
+    <p>
+      "O fetch para a API do Deezer está sendo bloqueado por CORS. Configure um
+      CORS proxy (como corsproxy.io) para que as requisições funcionem."
+    </p>
+  </div>
+
+  ---
+
+  <h2 id="build-falha">Build falha</h2>
+
+  <p>Copie o erro completo do terminal e cole para o agente:</p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Prompt:</strong>
+    <p>"O build falhou com esse erro: [cole o erro]. Corrija."</p>
+  </div>
+
+  <p>
+    Erros de build geralmente são imports faltando, tipos incorretos ou
+    dependências não instaladas. O agente resolve a maioria direto.
+  </p>
+
+  ---
+
+  <h2 id="deploy-nao-aparece">Deploy não aparece</h2>
+
+  <p>
+    Verifique a aba <strong>Actions</strong> no GitHub. Se o workflow:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Falhou</strong> — clique no workflow, copie o erro e peça ao agente
+      para corrigir
+    </li>
+    <li>
+      <strong>Em progresso</strong> — espere. O primeiro deploy pode levar alguns
+      minutos
+    </li>
+    <li>
+      <strong>Não existe</strong> — o GitHub Actions não está configurado. Peça ao
+      agente para criar o workflow
+    </li>
+  </ul>
+
+  ---
+
+  <h2 id="erro-mais-comum">O erro mais comum</h2>
+
+  <p>
+    <strong>Aceitar código sem ler.</strong> Se você não entende o que uma parte faz,
+    pergunte ao agente antes de aceitar. A revisão é o que separa usar IA de ser usado
+    por ela.
+  </p>
+</ChapterLayout>
