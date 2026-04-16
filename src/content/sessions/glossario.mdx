@@ -12,6 +12,8 @@ references:
 updatedAt: 2026-04-15
 ---
 
+import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid.tsx';
+
 ## Se essas palavras parecem tudo a mesma coisa
 
 LLM, modelo, token, prompt, contexto, agente, MCP, harness. Se voce ja ouviu essas palavras numa reuniao e fingiu que entendeu, essa sessao e pra voce.
@@ -222,7 +224,7 @@ Percebe como o vocabulario alinhado muda a qualidade da conversa? Sem ele, o PM 
 
 ## Bloco interativo
 
-Em breve: cards interativos pra explorar cada termo com definicao simples, tecnica, exemplo e erro comum.
+<GlossaryCardGrid client:visible />
 
 ## O que levar daqui
 

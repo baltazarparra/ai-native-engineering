@@ -6,6 +6,7 @@ import SectionNav from '../components/SectionNav/SectionNav.astro';
 import ReferencesList from '../components/ReferencesList/ReferencesList.astro';
 import NextSessionCTA from '../components/NextSessionCTA/NextSessionCTA.astro';
 import Footer from '../components/Footer/Footer.astro';
+import ProgressTracker from '../components/ProgressTracker/ProgressTracker.tsx';
 
 interface Reference {
   id: string;
@@ -19,6 +20,7 @@ interface Reference {
 
 interface Props {
   title: string;
+  slug: string;
   summary: string;
   readingTime: number;
   level: 'beginner' | 'intermediate' | 'advanced';
@@ -32,6 +34,7 @@ interface Props {
 
 const {
   title,
+  slug,
   summary,
   readingTime,
   level,
@@ -55,6 +58,7 @@ const levelVariants: Record<string, 'yellow' | 'blue' | 'green'> = {
 ---
 
 <BaseLayout title={`${title} | AI-Native Engineering`} description={summary}>
+  <ProgressTracker client:idle sessionSlug={slug} />
   <main class="session-page">
     <!-- hero -->
     <SectionBlock as="header" padding="xl">

@@ -17,6 +17,8 @@ references:
 updatedAt: 2026-04-15
 ---
 
+import ChecklistGenerator from '../../components/ChecklistGenerator/ChecklistGenerator.tsx';
+
 ## Da teoria pra pratica
 
 As sessoes anteriores explicaram o que e IA, como modelos funcionam, quais ferramentas existem e quais sao os niveis de maturidade. Tudo isso e util pra entender. Mas entender e operar sao coisas diferentes.
@@ -215,7 +217,7 @@ Comandos que automatizam a verificacao: `npm run typecheck && npm run lint && np
 
 ## Bloco interativo
 
-Em breve: gerador de checklist personalizado por perfil e tipo de tarefa.
+<ChecklistGenerator client:visible />
 
 ## O que levar daqui
 
