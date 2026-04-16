@@ -7,8 +7,9 @@ import ProgressTracker from '../components/ProgressTracker/ProgressTracker.tsx';
 import ChapterNav from '../components/ChapterNav/ChapterNav.tsx';
 import ChapterFooter from '../components/ChapterFooter/ChapterFooter.tsx';
 import type { Lang } from '../lib/i18n';
+import ReferencesList from '../components/ReferencesList/ReferencesList.astro';
 import { ui, getProjectAlternateLinks } from '../lib/i18n';
-import { CHAPTERS } from '../data/chapters';
+import { CHAPTERS, resolveChapterReferences } from '../data/chapters';
 
 interface Props {
   chapterNumber: number;
@@ -19,6 +20,7 @@ const { chapterNumber, lang } = Astro.props;
 const chapter = CHAPTERS.find((ch) => ch.number === chapterNumber)!;
 const labels = ui[lang].chapters;
 const alternateLinks = getProjectAlternateLinks();
+const references = resolveChapterReferences(chapter, lang);
 const badgeVariant = chapter.isReference ? 'blue' : 'coral';
 const badgeText = chapter.isReference
   ? labels.reference
@@ -56,6 +58,14 @@ const badgeText = chapter.isReference
         />
       </article>
     </div>
+
+    {
+      references.length > 0 && (
+        <SectionBlock padding="xl" alt>
+          <ReferencesList references={references} lang={lang} />
+        </SectionBlock>
+      )
+    }
 
     <Footer lang={lang} />
   </main>

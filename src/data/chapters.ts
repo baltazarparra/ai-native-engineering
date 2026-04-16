@@ -1,9 +1,16 @@
 import type { Lang } from '../lib/i18n';
-import { withBase, defaultLang, languages } from '../lib/i18n';
+import { withBase, defaultLang, languages, getSessionHref } from '../lib/i18n';
 
 export interface ChapterCheckpoint {
   id: string;
   text: Record<Lang, string>;
+}
+
+export interface ChapterReference {
+  title: Record<Lang, string>;
+  url: string | ((lang: Lang) => string);
+  type: 'artigo' | 'documentacao' | 'talk' | 'video' | 'pesquisa';
+  source: Record<Lang, string>;
 }
 
 export interface Chapter {
@@ -14,6 +21,7 @@ export interface Chapter {
   description: Record<Lang, string>;
   slug: Record<Lang, string>;
   checkpoints: ChapterCheckpoint[];
+  references: ChapterReference[];
   isReference?: boolean;
 }
 
@@ -61,6 +69,46 @@ export const CHAPTERS: Chapter[] = [
         },
       },
     ],
+    references: [
+      {
+        title: {
+          'pt-BR': 'Ferramentas: IDEs vs CLI',
+          en: 'Tools: IDEs vs CLI',
+        },
+        url: (lang: Lang) =>
+          getSessionHref(lang, lang === 'pt-BR' ? 'ferramentas' : 'tools'),
+        type: 'artigo',
+        source: {
+          'pt-BR': 'AI-Native Engineering',
+          en: 'AI-Native Engineering',
+        },
+      },
+      {
+        title: {
+          'pt-BR': 'Como operar de forma AI-native na prática',
+          en: 'How to operate AI-native in practice',
+        },
+        url: (lang: Lang) =>
+          getSessionHref(
+            lang,
+            lang === 'pt-BR' ? 'como-operar' : 'how-to-operate',
+          ),
+        type: 'artigo',
+        source: {
+          'pt-BR': 'AI-Native Engineering',
+          en: 'AI-Native Engineering',
+        },
+      },
+      {
+        title: {
+          'pt-BR': 'GitHub CLI — Documentação oficial',
+          en: 'GitHub CLI — Official docs',
+        },
+        url: 'https://cli.github.com/manual/',
+        type: 'documentacao',
+        source: { 'pt-BR': 'GitHub', en: 'GitHub' },
+      },
+    ],
   },
   {
     number: 2,
@@ -103,6 +151,46 @@ export const CHAPTERS: Chapter[] = [
           'pt-BR': 'Plano salvo no repositório',
           en: 'Plan saved in the repository',
         },
+      },
+    ],
+    references: [
+      {
+        title: {
+          'pt-BR': 'A evolução do desenvolvimento com IA',
+          en: 'How AI development matured',
+        },
+        url: (lang: Lang) =>
+          getSessionHref(lang, lang === 'pt-BR' ? 'maturidade' : 'maturity'),
+        type: 'artigo',
+        source: {
+          'pt-BR': 'AI-Native Engineering',
+          en: 'AI-Native Engineering',
+        },
+      },
+      {
+        title: {
+          'pt-BR': 'Como operar de forma AI-native na prática',
+          en: 'How to operate AI-native in practice',
+        },
+        url: (lang: Lang) =>
+          getSessionHref(
+            lang,
+            lang === 'pt-BR' ? 'como-operar' : 'how-to-operate',
+          ),
+        type: 'artigo',
+        source: {
+          'pt-BR': 'AI-Native Engineering',
+          en: 'AI-Native Engineering',
+        },
+      },
+      {
+        title: {
+          'pt-BR': 'Deezer API — Documentação',
+          en: 'Deezer API — Documentation',
+        },
+        url: 'https://developers.deezer.com/api',
+        type: 'documentacao',
+        source: { 'pt-BR': 'Deezer', en: 'Deezer' },
       },
     ],
   },
@@ -156,6 +244,39 @@ export const CHAPTERS: Chapter[] = [
         },
       },
     ],
+    references: [
+      {
+        title: {
+          'pt-BR': 'A evolução do desenvolvimento com IA',
+          en: 'How AI development matured',
+        },
+        url: (lang: Lang) =>
+          getSessionHref(lang, lang === 'pt-BR' ? 'maturidade' : 'maturity'),
+        type: 'artigo',
+        source: {
+          'pt-BR': 'AI-Native Engineering',
+          en: 'AI-Native Engineering',
+        },
+      },
+      {
+        title: {
+          'pt-BR': 'Cross-Origin Resource Sharing (CORS)',
+          en: 'Cross-Origin Resource Sharing (CORS)',
+        },
+        url: 'https://developer.mozilla.org/docs/Web/HTTP/CORS',
+        type: 'documentacao',
+        source: { 'pt-BR': 'MDN Web Docs', en: 'MDN Web Docs' },
+      },
+      {
+        title: {
+          'pt-BR': 'Deezer API — Documentação',
+          en: 'Deezer API — Documentation',
+        },
+        url: 'https://developers.deezer.com/api',
+        type: 'documentacao',
+        source: { 'pt-BR': 'Deezer', en: 'Deezer' },
+      },
+    ],
   },
   {
     number: 4,
@@ -200,6 +321,42 @@ export const CHAPTERS: Chapter[] = [
         },
       },
     ],
+    references: [
+      {
+        title: {
+          'pt-BR': 'Como operar de forma AI-native na prática',
+          en: 'How to operate AI-native in practice',
+        },
+        url: (lang: Lang) =>
+          getSessionHref(
+            lang,
+            lang === 'pt-BR' ? 'como-operar' : 'how-to-operate',
+          ),
+        type: 'artigo',
+        source: {
+          'pt-BR': 'AI-Native Engineering',
+          en: 'AI-Native Engineering',
+        },
+      },
+      {
+        title: {
+          'pt-BR': 'GitHub Pages — Documentação',
+          en: 'GitHub Pages — Documentation',
+        },
+        url: 'https://docs.github.com/pages',
+        type: 'documentacao',
+        source: { 'pt-BR': 'GitHub', en: 'GitHub' },
+      },
+      {
+        title: {
+          'pt-BR': 'GitHub Actions — Documentação',
+          en: 'GitHub Actions — Documentation',
+        },
+        url: 'https://docs.github.com/actions',
+        type: 'documentacao',
+        source: { 'pt-BR': 'GitHub', en: 'GitHub' },
+      },
+    ],
   },
   {
     number: 5,
@@ -222,6 +379,39 @@ export const CHAPTERS: Chapter[] = [
       en: 'troubleshooting',
     },
     checkpoints: [],
+    references: [
+      {
+        title: {
+          'pt-BR': 'Cross-Origin Resource Sharing (CORS)',
+          en: 'Cross-Origin Resource Sharing (CORS)',
+        },
+        url: 'https://developer.mozilla.org/docs/Web/HTTP/CORS',
+        type: 'documentacao',
+        source: { 'pt-BR': 'MDN Web Docs', en: 'MDN Web Docs' },
+      },
+      {
+        title: {
+          'pt-BR': 'LLMs e os modelos mais usados',
+          en: 'LLMs and the models people actually use',
+        },
+        url: (lang: Lang) =>
+          getSessionHref(lang, lang === 'pt-BR' ? 'modelos' : 'models'),
+        type: 'artigo',
+        source: {
+          'pt-BR': 'AI-Native Engineering',
+          en: 'AI-Native Engineering',
+        },
+      },
+      {
+        title: {
+          'pt-BR': 'GitHub Actions — Documentação',
+          en: 'GitHub Actions — Documentation',
+        },
+        url: 'https://docs.github.com/actions',
+        type: 'documentacao',
+        source: { 'pt-BR': 'GitHub', en: 'GitHub' },
+      },
+    ],
     isReference: true,
   },
 ];
@@ -238,4 +428,27 @@ export function getChapterHref(chapterNumber: number, lang: Lang): string {
 
 export function getChapterByNumber(num: number): Chapter | undefined {
   return CHAPTERS.find((ch) => ch.number === num);
+}
+
+export interface ResolvedReference {
+  id: string;
+  title: string;
+  url: string;
+  type: 'artigo' | 'documentacao' | 'talk' | 'video' | 'pesquisa';
+  source: string;
+  category: string;
+}
+
+export function resolveChapterReferences(
+  chapter: Chapter,
+  lang: Lang,
+): ResolvedReference[] {
+  return chapter.references.map((ref, i) => ({
+    id: `${chapter.id}-ref-${i}`,
+    title: ref.title[lang],
+    url: typeof ref.url === 'string' ? ref.url : ref.url(lang),
+    type: ref.type,
+    source: ref.source[lang],
+    category: chapter.id,
+  }));
 }
