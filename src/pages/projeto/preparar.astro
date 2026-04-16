@@ -60,33 +60,61 @@ const lang = 'pt-BR';
 
   ---
 
-  <h2 id="harness">Configurar o harness</h2>
+  <h2 id="harness">Harness engineering</h2>
 
   <p>
-    O harness é o arquivo que diz ao agente o que é o projeto e quais são as
-    regras. Sem isso, o agente adivinha. E adivinhar gera retrabalho.
+    Harness engineering é preparar o ambiente onde o agente trabalha: contexto,
+    plano, regras e critérios de qualidade. Não é burocracia. É o que impede a
+    IA de viajar.
+  </p>
+
+  <p>
+    Antes de pedir código, peça os arquivos que deixam o projeto legível para
+    humanos e para a IA.
   </p>
 
   <div class="prompt-example prompt-good">
-    <strong>Peça ao agente:</strong>
+    <strong>1. README.md</strong>
     <p>
-      "Crie um arquivo CLAUDE.md na raiz do projeto com: visão geral (site
+      "Crie um README.md para este projeto. Inclua: objetivo do site, público,
+      funcionalidades esperadas, como rodar localmente, como testar, como
+      publicar no GitHub Pages e limitações conhecidas. Use linguagem simples,
+      como se fosse para uma pessoa entrando no projeto agora."
+    </p>
+  </div>
+
+  <div class="prompt-example prompt-good">
+    <strong>2. PLAN.md</strong>
+    <p>
+      "Crie um PLAN.md inicial para implementar o projeto em fases pequenas.
+      Cada fase precisa ter objetivo, critérios de aceite testáveis, validação
+      manual esperada e decisões abertas. Inclua riscos conhecidos, como CORS na
+      API do Deezer. Não implemente nada ainda."
+    </p>
+  </div>
+
+  <div class="prompt-example prompt-good">
+    <strong>3. AGENTS.md</strong>
+    <p>
+      "Crie um arquivo AGENTS.md na raiz do projeto com: visão geral (site
       estático que consome API do Deezer, publicado no GitHub Pages), seções
-      para comandos de desenvolvimento, decisões técnicas (stack ainda não
-      definida — simplicidade máxima), e regras de qualidade."
+      para comandos do projeto, padrões de qualidade, como atualizar o PLAN.md
+      quando decisões mudarem e regras de operação para o agente. Se eu estiver
+      usando Claude Code, crie CLAUDE.md para esse mesmo papel."
     </p>
   </div>
 
   <p>
-    Leia o arquivo que o agente gerou. Ele precisa fazer sentido pra você — se
-    algo está confuso ou errado, corrija agora.
+    Leia os três arquivos. Se tiver comando que não existe, escopo inventado,
+    promessa vaga ou decisão técnica que você não entende, peça ajuste. Um bom
+    arquivo ajuda você a cobrar o agente depois.
   </p>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      O arquivo de contexto (CLAUDE.md ou AGENTS.md) existe na raiz e descreve o
-      projeto com clareza.
+      README.md, PLAN.md inicial e AGENTS.md (ou CLAUDE.md no Claude Code)
+      existem, foram lidos e fazem sentido pra você.
     </p>
   </div>
 </ChapterLayout>

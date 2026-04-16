@@ -39,8 +39,8 @@ export const CHAPTERS: Chapter[] = [
     },
     description: {
       'pt-BR':
-        'Instalar a GitHub CLI, criar o repositório e configurar o harness do projeto.',
-      en: 'Install the GitHub CLI, create the repository, and set up the project harness.',
+        'Instalar a GitHub CLI, criar o repositório e preparar README, PLAN.md e regras do agente.',
+      en: 'Install the GitHub CLI, create the repository, and prepare README, PLAN.md, and agent rules.',
     },
     slug: {
       'pt-BR': 'preparar',
@@ -64,8 +64,8 @@ export const CHAPTERS: Chapter[] = [
       {
         id: 'harness-file',
         text: {
-          'pt-BR': 'Arquivo de contexto (CLAUDE.md) criado e revisado',
-          en: 'Context file (CLAUDE.md) created and reviewed',
+          'pt-BR': 'README, PLAN.md e regras do agente criados e revisados',
+          en: 'README, PLAN.md, and agent rules created and reviewed',
         },
       },
     ],

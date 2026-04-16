@@ -27,21 +27,21 @@ const lang = 'en';
 
   ---
 
-  <h2 id="ask-for-plan">Ask the agent for a plan</h2>
+  <h2 id="ask-for-plan">Improve PLAN.md</h2>
 
   <div class="prompt-example prompt-good">
     <strong>Prompt:</strong>
     <p>
-      "Based on CLAUDE.md, create an implementation plan with clear phases and
-      acceptance criteria. The site needs to search artists, show discographies,
-      and display album details via the Deezer API, publishable on GitHub Pages.
-      Suggest the simplest stack that works."
+      "Review the initial PLAN.md based on AGENTS.md (or CLAUDE.md if I'm using
+      Claude Code). Detail the implementation phases, keep each phase small and
+      testable, add clear acceptance criteria, and suggest the simplest stack
+      that works."
     </p>
   </div>
 
   <p>
-    The agent will propose phases, a stack, and an execution plan. Don't accept
-    automatically.
+    The agent will improve the draft, propose a stack, and organize execution.
+    Don't accept automatically.
   </p>
 
   ---
@@ -70,8 +70,8 @@ const lang = 'en';
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      The implementation plan is saved in the repository (as PLAN.md or
-      similar). You've read it and agree with each phase.
+      PLAN.md is detailed, saved in the repository, and reviewed by you. Each
+      phase has acceptance criteria you can actually test.
     </p>
   </div>
 </ChapterLayout>

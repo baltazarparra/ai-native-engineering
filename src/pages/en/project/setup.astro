@@ -60,33 +60,61 @@ const lang = 'en';
 
   ---
 
-  <h2 id="harness">Set up the harness</h2>
+  <h2 id="harness">Harness engineering</h2>
 
   <p>
-    The harness is the file that tells the agent what the project is and what
-    the rules are. Without it, the agent guesses. And guessing creates rework.
+    Harness engineering means preparing the environment where the agent works:
+    context, plan, rules, and quality criteria. It is not busywork. It keeps the
+    AI from making things up.
+  </p>
+
+  <p>
+    Before asking for code, ask for the files that make the project readable for
+    humans and for AI.
   </p>
 
   <div class="prompt-example prompt-good">
-    <strong>Ask the agent:</strong>
+    <strong>1. README.md</strong>
     <p>
-      "Create a CLAUDE.md file at the project root with: overview (static site
+      "Create a README.md for this project. Include: site goal, audience,
+      expected features, how to run locally, how to test, how to publish on
+      GitHub Pages, and known limitations. Use simple language, as if someone
+      were joining the project now."
+    </p>
+  </div>
+
+  <div class="prompt-example prompt-good">
+    <strong>2. PLAN.md</strong>
+    <p>
+      "Create an initial PLAN.md to implement the project in small phases. Each
+      phase needs a goal, testable acceptance criteria, expected manual
+      validation, and open decisions. Include known risks, such as CORS in the
+      Deezer API. Do not implement anything yet."
+    </p>
+  </div>
+
+  <div class="prompt-example prompt-good">
+    <strong>3. AGENTS.md</strong>
+    <p>
+      "Create an AGENTS.md file at the project root with: overview (static site
       consuming the Deezer API, published on GitHub Pages), sections for
-      development commands, technical decisions (stack not yet decided — maximum
-      simplicity), and quality rules."
+      project commands, quality standards, how to update PLAN.md when decisions
+      change, and operating rules for the agent. If I'm using Claude Code,
+      create CLAUDE.md for that same role."
     </p>
   </div>
 
   <p>
-    Read the file the agent generated. It needs to make sense to you — if
-    something is confusing or wrong, fix it now.
+    Read all three files. If there is a command that does not exist, invented
+    scope, vague promises, or a technical decision you do not understand, ask
+    for an adjustment. A good file helps you hold the agent accountable later.
   </p>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      The context file (CLAUDE.md or AGENTS.md) exists at the root and clearly
-      describes the project.
+      README.md, initial PLAN.md, and AGENTS.md (or CLAUDE.md in Claude Code)
+      exist, have been read, and make sense to you.
     </p>
   </div>
 </ChapterLayout>

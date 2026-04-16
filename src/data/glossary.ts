@@ -207,7 +207,7 @@ export const glossary: GlossaryTerm[] = [
     technicalDefinition:
       'Camada de orquestração que define como um agente de código opera. Não é um padrão universal; o termo é usado aqui pra descrever essa camada.',
     example:
-      'Um harness pode incluir: um CLAUDE.md com regras do projeto, um pre-commit hook que roda testes, um system prompt que define tom e padrões, e acesso a ferramentas específicas via MCP.',
+      'Um harness pode incluir: um AGENTS.md com regras do projeto (CLAUDE.md no Claude Code), um pre-commit hook que roda testes, um system prompt que define tom e padrões, e acesso a ferramentas específicas via MCP.',
     commonMistake:
       'Tratar harness como algo que você "instala". É uma prática, não um produto. Você constrói o harness do seu time ao longo do tempo, ajustando conforme o projeto evolui.',
     relatedTerms: ['agente-de-codigo', 'mcp', 'system-prompt'],
@@ -404,7 +404,7 @@ export const glossaryEn: GlossaryTerm[] = [
     technicalDefinition:
       'The orchestration layer defining how a coding agent operates. Not a universal standard; the term describes this conceptual layer.',
     example:
-      'A harness can include `CLAUDE.md`, pre-commit checks, MCP tools, and project-specific instructions.',
+      'A harness can include `AGENTS.md` (`CLAUDE.md` in Claude Code), pre-commit checks, MCP tools, and project-specific instructions.',
     commonMistake:
       "Treating harness as something you install. It's a practice you build around the work.",
     relatedTerms: ['coding agent', 'MCP', 'system prompt'],

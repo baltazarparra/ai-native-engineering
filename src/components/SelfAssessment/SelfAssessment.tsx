@@ -43,7 +43,7 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
       ],
     },
     {
-      text: 'Seu projeto tem regras ou instruções pra IA (rules files, CLAUDE.md)?',
+      text: 'Seu projeto tem regras ou instruções pra IA (rules files, AGENTS.md, CLAUDE.md no Claude Code)?',
       options: [
         { label: 'Não sei o que é isso', points: 0 },
         { label: 'Já ouvi falar mas não uso', points: 1 },
@@ -102,7 +102,7 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
       ],
     },
     {
-      text: 'Does your project have AI rules or instructions (rules files, CLAUDE.md)?',
+      text: 'Does your project have AI rules or instructions (rules files, AGENTS.md, CLAUDE.md in Claude Code)?',
       options: [
         { label: "I don't know what that is", points: 0 },
         { label: "I've heard of it but don't use it", points: 1 },
