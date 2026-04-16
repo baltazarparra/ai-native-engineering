@@ -23,11 +23,6 @@
   font-weight: var(--weight-medium);
 }
 
-.links {
-  display: inline-flex;
-  align-items: center;
-}
-
 .copy {
   font-size: var(--text-xs);
 }

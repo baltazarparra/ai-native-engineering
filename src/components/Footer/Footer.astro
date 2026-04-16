@@ -1,8 +1,7 @@
 ---
-import Button from '../Button/Button.astro';
 import styles from './Footer.module.css';
 import type { Lang } from '../../lib/i18n';
-import { repositoryUrl, ui } from '../../lib/i18n';
+import { ui } from '../../lib/i18n';
 
 interface Props {
   lang?: Lang;
@@ -14,18 +13,6 @@ const { lang = 'pt-BR' } = Astro.props;
 <footer class={styles.footer}>
   <div class={styles.inner}>
     <span class={styles.tagline}>{ui[lang].footer.tagline}</span>
-    <span class={styles.links}>
-      <Button
-        variant="secondary"
-        size="sm"
-        href={repositoryUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={ui[lang].repoCta.ariaLabel}
-      >
-        {ui[lang].repoCta.label}
-      </Button>
-    </span>
     <span class={styles.copy}>2026 AI-Native Engineering</span>
   </div>
 </footer>
