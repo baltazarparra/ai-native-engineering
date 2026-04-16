@@ -36,11 +36,11 @@ Você não precisa entender matemática de redes neurais pra trabalhar com LLMs.
 
 ### Treinamento
 
-Modelos são treinados em volumes enormes de texto: livros, artigos, código, páginas web. O modelo aprende padrões estatísticos — ele calcula qual token tem mais probabilidade de vir depois do anterior. Isso explica por que modelos geram texto que parece correto mas às vezes é plausível e errado: eles otimizam pra "provável", não pra "verdadeiro".
+Modelos são treinados em volumes enormes de texto: livros, artigos, código, páginas web. O modelo aprende padrões estatísticos e calcula qual token tem mais probabilidade de vir depois do anterior. Isso explica por que modelos geram texto que parece correto mas às vezes é plausível e errado: eles otimizam pra "provável", não pra "verdadeiro".
 
 ### Tokens e janela de contexto
 
-O modelo divide texto em tokens e processa um de cada vez. Cada modelo tem um limite de quantos tokens consegue processar de uma vez — a janela de contexto. Em 2026, janelas vão de ~128K tokens até ~1M+, mas um projeto médio de software pode ter milhões de tokens. Você ainda precisa escolher o que vai no contexto.
+O modelo divide texto em tokens e processa um de cada vez. Cada modelo tem um limite de quantos tokens consegue processar de uma vez: a janela de contexto. Em 2026, janelas vão de ~128K tokens até ~1M+, mas um projeto médio de software pode ter milhões de tokens. Você ainda precisa escolher o que vai no contexto.
 
 ### Inferência e custo
 
@@ -48,7 +48,7 @@ Cada mensagem enviada e resposta recebida é uma inferência, e cada inferência
 
 ### Limitações reais
 
-Modelos não sabem o que não sabem — geram respostas mesmo sem informação suficiente. Isso se chama alucinação. Modelos também têm corte de conhecimento: se você pergunta sobre algo lançado ontem, o modelo pode inventar uma resposta baseada em padrões, não em fatos.
+Modelos não sabem o que não sabem e geram respostas mesmo sem informação suficiente. Isso se chama alucinação. Modelos também têm corte de conhecimento: se você pergunta sobre algo lançado ontem, o modelo pode inventar uma resposta baseada em padrões, não em fatos.
 
 ## Perfis por tarefa, não ranking
 
@@ -126,7 +126,7 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 
 ## Por que isso importa
 
-Entender modelos não é sobre virar especialista em IA. É sobre tomar decisões informadas — saber qual modelo está por trás da ferramenta, quanto custa, e onde ele falha. Entender modelos é a diferença entre usar IA no escuro e usar IA com intenção.
+Entender modelos não é sobre virar especialista em IA. É sobre tomar decisões informadas: saber qual modelo está por trás da ferramenta, quanto custa, e onde ele falha. Entender modelos é a diferença entre usar IA no escuro e usar IA com intenção.
 
 ## Exemplo aplicado
 
@@ -136,7 +136,7 @@ Mesmo projeto, três tarefas diferentes, três modelos diferentes:
 
 **Tarefa 2: Planejar a implementação**. O tech lead usa Claude Opus pra analisar a arquitetura atual e propor um plano que considera todos os módulos afetados. Mais lento e caro, mas o raciocínio profundo justifica.
 
-**Tarefa 3: Implementar o código**. O dev usa Claude Sonnet via Claude Code. Rápido pra iteração e forte em código — não precisa do Opus pra cada função individual.
+**Tarefa 3: Implementar o código**. O dev usa Claude Sonnet via Claude Code. É rápido pra iteração e forte em código, sem precisar do Opus pra cada função individual.
 
 Três modelos diferentes. Nenhum é "o melhor". Cada um é o certo pra aquela tarefa.
 
@@ -154,7 +154,7 @@ Três modelos diferentes. Nenhum é "o melhor". Cada um é o certo pra aquela ta
 
 ## O que levar daqui
 
-- Separe produto de modelo — saiba qual modelo está por trás da ferramenta que você usa
-- Escolha o modelo pela tarefa, não pelo ranking — modelos rápidos resolvem a maioria do dia a dia
+- Separe produto de modelo. Saiba qual modelo está por trás da ferramenta que você usa
+- Escolha o modelo pela tarefa, não pelo ranking. Modelos rápidos resolvem a maioria do dia a dia
 - Leve custo e janela de contexto em conta antes de mandar tudo pro modelo mais caro
-- Nunca confie cegamente — todo modelo alucina, revisão humana não é opcional
+- Nunca confie cegamente. Todo modelo alucina, revisão humana não é opcional

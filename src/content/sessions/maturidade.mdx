@@ -24,7 +24,7 @@ import MaturityStepper from '../../components/MaturityStepper/MaturityStepper.ts
 
 ## De copiar resposta até orquestrar agentes
 
-A maioria dos profissionais que trabalha com IA em desenvolvimento está em algum lugar entre "copiar resposta do ChatGPT" e "orquestrar agentes com validação automática". Observando o que os times realmente fazem no dia a dia, dá pra identificar cinco fases distintas. Elas não são níveis de senioridade nem uma escala linear — um dev sênior pode estar na Fase 2 pra tarefas simples e na Fase 5 pra projetos complexos. Um PM pode operar na Fase 1 pra sempre e ser efetivo.
+A maioria dos profissionais que trabalha com IA em desenvolvimento está em algum lugar entre "copiar resposta do ChatGPT" e "orquestrar agentes com validação automática". Observando o que os times realmente fazem no dia a dia, dá pra identificar cinco fases distintas. Elas não são níveis de senioridade nem uma escala linear. Um dev sênior pode estar na Fase 2 pra tarefas simples e na Fase 5 pra projetos complexos. Um PM pode operar na Fase 1 pra sempre e ser efetivo.
 
 O valor de entender essas fases não é saber "onde você está" como nota. É saber o que cada fase oferece, onde ela quebra, e quando faz sentido avançar.
 
@@ -42,7 +42,7 @@ O mapa de fases ajuda a evitar os dois: mostra o que cada fase resolve e onde n�
 
 ### O que é
 
-Você abre um chat de IA (ChatGPT, Claude, Gemini), faz perguntas, copia a resposta e cola no seu trabalho. É o ponto de entrada natural — não exige nenhuma mudança no workflow. A IA funciona como um Google melhorado: você pergunta, ela responde, você decide o que fazer.
+Você abre um chat de IA (ChatGPT, Claude, Gemini), faz perguntas, copia a resposta e cola no seu trabalho. É o ponto de entrada natural, não exige nenhuma mudança no workflow. A IA funciona como um Google melhorado: você pergunta, ela responde, você decide o que fazer.
 
 ### Onde funciona
 
@@ -63,7 +63,7 @@ A próxima fase integra IA no editor, eliminando o copy-paste e dando contexto d
 
 ### O que é
 
-Você instala uma extensão de IA no editor (GitHub Copilot, Cursor, Windsurf) e ela sugere código enquanto você digita. Surgiu porque copy-paste entre chat e editor é lento e perde contexto — com acesso ao arquivo aberto, a IA sugere código que já respeita imports, tipos e padrões locais.
+Você instala uma extensão de IA no editor (GitHub Copilot, Cursor, Windsurf) e ela sugere código enquanto você digita. Surgiu porque copy-paste entre chat e editor é lento e perde contexto. Com acesso ao arquivo aberto, a IA sugere código que já respeita imports, tipos e padrões locais.
 
 ### Onde funciona
 
@@ -84,7 +84,7 @@ A próxima fase remove o dev do controle granular de cada linha e coloca a IA pr
 
 ### O que é
 
-Você descreve o que quer em texto natural e a IA gera blocos inteiros de código. O termo veio de Andrej Karpathy descrevendo o ato de programar guiado pela "vibe", delegando a escrita pro modelo. Autocomplete acelera a digitação, mas você ainda precisa saber o que digitar — vibe coding é pra quando você sabe o que quer mas não precisa escrever cada detalhe.
+Você descreve o que quer em texto natural e a IA gera blocos inteiros de código. O termo veio de Andrej Karpathy descrevendo o ato de programar guiado pela "vibe", delegando a escrita pro modelo. Autocomplete acelera a digitação, mas você ainda precisa saber o que digitar. Vibe coding é pra quando você sabe o que quer mas não precisa escrever cada detalhe.
 
 ### Onde funciona
 
@@ -95,7 +95,7 @@ Você descreve o que quer em texto natural e a IA gera blocos inteiros de códig
 ### Onde quebra
 
 - **Sem spec, sem controle**. Se você só descreve a "vibe" e aceita o resultado, não tem como garantir que o código faz o que deveria.
-- **Dívida técnica instantânea**. Código gerado tende a ser funcional mas não sustentável — sem tipos, sem testes, sem tratamento de erro.
+- **Dívida técnica instantânea**. Código gerado tende a ser funcional mas não sustentável, sem tipos, sem testes, sem tratamento de erro.
 
 ### O que a próxima fase resolve
 
@@ -105,7 +105,7 @@ A próxima fase substitui a descrição vaga por uma especificação clara, tran
 
 ### O que é
 
-Você escreve uma especificação antes de pedir qualquer coisa pra IA — endpoints, tipos, restrições, comportamentos esperados, casos de borda. O agente implementa contra a spec e o output é validado contra ela, não contra a "vibe". Surgiu porque vibe coding não escala: projetos com complexidade real precisam de algo mais estruturado que "faz um serviço de auth". O insight é que specs sempre foram importantes, mas agora um agente pode executá-las diretamente.
+Você escreve uma especificação antes de pedir qualquer coisa pra IA: endpoints, tipos, restrições, comportamentos esperados, casos de borda. O agente implementa contra a spec e o output é validado contra ela, não contra a "vibe". Surgiu porque vibe coding não escala: projetos com complexidade real precisam de algo mais estruturado que "faz um serviço de auth". O insight é que specs sempre foram importantes, mas agora um agente pode executá-las diretamente.
 
 ### Onde funciona
 
@@ -126,7 +126,7 @@ A próxima fase automatiza a validação e orquestração, tirando do humano a n
 
 ### O que é
 
-Você constrói um sistema de trabalho completo pro agente: instruções persistentes (system prompt, rules files), ferramentas configuradas (MCP servers), validação automática e critérios de aceite claros. O agente opera dentro desse sistema, e o sistema garante qualidade sem supervisão constante. Na Fase 4 você valida manualmente; aqui a validação é automática. Surgiu porque agentes geram output mais rápido do que humanos conseguem revisar — sem automação, a revisão vira o gargalo.
+Você constrói um sistema de trabalho completo pro agente: instruções persistentes (system prompt, rules files), ferramentas configuradas (MCP servers), validação automática e critérios de aceite claros. O agente opera dentro desse sistema, e o sistema garante qualidade sem supervisão constante. Na Fase 4 você valida manualmente; aqui a validação é automática. Surgiu porque agentes geram output mais rápido do que humanos conseguem revisar. Sem automação, a revisão vira o gargalo.
 
 ### Onde funciona
 
@@ -175,7 +175,7 @@ O ponto é: a fase certa depende do contexto, não da sua ambição.
 
 ## O que levar daqui
 
-- Identifique em qual fase você opera hoje pra cada tipo de tarefa — provavelmente não é a mesma pra tudo
+- Identifique em qual fase você opera hoje pra cada tipo de tarefa. Provavelmente não é a mesma pra tudo
 - Na próxima tarefa, pergunte "qual fase faz sentido aqui?" em vez de usar a mesma abordagem de sempre
-- Validação é obrigatória em todas as fases — o que muda é se você valida na mão ou o sistema valida pra você
+- Validação é obrigatória em todas as fases. O que muda é se você valida na mão ou o sistema valida pra você
 - Maturidade real é saber quando voltar pra uma fase mais simples

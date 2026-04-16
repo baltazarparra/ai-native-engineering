@@ -1,4 +1,4 @@
-# PLAN.md — AI-Native Engineer Learning Site
+# PLAN.md: AI-Native Engineer Learning Site
 
 ## 1. Project summary
 
@@ -227,7 +227,7 @@ Consulta → Autocomplete → Vibe Coding → SDD → Harness Engineering
 
 ## 8. Sessões do produto
 
-## Sessão 0 — O que é um AI-Native Engineer
+## Sessão 0: O que é um AI-Native Engineer
 
 **Slug:** `/ai-native-engineer/`
 
@@ -262,7 +262,7 @@ Responder:
 
 ---
 
-## Sessão 1 — Novas terminologias populares
+## Sessão 1: Novas terminologias populares
 
 **Slug:** `/glossario/`
 
@@ -315,7 +315,7 @@ Dar alfabetização mínima para qualquer pessoa conseguir continuar o site sem 
 
 ---
 
-## Sessão 2 — Ferramentas: IDEs vs CLI
+## Sessão 2: Ferramentas: IDEs vs CLI
 
 **Slug:** `/ferramentas/`
 
@@ -378,7 +378,7 @@ Essa página deve deixar claro:
 
 ---
 
-## Sessão 3 — LLMs e os modelos mais usados nesse contexto
+## Sessão 3: LLMs e os modelos mais usados nesse contexto
 
 **Slug:** `/modelos/`
 
@@ -426,7 +426,7 @@ O objetivo é ensinar leitura crítica, não culto a fornecedor.
 
 ---
 
-## Sessão 4 — A evolução do desenvolvimento com IA
+## Sessão 4: A evolução do desenvolvimento com IA
 
 **Slug:** `/maturidade/`
 
@@ -438,7 +438,7 @@ Explicar a progressão histórica e prática do uso de IA no desenvolvimento.
 
 ### Fases obrigatórias
 
-#### Fase 1 — IA para consulta
+#### Fase 1: IA para consulta
 
 Uso:
 
@@ -460,7 +460,7 @@ Problemas:
 - falsa sensação de entendimento;
 - dependência sem construção de critério.
 
-#### Fase 2 — IA para autocomplete e pair assistance
+#### Fase 2: IA para autocomplete e pair assistance
 
 Uso:
 
@@ -481,7 +481,7 @@ Problemas:
 - sugestões localmente boas e globalmente ruins;
 - acelera produção de dívida se o time não revisa bem.
 
-#### Fase 3 — Vibe coding
+#### Fase 3: Vibe coding
 
 Uso:
 
@@ -503,7 +503,7 @@ Problemas:
 - facilidade para gerar produto que parece pronto mas não está;
 - debugging e manutenção podem custar caro depois.
 
-#### Fase 4 — SDD como evolução do vibe coding
+#### Fase 4: SDD como evolução do vibe coding
 
 Usaremos SDD aqui como **Spec-Driven Development**.
 
@@ -530,7 +530,7 @@ Problemas:
 - mais fricção no começo;
 - especificação ruim continua gerando resultado ruim.
 
-#### Fase 5 — Harness Engineering
+#### Fase 5: Harness Engineering
 
 Aqui vamos usar “Harness Engineering” como a camada em que o time para de pensar só em prompt e começa a pensar no **sistema de trabalho do agente**.
 
@@ -584,7 +584,7 @@ Problemas:
 
 ---
 
-## Sessão 5 — Como operar de forma AI-native na prática
+## Sessão 5: Como operar de forma AI-native na prática
 
 **Slug:** `/como-operar/`
 
@@ -689,7 +689,7 @@ Cada sessão termina com uma área fixa chamada:
 
 ---
 
-## 11. Direção visual — Neo Brutalism
+## 11. Direção visual: Neo Brutalism
 
 ## 11.1 Princípio central
 
@@ -1106,7 +1106,7 @@ No desktop:
 
 ## 19. Plano de implementação
 
-## Fase 0 — Discovery e base conceitual
+## Fase 0: Discovery e base conceitual
 
 ### Entregáveis
 
@@ -1125,7 +1125,7 @@ No desktop:
 
 ---
 
-## Fase 1 — Fundação do projeto
+## Fase 1: Fundação do projeto
 
 ### Entregáveis
 
@@ -1145,7 +1145,7 @@ No desktop:
 
 ---
 
-## Fase 2 — Sistema visual Neo Brutalism
+## Fase 2: Sistema visual Neo Brutalism
 
 ### Entregáveis
 
@@ -1166,7 +1166,7 @@ No desktop:
 
 ---
 
-## Fase 3 — Home page
+## Fase 3: Home page
 
 ### Entregáveis
 
@@ -1184,7 +1184,7 @@ No desktop:
 
 ---
 
-## Fase 4 — Templates de sessão
+## Fase 4: Templates de sessão
 
 ### Entregáveis
 
@@ -1200,7 +1200,7 @@ No desktop:
 
 ---
 
-## Fase 5 — Conteúdo núcleo
+## Fase 5: Conteúdo núcleo
 
 ### Entregáveis
 
@@ -1219,7 +1219,7 @@ No desktop:
 
 ---
 
-## Fase 6 — Interatividade
+## Fase 6: Interatividade
 
 ### Entregáveis
 
@@ -1237,7 +1237,7 @@ No desktop:
 
 ---
 
-## Fase 7 — Polimento final
+## Fase 7: Polimento final
 
 ### Entregáveis
 
@@ -1366,54 +1366,54 @@ Ele deve funcionar como:
 
 ### Mercado e AI-native engineering
 
-- Addy Osmani — The AI-Native Software Engineer  
+- Addy Osmani, The AI-Native Software Engineer
   https://addyo.substack.com/p/the-ai-native-software-engineer
-- Stack Overflow Developer Survey 2025 — AI  
+- Stack Overflow Developer Survey 2025, AI
   https://survey.stackoverflow.co/2025/ai
-- Google DORA 2025 summary  
+- Google DORA 2025 summary
   https://blog.google/innovation-and-ai/technology/developers-tools/dora-report-2025/
-- Anthropic — AI’s impact on software development  
+- Anthropic, AI’s impact on software development
   https://www.anthropic.com/news/impact-software-development
-- Anthropic Economic Index 2026  
+- Anthropic Economic Index 2026
   https://www.anthropic.com/research/economic-index-march-2026-report
-- GitHub Octoverse 2025  
+- GitHub Octoverse 2025
   https://octoverse.github.com/
 
 ### Tooling references
 
-- Cursor — Best practices for coding with agents  
+- Cursor, Best practices for coding with agents
   https://cursor.com/blog/agent-best-practices
-- Cursor docs  
+- Cursor docs
   https://cursor.com/docs
-- Claude Code overview  
+- Claude Code overview
   https://code.claude.com/docs/en/overview
-- Codex CLI  
+- Codex CLI
   https://developers.openai.com/codex/cli
-- OpenCode docs  
+- OpenCode docs
   https://opencode.ai/docs/
-- Google Antigravity Codelab  
+- Google Antigravity Codelab
   https://codelabs.developers.google.com/getting-started-google-antigravity
-- GitHub Copilot  
+- GitHub Copilot
   https://github.com/features/copilot
 
 ### Design / Neo Brutalism
 
-- Nielsen Norman Group — Neobrutalism: Definition and Best Practices  
+- Nielsen Norman Group, Neobrutalism: Definition and Best Practices
   https://www.nngroup.com/articles/neobrutalism/
-- Bejamas — Neubrutalism UI trend  
+- Bejamas, Neubrutalism UI trend
   https://bejamas.com/blog/neubrutalism-web-design-trend
 
 ### Stack / deployment
 
-- Astro — Deploy to GitHub Pages  
+- Astro, Deploy to GitHub Pages
   https://docs.astro.build/en/guides/deploy/github/
-- Astro — Content Collections  
+- Astro, Content Collections
   https://docs.astro.build/en/guides/content-collections/
-- Astro — MDX integration  
+- Astro, MDX integration
   https://docs.astro.build/en/guides/integrations-guide/mdx/
-- Vite — Static deploy guide  
+- Vite, Static deploy guide
   https://vite.dev/guide/static-deploy
-- Motion for React  
+- Motion for React
   https://motion.dev/docs/react
 
 ---

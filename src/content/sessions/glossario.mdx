@@ -54,7 +54,7 @@ O vocabulário de IA cresceu rápido, mas o problema não é a quantidade de ter
 
 **Exemplo**: Você pergunta "como funciona async/await em TypeScript?" e recebe uma explicação. Essa geração é uma inferência.
 
-**Erro comum**: Achar que inferência é instantânea e gratuita. Cada uma custa tempo e dinheiro — modelos maiores custam mais.
+**Erro comum**: Achar que inferência é instantânea e gratuita. Cada uma custa tempo e dinheiro. Modelos maiores custam mais.
 
 #### Token
 
@@ -62,7 +62,7 @@ O vocabulário de IA cresceu rápido, mas o problema não é a quantidade de ter
 
 **Técnico**: Unidade atômica de processamento de um LLM. O texto é dividido em tokens pelo tokenizer. Em média, 1 token ≈ 4 caracteres em inglês ou ~3 em português.
 
-**Exemplo**: Um arquivo de 500 linhas de código pode ter 3000–5000 tokens. Isso importa porque modelos têm limite de tokens.
+**Exemplo**: Um arquivo de 500 linhas de código pode ter 3000 a 5000 tokens. Isso importa porque modelos têm limite de tokens.
 
 **Erro comum**: Ignorar a contagem de tokens. Se você manda um arquivo gigante e o modelo "esquece" o começo, provavelmente estourou a janela de contexto.
 
@@ -80,7 +80,7 @@ O vocabulário de IA cresceu rápido, mas o problema não é a quantidade de ter
 
 #### Prompt
 
-**Simples**: O texto que você manda pro modelo — pergunta, pedido, instrução, ou tudo junto.
+**Simples**: O texto que você manda pro modelo: pergunta, pedido, instrução, ou tudo junto.
 
 **Técnico**: Entrada textual fornecida ao modelo para gerar uma completion. Pode incluir instruções, exemplos (few-shot), restrições e formato esperado.
 
@@ -90,7 +90,7 @@ O vocabulário de IA cresceu rápido, mas o problema não é a quantidade de ter
 
 #### System prompt
 
-**Simples**: Instruções iniciais que definem como o modelo deve se comportar — um briefing antes da conversa.
+**Simples**: Instruções iniciais que definem como o modelo deve se comportar, como um briefing antes da conversa.
 
 **Técnico**: Mensagem com role "system" que define comportamento, tom, restrições e capacidades do assistente. Tem prioridade sobre mensagens do usuário.
 
@@ -188,9 +188,9 @@ Vocabulário alinhado parece detalhe, mas é o que faz uma reunião sobre IA ren
 
 Quando um PM pede "usa o modelo mais rápido", pode estar querendo dizer "mais barato", "menor latência" ou "o que eu vi no Twitter". Sem vocabulário alinhado, cada um interpreta do seu jeito e o resultado é retrabalho.
 
-- **Times multidisciplinares tomam decisões sobre IA juntos** — dev, QA, PM e designer precisam de vocabulário compartilhado.
-- **Ferramentas mudam rápido** — o que era autocomplete virou agente; vocabulário desatualizado gera decisões desatualizadas.
-- **Fornecedores usam jargão de propósito** — sem entender os termos, você não avalia o que estão vendendo.
+- **Times multidisciplinares tomam decisões sobre IA juntos**. Dev, QA, PM e designer precisam de vocabulário compartilhado.
+- **Ferramentas mudam rápido**. O que era autocomplete virou agente; vocabulário desatualizado gera decisões desatualizadas.
+- **Fornecedores usam jargão de propósito**. Sem entender os termos, você não avalia o que estão vendendo.
 
 ## Exemplo aplicado
 
@@ -222,7 +222,7 @@ Uma reunião real entre PM, QA e dev:
 
 ## O que levar daqui
 
-- Alinhe o vocabulário do time antes de decidir sobre IA — é pré-requisito, não detalhe
+- Alinhe o vocabulário do time antes de decidir sobre IA. É pré-requisito, não detalhe
 - Adapte a explicação ao público: simples com PM/stakeholders, técnica com devs
-- Separe produto de modelo na conversa — evita mal-entendidos sobre custo e capacidade
-- Revise esses termos a cada trimestre — o significado evolui rápido
+- Separe produto de modelo na conversa. Isso evita mal-entendidos sobre custo e capacidade
+- Revise esses termos a cada trimestre. O significado evolui rápido

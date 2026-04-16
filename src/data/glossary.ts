@@ -45,7 +45,7 @@ export const glossary: GlossaryTerm[] = [
     technicalDefinition:
       'Execução do modelo sobre uma entrada (prompt) para gerar uma saída (completion). Consome recursos computacionais e é cobrada por token processado na maioria das APIs.',
     example:
-      'Você pergunta "como funciona async/await?" e recebe uma explicação — essa geração é uma inferência.',
+      'Você pergunta "como funciona async/await?" e recebe uma explicação. Essa geração é uma inferência.',
     commonMistake:
       'Achar que inferência é instantânea e gratuita. Cada inferência custa tempo e dinheiro. Modelos maiores custam mais por inferência.',
     relatedTerms: ['modelo', 'token', 'prompt'],
@@ -248,7 +248,7 @@ export const glossaryEn: GlossaryTerm[] = [
     technicalDefinition:
       'Running the model over an input prompt to produce a completion. It consumes compute and is often billed by tokens.',
     example:
-      'You ask how async/await works and get an explanation — that generation step is inference.',
+      'You ask how async/await works and get an explanation. That generation step is inference.',
     commonMistake:
       'Assuming inference is instant and free. Larger models usually cost more time and money per request.',
     relatedTerms: ['model', 'token', 'prompt'],

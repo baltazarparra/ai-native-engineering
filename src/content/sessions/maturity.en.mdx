@@ -24,7 +24,7 @@ import MaturityStepper from '../../components/MaturityStepper/MaturityStepper.ts
 
 ## From copying answers to orchestrating agents
 
-Most people using AI in software development are somewhere between "copy the ChatGPT answer" and "orchestrate agents with automated validation." Looking at what teams actually do day to day, you can identify five distinct phases. They aren't seniority levels or a linear ladder — a senior dev might use Phase 2 for simple work and Phase 5 for complex projects. A PM can operate mostly in Phase 1 and still be highly effective.
+Most people using AI in software development are somewhere between "copy the ChatGPT answer" and "orchestrate agents with automated validation." Looking at what teams actually do day to day, you can identify five distinct phases. They aren't seniority levels or a linear ladder. A senior dev might use Phase 2 for simple work and Phase 5 for complex projects. A PM can operate mostly in Phase 1 and still be highly effective.
 
 The value of this map isn't grading yourself. It's understanding what each phase offers, where it breaks, and when it makes sense to move on.
 
@@ -42,7 +42,7 @@ The phase map helps avoid both. It shows what each phase solves and where forcin
 
 ### What it is
 
-You open an AI chat, ask questions, copy the answer, and paste it into your work. It's the natural entry point — no workflow change required. AI works like a better search engine: you ask, it answers, you decide what to do.
+You open an AI chat, ask questions, copy the answer, and paste it into your work. It's the natural entry point, no workflow change required. AI works like a better search engine: you ask, it answers, you decide what to do.
 
 ### Where it works
 
@@ -63,7 +63,7 @@ The next phase brings AI into the editor, removing copy-paste and adding automat
 
 ### What it is
 
-You install an AI extension or use an AI IDE, and it suggests code while you type. It appeared because copy-paste between chat and editor is slow and loses context — with access to the open file, AI suggests code that already respects imports, types, and local patterns.
+You install an AI extension or use an AI IDE, and it suggests code while you type. It appeared because copy-paste between chat and editor is slow and loses context. With access to the open file, AI suggests code that already respects imports, types, and local patterns.
 
 ### Where it works
 
@@ -84,7 +84,7 @@ The next phase stops controlling every line and asks AI to generate larger block
 
 ### What it is
 
-You describe what you want in natural language and AI generates whole blocks of code. The term comes from Andrej Karpathy describing programming guided by the "vibe" of what you want while delegating actual typing to the model. Autocomplete accelerates typing, but you still need to know what to type — vibe coding is for when you know the outcome but don't need to handcraft every detail.
+You describe what you want in natural language and AI generates whole blocks of code. The term comes from Andrej Karpathy describing programming guided by the "vibe" of what you want while delegating actual typing to the model. Autocomplete accelerates typing, but you still need to know what to type. Vibe coding is for when you know the outcome but don't need to handcraft every detail.
 
 ### Where it works
 
@@ -105,7 +105,7 @@ The next phase replaces vague description with a clear spec: not "do this for me
 
 ### What it is
 
-You write a specification before asking AI to implement — endpoints, types, constraints, expected behavior, edge cases. The agent implements against the spec, and output is validated against it, not a vague feeling. It appeared because vibe coding doesn't scale: real complexity needs more than "make an auth service." The key shift is that specs used to be documents people read — now a coding agent can execute from them.
+You write a specification before asking AI to implement: endpoints, types, constraints, expected behavior, edge cases. The agent implements against the spec, and output is validated against it, not a vague feeling. It appeared because vibe coding doesn't scale: real complexity needs more than "make an auth service." The key shift is that specs used to be documents people read. Now a coding agent can execute from them.
 
 ### Where it works
 
@@ -115,7 +115,7 @@ You write a specification before asking AI to implement — endpoints, types, co
 
 ### Where it breaks
 
-- **Over-engineering the spec**. A three-page spec for a typo isn't maturity — it's waste.
+- **Over-engineering the spec**. A three-page spec for a typo isn't maturity. It's waste.
 - **Spec without validation**. Sending a spec to an agent and never checking output is vibe coding with extra steps.
 
 ### What the next phase solves
@@ -126,7 +126,7 @@ The next phase automates validation and orchestration so the human doesn't manua
 
 ### What it is
 
-You build a full work system around the agent: persistent instructions, rules files, configured tools, automated validation, and clear acceptance criteria. The agent operates inside that system, and the system catches issues without constant supervision. In Phase 4 you validate manually; here validation is automated. It appeared because agents generate output faster than humans can review — without automation, review becomes the bottleneck.
+You build a full work system around the agent: persistent instructions, rules files, configured tools, automated validation, and clear acceptance criteria. The agent operates inside that system, and the system catches issues without constant supervision. In Phase 4 you validate manually; here validation is automated. It appeared because agents generate output faster than humans can review. Without automation, review becomes the bottleneck.
 
 ### Where it works
 
@@ -137,7 +137,7 @@ You build a full work system around the agent: persistent instructions, rules fi
 ### Where it breaks
 
 - **Premature complexity**. If the project has no tests or lint, building a harness is putting the roof on before the walls.
-- **Overtrusting automation**. Automated checks reduce review work — they don't replace human judgment.
+- **Overtrusting automation**. Automated checks reduce review work. They don't replace human judgment.
 
 ### What changes here
 
@@ -173,7 +173,7 @@ The point: the right phase depends on context, not ambition.
 
 ## Takeaway
 
-- Identify which phase you use today for each type of task — it's probably not the same for everything
+- Identify which phase you use today for each type of task. It's probably not the same for everything
 - Next time you start a task, ask "which phase fits here?" instead of defaulting to the usual approach
-- Validation is mandatory in every phase — what changes is whether you validate manually or the system does it
+- Validation is mandatory in every phase. What changes is whether you validate manually or the system does it
 - Real maturity is knowing when to drop back to a simpler phase

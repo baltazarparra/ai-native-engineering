@@ -101,8 +101,8 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'GitHub CLI — Documentação oficial',
-          en: 'GitHub CLI — Official docs',
+          'pt-BR': 'GitHub CLI, Documentação oficial',
+          en: 'GitHub CLI, Official docs',
         },
         url: 'https://cli.github.com/manual/',
         type: 'documentacao',
@@ -185,8 +185,8 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'Deezer API — Documentação',
-          en: 'Deezer API — Documentation',
+          'pt-BR': 'Deezer API, Documentação',
+          en: 'Deezer API, Documentation',
         },
         url: 'https://developers.deezer.com/api',
         type: 'documentacao',
@@ -269,8 +269,8 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'Deezer API — Documentação',
-          en: 'Deezer API — Documentation',
+          'pt-BR': 'Deezer API, Documentação',
+          en: 'Deezer API, Documentation',
         },
         url: 'https://developers.deezer.com/api',
         type: 'documentacao',
@@ -340,8 +340,8 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'GitHub Pages — Documentação',
-          en: 'GitHub Pages — Documentation',
+          'pt-BR': 'GitHub Pages, Documentação',
+          en: 'GitHub Pages, Documentation',
         },
         url: 'https://docs.github.com/pages',
         type: 'documentacao',
@@ -349,8 +349,8 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'GitHub Actions — Documentação',
-          en: 'GitHub Actions — Documentation',
+          'pt-BR': 'GitHub Actions, Documentação',
+          en: 'GitHub Actions, Documentation',
         },
         url: 'https://docs.github.com/actions',
         type: 'documentacao',
@@ -404,8 +404,8 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'GitHub Actions — Documentação',
-          en: 'GitHub Actions — Documentation',
+          'pt-BR': 'GitHub Actions, Documentação',
+          en: 'GitHub Actions, Documentation',
         },
         url: 'https://docs.github.com/actions',
         type: 'documentacao',

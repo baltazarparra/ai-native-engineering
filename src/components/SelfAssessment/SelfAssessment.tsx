@@ -149,7 +149,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     exploring: {
       name: 'Explorando',
       description:
-        'Você está começando a usar IA no trabalho e ainda está descobrindo o que funciona e o que não funciona. Isso é normal — o importante agora é experimentar com intenção.',
+        'Você está começando a usar IA no trabalho e ainda está descobrindo o que funciona e o que não funciona. Isso é normal. O importante agora é experimentar com intenção.',
       suggestion:
         'Comece pelo glossário (Sessão 1) pra entender os termos, e depois explore as ferramentas (Sessão 2) pra ver o que combina com seu fluxo.',
       accent: 'yellow',
@@ -165,7 +165,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     structuring: {
       name: 'Estruturando',
       description:
-        'Você já constrói sistemas onde a IA opera de forma estruturada — com rules files, validação automática e escolha de modelo por tarefa. Você já é AI-native.',
+        'Você já constrói sistemas onde a IA opera de forma estruturada, com rules files, validação automática e escolha de modelo por tarefa. Você já é AI-native.',
       suggestion:
         'Revise a Sessão 4 pra calibrar sua visão do time. Use esse site como referência compartilhada pra alinhar todo mundo.',
       accent: 'green',
@@ -175,7 +175,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     exploring: {
       name: 'Exploring',
       description:
-        "You're starting to bring AI into your work and still figuring out what helps and what doesn't. That's normal — the key right now is to experiment with intention.",
+        "You're starting to bring AI into your work and still figuring out what helps and what doesn't. That's normal. The key right now is to experiment with intention.",
       suggestion:
         'Start with the glossary (Session 1) to get the vocabulary down, then explore tools (Session 2) to see what fits your workflow.',
       accent: 'yellow',
@@ -191,7 +191,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     structuring: {
       name: 'Structuring',
       description:
-        "You build systems where AI operates in a structured way — with rules files, automated validation, and model selection by task. You're already AI-native.",
+        "You build systems where AI operates in a structured way, with rules files, automated validation, and model selection by task. You're already AI-native.",
       suggestion:
         "Review Session 4 to calibrate your team's position. Use this site as a shared reference to align everyone.",
       accent: 'green',

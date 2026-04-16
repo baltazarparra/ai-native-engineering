@@ -36,11 +36,11 @@ You don't need neural-network math to work with LLMs. But four concepts change h
 
 ### Training
 
-Models are trained on huge volumes of text: books, articles, code, web pages. The model learns statistical patterns — it calculates which token is likely to come next. That's why models generate text that looks right but is sometimes plausible and wrong: they optimize for likely, not true.
+Models are trained on huge volumes of text: books, articles, code, web pages. The model learns statistical patterns and calculates which token is likely to come next. That's why models generate text that looks right but is sometimes plausible and wrong: they optimize for likely, not true.
 
 ### Tokens and context window
 
-The model splits text into tokens and processes them one at a time. Each model has a limit for how many tokens it can handle at once — the context window. In 2026, windows range from ~128K to ~1M+ tokens, but a medium software project can contain millions. You still need to choose what goes into context.
+The model splits text into tokens and processes them one at a time. Each model has a limit for how many tokens it can handle at once: the context window. In 2026, windows range from ~128K to ~1M+ tokens, but a medium software project can contain millions. You still need to choose what goes into context.
 
 ### Inference and cost
 
@@ -48,7 +48,7 @@ Every message sent and answer received is an inference, and each inference costs
 
 ### Real limitations
 
-Models don't know what they don't know — they generate answers even without enough information. That's hallucination. Models also have a knowledge cutoff: ask about something released yesterday and the model may invent an answer based on patterns, not facts.
+Models don't know what they don't know and generate answers even without enough information. That's hallucination. Models also have a knowledge cutoff: ask about something released yesterday and the model may invent an answer based on patterns, not facts.
 
 ## Profiles by task, not rankings
 
@@ -126,7 +126,7 @@ There's no single best model. There's the right model for the task. Think in pro
 
 ## Why this matters
 
-Understanding models isn't about becoming an AI specialist. It's about making informed decisions — knowing which model is behind the tool, what it costs, and where it fails. Model literacy is the difference between using AI in the dark and using AI on purpose.
+Understanding models isn't about becoming an AI specialist. It's about making informed decisions: knowing which model is behind the tool, what it costs, and where it fails. Model literacy is the difference between using AI in the dark and using AI on purpose.
 
 ## Real example
 
@@ -136,7 +136,7 @@ Same project, three tasks, three models:
 
 **Task 2: Plan the implementation**. The tech lead uses Claude Opus to analyze the architecture and propose a plan across affected modules. Slower and pricier, but the deeper reasoning is worth it.
 
-**Task 3: Implement the code**. The developer uses Claude Sonnet through a coding agent. Fast enough for iteration and strong at code — no need for Opus on every function.
+**Task 3: Implement the code**. The developer uses Claude Sonnet through a coding agent. It's fast enough for iteration and strong at code, with no need for Opus on every function.
 
 Three different models. None is "the best". Each is right for the task.
 
@@ -155,6 +155,6 @@ Three different models. None is "the best". Each is right for the task.
 ## Takeaway
 
 - Product is where you interact. Model is what generates the response
-- Choose the model by the task, not the ranking — fast models handle most daily work
+- Choose the model by the task, not the ranking. Fast models handle most daily work
 - Factor in cost and context window before sending everything to the priciest model
 - Every model hallucinates. Human review is _not_ optional

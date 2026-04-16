@@ -2,13 +2,13 @@
 
 **Sem hype. Sem buzzword vazia. Só o mapa que importa.**
 
-Um site educacional, interativo e visualmente forte que ensina o que você realmente precisa entender para trabalhar com engenharia em um mundo de agentes — em linguagem humana, acessível, e em português.
+Um site educacional, interativo e visualmente forte que ensina o que você realmente precisa entender para trabalhar com engenharia em um mundo de agentes, em linguagem humana, acessível, e em português.
 
 ## O problema
 
-O mercado já trata IA como parte normal do trabalho de software. A adoção é massiva, a produtividade percebida subiu, mas a confiança não acompanhou. A lacuna não está entre usar IA e não usar — está entre **usar mal** e **usar bem**.
+O mercado já trata IA como parte normal do trabalho de software. A adoção é massiva, a produtividade percebida subiu, mas a confiança não acompanhou. A lacuna não está entre usar IA e não usar; está entre **usar mal** e **usar bem**.
 
-Este site existe para fechar essa lacuna: organizar o caos, traduzir a terminologia e mostrar que AI-native engineering é sobre **contexto, critério, validação e fluxo** — não sobre "pedir código".
+Este site existe para fechar essa lacuna: organizar o caos, traduzir a terminologia e mostrar que AI-native engineering é sobre **contexto, critério, validação e fluxo**, não sobre "pedir código".
 
 ## Para quem
 
@@ -50,7 +50,7 @@ O projeto é content-first, não app-first. Astro gera HTML estático e hidrata 
 
 ### Por que não Tailwind
 
-Neo Brutalism pede linguagem visual autoral — bordas grossas, sombras duras, paleta controlada. CSS Modules + design tokens dão controle explícito sem cara de template.
+Neo Brutalism pede linguagem visual autoral: bordas grossas, sombras duras, paleta controlada. CSS Modules + design tokens dão controle explícito sem cara de template.
 
 ## Desenvolvimento
 
@@ -75,9 +75,9 @@ npm run format     # Prettier
 
 ## Princípios editoriais
 
-- Ensinar sem idolatrar ferramenta — mostrar categorias e padrões
+- Ensinar sem idolatrar ferramenta, mostrando categorias e padrões
 - Explicação simples primeiro, profundidade técnica depois
-- Exemplos de QA, PM e produto — não só dev hardcore
+- Exemplos de QA, PM e produto, não só dev hardcore
 - Toda interação precisa explicar melhor, organizar melhor ou aumentar retenção
 - Siglas explicadas antes de qualquer deep-dive
 
