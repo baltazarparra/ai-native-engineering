@@ -1,86 +1,86 @@
 # AI-Native Engineering
 
-**Sem hype. Sem buzzword vazia. Só o mapa que importa.**
+**No hype. No empty buzzwords. Just the map that matters.**
 
-Um site educacional, interativo e visualmente forte que ensina o que você realmente precisa entender para trabalhar com engenharia em um mundo de agentes, em linguagem humana, acessível, e em português.
+An educational, interactive, visually strong website that teaches what you actually need to understand to work in engineering in a world of agents, using accessible, human language.
 
-## O problema
+## The Problem
 
-O mercado já trata IA como parte normal do trabalho de software. A adoção é massiva, a produtividade percebida subiu, mas a confiança não acompanhou. A lacuna não está entre usar IA e não usar; está entre **usar mal** e **usar bem**.
+The market already treats AI as a normal part of software work. Adoption is massive, perceived productivity has increased, but trust has not kept up. The gap is not between using AI and not using it; it is between **using it poorly** and **using it well**.
 
-Este site existe para fechar essa lacuna: organizar o caos, traduzir a terminologia e mostrar que AI-native engineering é sobre **contexto, critério, validação e fluxo**, não sobre "pedir código".
+This site exists to close that gap: to organize the chaos, translate the terminology, and show that AI-native engineering is about **context, judgment, validation, and flow**, not about "asking for code."
 
-## Para quem
+## Who It Is For
 
-- QA, Product Managers, Product Designers, Tech Recruiters, founders, liderança de tecnologia
-- Devs juniores e plenos que ainda confundem ferramenta, modelo, agente, CLI e workflow
-- Qualquer pessoa curiosa que quer um mapa mental claro do tema
+- QA, Product Managers, Product Designers, Tech Recruiters, founders, and technology leaders
+- Junior and mid-level developers who still mix up tools, models, agents, CLIs, and workflows
+- Any curious person who wants a clear mental map of the topic
 
-## Conteúdo
+## Content
 
-O site é organizado em 6 sessões progressivas:
+The site is organized into 6 progressive sessions:
 
-| #   | Sessão                        | Rota                   | O que ensina                                                        |
-| --- | ----------------------------- | ---------------------- | ------------------------------------------------------------------- |
-| 0   | O que é um AI-Native Engineer | `/ai-native-engineer/` | Definição, o que mudou, o que não mudou, self-assessment            |
-| 1   | Glossário                     | `/glossario/`          | LLM, modelo, token, prompt, agente, harness, MCP e mais             |
-| 2   | Ferramentas                   | `/ferramentas/`        | IDEs vs CLI, categorias, comparação por perfil de usuário           |
-| 3   | Modelos                       | `/modelos/`            | Produto vs modelo, perfis por tarefa, leitura crítica de benchmarks |
-| 4   | Maturidade                    | `/maturidade/`         | Consulta → Autocomplete → Vibe Coding → SDD → Harness Engineering   |
-| 5   | Como operar                   | `/como-operar/`        | Workflow, checklists, playbooks por perfil                          |
+| #   | Session                         | Route                  | What It Teaches                                                     |
+| --- | ------------------------------- | ---------------------- | ------------------------------------------------------------------- |
+| 0   | What Is an AI-Native Engineer   | `/ai-native-engineer/` | Definition, what changed, what did not change, self-assessment      |
+| 1   | Glossary                        | `/glossario/`          | LLM, model, token, prompt, agent, harness, MCP, and more            |
+| 2   | Tools                           | `/ferramentas/`        | IDEs vs CLI, categories, comparison by user profile                 |
+| 3   | Models                          | `/modelos/`            | Product vs model, task profiles, critical reading of benchmarks     |
+| 4   | Maturity                        | `/maturidade/`         | Query → Autocomplete → Vibe Coding → SDD → Harness Engineering      |
+| 5   | How to Operate                  | `/como-operar/`        | Workflow, checklists, profile-based playbooks                       |
 
-Cada sessão segue um template fixo: resumo em 30 segundos → explicação principal → por que importa → exemplo real → onde quebra → bloco interativo → referências.
+Each session follows a fixed template: 30-second summary → main explanation → why it matters → real example → where it breaks → interactive block → references.
 
 ## Stack
 
-| Camada         | Tecnologia                                  |
+| Layer          | Technology                                  |
 | -------------- | ------------------------------------------- |
 | Framework      | [Astro](https://astro.build)                |
-| Linguagem      | TypeScript                                  |
-| Conteúdo       | MDX + Content Collections                   |
-| Interatividade | React (islands apenas onde necessário)      |
-| Animação       | [Motion](https://motion.dev)                |
-| Estilos        | CSS Modules + CSS Variables + design tokens |
+| Language       | TypeScript                                  |
+| Content        | MDX + Content Collections                   |
+| Interactivity  | React (islands only where needed)           |
+| Animation      | [Motion](https://motion.dev)                |
+| Styles         | CSS Modules + CSS Variables + design tokens |
 | Lint/Format    | ESLint + Prettier                           |
 | Deploy         | GitHub Actions → GitHub Pages               |
 
-### Por que Astro
+### Why Astro
 
-O projeto é content-first, não app-first. Astro gera HTML estático e hidrata apenas os blocos interativos (islands), mantendo JS mínimo. Perfeito para um site educacional que precisa ser rápido no mobile.
+The project is content-first, not app-first. Astro generates static HTML and hydrates only the interactive blocks (islands), keeping JavaScript minimal. It is a great fit for an educational website that needs to be fast on mobile.
 
-### Por que não Tailwind
+### Why Not Tailwind
 
-Neo Brutalism pede linguagem visual autoral: bordas grossas, sombras duras, paleta controlada. CSS Modules + design tokens dão controle explícito sem cara de template.
+Neo Brutalism calls for an authored visual language: thick borders, hard shadows, and a controlled palette. CSS Modules + design tokens provide explicit control without making the site feel like a template.
 
-## Desenvolvimento
+## Development
 
 ```bash
-npm install        # Instalar dependências
-npm run dev        # Dev server com hot reload
-npm run build      # Build estático
-npm run preview    # Preview do build de produção
+npm install        # Install dependencies
+npm run dev        # Dev server with hot reload
+npm run build      # Static build
+npm run preview    # Preview the production build
 npm run lint       # ESLint
 npm run format     # Prettier
 ```
 
 ## Design: Neo Brutalism
 
-- Alto contraste, bordas pretas grossas, sombras deslocadas sem blur
-- Paleta limitada: fundo claro quente, preto puro, 2-3 acentos vibrantes
-- Headlines pesadas, corpo neutro e legível
-- Mobile-first com breakpoints em 768px, 1024px e 1440px
-- WCAG compliance e foco visível
+- High contrast, thick black borders, offset shadows with no blur
+- Limited palette: warm light background, pure black, 2-3 vibrant accents
+- Heavy headlines, neutral and readable body text
+- Mobile-first with breakpoints at 768px, 1024px, and 1440px
+- WCAG compliance and visible focus states
 
-**Regra central:** impactante no primeiro olhar, fácil de usar no quinto minuto.
+**Core rule:** striking at first glance, easy to use by the fifth minute.
 
-## Princípios editoriais
+## Editorial Principles
 
-- Ensinar sem idolatrar ferramenta, mostrando categorias e padrões
-- Explicação simples primeiro, profundidade técnica depois
-- Exemplos de QA, PM e produto, não só dev hardcore
-- Toda interação precisa explicar melhor, organizar melhor ou aumentar retenção
-- Siglas explicadas antes de qualquer deep-dive
+- Teach without idolizing tools, showing categories and patterns instead
+- Simple explanation first, technical depth second
+- Examples from QA, PM, and product, not only hardcore development
+- Every interaction must explain better, organize better, or improve retention
+- Acronyms are explained before any deep dive
 
-## Licença
+## License
 
 [MIT](LICENSE)

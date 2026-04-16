@@ -1,16 +1,16 @@
-# ROADMAP
+# Roadmap
 
-we ship one phase at a time. each phase gets validated before we move on. no skipping ahead, no half-baked stuff leaking into the next phase.
+We ship one phase at a time. Each phase gets validated before we move on. No skipping ahead, no half-baked work leaking into the next phase.
 
-phase 0 (discovery) is already done. that's the PLAN.md.
+Phase 0 (discovery) is already done. That is `PLAN.md`.
 
 ---
 
-## Phase 1: project foundation
+## Phase 1: Project Foundation
 
-get the skeleton up and running. zero visual polish, zero content. just the infra that everything else builds on top of.
+Get the skeleton up and running. Zero visual polish, zero content. Just the infrastructure that everything else builds on top of.
 
-### what we ship
+### What We Ship
 
 - [ ] `npm create astro` with TypeScript strict mode
 - [ ] MDX integration installed and configured
@@ -25,7 +25,7 @@ get the skeleton up and running. zero visual polish, zero content. just the infr
 - [ ] GitHub Actions workflow deploying to GitHub Pages on push to main
 - [ ] `astro.config.mjs` with `site` and `base` set for GH Pages
 
-### done when
+### Done When
 
 - `npm run dev` serves the site locally
 - `npm run build` generates static output with no errors
@@ -36,11 +36,11 @@ get the skeleton up and running. zero visual polish, zero content. just the infr
 
 ---
 
-## Phase 2: neo brutalism design system
+## Phase 2: Neo Brutalism Design System
 
-build the visual language as reusable primitives. no pages yet, just the component toolkit. everything mobile-first.
+Build the visual language as reusable primitives. No pages yet, just the component toolkit. Everything mobile-first.
 
-### what we ship
+### What We Ship
 
 - [ ] `tokens.css` finalized: color palette (warm bg, pure black, 2-3 vibrant accents), spacing scale, font stacks, border widths, shadow offsets
 - [ ] typography system: headline weights, body font, reading-friendly sizes and line-heights
@@ -53,7 +53,7 @@ build the visual language as reusable primitives. no pages yet, just the compone
 - [ ] focus states: keyboard nav must be super obvious
 - [ ] a simple `/kitchen-sink` page showing all components together (dev-only, we nuke it later)
 
-### done when
+### Done When
 
 - kitchen-sink page looks intentionally brutal and readable at the same time
 - all components pass WCAG contrast on the chosen palette
@@ -62,13 +62,13 @@ build the visual language as reusable primitives. no pages yet, just the compone
 
 ---
 
-## Phase 3: home page
+## Phase 3: Home Page
 
-the front door. if someone lands here and doesn't understand what this site is about in 10 seconds, we failed.
+The front door. If someone lands here and does not understand what this site is about in 10 seconds, we failed.
 
-### what we ship
+### What We Ship
 
-- [ ] `Hero` section: strong headline, subtitle with the value prop, primary CTA ("Começar pelo básico"), secondary CTA ("Ver o mapa completo")
+- [ ] `Hero` section: strong headline, subtitle with the value prop, primary CTA ("Start with the basics"), secondary CTA ("See the full map")
 - [ ] `WhyThisExists` block: 3-4 short paragraphs explaining the gap between using AI and using AI well
 - [ ] `JourneyMap` / `SessionCards`: clickable cards for each of the 6 sessions, showing title, summary, level, reading time
 - [ ] `MaturityPreview`: compact visual showing the 5 phases (Consulta > Autocomplete > Vibe Coding > SDD > Harness Engineering)
@@ -76,7 +76,7 @@ the front door. if someone lands here and doesn't understand what this site is a
 - [ ] proper `<head>` meta: title, description, OG tags for the home page
 - [ ] mobile layout validated
 
-### done when
+### Done When
 
 - home page explains the product without clicking anything else
 - all 6 session cards link to their routes (even if those pages are just stubs for now)
@@ -86,28 +86,28 @@ the front door. if someone lands here and doesn't understand what this site is a
 
 ---
 
-## Phase 4: session page template
+## Phase 4: Session Page Template
 
-build the reusable layout that every session page will use. get it right once so we can crank out content without touching layout code again.
+Build the reusable layout that every session page will use. Get it right once so we can produce content without touching layout code again.
 
-### what we ship
+### What We Ship
 
 - [ ] `SessionLayout.astro` fully built out with all template zones:
   - session hero (title, subtitle, level badge, reading time, hero label)
-  - "em 30 segundos" plain-language summary block
+  - "in 30 seconds" plain-language summary block
   - main narrative content area (MDX body)
-  - "por que isso importa" section
-  - "onde isso quebra" anti-pattern block
+  - "why this matters" section
+  - "where this breaks" anti-pattern block
   - interactive block slot (empty for now, React island will plug in later)
   - takeaway summary
-  - "quer se aprofundar?" references section with typed links (artigo, doc, talk, video, pesquisa)
+  - "want to go deeper?" references section with typed links (article, docs, talk, video, research)
   - next session CTA
 - [ ] `SectionNav`: sticky/sidebar nav for long pages with section anchors
 - [ ] `ReferencesList` component consuming the references collection
 - [ ] responsive behavior: mobile collapses to linear flow, desktop gets sticky nav
 - [ ] one real session fully rendered with placeholder content to prove the template works end-to-end
 
-### done when
+### Done When
 
 - creating a new session is just "write an MDX file with frontmatter, done"
 - all template zones render correctly and look good at all breakpoints
@@ -117,30 +117,30 @@ build the reusable layout that every session page will use. get it right once so
 
 ---
 
-## Phase 5: core content
+## Phase 5: Core Content
 
-write all 6 sessions for real. this is the meat of the product. no placeholders, no "lorem ipsum", no "TODO write this later".
+Write all 6 sessions for real. This is the meat of the product. No placeholders, no "lorem ipsum", no "TODO write this later."
 
-### what we ship
+### What We Ship
 
-- [ ] Session 0: O que é um AI-Native Engineer (`/ai-native-engineer/`)
+- [ ] Session 0: What Is an AI-Native Engineer (`/ai-native-engineer/`)
   - definition, what changed, what didn't, anti-patterns, self-assessment questions (static for now)
-- [ ] Session 1: Glossário (`/glossario/`)
-  - all terms: LLM, modelo, inferência, contexto, token, prompt, system prompt, IDE, CLI, agente, agente de código, autocomplete, contexto de código, MCP, harness
+- [ ] Session 1: Glossary (`/glossario/`)
+  - all terms: LLM, model, inference, context, token, prompt, system prompt, IDE, CLI, agent, code agent, autocomplete, code context, MCP, harness
   - simple and technical definitions for each
-- [ ] Session 2: Ferramentas (`/ferramentas/`)
+- [ ] Session 2: Tools (`/ferramentas/`)
   - IDE vs CLI categories, examples (Cursor, Antigravity, Copilot, Claude Code, Codex CLI, OpenCode)
   - comparison structure (where it runs, best for, user type, strengths, common risk)
-- [ ] Session 3: Modelos (`/modelos/`)
+- [ ] Session 3: Models (`/modelos/`)
   - product vs model distinction, profiles by task type, editorial guidance on reading benchmarks critically
-- [ ] Session 4: Maturidade (`/maturidade/`)
+- [ ] Session 4: Maturity (`/maturidade/`)
   - all 5 phases with what/why/where it works/where it breaks/what the next phase fixes
-- [ ] Session 5: Como operar (`/como-operar/`)
+- [ ] Session 5: How to Operate (`/como-operar/`)
   - workflow, pre-request checklist, pre-accept checklist, examples by profile (PM, QA, junior dev, senior dev, tech lead)
 - [ ] curated references for each session (2-4 "start here", 2-4 primary sources, 1-3 videos/talks)
 - [ ] `src/data/tools.ts`, `src/data/models.ts`, `src/data/glossary.ts` populated with real data
 
-### done when
+### Done When
 
 - all 6 sessions are published and accessible from the home page
 - content tone is consistent across all sessions: natural PT-BR, direct, no academic fluff
@@ -151,11 +151,11 @@ write all 6 sessions for real. this is the meat of the product. no placeholders,
 
 ---
 
-## Phase 6: interactive components
+## Phase 6: Interactive Components
 
-this is where React islands come in. every interactive block must pass the test: does it explain better, organize better, or increase retention? if not, it doesn't ship.
+This is where React islands come in. Every interactive block must pass the test: does it explain better, organize better, or increase retention? If not, it does not ship.
 
-### what we ship
+### What We Ship
 
 - [ ] `GlossaryCardGrid` (React island): expandable cards with "simple" and "technical" toggle, search/filter
 - [ ] `ToolComparison` (React island): filterable comparison by user type (non-technical, junior, experienced, leadership) and view mode (by interface vs by workflow)
@@ -165,7 +165,7 @@ this is where React islands come in. every interactive block must pass the test:
 - [ ] `ProgressTracker`: reading progress per session, persisted in localStorage
 - [ ] Motion animations where they genuinely help: card entrances, state transitions, phase changes. CSS for everything else
 
-### done when
+### Done When
 
 - each interactive component is plugged into its session page and works on mobile
 - islands hydrate only when needed (`client:visible` or `client:idle`)
@@ -175,11 +175,11 @@ this is where React islands come in. every interactive block must pass the test:
 
 ---
 
-## Phase 7: polish and ship
+## Phase 7: Polish and Ship
 
-last pass. fix everything that's "good enough" and make it actually good.
+Last pass. Fix everything that is "good enough" and make it actually good.
 
-### what we ship
+### What We Ship
 
 - [ ] accessibility audit: contrast, focus order, screen reader flow, aria labels where needed
 - [ ] SEO: per-page meta titles, descriptions, OG tags, proper heading hierarchy, clean slugs
@@ -190,7 +190,7 @@ last pass. fix everything that's "good enough" and make it actually good.
 - [ ] cross-browser sanity check: Chrome, Safari, Firefox on desktop and mobile
 - [ ] final deploy validation: GH Pages serves everything correctly, no broken routes
 
-### done when
+### Done When
 
 - Lighthouse scores: perf >90, a11y >95, SEO >95 on mobile
 - every page has unique OG tags and renders a proper preview when shared
@@ -201,9 +201,9 @@ last pass. fix everything that's "good enough" and make it actually good.
 
 ---
 
-## not in scope (post-MVP backlog)
+## Not in Scope (Post-MVP Backlog)
 
-stuff we might do later but absolutely not now:
+Things we might do later, but absolutely not now:
 
 - local search
 - learning paths by profile

@@ -1,111 +1,111 @@
-# PRD: Corrigir Service Worker do GitHub Pages raiz interferindo em projetos
+# PRD: Fix Root GitHub Pages Service Worker Interfering With Projects
 
-## Contexto
+## Context
 
-O domínio `https://baltazarparra.github.io/` hospeda múltiplos projetos via GitHub Pages, incluindo:
+The `https://baltazarparra.github.io/` domain hosts multiple projects through GitHub Pages, including:
 
 - `https://baltazarparra.github.io/`
 - `https://baltazarparra.github.io/ai-native-engineering/`
-- outros projetos publicados em subpaths do mesmo domínio
+- other projects published under subpaths of the same domain
 
-Ao acessar `https://baltazarparra.github.io/ai-native-engineering/`, o navegador às vezes carrega o conteúdo do site raiz `https://baltazarparra.github.io/`. O mesmo comportamento aparece em outros projetos publicados no mesmo domínio.
+When accessing `https://baltazarparra.github.io/ai-native-engineering/`, the browser sometimes loads content from the root site at `https://baltazarparra.github.io/`. The same behavior appears in other projects published under the same domain.
 
-Foi identificado que existe um Service Worker em:
+A Service Worker was identified at:
 
 ```txt
 https://baltazarparra.github.io/sw.js
 ```
 
-Esse Service Worker está registrado no escopo raiz (`/`) e usa Workbox com fallback de navegação amplo para `index.html`. Como Service Workers operam por origin e escopo, um Service Worker registrado em `/` pode interceptar navegações para qualquer subpath do mesmo domínio, incluindo `/ai-native-engineering/`.
+That Service Worker is registered at the root scope (`/`) and uses Workbox with a broad navigation fallback to `index.html`. Because Service Workers operate by origin and scope, a Service Worker registered at `/` can intercept navigations for any subpath under the same domain, including `/ai-native-engineering/`.
 
-## Problema
+## Problem
 
-O Service Worker do site raiz está interceptando navegações de projetos hospedados em subdiretórios do GitHub Pages e respondendo com o `index.html` do site raiz.
+The root site's Service Worker is intercepting navigations for projects hosted in GitHub Pages subdirectories and responding with the root site's `index.html`.
 
-Isso causa:
+This causes:
 
-- carregamento incorreto de projetos em subpaths;
-- comportamento inconsistente entre navegador normal e aba anônima;
-- confusão durante deploys, parecendo cache do GitHub Pages quando, na prática, é cache/controlador local do Service Worker;
-- risco de afetar todos os projetos em `baltazarparra.github.io/<project-name>/`.
+- incorrect loading of projects under subpaths;
+- inconsistent behavior between normal browser windows and private/incognito windows;
+- confusion during deploys, making the issue look like GitHub Pages cache when it is actually local Service Worker cache/control;
+- risk of affecting every project under `baltazarparra.github.io/<project-name>/`.
 
-## Objetivo
+## Goal
 
-Garantir que o site raiz `baltazarparra.github.io` não intercepte, cacheie ou faça fallback de navegação para projetos publicados em subpaths.
+Ensure the root `baltazarparra.github.io` site does not intercept, cache, or provide navigation fallback responses for projects published under subpaths.
 
-O acesso a:
+Accessing:
 
 ```txt
 https://baltazarparra.github.io/ai-native-engineering/
 ```
 
-deve carregar exclusivamente o projeto `ai-native-engineering`, sem receber HTML, assets ou fallback do site raiz.
+must load only the `ai-native-engineering` project, without receiving HTML, assets, or fallback responses from the root site.
 
-## Não Objetivos
+## Non-Goals
 
-- Não alterar o projeto `ai-native-engineering`.
-- Não alterar configuração de GitHub Pages dos projetos em subpaths.
-- Não criar domínio customizado nesta etapa.
-- Não reescrever a arquitetura inteira do site raiz, exceto se for necessário para remover ou limitar o Service Worker.
+- Do not change the `ai-native-engineering` project.
+- Do not change the GitHub Pages configuration for subpath projects.
+- Do not create a custom domain in this step.
+- Do not rewrite the entire root site architecture unless required to remove or constrain the Service Worker.
 
-## Hipótese Técnica
+## Technical Hypothesis
 
-O repo alvo é o projeto publicado em:
+The target repository is the project published at:
 
 ```txt
 https://baltazarparra.github.io/
 ```
 
-Esse repo provavelmente usa alguma configuração PWA ou Workbox que gera `sw.js`. O fallback de navegação atual aceita todas as rotas, algo equivalente a:
+That repository likely uses a PWA or Workbox configuration that generates `sw.js`. The current navigation fallback likely accepts all routes, equivalent to:
 
 ```js
 allowlist: [/./]
 ```
 
-ou uma configuração de `navigateFallback` sem `denylist`.
+or a `navigateFallback` configuration without a `denylist`.
 
-## Requisitos Funcionais
+## Functional Requirements
 
-### RF1: Remover ou restringir o Service Worker do site raiz
+### FR1: Remove or Restrict the Root Site Service Worker
 
-Escolher uma das abordagens:
+Choose one of these approaches:
 
-1. Preferencial: remover o Service Worker/PWA do site raiz, caso funcionalidade offline não seja necessária.
-2. Alternativa: manter o Service Worker, mas impedir que ele controle rotas de projetos em subpaths.
+1. Preferred: remove the Service Worker/PWA from the root site if offline functionality is not required.
+2. Alternative: keep the Service Worker, but prevent it from controlling routes for projects under subpaths.
 
-### RF2: Impedir fallback de navegação para projetos externos ao site raiz
+### FR2: Prevent Navigation Fallback for Projects Outside the Root Site
 
-Se o Service Worker for mantido, ele deve negar explicitamente rotas como:
+If the Service Worker is kept, it must explicitly deny routes such as:
 
 ```txt
 /ai-native-engineering/
 /ai-native-engineering/*
 ```
 
-e quaisquer outros projetos hospedados sob `baltazarparra.github.io/<project-name>/`.
+and any other projects hosted under `baltazarparra.github.io/<project-name>/`.
 
-Exemplo conceitual para Workbox:
+Conceptual Workbox example:
 
 ```js
 navigateFallbackDenylist: [
   /^\/ai-native-engineering(\/|$)/,
-  /^\/outro-projeto(\/|$)/,
+  /^\/another-project(\/|$)/,
 ]
 ```
 
-O nome exato da opção pode variar conforme a ferramenta usada no repo alvo.
+The exact option name may vary depending on the tool used in the target repository.
 
-### RF3: Limpar clientes antigos
+### FR3: Clean Up Existing Clients
 
-A correção deve considerar usuários que já têm o Service Worker antigo instalado.
+The fix must account for users who already have the old Service Worker installed.
 
-O projeto deve incluir uma estratégia para desregistrar ou substituir o Service Worker antigo. Possíveis opções:
+The project must include a strategy to unregister or replace the old Service Worker. Possible options:
 
-- remover o registro de `navigator.serviceWorker.register(...)`;
-- publicar um `sw.js` temporário que execute `self.registration.unregister()`;
-- orientar limpeza manual para validação local.
+- remove the `navigator.serviceWorker.register(...)` call;
+- publish a temporary `sw.js` that runs `self.registration.unregister()`;
+- provide manual cleanup instructions for local validation.
 
-Exemplo de `sw.js` temporário de desativação:
+Example temporary unregistering `sw.js`:
 
 ```js
 self.addEventListener('install', () => {
@@ -114,78 +114,80 @@ self.addEventListener('install', () => {
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    self.registration.unregister().then(() => self.clients.matchAll())
+    self.registration
+      .unregister()
+      .then(() => self.clients.matchAll())
       .then((clients) => {
         clients.forEach((client) => client.navigate(client.url));
-      })
+      }),
   );
 });
 ```
 
-Usar essa abordagem apenas se fizer sentido para o stack do repo alvo.
+Use this approach only if it makes sense for the target repository stack.
 
-### RF4: Não afetar assets normais do site raiz
+### FR4: Do Not Affect Normal Root Site Assets
 
-Se o Service Worker for mantido, ele ainda pode cachear assets do site raiz, mas não deve responder HTML de fallback para rotas de outros projetos.
+If the Service Worker is kept, it may still cache root site assets, but it must not respond with HTML fallback for routes belonging to other projects.
 
-## Requisitos Não Funcionais
+## Non-Functional Requirements
 
-- A solução deve ser simples de entender e manter.
-- A correção deve evitar uma allowlist global genérica para navegações.
-- A solução deve funcionar em Chrome, Edge, Firefox e Safari modernos.
-- O comportamento deve ser previsível após deploy no GitHub Pages.
+- The solution must be simple to understand and maintain.
+- The fix must avoid a generic global navigation allowlist.
+- The solution must work in modern Chrome, Edge, Firefox, and Safari.
+- The behavior must be predictable after deployment to GitHub Pages.
 
-## Plano de Implementação
+## Implementation Plan
 
-### Etapa 1: Localizar origem do Service Worker
+### Step 1: Locate the Service Worker Source
 
-No repo raiz, procurar por:
+In the root repository, search for:
 
 ```bash
 rg -n "serviceWorker|sw\\.js|workbox|PWA|registerRoute|navigateFallback|generateSW|injectManifest|vite-plugin-pwa|next-pwa|gatsby-plugin-offline"
 ```
 
-Identificar:
+Identify:
 
-- onde `sw.js` é gerado;
-- onde o Service Worker é registrado no navegador;
-- qual biblioteca/plugin gera a configuração Workbox.
+- where `sw.js` is generated;
+- where the Service Worker is registered in the browser;
+- which library/plugin generates the Workbox configuration.
 
-### Etapa 2: Decidir abordagem
+### Step 2: Choose the Approach
 
-Se o site raiz não precisa funcionar offline:
+If the root site does not need offline support:
 
-- remover plugin PWA/Workbox;
-- remover registro de Service Worker no client;
-- garantir que `sw.js` antigo não continue sendo publicado, ou publicar temporariamente um `sw.js` de unregister.
+- remove the PWA/Workbox plugin;
+- remove the client-side Service Worker registration;
+- ensure the old `sw.js` stops being published, or temporarily publish an unregistering `sw.js`.
 
-Se o site raiz precisa manter PWA/offline:
+If the root site must keep PWA/offline support:
 
-- configurar denylist de navegação para projetos em subpaths;
-- restringir fallback para somente rotas pertencentes ao site raiz;
-- evitar `allowlist: [/./]` para navegação global.
+- configure a navigation denylist for projects under subpaths;
+- restrict fallback to routes that belong only to the root site;
+- avoid `allowlist: [/./]` for global navigation.
 
-### Etapa 3: Implementar correção
+### Step 3: Implement the Fix
 
-Aplicar a menor mudança possível:
+Apply the smallest possible change:
 
-- remover configuração PWA, ou
-- ajustar Workbox para negar `/ai-native-engineering`, ou
-- substituir `sw.js` por um unregister temporário.
+- remove the PWA configuration, or
+- adjust Workbox to deny `/ai-native-engineering`, or
+- replace `sw.js` with a temporary unregister script.
 
-### Etapa 4: Build e deploy
+### Step 4: Build and Deploy
 
-Executar comandos do repo alvo, por exemplo:
+Run the target repository commands, for example:
 
 ```bash
 npm run build
 ```
 
-Depois publicar no GitHub Pages conforme o fluxo existente do repo raiz.
+Then publish to GitHub Pages using the existing root repository flow.
 
-### Etapa 5: Validar
+### Step 5: Validate
 
-Executar validações com `curl`:
+Run validation with `curl`:
 
 ```bash
 curl -I https://baltazarparra.github.io/
@@ -193,15 +195,15 @@ curl -I https://baltazarparra.github.io/sw.js
 curl -I https://baltazarparra.github.io/ai-native-engineering/
 ```
 
-Validar no navegador:
+Validate in the browser:
 
-1. Abrir DevTools.
-2. Ir em Application > Service Workers.
-3. Confirmar que não há Service Worker raiz interceptando `/ai-native-engineering/`, ou que o novo Service Worker não controla esse path.
-4. Abrir `https://baltazarparra.github.io/ai-native-engineering/`.
-5. Confirmar que o conteúdo carregado é do projeto `ai-native-engineering`.
+1. Open DevTools.
+2. Go to Application > Service Workers.
+3. Confirm there is no root Service Worker intercepting `/ai-native-engineering/`, or that the new Service Worker does not control that path.
+4. Open `https://baltazarparra.github.io/ai-native-engineering/`.
+5. Confirm the loaded content belongs to the `ai-native-engineering` project.
 
-Para simular usuário com cache antigo:
+To simulate a user with old cache:
 
 ```js
 const registrations = await navigator.serviceWorker.getRegistrations();
@@ -213,38 +215,37 @@ await Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)));
 location.reload();
 ```
 
-## Critérios de Aceite
+## Acceptance Criteria
 
-- `https://baltazarparra.github.io/` continua carregando corretamente.
-- `https://baltazarparra.github.io/ai-native-engineering/` carrega o projeto correto.
-- Recarregar a página não troca o conteúdo pelo site raiz.
-- Abrir em aba normal e anônima apresenta o mesmo projeto correto.
-- DevTools não mostra o Service Worker raiz respondendo navegações para `/ai-native-engineering/`.
-- Outros projetos em subpaths também deixam de ser interceptados.
-- O HTML recebido por `curl https://baltazarparra.github.io/ai-native-engineering/` contém metadados do projeto `AI-Native Engineering`, não do site raiz.
+- `https://baltazarparra.github.io/` still loads correctly.
+- `https://baltazarparra.github.io/ai-native-engineering/` loads the correct project.
+- Reloading the page does not swap the content back to the root site.
+- Normal and private/incognito windows show the same correct project.
+- DevTools does not show the root Service Worker responding to navigations for `/ai-native-engineering/`.
+- Other projects under subpaths also stop being intercepted.
+- The HTML returned by `curl https://baltazarparra.github.io/ai-native-engineering/` contains metadata from the `AI-Native Engineering` project, not from the root site.
 
-## Riscos
+## Risks
 
-- Usuários que já instalaram o Service Worker antigo podem continuar com comportamento incorreto até o navegador atualizar ou remover o SW.
-- Se o site raiz depende de PWA/offline, remover completamente o Service Worker pode eliminar essa funcionalidade.
-- GitHub Pages adiciona cache HTTP de curta duração, então mudanças podem levar alguns minutos para aparecer, mesmo depois do deploy.
+- Users who already installed the old Service Worker may continue seeing incorrect behavior until the browser updates or removes the Service Worker.
+- If the root site depends on PWA/offline support, fully removing the Service Worker may remove that functionality.
+- GitHub Pages adds short-lived HTTP cache, so changes may take a few minutes to appear even after deployment.
 
 ## Rollback
 
-Se a alteração quebrar o site raiz:
+If the change breaks the root site:
 
-1. Reverter o commit da mudança no repo raiz.
-2. Fazer novo deploy.
-3. Limpar Service Worker/cache local para validar.
+1. Revert the change commit in the root repository.
+2. Deploy again.
+3. Clear the local Service Worker/cache to validate.
 
-Se o problema voltar após rollback, considerar manter o Service Worker removido até haver uma configuração segura por subpath.
+If the problem returns after rollback, consider keeping the Service Worker removed until there is a safe per-subpath configuration.
 
-## Definição de Pronto
+## Definition of Done
 
-A tarefa está pronta quando:
+The task is done when:
 
-- o site raiz não intercepta navegações de projetos em subpaths;
-- o projeto `ai-native-engineering` abre corretamente em navegador normal após limpar ou atualizar Service Worker antigo;
-- existe registro claro no PR explicando que a causa era um Service Worker de escopo raiz com fallback de navegação amplo;
-- os passos de validação foram executados e documentados no PR.
-
+- the root site does not intercept navigations for projects under subpaths;
+- the `ai-native-engineering` project opens correctly in a normal browser window after clearing or updating the old Service Worker;
+- the PR clearly explains that the cause was a root-scope Service Worker with broad navigation fallback;
+- the validation steps were executed and documented in the PR.

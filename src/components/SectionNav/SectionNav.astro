@@ -21,9 +21,17 @@ const labels = ui[lang].sectionNav;
 </nav>
 
 <script>
+  let sectionNavObserver: IntersectionObserver | null = null;
+
   function initSectionNav() {
+    sectionNavObserver?.disconnect();
+    sectionNavObserver = null;
+
     const list = document.getElementById('section-nav-list');
     if (!list) return;
+
+    list.replaceChildren();
+
     const nav = list.closest('nav');
     const summaryFallback =
       nav?.getAttribute('data-summary-fallback') || 'Resumo';
@@ -95,6 +103,7 @@ const labels = ui[lang].sectionNav;
       },
       { rootMargin: '-20% 0px -70% 0px' },
     );
+    sectionNavObserver = observer;
 
     for (const entry of entries) {
       const el = document.getElementById(entry.id);
@@ -103,4 +112,5 @@ const labels = ui[lang].sectionNav;
   }
 
   initSectionNav();
+  document.addEventListener('astro:page-load', initSectionNav);
 </script>

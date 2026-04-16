@@ -1,0 +1,71 @@
+---
+interface Props {
+  country: 'br' | 'us';
+  class?: string;
+}
+
+const { country, class: className } = Astro.props;
+---
+
+{
+  country === 'br' ? (
+    <svg
+      class={className}
+      viewBox="0 0 28 20"
+      aria-hidden="true"
+      focusable="false"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="28" height="20" fill="#009B3A" />
+      <path d="M14 2.4 25.2 10 14 17.6 2.8 10 14 2.4Z" fill="#FFDF00" />
+      <circle cx="14" cy="10" r="4.4" fill="#002776" />
+      <path
+        d="M9.9 8.7c2.7-.5 5.5-.1 8 1"
+        fill="none"
+        stroke="#FFFFFF"
+        stroke-width="1.1"
+        stroke-linecap="round"
+      />
+    </svg>
+  ) : (
+    <svg
+      class={className}
+      viewBox="0 0 28 20"
+      aria-hidden="true"
+      focusable="false"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="28" height="20" fill="#B22234" />
+      <path
+        d="M0 2h28v2H0V2Zm0 4h28v2H0V6Zm0 4h28v2H0v-2Zm0 4h28v2H0v-2Zm0 4h28v2H0v-2Z"
+        fill="#FFFFFF"
+      />
+      <rect width="12.4" height="10.8" fill="#3C3B6E" />
+      <g fill="#FFFFFF">
+        <circle cx="2" cy="1.7" r=".45" />
+        <circle cx="4.2" cy="1.7" r=".45" />
+        <circle cx="6.4" cy="1.7" r=".45" />
+        <circle cx="8.6" cy="1.7" r=".45" />
+        <circle cx="10.8" cy="1.7" r=".45" />
+        <circle cx="3.1" cy="3.5" r=".45" />
+        <circle cx="5.3" cy="3.5" r=".45" />
+        <circle cx="7.5" cy="3.5" r=".45" />
+        <circle cx="9.7" cy="3.5" r=".45" />
+        <circle cx="2" cy="5.3" r=".45" />
+        <circle cx="4.2" cy="5.3" r=".45" />
+        <circle cx="6.4" cy="5.3" r=".45" />
+        <circle cx="8.6" cy="5.3" r=".45" />
+        <circle cx="10.8" cy="5.3" r=".45" />
+        <circle cx="3.1" cy="7.1" r=".45" />
+        <circle cx="5.3" cy="7.1" r=".45" />
+        <circle cx="7.5" cy="7.1" r=".45" />
+        <circle cx="9.7" cy="7.1" r=".45" />
+        <circle cx="2" cy="8.9" r=".45" />
+        <circle cx="4.2" cy="8.9" r=".45" />
+        <circle cx="6.4" cy="8.9" r=".45" />
+        <circle cx="8.6" cy="8.9" r=".45" />
+        <circle cx="10.8" cy="8.9" r=".45" />
+      </g>
+    </svg>
+  )
+}

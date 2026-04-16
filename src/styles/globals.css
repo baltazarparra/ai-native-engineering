@@ -25,6 +25,25 @@ body {
   overflow-x: clip;
 }
 
+/* --- page transitions --- */
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: page-transition-out var(--motion-fast) var(--ease-standard) both;
+  }
+
+  ::view-transition-new(root) {
+    animation: page-transition-in var(--motion-normal) var(--ease-standard) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
 img,
 picture,
 video,
@@ -236,6 +255,30 @@ pre code {
 }
 
 @keyframes brutal-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes page-transition-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes page-transition-in {
   from {
     opacity: 0;
     transform: translateY(8px);

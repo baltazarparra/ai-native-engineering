@@ -6,6 +6,12 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 An interactive, static, responsive educational website (PT-BR) that teaches what it means to work as an AI-Native Engineer in 2026. Built for non-technical and junior audiences (QA, PM, designers, recruiters, founders), not just senior devs. The full product spec is in `PLAN.md`.
 
+## Harness Documentation Language
+
+All harness and operational documents must be written in English, including `AGENTS.md`, `CLAUDE.md`, `PLAN.md`, `README.md`, roadmap files, PRDs, and any future agent-facing instructions.
+
+User-facing educational content may follow the page locale. The primary audience remains PT-BR, with English content supported where the site provides localized routes.
+
 ## Development Commands
 
 ```bash
@@ -75,7 +81,7 @@ Every session page follows a fixed template: hero → 30s summary → main expla
 
 ## Editorial Rules
 
-- All content in PT-BR, natural and direct, not academic
+- User-facing content should be natural, direct, and non-academic in its target locale
 - Never favor specific tools; teach categories and patterns, use tools as market snapshots
 - Always: simple explanation first, then technical depth
 - Include examples from PM, QA, and product perspectives, not just dev

@@ -4,6 +4,7 @@ export const languages = {
     htmlLang: 'pt-BR',
     label: 'PT-BR',
     shortLabel: 'PT',
+    flag: 'br',
     pathPrefix: '',
     locale: 'pt_BR',
     dateLocale: 'pt-BR',
@@ -13,6 +14,7 @@ export const languages = {
     htmlLang: 'en',
     label: 'English',
     shortLabel: 'EN',
+    flag: 'us',
     pathPrefix: 'en',
     locale: 'en_US',
     dateLocale: 'en',
@@ -37,6 +39,7 @@ export const ui = {
     skipToContent: 'Pular para o conteúdo',
     languageNav: 'Selecionar idioma',
     currentLanguage: 'Idioma atual',
+    repositoryLink: 'Repositório do projeto no GitHub',
     progressLabel: 'Progresso de leitura',
     summaryHeading: 'Em 30 segundos',
     readingMinutes: (minutes: number) => `${minutes} min de leitura`,
@@ -115,6 +118,8 @@ export const ui = {
     },
     footer: {
       tagline: 'baltz',
+      personalSite: 'Site baltz.dev',
+      repositoryLink: 'Repositório no GitHub',
     },
   },
   en: {
@@ -122,6 +127,7 @@ export const ui = {
     skipToContent: 'Skip to content',
     languageNav: 'Choose language',
     currentLanguage: 'Current language',
+    repositoryLink: 'Project repository on GitHub',
     progressLabel: 'Reading progress',
     summaryHeading: 'In 30 seconds',
     readingMinutes: (minutes: number) => `${minutes} min read`,
@@ -199,6 +205,8 @@ export const ui = {
     },
     footer: {
       tagline: 'baltz',
+      personalSite: 'baltz.dev website',
+      repositoryLink: 'GitHub repository',
     },
   },
 } as const;

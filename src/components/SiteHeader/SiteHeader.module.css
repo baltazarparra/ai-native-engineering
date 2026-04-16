@@ -22,10 +22,18 @@
   min-width: 0;
 }
 
-.brand {
+.brandGroup {
   display: inline-flex;
   align-items: center;
   flex: 1 1 auto;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 1 auto;
   min-width: 0;
   min-height: 2.25rem;
   color: var(--color-primary);
@@ -47,6 +55,42 @@
   background-color: transparent;
   text-decoration: underline;
   transform: translateX(2px);
+}
+
+.iconLink {
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: var(--border-thin);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.iconLink:hover {
+  background-color: var(--color-accent-2);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: var(--motion-lift-sm);
+}
+
+.iconLink:active {
+  transform: translateY(1px);
+  transition-duration: var(--motion-instant);
+}
+
+.icon {
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .actions {
@@ -75,12 +119,12 @@
 }
 
 .langLink {
-  min-width: 2.75rem;
+  min-width: 2.5rem;
   min-height: 2.25rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-xs);
   color: var(--color-primary);
   font-family: var(--font-heading);
   font-size: var(--text-sm);
@@ -116,6 +160,13 @@
 .active:hover {
   background-color: var(--color-primary);
   color: var(--color-bg);
+}
+
+.flagIcon {
+  display: block;
+  width: 1.65rem;
+  height: auto;
+  border: 1px solid var(--color-primary);
 }
 
 @media (min-width: 768px) {

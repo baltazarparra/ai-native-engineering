@@ -1,6 +1,9 @@
 ---
+import FlagIcon from '../Icons/FlagIcon.astro';
+import GitHubIcon from '../Icons/GitHubIcon.astro';
 import type { AlternateLink, Lang } from '../../lib/i18n';
 import { getHomeHref, languages, supportedLangs, ui } from '../../lib/i18n';
+import { siteLinks } from '../../lib/siteLinks';
 import styles from './SiteHeader.module.css';
 
 interface Props {
@@ -21,7 +24,18 @@ function getHref(targetLang: Lang) {
 
 <header class={styles.header}>
   <div class={styles.inner}>
-    <a class={styles.brand} href={getHomeHref(lang)}>AI-Native Engineering</a>
+    <div class={styles.brandGroup}>
+      <a class={styles.brand} href={getHomeHref(lang)}>AI-Native Engineering</a>
+      <a
+        class={styles.iconLink}
+        href={siteLinks.repository}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={labels.repositoryLink}
+      >
+        <GitHubIcon class={styles.icon} />
+      </a>
+    </div>
     <div class={styles.actions}>
       <nav class={styles.langNav} aria-label={labels.languageNav}>
         {
@@ -39,7 +53,10 @@ function getHref(targetLang: Lang) {
                     : languages[targetLang].label
                 }
               >
-                {languages[targetLang].shortLabel}
+                <FlagIcon
+                  country={languages[targetLang].flag}
+                  class={styles.flagIcon}
+                />
               </a>
             );
           })

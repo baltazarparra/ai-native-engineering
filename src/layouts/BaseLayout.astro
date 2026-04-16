@@ -1,5 +1,6 @@
 ---
 import '../styles/globals.css';
+import { ClientRouter } from 'astro:transitions';
 import SiteHeader from '../components/SiteHeader/SiteHeader.astro';
 import type { AlternateLink, Lang } from '../lib/i18n';
 import {
@@ -109,7 +110,10 @@ const languageRedirectScript = `
     } catch (error) {}
   }
 
-  document.addEventListener('click', rememberChoice);
+  if (!window.__aiNativeLanguageChoiceListener) {
+    window.__aiNativeLanguageChoiceListener = rememberChoice;
+    document.addEventListener('click', rememberChoice);
+  }
 
   var targetLang = isAvailable(storedLang) ? storedLang : getBrowserLang();
   var hasStoredPreference = isAvailable(storedLang);
@@ -154,7 +158,7 @@ const languageRedirectScript = `
     }
     {
       Object.keys(languageRedirectAlternates).length > 1 && (
-        <script is:inline set:html={languageRedirectScript} />
+        <script is:inline data-astro-rerun set:html={languageRedirectScript} />
       )
     }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -164,6 +168,7 @@ const languageRedirectScript = `
       rel="stylesheet"
     />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body>
     <a href="#main-content" class="skip-link">{ui[lang].skipToContent}</a>
