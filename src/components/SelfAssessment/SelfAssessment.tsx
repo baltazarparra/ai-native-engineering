@@ -16,58 +16,86 @@ interface Question {
 const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
   'pt-BR': [
     {
-      text: 'Como você usa IA no trabalho hoje?',
+      text: 'Quando você precisa implementar algo com IA, qual fluxo parece mais próximo do seu?',
       options: [
-        { label: 'Raramente ou nunca uso', points: 0 },
-        { label: 'Uso chat pra tirar dúvidas e gerar snippets', points: 1 },
         {
-          label: 'Uso agentes de código e tenho workflow definido',
+          label: 'Peço uma resposta no chat e copio o que parece funcionar',
+          points: 0,
+        },
+        {
+          label:
+            'Uso IA para snippets ou dúvidas, mas implemento quase tudo manualmente',
+          points: 1,
+        },
+        {
+          label:
+            'Delego tarefas bem descritas para agentes de código e reviso o resultado',
           points: 2,
         },
       ],
     },
     {
-      text: 'Antes de pedir algo pra IA, você...',
+      text: 'Antes de pedir código a um agente, você...',
       options: [
-        { label: 'Digito o que vem na cabeça', points: 0 },
-        { label: 'Penso no que quero mas não estruturo muito', points: 1 },
-        { label: 'Escrevo objetivo, contexto e restrições antes', points: 2 },
-      ],
-    },
-    {
-      text: 'Quando a IA gera código, você...',
-      options: [
-        { label: 'Aceito se parece correto', points: 0 },
-        { label: 'Leio por cima e testo manualmente', points: 1 },
-        { label: 'Reviso, rodo testes e valido contra a spec', points: 2 },
-      ],
-    },
-    {
-      text: 'Seu projeto tem regras ou instruções pra IA (rules files, AGENTS.md, CLAUDE.md no Claude Code)?',
-      options: [
-        { label: 'Não sei o que é isso', points: 0 },
-        { label: 'Já ouvi falar mas não uso', points: 1 },
-        { label: 'Sim, e atualizo conforme o projeto evolui', points: 2 },
-      ],
-    },
-    {
-      text: 'Como você escolhe qual modelo ou ferramenta usar pra uma tarefa?',
-      options: [
-        { label: 'Uso sempre o mesmo (ChatGPT, Copilot, etc.)', points: 0 },
-        { label: 'Tenho preferências mas não penso muito nisso', points: 1 },
+        { label: 'Escrevo algo curto tipo "faz essa feature"', points: 0 },
         {
-          label: 'Escolho modelo e ferramenta pela complexidade da tarefa',
+          label: 'Explico o objetivo, mas deixo vários detalhes implícitos',
+          points: 1,
+        },
+        {
+          label: 'Escrevo problema, comportamento esperado, contexto e limites',
           points: 2,
         },
       ],
     },
     {
-      text: 'Quando o resultado da IA não é bom, você...',
+      text: 'Quando o agente altera arquivos, você...',
+      options: [
+        { label: 'Aceito se a tela abriu ou o comando rodou', points: 0 },
+        { label: 'Olho os arquivos principais e testo manualmente', points: 1 },
+        {
+          label:
+            'Reviso o diff, rodo validações e comparo com os critérios de aceite',
+          points: 2,
+        },
+      ],
+    },
+    {
+      text: 'Como você dá contexto para o agente?',
+      options: [
+        { label: 'Quase não dou contexto', points: 0 },
+        {
+          label: 'Aponto alguns arquivos ou exemplos quando lembro',
+          points: 1,
+        },
+        {
+          label:
+            'Indico padrões, arquivos relevantes, regras do projeto e casos que não podem quebrar',
+          points: 2,
+        },
+      ],
+    },
+    {
+      text: 'Quando o agente entrega algo que você não entende, você...',
+      options: [
+        { label: 'Confio se parece correto', points: 0 },
+        {
+          label: 'Peço uma explicação ou procuro entender por cima',
+          points: 1,
+        },
+        {
+          label: 'Entendo o conceito antes de aceitar o código',
+          points: 2,
+        },
+      ],
+    },
+    {
+      text: 'Quando o resultado do agente não é bom, você...',
       options: [
         { label: 'Desisto e faço manualmente', points: 0 },
-        { label: 'Tento reformular o prompt', points: 1 },
+        { label: 'Peço "faz de novo" com pequenas mudanças', points: 1 },
         {
-          label: 'Analiso por que falhou e ajusto contexto, spec ou ferramenta',
+          label: 'Analiso se faltou contexto, critério de aceite ou validação',
           points: 2,
         },
       ],
@@ -75,61 +103,90 @@ const QUESTIONS_BY_LANG: Record<Lang, Question[]> = {
   ],
   en: [
     {
-      text: 'How do you use AI at work today?',
+      text: 'When you need to implement something with AI, which flow is closest to yours?',
       options: [
-        { label: 'Rarely or never', points: 0 },
-        { label: 'I use chat for questions and snippets', points: 1 },
-        { label: 'I use coding agents and have a defined workflow', points: 2 },
-      ],
-    },
-    {
-      text: 'Before asking AI for something, you...',
-      options: [
-        { label: 'Type whatever comes to mind', points: 0 },
-        { label: "Think about the goal but don't structure much", points: 1 },
-        { label: 'Write goal, context, and constraints first', points: 2 },
-      ],
-    },
-    {
-      text: 'When AI generates code, you...',
-      options: [
-        { label: 'Accept it if it looks right', points: 0 },
-        { label: 'Skim it and test manually', points: 1 },
         {
-          label: 'Review it, run tests, and validate against the spec',
-          points: 2,
+          label: 'I ask chat for an answer and copy what seems to work',
+          points: 0,
         },
-      ],
-    },
-    {
-      text: 'Does your project have AI rules or instructions (rules files, AGENTS.md, CLAUDE.md in Claude Code)?',
-      options: [
-        { label: "I don't know what that is", points: 0 },
-        { label: "I've heard of it but don't use it", points: 1 },
-        { label: 'Yes, and we update it as the project evolves', points: 2 },
-      ],
-    },
-    {
-      text: 'How do you choose a model or tool for a task?',
-      options: [
-        { label: 'I always use the same one', points: 0 },
         {
-          label: "I have preferences but don't think much about it",
+          label:
+            'I use AI for snippets or questions, but implement almost everything manually',
           points: 1,
         },
         {
-          label: 'I choose model and tool based on task complexity',
+          label:
+            'I delegate well-described tasks to coding agents and review the result',
           points: 2,
         },
       ],
     },
     {
-      text: "When the AI result isn't good, you...",
+      text: 'Before asking an agent for code, you...',
+      options: [
+        { label: 'Write something short like "build this feature"', points: 0 },
+        {
+          label: 'Explain the goal, but leave several details implicit',
+          points: 1,
+        },
+        {
+          label: 'Write the problem, expected behavior, context, and limits',
+          points: 2,
+        },
+      ],
+    },
+    {
+      text: 'When the agent changes files, you...',
+      options: [
+        {
+          label: 'Accept it if the screen opened or the command ran',
+          points: 0,
+        },
+        { label: 'Check the main files and test manually', points: 1 },
+        {
+          label:
+            'Review the diff, run validations, and compare with acceptance criteria',
+          points: 2,
+        },
+      ],
+    },
+    {
+      text: 'How do you give context to the agent?',
+      options: [
+        { label: 'I give almost no context', points: 0 },
+        {
+          label: 'I point to a few files or examples when I remember',
+          points: 1,
+        },
+        {
+          label:
+            'I point to patterns, relevant files, project rules, and cases that must not break',
+          points: 2,
+        },
+      ],
+    },
+    {
+      text: "When the agent delivers something you don't understand, you...",
+      options: [
+        { label: 'Trust it if it looks correct', points: 0 },
+        {
+          label: 'Ask for an explanation or try to understand it lightly',
+          points: 1,
+        },
+        {
+          label: 'Understand the concept before accepting the code',
+          points: 2,
+        },
+      ],
+    },
+    {
+      text: "When the agent's result isn't good, you...",
       options: [
         { label: 'Give up and do it manually', points: 0 },
-        { label: 'Try to rewrite the prompt', points: 1 },
+        { label: 'Ask it to try again with small changes', points: 1 },
         {
-          label: 'Analyze why it failed and adjust context, spec, or tool',
+          label:
+            'Analyze whether context, acceptance criteria, or validation were missing',
           points: 2,
         },
       ],
@@ -149,15 +206,15 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     exploring: {
       name: 'Explorando',
       description:
-        'Você está começando a usar IA no trabalho e ainda está descobrindo o que funciona e o que não funciona. Isso é normal. O importante agora é experimentar com intenção.',
+        'Você está começando a transformar conversa em código e ainda está descobrindo onde agentes ajudam de verdade. Isso é normal. O importante agora é experimentar com intenção.',
       suggestion:
-        'Comece pelo glossário (Sessão 1) pra entender os termos, e depois explore as ferramentas (Sessão 2) pra ver o que combina com seu fluxo.',
+        'Comece pelo glossário (Sessão 1) pra entender agentes, contexto e prompts, e depois explore as ferramentas (Sessão 2) pra ver o que combina com seu fluxo.',
       accent: 'yellow',
     },
     operating: {
       name: 'Operando',
       description:
-        'Você já tem um fluxo de trabalho com IA e consegue perceber a diferença entre um prompt bem feito e um que não funciona. O próximo passo é dar estrutura a isso.',
+        'Você já consegue delegar partes do trabalho para IA e percebe a diferença entre um pedido vago e um briefing útil. O próximo passo é dar mais estrutura ao processo.',
       suggestion:
         'Foque na Sessão 4 (Maturidade) pra entender onde você está, e depois na Sessão 5 (Como Operar) pra montar seus checklists e artefatos.',
       accent: 'blue',
@@ -165,7 +222,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     structuring: {
       name: 'Estruturando',
       description:
-        'Você já constrói sistemas onde a IA opera de forma estruturada, com rules files, validação automática e escolha de modelo por tarefa. Você já é AI-native.',
+        'Você já opera agentes com contexto, instruções, revisão de diff e validação. A IA não é uma aba extra: ela faz parte do seu sistema de entrega.',
       suggestion:
         'Revise a Sessão 4 pra calibrar sua visão do time. Use esse site como referência compartilhada pra alinhar todo mundo.',
       accent: 'green',
@@ -175,15 +232,15 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     exploring: {
       name: 'Exploring',
       description:
-        "You're starting to bring AI into your work and still figuring out what helps and what doesn't. That's normal. The key right now is to experiment with intention.",
+        "You're starting to turn conversation into code and still figuring out where agents actually help. That's normal. The key right now is to experiment with intention.",
       suggestion:
-        'Start with the glossary (Session 1) to get the vocabulary down, then explore tools (Session 2) to see what fits your workflow.',
+        'Start with the glossary (Session 1) to understand agents, context, and prompts, then explore tools (Session 2) to see what fits your workflow.',
       accent: 'yellow',
     },
     operating: {
       name: 'Operating',
       description:
-        'You already have an AI workflow and can tell the difference between a useful prompt and a vague one. The next step is giving that workflow some structure.',
+        'You already delegate parts of the work to AI and can tell the difference between a vague request and a useful brief. The next step is giving that process more structure.',
       suggestion:
         'Focus on Session 4 (Maturity) to understand where you stand, then Session 5 for checklists and practical artifacts.',
       accent: 'blue',
@@ -191,7 +248,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
     structuring: {
       name: 'Structuring',
       description:
-        "You build systems where AI operates in a structured way, with rules files, automated validation, and model selection by task. You're already AI-native.",
+        'You already operate agents with context, instructions, diff review, and validation. AI is not an extra tab: it is part of your delivery system.',
       suggestion:
         "Review Session 4 to calibrate your team's position. Use this site as a shared reference to align everyone.",
       accent: 'green',

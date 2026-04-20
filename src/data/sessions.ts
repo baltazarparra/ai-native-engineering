@@ -22,8 +22,8 @@ export const sessions: SessionCardData[] = [
     translationKey: 'ai-native-engineer',
     order: 0,
     summary:
-      'O ponto de partida. O que muda quando IA vira parte do fluxo de trabalho e não só uma ferramenta auxiliar.',
-    readingTime: 9,
+      'Código é ferramenta para resolver problemas. O que muda com IA é como você transforma intenção em software usando agentes de código.',
+    readingTime: 10,
     level: 'beginner',
     heroLabel: 'Ponto de partida',
     accent: 'yellow',
@@ -100,8 +100,8 @@ export const sessions: SessionCardData[] = [
     translationKey: 'ai-native-engineer',
     order: 0,
     summary:
-      'The starting point. What changes when AI becomes part of the workflow, not just an extra tool on the side.',
-    readingTime: 9,
+      'Code is a tool for solving problems. What changes with AI is how you turn intent into software with coding agents.',
+    readingTime: 10,
     level: 'beginner',
     heroLabel: 'Starting point',
     accent: 'yellow',
