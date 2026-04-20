@@ -248,5 +248,45 @@
     "category": "ferramentas",
     "relatedSessions": ["ferramentas", "ai-native-engineer"],
     "priority": 2
+  },
+  {
+    "id": "willison-vibe-coding",
+    "title": "Not all AI-assisted programming is vibe coding (but vibe coding rocks)",
+    "url": "https://simonwillison.net/2025/Mar/19/vibe-coding/",
+    "type": "artigo",
+    "source": "Simon Willison",
+    "category": "ai-native-engineer",
+    "relatedSessions": ["ai-native-engineer"],
+    "priority": 1
+  },
+  {
+    "id": "yegge-junior-developer",
+    "title": "Revenge of the Junior Developer",
+    "url": "https://sourcegraph.com/blog/revenge-of-the-junior-developer",
+    "type": "artigo",
+    "source": "Steve Yegge / Sourcegraph",
+    "category": "ai-native-engineer",
+    "relatedSessions": ["ai-native-engineer", "maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "metr-ai-productivity",
+    "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+    "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+    "type": "pesquisa",
+    "source": "METR",
+    "category": "ai-native-engineer",
+    "relatedSessions": ["ai-native-engineer", "maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "osmani-70-percent",
+    "title": "The 70% Problem: Hard Truths About AI-Assisted Coding",
+    "url": "https://addyo.substack.com/p/the-70-problem-hard-truths-about",
+    "type": "artigo",
+    "source": "Addy Osmani",
+    "category": "ai-native-engineer",
+    "relatedSessions": ["ai-native-engineer", "como-operar"],
+    "priority": 1
   }
 ]
