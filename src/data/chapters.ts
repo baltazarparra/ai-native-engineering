@@ -234,8 +234,8 @@ export const CHAPTERS: Chapter[] = [
     },
     description: {
       'pt-BR':
-        'Executar o plano fase a fase com SDD, resolver CORS e validar cada funcionalidade.',
-      en: 'Execute the plan phase by phase with SDD, resolve CORS, and validate each feature.',
+        'Executar o implementation plan phase por phase com um loop claro: PRD, PLAN mode, implementação, validação e report.',
+      en: 'Execute the implementation plan phase by phase with a clear loop: PRD, PLAN mode, implementation, validation, and report.',
     },
     slug: {
       'pt-BR': 'construir',
@@ -243,31 +243,24 @@ export const CHAPTERS: Chapter[] = [
     },
     checkpoints: [
       {
-        id: 'search-works',
+        id: 'phases-reviewed',
         text: {
-          'pt-BR': 'Busca de artistas funciona',
-          en: 'Artist search works',
+          'pt-BR': 'As phases do implementation plan foram revisadas e refinadas',
+          en: 'The implementation plan phases were reviewed and refined',
         },
       },
       {
-        id: 'discography-works',
+        id: 'phases-executed',
         text: {
-          'pt-BR': 'Discografia do artista carrega',
-          en: "Artist's discography loads",
+          'pt-BR': 'As phases foram executadas e validadas uma por vez',
+          en: 'The phases were executed and validated one by one',
         },
       },
       {
-        id: 'album-works',
+        id: 'phase-reports-saved',
         text: {
-          'pt-BR': 'Detalhes do álbum aparecem',
-          en: 'Album details show up',
-        },
-      },
-      {
-        id: 'runs-locally',
-        text: {
-          'pt-BR': 'Projeto roda localmente sem erros',
-          en: 'Project runs locally without errors',
+          'pt-BR': 'Cada phase concluída gerou report e o projeto roda localmente',
+          en: 'Each completed phase produced a report and the project runs locally',
         },
       },
     ],

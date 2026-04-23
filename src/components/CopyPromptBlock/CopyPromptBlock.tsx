@@ -20,11 +20,13 @@ const LABELS = {
 interface Props {
   content: string;
   lang?: Lang;
+  label?: string;
 }
 
 export default function CopyPromptBlock({
   content,
   lang = 'pt-BR',
+  label,
 }: Props) {
   const [status, setStatus] = useState<'idle' | 'copied' | 'error'>('idle');
   const labels = LABELS[lang];
@@ -50,7 +52,7 @@ export default function CopyPromptBlock({
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <span className={styles.kicker}>{labels.ready}</span>
+        <span className={styles.kicker}>{label || labels.ready}</span>
         <button className={styles.copyBtn} onClick={handleCopy} type="button">
           {buttonLabel}
         </button>

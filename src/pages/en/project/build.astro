@@ -1,75 +1,235 @@
 ---
 import ChapterLayout from '../../../layouts/ChapterLayout.astro';
+import CopyPromptBlock from '../../../components/CopyPromptBlock/CopyPromptBlock.tsx';
 const lang = 'en';
+
+const prdPrompt = `
+I want to execute phase [PHASE_NAME] from the implementation plan.
+
+Before writing any code, read:
+- PLAN.md
+- README.md
+- AGENTS.md or CLAUDE.md
+
+TASK
+Analyze phase [PHASE_NAME] from the implementation plan, refine anything vague, and create a PRD for that phase.
+
+Create this file:
+- docs/prd/[PHASE_FILE].md
+
+The PRD must be in English and include:
+- Goal
+- Scope
+- Out of scope
+- User flow
+- UI states
+- Technical notes
+- Acceptance criteria
+- Manual validation
+- Risks / open questions
+
+IMPORTANT RULES
+- focus on a single phase
+- do not invent scope outside the implementation plan
+- if the phase is too large, point that out before proceeding
+- do not implement anything yet
+- generate only the final PRD content
+`.trim();
+
+const planModePrompt = `
+I am now going to execute phase [PHASE_NAME].
+
+Read these files:
+- PLAN.md
+- README.md
+- AGENTS.md or CLAUDE.md
+- docs/prd/[PHASE_FILE].md
+
+I am switching the tool to PLAN mode.
+
+TASK
+Create an execution and validation plan for this phase.
+
+The plan must include:
+- implementation sequence
+- files likely to be changed
+- technical risks
+- how to validate locally
+- PRD criteria that must be checked at the end
+
+IMPORTANT RULES
+- do not implement yet
+- keep the plan small and executable
+- use the PRD as the main source of truth for this phase
+- if the PRD is vague, point that out before proceeding
+`.trim();
+
+const reportPrompt = `
+Phase [PHASE_NAME] has been implemented and validated locally.
+
+Use these files as context:
+- PLAN.md
+- README.md
+- AGENTS.md or CLAUDE.md
+- docs/prd/[PHASE_FILE].md
+
+TASK
+Create this file:
+- reports/[PHASE_SLUG]-report.md
+
+The report must be in English and include:
+- summary of what was implemented
+- files created or changed
+- technical decisions made
+- how the phase was validated
+- PRD criteria that were satisfied
+- problems found and how they were resolved
+- pending work or limitations for the next phase
+
+IMPORTANT RULES
+- write objectively
+- do not invent results that did not happen
+- if something in the PRD was not completed, make that explicit
+- generate only the final report content
+`.trim();
 ---
 
 <ChapterLayout chapterNumber={3} lang={lang}>
-  <h2 id="sdd-cycle">The cycle for each phase</h2>
+  <h2 id="phase-loop">The loop for each phase</h2>
 
   <p>
-    Execute <strong>one phase of the plan at a time</strong>. This is
-    <strong>Spec-Driven Development (SDD)</strong>: defined scope, validation
-    before moving on.
+    By this point, you should already have an <strong>implementation plan</strong>
+    split into <strong>phases</strong>. The goal of this chapter is simple:
+    show the loop you repeat for each phase until the plan is complete.
+  </p>
+
+  <p>
+    Do not take the whole plan and ask the agent to build everything at once.
+    You pick the next phase, refine it, execute it, validate it, record what
+    happened, and only then move to the next one.
   </p>
 
   <ol>
-    <li>
-      Ask the agent to implement the phase (referencing the plan and harness)
-    </li>
-    <li>Review the generated code, read it, run locally, test</li>
-    <li>Adjust what's needed</li>
-    <li>Update the harness if technical decisions were made</li>
-    <li>Move on only when the phase works</li>
+    <li>Re-read and refine the next phase from the implementation plan</li>
+    <li>Ask the agent to create the PRD for that phase</li>
+    <li>Switch the tool to PLAN mode</li>
+    <li>Ask for an execution and validation plan based on that PRD</li>
+    <li>Return to normal mode and implement the phase</li>
+    <li>Test and validate against the PRD</li>
+    <li>Generate a phase report</li>
+    <li>Repeat the same loop for the next phase</li>
   </ol>
 
-  <div class="prompt-example prompt-good">
-    <strong>Example:</strong>
+  <div class="checkpoint">
+    <strong>Main rule:</strong>
     <p>
-      "Implement phase 1 of the plan: [describe the phase]. Follow the rules in
-      AGENTS.md (or CLAUDE.md if you're using Claude Code). Show me how to test
-      that it's working."
+      One phase at a time. When a phase is done, it should have a PRD,
+      implementation, validation, and a report. Only then do you move on.
     </p>
   </div>
 
-  ---
+  <hr />
 
-  <h2 id="cors">CORS: the problem that will appear</h2>
+  <h2 id="step-1-prd">1. Review the phase and create the PRD</h2>
 
   <p>
-    The Deezer API is public and requires no authentication, but <strong
-      >does not support CORS</strong
-    >. This means <code>fetch()</code> from the browser will be blocked. This <strong
-      >will happen</strong
-    >.
+    The first step in the loop is to take the next phase from the implementation
+    plan and check whether it is clear enough. If it is vague, too large, or
+    missing testable criteria, refine it before coding.
   </p>
 
-  <p>When the error shows up in the console, don't panic. Ask the agent:</p>
+  <p>
+    Then ask the agent to turn that phase into a specific PRD. The PRD is the
+    execution document for the phase: what is included, what is excluded, how
+    it should work, and how you will validate it.
+  </p>
+
+  <CopyPromptBlock
+    client:visible
+    content={prdPrompt}
+    lang={lang}
+    label="Prompt to review the phase and generate the PRD"
+  />
+
+  <hr />
+
+  <h2 id="step-2-plan-mode">2. Switch to PLAN mode</h2>
+
+  <p>
+    Once the PRD is ready, do not ask for code yet. First, switch the tool to
+    <strong>PLAN mode</strong> and ask for a plan to execute and validate that
+    phase.
+  </p>
+
+  <p>
+    This forces the agent to think before acting: which files it will touch,
+    which order makes sense, what the risks are, and how to prove the phase is
+    complete.
+  </p>
+
+  <CopyPromptBlock
+    client:visible
+    content={planModePrompt}
+    lang={lang}
+    label="Prompt to use in PLAN mode"
+  />
+
+  <hr />
+
+  <h2 id="step-3-execute">3. Execute, test, and validate</h2>
+
+  <p>
+    Only after the PRD and the phase plan are ready should implementation begin.
+    At that point you already have clearer scope, criteria, and validation,
+    which reduces invented scope a lot.
+  </p>
 
   <div class="prompt-example prompt-good">
-    <strong>Prompt to fix CORS:</strong>
+    <strong>Example execution request</strong>
     <p>
-      "The fetch to the Deezer API is being blocked by CORS. Set up a CORS proxy
-      (like corsproxy.io) so requests work in the browser. Explain why this
-      happens."
+      "Implement phase [PHASE_NAME] following the PRD
+      <code>docs/prd/[PHASE_FILE].md</code>. Follow the rules in AGENTS.md (or
+      CLAUDE.md). Show me how to validate that the result satisfies the PRD."
     </p>
   </div>
-
-  <p>
-    CORS is a browser protection, not a bug in your code. Understanding this is
-    part of the learning.
-  </p>
-
-  ---
-
-  <h2 id="validate">Validate functionality</h2>
-
-  <p>Before moving to deploy, all features need to work locally.</p>
 
   <div class="checkpoint">
-    <strong>✓ Manual test:</strong>
+    <strong>Practical note:</strong>
     <p>
-      Type "Beyoncé" in your site's search. Artists show up? Click one. Albums
-      load with covers? Click an album. Tracklist appears? If yes, move on.
+      If this phase uses <code>fetch()</code> from the browser to Deezer, the
+      CORS problem will likely appear. Treat that as a phase risk and resolve it
+      inside the loop before closing validation.
+    </p>
+  </div>
+
+  <hr />
+
+  <h2 id="step-4-report">4. Generate the report and move to the next phase</h2>
+
+  <p>
+    When the phase is implemented and validated locally, close the cycle with a
+    report. That report becomes project memory: what was built, what changed,
+    how it was validated, and what remains open.
+  </p>
+
+  <p>
+    After that, go back to the implementation plan and repeat exactly the same
+    loop for the next phase. That is how you get through the full plan without
+    losing clarity.
+  </p>
+
+  <CopyPromptBlock
+    client:visible
+    content={reportPrompt}
+    lang={lang}
+    label="Prompt to generate the phase report"
+  />
+
+  <div class="checkpoint">
+    <strong>✓ Phase closure:</strong>
+    <p>
+      Before moving on, confirm four things: the PRD exists, the phase was
+      implemented, validation passed, and the report was saved.
     </p>
   </div>
 </ChapterLayout>

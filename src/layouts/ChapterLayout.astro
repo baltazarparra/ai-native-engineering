@@ -25,6 +25,20 @@ const badgeVariant = chapter.isReference ? 'blue' : 'coral';
 const badgeText = chapter.isReference
   ? labels.reference
   : labels.chapterLabel(chapterNumber);
+const gitReminder =
+  lang === 'pt-BR'
+    ? {
+        title: 'Antes de sair deste capítulo',
+        body: 'Salve o que foi feito até aqui no Git antes de avançar. Isso ajuda você a manter progresso, histórico e pontos seguros de retorno.',
+        note: 'Troque a mensagem do commit por um resumo curto e real do que mudou neste capítulo.',
+        commitMessage: '[resuma o que foi feito neste capitulo]',
+      }
+    : {
+        title: 'Before leaving this chapter',
+        body: 'Save your work in Git before moving on. This gives you progress checkpoints, history, and safe rollback points.',
+        note: 'Replace the commit message with a short, real summary of what changed in this chapter.',
+        commitMessage: '[summarize what changed in this chapter]',
+      };
 ---
 
 <BaseLayout
@@ -51,6 +65,14 @@ const badgeText = chapter.isReference
       </aside>
       <article class="session-content">
         <slot />
+        <div class="git-reminder">
+          <strong>{gitReminder.title}</strong>
+          <p>{gitReminder.body}</p>
+          <pre><code>{`git add .
+git commit -m "${gitReminder.commitMessage}"
+git push`}</code></pre>
+          <p class="git-reminder-note">{gitReminder.note}</p>
+        </div>
         <ChapterFooter
           client:visible
           chapterNumber={chapterNumber}
@@ -191,6 +213,31 @@ const badgeText = chapter.isReference
     font-size: var(--text-sm);
     display: block;
     margin-bottom: var(--space-xs);
+  }
+
+  .session-content :global(.git-reminder) {
+    border: var(--border-thick);
+    border-left: 6px solid var(--color-accent-1);
+    background-color: var(--color-bg-alt);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  .session-content :global(.git-reminder strong) {
+    font-family: var(--font-heading);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .session-content :global(.git-reminder p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .session-content :global(.git-reminder-note) {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
   }
 
   @media (min-width: 1024px) {
