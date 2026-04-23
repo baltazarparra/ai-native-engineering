@@ -40,6 +40,106 @@
     "priority": 2
   },
   {
+    "id": "merriam-webster-vibe-coding",
+    "title": "Vibe Coding Definition",
+    "url": "https://www.merriam-webster.com/dictionary/vibe%20coding",
+    "type": "artigo",
+    "source": "Merriam-Webster",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "lovable-docs",
+    "title": "Lovable Documentation",
+    "url": "https://docs.lovable.dev/introduction/welcome",
+    "type": "documentacao",
+    "source": "Lovable",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "ferramentas"],
+    "priority": 1
+  },
+  {
+    "id": "bolt-github",
+    "title": "Bolt.new: AI-Powered Full-Stack Web Development in the Browser",
+    "url": "https://github.com/stackblitz/bolt.new",
+    "type": "documentacao",
+    "source": "StackBlitz",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "ferramentas"],
+    "priority": 1
+  },
+  {
+    "id": "v0-docs",
+    "title": "What is v0?",
+    "url": "https://v0.app/docs",
+    "type": "documentacao",
+    "source": "Vercel",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "ferramentas"],
+    "priority": 1
+  },
+  {
+    "id": "replit-agent-docs",
+    "title": "Replit Agent",
+    "url": "https://docs.replit.com/core-concepts/agent",
+    "type": "documentacao",
+    "source": "Replit",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "ferramentas"],
+    "priority": 2
+  },
+  {
+    "id": "firebase-studio-agent-docs",
+    "title": "Get started with the App Prototyping agent",
+    "url": "https://firebase.google.com/docs/studio/get-started-ai",
+    "type": "documentacao",
+    "source": "Firebase",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "ferramentas"],
+    "priority": 2
+  },
+  {
+    "id": "stackoverflow-ai-survey-2025",
+    "title": "Stack Overflow Developer Survey 2025 - AI",
+    "url": "https://survey.stackoverflow.co/2025/ai",
+    "type": "pesquisa",
+    "source": "Stack Overflow",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "ferramentas", "maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "metr-ai-productivity-2025",
+    "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+    "url": "https://arxiv.org/abs/2507.09089",
+    "type": "pesquisa",
+    "source": "METR",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "stanford-insecure-code-ai-assistants",
+    "title": "Do Users Write More Insecure Code with AI Assistants?",
+    "url": "https://bitsandwatts.stanford.edu/publications/journal-article/do-users-write-more-insecure-code-ai-assistants",
+    "type": "pesquisa",
+    "source": "Stanford University",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "como-operar"],
+    "priority": 2
+  },
+  {
+    "id": "owasp-llm-top-10",
+    "title": "OWASP Top 10 for Large Language Model Applications",
+    "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+    "type": "documentacao",
+    "source": "OWASP",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "como-operar"],
+    "priority": 2
+  },
+  {
     "id": "anthropic-prompt-engineering",
     "title": "Prompt Engineering Guide",
     "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering",

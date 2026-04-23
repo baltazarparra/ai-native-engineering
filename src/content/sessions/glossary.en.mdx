@@ -1,230 +1,218 @@
 ---
-title: 'The words people keep using'
+title: 'Glossary: vibe coding without the hype'
 slug: 'glossary'
 lang: 'en'
 translationKey: 'glossary'
 order: 1
-summary: 'Prompt, token, context, agent. A glossary that keeps the vocabulary useful without turning it into jargon soup.'
-readingTime: 11
+summary: 'What vibe coding is, which platforms turn prompts into apps, where it helps, where it breaks, and how to turn a demo into real software.'
+readingTime: 14
 level: 'beginner'
-tags: ['glossary', 'terminology', 'fundamentals']
+tags: ['glossary', 'vibe coding', 'tools', 'fundamentals']
 heroLabel: 'Essential vocabulary'
 references:
-  ['openai-tokenizer', 'anthropic-claude-docs', 'anthropic-prompt-engineering']
-updatedAt: 2026-04-15
+  [
+    'merriam-webster-vibe-coding',
+    'lovable-docs',
+    'bolt-github',
+    'v0-docs',
+    'replit-agent-docs',
+    'firebase-studio-agent-docs',
+    'stackoverflow-ai-survey-2025',
+    'metr-ai-productivity-2025',
+    'stanford-insecure-code-ai-assistants',
+    'owasp-llm-top-10',
+  ]
+updatedAt: 2026-04-23
 ---
 
 import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid.tsx';
 
-## If these words all sound the same
+## The app opened in preview. Now what?
 
-LLM, model, token, prompt, context, agent, MCP, harness. If you've heard these in a meeting and quietly pretended to follow along, this session is for you.
+You open Lovable, Bolt, v0, Replit Agent, or a similar platform. You type: "create an app to organize my study routine, with login, a dashboard, and a task list". The tool thinks, installs things, generates screens, writes code, opens a preview, and suddenly it looks like software.
 
-The AI vocabulary around software grew fast, but the problem isn't the number of terms. It's that people use the same words for different things. A PM says "model" meaning the product (ChatGPT). A dev says "model" meaning the neural network (GPT-4o). Here's the minimum you need to join those conversations without getting lost.
+That moment is addictive because it feels like you skipped months of learning. And to be fair, there is real value there. For the first time, PMs, designers, founders, QAs, and junior devs can turn an idea into something clickable without starting with project setup, boilerplate, or terminal anxiety.
 
-## The terms that matter
+But this is the most important line in the session: **preview is not production**.
 
-### AI fundamentals
+An app that opens in the browser can still have broken access rules, exposed secrets, fragile flows, unmaintainable code, odd dependencies, no tests, and an architecture that only works while the project is tiny. The flex is not generating something in 30 minutes. The flex is being able to maintain it tomorrow.
 
-#### LLM
+## What vibe coding is
 
-**Simple**: A program trained to read and write text. You send a question, it generates an answer.
+Vibe coding means creating software by describing intent in natural language and letting AI generate a large part of the code. The term became popular after Andrej Karpathy described a way of programming where you follow the "vibe", talk to the agent, accept changes, paste errors back, and let the code grow without manually writing every line.
 
-**Technical**: Large Language Model. A neural network with billions of parameters trained on large text corpora. Generates output token by token based on conditional probability.
+Plain English version: you say what you want, AI tries to build it, you inspect the result, ask for changes, run it again. It is less "I write every line" and more "I direct the outcome".
 
-**Example**: When you ask ChatGPT to explain a bug, the LLM behind it processes your text and generates the answer piece by piece.
+That is not automatically bad. Vibe coding is great for:
 
-**Common mistake**: Treating LLM as a synonym for ChatGPT. ChatGPT is a product; GPT-4o is the LLM inside it.
+- getting an idea out of your head and onto the screen;
+- creating clickable prototypes for user conversations;
+- learning by reading generated code and asking for explanations;
+- testing product flows before spending engineering sprint time;
+- building simple internal or disposable tools.
 
-#### Model
+The problem starts when someone confuses "AI generated it" with "it is correct". If you do not understand the code, have not reviewed data access, have not tested permissions, and do not know how to roll back, you do not own the software yet. You have a demo with confidence.
 
-**Simple**: The trained "brain" that processes text. Different models have different capabilities, speeds, and costs.
+## Prompt-to-app platforms
 
-**Technical**: The weights and architecture produced by training. Each model has its own profile for reasoning, speed, context window, and cost.
+These tools are not just chatbots. They mix a language model, editor, terminal, preview, deploy, integrations, and sometimes database and authentication. The category is better described as **prompt-to-app**: you describe an app, and the platform assembles a working version.
 
-**Example**: Claude Sonnet is a model. Claude is the product. You interact with the product, but the model generates the response.
+### Lovable
 
-**Common mistake**: Confusing model and product. When someone says "let's use Claude", ask whether they mean the chat, the API, or a specific model.
+Lovable positions itself as a full-stack platform for creating, iterating, and publishing web applications using natural language. Its focus is turning an idea into a real app with frontend, backend, database, authentication, integrations, and code that can sync to GitHub.
 
-#### Inference
+In practice: useful for MVPs, richer prototypes, internal tools, and fast product validation. The caution: when a platform handles many things for you, it also makes many invisible decisions. You still need to review code, permissions, environment variables, data rules, and visibility settings.
 
-**Simple**: Asking the model to generate a response. Every message you send triggers an inference.
+### Bolt
 
-**Technical**: Running the model over an input prompt to produce a completion. It consumes compute and is usually billed per token.
+Bolt is a web development agent in the browser. It combines AI with an environment that can install packages, run a Node server, edit files, show a preview, and publish the project. The key difference is that AI is not only writing snippets: it can operate the environment.
 
-**Example**: You ask "how does async/await work in TypeScript?" and get an explanation. That generation step is inference.
+In practice: strong for JavaScript front-end/full-stack prototypes, quick experiments, and visual learning. The caution: if your prompt is vague, it will choose stack, structure, and shortcuts for you. Someone will inherit those choices later.
 
-**Common mistake**: Assuming inference is instant and free. It costs time and money. Larger models cost more.
+### v0
 
-#### Token
+v0, from Vercel, started strongly associated with UI generation and now presents itself as an agent for creating real code, prototypes, features, and full-stack apps with prompts, Vercel integration, GitHub, and deploy workflows.
 
-**Simple**: A chunk of text the model processes: a word, part of a word, or a special character.
+In practice: strong for interfaces, landing pages, dashboards, components, and product prototypes. The caution: a polished UI can hide fragile business logic. Nice visuals do not prove security, accessibility, performance, or maintainability.
 
-**Technical**: The atomic processing unit of an LLM. Text is split by a tokenizer. Roughly 1 token ≈ 4 characters in English.
+### Replit Agent, Firebase Studio, and similar tools
 
-**Example**: A 500-line code file can be thousands of tokens. This matters because every model has token limits.
+Replit Agent promises to turn a description into a project, configure infrastructure, test, and publish. Firebase Studio offers a prototyping flow with multimodal prompts, blueprint, preview, Firebase, and publishing. Base44, Tempo, Emergent, and others follow variations of the same idea.
 
-**Common mistake**: Ignoring token count. If you paste a huge file and the model "forgets" the start, you've probably hit the context window.
+The pattern is the same: the more the platform packages the path from idea to deploy, the easier it is to start and the more important it becomes to understand what was generated.
 
-#### Context
+## Why it feels like it works so well
 
-**Simple**: Everything the model can see when generating an answer: your message, chat history, system instructions, attached files.
+Because prototypes have a different bar. A prototype needs to show intent. It does not need to survive traffic, audits, payments, privacy requirements, fine-grained permissions, and two years of maintenance.
 
-**Technical**: The full token sequence given as input, including system prompt, conversation history, and current message. Bounded by the context window.
+It also works because many apps repeat patterns: login screen, list, form, dashboard, CRUD, filters, sidebar, table. Models have seen a lot of similar code and can recombine those patterns extremely fast.
 
-**Example**: If you ask for a code review with three files attached, the context is your request plus those files. If it doesn't fit, something gets cut.
+For Gen Z and junior devs, this changes the game: you do not need to wait until you "know everything" to play with product ideas. You can build, break, ask, compare, and learn in the loop. Just do not skip understanding. AI accelerates feedback. It does not replace fundamentals.
 
-**Common mistake**: Thinking the model remembers past conversations. It only knows what's in the current context.
+## Where it breaks
 
-### Working with AI
+### 1. Almost-right code
 
-#### Prompt
+The Stack Overflow Developer Survey 2025 found that the biggest frustration with AI tools is getting solutions that are "almost right, but not quite". That is especially dangerous for beginners because the code can look professional.
 
-**Simple**: The text you send to the model: question, request, instruction, or all three.
+Almost right in software can be fully wrong: a test that passes but tests nothing, an inverted auth rule, a pretty button with no error handling, a query that works with 10 rows and dies with 10,000.
 
-**Technical**: Textual input provided to generate a completion. Can include instructions, examples, constraints, and output format.
+### 2. Imaginary productivity
 
-**Example**: Bad prompt: "make a component". Better: "create a React button with primary/secondary variants, CSS Modules, a disabled prop, and tests".
+A METR study with experienced open-source developers found a counterintuitive result: with early-2025 AI tools, participants believed they were faster, but finished tasks more slowly. The point was not "AI is useless"; it was the overhead of prompting, waiting, reviewing, and fixing output.
 
-**Common mistake**: Thinking the prompt is just "the question". It also includes context, constraints, examples, and format.
+Moral: feeling fast is not a metric. The app appeared quickly, but you may have moved the work into debugging, review, and technical debt.
 
-#### System prompt
+### 3. Security nobody asked for
 
-**Simple**: Initial instructions that shape how the model behaves, like a briefing before the conversation starts.
+Research on coding assistants has shown higher risk when people accept generated code without understanding security. OWASP also lists common LLM application risks such as excessive agency, sensitive information disclosure, and overreliance on model output.
 
-**Technical**: A message with the system role that defines behavior, tone, constraints, and capabilities. Takes priority over user messages.
+In vibe coding, this shows up in basic ways:
 
-**Example**: "You're a senior code reviewer. Point out security issues first." That shapes every response.
+- an API key pasted into a prompt or the wrong file;
+- a database with no per-user access rule;
+- an admin route without real authorization;
+- personal data visible in a public preview;
+- an agent with too much permission to edit, publish, or delete.
 
-**Common mistake**: Skipping system instructions and then blaming the model for not understanding the job.
+### 4. Maintenance without an owner
 
-### Tools and interfaces
+The project grows beyond your understanding. You ask "just add payments", then "now make it multi-tenant", then "add reports", then "fix this bug". At some point, nobody knows why the architecture looks the way it does.
 
-#### IDE
+When the person who created it does not understand it, the team that receives it pays the bill. That is instant technical debt.
 
-**Simple**: The code editor where you write software. VS Code, Cursor, and Windsurf are examples.
+## The right way to do it
 
-**Technical**: Integrated Development Environment. In the AI context, modern IDEs embed LLMs directly into editing and code actions.
+The answer is not to stop using these tools. It is to change the process.
 
-**Example**: Cursor has AI built in. VS Code with Copilot becomes an AI IDE through an extension.
+### 1. Start with a mini spec
 
-**Common mistake**: Assuming an AI IDE is automatically better than a terminal tool. They're different interfaces for different workflows.
+Before the prompt, write the basics:
 
-#### CLI
+- who uses it;
+- what problem it solves;
+- which screens exist;
+- which data gets saved;
+- who can view or edit each thing;
+- which integrations are involved;
+- what is out of scope for the first version.
 
-**Simple**: Command-line interface. You type in the terminal, get text back. Claude Code runs this way.
+A prompt without a spec is a delivery order: something arrives, but it may not be your product.
 
-**Technical**: A text interface where you interact through commands. AI CLIs can read/edit files, run tests, and use system tools.
+### 2. Generate the prototype
 
-**Example**: Instead of clicking menus, you ask a terminal agent to review `src/api.ts`. It reads the file and responds inline.
+Use Lovable, Bolt, v0, Replit Agent, or whichever tool fits the job. At this stage, speed is welcome. The goal is to inspect flow, copy, layout, states, and interactions.
 
-**Common mistake**: Thinking CLI means "only for hardcore devs". Modern AI CLIs are conversational and approachable.
+This is where you can vibe. Just do not confuse this stage with the final delivery.
 
-#### Autocomplete
+### 3. Ask for a code explanation
 
-**Simple**: AI suggests the next piece of code while you type. Like phone autocomplete, but for code.
+If you are a junior dev, this is the learning move: after the platform generates code, ask it to explain the structure, main files, dependencies, data flow, and fragile points.
 
-**Technical**: Code completion powered by LLMs, using the current file and open files to predict useful code in real time.
+Good questions:
 
-**Example**: You start typing `function validate` and the tool suggests the full body based on surrounding code.
+- "Where is the authentication rule?"
+- "Which files control data access?"
+- "Which parts are mocked?"
+- "What would break with 1,000 users?"
+- "Where would I add tests?"
 
-**Common mistake**: Accepting every suggestion without reading it. Autocomplete is likely, not necessarily correct.
+### 4. Review it like software
 
-#### Code context
+Before calling it done:
 
-**Simple**: Project information AI uses to understand your work: open files, folder structure, types, dependencies.
+- run the app locally when possible;
+- review the diff;
+- look for secrets and sensitive data;
+- test login, permissions, and error states;
+- run lint, typecheck, and tests;
+- add tests for the main flow;
+- send it to GitHub as a PR, not as a leap of faith.
 
-**Technical**: Repository information included in the model's context: file tree, relevant contents, imports, types, tests, configs.
+If there is no review, it is still vibe coding. If there is a spec, diff, tests, and ownership, you are moving into AI-assisted engineering.
 
-**Example**: Cursor uses imports and nearby files to suggest code that fits your project better than a generic chat answer.
+### 5. Decide its destination
 
-**Common mistake**: Assuming AI knows the whole project automatically. Every tool has context limits.
+Not every prototype deserves to become a product. Some are for learning. Some are for selling an idea. Some need to be rebuilt with more care.
 
-### Agents and systems
+Rule of thumb: if it involves money, personal data, real login, external customers, or team operations, treat it as production software. That is where process matters.
 
-#### Agent
+## How this connects to the next sessions
 
-**Simple**: A program that uses AI to make decisions and take actions, not just answer questions.
+In this session, you are getting the vocabulary to avoid falling for marketing. Next, we go deeper:
 
-**Technical**: A system combining an LLM, tools, and control logic to execute tasks autonomously. It plans, acts, observes, and iterates.
+- [Session 2: Tools](../tools) shows how to choose between AI IDEs, CLIs, cloud agents, and prompt-to-app platforms.
+- [Session 4: Maturity](../maturity) explains why vibe coding is a useful phase, but not the end of the evolution.
+- [Session 5: How to operate](../how-to-operate) gives you checklists for asking better, validating better, and working with agents without accepting everything automatically.
 
-**Example**: You ask for a refactor. The agent reads files, edits code, runs tests, and reports back.
+## Quick term search
 
-**Common mistake**: Confusing chatbot and agent. A chatbot responds; an agent does work through tools.
-
-#### Coding agent
-
-**Simple**: An agent specialized in writing, editing, and reviewing code, with direct access to your project.
-
-**Technical**: An AI agent with developer tools: file read/write, terminal commands, repo navigation, test execution.
-
-**Example**: Claude Code and Codex CLI are coding agents. Cursor's agent mode works the same way.
-
-**Common mistake**: Giving full autonomy without review. Output still needs validation before reaching production.
-
-#### MCP
-
-**Simple**: A standard that lets AI tools connect to external services cleanly. Like USB for AI.
-
-**Technical**: Model Context Protocol. An open protocol for connecting AI apps to data sources and tools through shared server interfaces.
-
-**Example**: An MCP server for GitHub lets any compatible tool access issues, PRs, and repos without building its own integration.
-
-**Common mistake**: Treating MCP as fully settled. It's useful, but the ecosystem is still evolving.
-
-#### Harness
-
-**Simple**: The complete work system around an AI agent: instructions, tools, rules, context. The environment where it operates.
-
-**Technical**: The orchestration layer around a coding agent: system prompt, tools, project rules, persistent context, automated checks, acceptance criteria.
-
-**Example**: A harness might include `AGENTS.md` (`CLAUDE.md` in Claude Code), pre-commit checks, MCP tools, and a prompt defining project rules.
-
-**Common mistake**: Treating harness as something you install. It's a practice you build over time.
-
-## Why this matters
-
-Shared vocabulary isn't decoration. It's communication infrastructure.
-
-When a PM says "use the faster model", they might mean cheaper, lower latency, or the one they saw on social media. Without shared vocabulary, everyone interprets differently and the result is rework.
-
-- **Multidisciplinary teams decide on AI together**. Dev, QA, PM, and design all need enough vocabulary to participate.
-- **Tools change fast**. What was autocomplete became agents; stale vocabulary leads to stale decisions.
-- **Vendors use jargon on purpose**. If you don't understand the terms, you can't evaluate what they're selling.
-
-## Real example
-
-A real meeting between PM, QA, and dev:
-
-**PM**: "We need AI to speed up testing."
-
-**QA**: "What kind? Generate cases? Run automated tests? Analyze failures?"
-
-**Dev**: "We can use a coding agent to generate tests from the spec, but it needs good code context. If the project has weak types, the model will guess."
-
-**PM**: "So the model needs to see our code?"
-
-**Dev**: "Yes. The code becomes context. The better organized the project, the better the output. But there are token limits, so we can't send everything at once."
-
-**QA**: "And if it generates tests that pass but test nothing?"
-
-**Dev**: "Exactly. Inference gives us a draft. Validation is still our job."
-
-## Where this breaks
-
-- **Jargon as a wall**: Technical terms used to impress instead of communicate create barriers, not vocabulary.
-- **Definitions too rigid**: These terms are still moving. Don't treat this glossary as law.
-- **Memorizing without understanding**: Knowing the technical definition doesn't help unless you grasp why it matters in practice.
-
-## Interactive block
+Use the search below as a pocket map. The goal is not to memorize jargon; it is to understand enough to ask better questions.
 
 <GlossaryCardGrid lang="en" client:visible />
 
+## Real example
+
+A PM, a junior dev, and a QA want to test an idea for an internal onboarding portal.
+
+**PM**: writes a mini spec with screens, user roles, and the main flow. Then asks Lovable to generate a clickable prototype.
+
+**Junior dev**: opens the code, asks for an explanation of the structure, identifies where auth, data, and components live, and marks anything that feels too magical for review with someone more experienced.
+
+**QA**: turns the spec into scenarios: a regular user cannot see the admin panel, an expired invite fails, a form shows an error when required data is missing.
+
+The prototype helps the team talk. The spec and validation stop the team from treating preview as product.
+
+## Where this breaks
+
+- **Hype as identity**: "I am a vibe coder" does not fix bugs. Use the technique when it helps, not as a professional personality.
+- **Tool instead of process**: switching Lovable for Bolt, v0, or Replit does not fix vague prompts or missing tests.
+- **Outsourced learning**: if AI always does it and you never understand it, your growth stalls.
+- **Deploying too early**: publishing before validating permissions, data, and errors turns a prototype into risk.
+
 ## Takeaway
 
-- Shared vocabulary is a prerequisite for AI collaboration, not a nice-to-have
-- Match the explanation to the audience: simple for PMs/stakeholders, technical for devs
-- Product and model are different things. Separating them avoids confusion about cost and capability
-- Context is limited; the model only knows what fits in the window
-- Agent isn't chatbot; the difference is autonomy and tool access
-- Revisit these terms regularly. Meanings evolve fast
+- Vibe coding is great for starting, learning, and prototyping. It is not an excuse to stop understanding.
+- Prompt-to-app platforms move fast, but they make technical choices for you.
+- Preview is not production. Generated code needs a spec, review, tests, and an owner.
+- The right flow is: mini spec -> prototype -> explanation -> review -> validation -> PR/deploy.
