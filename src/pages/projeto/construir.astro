@@ -6,6 +6,9 @@ const lang = 'pt-BR';
 const prdPrompt = `
 Quero executar a phase [PHASE_NAME] do implementation plan.
 
+Se este for o primeiro ciclo, comece pela phase 1.
+Se a phase 1 já estiver concluída, use a próxima phase ainda não concluída.
+
 Antes de qualquer código, leia:
 - PLAN.md
 - README.md
@@ -39,6 +42,8 @@ REGRAS IMPORTANTES
 const planModePrompt = `
 Agora vou executar a phase [PHASE_NAME].
 
+Estou seguindo o implementation plan uma phase por vez.
+
 Leia estes arquivos:
 - PLAN.md
 - README.md
@@ -66,6 +71,8 @@ REGRAS IMPORTANTES
 
 const reportPrompt = `
 A phase [PHASE_NAME] foi implementada e validada localmente.
+
+Depois deste report, vou marcar essa phase como concluída e seguir para a próxima phase ainda não concluída do implementation plan.
 
 Use estes arquivos como contexto:
 - PLAN.md
@@ -100,56 +107,63 @@ REGRAS IMPORTANTES
   <p>
     A esta altura, você já deve ter um <strong>implementation plan</strong>
     dividido em <strong>phases</strong>. O objetivo deste capítulo é simples:
-    mostrar o loop que você vai repetir para cada uma delas até fechar o plano.
+    mostrar o loop que você vai repetir começando pela <strong>phase 1</strong>
+    e seguindo <strong>phase por phase</strong> até fechar o plano inteiro.
   </p>
 
   <p>
-    Não é para pegar o plano inteiro e mandar implementar tudo de uma vez.
-    Você pega a próxima phase, refina, executa, valida, registra o que foi
-    feito e só então passa para a seguinte.
+    Não é para pegar o plano inteiro e mandar implementar tudo de uma vez, nem
+    para escolher uma phase aleatória porque parece mais fácil. Você começa na
+    phase 1. Quando a phase 1 terminar com validação e report, volta ao
+    implementation plan, pega a phase 2 e repete. Depois phase 3, e assim por
+    diante.
   </p>
 
   <ol>
-    <li>Releia e refine a próxima phase do implementation plan</li>
+    <li>Abra o implementation plan e foque só na phase 1 ou na próxima ainda não concluída</li>
+    <li>Revise e refine essa phase antes de executar</li>
     <li>Peça ao agente para criar a PRD dessa phase</li>
     <li>Mude a ferramenta para o modo PLAN</li>
     <li>Peça um plano de execução e validação baseado nessa PRD</li>
     <li>Volte para o modo normal e implemente a phase</li>
     <li>Teste e valide contra a PRD</li>
-    <li>Gere um report da phase</li>
-    <li>Repita o mesmo loop na próxima phase</li>
+    <li>Gere o report da phase, marque-a como concluída e siga para a próxima</li>
   </ol>
 
   <div class="checkpoint">
     <strong>Regra principal:</strong>
     <p>
-      Uma phase por vez. Quando uma phase termina, ela precisa ter PRD,
-      implementação, validação e report. Só depois disso você segue para a
-      próxima.
+      Sempre em ordem. Primeiro phase 1. Depois phase 2. Depois phase 3. Uma
+      phase por vez. Quando uma phase termina, ela precisa ter PRD,
+      implementação, validação e report antes de você abrir a próxima.
     </p>
   </div>
 
   <hr />
 
-  <h2 id="passo-1-prd">1. Revisar a phase e gerar a PRD</h2>
+  <h2 id="passo-1-prd">1. Ler o implementation plan, revisar a phase e gerar a PRD</h2>
 
   <p>
-    O primeiro passo do loop é pegar a próxima phase do implementation plan e
-    revisar se ela está clara o suficiente. Se estiver vaga, grande demais ou
-    sem critérios testáveis, ajuste antes de codar.
+    O primeiro passo do loop é abrir o implementation plan e pegar a
+    <strong>phase 1</strong>. Nos ciclos seguintes, você sempre pega a próxima
+    phase ainda não concluída. Antes de qualquer código, revise se essa phase
+    está clara o suficiente. Se estiver vaga, grande demais ou sem critérios
+    testáveis, ajuste antes de seguir.
   </p>
 
   <p>
     Depois disso, peça ao agente para transformar essa phase em uma PRD
     específica. A PRD é o documento de execução da phase: o que entra, o que
-    fica fora, como deve funcionar e como você vai validar.
+    fica fora, como deve funcionar e como você vai validar. Quando a phase 1
+    estiver fechada, você repete exatamente o mesmo processo na phase 2, e
+    assim por diante.
   </p>
 
   <CopyPromptBlock
     client:visible
     content={prdPrompt}
     lang={lang}
-    label="Prompt para revisar a phase e gerar a PRD"
+    label="Prompt para analisar a phase atual e gerar a PRD"
   />
 
   <hr />
@@ -159,12 +173,14 @@ REGRAS IMPORTANTES
   <p>
     Com a PRD pronta, ainda não peça código. Primeiro, mude a ferramenta para o
     <strong>modo PLAN</strong> e peça um plano para executar e validar aquela
-    phase.
+    phase atual.
   </p>
 
   <p>
     Isso força o agente a pensar antes de agir: quais arquivos vai tocar, qual
     a sequência, quais riscos existem e como provar que a phase foi entregue.
+    Você faz isso para a phase 1, depois repete para a phase 2, e assim até o
+    fim do implementation plan.
   </p>
 
   <CopyPromptBlock
@@ -182,6 +198,11 @@ REGRAS IMPORTANTES
     Só depois da PRD e do plano da phase é que entra a implementação. Nesse
     momento, você já tem escopo, critérios e validação mais claros, o que reduz
     bastante a chance de escopo inventado.
+  </p>
+
+  <p>
+    O foco continua sendo uma phase só. Não misture duas phases no mesmo ciclo.
+    Feche a atual primeiro, depois avance.
   </p>
 
   <div class="prompt-example prompt-good">
@@ -213,9 +234,9 @@ REGRAS IMPORTANTES
   </p>
 
   <p>
-    Depois disso, volte para o implementation plan e repita exatamente o mesmo
-    loop na próxima phase. É assim que você chega ao final do plano sem perder
-    clareza.
+    Depois disso, volte para o implementation plan, marque a phase atual como
+    concluída e abra a próxima ainda não concluída. É assim que você vai da
+    phase 1 até a última phase sem perder clareza.
   </p>
 
   <CopyPromptBlock
@@ -229,7 +250,9 @@ REGRAS IMPORTANTES
     <strong>✓ Fechamento de uma phase:</strong>
     <p>
       Antes de seguir para a próxima, confirme quatro coisas: a PRD existe, a
-      phase foi implementada, a validação passou e o report foi salvo.
+      phase foi implementada, a validação passou e o report foi salvo. Se isso
+      estiver certo, volte ao implementation plan e repita o loop na próxima
+      phase.
     </p>
   </div>
 </ChapterLayout>

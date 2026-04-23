@@ -234,8 +234,8 @@ export const CHAPTERS: Chapter[] = [
     },
     description: {
       'pt-BR':
-        'Executar o implementation plan phase por phase com um loop claro: PRD, PLAN mode, implementação, validação e report.',
-      en: 'Execute the implementation plan phase by phase with a clear loop: PRD, PLAN mode, implementation, validation, and report.',
+        'Começar pela phase 1 e executar o implementation plan phase por phase com um loop claro: PRD, PLAN mode, implementação, validação e report.',
+      en: 'Start with phase 1 and execute the implementation plan phase by phase with a clear loop: PRD, PLAN mode, implementation, validation, and report.',
     },
     slug: {
       'pt-BR': 'construir',

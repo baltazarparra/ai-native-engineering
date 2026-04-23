@@ -6,6 +6,9 @@ const lang = 'en';
 const prdPrompt = `
 I want to execute phase [PHASE_NAME] from the implementation plan.
 
+If this is the first cycle, start with phase 1.
+If phase 1 is already done, use the next unfinished phase.
+
 Before writing any code, read:
 - PLAN.md
 - README.md
@@ -39,6 +42,8 @@ IMPORTANT RULES
 const planModePrompt = `
 I am now going to execute phase [PHASE_NAME].
 
+I am following the implementation plan one phase at a time.
+
 Read these files:
 - PLAN.md
 - README.md
@@ -66,6 +71,8 @@ IMPORTANT RULES
 
 const reportPrompt = `
 Phase [PHASE_NAME] has been implemented and validated locally.
+
+After this report, I will mark this phase as complete and move to the next unfinished phase in the implementation plan.
 
 Use these files as context:
 - PLAN.md
@@ -100,55 +107,60 @@ IMPORTANT RULES
   <p>
     By this point, you should already have an <strong>implementation plan</strong>
     split into <strong>phases</strong>. The goal of this chapter is simple:
-    show the loop you repeat for each phase until the plan is complete.
+    show the loop you repeat starting with <strong>phase 1</strong> and moving
+    <strong>phase by phase</strong> until the full plan is complete.
   </p>
 
   <p>
-    Do not take the whole plan and ask the agent to build everything at once.
-    You pick the next phase, refine it, execute it, validate it, record what
-    happened, and only then move to the next one.
+    Do not take the whole plan and ask the agent to build everything at once,
+    and do not pick a random phase just because it looks easier. You start with
+    phase 1. When phase 1 is done with validation and a report, go back to the
+    implementation plan, pick phase 2, and repeat. Then phase 3, and so on.
   </p>
 
   <ol>
-    <li>Re-read and refine the next phase from the implementation plan</li>
+    <li>Open the implementation plan and focus only on phase 1 or the next unfinished phase</li>
+    <li>Review and refine that phase before execution</li>
     <li>Ask the agent to create the PRD for that phase</li>
     <li>Switch the tool to PLAN mode</li>
     <li>Ask for an execution and validation plan based on that PRD</li>
     <li>Return to normal mode and implement the phase</li>
     <li>Test and validate against the PRD</li>
-    <li>Generate a phase report</li>
-    <li>Repeat the same loop for the next phase</li>
+    <li>Generate the phase report, mark the phase complete, and move to the next one</li>
   </ol>
 
   <div class="checkpoint">
     <strong>Main rule:</strong>
     <p>
-      One phase at a time. When a phase is done, it should have a PRD,
-      implementation, validation, and a report. Only then do you move on.
+      Always in order. First phase 1. Then phase 2. Then phase 3. One phase at
+      a time. When a phase is done, it needs a PRD, implementation, validation,
+      and a report before you open the next one.
     </p>
   </div>
 
   <hr />
 
-  <h2 id="step-1-prd">1. Review the phase and create the PRD</h2>
+  <h2 id="step-1-prd">1. Read the implementation plan, review the phase, and create the PRD</h2>
 
   <p>
-    The first step in the loop is to take the next phase from the implementation
-    plan and check whether it is clear enough. If it is vague, too large, or
-    missing testable criteria, refine it before coding.
+    The first step in the loop is to open the implementation plan and take
+    <strong>phase 1</strong>. In later cycles, always take the next unfinished
+    phase. Before writing any code, check whether that phase is clear enough. If
+    it is vague, too large, or missing testable criteria, refine it first.
   </p>
 
   <p>
     Then ask the agent to turn that phase into a specific PRD. The PRD is the
     execution document for the phase: what is included, what is excluded, how
-    it should work, and how you will validate it.
+    it should work, and how you will validate it. Once phase 1 is closed, you
+    repeat exactly the same process for phase 2, and so on.
   </p>
 
   <CopyPromptBlock
     client:visible
     content={prdPrompt}
     lang={lang}
-    label="Prompt to review the phase and generate the PRD"
+    label="Prompt to analyze the current phase and generate the PRD"
   />
 
   <hr />
@@ -157,14 +169,15 @@ IMPORTANT RULES
 
   <p>
     Once the PRD is ready, do not ask for code yet. First, switch the tool to
-    <strong>PLAN mode</strong> and ask for a plan to execute and validate that
-    phase.
+    <strong>PLAN mode</strong> and ask for a plan to execute and validate the
+    current phase.
   </p>
 
   <p>
     This forces the agent to think before acting: which files it will touch,
     which order makes sense, what the risks are, and how to prove the phase is
-    complete.
+    complete. You do this for phase 1, then repeat it for phase 2, and keep
+    going until the implementation plan is done.
   </p>
 
   <CopyPromptBlock
@@ -182,6 +195,11 @@ IMPORTANT RULES
     Only after the PRD and the phase plan are ready should implementation begin.
     At that point you already have clearer scope, criteria, and validation,
     which reduces invented scope a lot.
+  </p>
+
+  <p>
+    The focus is still one phase only. Do not mix two phases in the same cycle.
+    Close the current one first, then move forward.
   </p>
 
   <div class="prompt-example prompt-good">
@@ -214,8 +232,8 @@ IMPORTANT RULES
 
   <p>
     After that, go back to the implementation plan and repeat exactly the same
-    loop for the next phase. That is how you get through the full plan without
-    losing clarity.
+    loop for the next unfinished phase. That is how you move from phase 1 all
+    the way to the last phase without losing clarity.
   </p>
 
   <CopyPromptBlock
@@ -229,7 +247,9 @@ IMPORTANT RULES
     <strong>✓ Phase closure:</strong>
     <p>
       Before moving on, confirm four things: the PRD exists, the phase was
-      implemented, validation passed, and the report was saved.
+      implemented, validation passed, and the report was saved. If that is true,
+      go back to the implementation plan and repeat the loop for the next
+      phase.
     </p>
   </div>
 </ChapterLayout>
