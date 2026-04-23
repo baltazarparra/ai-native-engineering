@@ -126,6 +126,15 @@ export const CHAPTERS: Chapter[] = [
         type: 'documentacao',
         source: { 'pt-BR': 'GitHub', en: 'GitHub' },
       },
+      {
+        title: {
+          'pt-BR': 'Deezer API, documentação oficial',
+          en: 'Deezer API, official documentation',
+        },
+        url: 'https://developers.deezer.com/api',
+        type: 'documentacao',
+        source: { 'pt-BR': 'Deezer', en: 'Deezer' },
+      },
     ],
   },
   {

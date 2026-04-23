@@ -21,7 +21,9 @@ const lang = 'en';
 
   <p>
     All endpoints come from the <strong>Deezer public API</strong>. No
-    authentication needed, but there's a CORS issue we'll solve in the next
+    authentication is needed for the catalog endpoints used in this project,
+    but the documentation portal currently asks you to log in to accept the
+    Simple API terms. There is also a CORS issue we'll solve in the next
     chapter.
   </p>
 
@@ -34,14 +36,15 @@ const lang = 'en';
     <p>
       "Review the initial PLAN.md based on AGENTS.md (or CLAUDE.md if I'm using
       Claude Code). Detail the implementation phases, keep each phase small and
-      testable, add clear acceptance criteria, and suggest the simplest stack
-      that works."
+      testable, add clear acceptance criteria, and only change the initial
+      stack if there is a concrete reason to do so."
     </p>
   </div>
 
   <p>
-    The agent will improve the draft, propose a stack, and organize execution.
-    Don't accept automatically.
+    The agent will improve the draft and organize execution. If it wants to
+    change the initial stack, it should justify that clearly. Don't accept
+    automatically.
   </p>
 
   ---

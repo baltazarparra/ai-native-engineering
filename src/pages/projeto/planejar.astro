@@ -23,7 +23,9 @@ const lang = 'pt-BR';
 
   <p>
     Todos os endpoints são da <strong>API pública do Deezer</strong>. Não
-    precisa de autenticação, mas tem uma questão de CORS que vamos resolver no
+    precisa de autenticação para os endpoints de catálogo usados neste projeto,
+    mas o portal de documentação hoje pede login para aceitar os termos da
+    Simple API. Além disso, existe uma questão de CORS que vamos resolver no
     próximo capítulo.
   </p>
 
@@ -36,14 +38,14 @@ const lang = 'pt-BR';
     <p>
       "Revise o PLAN.md inicial com base no AGENTS.md (ou CLAUDE.md, se eu
       estiver usando Claude Code). Detalhe as fases de implementação, mantenha
-      cada fase pequena e testável, adicione critérios de aceite claros e sugira
-      a stack mais simples que funcione."
+      cada fase pequena e testável, adicione critérios de aceite claros e só
+      mude a stack inicial se existir uma razão concreta para isso."
     </p>
   </div>
 
   <p>
-    O agente vai melhorar o rascunho, propor uma stack e organizar a execução.
-    Não aceite automaticamente.
+    O agente vai melhorar o rascunho e organizar a execução. Se quiser trocar a
+    stack inicial, ele precisa justificar bem. Não aceite automaticamente.
   </p>
 
   ---

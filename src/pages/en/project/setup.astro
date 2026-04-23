@@ -1,6 +1,133 @@
 ---
 import ChapterLayout from '../../../layouts/ChapterLayout.astro';
+import CopyPromptBlock from '../../../components/CopyPromptBlock/CopyPromptBlock.tsx';
 const lang = 'en';
+
+const planPrompt = `
+You are helping me start a real project from scratch. At this moment I only want an initial PLAN.md that is honest and useful. I do not want implementation code yet.
+
+PRODUCT CONTEXT
+- Repository name: [REPOSITORY_NAME]
+- Working product name: Deezer Explorer
+- What we are building: a responsive static website where a person types an artist name, chooses a result, sees the discography in cover-based cards, and opens an album to view tracklist, release date, and cover art
+- Data source: public Deezer API
+- Required v1 endpoints:
+  - GET /search/artist?q=...
+  - GET /artist/{id}/albums
+  - GET /album/{id}
+- Main user flow:
+  1. open the site
+  2. search for an artist
+  3. see artist results
+  4. choose an artist
+  5. see album cards with covers
+  6. open an album
+  7. view tracklist, cover art, and date
+- Final deployment: GitHub Pages
+- Real project constraints:
+  - no custom backend
+  - no authentication
+  - no database
+  - mobile-first and responsive
+  - accessible enough for keyboard navigation
+  - few dependencies
+  - we need to account for the Deezer browser CORS problem
+  - the repository is at the very beginning and may be almost empty
+- Tool in use: [CHOSEN_TOOL]
+
+TASK
+Create a PLAN.md file at the repository root.
+
+PLAN.md must include:
+- a concise product summary
+- the exact v1 scope
+- a concrete initial stack, choosing one technical direction instead of listing many options
+- a short justification for that stack
+- an implementation plan broken into small, testable phases
+- for each phase: goal, deliverables, acceptance criteria, manual validation, risks, and open decisions
+- a note about publishing on GitHub Pages
+- a short “out of scope for now” section
+
+IMPORTANT RULES
+- write the file in English
+- be specific and avoid generic filler
+- do not invent features beyond the scope described above
+- do not implement code
+- this is an initial plan: it can be refined later, but it already needs to be coherent and executable
+- generate only the final PLAN.md content
+`.trim();
+
+const readmePrompt = `
+Use the existing PLAN.md as the main source of truth.
+
+PRODUCT CONTEXT
+- Repository name: [REPOSITORY_NAME]
+- Product: Deezer Explorer
+- The final product is a responsive static website for searching artists, listing albums, and opening album details with the public Deezer API
+- Final deployment: GitHub Pages
+- Current repository state: very early project setup, with an initial PLAN.md already created and reviewed
+- Tool in use: [CHOSEN_TOOL]
+
+TASK
+Create a real README.md for this repository in its current state.
+
+README.md needs to be useful for someone opening the repo right now and should explain:
+- what this project is
+- what version 1 will deliver
+- what the main user flow is
+- which Deezer API endpoints are central to the project
+- which stack was chosen in PLAN.md
+- what the repository status is right now
+- how the project is expected to be developed locally
+- how GitHub Pages deployment is expected to work
+- which risks and limitations are already known
+- what the immediate next steps are
+
+IMPORTANT RULES
+- write the file in English
+- make it a real README, not a placeholder
+- use PLAN.md for stack, scope, and phase information
+- if implementation has not started yet, say that clearly in the status section instead of pretending the product already exists
+- do not invent features outside the scope
+- do not fill the file with generic template language
+- generate only the final README.md content
+`.trim();
+
+const agentsPrompt = `
+Use the existing PLAN.md and README.md as the main source of truth.
+
+PRODUCT CONTEXT
+- Repository name: [REPOSITORY_NAME]
+- Product: Deezer Explorer
+- The final product is a responsive static website for searching artists, listing albums, and opening album details with the public Deezer API
+- Final deployment: GitHub Pages
+- Tool in use: [CHOSEN_TOOL]
+
+TASK
+Create the agent operating file at the repository root.
+
+FILE NAMING RULES
+- if I am using Claude Code, the file must be named CLAUDE.md
+- in any other tool, the file must be named AGENTS.md
+
+The file needs to be genuinely useful for day-to-day work in this repository and must include:
+- a concrete project overview
+- goals and current v1 scope
+- which files are the source of truth
+- how the agent should use PLAN.md and README.md before proposing changes
+- main project commands if they already exist; if they do not exist yet, say that explicitly
+- quality and validation standards
+- rules for updating PLAN.md and README.md when decisions change
+- rules for proposing changes in small phases
+- what must not be invented, changed, or assumed without alignment
+
+IMPORTANT RULES
+- write the file in English
+- make it a real operating document, not a generic template
+- use PLAN.md and README.md as the basis
+- do not invent stack, commands, or workflow that contradict the existing files
+- generate only the final content of the correct file: AGENTS.md or CLAUDE.md
+`.trim();
 ---
 
 <ChapterLayout chapterNumber={1} lang={lang}>
@@ -124,45 +251,82 @@ git status</code></pre>
   </p>
 
   <p>
-    A simple sequence that works well is this: first the agent operations file,
-    then the implementation plan, and finally the README for any human who
-    lands in the project.
+    For this early setup, ask for one file at a time. First
+    <code>PLAN.md</code>, because it becomes the base for the next two. Then
+    <code>README.md</code>. Finally, ask for <code>AGENTS.md</code> or
+    <code>CLAUDE.md</code>, now grounded in the previous two files.
   </p>
 
-  <div class="prompt-example prompt-good">
-    <strong>1. AGENTS.md</strong>
-    <p>
-      "Create an <code>AGENTS.md</code> in the project root with the project
-      goal, chosen stack, main commands, quality standards, how the agent
-      should propose changes, and when it must update <code>PLAN.md</code>. If
-      I'm using Claude Code, also create an equivalent <code>CLAUDE.md</code>."
-    </p>
-  </div>
-
-  <div class="prompt-example prompt-good">
-    <strong>2. PLAN.md</strong>
-    <p>
-      "Create an initial <code>PLAN.md</code> to implement the project in small
-      phases. Each phase needs a goal, testable acceptance criteria, expected
-      manual validation, and open decisions. Do not implement anything yet."
-    </p>
-  </div>
-
-  <div class="prompt-example prompt-good">
-    <strong>3. README.md</strong>
-    <p>
-      "Create a <code>README.md</code> for this project. Include the site goal,
-      audience, expected features, how to run locally, how to publish on GitHub
-      Pages, and known limitations. Use simple language, as if someone were
-      joining the project now."
-    </p>
-  </div>
+  <p>
+    In the blocks below, replace the bracketed placeholders and click
+    <strong>Copy prompt</strong>. The goal is to paste them directly into your
+    tool and get a more reliable result than a vague generic request.
+  </p>
 
   <p>
-    Read all three files before moving on. If there is a command that does not
-    exist, invented scope, vague promises, or a technical decision you do not
-    understand, ask for an adjustment. A strong start saves a lot of correction
-    later.
+    One important detail: only <code>PLAN.md</code> starts as an initial draft
+    that we refine in the next chapter. <code>README.md</code> and
+    <code>AGENTS.md</code> or <code>CLAUDE.md</code> should already come out as
+    genuinely useful project documents.
+  </p>
+
+  <p>These prompts already carry this product context:</p>
+
+  <ul>
+    <li>the product is called Deezer Explorer</li>
+    <li>it is a responsive static website</li>
+    <li>the user searches artists, sees albums, and opens album details</li>
+    <li>the data source is the public Deezer API</li>
+    <li>the core endpoints are artist search, albums by artist, and album by ID</li>
+    <li>those public catalog endpoints work without end-user login</li>
+    <li>the final deploy target is GitHub Pages</li>
+    <li>the project needs to account for the browser CORS problem</li>
+    <li>harness and operational files should be written in English</li>
+  </ul>
+
+  <div class="checkpoint">
+    <strong>Important note:</strong>
+    <p>
+      Deezer's developer portal currently asks you to log in so you can accept
+      the Simple API terms, but the public catalog endpoints used in this
+      project still work without end-user authentication. What does require a
+      token are account endpoints such as <code>/user/me</code>.
+    </p>
+  </div>
+
+  <h3>1. Base prompt for PLAN.md</h3>
+
+  <p>
+    This is the first prompt. It defines the product scope, the constraints,
+    and the planning expectation without asking for implementation yet.
+  </p>
+
+  <CopyPromptBlock client:visible content={planPrompt} lang={lang} />
+
+  <h3>2. Base prompt for README.md</h3>
+
+  <p>
+    Once <code>PLAN.md</code> exists and makes sense to you, ask for
+    <code>README.md</code>. Here the plan becomes the source of truth so the
+    README does not drift into invented details.
+  </p>
+
+  <CopyPromptBlock client:visible content={readmePrompt} lang={lang} />
+
+  <h3>3. Base prompt for AGENTS.md or CLAUDE.md</h3>
+
+  <p>
+    Finally, ask for the agent operating file. Because it comes after the plan
+    and README, it is much easier to produce rules that match the real project.
+  </p>
+
+  <CopyPromptBlock client:visible content={agentsPrompt} lang={lang} />
+
+  <p>
+    Read each file as soon as it is generated. If there is a command that does
+    not exist, invented scope, vague promises, or a technical decision you do
+    not understand, ask for an adjustment before moving to the next one. That
+    care saves a lot of correction later.
   </p>
 
   <hr />
@@ -229,8 +393,8 @@ gh auth status</code></pre>
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      <code>AGENTS.md</code>, <code>PLAN.md</code>, and <code>README.md</code>
-      exist, have been read, and make sense to you.
+      <code>PLAN.md</code>, <code>README.md</code>, and <code>AGENTS.md</code>
+      or <code>CLAUDE.md</code> exist, have been read, and make sense to you.
     </p>
   </div>
 </ChapterLayout>
