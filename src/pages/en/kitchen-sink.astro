@@ -1,14 +1,14 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
-import Grid from '../components/Grid/Grid.astro';
-import Button from '../components/Button/Button.astro';
-import Card from '../components/Card/Card.astro';
-import Badge from '../components/Badge/Badge.astro';
-import { withBase } from '../lib/i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
+import Grid from '../../components/Grid/Grid.astro';
+import Button from '../../components/Button/Button.astro';
+import Card from '../../components/Card/Card.astro';
+import Badge from '../../components/Badge/Badge.astro';
+import { withBase } from '../../lib/i18n';
 
 const base = import.meta.env.BASE_URL;
-const lang = 'pt-BR';
+const lang = 'en';
 const alternateLinks = [
   { lang: 'pt-BR' as const, href: withBase('kitchen-sink'), label: 'PT-BR' },
   { lang: 'en' as const, href: withBase('en/kitchen-sink'), label: 'English' },
@@ -18,7 +18,7 @@ const alternateLinks = [
 
 <BaseLayout
   title="Kitchen Sink | Dev"
-  description="Pagina de dev pra ver todos os componentes"
+  description="Dev page to preview every component"
   noindex
   lang={lang}
   alternateLinks={alternateLinks}
@@ -27,42 +27,38 @@ const alternateLinks = [
     <SectionBlock padding="xl">
       <h1>Kitchen Sink</h1>
       <p>
-        Todos os componentes do design system em todos os estados. Essa pagina e
-        temporaria, vai sumir depois da Phase 2.
+        Every design system component in every relevant state. This page is
+        temporary and should disappear after Phase 2.
       </p>
     </SectionBlock>
 
-    <!-- typography -->
     <SectionBlock padding="xl" alt>
-      <h2>Tipografia</h2>
+      <h2>Typography</h2>
       <h1>Heading 1 - Space Grotesk Bold</h1>
-      <h2>Heading 2 - O subtitulo grandao</h2>
-      <h3>Heading 3 - Secoes dentro de secoes</h3>
-      <h4>Heading 4 - Labels importantes</h4>
-      <h5>Heading 5 - Detalhes</h5>
-      <h6>Heading 6 - O menor que existe</h6>
+      <h2>Heading 2 - The big subtitle</h2>
+      <h3>Heading 3 - Sections inside sections</h3>
+      <h4>Heading 4 - Important labels</h4>
+      <h5>Heading 5 - Details</h5>
+      <h6>Heading 6 - The smallest one</h6>
       <p>
-        Paragrafo normal em Inter 400. A gente precisa garantir que esse texto e
-        confortavel de ler em qualquer tela. Linha comprida demais cansa, curta
-        demais quebra o ritmo. 68ch de max-width resolve isso.
+        Regular paragraph text in Inter 400. We need to make sure this remains
+        comfortable to read on any screen. Lines that are too long are tiring,
+        lines that are too short break the rhythm. A max width of 68ch helps.
       </p>
       <p>
-        <strong>Texto em negrito (Inter 600)</strong> pra quando precisa de enfase.
+        <strong>Bold text (Inter 600)</strong> for when emphasis is needed.
       </p>
-      <p>
-        E aqui um <code>trecho de codigo inline</code> em JetBrains Mono.
-      </p>
-      <pre><code>// bloco de codigo
-const resultado = await modelo.gerar(prompt);
-console.log(resultado);</code></pre>
+      <p>And here is an <code>inline code snippet</code> in JetBrains Mono.</p>
+      <pre><code>// code block
+const result = await model.generate(prompt);
+console.log(result);</code></pre>
     </SectionBlock>
 
-    <!-- colors -->
     <SectionBlock padding="xl">
-      <h2>Paleta de cores</h2>
+      <h2>Color palette</h2>
       <p>
-        As cores de acento so funcionam como fundo com texto preto (exceto azul
-        que usa branco).
+        Accent colors only work well as backgrounds with black text, except for
+        blue which uses white.
       </p>
       <Grid columns={4} gap="md">
         <div
@@ -108,7 +104,6 @@ console.log(resultado);</code></pre>
       </Grid>
     </SectionBlock>
 
-    <!-- badges -->
     <SectionBlock padding="xl" alt>
       <h2>Badges / Labels</h2>
       <div
@@ -118,68 +113,66 @@ console.log(resultado);</code></pre>
         <Badge variant="yellow">beginner</Badge>
         <Badge variant="blue">intermediate</Badge>
         <Badge variant="green">advanced</Badge>
-        <Badge variant="coral">anti-padrao</Badge>
-        <Badge size="sm">tag pequena</Badge>
-        <Badge size="sm" variant="yellow">5 min de leitura</Badge>
+        <Badge variant="coral">anti-pattern</Badge>
+        <Badge size="sm">small tag</Badge>
+        <Badge size="sm" variant="yellow">5 min read</Badge>
       </div>
     </SectionBlock>
 
-    <!-- buttons -->
     <SectionBlock padding="xl">
-      <h2>Botoes</h2>
+      <h2>Buttons</h2>
 
       <h3>Primary</h3>
       <div
         style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: var(--space-xl);"
       >
-        <Button size="sm">Pequeno</Button>
+        <Button size="sm">Small</Button>
         <Button>Normal</Button>
-        <Button size="lg">Grandao</Button>
-        <Button disabled>Desabilitado</Button>
+        <Button size="lg">Large</Button>
+        <Button disabled>Disabled</Button>
       </div>
 
       <h3>Secondary</h3>
       <div
         style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: var(--space-xl);"
       >
-        <Button variant="secondary" size="sm">Pequeno</Button>
+        <Button variant="secondary" size="sm">Small</Button>
         <Button variant="secondary">Normal</Button>
-        <Button variant="secondary" size="lg">Grandao</Button>
+        <Button variant="secondary" size="lg">Large</Button>
       </div>
 
       <h3>Ghost</h3>
       <div
         style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: var(--space-xl);"
       >
-        <Button variant="ghost">Link disfarcado</Button>
+        <Button variant="ghost">Disguised link</Button>
       </div>
 
       <h3>Full width</h3>
       <div style="margin-bottom: var(--space-xl);">
-        <Button fullWidth>Botao que ocupa tudo</Button>
+        <Button fullWidth>Full width button</Button>
       </div>
 
-      <h3>Como link</h3>
-      <Button href={base}>Voltar pra home</Button>
+      <h3>As a link</h3>
+      <Button href={base}>Back to home</Button>
     </SectionBlock>
 
-    <!-- cards -->
     <SectionBlock padding="xl" alt>
       <h2>Cards</h2>
 
-      <h3>Cards simples com acentos</h3>
+      <h3>Simple cards with accents</h3>
       <Grid columns={3} gap="lg">
-        <Card title="Card sem acento">
-          <p>Conteudo padrao do card. Borda preta grossa, sombra dura.</p>
+        <Card title="Card without accent">
+          <p>Default card content. Thick black border and hard shadow.</p>
         </Card>
-        <Card title="Card amarelo" accent="yellow">
-          <p>Esse tem a faixa amarela no topo.</p>
+        <Card title="Yellow card" accent="yellow">
+          <p>This one has a yellow strip at the top.</p>
           <Fragment slot="footer">
-            <Button variant="secondary" size="sm">Ver mais</Button>
+            <Button variant="secondary" size="sm">See more</Button>
           </Fragment>
         </Card>
-        <Card title="Card azul" accent="blue">
-          <p>Faixa azul eletrico.</p>
+        <Card title="Blue card" accent="blue">
+          <p>Electric blue strip.</p>
           <Fragment slot="meta">
             <Badge variant="blue">intermediate</Badge>
             <Badge size="sm">8 min</Badge>
@@ -189,42 +182,41 @@ console.log(resultado);</code></pre>
     </SectionBlock>
 
     <SectionBlock padding="xl">
-      <h3>Card como link</h3>
+      <h3>Card as a link</h3>
       <Grid columns={2} gap="lg">
-        <Card title="Clicavel inteiro" href={base} accent="green">
-          <p>Esse card todo e um link. Hover levanta, click empurra.</p>
+        <Card title="Fully clickable" href={base} accent="green">
+          <p>The whole card is a link. Hover lifts it, click pushes it down.</p>
         </Card>
-        <Card title="Outro link" href={base} accent="coral">
-          <p>Coral pra coisas de anti-padrao.</p>
+        <Card title="Another link" href={base} accent="coral">
+          <p>Coral works well for anti-pattern examples.</p>
         </Card>
       </Grid>
     </SectionBlock>
 
     <SectionBlock padding="xl" alt>
-      <h3>Cards expandiveis</h3>
+      <h3>Expandable cards</h3>
       <div style="display: flex; flex-direction: column; gap: var(--space-md);">
-        <Card title="O que e um LLM?" expandable accent="yellow">
+        <Card title="What is an LLM?" expandable accent="yellow">
           <p>
-            <strong>Versao simples:</strong> e um programa de computador treinado
-            pra ler e escrever texto.
+            <strong>Simple version:</strong> it is a computer program trained
+            to read and write text.
           </p>
           <p>
-            <strong>Versao tecnica:</strong> Large Language Model. Rede neural treinada
-            em grandes volumes de texto que gera saida token a token com base em probabilidade
-            condicional.
+            <strong>Technical version:</strong> Large Language Model. A neural
+            network trained on large amounts of text that generates output
+            token by token based on conditional probability.
           </p>
         </Card>
-        <Card title="O que e um agente?" expandable accent="blue" open>
-          <p>Esse ja comeca aberto pra mostrar que da.</p>
+        <Card title="What is an agent?" expandable accent="blue" open>
+          <p>This one starts open to show that state too.</p>
         </Card>
       </div>
     </SectionBlock>
 
-    <!-- grid demos -->
     <SectionBlock padding="xl">
       <h2>Grid</h2>
 
-      <h3>2 colunas</h3>
+      <h3>2 columns</h3>
       <Grid columns={2} gap="md">
         <div
           style="background: var(--color-accent-1); border: var(--border-thick); padding: 1rem;"
@@ -238,7 +230,7 @@ console.log(resultado);</code></pre>
         </div>
       </Grid>
 
-      <h3>3 colunas</h3>
+      <h3>3 columns</h3>
       <Grid columns={3} gap="md">
         <div
           style="background: var(--color-accent-1); border: var(--border-thick); padding: 1rem;"
@@ -257,7 +249,7 @@ console.log(resultado);</code></pre>
         </div>
       </Grid>
 
-      <h3>4 colunas</h3>
+      <h3>4 columns</h3>
       <Grid columns={4} gap="sm">
         <div style="border: var(--border-thick); padding: 1rem;">A</div>
         <div style="border: var(--border-thick); padding: 1rem;">B</div>
@@ -266,41 +258,40 @@ console.log(resultado);</code></pre>
       </Grid>
     </SectionBlock>
 
-    <!-- section block variants -->
-    <SectionBlock padding="sm">
-      <h2>SectionBlock padding="sm"</h2>
-      <p>Menos respiro.</p>
-    </SectionBlock>
     <SectionBlock padding="xl" alt>
-      <h2>SectionBlock padding="xl" alt</h2>
-      <p>Mais respiro, fundo alternativo.</p>
+      <h2>SectionBlock variants</h2>
+      <SectionBlock padding="sm">
+        <h2>SectionBlock padding="sm"</h2>
+        <p>Less breathing room.</p>
+      </SectionBlock>
+      <SectionBlock padding="xl" alt>
+        <h2>SectionBlock padding="xl" alt</h2>
+        <p>More breathing room, alternate background.</p>
+      </SectionBlock>
     </SectionBlock>
 
-    <!-- focus and keyboard -->
     <SectionBlock padding="xl">
-      <h2>Foco e teclado</h2>
-      <p>
-        Navega com Tab por tudo aqui embaixo. O foco tem que ser MUITO obvio.
-      </p>
+      <h2>Focus and keyboard</h2>
+      <p>Use Tab to navigate everything below. Focus needs to be VERY obvious.</p>
       <div
         style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;"
       >
-        <Button>Foco aqui</Button>
-        <Button variant="secondary">E aqui</Button>
-        <Button variant="ghost">E aqui tambem</Button>
-        <a href="#">Link normal</a>
+        <Button>Focus here</Button>
+        <Button variant="secondary">And here</Button>
+        <Button variant="ghost">And here too</Button>
+        <a href="#">Regular link</a>
       </div>
     </SectionBlock>
 
-    <!-- links -->
     <SectionBlock padding="xl" alt>
       <h2>Links</h2>
       <p>
-        Um <a href="#">link normal inline</a> dentro de texto. Tem que ser obvio que
-        e clicavel sem precisar de cor sozinha pra indicar.
+        A regular <a href="#">inline link</a> inside body text. It should feel
+        obviously clickable without relying on color alone.
       </p>
       <p>
-        Outro paragrafo com <a href="#">mais um link</a> pra ver o padrao se repetindo.
+        Another paragraph with <a href="#">one more link</a> to check that the
+        pattern stays consistent.
       </p>
     </SectionBlock>
   </main>

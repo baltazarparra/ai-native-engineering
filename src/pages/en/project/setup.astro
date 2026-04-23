@@ -165,6 +165,59 @@ git status</code></pre>
     later.
   </p>
 
+  <hr />
+
+  <h2 id="github-cli-bonus">Bonus: install and authenticate GitHub CLI</h2>
+
+  <p>
+    This step is optional, but very worth it. <strong>GitHub CLI</strong>
+    (<code>gh</code>) lets you access GitHub directly from the terminal:
+    authenticate your account, open repositories, inspect issues, work with
+    pull requests, and give the agent more autonomy while it operates on the
+    project.
+  </p>
+
+  <p>The most common installation paths are:</p>
+
+  <ul>
+    <li>
+      <strong>macOS:</strong> <code>brew install gh</code>
+    </li>
+    <li>
+      <strong>Windows:</strong> <code>winget install --id GitHub.cli</code>
+    </li>
+    <li>
+      <strong>Linux:</strong> use your distribution's official packages from
+      the GitHub CLI documentation
+    </li>
+  </ul>
+
+  <div class="prompt-example prompt-good">
+    <strong>Authenticate in the terminal</strong>
+    <pre><code>gh auth login
+gh auth status</code></pre>
+  </div>
+
+  <p>In the interactive flow, the most common sequence is:</p>
+
+  <ol>
+    <li>Choose <strong>GitHub.com</strong>.</li>
+    <li>Choose <strong>HTTPS</strong> as the Git protocol.</li>
+    <li>Select browser-based authentication.</li>
+    <li>Finish the login in the browser when GitHub opens.</li>
+  </ol>
+
+  <div class="prompt-example prompt-good">
+    <strong>Optional after login</strong>
+    <pre><code>gh auth setup-git</code></pre>
+  </div>
+
+  <p>
+    This command configures Git to use GitHub CLI credentials. If everything
+    worked, <code>gh auth status</code> should show your account as
+    authenticated.
+  </p>
+
   <p>
     If you finished this chapter, you already handled the core setup: you
     created the remote repository, connected the local copy, opened the project

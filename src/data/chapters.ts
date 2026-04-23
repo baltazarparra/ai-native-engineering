@@ -117,6 +117,15 @@ export const CHAPTERS: Chapter[] = [
         type: 'documentacao',
         source: { 'pt-BR': 'Git', en: 'Git' },
       },
+      {
+        title: {
+          'pt-BR': 'GitHub CLI quickstart',
+          en: 'GitHub CLI quickstart',
+        },
+        url: 'https://docs.github.com/en/github-cli/github-cli/quickstart',
+        type: 'documentacao',
+        source: { 'pt-BR': 'GitHub', en: 'GitHub' },
+      },
     ],
   },
   {
