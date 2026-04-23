@@ -666,7 +666,7 @@ export const glossaryEn: GlossaryTerm[] = [
     technicalDefinition:
       'Row-Level Security. A feature in databases such as PostgreSQL and Supabase that applies per-row access policies, usually based on the authenticated user.',
     example:
-      'In a multi-user app, RLS stops one user from reading another user''s private tasks just by changing an ID in the URL.',
+      "In a multi-user app, RLS stops one user from reading another user's private tasks just by changing an ID in the URL.",
     commonMistake:
       'Relying only on the front end to hide data. Real security must also exist in the backend and database.',
     relatedTerms: ['validation', 'deploy', 'ownership'],
