@@ -49,6 +49,20 @@
     drop-shadow(0 0 2px #fff);
 }
 
+.asset {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.rubberDuckSticker {
+  --sticker-size: 124px;
+  --sticker-half: 62px;
+}
+
 @media (max-width: 767px) {
   .sticker {
     --sticker-size: 72px;
@@ -57,6 +71,11 @@
 
   .emoji {
     font-size: 40px;
+  }
+
+  .rubberDuckSticker {
+    --sticker-size: 92px;
+    --sticker-half: 46px;
   }
 }
 
