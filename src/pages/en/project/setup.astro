@@ -4,116 +4,179 @@ const lang = 'en';
 ---
 
 <ChapterLayout chapterNumber={1} lang={lang}>
-  <h2 id="github-cli">GitHub CLI</h2>
+  <h2 id="create-repository">Create the repository on GitHub</h2>
 
   <p>
-    The first step is making sure your code agent can interact with GitHub. The
-    most direct way is the <strong>GitHub CLI</strong> (<code>gh</code>).
+    The goal of this chapter is not to write code yet. It is to go from zero to
+    a project that is ready to be planned and executed with an agent.
   </p>
 
+  <p>
+    That is why this chapter starts manually on purpose. Before bringing AI
+    into the loop, you create the repository on GitHub yourself. That helps you
+    understand where the project begins, what the official URL is, and how your
+    local folder connects to the remote.
+  </p>
+
+  <p>Open GitHub in the browser and follow this flow:</p>
+
+  <ol>
+    <li>Click <strong>New repository</strong>.</li>
+    <li>Pick a short, clear name such as <code>deezer-explorer</code>.</li>
+    <li>Add a simple one-line description.</li>
+    <li>
+      Choose <strong>Public</strong> if you want to publish later on GitHub
+      Pages.
+    </li>
+    <li>
+      Leave <strong>Add a README file</strong>, <strong>Add .gitignore</strong>,
+      and <strong>Choose a license</strong> unchecked. We will create those
+      files later, once the project is open and we have better context.
+    </li>
+    <li>Click <strong>Create repository</strong>.</li>
+  </ol>
+
   <div class="prompt-example prompt-good">
-    <strong>Ask the agent:</strong>
+    <strong>Simple example</strong>
     <p>
-      "Help me install the GitHub CLI and authenticate with my GitHub account."
+      Name: <code>deezer-explorer</code><br />
+      Description:
+      <code>
+        Site for exploring artists, albums, and tracks with the Deezer API
+      </code>
     </p>
   </div>
 
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      The repository exists on GitHub and you can see its clone URL.
+    </p>
+  </div>
+
+  <hr />
+
+  <h2 id="clone-in-terminal">Clone it in the terminal</h2>
+
   <p>
-    Optionally, install the <strong>GitHub MCP</strong> in your tool. It gives the
-    agent native access to issues and PRs. But if it doesn't work, move on. The CLI
-    is enough.
+    With the repository created, the next step is bringing that project to your
+    machine. On GitHub, click <strong>Code</strong>, copy the HTTPS URL, and
+    run these commands in your terminal.
+  </p>
+
+  <div class="prompt-example prompt-good">
+    <strong>In the terminal</strong>
+    <pre><code>cd ~/projects
+git clone https://github.com/your-user/deezer-explorer.git
+cd deezer-explorer
+git remote -v
+git status</code></pre>
+  </div>
+
+  <p>
+    If the repository is empty, that is fine: <code>git clone</code> will still
+    create the folder, and <code>git status</code> may show something like
+    <code>No commits yet</code>. What matters here is confirming that your local
+    folder points to the right GitHub repository.
   </p>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      Run <code>gh auth status</code> in your terminal. Your account should show as
-      authenticated.
+      The repository is cloned on your computer, <code>git status</code> works,
+      and <code>git remote -v</code> shows <code>origin</code>.
     </p>
   </div>
 
-  ---
+  <hr />
 
-  <h2 id="create-repository">Create the repository</h2>
+  <h2 id="open-tool">Open it in your chosen tool</h2>
 
-  <div class="prompt-example prompt-bad">
-    <strong>Avoid:</strong>
-    <p>"Create a repo for me."</p>
-  </div>
+  <p>
+    With the local folder ready, open that directory in the tool you want to
+    use: Cursor, Windsurf, VS Code, Claude Code, or something similar. The key
+    point here is to open the project root, not a few loose files.
+  </p>
 
-  <div class="prompt-example prompt-good">
-    <strong>Use:</strong>
-    <p>
-      "Create a public repository on GitHub called 'deezer-explorer' with the
-      description 'Site for exploring artists and discographies via Deezer API'.
-      Clone it locally and open the folder in my development tool."
-    </p>
-  </div>
+  <p>
+    From here on, the browser stops being the center of the work. The center is
+    now the cloned local folder. If your tool accepts terminal commands, you
+    can use something like <code>code .</code> or the equivalent shortcut.
+    Otherwise, use the regular <strong>Open Folder</strong> flow.
+  </p>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      Run <code>gh repo view</code> from inside the folder. The repository info should
-      appear.
+      The cloned folder is open in your tool and the agent can see the project
+      root.
     </p>
   </div>
 
-  ---
+  <hr />
 
-  <h2 id="harness">Harness engineering</h2>
+  <h2 id="harness">Create the files that guide the project</h2>
 
   <p>
-    Harness engineering means preparing the environment where the agent works:
-    context, plan, rules, and quality criteria. It is not busywork. It keeps the
-    AI from making things up.
+    Now the normal workflow begins. Before asking for UI, search, or API
+    integration, it is worth writing down the project context and the working
+    rules. That keeps the agent from inventing scope too early.
   </p>
 
   <p>
-    Before asking for code, ask for the files that make the project readable for
-    humans and for AI.
+    A simple sequence that works well is this: first the agent operations file,
+    then the implementation plan, and finally the README for any human who
+    lands in the project.
   </p>
 
   <div class="prompt-example prompt-good">
-    <strong>1. README.md</strong>
+    <strong>1. AGENTS.md</strong>
     <p>
-      "Create a README.md for this project. Include: site goal, audience,
-      expected features, how to run locally, how to test, how to publish on
-      GitHub Pages, and known limitations. Use simple language, as if someone
-      were joining the project now."
+      "Create an <code>AGENTS.md</code> in the project root with the project
+      goal, chosen stack, main commands, quality standards, how the agent
+      should propose changes, and when it must update <code>PLAN.md</code>. If
+      I'm using Claude Code, also create an equivalent <code>CLAUDE.md</code>."
     </p>
   </div>
 
   <div class="prompt-example prompt-good">
     <strong>2. PLAN.md</strong>
     <p>
-      "Create an initial PLAN.md to implement the project in small phases. Each
-      phase needs a goal, testable acceptance criteria, expected manual
-      validation, and open decisions. Include known risks, such as CORS in the
-      Deezer API. Do not implement anything yet."
+      "Create an initial <code>PLAN.md</code> to implement the project in small
+      phases. Each phase needs a goal, testable acceptance criteria, expected
+      manual validation, and open decisions. Do not implement anything yet."
     </p>
   </div>
 
   <div class="prompt-example prompt-good">
-    <strong>3. AGENTS.md</strong>
+    <strong>3. README.md</strong>
     <p>
-      "Create an AGENTS.md file at the project root with: overview (static site
-      consuming the Deezer API, published on GitHub Pages), sections for
-      project commands, quality standards, how to update PLAN.md when decisions
-      change, and operating rules for the agent. If I'm using Claude Code,
-      create CLAUDE.md for that same role."
+      "Create a <code>README.md</code> for this project. Include the site goal,
+      audience, expected features, how to run locally, how to publish on GitHub
+      Pages, and known limitations. Use simple language, as if someone were
+      joining the project now."
     </p>
   </div>
 
   <p>
-    Read all three files. If there is a command that does not exist, invented
-    scope, vague promises, or a technical decision you do not understand, ask
-    for an adjustment. A good file helps you hold the agent accountable later.
+    Read all three files before moving on. If there is a command that does not
+    exist, invented scope, vague promises, or a technical decision you do not
+    understand, ask for an adjustment. A strong start saves a lot of correction
+    later.
+  </p>
+
+  <p>
+    If you finished this chapter, you already handled the core setup: you
+    created the remote repository, connected the local copy, opened the project
+    in your tool, and recorded the rules and the initial plan. In the next
+    chapter, we will use that base to refine <code>PLAN.md</code> and break the
+    execution into small phases.
   </p>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      README.md, initial PLAN.md, and AGENTS.md (or CLAUDE.md in Claude Code)
+      <code>AGENTS.md</code>, <code>PLAN.md</code>, and <code>README.md</code>
       exist, have been read, and make sense to you.
     </p>
   </div>

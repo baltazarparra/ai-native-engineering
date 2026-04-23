@@ -39,8 +39,8 @@ export const CHAPTERS: Chapter[] = [
     },
     description: {
       'pt-BR':
-        'Instalar a GitHub CLI, criar o repositório e preparar README, PLAN.md e regras do agente.',
-      en: 'Install the GitHub CLI, create the repository, and prepare README, PLAN.md, and agent rules.',
+        'Criar o repositório no GitHub, clonar no terminal, abrir na ferramenta e preparar AGENTS.md, PLAN.md e README.md.',
+      en: 'Create the repository on GitHub, clone it in the terminal, open it in your tool, and prepare AGENTS.md, PLAN.md, and README.md.',
     },
     slug: {
       'pt-BR': 'preparar',
@@ -48,24 +48,24 @@ export const CHAPTERS: Chapter[] = [
     },
     checkpoints: [
       {
-        id: 'gh-cli',
+        id: 'repo-created-manual',
         text: {
-          'pt-BR': 'GitHub CLI instalada e autenticada',
-          en: 'GitHub CLI installed and authenticated',
+          'pt-BR': 'Repositório criado manualmente no GitHub',
+          en: 'Repository created manually on GitHub',
         },
       },
       {
-        id: 'repo-created',
+        id: 'repo-cloned-opened',
         text: {
-          'pt-BR': 'Repositório criado no GitHub',
-          en: 'Repository created on GitHub',
+          'pt-BR': 'Repositório clonado no terminal e aberto na ferramenta',
+          en: 'Repository cloned in the terminal and opened in the tool',
         },
       },
       {
-        id: 'harness-file',
+        id: 'setup-docs-created',
         text: {
-          'pt-BR': 'README, PLAN.md e regras do agente criados e revisados',
-          en: 'README, PLAN.md, and agent rules created and reviewed',
+          'pt-BR': 'AGENTS.md, PLAN.md e README.md criados e revisados',
+          en: 'AGENTS.md, PLAN.md, and README.md created and reviewed',
         },
       },
     ],
@@ -101,12 +101,21 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'GitHub CLI, Documentação oficial',
-          en: 'GitHub CLI, Official docs',
+          'pt-BR': 'GitHub Docs: criar um novo repositório',
+          en: 'GitHub Docs: create a new repository',
         },
-        url: 'https://cli.github.com/manual/',
+        url: 'https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository',
         type: 'documentacao',
         source: { 'pt-BR': 'GitHub', en: 'GitHub' },
+      },
+      {
+        title: {
+          'pt-BR': 'Git: documentação do comando clone',
+          en: 'Git: clone command documentation',
+        },
+        url: 'https://git-scm.com/docs/git-clone',
+        type: 'documentacao',
+        source: { 'pt-BR': 'Git', en: 'Git' },
       },
     ],
   },
