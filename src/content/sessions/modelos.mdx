@@ -4,20 +4,22 @@ slug: 'modelos'
 lang: 'pt-BR'
 translationKey: 'models'
 order: 3
-summary: 'Codex, Claude, Gemini, Gemma, GLM, Composer. Como funcionam por cima, o que diferencia um do outro e como escolher.'
+summary: 'Codex, Claude, Gemini, Kimi, Gemma, GLM. Como funcionam por cima, o que diferencia um do outro e como escolher.'
 readingTime: 15
 level: 'intermediate'
-tags: ['llm', 'modelos', 'gpt', 'claude', 'gemini']
+tags: ['llm', 'modelos', 'gpt', 'claude', 'gemini', 'kimi']
 heroLabel: 'Entendendo modelos'
 references:
   [
     'openai-docs',
     'anthropic-claude-docs',
     'google-gemini-docs',
+    'moonshot-k2-6-blog',
+    'moonshot-k2-6-api',
     'meta-llama-docs',
     'vellum-llm-leaderboard',
   ]
-updatedAt: 2026-04-16
+updatedAt: 2026-04-23
 ---
 
 import ModelTaskMatcher from '../../components/ModelTaskMatcher/ModelTaskMatcher.tsx';
@@ -26,7 +28,7 @@ import ModelTaskMatcher from '../../components/ModelTaskMatcher/ModelTaskMatcher
 
 Essa é a confusão número um. E a que mais custa tempo e decisões erradas.
 
-**ChatGPT** é um produto. Você abre no navegador, digita uma pergunta, recebe uma resposta. Por dentro, o ChatGPT usa modelos como GPT-5.3-Codex. Quando a OpenAI lança um modelo novo, o produto continua o mesmo, mas o "cérebro" muda. A mesma lógica vale pro **Claude** (com modelos como Sonnet 4.6, Opus 4.7, Haiku 4.5) e pro **Gemini** (com modelos como Gemini 2.5 Pro).
+**ChatGPT** é um produto. Você abre no navegador, digita uma pergunta, recebe uma resposta. Por dentro, o ChatGPT usa modelos como GPT-5.3-Codex. Quando a OpenAI lança um modelo novo, o produto continua o mesmo, mas o "cérebro" muda. A mesma lógica vale pro **Claude** (com modelos como Sonnet 4.6, Opus 4.7, Haiku 4.5), pro **Gemini** (com modelos como Gemini 2.5 Pro) e pro **Kimi** (com modelos como Kimi K2.6 e Kimi K2.5).
 
 A regra simples: **produto é onde você interage. Modelo é quem "pensa".**
 
@@ -103,6 +105,24 @@ Não existe "o melhor modelo". Existe o modelo certo pra tarefa certa. Em vez de
 **Melhor pra**: Analisar documentos longos, explorar e sintetizar informação.
 
 **Limitações**: Qualidade de código pode variar. Menos previsível em instruções complexas.
+
+### Kimi K2.6 (Moonshot AI)
+
+**Produto**: Kimi / Kimi Code / Kimi API
+
+**Perfil**: Em 20 de abril de 2026, a Moonshot AI lançou oficialmente o **Kimi K2.6** como seu modelo flagship atual. O nome oficial é Kimi **K2.6**, não só "Kimi 2.6". O foco é código de longo horizonte, tarefas agênticas, multimodalidade e execução com ferramentas.
+
+**Melhor pra**: Código com muitos passos, agentes que usam ferramentas, fluxos prompt-to-app, tarefas multimodais com bastante contexto.
+
+**Limitações**: Ecossistema ainda menos familiar pra muita gente fora da Ásia. Open-source/open-weight não significa simples de rodar localmente em escala. A API tem algumas particularidades próprias em tool use e parâmetros.
+
+**Detalhes úteis**:
+
+- 256K de contexto
+- Texto, imagem e vídeo como entrada
+- Thinking e non-thinking modes
+- Disponível no Kimi, Kimi App, API e Kimi Code
+- Preço oficial da API em abril de 2026: $0.95/M input e $4.00/M output
 
 ### Gemma 4 (Google)
 

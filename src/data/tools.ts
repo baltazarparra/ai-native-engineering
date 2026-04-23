@@ -101,6 +101,29 @@ export const tools: Tool[] = [
     ],
   },
   {
+    id: 'kimi-code',
+    name: 'Kimi Code',
+    category: 'cli',
+    whereItRuns:
+      'Terminal, browser local (`kimi web`), VS Code e IDEs compatíveis via ACP',
+    bestFor: 'Agente terminal-first com ponte real pra IDE e MCP',
+    targetUsers: [
+      'dev sênior',
+      'tech lead',
+      'dev que quer CLI com apoio visual no editor',
+    ],
+    strengths: [
+      'Lê e edita código, executa shell commands, busca páginas web e planeja ações',
+      'Tem Browser UI local, integração ACP e extensão própria para VS Code',
+      'Suporta MCP e diff/revert com aprovação no editor',
+    ],
+    commonRisks: [
+      'Setup e nomenclatura ainda confundem (CLI, VS Code, membership, API key)',
+      'Menos difundido no mercado ocidental que Cursor ou Claude Code',
+      'Melhor aproveitado por quem já tolera fluxo terminal-first',
+    ],
+  },
+  {
     id: 'codex-cli',
     name: 'Codex CLI',
     category: 'cli',
@@ -283,6 +306,29 @@ export const toolsEn: Tool[] = [
     commonRisks: [
       'Steeper curve for non-terminal users',
       'Needs supervision for destructive ops',
+    ],
+  },
+  {
+    id: 'kimi-code',
+    name: 'Kimi Code',
+    category: 'cli',
+    whereItRuns:
+      'Terminal, local browser UI (`kimi web`), VS Code, and ACP-compatible IDEs',
+    bestFor: 'A terminal-first coding agent with real IDE and MCP bridges',
+    targetUsers: [
+      'senior dev',
+      'tech lead',
+      'developers who want CLI power with editor support',
+    ],
+    strengths: [
+      'Reads and edits code, executes shell commands, fetches web pages, and plans actions',
+      'Offers a local browser UI, ACP integration, and a dedicated VS Code extension',
+      'Supports MCP plus diff/revert flows with approval inside the editor',
+    ],
+    commonRisks: [
+      'Setup and product naming can be confusing (CLI, VS Code, membership, API key)',
+      'Less familiar in Western teams than Cursor or Claude Code',
+      'Best fit for people comfortable with a terminal-first workflow',
     ],
   },
   {

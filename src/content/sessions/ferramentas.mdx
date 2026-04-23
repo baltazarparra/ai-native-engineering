@@ -4,14 +4,21 @@ slug: 'ferramentas'
 lang: 'pt-BR'
 translationKey: 'tools'
 order: 2
-summary: 'Cursor, Windsurf, GitHub Copilot, Claude Code. O que cada ferramenta faz, onde brilha e onde tropeça.'
-readingTime: 14
+summary: 'Cursor, Windsurf, GitHub Copilot, Claude Code, Kimi Code. O que cada ferramenta faz, onde brilha e onde tropeça.'
+readingTime: 15
 level: 'beginner'
 tags: ['ferramentas', 'ide', 'cli', 'comparativo']
 heroLabel: 'Mapa de ferramentas'
 references:
-  ['cursor-docs', 'github-copilot-docs', 'claude-code-docs', 'opencode-github']
-updatedAt: 2026-04-16
+  [
+    'cursor-docs',
+    'github-copilot-docs',
+    'claude-code-docs',
+    'kimi-code-cli-docs',
+    'kimi-code-vscode-docs',
+    'opencode-github',
+  ]
+updatedAt: 2026-04-23
 ---
 
 import ToolComparison from '../../components/ToolComparison/ToolComparison.tsx';
@@ -22,9 +29,11 @@ Toda semana aparece ferramenta nova prometendo revolucionar como você programa.
 
 1. **IDEs com IA integrada**: editores de código que embutem IA na interface de edição. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot, Google Antigravity.
 
-2. **CLIs de IA**: ferramentas de linha de comando que leem seus arquivos, executam comandos e fazem mudanças diretamente no terminal. Exemplos: Claude Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+2. **CLIs de IA**: ferramentas de linha de comando que leem seus arquivos, executam comandos e fazem mudanças diretamente no terminal. Exemplos: Claude Code, Kimi Code, Codex CLI, OpenCode, GitHub Copilot CLI.
 
 3. **Apps e plataformas na nuvem**: você manda uma tarefa, a ferramenta trabalha sozinha num ambiente isolado na nuvem e entrega o resultado como um PR ou diff. Exemplos: Codex App, Google Jules, Devin.
+
+A fronteira entre IDE e CLI está ficando mais borrada. O Kimi Code é um bom exemplo: oficialmente ele existe como CLI no terminal, Browser UI local (`kimi web`), integração com IDEs via ACP e extensão própria para VS Code. Na prática, o centro de gravidade ainda é terminal-first, então faz sentido colocá-lo aqui.
 
 A categoria certa depende de como você trabalha, não de qual ferramenta é "melhor".
 
@@ -147,6 +156,26 @@ O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso 
 
 - Curva de entrada pra quem não usa terminal
 - Precisa de supervisão em operações destrutivas
+
+### Kimi Code
+
+**O que é**: Agente de código da Moonshot AI com CLI no terminal, Browser UI local, integração com IDEs via ACP e extensão própria para VS Code.
+
+**Onde roda**: Terminal / linha de comando, browser local (`kimi web`), VS Code e IDEs compatíveis via ACP.
+
+**Pra quem**: Dev sênior, tech lead, dev que quer fluxo terminal-first mas não abre mão de editor.
+
+**Onde brilha**:
+
+- Lê e edita código, executa shell commands, busca páginas web e ajusta o plano durante a execução
+- Pode rodar no terminal, aparecer no navegador local e entrar em Zed, JetBrains e VS Code
+- Tem suporte a MCP, diff/revert no editor e modo com aprovações antes de usar ferramentas
+
+**Onde tropeça**:
+
+- Setup e nomenclatura ainda confundem no começo: Kimi Code, Kimi CLI, extensão do VS Code, membership e API key
+- Menos difundido no mercado ocidental que Cursor, Copilot ou Claude Code
+- Faz mais sentido pra quem tolera bem workflow terminal-first
 
 ### Codex CLI
 

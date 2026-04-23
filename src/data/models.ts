@@ -76,6 +76,27 @@ export const models: ModelProfile[] = [
     bestFor: ['Analisar documentos longos', 'Tarefas com muitas fontes'],
   },
   {
+    id: 'kimi-k2-6',
+    productName: 'Kimi / Kimi Code / Kimi API',
+    modelName: 'Kimi K2.6',
+    provider: 'Moonshot AI',
+    strengths: [
+      '256K de contexto com foco forte em código de longo horizonte',
+      'Suporta texto, imagem e vídeo, modos thinking/non-thinking e tarefas de diálogo/agente',
+      'Custo competitivo via API: $0.95/M input e $4.00/M output',
+    ],
+    weaknesses: [
+      'Ecossistema menos difundido fora da Ásia e da bolha de tooling',
+      'Open-source/open-weight não significa simples de rodar localmente na escala máxima',
+      'API tem algumas particularidades próprias em tool use e parâmetros',
+    ],
+    bestFor: [
+      'Coding agentic com muitos passos e tool use',
+      'Prompt-to-app e tarefas multimodais com código',
+      'Times que querem frontier coding com custo competitivo',
+    ],
+  },
+  {
     id: 'llama',
     productName: 'Llama (open-weight)',
     modelName: 'Llama 4',
@@ -268,6 +289,27 @@ export const modelsEn: ModelProfile[] = [
       'Less predictable with complex instructions',
     ],
     bestFor: ['Analyzing long documents', 'Tasks with many sources'],
+  },
+  {
+    id: 'kimi-k2-6',
+    productName: 'Kimi / Kimi Code / Kimi API',
+    modelName: 'Kimi K2.6',
+    provider: 'Moonshot AI',
+    strengths: [
+      '256K context window with a strong long-horizon coding profile',
+      'Supports text, image, and video, plus thinking/non-thinking and dialogue/agent modes',
+      'Competitive API pricing: $0.95/M input and $4.00/M output',
+    ],
+    weaknesses: [
+      'Less familiar outside Asia and the tooling-heavy crowd',
+      'Open-source/open-weight does not mean easy to self-host at full scale',
+      'Its API has a few model-specific quirks around tool use and parameters',
+    ],
+    bestFor: [
+      'Agentic coding with many steps and tool use',
+      'Prompt-to-app and multimodal coding tasks',
+      'Teams that want frontier coding performance at a competitive price',
+    ],
   },
   {
     id: 'llama',

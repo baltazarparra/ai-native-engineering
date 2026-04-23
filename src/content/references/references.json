@@ -220,6 +220,26 @@
     "priority": 1
   },
   {
+    "id": "kimi-code-cli-docs",
+    "title": "Kimi Code CLI Documentation",
+    "url": "https://www.kimi.com/code/docs/en/kimi-cli/guides/getting-started.html",
+    "type": "documentacao",
+    "source": "Moonshot AI",
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
+    "priority": 1
+  },
+  {
+    "id": "kimi-code-vscode-docs",
+    "title": "Kimi Code for VS Code Documentation",
+    "url": "https://www.kimi.com/code/docs/en/kimi-code-for-vscode/guides/getting-started.html",
+    "type": "documentacao",
+    "source": "Moonshot AI",
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
+    "priority": 2
+  },
+  {
     "id": "opencode-github",
     "title": "OpenCode - Open source AI coding assistant",
     "url": "https://github.com/opencode-ai/opencode",
@@ -278,6 +298,26 @@
     "category": "glossario",
     "relatedSessions": ["glossario", "como-operar"],
     "priority": 2
+  },
+  {
+    "id": "moonshot-k2-6-blog",
+    "title": "Kimi K2.6: Advancing Open-Source Coding",
+    "url": "https://www.kimi.com/blog/kimi-k2-6",
+    "type": "artigo",
+    "source": "Moonshot AI",
+    "category": "modelos",
+    "relatedSessions": ["modelos", "ferramentas"],
+    "priority": 1
+  },
+  {
+    "id": "moonshot-k2-6-api",
+    "title": "Kimi API Platform",
+    "url": "https://platform.moonshot.ai/",
+    "type": "documentacao",
+    "source": "Moonshot AI",
+    "category": "modelos",
+    "relatedSessions": ["modelos"],
+    "priority": 1
   },
   {
     "id": "deepseek-docs",

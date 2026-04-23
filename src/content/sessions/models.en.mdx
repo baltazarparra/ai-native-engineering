@@ -4,20 +4,22 @@ slug: 'models'
 lang: 'en'
 translationKey: 'models'
 order: 3
-summary: 'GPT, Claude, Gemini, Llama. How they work at a useful level, what makes them different, and how to choose.'
+summary: 'GPT, Claude, Gemini, Kimi, Llama. How they work at a useful level, what makes them different, and how to choose.'
 readingTime: 15
 level: 'intermediate'
-tags: ['llm', 'models', 'gpt', 'claude', 'gemini']
+tags: ['llm', 'models', 'gpt', 'claude', 'gemini', 'kimi']
 heroLabel: 'Understanding models'
 references:
   [
     'openai-docs',
     'anthropic-claude-docs',
     'google-gemini-docs',
+    'moonshot-k2-6-blog',
+    'moonshot-k2-6-api',
     'meta-llama-docs',
     'vellum-llm-leaderboard',
   ]
-updatedAt: 2026-04-15
+updatedAt: 2026-04-23
 ---
 
 import ModelTaskMatcher from '../../components/ModelTaskMatcher/ModelTaskMatcher.tsx';
@@ -26,7 +28,7 @@ import ModelTaskMatcher from '../../components/ModelTaskMatcher/ModelTaskMatcher
 
 This is the number one confusion. It costs time and leads to bad decisions.
 
-**ChatGPT** is a product. You open it in the browser, type a question, and get an answer. Inside, ChatGPT uses models like GPT-4o or o3. When OpenAI releases a new model, the product stays the same while the "brain" changes. The same logic applies to **Claude** (Sonnet, Opus, Haiku) and **Gemini** (Gemini 2.5 Pro).
+**ChatGPT** is a product. You open it in the browser, type a question, and get an answer. Inside, ChatGPT uses models like GPT-4o or o3. When OpenAI releases a new model, the product stays the same while the "brain" changes. The same logic applies to **Claude** (Sonnet, Opus, Haiku), **Gemini** (Gemini 2.5 Pro), and **Kimi** (Kimi K2.6 and Kimi K2.5).
 
 Simple rule: **product is where you interact. Model is what generates the answer.**
 
@@ -103,6 +105,24 @@ There's no single best model. There's the right model for the task. Think in pro
 **Best for**: Analyzing long documents, exploring and synthesizing information.
 
 **Limitations**: Code quality can vary. Less predictable with complex instructions.
+
+### Kimi K2.6 (Moonshot AI)
+
+**Product**: Kimi / Kimi Code / Kimi API
+
+**Profile**: On April 20, 2026, Moonshot AI officially released **Kimi K2.6** as its current flagship. The official name is Kimi **K2.6**, not just "Kimi 2.6". It is built for long-horizon coding, agentic tasks, multimodal work, and tool-driven execution.
+
+**Best for**: Multi-step coding, tool-using agents, prompt-to-app workflows, and multimodal tasks with a lot of context.
+
+**Limitations**: The ecosystem is still less familiar for many teams outside Asia. Open-source/open-weight does not mean easy to self-host at full scale. The API also has some model-specific quirks around tool use and parameters.
+
+**Useful details**:
+
+- 256K context window
+- Text, image, and video input
+- Thinking and non-thinking modes
+- Available in Kimi, the Kimi App, the API, and Kimi Code
+- Official API pricing in April 2026: $0.95/M input and $4.00/M output
 
 ### Llama 4 (Meta)
 

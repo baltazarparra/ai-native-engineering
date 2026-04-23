@@ -4,14 +4,21 @@ slug: 'tools'
 lang: 'en'
 translationKey: 'tools'
 order: 2
-summary: 'Cursor, Windsurf, GitHub Copilot, Claude Code. What each tool does, where it shines, and where it trips.'
-readingTime: 14
+summary: 'Cursor, Windsurf, GitHub Copilot, Claude Code, Kimi Code. What each tool does, where it shines, and where it trips.'
+readingTime: 15
 level: 'beginner'
 tags: ['tools', 'ide', 'cli', 'comparison']
 heroLabel: 'Tool map'
 references:
-  ['cursor-docs', 'github-copilot-docs', 'claude-code-docs', 'opencode-github']
-updatedAt: 2026-04-15
+  [
+    'cursor-docs',
+    'github-copilot-docs',
+    'claude-code-docs',
+    'kimi-code-cli-docs',
+    'kimi-code-vscode-docs',
+    'opencode-github',
+  ]
+updatedAt: 2026-04-23
 ---
 
 import ToolComparison from '../../components/ToolComparison/ToolComparison.tsx';
@@ -22,9 +29,11 @@ Every week a new tool pops up promising to change how you code. Instead of listi
 
 1. **AI-native IDEs**: code editors with AI built into the editing experience. Examples: Cursor, Windsurf, VS Code with GitHub Copilot.
 
-2. **AI CLIs**: command-line tools that read your files, run commands, and make changes directly. Examples: Claude Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+2. **AI CLIs**: command-line tools that read your files, run commands, and make changes directly. Examples: Claude Code, Kimi Code, Codex CLI, OpenCode, GitHub Copilot CLI.
 
 3. **Autonomous agents**: they have more autonomy than CLIs. They plan, execute, test, and decide next steps on their own. The line between CLI and agent is getting blurry.
+
+The line between IDE and CLI is also getting blurrier. Kimi Code is a good example: officially it exists as a terminal CLI, a local browser UI (`kimi web`), IDE integration through ACP, and a dedicated VS Code extension. In practice, it still feels terminal-first, so it fits best in this section.
 
 The right category depends on how you work, not on which tool is "best".
 
@@ -127,6 +136,26 @@ This is a snapshot for April 2026. Tools change quickly. Treat this as a map, no
 
 - Higher learning curve for people who don't use the terminal
 - Needs supervision around destructive operations
+
+### Kimi Code
+
+**What it is**: Moonshot AI's coding agent with a terminal CLI, a local browser UI, IDE integration via ACP, and a dedicated VS Code extension.
+
+**Where it runs**: Terminal / command line, local browser (`kimi web`), VS Code, and ACP-compatible IDEs.
+
+**Who it fits**: Senior devs, tech leads, and developers who want a terminal-first workflow without giving up editor support.
+
+**Where it shines**:
+
+- Reads and edits code, executes shell commands, fetches web pages, and adjusts its plan during execution
+- Can live in the terminal, the local browser, and editors like Zed, JetBrains, and VS Code
+- Supports MCP plus diff/revert flows and approval-driven tool execution inside the editor
+
+**Where it trips**:
+
+- Setup and naming can be confusing at first: Kimi Code, Kimi CLI, the VS Code extension, membership, and API key mode
+- Less familiar in Western teams than Cursor, Copilot, or Claude Code
+- Best fit for people comfortable with a terminal-first workflow
 
 ### Codex CLI
 

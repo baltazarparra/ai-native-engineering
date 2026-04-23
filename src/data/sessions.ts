@@ -48,8 +48,8 @@ export const sessions: SessionCardData[] = [
     translationKey: 'tools',
     order: 2,
     summary:
-      'Cursor, Windsurf, GitHub Copilot, Claude Code. O que cada ferramenta faz, onde brilha e onde tropeça.',
-    readingTime: 14,
+      'Cursor, Windsurf, GitHub Copilot, Claude Code, Kimi Code. O que cada ferramenta faz, onde brilha e onde tropeça.',
+    readingTime: 15,
     level: 'beginner',
     heroLabel: 'Mapa de ferramentas',
     accent: 'green',
@@ -61,7 +61,7 @@ export const sessions: SessionCardData[] = [
     translationKey: 'models',
     order: 3,
     summary:
-      'GPT, Claude, Gemini, Llama. Como funcionam por cima, o que diferencia um do outro e como escolher.',
+      'Codex, Claude, Gemini, Kimi, Llama. Como funcionam por cima, o que diferencia um do outro e como escolher.',
     readingTime: 15,
     level: 'intermediate',
     heroLabel: 'Entendendo modelos',
@@ -126,8 +126,8 @@ export const sessions: SessionCardData[] = [
     translationKey: 'tools',
     order: 2,
     summary:
-      'Cursor, Windsurf, GitHub Copilot, Claude Code. What each tool does, where it shines, and where it trips.',
-    readingTime: 14,
+      'Cursor, Windsurf, GitHub Copilot, Claude Code, Kimi Code. What each tool does, where it shines, and where it trips.',
+    readingTime: 15,
     level: 'beginner',
     heroLabel: 'Tool map',
     accent: 'green',
@@ -139,7 +139,7 @@ export const sessions: SessionCardData[] = [
     translationKey: 'models',
     order: 3,
     summary:
-      'GPT, Claude, Gemini, Llama. How they work at a useful level, what makes them different, and how to choose.',
+      'GPT, Claude, Gemini, Kimi, Llama. How they work at a useful level, what makes them different, and how to choose.',
     readingTime: 15,
     level: 'intermediate',
     heroLabel: 'Understanding models',
