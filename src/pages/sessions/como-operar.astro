@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
+import Button from '../../components/Button/Button.astro';
+import { getSessionHref, type AlternateLink } from '../../lib/i18n';
+
+const lang = 'pt-BR';
+const target = getSessionHref(lang, 'maturidade');
+const redirectScript = `window.location.replace(${JSON.stringify(target)});`;
+const alternateLinks: AlternateLink[] = [
+  { lang: 'pt-BR', href: getSessionHref('pt-BR', 'como-operar') },
+  { lang: 'en', href: getSessionHref('en', 'how-to-operate') },
+  { lang: 'x-default', href: getSessionHref('pt-BR', 'como-operar') },
+];
+---
+
+<BaseLayout
+  title="Sessão movida | AI-Native Engineering"
+  description="Esta sessão foi fundida com SDD e Harness Design."
+  lang={lang}
+  noindex
+  alternateLinks={alternateLinks}
+>
+  <main id="main-content">
+    <script is:inline set:html={redirectScript} />
+    <SectionBlock padding="xl">
+      <h1>Esta sessão foi fundida</h1>
+      <p>
+        O conteúdo de “Como operar” agora faz parte da sessão
+        <strong> SDD e Harness Design</strong>, com um fluxo mais completo para
+        desenvolvimento profissional com IA.
+      </p>
+      <Button href={target} size="lg">Ir para a sessão atualizada</Button>
+    </SectionBlock>
+  </main>
+</BaseLayout>

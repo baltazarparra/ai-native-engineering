@@ -70,8 +70,8 @@ The front door. If someone lands here and does not understand what this site is 
 
 - [ ] `Hero` section: strong headline, subtitle with the value prop, primary CTA ("Start with the basics"), secondary CTA ("See the full map")
 - [ ] `WhyThisExists` block: 3-4 short paragraphs explaining the gap between using AI and using AI well
-- [ ] `JourneyMap` / `SessionCards`: clickable cards for each of the 5 sessions, showing title, summary, level, reading time
-- [ ] `MaturityPreview`: compact visual showing the 5 phases (Consulta > Autocomplete > Vibe Coding > SDD > Harness Engineering)
+- [ ] `JourneyMap` / `SessionCards`: clickable cards for each of the 3 sessions, showing title, summary, level, reading time
+- [ ] `SDDHarnessPreview`: compact visual showing the professional loop (Spec > Context > Execution > Validation > Governance)
 - [ ] `Footer`: credits, content version, last revision date, source links
 - [ ] proper `<head>` meta: title, description, OG tags for the home page
 - [ ] mobile layout validated
@@ -79,8 +79,8 @@ The front door. If someone lands here and does not understand what this site is 
 ### Done When
 
 - home page explains the product without clicking anything else
-- all 5 session cards link to their routes (even if those pages are just stubs for now)
-- the maturity preview is readable and makes sense to someone who's never heard of SDD
+- all 4 session cards link to their routes (even if those pages are just stubs for now)
+- the SDD + Harness preview is readable and makes sense to someone who's never heard of SDD
 - page loads fast, Lighthouse perf score stays above 90 on mobile
 - looks intentionally neo-brutalist, not accidentally broken
 
@@ -119,28 +119,26 @@ Build the reusable layout that every session page will use. Get it right once so
 
 ## Phase 5: Core Content
 
-Write all 5 sessions for real. This is the meat of the product. No placeholders, no "lorem ipsum", no "TODO write this later."
+Write the home foundations primer and all 3 sessions for real. This is the meat of the product. No placeholders, no "lorem ipsum", no "TODO write this later."
 
 ### What We Ship
 
-- [ ] Session 0: What Is an AI-Native Engineer (`/sessions/ai-native-engineer/`)
-  - definition, what changed, what didn't, anti-patterns, self-assessment questions (static for now)
+- [ ] Home foundations primer
+  - compact definitions for AI-Native Engineer, AI agent, and coding agent
 - [ ] Session 1: Glossary (`/sessions/glossario/`)
   - all terms: LLM, model, inference, context, token, prompt, system prompt, IDE, CLI, agent, code agent, autocomplete, code context, MCP, harness
   - simple and technical definitions for each
 - [ ] Session 2: Tools and Models (`/sessions/ferramentas/`)
   - IDE, CLI, and cloud-agent categories, plus product vs model distinction
   - model profiles by task type and editorial guidance on reading benchmarks critically
-- [ ] Session 3: Maturity (`/sessions/maturidade/`)
-  - all 5 phases with what/why/where it works/where it breaks/what the next phase fixes
-- [ ] Session 4: How to Operate (`/sessions/como-operar/`)
-  - workflow, pre-request checklist, pre-accept checklist, examples by profile (PM, QA, junior dev, senior dev, tech lead)
+- [ ] Session 3: SDD and Harness Design (`/sessions/maturidade/`)
+  - spec-driven contracts, harness layers, validation gates, governance, and enterprise workflow examples
 - [ ] curated references for each session (2-4 "start here", 2-4 primary sources, 1-3 videos/talks)
-- [ ] `src/data/glossary.ts`, `src/data/checklists.ts`, and session/chapter metadata populated with real data
+- [ ] `src/data/glossary.ts` and session/chapter metadata populated with real data
 
 ### Done When
 
-- all 5 sessions are published and accessible from the home page
+- all 3 sessions are published and accessible from the home page
 - content tone is consistent across all sessions: natural PT-BR, direct, no academic fluff
 - no session mentions a specific tool without framing it as a market example, not gospel
 - every acronym is explained before being used technically
@@ -156,8 +154,7 @@ This is where React islands come in. Every interactive block must pass the test:
 ### What We Ship
 
 - [ ] `GlossaryCardGrid` (React island): expandable cards with "simple" and "technical" toggle, search/filter
-- [ ] `MaturityStepper` (React island): interactive timeline/stepper walking through the 5 phases, with before/after and practical cases
-- [ ] `SelfAssessment` (React island): 5-7 questions, localStorage score, 3 result profiles (exploring, operating, structuring)
+- [ ] `SDDHarnessFlow` (React island): interactive loop showing spec, context, execution, validation, governance, and learning
 - [ ] `ProgressTracker`: reading progress per session, persisted in localStorage
 - [ ] Motion animations where they genuinely help: card entrances, state transitions, phase changes. CSS for everything else
 

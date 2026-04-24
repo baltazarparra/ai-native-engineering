@@ -6,6 +6,7 @@ import Button from '../../components/Button/Button.astro';
 import Card from '../../components/Card/Card.astro';
 import Badge from '../../components/Badge/Badge.astro';
 import Footer from '../../components/Footer/Footer.astro';
+import HomeFoundations from '../../components/HomeFoundations/HomeFoundations.astro';
 import HeroStickers from '../../components/HeroStickers/HeroStickers';
 import HeroGhostCursors from '../../components/HeroGhostCursors/HeroGhostCursors';
 import { getSessions } from '../../data/sessions';
@@ -26,14 +27,6 @@ function levelToBadgeVariant(level: string) {
   } as const;
   return map[level as keyof typeof map] || 'default';
 }
-
-const phases = [
-  { label: 'Ask', desc: 'Ask and explore' },
-  { label: 'Autocomplete', desc: 'Suggestions in the editor' },
-  { label: 'Vibe Coding', desc: 'Generate from natural language' },
-  { label: 'SDD', desc: 'Spec before execution' },
-  { label: 'Harness', desc: 'The agent work system' },
-];
 ---
 
 <BaseLayout
@@ -54,42 +47,17 @@ const phases = [
             A practical guide for using AI in real software work, without hype
             and without panic.
           </p>
-          <div class="hero-ctas">
-            <Button
-              href={getSessionHref(lang, 'what-is-ai-native-engineer')}
-              size="lg"
-            >
-              Start with Session 0
-            </Button>
-            <Button href="#sessions" variant="secondary" size="lg">
-              See all sessions
-            </Button>
-          </div>
         </div>
       </div>
     </SectionBlock>
 
-    <SectionBlock padding="lg" alt>
-      <h2>Why this site exists</h2>
-      <div class="narrative">
-        <p>
-          Most software teams already use AI every day, but many still don't
-          know the difference between a model and a product, don't understand
-          tool categories, and don't have a clear map of how it all fits
-          together.
-        </p>
-        <p>
-          This site exists to organize that mess. No vendor worship, no jargon
-          theater. Just the map that matters.
-        </p>
-      </div>
-    </SectionBlock>
+    <HomeFoundations lang={lang} />
 
     <SectionBlock padding="xl" id="sessions">
       <h2>Sessions</h2>
       <p>
-        Five sessions covering what you actually need to know. Each one works on
-        its own, but together they give you the full map.
+        Three sessions covering what you actually need to know. Each one works
+        on its own, but together they give you the full map.
       </p>
       <Grid columns={3} gap="lg" align="stretch">
         {
@@ -130,56 +98,6 @@ const phases = [
       </div>
     </SectionBlock>
 
-    <SectionBlock padding="xl">
-      <h2>How AI matured in software development</h2>
-      <p>Using AI isn't the point. Maturing how you use it is the point.</p>
-      <div class="maturity-track">
-        {
-          phases.map((phase, i) => (
-            <div class="maturity-step">
-              <span class={`maturity-number maturity-number-${i + 1}`}>
-                {i + 1}
-              </span>
-              <span class="maturity-label">{phase.label}</span>
-              <span class="maturity-desc">{phase.desc}</span>
-            </div>
-          ))
-        }
-      </div>
-      <div class="maturity-cta">
-        <Button href={getSessionHref(lang, 'maturity')} variant="secondary">
-          See the full evolution
-        </Button>
-      </div>
-    </SectionBlock>
-
-    <SectionBlock padding="lg">
-      <h2>How to study</h2>
-      <p>
-        Each session stands alone. If you want a path, here are a few good ones.
-      </p>
-      <Grid columns={3} gap="md" align="stretch">
-        <Card title="I work in product/design/QA" expandable accent="yellow">
-          <p>
-            Start with Session 0, then jump to Session 1 (glossary) and Session
-            3 (maturity). That gives you the mental map first.
-          </p>
-        </Card>
-        <Card title="I am a junior dev" expandable accent="blue">
-          <p>
-            Go in order: 0, 1, 2, 3, 4. Each session builds on the previous one.
-          </p>
-        </Card>
-        <Card title="I already use AI at work" expandable accent="green">
-          <p>
-            Go straight to Session 3 (maturity), then Session 4 (how to
-            operate). You probably know the glossary and tool/model landscape
-            already.
-          </p>
-        </Card>
-      </Grid>
-    </SectionBlock>
-
     <Footer lang={lang} />
   </main>
 </BaseLayout>
@@ -207,119 +125,6 @@ const phases = [
     line-height: var(--leading-relaxed);
   }
 
-  .hero-ctas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-md);
-    max-width: 100%;
-  }
-
-  .hero-ctas > * {
-    min-width: 0;
-  }
-
-  .narrative {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    margin-top: var(--space-lg);
-  }
-
-  .maturity-track {
-    display: flex;
-    gap: var(--space-lg);
-    margin-top: var(--space-xl);
-    margin-bottom: var(--space-xl);
-    min-width: 0;
-  }
-
-  .maturity-step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--space-xs);
-    flex: 1;
-    min-width: 0;
-    position: relative;
-    transition: transform var(--transition-fast);
-  }
-
-  .maturity-step:hover {
-    transform: translateY(-2px);
-  }
-
-  .maturity-step:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 1.25rem;
-    left: calc(50% + 1.5rem);
-    width: calc(100% - 3rem);
-    border-top: var(--border-thin);
-    transform-origin: left center;
-  }
-
-  .maturity-number {
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: var(--border-thick);
-    border-radius: var(--radius-sm);
-    font-family: var(--font-heading);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-lg);
-    flex-shrink: 0;
-    box-shadow: var(--shadow-sm);
-    transition:
-      transform var(--motion-normal) var(--ease-out-back),
-      box-shadow var(--transition-fast);
-  }
-
-  .maturity-step:hover .maturity-number {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .maturity-number-1 {
-    background-color: var(--color-accent-1);
-    color: var(--color-fg-on-yellow);
-  }
-  .maturity-number-2 {
-    background-color: var(--color-accent-2);
-    color: var(--color-fg-on-blue);
-  }
-  .maturity-number-3 {
-    background-color: var(--color-accent-3);
-    color: var(--color-fg-on-green);
-  }
-  .maturity-number-4 {
-    background-color: var(--color-accent-4);
-    color: var(--color-fg-on-coral);
-  }
-  .maturity-number-5 {
-    background-color: var(--color-ink);
-    color: var(--color-fg-on-ink);
-  }
-
-  .maturity-label {
-    font-family: var(--font-heading);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-base);
-    overflow-wrap: anywhere;
-  }
-
-  .maturity-desc {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    overflow-wrap: break-word;
-  }
-
-  .maturity-cta {
-    text-align: center;
-  }
-
   .session-order {
     font-family: var(--font-heading);
     font-weight: var(--weight-medium);
@@ -345,26 +150,5 @@ const phases = [
 
   h2 + p {
     margin-block: var(--space-md);
-  }
-
-  @media (max-width: 767px) {
-    .hero-ctas {
-      flex-direction: column;
-    }
-
-    .maturity-track {
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-
-    .maturity-step {
-      flex-direction: row;
-      text-align: left;
-      gap: var(--space-md);
-    }
-
-    .maturity-step:not(:last-child)::after {
-      display: none;
-    }
   }
 </style>

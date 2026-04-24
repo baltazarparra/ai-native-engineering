@@ -6,6 +6,7 @@ import Button from '../components/Button/Button.astro';
 import Card from '../components/Card/Card.astro';
 import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
+import HomeFoundations from '../components/HomeFoundations/HomeFoundations.astro';
 import HeroStickers from '../components/HeroStickers/HeroStickers';
 import HeroGhostCursors from '../components/HeroGhostCursors/HeroGhostCursors';
 import { getSessions } from '../data/sessions';
@@ -35,14 +36,6 @@ function levelToLabel(level: string) {
   } as const;
   return map[level as keyof typeof map] || level;
 }
-
-const phases = [
-  { label: 'Consulta', desc: 'Perguntar e explorar' },
-  { label: 'Autocomplete', desc: 'Sugestões no editor' },
-  { label: 'Vibe Coding', desc: 'Gerar a partir de linguagem natural' },
-  { label: 'SDD', desc: 'Especificação antes de execução' },
-  { label: 'Harness', desc: 'Sistema de trabalho do agente' },
-];
 ---
 
 <BaseLayout
@@ -64,40 +57,17 @@ const phases = [
             Um guia prático pra quem quer usar IA de verdade no dia a dia de
             desenvolvimento, sem hype e sem medo.
           </p>
-          <div class="hero-ctas">
-            <Button href={getSessionHref(lang, 'ai-native-engineer')} size="lg">
-              Começar pela Sessão 0
-            </Button>
-            <Button href="#sessoes" variant="secondary" size="lg">
-              Ver todas as sessões
-            </Button>
-          </div>
         </div>
       </div>
     </SectionBlock>
 
-    <!-- why this exists -->
-    <SectionBlock padding="lg" alt>
-      <h2>Por que esse site existe?</h2>
-      <div class="narrative">
-        <p>
-          A maioria dos times de software já usa IA no dia a dia, mas muita
-          gente ainda não sabe a diferença entre modelo e produto, não entende
-          as categorias de ferramentas e não tem um mapa claro de como tudo se
-          conecta.
-        </p>
-        <p>
-          Esse site existe pra organizar esse caos. Sem jargão desnecessário,
-          sem favorecimento de ferramenta. Só o mapa que importa.
-        </p>
-      </div>
-    </SectionBlock>
+    <HomeFoundations lang={lang} />
 
     <!-- session cards -->
     <SectionBlock padding="xl" id="sessoes">
       <h2>Sessões</h2>
       <p>
-        São 5 sessões que cobrem o que você precisa saber. Cada uma funciona
+        São 3 sessões que cobrem o que você precisa saber. Cada uma funciona
         sozinha, mas juntas formam o mapa completo.
       </p>
       <Grid columns={3} gap="lg" align="stretch">
@@ -140,58 +110,6 @@ const phases = [
       </div>
     </SectionBlock>
 
-    <!-- maturity preview -->
-    <SectionBlock padding="xl">
-      <h2>Como a IA evoluiu no desenvolvimento</h2>
-      <p>Não é só sobre usar IA. É sobre como o uso amadurece.</p>
-      <div class="maturity-track">
-        {
-          phases.map((phase, i) => (
-            <div class="maturity-step">
-              <span class={`maturity-number maturity-number-${i + 1}`}>
-                {i + 1}
-              </span>
-              <span class="maturity-label">{phase.label}</span>
-              <span class="maturity-desc">{phase.desc}</span>
-            </div>
-          ))
-        }
-      </div>
-      <div class="maturity-cta">
-        <Button href={getSessionHref(lang, 'maturidade')} variant="secondary">
-          Ver a evolução completa
-        </Button>
-      </div>
-    </SectionBlock>
-
-    <!-- how to study -->
-    <SectionBlock padding="lg">
-      <h2>Como estudar</h2>
-      <p>
-        Cada sessão funciona sozinha. Se quiser um caminho, aqui vão sugestões.
-      </p>
-      <Grid columns={3} gap="md" align="stretch">
-        <Card title="Sou de produto/design/QA" expandable accent="yellow">
-          <p>
-            Comece pela Sessão 0, depois vá direto pra Sessão 1 (glossário) e
-            Sessão 3 (maturidade). Isso já dá o mapa mental que você precisa.
-          </p>
-        </Card>
-        <Card title="Sou dev iniciante" expandable accent="blue">
-          <p>
-            Siga na ordem: 0, 1, 2, 3, 4. Cada sessão constrói em cima da
-            anterior.
-          </p>
-        </Card>
-        <Card title="Ja uso IA no trabalho" expandable accent="green">
-          <p>
-            Vá direto pra Sessão 3 (maturidade) e depois Sessão 4 (como operar).
-            O glossário e o mapa de ferramentas e modelos você já conhece.
-          </p>
-        </Card>
-      </Grid>
-    </SectionBlock>
-
     <!-- footer -->
     <Footer lang={lang} />
   </main>
@@ -220,119 +138,6 @@ const phases = [
     line-height: var(--leading-relaxed);
   }
 
-  .hero-ctas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-md);
-    max-width: 100%;
-  }
-
-  .hero-ctas > * {
-    min-width: 0;
-  }
-
-  .narrative {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    margin-top: var(--space-lg);
-  }
-
-  .maturity-track {
-    display: flex;
-    gap: var(--space-lg);
-    margin-top: var(--space-xl);
-    margin-bottom: var(--space-xl);
-    min-width: 0;
-  }
-
-  .maturity-step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--space-xs);
-    flex: 1;
-    min-width: 0;
-    position: relative;
-    transition: transform var(--transition-fast);
-  }
-
-  .maturity-step:hover {
-    transform: translateY(-2px);
-  }
-
-  .maturity-step:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 1.25rem;
-    left: calc(50% + 1.5rem);
-    width: calc(100% - 3rem);
-    border-top: var(--border-thin);
-    transform-origin: left center;
-  }
-
-  .maturity-number {
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: var(--border-thick);
-    border-radius: var(--radius-sm);
-    font-family: var(--font-heading);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-lg);
-    flex-shrink: 0;
-    box-shadow: var(--shadow-sm);
-    transition:
-      transform var(--motion-normal) var(--ease-out-back),
-      box-shadow var(--transition-fast);
-  }
-
-  .maturity-step:hover .maturity-number {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .maturity-number-1 {
-    background-color: var(--color-accent-1);
-    color: var(--color-fg-on-yellow);
-  }
-  .maturity-number-2 {
-    background-color: var(--color-accent-2);
-    color: var(--color-fg-on-blue);
-  }
-  .maturity-number-3 {
-    background-color: var(--color-accent-3);
-    color: var(--color-fg-on-green);
-  }
-  .maturity-number-4 {
-    background-color: var(--color-accent-4);
-    color: var(--color-fg-on-coral);
-  }
-  .maturity-number-5 {
-    background-color: var(--color-ink);
-    color: var(--color-fg-on-ink);
-  }
-
-  .maturity-label {
-    font-family: var(--font-heading);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-base);
-    overflow-wrap: anywhere;
-  }
-
-  .maturity-desc {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    overflow-wrap: break-word;
-  }
-
-  .maturity-cta {
-    text-align: center;
-  }
-
   .session-order {
     font-family: var(--font-heading);
     font-weight: var(--weight-medium);
@@ -358,26 +163,5 @@ const phases = [
 
   h2 + p {
     margin-block: var(--space-md);
-  }
-
-  @media (max-width: 767px) {
-    .hero-ctas {
-      flex-direction: column;
-    }
-
-    .maturity-track {
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-
-    .maturity-step {
-      flex-direction: row;
-      text-align: left;
-      gap: var(--space-md);
-    }
-
-    .maturity-step:not(:last-child)::after {
-      display: none;
-    }
   }
 </style>

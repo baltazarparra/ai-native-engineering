@@ -85,14 +85,11 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'Como operar de forma AI-native na prática',
-          en: 'How to operate AI-native in practice',
+          'pt-BR': 'SDD e Harness Design',
+          en: 'SDD and Harness Design',
         },
         url: (lang: Lang) =>
-          getSessionHref(
-            lang,
-            lang === 'pt-BR' ? 'como-operar' : 'how-to-operate',
-          ),
+          getSessionHref(lang, lang === 'pt-BR' ? 'maturidade' : 'maturity'),
         type: 'artigo',
         source: {
           'pt-BR': 'AI-Native Engineering',
@@ -183,27 +180,11 @@ export const CHAPTERS: Chapter[] = [
     references: [
       {
         title: {
-          'pt-BR': 'A evolução do desenvolvimento com IA',
-          en: 'How AI development matured',
+          'pt-BR': 'SDD e Harness Design',
+          en: 'SDD and Harness Design',
         },
         url: (lang: Lang) =>
           getSessionHref(lang, lang === 'pt-BR' ? 'maturidade' : 'maturity'),
-        type: 'artigo',
-        source: {
-          'pt-BR': 'AI-Native Engineering',
-          en: 'AI-Native Engineering',
-        },
-      },
-      {
-        title: {
-          'pt-BR': 'Como operar de forma AI-native na prática',
-          en: 'How to operate AI-native in practice',
-        },
-        url: (lang: Lang) =>
-          getSessionHref(
-            lang,
-            lang === 'pt-BR' ? 'como-operar' : 'how-to-operate',
-          ),
         type: 'artigo',
         source: {
           'pt-BR': 'AI-Native Engineering',
@@ -269,8 +250,8 @@ export const CHAPTERS: Chapter[] = [
     references: [
       {
         title: {
-          'pt-BR': 'A evolução do desenvolvimento com IA',
-          en: 'How AI development matured',
+          'pt-BR': 'SDD e Harness Design',
+          en: 'SDD and Harness Design',
         },
         url: (lang: Lang) =>
           getSessionHref(lang, lang === 'pt-BR' ? 'maturidade' : 'maturity'),
@@ -346,14 +327,11 @@ export const CHAPTERS: Chapter[] = [
     references: [
       {
         title: {
-          'pt-BR': 'Como operar de forma AI-native na prática',
-          en: 'How to operate AI-native in practice',
+          'pt-BR': 'SDD e Harness Design',
+          en: 'SDD and Harness Design',
         },
         url: (lang: Lang) =>
-          getSessionHref(
-            lang,
-            lang === 'pt-BR' ? 'como-operar' : 'how-to-operate',
-          ),
+          getSessionHref(lang, lang === 'pt-BR' ? 'maturidade' : 'maturity'),
         type: 'artigo',
         source: {
           'pt-BR': 'AI-Native Engineering',

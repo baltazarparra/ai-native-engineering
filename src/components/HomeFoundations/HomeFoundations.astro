@@ -1,0 +1,143 @@
+---
+import SectionBlock from '../SectionBlock/SectionBlock.astro';
+import Badge from '../Badge/Badge.astro';
+import type { Lang } from '../../lib/i18n';
+import styles from './HomeFoundations.module.css';
+
+interface FoundationCard {
+  index: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  points: string[];
+  accent: 'yellow' | 'blue' | 'green';
+}
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'pt-BR' } = Astro.props;
+
+const content: Record<
+  Lang,
+  {
+    id: string;
+    badge: string;
+    title: string;
+    intro: string;
+    cards: FoundationCard[];
+  }
+> = {
+  'pt-BR': {
+    id: 'fundamentos',
+    badge: 'Fundamentos',
+    title: 'Três ideias antes de começar',
+    intro:
+      'Sem estas definições, o resto vira jargão. Guarde o mapa mental: pessoa, agente e agente de código.',
+    cards: [
+      {
+        index: '01',
+        eyebrow: 'Pessoa',
+        title: 'AI-Native Engineer',
+        description:
+          'Profissional que usa agentes como parte normal do fluxo para transformar problemas em software, sem terceirizar julgamento.',
+        points: ['define problema', 'dá contexto', 'revisa e valida'],
+        accent: 'yellow',
+      },
+      {
+        index: '02',
+        eyebrow: 'Sistema',
+        title: 'Agente de IA',
+        description:
+          'LLM com instruções e ferramentas, capaz de executar passos, observar resultados e ajustar o próximo movimento dentro de limites.',
+        points: ['usa ferramentas', 'segue objetivos', 'precisa de limites'],
+        accent: 'blue',
+      },
+      {
+        index: '03',
+        eyebrow: 'Especialização',
+        title: 'Agente de código',
+        description:
+          'Agente de IA conectado ao repositório: lê arquivos, edita código, roda comandos, executa testes e entrega diffs revisáveis.',
+        points: ['trabalha no repo', 'gera diff', 'não substitui review'],
+        accent: 'green',
+      },
+    ],
+  },
+  en: {
+    id: 'foundations',
+    badge: 'Foundations',
+    title: 'Three ideas before you start',
+    intro:
+      'Without these definitions, the rest becomes jargon. Keep the mental map: person, agent, and coding agent.',
+    cards: [
+      {
+        index: '01',
+        eyebrow: 'Person',
+        title: 'AI-Native Engineer',
+        description:
+          'A professional who uses agents as a normal part of the workflow to turn problems into software without outsourcing judgment.',
+        points: [
+          'defines the problem',
+          'gives context',
+          'reviews and validates',
+        ],
+        accent: 'yellow',
+      },
+      {
+        index: '02',
+        eyebrow: 'System',
+        title: 'AI agent',
+        description:
+          'An LLM with instructions and tools, able to take steps, observe results, and adjust its next move within defined boundaries.',
+        points: ['uses tools', 'follows goals', 'needs boundaries'],
+        accent: 'blue',
+      },
+      {
+        index: '03',
+        eyebrow: 'Specialization',
+        title: 'Coding agent',
+        description:
+          'An AI agent connected to a repository: it reads files, edits code, runs commands, executes tests, and returns reviewable diffs.',
+        points: [
+          'works in the repo',
+          'creates diffs',
+          'does not replace review',
+        ],
+        accent: 'green',
+      },
+    ],
+  },
+};
+
+const copy = content[lang];
+---
+
+<SectionBlock padding="xl" alt maxWidth="xl" id={copy.id}>
+  <div class={styles.header}>
+    <Badge variant="yellow">{copy.badge}</Badge>
+    <h2>{copy.title}</h2>
+    <p>{copy.intro}</p>
+  </div>
+
+  <div class={styles.grid}>
+    {
+      copy.cards.map((card) => (
+        <article class:list={[styles.card, styles[`accent-${card.accent}`]]}>
+          <div class={styles.cardTop}>
+            <span class={styles.index}>{card.index}</span>
+            <span class={styles.eyebrow}>{card.eyebrow}</span>
+          </div>
+          <h3>{card.title}</h3>
+          <p>{card.description}</p>
+          <ul>
+            {card.points.map((point) => (
+              <li>{point}</li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</SectionBlock>

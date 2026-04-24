@@ -75,8 +75,8 @@ That operator needs to understand at least five layers:
 1. language and concepts;
 2. tool categories;
 3. model capabilities and limits;
-4. maturity stages of AI usage in development;
-5. control mechanisms: context, validation, rules, tests, harness, and review.
+4. spec-driven contracts;
+5. harness mechanisms: context, validation, rules, tools, tests, governance, and review.
 
 ---
 
@@ -213,10 +213,10 @@ Explains that:
 - it can be navigated by question;
 - each session ends with references.
 
-#### 7.5 "Maturity" Block
+#### 7.5 "SDD + Harness" Block
 
-A summarized visualization of the evolution:
-Consultation → Autocomplete → Vibe Coding → SDD → Harness Engineering
+A summarized visualization of the professional flow:
+Spec → Context → Execution → Validation → Governance
 
 #### 7.6 Editorial Footer
 
@@ -229,38 +229,27 @@ Consultation → Autocomplete → Vibe Coding → SDD → Harness Engineering
 
 ## 8. Product Sessions
 
-## Session 0: What Is an AI-Native Engineer
+## Home Foundations Primer
 
-**Slug:** `/ai-native-engineer/`
+**Location:** Home page, immediately below the hero.
 
-This session must exist before or immediately after the hero, because it frames everything else.
+This primer replaces the old foundations page and frames everything else without forcing users into a separate route.
 
 ### Objective
 
-Answer:
+Answer, in a compact brutalist format:
 
-- what the market expects today;
-- why this does not mean "everyone became an engineer";
-- why the human role still matters;
-- why context, review, and decision-making remain central.
+- what an AI-Native Engineer is;
+- what an AI agent is;
+- what a coding agent is;
+- why context, review, validation, and decision-making remain human responsibilities.
 
-### Page Structure
+### Structure
 
-- short definition;
-- expanded definition;
-- "what changed in the work";
-- "what did not change";
-- checklist: "are you already operating in an AI-native way?";
-- anti-pattern block.
-
-### Interactions
-
-- self-assessment with 5 to 7 questions;
-- simple local score, saved in `localStorage`;
-- result with three profiles:
-  - exploring
-  - operating
-  - structuring
+- `HomeFoundations` component;
+- three concise cards;
+- no JavaScript;
+- links from the old foundations route should redirect to this block.
 
 ---
 
@@ -371,7 +360,7 @@ This page must make clear:
 
 ---
 
-## Session 3: The Evolution of AI-Assisted Development
+## Session 3: SDD and Harness Design
 
 **Slug:** `/sessions/maturidade/`
 
@@ -379,193 +368,49 @@ This is the most important session in the product.
 
 ### Objective
 
-Explain the historical and practical progression of AI usage in development.
+Explain how professional AI-native delivery combines:
 
-### Required Phases
+- **SDD (Spec-Driven Development):** turning intent into a clear, reviewable, versioned, verifiable contract.
+- **Harness Design:** designing the agent work system around that contract: instructions, context, tools, permissions, validation, review, audit, and feedback loops.
 
-#### Phase 1: AI for Consultation
+The session replaces the previous "maturity phases" and "how to operate" split. It should teach that enterprise-grade AI software work is not about a single better prompt; it is about a coherent delivery system.
 
-Usage:
+### Core Thesis
 
-- ask about concepts;
-- summarize docs;
-- explore ideas;
-- request examples.
-
-Value:
-
-- accelerates learning;
-- reduces research time;
-- helps people who do not know where to start.
-
-Problems:
-
-- superficiality;
-- hallucination;
-- false feeling of understanding;
-- dependency without building judgment.
-
-#### Phase 2: AI for Autocomplete and Pair Assistance
-
-Usage:
-
-- complete code;
-- suggest a function;
-- perform small refactors;
-- explain snippets.
-
-Value:
-
-- accelerates the local loop;
-- good for small tasks;
-- reduces typing and boilerplate friction.
-
-Problems:
-
-- partial context;
-- suggestions that are locally good and globally bad;
-- accelerates debt production if the team does not review well.
-
-#### Phase 3: Vibe Coding
-
-Usage:
-
-- describe what you want in natural language;
-- let the tool generate a lot;
-- explore prototypes, MVPs, spikes, and micro-products.
-
-Value:
-
-- radical compression of prototyping time;
-- low entry friction;
-- great for experimentation.
-
-Problems:
-
-- fragile architecture;
-- inconsistency;
-- false confidence;
-- easy to generate a product that looks ready but is not;
-- debugging and maintenance can become expensive later.
-
-#### Phase 4: SDD as an Evolution of Vibe Coding
-
-We will use SDD here as **Spec-Driven Development**.
-
-The site must explain honestly:
-
-- this is not a universal acronym like HTTP or SQL;
-- here it represents a way of working guided by specification, criteria, and artifacts.
-
-Usage:
-
-- describe goal, scope, constraints, acceptance criteria, context, and plan;
-- request execution based on that.
-
-Value:
-
-- reduces ambiguity;
-- improves consistency;
-- increases the chance of useful output;
-- helps collaboration between human and agent.
-
-Problems:
-
-- requires discipline;
-- adds more friction at the beginning;
-- bad specification still generates bad results.
-
-#### Phase 5: Harness Engineering
-
-Here we will use "Harness Engineering" as the layer where the team stops thinking only about prompts and starts thinking about the **agent work system**.
-
-The page must explain that, in practice, this involves:
-
-- instructions;
-- tools;
-- model;
-- rules;
-- persistent context;
-- validations;
-- specialized agents;
-- support files;
-- evaluation of the result.
-
-This reading aligns with how Cursor describes agent harnesses: instructions, tools, and model orchestrated together.
-
-Value:
-
-- scales quality;
-- reduces variation;
-- supports repeatability;
-- enables more consistent workflows across people and teams.
-
-Problems:
-
-- higher operational complexity;
-- risk of excessive framework;
-- requires maintenance;
-- does not save a team without good engineering fundamentals.
-
-### Page Structure
-
-- timeline or stepper;
-- each phase with:
-  - what it is;
-  - why it emerged;
-  - where it works;
-  - where it breaks;
-  - what the next phase tries to solve.
-
-### Interactions
-
-- horizontal slider or vertical stepper;
-- "before and after" mode;
-- practical cases:
-  - "I need to launch an MVP"
-  - "I need to refactor a legacy system"
-  - "I need to maintain a product in production"
-- the UI shows which phase alone is not enough.
-
----
-
-## Session 4: How to Operate AI-Natively in Practice
-
-**Slug:** `/sessions/como-operar/`
-
-This session closes the reasoning loop.
-
-### Objective
-
-Translate theory into daily practice.
+- SDD defines what must be true.
+- Harness Design makes it possible to execute, validate, govern, and improve that truth repeatedly.
+- SDD without a harness becomes documentation theater.
+- A harness without SDD becomes automation without direction.
 
 ### What It Should Teach
 
-- start with a plan;
-- define a verifiable goal;
-- provide enough context;
-- ask for step-by-step execution when necessary;
-- validate output with tests, lint, typecheck, review, and human reading;
-- treat AI as an accelerating collaborator, not as the final authority;
-- build a base of rules, useful prompts, checklists, and repeatable artifacts.
+- what a spec is and is not;
+- anatomy of a useful agent-facing spec;
+- how to scale from prompt to contract without becoming bureaucratic;
+- what an agent harness includes;
+- why repository-local, versioned context matters;
+- how validation gates turn model output into reviewable software;
+- how permissions, tools, MCP, CI, PR review, and audit trails fit together;
+- how failures should improve specs, tests, rules, docs, or tools.
 
-### Structure
+### Page Structure
 
-- recommended workflow;
-- "before asking" checklist;
-- "before accepting" checklist;
-- examples by profile:
-  - PM
-  - QA
-  - junior developer
-  - senior developer
-  - tech lead
+- the shift that matters;
+- why this matters for enterprise teams;
+- what SDD is;
+- anatomy of a good spec;
+- what SDD is not;
+- what Harness Design is;
+- how SDD and Harness Design work together;
+- applied corporate example;
+- where this breaks;
+- how to start without bureaucracy;
+- takeaway.
 
 ### Interactions
 
-- checklist generator;
-- profile toggle;
-- copyable "playbook card".
+- `SDDHarnessFlow` React island: interactive map showing the loop from intent contract to context package, controlled execution, validation gates, governance, and system learning.
+- The old maturity stepper and checklist generator should not ship in the main flow unless redesigned around SDD + Harness.
 
 ---
 
@@ -749,7 +594,7 @@ The site should be interactive, but it must not become a free-form playground.
 ### Recommended Interactions
 
 - expandable cards;
-- maturity stepper;
+- SDD + Harness flow map;
 - comparison filters;
 - quick quizzes;
 - interactive checklists;
@@ -821,7 +666,7 @@ React enters only in interactive islands:
 
 - comparators;
 - quizzes;
-- maturity stepper;
+- SDD + Harness flow map;
 - filters;
 - checklists;
 - progress UI.
@@ -880,17 +725,14 @@ Tailwind can speed things up, but here it increases the chance of a generic resu
 │  │  └─ references/
 │  ├─ content/
 │  │  ├─ sessions/
-│  │  │  ├─ ai-native-engineer.mdx
 │  │  │  ├─ glossario.mdx
 │  │  │  ├─ ferramentas.mdx
-│  │  │  ├─ maturidade.mdx
-│  │  │  └─ como-operar.mdx
+│  │  │  └─ maturidade.mdx
 │  │  ├─ references/
 │  │  │  ├─ artigos.json
 │  │  │  └─ videos.json
 │  │  └─ config.ts
 │  ├─ data/
-│  │  ├─ checklists.ts
 │  │  ├─ chapters.ts
 │  │  ├─ glossary.ts
 │  │  └─ sessions.ts
@@ -967,7 +809,7 @@ Fields:
 - WhyThisExists
 - JourneyMap
 - SessionCards
-- MaturityPreview
+- SDDHarnessPreview
 - FooterSources
 
 ### Session Pages
@@ -984,8 +826,7 @@ Fields:
 ### Interactive Components
 
 - GlossaryCardGrid
-- MaturityStepper
-- SelfAssessment
+- SDDHarnessFlow
 - ProgressTracker
 
 ---
@@ -1116,7 +957,7 @@ On desktop:
 - hero;
 - context block;
 - session cards;
-- maturity preview;
+- SDD + Harness preview;
 - footer with sources.
 
 ### Criteria
@@ -1147,12 +988,10 @@ On desktop:
 
 ### Deliverables
 
-- AI-native engineer session;
+- home foundations primer;
 - glossary;
-- tools;
-- models;
-- maturity;
-- how to operate.
+- tools and models;
+- SDD and Harness Design.
 
 ### Criteria
 
@@ -1169,7 +1008,7 @@ On desktop:
 - glossary cards;
 - tool comparator;
 - model matcher by task;
-- maturity stepper;
+- SDD + Harness flow;
 - self-assessment;
 - progress tracker.
 
@@ -1375,12 +1214,10 @@ Editorial home + detail pages per session.
 
 Start with:
 
-1. What is an AI-native engineer
+1. Home foundations primer
 2. Glossary
-3. Tools
-4. Models
-5. Maturity of AI usage in development
-6. How to operate in practice
+3. Tools and models
+4. SDD and Harness Design
 
 ### Design
 

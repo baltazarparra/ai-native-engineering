@@ -38,7 +38,7 @@ Deploy: GitHub Actions → GitHub Pages (auto-deploy on push to main).
 
 - Static HTML pages with selective hydration (`client:*` directives on islands only)
 - Content lives in `src/content/sessions/*.mdx` with frontmatter schema enforced by Content Collections
-- Data files (`src/data/`) for glossary definitions, checklists, sessions, chapters, and shared metadata, separate from UI
+- Data files (`src/data/`) for glossary definitions, sessions, chapters, and shared metadata, separate from UI
 - Layouts: `BaseLayout.astro` (site-wide) and `SessionLayout.astro` (session pages with standard template)
 - Dynamic session routes via `src/pages/sessions/[slug].astro`
 
@@ -59,13 +59,11 @@ updatedAt: date
 
 ## Site Structure
 
-5 sessions, each generated under the dynamic `/sessions/[slug]/` route:
+The home page contains a compact foundations primer for "AI-Native Engineer", "AI agent", and "coding agent". The deeper curriculum is organized into 3 sessions generated under the dynamic `/sessions/[slug]/` route:
 
-- `/sessions/ai-native-engineer/`: What is an AI-Native Engineer (Session 0)
 - `/sessions/glossario/`: Terminology (Session 1)
 - `/sessions/ferramentas/`: Tools and models (Session 2)
-- `/sessions/maturidade/`: Evolution of AI in development (Session 3, most important)
-- `/sessions/como-operar/`: How to work AI-native in practice (Session 4)
+- `/sessions/maturidade/`: SDD and Harness Design for professional AI-native software delivery (Session 3, most important)
 
 Every session page follows a fixed template: hero → 30s summary → main explanation → why it matters → real example when useful → where it breaks → takeaway → references. Interactive blocks are used only when they clearly improve explanation, organization, or retention.
 

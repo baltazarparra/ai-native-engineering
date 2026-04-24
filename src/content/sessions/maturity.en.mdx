@@ -1,179 +1,224 @@
 ---
-title: 'How AI development matured'
+title: 'SDD and Harness Design: professional AI-native development'
 slug: 'maturity'
 lang: 'en'
 translationKey: 'maturity'
 order: 3
-summary: 'From copying ChatGPT answers to orchestrating agents. The 5 maturity phases and where your workflow fits.'
-readingTime: 16
-level: 'intermediate'
-tags: ['maturity', 'evolution', 'phases', 'agents']
-heroLabel: 'Maturity levels'
+summary: 'SDD turns intent into a verifiable contract. Harness Design gives agents the environment, tools, and validation gates to execute that contract safely at enterprise level.'
+readingTime: 24
+level: 'advanced'
+tags: ['sdd', 'harness', 'agents', 'governance', 'workflow']
+heroLabel: 'Professional flow'
 references:
   [
-    'karpathy-ai-native-dev',
-    'osmani-ai-native',
+    'openai-harness-engineering',
+    'github-spec-kit',
+    'kiro-specs',
     'shimony-sdd',
-    'anthropic-claude-docs',
-    'mckinsey-ai-developer-productivity',
+    'agents-md',
+    'claude-code-memory',
+    'claude-code-hooks',
+    'cursor-docs',
+    'mcp-spec',
+    'owasp-llm-top-10',
+    'owasp-agentic-ai-threats',
   ]
-updatedAt: 2026-04-15
+updatedAt: 2026-04-24
 ---
 
-import MaturityStepper from '../../components/MaturityStepper/MaturityStepper.tsx';
+import SDDHarnessFlow from '../../components/SDDHarnessFlow/SDDHarnessFlow.tsx';
 
-## From copying answers to orchestrating agents
+## The shift that matters
 
-Most people using AI in software development are somewhere between "copy the ChatGPT answer" and "orchestrate agents with automated validation." Looking at what teams actually do day to day, you can identify five distinct phases. They aren't seniority levels or a linear ladder. A senior dev might use Phase 2 for simple work and Phase 5 for complex projects. A PM can operate mostly in Phase 1 and still be highly effective.
+The core problem in AI-assisted software work is not "which model should we use?" That changes constantly. The real problem is: **how do we turn human intent into reliable software without losing control, quality, and responsibility along the way?**
 
-The value of this map isn't grading yourself. It's understanding what each phase offers, where it breaks, and when it makes sense to move on.
+Vibe coding showed that models can generate a lot of code from natural language. That is powerful for prototypes. But in an enterprise environment, delivery cost is not just writing code. It is aligning scope, preserving architecture, protecting data, validating behavior, reviewing changes, auditing decisions, and keeping the system healthy after deployment.
+
+Two ideas need to work together:
+
+- **SDD**, or Spec-Driven Development: writing and evolving specifications that act as an intent contract.
+- **Harness Design**: designing the work system around the agent so it has context, tools, boundaries, validation, and governance.
+
+Separately, these ideas help. Together, they change the level of the workflow.
 
 ## Why this matters
 
-Two common mistakes:
+A small team can tolerate more improvisation. A prototype can start from a short conversation with the model. A larger organization needs coherence. Different people need to request, execute, review, and maintain software with the same standard.
 
-**Staying stuck in Phase 1 by inertia**. Copy-paste chat works well enough, so you never change. The cost is that you spend far more time on tasks that could be delegated.
+Without SDD, the agent works from ambiguous intent. It may generate something polished, functional, and wrong.
 
-**Jumping to Phase 5 out of anxiety**. You read about autonomous agents, harness engineering, and MCP servers, and suddenly want all of it in a simple CRUD project. The extra complexity doesn't pay for itself.
+Without a harness, the spec becomes a document someone has to police manually. The agent may receive good instructions, but the system does not help prove that it followed them.
 
-The phase map helps avoid both. It shows what each phase solves and where forcing the next phase makes no sense.
+Professional AI-native development starts when the team stops thinking only about "better prompts" and starts designing a **delivery system**.
 
-## Phase 1: Ask
+## What SDD is
 
-### What it is
+SDD means **Spec-Driven Development**.
 
-You open an AI chat, ask questions, copy the answer, and paste it into your work. It's the natural entry point, no workflow change required. AI works like a better search engine: you ask, it answers, you decide what to do.
+In this context, a spec is not a huge PDF and it is not waterfall theatre. It is a living, versioned, reviewable artifact that answers:
 
-### Where it works
+- what problem we are solving;
+- who it matters to;
+- what is in and out of scope;
+- which behaviors must exist;
+- which technical, legal, or product constraints must be respected;
+- which criteria prove the work is correct;
+- which risks require human review.
 
-- Quick questions about APIs, syntax, and concepts
-- Simple snippets you'll adapt
-- Exploring ideas before implementation
+The central shift is simple: the agent does not implement "the idea that was implicit in the chat." It implements against a contract.
 
-### Where it breaks
+## Anatomy of a useful spec
 
-- Copying code without understanding it. The model generates plausible code, not guaranteed-correct code.
-- No project context. The chat doesn't know your types, conventions, or architecture.
+A useful agent-facing spec usually has seven blocks.
 
-### What the next phase solves
+### 1. Problem and expected outcome
 
-The next phase brings AI into the editor, removing copy-paste and adding automatic code context.
+Explain the business or user outcome, not only the technical task.
 
-## Phase 2: Autocomplete
+Weak: "add auth".
 
-### What it is
+Better: "enterprise users need to sign in through the identity provider configured by their organization, without breaking email login for existing accounts".
 
-You install an AI extension or use an AI IDE, and it suggests code while you type. It appeared because copy-paste between chat and editor is slow and loses context. With access to the open file, AI suggests code that already respects imports, types, and local patterns.
+### 2. Scope and non-goals
 
-### Where it works
+Say what is included and what is excluded. This prevents the agent from "helping too much".
 
-- Completing functions that follow clear patterns
-- Writing unit tests and generating boilerplate
-- Speeding up repetitive code
+Example: "implement callback and error screen; do not migrate existing users; do not change billing plans".
 
-### Where it breaks
+### 3. Interfaces and contracts
 
-- **Automatic acceptance**. The number one risk is accepting everything without reading.
-- **Limited context**. Autocomplete sees the current file and maybe nearby files, not the whole business domain.
+List relevant endpoints, events, schemas, components, permissions, states, and integrations. The clearer the boundaries, the less the agent invents architecture.
 
-### What the next phase solves
+### 4. Acceptance criteria
 
-The next phase stops controlling every line and asks AI to generate larger blocks from natural language.
+Acceptance criteria are tests in human language. They should be verifiable.
 
-## Phase 3: Vibe Coding
+Example: "when the provider returns a domain-not-allowed error, the user sees a recoverable message and no new user is created".
 
-### What it is
+### 5. Constraints
 
-You describe what you want in natural language and AI generates whole blocks of code. The term comes from Andrej Karpathy describing programming guided by the "vibe" of what you want while delegating actual typing to the model. Autocomplete accelerates typing, but you still need to know what to type. Vibe coding is for when you know the outcome but don't need to handcraft every detail.
+Include boundaries such as "do not add a dependency", "do not change the public API", "keep Safari compatibility", or "do not persist tokens in localStorage".
 
-### Where it works
+### 6. Validation plan
 
-- Quick prototypes that won't go to production
-- MVPs where speed matters more than quality
-- Exploring approaches or learning by reading generated code
+Define which commands, manual checks, QA scenarios, security checks, and evidence must exist before the PR is accepted.
 
-### Where it breaks
+### 7. Risks and rollback
 
-- **No spec, no control**. If you only describe the vibe and accept the result, you can't guarantee the code does what it should.
-- **Instant technical debt**. Generated code may work but lack types, tests, error handling, and maintainable structure.
+For enterprise work, the question is not only "does it work?". It is "if it fails, how do we notice and how do we roll back?".
 
-### What the next phase solves
+## What SDD is not
 
-The next phase replaces vague description with a clear spec: not "do this for me," but "implement according to this spec."
+SDD is not writing three pages to change button copy. It is also not freezing requirements as if nothing will change.
 
-## Phase 4: Spec-Driven Development
+The spec should be proportional to risk. A simple visual tweak may need a five-line spec. A change to authentication, payments, personal data, or infrastructure deserves more care.
 
-### What it is
+SDD does not replace judgment either. A bad spec simply produces a bad implementation with more confidence theater. The value is making intent explicit so humans and agents can review the same thing.
 
-You write a specification before asking AI to implement: endpoints, types, constraints, expected behavior, edge cases. The agent implements against the spec, and output is validated against it, not a vague feeling. It appeared because vibe coding doesn't scale: real complexity needs more than "make an auth service." The key shift is that specs used to be documents people read. Now a coding agent can execute from them.
+## What Harness Design is
 
-### Where it works
+Harness Design is the design of the **agent operating environment**.
 
-- Features with real complexity and need for predictability
-- Teams where multiple people work in the same module
-- QA generating test scenarios from specs
+If SDD answers "what must be true?", the harness answers "how do we create a system where the agent can execute, validate, and improve without relying on informal memory?".
 
-### Where it breaks
+A harness can include:
 
-- **Over-engineering the spec**. A three-page spec for a typo isn't maturity. It's waste.
-- **Spec without validation**. Sending a spec to an agent and never checking output is vibe coding with extra steps.
+- persistent instructions such as `AGENTS.md`, `CLAUDE.md`, or `.cursor/rules/`;
+- versioned architecture, product, and domain documentation;
+- spec, PRD, plan, and review templates;
+- tools available to the agent, such as terminal, GitHub, browser, logs, and MCP servers;
+- permission boundaries and human approval points;
+- validation commands, CI, lint, typecheck, tests, and security checks;
+- PR standards, ownership, rollback, and audit practices;
+- learning loops that turn failures into rules, tests, or docs.
 
-### What the next phase solves
+The goal is not to trap the agent. It is to create rails. Rails do not prevent movement; they make movement predictable.
 
-The next phase automates validation and orchestration so the human doesn't manually run every check.
+## How SDD and Harness Design work together
 
-## Phase 5: Harness Engineering
+Think of it this way:
 
-### What it is
+| Layer      | SDD defines                             | Harness ensures                                  |
+| ---------- | --------------------------------------- | ------------------------------------------------ |
+| Intent     | problem, scope, and expected behavior   | templates and rituals to capture it consistently |
+| Context    | which files, APIs, and decisions matter | docs, rules, and repo maps the agent can access  |
+| Execution  | which changes should happen             | tools, permissions, and task plans               |
+| Validation | how we know it is correct               | tests, lint, typecheck, CI, and evidence         |
+| Governance | risk, approval, and rollback            | PRs, ownership, audit trails, and policies       |
+| Learning   | what the spec left ambiguous            | updates to rules, docs, and checks               |
 
-You build a full work system around the agent: persistent instructions, rules files, configured tools, automated validation, and clear acceptance criteria. The agent operates inside that system, and the system catches issues without constant supervision. In Phase 4 you validate manually; here validation is automated. It appeared because agents generate output faster than humans can review. Without automation, review becomes the bottleneck.
-
-### Where it works
-
-- Large projects with many modules and established conventions
-- Teams with tests, lint, and CI already in place
-- Large refactors touching many files
-
-### Where it breaks
-
-- **Premature complexity**. If the project has no tests or lint, building a harness is putting the roof on before the walls.
-- **Overtrusting automation**. Automated checks reduce review work. They don't replace human judgment.
-
-### What changes here
-
-In Phase 1, you ask for an answer. In Phase 5, you build the system that produces validated answers. The mindset changes from "AI user" to "engineer of AI work systems." This isn't for every project, but at scale it's the difference between using AI and being AI-native.
-
-## Real examples
-
-### Scenario 1: Two-week MVP
-
-**Best fit: Phase 3, Vibe Coding**. Speed matters more than quality. Generate code, test manually, iterate fast. If the idea works, refactor for production later.
-
-### Scenario 2: Legacy refactor
-
-**Best fit: Phase 5, Harness Engineering**. Configure rules, connect tests and lint as automated validation, and let the agent work module by module.
-
-### Scenario 3: Production maintenance
-
-**Best fit: Phase 4 for features, Phase 2 for quick fixes**. New features get lightweight specs. Small fixes are better handled with autocomplete and direct review.
-
-The point: the right phase depends on context, not ambition.
-
-## Where this breaks
-
-- **Linear thinking**. You don't need to move from Phase 2 to 3 to 4 forever. You can use different phases for different tasks.
-
-- **Over-engineering simple work**. A full harness for a 50-line script isn't maturity. The phase should match complexity.
-
-- **Confusing phase with identity**. You're not a "Phase 5 developer." You're someone who picks the right phase for the task.
+SDD without a harness becomes pretty documentation. A harness without SDD becomes automation without direction. A professional flow needs both.
 
 ## Interactive block
 
-<MaturityStepper lang="en" client:visible />
+<SDDHarnessFlow lang="en" client:visible />
 
-## Takeaway
+## Applied example: enterprise SSO
 
-- Identify which phase you use today for each type of task. It's probably not the same for everything
-- Next time you start a task, ask "which phase fits here?" instead of defaulting to the usual approach
-- Validation is mandatory in every phase. What changes is whether you validate manually or the system does it
-- Real maturity is knowing when to drop back to a simpler phase
+Imagine a company needs to add SSO login for enterprise customers.
+
+### Amateur flow
+
+Someone asks the agent: "implement SSO with Google". The agent creates an integration, adds dependencies, changes auth, passes the build, and the screen opens. It looks like progress.
+
+But nobody answered:
+
+- which providers are supported;
+- how domains map to organizations;
+- what happens to existing users;
+- who can configure SSO;
+- how login is audited;
+- how to roll back if the provider fails;
+- which tests prove permissions do not leak.
+
+That is not enterprise engineering. It is a prototype in a blazer.
+
+### SDD + Harness flow
+
+**PM** writes the intent: enterprise customers need to authenticate users through the SSO provider configured for their organization.
+
+**Tech lead** turns that into a spec: flows, states, permissions, boundaries, schemas, endpoints, and risks.
+
+**QA** derives scenarios: user without an allowed domain, provider unavailable, expired invitation, organization without SSO, existing user with the same email.
+
+**Security** defines constraints: tokens cannot go into unsafe storage; logs cannot contain secrets; callback must validate state.
+
+**Agent** receives the spec, auth-module context, project rules, and validation commands.
+
+**Harness** runs the gates: typecheck, lint, unit tests, integration tests, build, diff review, and security checklist.
+
+**PR** includes evidence: what changed, which commands ran, which risks remain, and how to roll back.
+
+If something fails, the team does not just ask the agent to "try again". It asks: was an acceptance criterion missing? A test? A rule? A tool? The answer becomes an improvement to the harness.
+
+## Where this breaks
+
+- **Spec theater**: writing a vague spec just to look mature. If it does not guide implementation or validation, it is not useful.
+- **Premature harnessing**: creating rules, hooks, and automations before understanding the manual flow. Automating a bad process only scales noise.
+- **Too much context**: dumping all documentation into the agent. A good harness works through maps and links, not infinite encyclopedias.
+- **Permission without boundaries**: giving broad access to sensitive tools without policy, logs, or risk-appropriate review.
+- **Surface-level validation**: running build and calling it done. Build proves compilation, not product correctness.
+- **Spec drift**: code changes, the spec does not. After a few deliveries, the contract becomes fiction.
+- **Confusing autonomy with abandonment**: good autonomy is delegation with evidence. Abandonment is accepting output without responsibility.
+
+## How to start without bureaucracy
+
+You do not need an agent laboratory before using this.
+
+Start small:
+
+1. Create a simple spec template for medium-risk features.
+2. Write a short `AGENTS.md` with commands, architecture, and essential rules.
+3. Define the minimum bar before accepting a PR: diff read, lint, typecheck, tests, and acceptance criteria.
+4. For each recurring agent failure, choose an action: improve the spec, add a test, update a rule, or create a script.
+5. Review the harness once per sprint or before major delivery.
+
+The goal is not bureaucracy. The goal is reducing improvisation where improvisation is expensive.
+
+## What to take with you
+
+- SDD turns intent into a verifiable contract.
+- Harness Design turns that contract into execution, validation, and governance.
+- In enterprise teams, quality comes from the system, not from one brilliant prompt.
+- The higher the risk, the more explicit the spec, context, validation, and ownership need to be.
+- The best harness is alive: it learns from failures, removes useless rules, and makes work more legible for humans and agents.

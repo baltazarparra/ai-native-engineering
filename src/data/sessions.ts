@@ -16,19 +16,6 @@ export interface SessionCardData {
 
 export const sessions: SessionCardData[] = [
   {
-    title: 'O que é um AI-Native Engineer',
-    slug: 'ai-native-engineer',
-    lang: 'pt-BR',
-    translationKey: 'ai-native-engineer',
-    order: 0,
-    summary:
-      'Código é ferramenta para resolver problemas. O que muda com IA é como você transforma intenção em software usando agentes de código.',
-    readingTime: 10,
-    level: 'beginner',
-    heroLabel: 'Ponto de partida',
-    accent: 'yellow',
-  },
-  {
     title: 'Glossário: vibe coding sem cair no hype',
     slug: 'glossario',
     lang: 'pt-BR',
@@ -55,43 +42,17 @@ export const sessions: SessionCardData[] = [
     accent: 'green',
   },
   {
-    title: 'A evolução do desenvolvimento com IA',
+    title: 'SDD e Harness Design',
     slug: 'maturidade',
     lang: 'pt-BR',
     translationKey: 'maturity',
     order: 3,
     summary:
-      'De copiar resposta do ChatGPT até orquestrar agentes. As 5 fases de maturidade e onde você está.',
-    readingTime: 16,
-    level: 'intermediate',
-    heroLabel: 'Níveis de maturidade',
-    accent: 'yellow',
-  },
-  {
-    title: 'Como operar de forma AI-native na prática',
-    slug: 'como-operar',
-    lang: 'pt-BR',
-    translationKey: 'how-to-operate',
-    order: 4,
-    summary:
-      'Checklists, workflows e exemplos reais de como diferentes perfis operam com IA no dia a dia.',
-    readingTime: 18,
+      'Transforme intenção em contrato verificável e organize o harness para agentes trabalharem com contexto, validação e responsabilidade.',
+    readingTime: 24,
     level: 'advanced',
-    heroLabel: 'Na prática',
-    accent: 'blue',
-  },
-  {
-    title: 'What is an AI-Native Engineer?',
-    slug: 'what-is-ai-native-engineer',
-    lang: 'en',
-    translationKey: 'ai-native-engineer',
-    order: 0,
-    summary:
-      'Code is a tool for solving problems. What changes with AI is how you turn intent into software with coding agents.',
-    readingTime: 10,
-    level: 'beginner',
-    heroLabel: 'Starting point',
-    accent: 'yellow',
+    heroLabel: 'Fluxo profissional',
+    accent: 'coral',
   },
   {
     title: 'Glossary: vibe coding without the hype',
@@ -120,30 +81,17 @@ export const sessions: SessionCardData[] = [
     accent: 'green',
   },
   {
-    title: 'How AI development matured',
+    title: 'SDD and Harness Design',
     slug: 'maturity',
     lang: 'en',
     translationKey: 'maturity',
     order: 3,
     summary:
-      'From copying ChatGPT answers to orchestrating agents. The 5 maturity phases and where your workflow fits.',
-    readingTime: 16,
-    level: 'intermediate',
-    heroLabel: 'Maturity levels',
-    accent: 'yellow',
-  },
-  {
-    title: 'How to operate AI-native in practice',
-    slug: 'how-to-operate',
-    lang: 'en',
-    translationKey: 'how-to-operate',
-    order: 4,
-    summary:
-      'Real workflows, project examples, and what changes day to day when you operate AI-native.',
-    readingTime: 18,
+      'Turn intent into a verifiable contract and design the harness that lets agents work with enterprise-grade quality.',
+    readingTime: 24,
     level: 'advanced',
-    heroLabel: 'In practice',
-    accent: 'blue',
+    heroLabel: 'Professional flow',
+    accent: 'coral',
   },
 ];
 

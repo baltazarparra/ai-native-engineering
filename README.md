@@ -18,15 +18,13 @@ This site exists to close that gap: to organize the chaos, translate the termino
 
 ## Content
 
-The site is organized into 5 progressive sessions:
+The home page starts with a compact foundations primer, then the site continues through 3 progressive sessions:
 
-| #   | Session                       | Route                           | What It Teaches                                                |
-| --- | ----------------------------- | ------------------------------- | -------------------------------------------------------------- |
-| 0   | What Is an AI-Native Engineer | `/sessions/ai-native-engineer/` | Definition, what changed, what did not change, self-assessment |
-| 1   | Glossary                      | `/sessions/glossario/`          | LLM, model, token, prompt, agent, harness, MCP, and more       |
-| 2   | Tools and Models              | `/sessions/ferramentas/`        | IDEs, CLIs, cloud agents, product vs model, task-fit choices   |
-| 3   | Maturity                      | `/sessions/maturidade/`         | Query → Autocomplete → Vibe Coding → SDD → Harness Engineering |
-| 4   | How to Operate                | `/sessions/como-operar/`        | Workflow, checklists, profile-based playbooks                  |
+| #   | Session                | Route                    | What It Teaches                                                |
+| --- | ---------------------- | ------------------------ | -------------------------------------------------------------- |
+| 1   | Glossary               | `/sessions/glossario/`   | LLM, model, token, prompt, agent, harness, MCP, and more       |
+| 2   | Tools and Models       | `/sessions/ferramentas/` | IDEs, CLIs, cloud agents, product vs model, task-fit choices   |
+| 3   | SDD and Harness Design | `/sessions/maturidade/`  | Spec-driven contracts, agent harnesses, validation, governance |
 
 Each session follows a fixed template: 30-second summary → main explanation → why it matters → real example when useful → where it breaks → takeaway → references. Interactive blocks are included only when they clearly improve learning.
 

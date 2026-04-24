@@ -1,181 +1,224 @@
 ---
-title: 'A evolução do desenvolvimento com IA'
+title: 'SDD e Harness Design: o fluxo profissional com IA'
 slug: 'maturidade'
 lang: 'pt-BR'
 translationKey: 'maturity'
 order: 3
-summary: 'De copiar resposta do ChatGPT até orquestrar agentes. As 5 fases de maturidade e onde você está.'
-readingTime: 16
-level: 'intermediate'
-tags: ['maturidade', 'evolucao', 'fases', 'agentes']
-heroLabel: 'Níveis de maturidade'
+summary: 'SDD transforma intenção em contrato verificável. Harness Design organiza contexto, ferramentas, permissões e validações para agentes executarem esse contrato com qualidade e segurança.'
+readingTime: 24
+level: 'advanced'
+tags: ['sdd', 'harness', 'agentes', 'governanca', 'workflow']
+heroLabel: 'Fluxo profissional'
 references:
   [
-    'karpathy-ai-native-dev',
-    'osmani-ai-native',
+    'openai-harness-engineering',
+    'github-spec-kit',
+    'kiro-specs',
     'shimony-sdd',
-    'anthropic-claude-docs',
-    'mckinsey-ai-developer-productivity',
+    'agents-md',
+    'claude-code-memory',
+    'claude-code-hooks',
+    'cursor-docs',
+    'mcp-spec',
+    'owasp-llm-top-10',
+    'owasp-agentic-ai-threats',
   ]
-updatedAt: 2026-04-15
+updatedAt: 2026-04-24
 ---
 
-import MaturityStepper from '../../components/MaturityStepper/MaturityStepper.tsx';
+import SDDHarnessFlow from '../../components/SDDHarnessFlow/SDDHarnessFlow.tsx';
 
-## De copiar resposta até orquestrar agentes
+## O salto que importa
 
-A maioria dos profissionais que trabalha com IA em desenvolvimento está em algum lugar entre "copiar resposta do ChatGPT" e "orquestrar agentes com validação automática". Observando o que os times realmente fazem no dia a dia, dá pra identificar cinco fases distintas. Elas não são níveis de senioridade nem uma escala linear. Um dev sênior pode estar na Fase 2 pra tarefas simples e na Fase 5 pra projetos complexos. Um PM pode operar na Fase 1 pra sempre e ser efetivo.
+O problema central de trabalhar com IA em software não é escolher "o modelo da semana". Modelos mudam rápido. A pergunta difícil é: **como transformar uma intenção humana em software confiável sem perder controle, qualidade e responsabilidade no caminho**.
 
-O valor de entender essas fases não é saber "onde você está" como nota. É saber o que cada fase oferece, onde ela quebra, e quando faz sentido avançar.
+Vibe coding, a prática de construir pela conversa com o modelo, mostrou que IA consegue gerar muito código a partir de linguagem natural. Isso é poderoso para protótipos. Mas, em ambiente corporativo, entregar software não termina quando o código aparece. A entrega também envolve alinhar escopo, preservar arquitetura, proteger dados, validar comportamento, revisar mudanças, auditar decisões e manter o sistema saudável depois do deploy.
+
+É aqui que entram duas ideias que precisam andar juntas:
+
+- **SDD**, ou Spec-Driven Development: escrever e evoluir especificações que funcionam como um contrato verificável de intenção.
+- **Harness Design**: desenhar o sistema de trabalho em volta do agente para que ele tenha contexto, ferramentas, limites, validação e governança.
+
+Separadas, essas ideias ajudam. Juntas, elas mudam o padrão da entrega.
 
 ## Por que isso importa
 
-Dois erros comuns:
+Em um protótipo, improviso pode ser parte do caminho. Em uma organização, improviso vira custo de coordenação. A mesma mudança pode passar por produto, engenharia, QA, segurança, suporte e liderança. Todo mundo precisa entender o que foi pedido, por que foi pedido, como será validado e quem assume o risco.
 
-**Ficar preso na Fase 1 por inércia**. Você sabe que IA pode fazer mais, mas o "copiar e colar do chat" funciona o suficiente pra nunca mudar. O problema é que você está gastando 10x mais tempo do que precisava em tarefas que poderiam ser delegadas.
+Sem SDD, o agente trabalha em cima de intenção ambígua. Ele pode gerar algo plausível, funcional e errado.
 
-**Pular pra Fase 5 por ansiedade**. Você leu sobre agentes autônomos, harness engineering, MCP servers, e quer implementar tudo no seu projeto de CRUD. O problema é que a complexidade extra não se paga em projetos simples.
+Sem harness, a spec vira um documento que alguém precisa policiar manualmente. O agente até recebe boas instruções, mas o sistema não ajuda a provar que elas viraram comportamento real.
 
-O mapa de fases ajuda a evitar os dois: mostra o que cada fase resolve e onde não faz sentido forçar a barra.
+O fluxo profissional nasce quando o time para de pensar em "prompt bom" e começa a pensar em **sistema de entrega**.
 
-## Fase 1: Consulta
+## O que é SDD
 
-### O que é
+SDD significa **Spec-Driven Development**, desenvolvimento guiado por especificação.
 
-Você abre um chat de IA (ChatGPT, Claude, Gemini), faz perguntas, copia a resposta e cola no seu trabalho. É o ponto de entrada natural, não exige nenhuma mudança no workflow. A IA funciona como um Google melhorado: você pergunta, ela responde, você decide o que fazer.
+Neste contexto, uma spec, ou especificação, não é um PDF gigante nem um retorno ao waterfall, aquele modelo pesado em que tudo parece precisar estar fechado antes de começar. É um artefato vivo, versionado e revisável que responde:
 
-### Onde funciona
+- qual problema estamos resolvendo;
+- para quem isso importa;
+- o que está dentro e fora do escopo;
+- quais comportamentos precisam existir;
+- quais restrições técnicas, legais ou de produto precisam ser respeitadas;
+- quais critérios provam que a entrega está correta;
+- quais riscos precisam de revisão humana.
 
-- Tirar dúvidas rápidas sobre APIs, sintaxe, conceitos
-- Gerar snippets simples que você vai adaptar
-- Explorar ideias antes de começar a implementar
+A mudança central é simples: o agente não implementa "a ideia que ficou implícita na conversa". Ele implementa contra uma referência explícita, revisável e verificável.
 
-### Onde quebra
+## Anatomia de uma boa spec
 
-- Copiar código sem entender o que faz. O modelo gera código plausível, não correto. Se cola sem ler, está terceirizando a responsabilidade.
-- Sem contexto do projeto. O chat não sabe nada sobre seu código, tipos ou convenções. A resposta é genérica por definição.
+Uma spec útil para agentes costuma ter sete blocos. Eles não precisam ser longos em toda tarefa, mas precisam estar claros.
 
-### O que a próxima fase resolve
+### 1. Problema e resultado esperado
 
-A próxima fase integra IA no editor, eliminando o copy-paste e dando contexto de código automático.
+Explique o resultado de negócio ou de usuário, não só a tarefa técnica.
 
-## Fase 2: Autocomplete
+Fraco: "crie autenticação".
 
-### O que é
+Melhor: "usuários corporativos precisam entrar via SSO, o login único configurado pela empresa, sem quebrar login por e-mail para contas existentes".
 
-Você instala uma extensão de IA no editor (GitHub Copilot, Cursor, Windsurf) e ela sugere código enquanto você digita. Surgiu porque copy-paste entre chat e editor é lento e perde contexto. Com acesso ao arquivo aberto, a IA sugere código que já respeita imports, tipos e padrões locais.
+### 2. Escopo e não-objetivos
 
-### Onde funciona
+Diga o que entra e o que não entra. Isso evita que o agente "ajude demais".
 
-- Completar funções que seguem padrões claros do arquivo
-- Escrever testes unitários e gerar boilerplate
-- Acelerar digitação de código repetitivo
+Exemplo: "implementar o callback de retorno do provedor e a tela de erro; não migrar usuários existentes; não alterar plano de cobrança".
 
-### Onde quebra
+### 3. Interfaces e contratos
 
-- **Aceitação automática**. O risco número um é aceitar tudo sem ler. A sugestão parece correta porque é estatisticamente provável, mas pode estar errada logicamente.
-- **Contexto limitado**. Autocomplete vê o arquivo atual e talvez alguns abertos. Não vê a arquitetura do projeto nem entende regras de negócio.
+Liste endpoints, eventos, schemas (formatos dos dados), componentes, permissões, estados e integrações relevantes. Em termos simples: deixe claras as bordas entre sistemas, telas, dados e responsabilidades. Quanto mais explícitas forem as bordas, menor a chance de o agente inventar arquitetura.
 
-### O que a próxima fase resolve
+### 4. Critérios de aceite
 
-A próxima fase remove o dev do controle granular de cada linha e coloca a IA pra gerar blocos maiores de código a partir de descrições em texto.
+Critérios de aceite são testes em linguagem humana. Eles devem ser verificáveis.
 
-## Fase 3: Vibe Coding
+Exemplo: "quando o provedor retorna erro de domínio não permitido, o usuário vê uma mensagem recuperável e nenhum usuário novo é criado".
 
-### O que é
+### 5. Restrições
 
-Você descreve o que quer em texto natural e a IA gera blocos inteiros de código. O termo veio de Andrej Karpathy descrevendo o ato de programar guiado pela "vibe", delegando a escrita pro modelo. Autocomplete acelera a digitação, mas você ainda precisa saber o que digitar. Vibe coding é pra quando você sabe o que quer mas não precisa escrever cada detalhe.
+Inclua limites como "não adicionar dependência", "não mudar API pública", "manter compatibilidade com Safari", "não persistir token em localStorage".
 
-### Onde funciona
+### 6. Plano de validação
 
-- Protótipos rápidos que não vão pra produção
-- MVPs onde velocidade importa mais que qualidade
-- Explorar abordagens ou aprender estudando código gerado
+Defina quais comandos, testes manuais, cenários de QA, checagens de segurança e evidências precisam existir antes do pull request (PR).
 
-### Onde quebra
+### 7. Riscos e rollback
 
-- **Sem spec, sem controle**. Se você só descreve a "vibe" e aceita o resultado, não tem como garantir que o código faz o que deveria.
-- **Dívida técnica instantânea**. Código gerado tende a ser funcional mas não sustentável, sem tipos, sem testes, sem tratamento de erro.
+Para trabalho corporativo, a pergunta não é só "funciona?". É "se falhar, como percebemos e como voltamos com segurança?".
 
-### O que a próxima fase resolve
+## O que SDD não é
 
-A próxima fase substitui a descrição vaga por uma especificação clara, transformando "faz isso pra mim" em "implementa segundo esta spec".
+SDD não é escrever três páginas para trocar um texto de botão. Também não é congelar requisitos como se nada fosse mudar.
 
-## Fase 4: Spec-Driven Development
+A spec precisa ser proporcional ao risco. Um ajuste visual simples pode ter uma especificação de cinco linhas. Uma mudança em autenticação, pagamento, dados pessoais ou infraestrutura merece mais cuidado.
 
-### O que é
+SDD também não substitui julgamento. Uma spec ruim só gera uma implementação ruim com mais confiança aparente. O valor está em tornar a intenção explícita para que humanos e agentes revisem a mesma coisa.
 
-Você escreve uma especificação antes de pedir qualquer coisa pra IA: endpoints, tipos, restrições, comportamentos esperados, casos de borda. O agente implementa contra a spec e o output é validado contra ela, não contra a "vibe". Surgiu porque vibe coding não escala: projetos com complexidade real precisam de algo mais estruturado que "faz um serviço de auth". O insight é que specs sempre foram importantes, mas agora um agente pode executá-las diretamente.
+## O que é Harness Design
 
-### Onde funciona
+Harness Design é o desenho do **ambiente operacional do agente**.
 
-- Features com complexidade real que precisam de previsibilidade
-- Times onde mais de uma pessoa trabalha no mesmo módulo
-- QA gerando cenários de teste a partir de specs
+Se SDD responde "o que precisa ser verdade?", o harness responde "como criamos um sistema onde o agente consegue executar, validar e melhorar sem depender de memória informal, sorte ou contexto perdido na conversa?".
 
-### Onde quebra
+Um harness pode incluir:
 
-- **Over-engineering a spec**. Se você gasta 3 horas numa spec pra algo que levaria 15 minutos de código, a spec não está ajudando.
-- **Spec sem validação**. Mandar pro agente sem validar o output é vibe coding com passos extras.
+- instruções persistentes, como `AGENTS.md`, `CLAUDE.md` ou `.cursor/rules/`;
+- documentação versionada de arquitetura, produto e domínio;
+- templates de spec, PRD (documento de requisitos de produto), plano e revisão;
+- ferramentas disponíveis ao agente, como terminal, GitHub, navegador, logs e MCP servers, que conectam o agente a ferramentas externas;
+- limites de permissão e pontos de aprovação humana;
+- comandos de validação, CI, lint, typecheck, testes e checagens de segurança;
+- padrões de PR, responsáveis, rollback e auditoria;
+- loops de aprendizado para transformar falhas em regras, testes ou docs.
 
-### O que a próxima fase resolve
+O ponto não é criar uma prisão para o agente. É criar trilhos. Bons trilhos não impedem movimento; eles tornam o movimento previsível, revisável e seguro.
 
-A próxima fase automatiza a validação e orquestração, tirando do humano a necessidade de rodar manualmente cada checagem.
+## Como SDD e Harness Design trabalham juntos
 
-## Fase 5: Harness Engineering
+Pense assim:
 
-### O que é
+| Camada      | SDD define                                      | Harness garante                                          |
+| ----------- | ----------------------------------------------- | -------------------------------------------------------- |
+| Intenção    | o problema, o escopo e o comportamento esperado | templates e rotinas para capturar isso sempre            |
+| Contexto    | quais arquivos, APIs e decisões importam        | docs, regras e mapas do repositório acessíveis ao agente |
+| Execução    | quais mudanças devem acontecer                  | ferramentas, permissões e plano de tarefas               |
+| Validação   | como saber que está correto                     | testes, lint, typecheck, CI e evidências                 |
+| Governança  | risco, aprovação e rollback                     | PRs, responsáveis claros, auditoria e políticas          |
+| Aprendizado | o que ficou ambíguo ou desatualizado            | atualização de regras, docs e checagens                  |
 
-Você constrói um sistema de trabalho completo pro agente: instruções persistentes (system prompt, rules files), ferramentas configuradas (MCP servers), validação automática e critérios de aceite claros. O agente opera dentro desse sistema, e o sistema garante qualidade sem supervisão constante. Na Fase 4 você valida manualmente; aqui a validação é automática. Surgiu porque agentes geram output mais rápido do que humanos conseguem revisar. Sem automação, a revisão vira o gargalo.
+SDD sem harness vira documento bonito. Harness sem SDD vira automação sem direção. O fluxo profissional precisa dos dois.
 
-### Onde funciona
+## Mapa do fluxo
 
-- Projetos grandes com muitos módulos e convenções estabelecidas
-- Times que já têm testes, lint e CI funcionando
-- Refactors de grande escala que tocam dezenas de arquivos
+<SDDHarnessFlow client:visible />
 
-### Onde quebra
+## Exemplo aplicado: login único corporativo
 
-- **Complexidade prematura**. Sem testes e sem lint, construir um harness é colocar o telhado antes de levantar as paredes.
-- **Confiança excessiva no sistema**. Automação reduz o trabalho de revisão, não substitui. Testes podem estar incompletos. Lint não pega erros lógicos.
+Imagine que uma empresa precisa adicionar SSO, ou login único, para clientes corporativos.
 
-### O que muda quando você chega aqui
+### Fluxo amador
 
-Na Fase 1, você pede uma resposta. Na Fase 5, você constrói o sistema que produz respostas validadas automaticamente. A mudança é de "usuário de IA" pra "engenheiro de sistemas de IA". Isso não é pra todo mundo, nem pra todo projeto. Mas pra quem trabalha em escala, é a diferença entre operar com IA e ser AI-native.
+Alguém pede ao agente: "implementa SSO com Google". O agente cria uma integração, adiciona dependências, muda autenticação, passa no build e a tela abre. Parece progresso.
 
-## Exemplo aplicado
+Mas ninguém respondeu:
 
-Três cenários reais, cada um com a fase mais adequada:
+- quais provedores são suportados;
+- como mapear domínio para organização;
+- o que acontece com usuários existentes;
+- quem pode configurar SSO;
+- como auditar login;
+- como reverter se o provedor cair;
+- quais testes provam que permissões não vazam.
 
-### Cenário 1: MVP de 2 semanas
+Isso não é engenharia corporativa. É uma demo vestida de entrega.
 
-**Fase adequada: 3 (Vibe Coding)**. Velocidade importa mais que qualidade. Gera o código, testa manualmente, itera rápido. Quando validar a ideia, refatora pra produção na Fase 4.
+### Fluxo SDD + Harness
 
-### Cenário 2: Refactor de sistema legado
+**Pessoa de produto ou PM** escreve a intenção: clientes corporativos precisam autenticar usuários pelo provedor SSO configurado por organização.
 
-**Fase adequada: 5 (Harness Engineering)**. Configura rules files com as convenções do projeto, conecta testes e lint como validação automática, e deixa o agente trabalhar módulo por módulo.
+**Liderança técnica ou tech lead** transforma isso em spec: fluxos, estados, permissões, limites, schemas, endpoints e riscos.
 
-### Cenário 3: Manutenção de produção
+**QA** deriva cenários: usuário sem domínio permitido, provedor indisponível, convite expirado, organização sem SSO, usuário existente com e-mail igual.
 
-**Fase adequada: 4 (SDD) pra features, 2 (Autocomplete) pra fixes rápidos**. Features novas ganham uma spec leve. Bug fixes são rápidos o suficiente pra autocomplete resolver.
+**Segurança** define restrições: tokens não podem ir para armazenamento inseguro; logs não podem conter segredos; o callback do provedor precisa validar estado.
 
-O ponto é: a fase certa depende do contexto, não da sua ambição.
+**Agente** recebe spec, contexto do módulo de autenticação, regras do projeto e comandos de validação.
+
+**Harness** executa os gates de validação, ou checagens obrigatórias: typecheck, lint, testes unitários, testes de integração, build, revisão de diff e checklist de segurança.
+
+**PR** traz evidências: o que mudou, quais comandos rodaram, quais riscos permanecem e como fazer rollback.
+
+Se algo falha, o time não só pede "tenta de novo". Ele pergunta: faltou critério de aceite? Faltou teste? Faltou regra? Faltou ferramenta? A resposta vira melhoria no harness.
 
 ## Onde isso quebra
 
-- **Pensamento linear**. "Preciso passar da Fase 2 pra 3 pra 4." Não. Você pode estar na Fase 2 pra 80% do trabalho e na Fase 4 pra 20%. As fases não são uma escada.
+- **Spec como teatro**: escrever uma spec vaga só para parecer maduro. Se ela não orienta implementação nem validação, não é spec útil.
+- **Harness prematuro**: criar regras, hooks e automações antes de entender o fluxo manual. Automatizar processo ruim só escala ruído.
+- **Contexto sem curadoria**: despejar toda a documentação no agente. Um bom harness funciona por mapa e links, não por enciclopédia infinita.
+- **Permissão sem fronteiras**: dar ao agente acesso amplo a ferramentas sensíveis sem política, logs ou revisão proporcional ao risco.
+- **Validação superficial**: rodar build e achar que está pronto. Build prova que compila, não que resolve o problema.
+- **Spec drift**: a especificação fica parada enquanto o código muda. Depois de algumas entregas, o contrato vira ficção.
+- **Confundir autonomia com abandono**: autonomia boa é delegação com evidência. Abandono é aceitar output sem responsabilidade.
 
-- **Over-engineering pra tarefas simples**. Spec de 3 páginas pra um typo. Harness completo pra um script de 50 linhas. A fase precisa ser proporcional à complexidade.
+## Como começar sem burocratizar
 
-- **Confundir fase com identidade**. "Eu sou um dev Fase 5." Não. Você é um dev que escolhe a fase certa pra cada tarefa. Maturidade é saber qual fase usar quando.
+Você não precisa montar um laboratório de agentes antes de usar isso. Comece com uma mudança real, de risco médio, boa o suficiente para revelar onde o processo atual é frágil.
 
-## Bloco interativo
+Comece pequeno:
 
-<MaturityStepper client:visible />
+1. Crie um template simples de spec para features com risco médio.
+2. Escreva um `AGENTS.md` curto com comandos, arquitetura e regras essenciais.
+3. Defina o "mínimo aceitável" antes de aceitar PR: diff revisado, lint, typecheck, testes e critérios de aceite.
+4. Para cada erro recorrente do agente, escolha uma ação: melhorar spec, adicionar teste, atualizar regra ou criar script.
+5. Revise o harness uma vez por sprint ou por entrega importante.
+
+O objetivo não é burocracia. O objetivo é reduzir improviso onde improviso custa caro.
 
 ## O que levar daqui
 
-- Identifique em qual fase você opera hoje pra cada tipo de tarefa. Provavelmente não é a mesma pra tudo
-- Na próxima tarefa, pergunte "qual fase faz sentido aqui?" em vez de usar a mesma abordagem de sempre
-- Validação é obrigatória em todas as fases. O que muda é se você valida na mão ou o sistema valida pra você
-- Maturidade real é saber quando voltar pra uma fase mais simples
+- SDD transforma intenção em contrato verificável.
+- Harness Design transforma contrato em fluxo de execução, validação e governança.
+- Em times corporativos, qualidade vem do sistema, não da genialidade de um prompt isolado.
+- Quanto maior o risco, mais explícitos precisam ser spec, contexto, validação e responsáveis.
+- O melhor harness é vivo: aprende com erros, remove regras inúteis e torna o trabalho mais legível para humanos e agentes.

@@ -5,8 +5,8 @@
     "url": "https://addyo.substack.com/p/the-ai-native-software-engineer",
     "type": "artigo",
     "source": "Addy Osmani",
-    "category": "ai-native-engineer",
-    "relatedSessions": ["ai-native-engineer", "maturidade"],
+    "category": "fundamentos",
+    "relatedSessions": ["maturidade"],
     "priority": 1
   },
   {
@@ -16,7 +16,7 @@
     "type": "documentacao",
     "source": "Anthropic",
     "category": "ferramentas",
-    "relatedSessions": ["ai-native-engineer", "ferramentas", "como-operar"],
+    "relatedSessions": ["ferramentas", "maturidade"],
     "priority": 1
   },
   {
@@ -26,7 +26,7 @@
     "type": "video",
     "source": "Andrej Karpathy",
     "category": "maturidade",
-    "relatedSessions": ["ai-native-engineer", "maturidade"],
+    "relatedSessions": ["maturidade"],
     "priority": 1
   },
   {
@@ -126,7 +126,7 @@
     "type": "pesquisa",
     "source": "Stanford University",
     "category": "glossario",
-    "relatedSessions": ["glossario", "como-operar"],
+    "relatedSessions": ["glossario", "maturidade"],
     "priority": 2
   },
   {
@@ -136,7 +136,7 @@
     "type": "documentacao",
     "source": "OWASP",
     "category": "glossario",
-    "relatedSessions": ["glossario", "como-operar"],
+    "relatedSessions": ["glossario", "maturidade"],
     "priority": 2
   },
   {
@@ -146,7 +146,7 @@
     "type": "documentacao",
     "source": "Anthropic",
     "category": "glossario",
-    "relatedSessions": ["glossario", "como-operar"],
+    "relatedSessions": ["glossario", "maturidade"],
     "priority": 1
   },
   {
@@ -196,7 +196,7 @@
     "type": "documentacao",
     "source": "Cursor",
     "category": "ferramentas",
-    "relatedSessions": ["ferramentas", "como-operar"],
+    "relatedSessions": ["ferramentas", "maturidade"],
     "priority": 1
   },
   {
@@ -256,8 +256,78 @@
     "type": "artigo",
     "source": "Addy Osmani",
     "category": "maturidade",
-    "relatedSessions": ["maturidade", "como-operar"],
+    "relatedSessions": ["maturidade"],
     "priority": 1
+  },
+  {
+    "id": "openai-harness-engineering",
+    "title": "Harness engineering: leveraging Codex in an agent-first world",
+    "url": "https://openai.com/index/harness-engineering/",
+    "type": "artigo",
+    "source": "OpenAI",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "github-spec-kit",
+    "title": "Spec Kit Documentation",
+    "url": "https://github.github.com/spec-kit/",
+    "type": "documentacao",
+    "source": "GitHub",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "kiro-specs",
+    "title": "Kiro Specs",
+    "url": "https://kiro.dev/docs/specs/",
+    "type": "documentacao",
+    "source": "Kiro",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "agents-md",
+    "title": "AGENTS.md",
+    "url": "https://agents.md/",
+    "type": "documentacao",
+    "source": "Agentic AI Foundation",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "claude-code-memory",
+    "title": "How Claude remembers your project",
+    "url": "https://code.claude.com/docs/en/memory",
+    "type": "documentacao",
+    "source": "Anthropic",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 2
+  },
+  {
+    "id": "claude-code-hooks",
+    "title": "Claude Code Hooks Reference",
+    "url": "https://code.claude.com/docs/en/hooks",
+    "type": "documentacao",
+    "source": "Anthropic",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 2
+  },
+  {
+    "id": "owasp-agentic-ai-threats",
+    "title": "Agentic AI - Threats and Mitigations",
+    "url": "https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/",
+    "type": "documentacao",
+    "source": "OWASP",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 2
   },
   {
     "id": "mckinsey-ai-developer-productivity",
@@ -276,7 +346,7 @@
     "type": "documentacao",
     "source": "Anthropic",
     "category": "glossario",
-    "relatedSessions": ["glossario"],
+    "relatedSessions": ["glossario", "maturidade"],
     "priority": 2
   },
   {
@@ -296,7 +366,7 @@
     "type": "documentacao",
     "source": "OpenAI",
     "category": "glossario",
-    "relatedSessions": ["glossario", "como-operar"],
+    "relatedSessions": ["glossario", "maturidade"],
     "priority": 2
   },
   {
@@ -355,8 +425,8 @@
     "url": "https://survey.stackoverflow.co/2024/ai",
     "type": "pesquisa",
     "source": "Stack Overflow",
-    "category": "ai-native-engineer",
-    "relatedSessions": ["ai-native-engineer", "ferramentas"],
+    "category": "fundamentos",
+    "relatedSessions": ["ferramentas"],
     "priority": 2
   },
   {
@@ -376,7 +446,7 @@
     "type": "artigo",
     "source": "Google",
     "category": "maturidade",
-    "relatedSessions": ["maturidade", "como-operar"],
+    "relatedSessions": ["maturidade"],
     "priority": 3
   },
   {
@@ -386,7 +456,7 @@
     "type": "pesquisa",
     "source": "GitHub",
     "category": "ferramentas",
-    "relatedSessions": ["ferramentas", "ai-native-engineer"],
+    "relatedSessions": ["ferramentas"],
     "priority": 2
   }
 ]
