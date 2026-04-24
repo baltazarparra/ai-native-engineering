@@ -42,37 +42,24 @@ export const sessions: SessionCardData[] = [
     accent: 'blue',
   },
   {
-    title: 'Ferramentas: IDEs vs CLI',
+    title: 'Ferramentas e modelos',
     slug: 'ferramentas',
     lang: 'pt-BR',
     translationKey: 'tools',
     order: 2,
     summary:
-      'Cursor, Windsurf, GitHub Copilot, Claude Code, Kimi Code. O que cada ferramenta faz, onde brilha e onde tropeça.',
-    readingTime: 15,
+      'Entenda a diferenca entre ferramenta, produto e modelo para escolher melhor IDEs, CLIs, agentes na nuvem e LLMs.',
+    readingTime: 20,
     level: 'beginner',
-    heroLabel: 'Mapa de ferramentas',
+    heroLabel: 'Mapa de escolha',
     accent: 'green',
-  },
-  {
-    title: 'LLMs e os modelos mais usados',
-    slug: 'modelos',
-    lang: 'pt-BR',
-    translationKey: 'models',
-    order: 3,
-    summary:
-      'Codex, Claude, Gemini, Kimi, Llama. Como funcionam por cima, o que diferencia um do outro e como escolher.',
-    readingTime: 15,
-    level: 'intermediate',
-    heroLabel: 'Entendendo modelos',
-    accent: 'coral',
   },
   {
     title: 'A evolução do desenvolvimento com IA',
     slug: 'maturidade',
     lang: 'pt-BR',
     translationKey: 'maturity',
-    order: 4,
+    order: 3,
     summary:
       'De copiar resposta do ChatGPT até orquestrar agentes. As 5 fases de maturidade e onde você está.',
     readingTime: 16,
@@ -85,7 +72,7 @@ export const sessions: SessionCardData[] = [
     slug: 'como-operar',
     lang: 'pt-BR',
     translationKey: 'how-to-operate',
-    order: 5,
+    order: 4,
     summary:
       'Checklists, workflows e exemplos reais de como diferentes perfis operam com IA no dia a dia.',
     readingTime: 18,
@@ -120,37 +107,24 @@ export const sessions: SessionCardData[] = [
     accent: 'blue',
   },
   {
-    title: 'Tools: IDEs vs CLI',
+    title: 'Tools and models',
     slug: 'tools',
     lang: 'en',
     translationKey: 'tools',
     order: 2,
     summary:
-      'Cursor, Windsurf, GitHub Copilot, Claude Code, Kimi Code. What each tool does, where it shines, and where it trips.',
-    readingTime: 15,
+      'Understand the difference between tools, products, and models so you can choose IDEs, CLIs, cloud agents, and LLMs with intent.',
+    readingTime: 20,
     level: 'beginner',
-    heroLabel: 'Tool map',
+    heroLabel: 'Choice map',
     accent: 'green',
-  },
-  {
-    title: 'LLMs and the models people actually use',
-    slug: 'models',
-    lang: 'en',
-    translationKey: 'models',
-    order: 3,
-    summary:
-      'GPT, Claude, Gemini, Kimi, Llama. How they work at a useful level, what makes them different, and how to choose.',
-    readingTime: 15,
-    level: 'intermediate',
-    heroLabel: 'Understanding models',
-    accent: 'coral',
   },
   {
     title: 'How AI development matured',
     slug: 'maturity',
     lang: 'en',
     translationKey: 'maturity',
-    order: 4,
+    order: 3,
     summary:
       'From copying ChatGPT answers to orchestrating agents. The 5 maturity phases and where your workflow fits.',
     readingTime: 16,
@@ -163,7 +137,7 @@ export const sessions: SessionCardData[] = [
     slug: 'how-to-operate',
     lang: 'en',
     translationKey: 'how-to-operate',
-    order: 5,
+    order: 4,
     summary:
       'Real workflows, project examples, and what changes day to day when you operate AI-native.',
     readingTime: 18,
@@ -199,8 +173,8 @@ export function getSessionByTranslationKey(
 export function getSessionAlternateLinks(
   translationKey: string,
 ): AlternateLink[] {
-  const links = supportedLangs
-    .map((lang) => {
+  const links: AlternateLink[] = supportedLangs
+    .map((lang): AlternateLink | null => {
       const session = getSessionByTranslationKey(lang, translationKey);
       if (!session) return null;
       return {
@@ -208,7 +182,7 @@ export function getSessionAlternateLinks(
         href: getSessionHref(lang, session.slug),
       };
     })
-    .filter((link): link is AlternateLink => Boolean(link));
+    .filter((link): link is AlternateLink => link !== null);
 
   const defaultSession = getSessionByTranslationKey('pt-BR', translationKey);
 

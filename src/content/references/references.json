@@ -15,8 +15,8 @@
     "url": "https://docs.anthropic.com",
     "type": "documentacao",
     "source": "Anthropic",
-    "category": "modelos",
-    "relatedSessions": ["ai-native-engineer", "modelos", "como-operar"],
+    "category": "ferramentas",
+    "relatedSessions": ["ai-native-engineer", "ferramentas", "como-operar"],
     "priority": 1
   },
   {
@@ -36,7 +36,7 @@
     "type": "documentacao",
     "source": "OpenAI",
     "category": "glossario",
-    "relatedSessions": ["glossario", "modelos"],
+    "relatedSessions": ["glossario", "ferramentas"],
     "priority": 2
   },
   {
@@ -155,8 +155,8 @@
     "url": "https://platform.openai.com/docs",
     "type": "documentacao",
     "source": "OpenAI",
-    "category": "modelos",
-    "relatedSessions": ["modelos"],
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
     "priority": 1
   },
   {
@@ -165,8 +165,8 @@
     "url": "https://ai.google.dev/docs",
     "type": "documentacao",
     "source": "Google",
-    "category": "modelos",
-    "relatedSessions": ["modelos"],
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
     "priority": 2
   },
   {
@@ -175,8 +175,8 @@
     "url": "https://llama.meta.com",
     "type": "documentacao",
     "source": "Meta",
-    "category": "modelos",
-    "relatedSessions": ["modelos"],
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
     "priority": 2
   },
   {
@@ -185,8 +185,8 @@
     "url": "https://www.vellum.ai/llm-leaderboard",
     "type": "artigo",
     "source": "Vellum",
-    "category": "modelos",
-    "relatedSessions": ["modelos"],
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
     "priority": 3
   },
   {
@@ -286,7 +286,7 @@
     "type": "video",
     "source": "Andrej Karpathy",
     "category": "glossario",
-    "relatedSessions": ["glossario", "modelos"],
+    "relatedSessions": ["glossario", "ferramentas"],
     "priority": 2
   },
   {
@@ -305,8 +305,8 @@
     "url": "https://www.kimi.com/blog/kimi-k2-6",
     "type": "artigo",
     "source": "Moonshot AI",
-    "category": "modelos",
-    "relatedSessions": ["modelos", "ferramentas"],
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
     "priority": 1
   },
   {
@@ -315,8 +315,8 @@
     "url": "https://platform.moonshot.ai/",
     "type": "documentacao",
     "source": "Moonshot AI",
-    "category": "modelos",
-    "relatedSessions": ["modelos"],
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
     "priority": 1
   },
   {
@@ -325,8 +325,8 @@
     "url": "https://platform.deepseek.com/docs",
     "type": "documentacao",
     "source": "DeepSeek",
-    "category": "modelos",
-    "relatedSessions": ["modelos"],
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas"],
     "priority": 3
   },
   {

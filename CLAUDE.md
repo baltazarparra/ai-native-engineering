@@ -38,7 +38,7 @@ Deploy: GitHub Actions → GitHub Pages (auto-deploy on push to main).
 
 - Static HTML pages with selective hydration (`client:*` directives on islands only)
 - Content lives in `src/content/sessions/*.mdx` with frontmatter schema enforced by Content Collections
-- Data files (`src/data/`) for tools, models, and glossary definitions, separate from UI
+- Data files (`src/data/`) for glossary definitions, checklists, sessions, chapters, and shared metadata, separate from UI
 - Layouts: `BaseLayout.astro` (site-wide) and `SessionLayout.astro` (session pages with standard template)
 - Dynamic session routes via `src/pages/sessions/[slug].astro`
 
@@ -59,16 +59,15 @@ updatedAt: date
 
 ## Site Structure
 
-6 sessions, each at its own route:
+5 sessions, each generated under the dynamic `/sessions/[slug]/` route:
 
-- `/ai-native-engineer/`: What is an AI-Native Engineer (Session 0)
-- `/glossario/`: Terminology (Session 1)
-- `/ferramentas/`: Tools: IDEs vs CLI (Session 2)
-- `/modelos/`: LLMs and models (Session 3)
-- `/maturidade/`: Evolution of AI in development (Session 4, most important)
-- `/como-operar/`: How to work AI-native in practice (Session 5)
+- `/sessions/ai-native-engineer/`: What is an AI-Native Engineer (Session 0)
+- `/sessions/glossario/`: Terminology (Session 1)
+- `/sessions/ferramentas/`: Tools and models (Session 2)
+- `/sessions/maturidade/`: Evolution of AI in development (Session 3, most important)
+- `/sessions/como-operar/`: How to work AI-native in practice (Session 4)
 
-Every session page follows a fixed template: hero → 30s summary → main explanation → why it matters → real example → where it breaks → interactive block → takeaway → references.
+Every session page follows a fixed template: hero → 30s summary → main explanation → why it matters → real example when useful → where it breaks → takeaway → references. Interactive blocks are used only when they clearly improve explanation, organization, or retention.
 
 ## Design System: Neo Brutalism
 

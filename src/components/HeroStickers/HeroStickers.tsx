@@ -4,6 +4,10 @@ import styles from './HeroStickers.module.css';
 
 type Lang = 'pt-BR' | 'en';
 
+function withBase(path: string) {
+  return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
+}
+
 interface StickerSlot {
   left: number;
   top: number;
@@ -65,7 +69,7 @@ const STICKERS: StickerDef[] = [
   {
     id: 'rubber-duck',
     labels: { 'pt-BR': 'pato de borracha', en: 'rubber duck' },
-    visual: { kind: 'asset', src: '/stickers/rubber-duck.svg' },
+    visual: { kind: 'asset', src: withBase('stickers/rubber-duck.svg') },
     desktopSlot: { left: 50, top: 24, rotate: -6 },
     mobileSlot: { left: 50, top: 18, rotate: -6 },
     showOnMobile: true,

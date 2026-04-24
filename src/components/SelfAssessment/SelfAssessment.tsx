@@ -208,7 +208,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
       description:
         'Você está começando a transformar conversa em código e ainda está descobrindo onde agentes ajudam de verdade. Isso é normal. O importante agora é experimentar com intenção.',
       suggestion:
-        'Comece pelo glossário (Sessão 1) pra entender agentes, contexto e prompts, e depois explore as ferramentas (Sessão 2) pra ver o que combina com seu fluxo.',
+        'Comece pelo glossário (Sessão 1) pra entender agentes, contexto e prompts, e depois explore ferramentas e modelos (Sessão 2) pra ver o que combina com seu fluxo.',
       accent: 'yellow',
     },
     operating: {
@@ -216,7 +216,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
       description:
         'Você já consegue delegar partes do trabalho para IA e percebe a diferença entre um pedido vago e um briefing útil. O próximo passo é dar mais estrutura ao processo.',
       suggestion:
-        'Foque na Sessão 4 (Maturidade) pra entender onde você está, e depois na Sessão 5 (Como Operar) pra montar seus checklists e artefatos.',
+        'Foque na Sessão 3 (Maturidade) pra entender onde você está, e depois na Sessão 4 (Como Operar) pra montar seus checklists e artefatos.',
       accent: 'blue',
     },
     structuring: {
@@ -224,7 +224,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
       description:
         'Você já opera agentes com contexto, instruções, revisão de diff e validação. A IA não é uma aba extra: ela faz parte do seu sistema de entrega.',
       suggestion:
-        'Revise a Sessão 4 pra calibrar sua visão do time. Use esse site como referência compartilhada pra alinhar todo mundo.',
+        'Revise a Sessão 3 pra calibrar sua visão do time. Use esse site como referência compartilhada pra alinhar todo mundo.',
       accent: 'green',
     },
   },
@@ -234,7 +234,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
       description:
         "You're starting to turn conversation into code and still figuring out where agents actually help. That's normal. The key right now is to experiment with intention.",
       suggestion:
-        'Start with the glossary (Session 1) to understand agents, context, and prompts, then explore tools (Session 2) to see what fits your workflow.',
+        'Start with the glossary (Session 1) to understand agents, context, and prompts, then explore tools and models (Session 2) to see what fits your workflow.',
       accent: 'yellow',
     },
     operating: {
@@ -242,7 +242,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
       description:
         'You already delegate parts of the work to AI and can tell the difference between a vague request and a useful brief. The next step is giving that process more structure.',
       suggestion:
-        'Focus on Session 4 (Maturity) to understand where you stand, then Session 5 for checklists and practical artifacts.',
+        'Focus on Session 3 (Maturity) to understand where you stand, then Session 4 for checklists and practical artifacts.',
       accent: 'blue',
     },
     structuring: {
@@ -250,7 +250,7 @@ const PROFILES_BY_LANG: Record<Lang, Record<string, Profile>> = {
       description:
         'You already operate agents with context, instructions, diff review, and validation. AI is not an extra tab: it is part of your delivery system.',
       suggestion:
-        "Review Session 4 to calibrate your team's position. Use this site as a shared reference to align everyone.",
+        "Review Session 3 to calibrate your team's position. Use this site as a shared reference to align everyone.",
       accent: 'green',
     },
   },

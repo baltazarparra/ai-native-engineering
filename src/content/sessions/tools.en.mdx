@@ -1,231 +1,143 @@
 ---
-title: 'Tools: IDEs vs CLI'
+title: 'Tools and models'
 slug: 'tools'
 lang: 'en'
 translationKey: 'tools'
 order: 2
-summary: 'Cursor, Windsurf, GitHub Copilot, Claude Code, Kimi Code. What each tool does, where it shines, and where it trips.'
-readingTime: 15
+summary: 'Understand the difference between tools, products, and models so you can choose IDEs, CLIs, cloud agents, and LLMs with intent.'
+readingTime: 20
 level: 'beginner'
-tags: ['tools', 'ide', 'cli', 'comparison']
-heroLabel: 'Tool map'
+tags: ['tools', 'models', 'ide', 'cli', 'comparison']
+heroLabel: 'Choice map'
 references:
   [
     'cursor-docs',
+    'windsurf-docs',
     'github-copilot-docs',
     'claude-code-docs',
+    'codex-cli-docs',
     'kimi-code-cli-docs',
     'kimi-code-vscode-docs',
     'opencode-github',
+    'openai-docs',
+    'anthropic-claude-docs',
+    'google-gemini-docs',
+    'moonshot-k2-6-blog',
+    'moonshot-k2-6-api',
+    'meta-llama-docs',
+    'vellum-llm-leaderboard',
   ]
-updatedAt: 2026-04-23
+updatedAt: 2026-04-24
 ---
 
-import ToolComparison from '../../components/ToolComparison/ToolComparison.tsx';
+## Two different choices
 
-## Three categories, not an infinite list
+When someone asks "which AI should I use for programming?", they are usually mixing two decisions:
 
-Every week a new tool pops up promising to change how you code. Instead of listing everything, it's more useful to think in three categories:
+1. **Tool**: where you work. It can be an IDE, a CLI, a cloud app, an editor plugin, or a prompt-to-app platform.
 
-1. **AI-native IDEs**: code editors with AI built into the editing experience. Examples: Cursor, Windsurf, VS Code with GitHub Copilot.
+2. **Model**: the brain generating the answer. It can be GPT, Claude, Gemini, Kimi, Llama, Gemma, DeepSeek, GLM, or another model.
 
-2. **AI CLIs**: command-line tools that read your files, run commands, and make changes directly. Examples: Claude Code, Kimi Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+These layers combine, but they are not the same thing. Cursor and Claude Code are tools. GPT-5.3-Codex, Claude Sonnet 4.6, Gemini 2.5 Pro, and Kimi K2.6 are models. ChatGPT, Claude, Gemini, and Kimi are products that can embed different models underneath.
 
-3. **Autonomous agents**: they have more autonomy than CLIs. They plan, execute, test, and decide next steps on their own. The line between CLI and agent is getting blurry.
+Simple rule: **product and tool are where you interact. Model is what generates or decides the next step.**
 
-The line between IDE and CLI is also getting blurrier. Kimi Code is a good example: officially it exists as a terminal CLI, a local browser UI (`kimi web`), IDE integration through ACP, and a dedicated VS Code extension. In practice, it still feels terminal-first, so it fits best in this section.
+## Three work surfaces
 
-The right category depends on how you work, not on which tool is "best".
+Every week a new tool appears promising to change how you code. Instead of listing everything, think in three surfaces:
+
+1. **AI-native IDEs**: code editors with AI built into the editing experience. Examples: Cursor, Windsurf, VS Code with GitHub Copilot, Google Antigravity.
+
+2. **AI CLIs**: command-line tools that read files, run commands, and make changes directly in the terminal. Examples: Claude Code, Kimi Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+
+3. **Cloud apps and agents**: you send a well-described task, the tool works in an isolated environment, and it returns a diff or pull request. Examples: Codex App, Google Jules, Devin.
+
+The boundaries are getting blurry. Kimi Code, for example, can show up in the terminal, a local browser, VS Code, and ACP-compatible IDEs. The category still helps, but the main question is not "which tool is best?". The question is: **which surface removes the most friction for this task?**
+
+## What changes between models
+
+You do not need to become an AI researcher to work well with LLMs. But a few concepts change the quality of your decisions:
+
+### Context
+
+Models process text as tokens, and each model has a context window. In 2026, windows range from ~128K tokens to ~1M+, but a medium software project can contain much more than that. Large context helps, but it does not remove the need to choose relevant files, examples, and constraints.
+
+### Reasoning, speed, and cost
+
+Larger models often reason better through long tasks, but they are usually slower and more expensive. Using the strongest model for everything can be wasteful. A quick exploration, an autocomplete, and an architecture plan do not need the same amount of power.
+
+### Tool use
+
+Some models are tuned to work well with tools: reading files, calling APIs, running commands, observing results, and deciding the next step. That matters a lot for coding agents, because quality is not only in the generated text. It is in the ability to keep following a task across several steps.
+
+### Real limits
+
+Every model hallucinates, has a knowledge cutoff, and can generate code that looks correct but solves the wrong problem. A benchmark is a signal, not an oracle. A ranking measures standardized tasks; your project has its own context, history, constraints, and debt.
+
+## Task profiles, not rankings
+
+There is no single best model. There is the right model for the task.
+
+**Exploring ideas**: fast, cheaper models are usually enough. The goal is to talk, generate options, and reveal better questions, not produce final code.
+
+**Writing and reviewing daily code**: balanced models, such as Claude Sonnet or code-specialized models inside IDEs, often provide the best tradeoff.
+
+**Planning architecture or large refactors**: models with deeper reasoning and large context make more sense, especially when they need to consider many modules at once.
+
+**Analyzing long documents or many sources**: models with large context and strong synthesis, such as Gemini Pro or Claude Opus, may shine more than models focused mainly on code editing.
+
+**Privacy, cost, or control**: open-weight and open source models, such as Llama, Gemma, DeepSeek, and GLM, matter when a team needs more control over hosting, cost, privacy, or customization.
+
+Use names as a market snapshot, not as a belief system. In April 2026, GPT-5.3-Codex, Claude Sonnet 4.6, Claude Opus 4.7, Gemini 2.5 Pro, and Kimi K2.6 are important examples in this conversation. That will change.
+
+## How to choose in practice
+
+Choose the workflow first, then the model.
+
+If you are learning a project and editing small components, an AI-native IDE can remove a lot of friction. You see the diff, navigate files, and learn project patterns inside the editor.
+
+If you need to touch many files, run tests, inspect git, and iterate with commands, an AI CLI or terminal-first agent often fits better.
+
+If the task is well specified and can run in parallel without occupying your machine, a cloud agent can be better. It behaves more like delegation: you provide context, acceptance criteria, and review the PR.
+
+Then comes the model: fast for exploration, balanced for daily editing, strong for difficult planning, cheap or local when cost and privacy drive the decision.
 
 ## Why this matters
 
-Choosing a tool because of hype is the fastest way to get frustrated. The right tool is the one that removes friction from your actual workflow.
+Choosing by hype is the fastest way to get frustrated. You switch tools, change models, subscribe to another product, and keep the same underlying problem: vague request, weak context, and missing validation.
 
-The question isn't "which tool is best?" It's "which tool removes the most friction for the task I'm doing right now?"
+A good tool reduces friction. A good model increases capability. A good process turns both into reliable output.
 
 ## Real example
 
 A team of four working on the same project:
 
-**Ana, junior dev**, uses Cursor. Autocomplete and inline chat help her learn project patterns without leaving the editor.
+**Ana, junior dev**, uses an AI-native IDE. Autocomplete, inline chat, and visual diffs help her learn project patterns without leaving the editor. For explaining code and suggesting small changes, a fast model handles most of the day.
 
-**Carlos, senior dev**, uses Claude Code in the terminal. He works across many files, running tests and doing refactors with direct access to git and lint.
+**Carlos, senior dev**, uses an AI CLI in the terminal. He prefers working across many files, running tests, and doing refactors with direct access to git and lint. To plan the migration, he uses a stronger model; to apply repetitive changes, he switches to a cheaper and faster model.
 
-**Marina, QA**, uses GitHub Copilot in VS Code. She already knows the editor, and autocomplete helps her write tests faster.
+**Marina, QA**, uses GitHub Copilot in VS Code to speed up automated tests. When she needs to design scenarios, she talks to a fast model. When she reviews permission risk or edge cases, she asks for a more careful analysis.
 
-**Pedro, tech lead**, uses Claude Code for big tasks and Cursor for quick edits. He switches tools based on the task.
+**Pedro, tech lead**, uses a cloud agent for well-defined tasks that can become PRs and a local CLI to investigate sensitive problems. He chooses the tool by workflow friction and the model by task difficulty.
 
-None of them is wrong. Each one chose based on workflow friction.
-
-## The market snapshot
-
-This is a snapshot for April 2026. Tools change quickly. Treat this as a map, not a forever truth.
-
-### Cursor
-
-**What it is**: A desktop IDE based on VS Code, with AI built into the editing interface.
-
-**Where it runs**: Desktop editor, as a VS Code fork.
-
-**Who it fits**: Junior devs, senior devs, full-stack devs. Anyone who wants AI in the editing flow.
-
-**Where it shines**:
-
-- AI built into the editing interface, not bolted on
-- Inline chat and visual diff editing
-- Agent mode for larger tasks
-
-**Where it trips**:
-
-- Subscription cost may not fit every profile
-- Strong dependency on the VS Code ecosystem
-
-### Windsurf
-
-**What it is**: A desktop IDE with integrated AI and a focus on assisted workflows.
-
-**Where it runs**: Desktop editor, as a VS Code fork.
-
-**Who it fits**: Junior and senior devs who want a clean AI-assisted experience.
-
-**Where it shines**:
-
-- Clean interface with integrated AI
-- Assisted workflows that guide you through the process
-- Friendly onboarding for people getting started
-
-**Where it trips**:
-
-- Smaller ecosystem than Cursor
-- Fewer extensions and third-party integrations
-
-### GitHub Copilot
-
-**What it is**: An AI extension for existing editors. It's not a new editor; it's a plugin.
-
-**Where it runs**: VS Code, JetBrains, Neovim, and other editors.
-
-**Who it fits**: Junior devs, senior devs, QA engineers automating tests. Anyone who already has a favorite editor.
-
-**Where it shines**:
-
-- Works in most popular editors
-- Very fast autocomplete
-- Easy to adopt in large teams
-
-**Where it trips**:
-
-- Suggestions don't always include full project context
-- Accepting without reading is the number one risk
-
-### Claude Code
-
-**What it is**: A coding agent that runs in the terminal. It plans, executes, tests, and iterates.
-
-**Where it runs**: Terminal / command line.
-
-**Who it fits**: Senior devs, tech leads, terminal-first developers doing multi-file work.
-
-**Where it shines**:
-
-- Operates directly on the file system
-- Plans before executing
-- Strong fit for large refactors and multi-file tasks
-
-**Where it trips**:
-
-- Higher learning curve for people who don't use the terminal
-- Needs supervision around destructive operations
-
-### Kimi Code
-
-**What it is**: Moonshot AI's coding agent with a terminal CLI, a local browser UI, IDE integration via ACP, and a dedicated VS Code extension.
-
-**Where it runs**: Terminal / command line, local browser (`kimi web`), VS Code, and ACP-compatible IDEs.
-
-**Who it fits**: Senior devs, tech leads, and developers who want a terminal-first workflow without giving up editor support.
-
-**Where it shines**:
-
-- Reads and edits code, executes shell commands, fetches web pages, and adjusts its plan during execution
-- Can live in the terminal, the local browser, and editors like Zed, JetBrains, and VS Code
-- Supports MCP plus diff/revert flows and approval-driven tool execution inside the editor
-
-**Where it trips**:
-
-- Setup and naming can be confusing at first: Kimi Code, Kimi CLI, the VS Code extension, membership, and API key mode
-- Less familiar in Western teams than Cursor, Copilot, or Claude Code
-- Best fit for people comfortable with a terminal-first workflow
-
-### Codex CLI
-
-**What it is**: A terminal coding agent in the OpenAI ecosystem.
-
-**Where it runs**: Terminal / command line.
-
-**Who it fits**: Senior devs already using the OpenAI ecosystem.
-
-**Where it shines**:
-
-- Integrates with OpenAI models and workflows
-- Terminal and file system access
-
-**Where it trips**:
-
-- Ecosystem is still evolving
-- API keys and usage cost matter
-
-### OpenCode
-
-**What it is**: An open source option for AI-assisted development in the terminal.
-
-**Where it runs**: Terminal / command line.
-
-**Who it fits**: Developers who prefer open source tools and senior devs who want more transparency.
-
-**Where it shines**:
-
-- Open source and transparent
-- Configurable with different model providers
-
-**Where it trips**:
-
-- Smaller community
-- Less polish than commercial alternatives
-
-### GitHub Copilot CLI
-
-**What it is**: A GitHub CLI extension for AI-assisted terminal commands.
-
-**Where it runs**: Terminal as a GitHub CLI extension.
-
-**Who it fits**: Developers already using GitHub CLI, DevOps, and QA.
-
-**Where it shines**:
-
-- Integrated with GitHub
-- Low friction for people already using `gh`
-
-**Where it trips**:
-
-- More limited than full coding agents
-- Focused on commands, not whole projects
+None of them is wrong. They did not choose a brand to root for. They chose a combination of surface, model, and process.
 
 ## Where this breaks
 
-- **Endless switching syndrome**: Trying tools is healthy. Switching every week is procrastination in a productivity costume. Pick one, use it for two weeks, then evaluate.
+- **Confusing product and model**: "ChatGPT is good at code" can mean many things. Which model? Inside which product? With what context?
 
-- **One-tool thinking**: "I use Cursor, so I don't need terminal agents." Tools are complementary. Experienced people often use more than one.
+- **Benchmark worship**: rankings help reveal trends, but they know nothing about your repository, tests, domain, or constraints.
 
-- **Tool isn't method**: The best AI IDE doesn't replace knowing what to ask for. The tool executes; you direct.
+- **One-tool thinking**: IDEs, CLIs, and cloud agents are complementary. Experienced people switch based on the task.
 
-## Interactive block
+- **Endless switching**: experimenting is healthy. Switching every week can become procrastination dressed as productivity.
 
-<ToolComparison lang="en" client:visible />
+- **Tool instead of method**: the best AI IDE does not replace a clear spec, good context, diff review, and validation.
 
 ## Takeaway
 
-- Choose the tool that reduces friction in your workflow, not the one with the most hype
-- Use more than one tool: IDE for contextual editing, terminal for big tasks
-- Clear specs matter more than the tool
-- Treat every suggestion as a draft. This map is from April 2026, revisit periodically
+- Separate tool, product, and model before comparing options.
+- Choose the tool by workflow friction and the model by task difficulty.
+- Treat benchmarks as signal, not as the final answer.
+- Treat every answer as a draft until it passes review and validation.
+- The advantage is not "using the strongest AI"; it is building a combination that helps you ship software with more clarity and control.

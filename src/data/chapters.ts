@@ -72,8 +72,8 @@ export const CHAPTERS: Chapter[] = [
     references: [
       {
         title: {
-          'pt-BR': 'Ferramentas: IDEs vs CLI',
-          en: 'Tools: IDEs vs CLI',
+          'pt-BR': 'Ferramentas e modelos',
+          en: 'Tools and models',
         },
         url: (lang: Lang) =>
           getSessionHref(lang, lang === 'pt-BR' ? 'ferramentas' : 'tools'),
@@ -245,7 +245,8 @@ export const CHAPTERS: Chapter[] = [
       {
         id: 'phases-reviewed',
         text: {
-          'pt-BR': 'As phases do implementation plan foram revisadas e refinadas',
+          'pt-BR':
+            'As phases do implementation plan foram revisadas e refinadas',
           en: 'The implementation plan phases were reviewed and refined',
         },
       },
@@ -259,7 +260,8 @@ export const CHAPTERS: Chapter[] = [
       {
         id: 'phase-reports-saved',
         text: {
-          'pt-BR': 'Cada phase concluída gerou report e o projeto roda localmente',
+          'pt-BR':
+            'Cada phase concluída gerou report e o projeto roda localmente',
           en: 'Each completed phase produced a report and the project runs locally',
         },
       },
@@ -411,11 +413,11 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'LLMs e os modelos mais usados',
-          en: 'LLMs and the models people actually use',
+          'pt-BR': 'Ferramentas e modelos',
+          en: 'Tools and models',
         },
         url: (lang: Lang) =>
-          getSessionHref(lang, lang === 'pt-BR' ? 'modelos' : 'models'),
+          getSessionHref(lang, lang === 'pt-BR' ? 'ferramentas' : 'tools'),
         type: 'artigo',
         source: {
           'pt-BR': 'AI-Native Engineering',

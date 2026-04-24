@@ -317,120 +317,63 @@ Provide minimum literacy so anyone can continue through the site without getting
 
 ---
 
-## Session 2: Tools: IDEs vs CLI
+## Session 2: Tools and Models: Choose Without Hype
 
-**Slug:** `/ferramentas/`
+**Slug:** `/sessions/ferramentas/`
 
 ### Objective
 
-Help the user understand categories of tools, not just memorize names.
+Help the user understand the difference between tools, products, and models, then choose combinations based on workflow friction and task difficulty.
 
 ### Main Teaching Axis
 
-- tools integrated into the editor/IDE;
-- terminal/CLI-centered tools;
-- agents that operate with more autonomy;
-- where each one makes more sense.
+- tools are where work happens: IDEs, CLIs, cloud agents, prompt-to-app platforms;
+- products are user-facing experiences that may embed different models;
+- models are the reasoning/generation layer behind the experience;
+- tool choice matters less than workflow, judgment, context, and validation;
+- model choice should be task-fit, not leaderboard-driven.
 
-### IDE / Agent-First IDE Examples
+### Tool Surface Examples
 
-- Cursor
-- Antigravity
-- GitHub Copilot in the editor
+- IDEs and editor-integrated assistants: Cursor, Windsurf, GitHub Copilot, Antigravity;
+- terminal and CLI agents: Claude Code, Codex CLI, Kimi Code, OpenCode, GitHub Copilot CLI;
+- cloud agents and delegated work: Codex App, Google Jules, Devin.
 
-### Terminal / CLI Examples
+### Model Concepts This Page Needs to Teach
 
-- Claude Code
-- Codex CLI
-- OpenCode
-- GitHub Copilot CLI as adjacent
+- product and model are different things;
+- models vary in reasoning, speed, cost, context window, code ability, and follow-through reliability;
+- a larger context window helps, but does not remove the need to choose relevant context;
+- there is no absolute "best model";
+- benchmarks are signals, not answers.
 
-### What This Page Needs to Teach
+### Suggested Organization
 
-- IDEs provide visual context and a more familiar flow;
-- CLIs tend to provide more operational control and proximity to the real environment;
-- some tools cross surfaces and do not stay in a pure category;
-- tool choice matters less than workflow, judgment, and validation.
-
-### Page Structure
-
-- comparison by category;
-- simple table:
-  - where it runs
-  - best for
-  - user type
-  - strengths
-  - common risk
-- block: "do not choose by hype, choose by the friction in your flow".
+- explain tool/product/model separation first;
+- explain IDE, CLI, and cloud-agent surfaces;
+- explain model concepts without becoming academic;
+- describe task profiles:
+  - fast models for consultation and exploration;
+  - balanced models for daily code writing/review;
+  - stronger models for planning and architecture;
+  - large-context models for documents and broad analysis;
+  - open/open-weight models for privacy, cost, or control.
+- end with a practical example that combines surface, model, and process.
 
 ### Interactions
 
-- filters by user type:
-  - non-technical
-  - junior
-  - experienced developer
-  - leadership
-- tool comparator with expandable cards;
-- toggle: "view by interface" vs "view by workflow".
+No dedicated interactive block for this session. The page should stay editorial and concise. If interactivity is reintroduced later, it must explain better than the prose.
 
 ### Important Tone
 
 This page must make clear:
-**tools do not replace method**.
+**tools and models do not replace method**.
 
 ---
 
-## Session 3: LLMs and the Models Most Used in This Context
+## Session 3: The Evolution of AI-Assisted Development
 
-**Slug:** `/modelos/`
-
-### Objective
-
-Explain what a model is and how to think about models without becoming hostage to benchmarks.
-
-### What This Page Needs to Teach
-
-- product and model are different things;
-- the user usually interacts with a product that embeds one or more models;
-- models vary in:
-  - reasoning
-  - speed
-  - cost
-  - context window
-  - code ability
-  - follow-through reliability
-- there is no absolute "best model";
-- there is a best model for a given type of task.
-
-### Suggested Organization
-
-Instead of focusing on rankings, focus on profiles:
-
-- fast models for consultation and exploration;
-- strong models for planning and architecture;
-- strong models for editing and code execution;
-- open/open-weight models as an important ecosystem layer.
-
-### Interactions
-
-- task selector:
-  - explain concept
-  - review code
-  - plan feature
-  - execute refactor
-  - generate first version
-- the UI shows which model characteristics matter most for each case.
-
-### Editorial Care
-
-Avoid turning the page into a leaderboard.
-The objective is to teach critical reading, not vendor worship.
-
----
-
-## Session 4: The Evolution of AI-Assisted Development
-
-**Slug:** `/maturidade/`
+**Slug:** `/sessions/maturidade/`
 
 This is the most important session in the product.
 
@@ -586,9 +529,9 @@ Problems:
 
 ---
 
-## Session 5: How to Operate AI-Natively in Practice
+## Session 4: How to Operate AI-Natively in Practice
 
-**Slug:** `/como-operar/`
+**Slug:** `/sessions/como-operar/`
 
 This session closes the reasoning loop.
 
@@ -940,7 +883,6 @@ Tailwind can speed things up, but here it increases the chance of a generic resu
 │  │  │  ├─ ai-native-engineer.mdx
 │  │  │  ├─ glossario.mdx
 │  │  │  ├─ ferramentas.mdx
-│  │  │  ├─ modelos.mdx
 │  │  │  ├─ maturidade.mdx
 │  │  │  └─ como-operar.mdx
 │  │  ├─ references/
@@ -948,9 +890,10 @@ Tailwind can speed things up, but here it increases the chance of a generic resu
 │  │  │  └─ videos.json
 │  │  └─ config.ts
 │  ├─ data/
-│  │  ├─ tools.ts
-│  │  ├─ models.ts
-│  │  └─ glossary.ts
+│  │  ├─ checklists.ts
+│  │  ├─ chapters.ts
+│  │  ├─ glossary.ts
+│  │  └─ sessions.ts
 │  ├─ layouts/
 │  │  ├─ BaseLayout.astro
 │  │  └─ SessionLayout.astro
@@ -1041,8 +984,6 @@ Fields:
 ### Interactive Components
 
 - GlossaryCardGrid
-- ToolComparison
-- ModelTaskMatcher
 - MaturityStepper
 - SelfAssessment
 - ProgressTracker
@@ -1265,7 +1206,7 @@ An MVP version is ready when:
 
 - the home page is complete;
 - all main sessions exist;
-- every session has content, an interactive block, and references;
+- every session has content and references, with interactive blocks only where they improve learning;
 - the Neo Brutalism design is consistent;
 - mobile is genuinely good;
 - Lighthouse is not degraded by visual excess;

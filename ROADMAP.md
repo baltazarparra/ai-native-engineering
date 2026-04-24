@@ -70,7 +70,7 @@ The front door. If someone lands here and does not understand what this site is 
 
 - [ ] `Hero` section: strong headline, subtitle with the value prop, primary CTA ("Start with the basics"), secondary CTA ("See the full map")
 - [ ] `WhyThisExists` block: 3-4 short paragraphs explaining the gap between using AI and using AI well
-- [ ] `JourneyMap` / `SessionCards`: clickable cards for each of the 6 sessions, showing title, summary, level, reading time
+- [ ] `JourneyMap` / `SessionCards`: clickable cards for each of the 5 sessions, showing title, summary, level, reading time
 - [ ] `MaturityPreview`: compact visual showing the 5 phases (Consulta > Autocomplete > Vibe Coding > SDD > Harness Engineering)
 - [ ] `Footer`: credits, content version, last revision date, source links
 - [ ] proper `<head>` meta: title, description, OG tags for the home page
@@ -79,7 +79,7 @@ The front door. If someone lands here and does not understand what this site is 
 ### Done When
 
 - home page explains the product without clicking anything else
-- all 6 session cards link to their routes (even if those pages are just stubs for now)
+- all 5 session cards link to their routes (even if those pages are just stubs for now)
 - the maturity preview is readable and makes sense to someone who's never heard of SDD
 - page loads fast, Lighthouse perf score stays above 90 on mobile
 - looks intentionally neo-brutalist, not accidentally broken
@@ -119,30 +119,28 @@ Build the reusable layout that every session page will use. Get it right once so
 
 ## Phase 5: Core Content
 
-Write all 6 sessions for real. This is the meat of the product. No placeholders, no "lorem ipsum", no "TODO write this later."
+Write all 5 sessions for real. This is the meat of the product. No placeholders, no "lorem ipsum", no "TODO write this later."
 
 ### What We Ship
 
-- [ ] Session 0: What Is an AI-Native Engineer (`/ai-native-engineer/`)
+- [ ] Session 0: What Is an AI-Native Engineer (`/sessions/ai-native-engineer/`)
   - definition, what changed, what didn't, anti-patterns, self-assessment questions (static for now)
-- [ ] Session 1: Glossary (`/glossario/`)
+- [ ] Session 1: Glossary (`/sessions/glossario/`)
   - all terms: LLM, model, inference, context, token, prompt, system prompt, IDE, CLI, agent, code agent, autocomplete, code context, MCP, harness
   - simple and technical definitions for each
-- [ ] Session 2: Tools (`/ferramentas/`)
-  - IDE vs CLI categories, examples (Cursor, Antigravity, Copilot, Claude Code, Codex CLI, OpenCode)
-  - comparison structure (where it runs, best for, user type, strengths, common risk)
-- [ ] Session 3: Models (`/modelos/`)
-  - product vs model distinction, profiles by task type, editorial guidance on reading benchmarks critically
-- [ ] Session 4: Maturity (`/maturidade/`)
+- [ ] Session 2: Tools and Models (`/sessions/ferramentas/`)
+  - IDE, CLI, and cloud-agent categories, plus product vs model distinction
+  - model profiles by task type and editorial guidance on reading benchmarks critically
+- [ ] Session 3: Maturity (`/sessions/maturidade/`)
   - all 5 phases with what/why/where it works/where it breaks/what the next phase fixes
-- [ ] Session 5: How to Operate (`/como-operar/`)
+- [ ] Session 4: How to Operate (`/sessions/como-operar/`)
   - workflow, pre-request checklist, pre-accept checklist, examples by profile (PM, QA, junior dev, senior dev, tech lead)
 - [ ] curated references for each session (2-4 "start here", 2-4 primary sources, 1-3 videos/talks)
-- [ ] `src/data/tools.ts`, `src/data/models.ts`, `src/data/glossary.ts` populated with real data
+- [ ] `src/data/glossary.ts`, `src/data/checklists.ts`, and session/chapter metadata populated with real data
 
 ### Done When
 
-- all 6 sessions are published and accessible from the home page
+- all 5 sessions are published and accessible from the home page
 - content tone is consistent across all sessions: natural PT-BR, direct, no academic fluff
 - no session mentions a specific tool without framing it as a market example, not gospel
 - every acronym is explained before being used technically
@@ -158,8 +156,6 @@ This is where React islands come in. Every interactive block must pass the test:
 ### What We Ship
 
 - [ ] `GlossaryCardGrid` (React island): expandable cards with "simple" and "technical" toggle, search/filter
-- [ ] `ToolComparison` (React island): filterable comparison by user type (non-technical, junior, experienced, leadership) and view mode (by interface vs by workflow)
-- [ ] `ModelTaskMatcher` (React island): select a task, see which model characteristics matter most
 - [ ] `MaturityStepper` (React island): interactive timeline/stepper walking through the 5 phases, with before/after and practical cases
 - [ ] `SelfAssessment` (React island): 5-7 questions, localStorage score, 3 result profiles (exploring, operating, structuring)
 - [ ] `ProgressTracker`: reading progress per session, persisted in localStorage
@@ -167,7 +163,7 @@ This is where React islands come in. Every interactive block must pass the test:
 
 ### Done When
 
-- each interactive component is plugged into its session page and works on mobile
+- each retained interactive component is plugged into its session page and works on mobile
 - islands hydrate only when needed (`client:visible` or `client:idle`)
 - no island ships more than ~50KB of JS (check bundle)
 - localStorage persistence works for self-assessment and progress tracker

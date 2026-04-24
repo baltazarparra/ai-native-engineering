@@ -1,313 +1,143 @@
 ---
-title: 'Ferramentas: IDEs vs CLI'
+title: 'Ferramentas e modelos'
 slug: 'ferramentas'
 lang: 'pt-BR'
 translationKey: 'tools'
 order: 2
-summary: 'Cursor, Windsurf, GitHub Copilot, Claude Code, Kimi Code. O que cada ferramenta faz, onde brilha e onde tropeça.'
-readingTime: 15
+summary: 'Entenda a diferenca entre ferramenta, produto e modelo para escolher melhor IDEs, CLIs, agentes na nuvem e LLMs.'
+readingTime: 20
 level: 'beginner'
-tags: ['ferramentas', 'ide', 'cli', 'comparativo']
-heroLabel: 'Mapa de ferramentas'
+tags: ['ferramentas', 'modelos', 'ide', 'cli', 'comparativo']
+heroLabel: 'Mapa de escolha'
 references:
   [
     'cursor-docs',
+    'windsurf-docs',
     'github-copilot-docs',
     'claude-code-docs',
+    'codex-cli-docs',
     'kimi-code-cli-docs',
     'kimi-code-vscode-docs',
     'opencode-github',
+    'openai-docs',
+    'anthropic-claude-docs',
+    'google-gemini-docs',
+    'moonshot-k2-6-blog',
+    'moonshot-k2-6-api',
+    'meta-llama-docs',
+    'vellum-llm-leaderboard',
   ]
-updatedAt: 2026-04-23
+updatedAt: 2026-04-24
 ---
 
-import ToolComparison from '../../components/ToolComparison/ToolComparison.tsx';
+## Duas escolhas diferentes
 
-## Três categorias, não uma lista infinita
+Quando alguem pergunta "qual IA eu devo usar para programar?", geralmente esta misturando duas decisoes:
 
-Toda semana aparece ferramenta nova prometendo revolucionar como você programa. Em vez de listar tudo que existe, é mais útil pensar em três categorias:
+1. **Ferramenta**: onde voce trabalha. Pode ser uma IDE, uma CLI, um app na nuvem, um editor com plugin ou uma plataforma prompt-to-app.
 
-1. **IDEs com IA integrada**: editores de código que embutem IA na interface de edição. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot, Google Antigravity.
+2. **Modelo**: o cerebro que gera a resposta. Pode ser GPT, Claude, Gemini, Kimi, Llama, Gemma, DeepSeek, GLM ou outro.
 
-2. **CLIs de IA**: ferramentas de linha de comando que leem seus arquivos, executam comandos e fazem mudanças diretamente no terminal. Exemplos: Claude Code, Kimi Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+Essas duas camadas se combinam, mas nao sao a mesma coisa. Cursor e Claude Code sao ferramentas. GPT-5.3-Codex, Claude Sonnet 4.6, Gemini 2.5 Pro e Kimi K2.6 sao modelos. ChatGPT, Claude, Gemini e Kimi sao produtos que podem embutir modelos diferentes por baixo.
 
-3. **Apps e plataformas na nuvem**: você manda uma tarefa, a ferramenta trabalha sozinha num ambiente isolado na nuvem e entrega o resultado como um PR ou diff. Exemplos: Codex App, Google Jules, Devin.
+A regra simples: **produto e ferramenta sao onde voce interage. Modelo e quem gera ou decide o proximo passo.**
 
-A fronteira entre IDE e CLI está ficando mais borrada. O Kimi Code é um bom exemplo: oficialmente ele existe como CLI no terminal, Browser UI local (`kimi web`), integração com IDEs via ACP e extensão própria para VS Code. Na prática, o centro de gravidade ainda é terminal-first, então faz sentido colocá-lo aqui.
+## Tres superficies de trabalho
 
-A categoria certa depende de como você trabalha, não de qual ferramenta é "melhor".
+Toda semana aparece ferramenta nova prometendo revolucionar como voce programa. Em vez de listar tudo que existe, pense em tres superficies:
+
+1. **IDEs com IA integrada**: editores de codigo que embutem IA na interface de edicao. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot, Google Antigravity.
+
+2. **CLIs de IA**: ferramentas de linha de comando que leem arquivos, executam comandos e fazem mudancas diretamente no terminal. Exemplos: Claude Code, Kimi Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+
+3. **Apps e agentes na nuvem**: voce manda uma tarefa bem descrita, a ferramenta trabalha em um ambiente isolado e entrega o resultado como diff ou pull request. Exemplos: Codex App, Google Jules, Devin.
+
+A fronteira esta ficando borrada. Kimi Code, por exemplo, pode aparecer no terminal, no browser local, no VS Code e em IDEs compativeis via ACP. A categoria ainda ajuda, mas a pergunta principal nao e "qual ferramenta e melhor?". A pergunta e: **qual superficie reduz mais friccao para esta tarefa?**
+
+## O que muda entre modelos
+
+Voce nao precisa virar pesquisador de IA para trabalhar bem com LLMs. Mas alguns conceitos mudam a qualidade das suas decisoes:
+
+### Contexto
+
+Modelos processam texto em tokens e cada modelo tem uma janela de contexto. Em 2026, janelas vao de ~128K tokens ate ~1M+, mas um projeto medio pode ter muito mais do que isso. Contexto grande ajuda, mas nao elimina a necessidade de escolher arquivos, exemplos e restricoes relevantes.
+
+### Raciocinio, velocidade e custo
+
+Modelos maiores tendem a raciocinar melhor em tarefas longas, mas tambem costumam ser mais lentos e caros. Usar o modelo mais forte para tudo pode ser desperdicio. Uma conversa exploratoria, um autocomplete e um plano de arquitetura nao exigem a mesma potencia.
+
+### Uso de ferramentas
+
+Alguns modelos foram ajustados para operar bem com ferramentas: ler arquivos, chamar APIs, executar comandos, observar resultado e decidir o proximo passo. Isso importa muito para agentes de codigo, porque a qualidade nao esta so no texto gerado. Esta na capacidade de seguir uma tarefa por varios passos.
+
+### Limites reais
+
+Todo modelo alucina, tem corte de conhecimento e pode gerar codigo que parece correto mas nao resolve o problema. Benchmark e sinal, nao oraculo. Um ranking mede tarefas padronizadas; o seu projeto tem contexto, historico, restricoes e dividas proprias.
+
+## Perfis por tarefa, nao ranking
+
+Nao existe "o melhor modelo". Existe o modelo certo para a tarefa certa.
+
+**Explorar ideias**: modelos rapidos e baratos costumam bastar. O objetivo e conversar, gerar alternativas e revelar perguntas melhores, nao produzir codigo final.
+
+**Escrever e revisar codigo do dia a dia**: modelos equilibrados, como Claude Sonnet ou modelos especializados de codigo dentro de IDEs, tendem a entregar bom custo-beneficio.
+
+**Planejar arquitetura ou refactors grandes**: modelos com raciocinio mais profundo e janela de contexto ampla fazem mais sentido, especialmente quando precisam considerar muitos modulos ao mesmo tempo.
+
+**Analisar documentos longos ou muitas fontes**: modelos com contexto grande e boa sintese, como Gemini Pro ou Claude Opus, podem brilhar mais que modelos puramente focados em edicao de codigo.
+
+**Privacidade, custo ou controle**: modelos open-weight ou open source, como Llama, Gemma, DeepSeek e GLM, entram quando o time precisa de mais controle sobre hospedagem, custo, privacidade ou customizacao.
+
+Use nomes como retrato de mercado, nao como religiao. Em abril de 2026, GPT-5.3-Codex, Claude Sonnet 4.6, Claude Opus 4.7, Gemini 2.5 Pro e Kimi K2.6 sao exemplos importantes nesta conversa. Isso vai mudar.
+
+## Como escolher na pratica
+
+Escolha primeiro o fluxo, depois o modelo.
+
+Se voce esta aprendendo um projeto e editando componentes pequenos, uma IDE com IA integrada pode reduzir muito atrito. Voce ve o diff, navega pelos arquivos e aprende o padrao do projeto dentro do editor.
+
+Se voce precisa mexer em muitos arquivos, rodar testes, inspecionar git e iterar com comandos, uma CLI de IA ou agente terminal-first costuma encaixar melhor.
+
+Se a tarefa esta bem especificada e pode rodar em paralelo sem ocupar sua maquina, um agente na nuvem pode ser melhor. Ele funciona mais como delegacao: voce entrega contexto, criterio de aceite e revisa o PR.
+
+Depois vem o modelo: rapido para explorar, equilibrado para edicao diaria, forte para planejamento dificil, barato ou local quando custo e privacidade mandam.
 
 ## Por que isso importa
 
-Escolher ferramenta por hype é o jeito mais rápido de se frustrar. A ferramenta certa é a que reduz fricção no seu workflow específico.
+Escolher por hype e o jeito mais rapido de se frustrar. Voce troca ferramenta, muda modelo, assina outro produto e continua com o mesmo problema: pedido vago, contexto fraco e validacao ausente.
 
-A questão não é "qual é a melhor ferramenta". É "qual ferramenta reduz mais fricção pra tarefa que eu estou fazendo agora".
+Ferramenta boa reduz friccao. Modelo bom aumenta capacidade. Processo bom transforma os dois em resultado confiavel.
 
 ## Exemplo aplicado
 
 Time de 4 pessoas trabalhando no mesmo projeto:
 
-**Dev júnior (Ana)** usa Cursor. O autocomplete e o chat inline ajudam a aprender os padrões do projeto sem sair do editor.
+**Dev junior (Ana)** usa uma IDE com IA integrada. O autocomplete, o chat inline e o diff visual ajudam a aprender os padroes do projeto sem sair do editor. Para explicar codigo e sugerir pequenas mudancas, um modelo rapido ja resolve a maior parte do dia.
 
-**Dev sênior (Carlos)** usa Claude Code no terminal. Prefere trabalhar com múltiplos arquivos, rodando testes e fazendo refactors com acesso direto a git e lint.
+**Dev senior (Carlos)** usa uma CLI de IA no terminal. Prefere trabalhar com multiplos arquivos, rodando testes e fazendo refactors com acesso direto a git e lint. Para planejar a migracao, usa um modelo mais forte; para aplicar mudancas repetitivas, troca para um modelo mais barato e rapido.
 
-**QA (Marina)** usa GitHub Copilot no VS Code. Já conhece o editor e o autocomplete ajuda a escrever testes mais rápido.
+**QA (Marina)** usa GitHub Copilot no VS Code para acelerar testes automatizados. Quando precisa desenhar cenarios, conversa com um modelo rapido. Quando revisa risco de permissao ou casos de borda, pede uma analise mais cuidadosa.
 
-**Tech lead (Pedro)** usa Claude Code pra tarefas grandes e Cursor pra edições rápidas. Troca de ferramenta conforme a tarefa.
+**Tech lead (Pedro)** usa agente na nuvem para tarefas bem definidas que podem virar PR e uma CLI local para investigar problemas sensiveis. Ele escolhe a ferramenta pela friccao e o modelo pela dificuldade da tarefa.
 
-Nenhum deles está errado. Cada um escolheu pela fricção do próprio workflow.
-
-## As ferramentas do mercado hoje
-
-O que segue é um retrato de abril de 2026. Ferramentas mudam rápido. Use isso como referência, não como verdade eterna.
-
-### Cursor
-
-**O que é**: IDE desktop baseada no VS Code com IA embutida na interface de edição.
-
-**Onde roda**: Editor desktop (fork do VS Code).
-
-**Pra quem**: Dev júnior, dev sênior, dev fullstack. Quem quer IA integrada no fluxo de edição sem sair do editor.
-
-**Onde brilha**:
-
-- IA embutida na interface de edição, não é plugin
-- Chat inline e edição com diff visual
-- Modo agente pra tarefas maiores
-
-**Onde tropeça**:
-
-- Custo da assinatura pode não compensar pra todos os perfis
-- Dependência do ecossistema VS Code
-
-### Windsurf
-
-**O que é**: IDE desktop com IA integrada, foco em fluxos de trabalho assistidos.
-
-**Onde roda**: Editor desktop (fork do VS Code).
-
-**Pra quem**: Dev júnior, dev sênior. Quem quer uma experiência limpa com assistência de IA.
-
-**Onde brilha**:
-
-- Interface limpa com IA integrada
-- Fluxos de trabalho assistidos que guiam o processo
-- Boa experiência de onboarding pra quem tá começando
-
-**Onde tropeça**:
-
-- Ecossistema menor que Cursor
-- Menos extensões e integração com ferramentas de terceiros
-
-### GitHub Copilot
-
-**O que é**: Extensão de IA pra editores existentes. Não é um editor novo, é um plugin.
-
-**Onde roda**: Extensão pra VS Code, JetBrains, Neovim e outros editores.
-
-**Pra quem**: Dev júnior, dev sênior, QA automatizando testes. Quem já tem um editor preferido e não quer trocar.
-
-**Onde brilha**:
-
-- Integra com qualquer editor popular
-- Autocomplete muito rápido
-- Fácil de adotar em times grandes (licença corporativa)
-
-**Onde tropeça**:
-
-- Sugestões nem sempre consideram o contexto completo do projeto
-- Aceitar sem ler é o risco número um
-
-### Google Antigravity
-
-**O que é**: IDE desktop do Google com arquitetura pensada pra agentes. Construída pelo time que o Google adquiriu da Windsurf em 2025.
-
-**Onde roda**: Editor desktop (fork do VS Code).
-
-**Pra quem**: Dev júnior, dev sênior, dev fullstack. Quem quer experimentar fluxo de trabalho com agentes autônomos direto na IDE.
-
-**Onde brilha**:
-
-- Dois modos: Editor (edição normal com IA) e Manager (painel pra orquestrar agentes trabalhando em paralelo)
-- Janela de contexto de 2 milhões de tokens — cabe projetos inteiros na memória
-- Tier gratuito que inclui modelos premium (Gemini 3 Pro, Claude Opus)
-
-**Onde tropeça**:
-
-- Sem suporte a MCP (não conecta com Figma, Linear, Amplitude e outras integrações)
-- Estabilidade ainda inconsistente: erros de memória e agentes parando no meio da tarefa
-- Todo código é processado nos servidores do Google
-
-### Claude Code
-
-**O que é**: Agente de código que roda no terminal. Planeja, executa, testa e itera.
-
-**Onde roda**: Terminal / linha de comando.
-
-**Pra quem**: Dev sênior, tech lead, dev que prefere terminal. Quem faz tarefas complexas com múltiplos arquivos.
-
-**Onde brilha**:
-
-- Opera diretamente no sistema de arquivos
-- Planeja antes de executar
-- Bom pra refactors grandes e tarefas multi-arquivo
-
-**Onde tropeça**:
-
-- Curva de entrada pra quem não usa terminal
-- Precisa de supervisão em operações destrutivas
-
-### Kimi Code
-
-**O que é**: Agente de código da Moonshot AI com CLI no terminal, Browser UI local, integração com IDEs via ACP e extensão própria para VS Code.
-
-**Onde roda**: Terminal / linha de comando, browser local (`kimi web`), VS Code e IDEs compatíveis via ACP.
-
-**Pra quem**: Dev sênior, tech lead, dev que quer fluxo terminal-first mas não abre mão de editor.
-
-**Onde brilha**:
-
-- Lê e edita código, executa shell commands, busca páginas web e ajusta o plano durante a execução
-- Pode rodar no terminal, aparecer no navegador local e entrar em Zed, JetBrains e VS Code
-- Tem suporte a MCP, diff/revert no editor e modo com aprovações antes de usar ferramentas
-
-**Onde tropeça**:
-
-- Setup e nomenclatura ainda confundem no começo: Kimi Code, Kimi CLI, extensão do VS Code, membership e API key
-- Menos difundido no mercado ocidental que Cursor, Copilot ou Claude Code
-- Faz mais sentido pra quem tolera bem workflow terminal-first
-
-### Codex CLI
-
-**O que é**: Agente de código no terminal do ecossistema OpenAI.
-
-**Onde roda**: Terminal / linha de comando.
-
-**Pra quem**: Dev sênior, dev que já usa ecossistema OpenAI.
-
-**Onde brilha**:
-
-- Integra com ecossistema OpenAI
-- Acesso ao terminal e sistema de arquivos
-
-**Onde tropeça**:
-
-- Ecossistema ainda em evolução
-- Depende de API key e custos de uso
-
-### OpenCode
-
-**O que é**: Alternativa open source pra desenvolvimento assistido no terminal.
-
-**Onde roda**: Terminal / linha de comando.
-
-**Pra quem**: Dev que prefere ferramentas open source, dev sênior.
-
-**Onde brilha**:
-
-- Open source e transparente
-- Configurável com diferentes provedores de modelo
-
-**Onde tropeça**:
-
-- Comunidade menor
-- Menos polish que alternativas comerciais
-
-### GitHub Copilot CLI
-
-**O que é**: Extensão do GitHub CLI (gh) pra comandos assistidos por IA no terminal.
-
-**Onde roda**: Terminal como extensão do GitHub CLI.
-
-**Pra quem**: Dev que já usa GitHub CLI, devops, QA.
-
-**Onde brilha**:
-
-- Integrado com ecossistema GitHub
-- Baixa fricção pra quem já usa gh
-
-**Onde tropeça**:
-
-- Escopo mais limitado que agentes completos
-- Focado em comandos, não em projetos inteiros
-
-### Apps e plataformas na nuvem
-
-Essas ferramentas funcionam diferente das IDEs e CLIs. Você manda uma tarefa bem descrita, a ferramenta trabalha sozinha num ambiente isolado na nuvem (sandbox) e entrega o resultado pronto — geralmente como um pull request pra você revisar. Você não acompanha linha a linha. É mais parecido com delegar uma tarefa pra alguém do time.
-
-### Codex App
-
-**O que é**: App da OpenAI pra delegar tarefas de código pra agentes autônomos na nuvem.
-
-**Onde roda**: App desktop (macOS, Windows) e web. Cada tarefa roda num sandbox isolado.
-
-**Pra quem**: Dev sênior, tech lead. Quem quer rodar múltiplas tarefas em paralelo sem ocupar a própria máquina.
-
-**Onde brilha**:
-
-- Vários agentes trabalhando ao mesmo tempo, cada um isolado via git worktree
-- Sandbox seguro: o agente não tem acesso à internet durante a execução
-- Interface limpa pra acompanhar e gerenciar várias tarefas
-
-**Onde tropeça**:
-
-- Custa $200/mês no tier Pro
-- Precisa de instruções muito claras. Pedidos vagos geram resultados genéricos
-
-### Google Jules
-
-**O que é**: Agente de código assíncrono do Google. Você manda uma tarefa, ele trabalha na nuvem e abre um PR no GitHub.
-
-**Onde roda**: App web (sandbox na nuvem).
-
-**Pra quem**: Dev sênior, tech lead. Quem usa GitHub e quer delegar tarefas sem sair do navegador.
-
-**Onde brilha**:
-
-- Integrado com GitHub: cria branches e PRs automaticamente
-- Assíncrono — trabalha enquanto você faz outra coisa
-- Powered by Gemini
-
-**Onde tropeça**:
-
-- Funciona melhor com tarefas bem definidas e escopadas
-- Ecossistema ainda em evolução
-
-### Devin
-
-**O que é**: Agente autônomo de código da Cognition. Recebe uma tarefa, planeja a execução, escreve código, roda testes e abre PR — tudo sozinho.
-
-**Onde roda**: App web. O agente trabalha num sandbox na nuvem com terminal, editor e browser próprios.
-
-**Pra quem**: Dev sênior, tech lead, times de engenharia. Quem tem backlog de tarefas bem definidas que podem ser delegadas.
-
-**Onde brilha**:
-
-- Autonomia completa: planeja, codifica, testa, debuga e abre PR
-- Timeline de replay: você pode ver tudo que o agente fez, comando por comando
-- Integração com Slack, Teams, Jira e Linear — dá pra atribuir tarefas direto no chat
-
-**Onde tropeça**:
-
-- Qualidade inconsistente em tarefas ambíguas ou criativas
-- Custos difíceis de prever no modelo por uso (ACU)
-- Todo código passa pela infraestrutura da Cognition — atenção com dados sensíveis
+Nenhum deles esta errado. Eles nao escolheram uma marca para torcer. Escolheram uma combinacao de superficie, modelo e processo.
 
 ## Onde isso quebra
 
-- **Síndrome da troca infinita**: Experimentar ferramentas é saudável. Trocar toda semana é procrastinação disfarçada de produtividade. Escolha uma, use por duas semanas, depois avalie.
+- **Confundir produto com modelo**: "ChatGPT e bom em codigo" pode significar muita coisa. Qual modelo? Em qual produto? Com qual contexto?
 
-- **Pensamento de ferramenta única**: "Eu uso Cursor, então não preciso de terminal." Ferramentas são complementares. A maioria dos profissionais experientes usa mais de uma.
+- **Adoracao de benchmark**: rankings ajudam a perceber tendencia, mas nao sabem nada sobre seu repositorio, seus testes, seu dominio ou suas restricoes.
 
-- **Ferramenta não é método**: Ter a melhor IDE com IA não substitui saber o que pedir. A ferramenta executa, você direciona.
+- **Pensamento de ferramenta unica**: IDE, CLI e agente na nuvem sao complementares. Profissionais experientes alternam conforme a tarefa.
 
-## Bloco interativo
+- **Troca infinita**: experimentar e saudavel. Trocar toda semana pode virar procrastinacao com cara de produtividade.
 
-<ToolComparison client:visible />
+- **Ferramenta no lugar de metodo**: a melhor IDE com IA nao substitui especificacao clara, contexto bem dado, revisao de diff e validacao.
 
 ## O que levar daqui
 
-- Escolha pela fricção que a ferramenta elimina no seu workflow, não pelo hype
-- Use mais de uma ferramenta: IDE pra edição contextual, terminal pra tarefas grandes
-- Especificação clara importa mais do que a ferramenta
-- Trate toda sugestão como rascunho. Este mapa é de abril de 2026, revise periodicamente
+- Separe ferramenta, produto e modelo antes de comparar opcoes.
+- Escolha a ferramenta pela friccao do workflow e o modelo pela dificuldade da tarefa.
+- Use benchmarks como sinal, nao como resposta final.
+- Trate toda resposta como rascunho ate passar por revisao e validacao.
+- O diferencial nao e "usar a IA mais forte"; e montar uma combinacao que ajuda voce a entregar software com mais clareza e controle.
