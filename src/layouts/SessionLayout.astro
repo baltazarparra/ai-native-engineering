@@ -238,6 +238,55 @@ const formattedUpdatedAt = updatedAt.toLocaleDateString(
     box-shadow: var(--shadow-sm);
   }
 
+  /* table wrapper: horizontal scroll on narrow viewports */
+  .session-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    border: var(--border-thick);
+    box-shadow: var(--shadow-sm);
+    margin-block: var(--space-lg);
+    display: block;
+    overflow-x: auto;
+  }
+
+  .session-content :global(thead) {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .session-content :global(tbody) {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .session-content :global(th) {
+    background: var(--color-accent-1);
+    color: var(--color-fg-on-yellow);
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-sm);
+    text-align: left;
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: var(--border-thick);
+  }
+
+  .session-content :global(td) {
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: var(--border-thin);
+    font-size: var(--text-sm);
+    vertical-align: top;
+  }
+
+  .session-content :global(tr:last-child td) {
+    border-bottom: none;
+  }
+
+  .session-content :global(tr:nth-child(even) td) {
+    background: var(--color-surface-alt);
+  }
+
   .session-content :global(h2:first-child) {
     margin-top: 0;
   }
