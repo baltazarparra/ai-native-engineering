@@ -35,7 +35,7 @@ export const sessions: SessionCardData[] = [
     translationKey: 'tools',
     order: 2,
     summary:
-      'Entenda a diferenca entre ferramenta, produto e modelo para escolher melhor IDEs, CLIs, agentes na nuvem e LLMs.',
+      'Entenda a diferença entre ferramenta, produto e modelo para escolher melhor IDEs, CLIs, agentes na nuvem e LLMs.',
     readingTime: 20,
     level: 'beginner',
     heroLabel: 'Mapa de escolha',

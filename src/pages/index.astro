@@ -31,8 +31,8 @@ function levelToBadgeVariant(level: string) {
 function levelToLabel(level: string) {
   const map = {
     beginner: 'iniciante',
-    intermediate: 'intermediario',
-    advanced: 'avancado',
+    intermediate: 'intermediário',
+    advanced: 'avançado',
   } as const;
   return map[level as keyof typeof map] || level;
 }

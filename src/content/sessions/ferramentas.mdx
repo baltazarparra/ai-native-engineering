@@ -4,7 +4,7 @@ slug: 'ferramentas'
 lang: 'pt-BR'
 translationKey: 'tools'
 order: 2
-summary: 'Entenda a diferenca entre ferramenta, produto e modelo para escolher melhor IDEs, CLIs, agentes na nuvem e LLMs.'
+summary: 'Entenda a diferença entre ferramenta, produto e modelo para escolher melhor IDEs, CLIs, agentes na nuvem e LLMs.'
 readingTime: 20
 level: 'beginner'
 tags: ['ferramentas', 'modelos', 'ide', 'cli', 'comparativo']
@@ -32,62 +32,62 @@ updatedAt: 2026-04-24
 
 ## Duas escolhas diferentes
 
-Quando alguem pergunta "qual IA eu devo usar para programar?", geralmente esta misturando duas decisoes:
+Quando alguém pergunta "qual IA eu devo usar para programar?", geralmente está misturando duas decisões:
 
-1. **Ferramenta**: onde voce trabalha. Pode ser uma IDE, uma CLI, um app na nuvem, um editor com plugin ou uma plataforma prompt-to-app.
+1. **Ferramenta**: onde você trabalha. Pode ser uma IDE, uma CLI, um app na nuvem, um editor com plugin ou uma plataforma prompt-to-app.
 
-2. **Modelo**: o cerebro que gera a resposta. Pode ser GPT, Claude, Gemini, Kimi, Llama, Gemma, DeepSeek, GLM ou outro.
+2. **Modelo**: o cérebro que gera a resposta. Pode ser GPT, Claude, Gemini, Kimi, Llama, Gemma, DeepSeek, GLM ou outro.
 
-Essas duas camadas se combinam, mas nao sao a mesma coisa. Cursor e Claude Code sao ferramentas. GPT-5.3-Codex, Claude Sonnet 4.6, Gemini 2.5 Pro e Kimi K2.6 sao modelos. ChatGPT, Claude, Gemini e Kimi sao produtos que podem embutir modelos diferentes por baixo.
+Essas duas camadas se combinam, mas não são a mesma coisa. Cursor e Claude Code são ferramentas. GPT-5.3-Codex, Claude Sonnet 4.6, Gemini 2.5 Pro e Kimi K2.6 são modelos. ChatGPT, Claude, Gemini e Kimi são produtos que podem embutir modelos diferentes por baixo.
 
-## Tres superficies de trabalho
+## Três superfícies de trabalho
 
-Toda semana aparece ferramenta nova prometendo revolucionar como voce programa. Em vez de listar tudo que existe, pense em tres superficies:
+Toda semana aparece ferramenta nova prometendo revolucionar como você programa. Em vez de listar tudo que existe, pense em três superfícies:
 
-1. **IDEs com IA integrada**: editores de codigo que embutem IA na interface de edicao. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot, Google Antigravity.
+1. **IDEs com IA integrada**: editores de código que embutem IA na interface de edição. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot, Google Antigravity.
 
-2. **CLIs de IA**: ferramentas de linha de comando que leem arquivos, executam comandos e fazem mudancas diretamente no terminal. Exemplos: Claude Code, Kimi Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+2. **CLIs de IA**: ferramentas de linha de comando que leem arquivos, executam comandos e fazem mudanças diretamente no terminal. Exemplos: Claude Code, Kimi Code, Codex CLI, OpenCode, GitHub Copilot CLI.
 
-3. **Apps e agentes na nuvem**: voce manda uma tarefa bem descrita, a ferramenta trabalha em um ambiente isolado e entrega o resultado como diff ou pull request. Exemplos: Codex App, Google Jules, Devin.
+3. **Apps e agentes na nuvem**: você manda uma tarefa bem descrita, a ferramenta trabalha em um ambiente isolado e entrega o resultado como diff ou pull request. Exemplos: Codex App, Google Jules, Devin.
 
-A fronteira esta ficando borrada. Kimi Code, por exemplo, pode aparecer no terminal, no browser local, no VS Code e em IDEs compativeis via ACP. A categoria ainda ajuda, mas a pergunta principal nao e "qual ferramenta e melhor?". A pergunta e: **qual superficie reduz mais friccao para esta tarefa?**
+A fronteira está ficando borrada. Kimi Code, por exemplo, pode aparecer no terminal, no browser local, no VS Code e em IDEs compatíveis via ACP. A categoria ainda ajuda, mas a pergunta principal não é "qual ferramenta é melhor?". A pergunta é: **qual superfície reduz mais fricção para esta tarefa?**
 
 ## O que muda entre modelos
 
-Voce nao precisa virar pesquisador de IA para trabalhar bem com LLMs. Mas alguns conceitos mudam a qualidade das suas decisoes:
+Você não precisa virar pesquisador de IA para trabalhar bem com LLMs. Mas alguns conceitos mudam a qualidade das suas decisões:
 
 ### Contexto
 
-Modelos processam texto em tokens e cada modelo tem uma janela de contexto. Em 2026, janelas vao de ~128K tokens ate ~1M+, mas um projeto medio pode ter muito mais do que isso. Contexto grande ajuda, mas nao elimina a necessidade de escolher arquivos, exemplos e restricoes relevantes.
+Modelos processam texto em tokens e cada modelo tem uma janela de contexto. Em 2026, janelas vão de ~128K tokens até ~1M+, mas um projeto médio pode ter muito mais do que isso. Contexto grande ajuda, mas não elimina a necessidade de escolher arquivos, exemplos e restrições relevantes.
 
-### Raciocinio, velocidade e custo
+### Raciocínio, velocidade e custo
 
-Modelos maiores tendem a raciocinar melhor em tarefas longas, mas tambem costumam ser mais lentos e caros. Usar o modelo mais forte para tudo pode ser desperdicio. Uma conversa exploratoria, um autocomplete e um plano de arquitetura nao exigem a mesma potencia.
+Modelos maiores tendem a raciocinar melhor em tarefas longas, mas também costumam ser mais lentos e caros. Usar o modelo mais forte para tudo pode ser desperdício. Uma conversa exploratória, um autocomplete e um plano de arquitetura não exigem a mesma potência.
 
 ### Uso de ferramentas
 
-Alguns modelos foram ajustados para operar bem com ferramentas: ler arquivos, chamar APIs, executar comandos, observar resultado e decidir o proximo passo. Isso importa muito para agentes de codigo, porque a qualidade nao esta so no texto gerado. Esta na capacidade de seguir uma tarefa por varios passos.
+Alguns modelos foram ajustados para operar bem com ferramentas: ler arquivos, chamar APIs, executar comandos, observar resultado e decidir o próximo passo. Isso importa muito para agentes de código, porque a qualidade não está só no texto gerado. Está na capacidade de seguir uma tarefa por vários passos.
 
 ### Limites reais
 
-Todo modelo alucina, tem corte de conhecimento e pode gerar codigo que parece correto mas nao resolve o problema. Benchmark e sinal, nao oraculo. Um ranking mede tarefas padronizadas; o seu projeto tem contexto, historico, restricoes e dividas proprias.
+Todo modelo alucina, tem corte de conhecimento e pode gerar código que parece correto mas não resolve o problema. Benchmark é sinal, não oráculo. Um ranking mede tarefas padronizadas; o seu projeto tem contexto, histórico, restrições e dívidas próprias.
 
 ## Por que isso importa
 
-Escolher por hype e o jeito mais rapido de se frustrar. Voce troca ferramenta, muda modelo, assina outro produto e continua com o mesmo problema: pedido vago, contexto fraco e validacao ausente.
+Escolher por hype é o jeito mais rápido de se frustrar. Você troca ferramenta, muda modelo, assina outro produto e continua com o mesmo problema: pedido vago, contexto fraco e validação ausente.
 
-Ferramenta boa reduz friccao. Modelo bom aumenta capacidade. Processo bom transforma os dois em resultado confiavel.
+Ferramenta boa reduz fricção. Modelo bom aumenta capacidade. Processo bom transforma os dois em resultado confiável.
 
 ## Exemplo aplicado
 
 Time de 4 pessoas trabalhando no mesmo projeto:
 
-**Dev junior (Ana)** usa uma IDE com IA integrada. O autocomplete, o chat inline e o diff visual ajudam a aprender os padroes do projeto sem sair do editor. Para explicar codigo e sugerir pequenas mudancas, um modelo rapido ja resolve a maior parte do dia.
+**Dev junior (Ana)** usa uma IDE com IA integrada. O autocomplete, o chat inline e o diff visual ajudam a aprender os padrões do projeto sem sair do editor. Para explicar código e sugerir pequenas mudanças, um modelo rápido já resolve a maior parte do dia.
 
-**Dev senior (Carlos)** usa uma CLI de IA no terminal. Prefere trabalhar com multiplos arquivos, rodando testes e fazendo refactors com acesso direto a git e lint. Para planejar a migracao, usa um modelo mais forte; para aplicar mudancas repetitivas, troca para um modelo mais barato e rapido.
+**Dev senior (Carlos)** usa uma CLI de IA no terminal. Prefere trabalhar com múltiplos arquivos, rodando testes e fazendo refactors com acesso direto a git e lint. Para planejar a migração, usa um modelo mais forte; para aplicar mudanças repetitivas, troca para um modelo mais barato e rápido.
 
-**QA (Marina)** usa GitHub Copilot no VS Code para acelerar testes automatizados. Quando precisa desenhar cenarios, conversa com um modelo rapido. Quando revisa risco de permissao ou casos de borda, pede uma analise mais cuidadosa.
+**QA (Marina)** usa GitHub Copilot no VS Code para acelerar testes automatizados. Quando precisa desenhar cenários, conversa com um modelo rápido. Quando revisa risco de permissão ou casos de borda, pede uma análise mais cuidadosa.
 
-**Tech lead (Pedro)** usa agente na nuvem para tarefas bem definidas que podem virar PR e uma CLI local para investigar problemas sensiveis. Ele escolhe a ferramenta pela friccao e o modelo pela dificuldade da tarefa.
+**Tech lead (Pedro)** usa agente na nuvem para tarefas bem definidas que podem virar PR e uma CLI local para investigar problemas sensíveis. Ele escolhe a ferramenta pela fricção e o modelo pela dificuldade da tarefa.
 
-Nenhum deles esta errado. Eles nao escolheram uma marca para torcer. Escolheram uma combinacao de superficie, modelo e processo.
+Nenhum deles está errado. Eles não escolheram uma marca para torcer. Escolheram uma combinação de superfície, modelo e processo.
