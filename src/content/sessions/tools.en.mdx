@@ -40,8 +40,6 @@ When someone asks "which AI should I use for programming?", they are usually mix
 
 These layers combine, but they are not the same thing. Cursor and Claude Code are tools. GPT-5.3-Codex, Claude Sonnet 4.6, Gemini 2.5 Pro, and Kimi K2.6 are models. ChatGPT, Claude, Gemini, and Kimi are products that can embed different models underneath.
 
-Simple rule: **product and tool are where you interact. Model is what generates or decides the next step.**
-
 ## Three work surfaces
 
 Every week a new tool appears promising to change how you code. Instead of listing everything, think in three surfaces:
@@ -74,34 +72,6 @@ Some models are tuned to work well with tools: reading files, calling APIs, runn
 
 Every model hallucinates, has a knowledge cutoff, and can generate code that looks correct but solves the wrong problem. A benchmark is a signal, not an oracle. A ranking measures standardized tasks; your project has its own context, history, constraints, and debt.
 
-## Task profiles, not rankings
-
-There is no single best model. There is the right model for the task.
-
-**Exploring ideas**: fast, cheaper models are usually enough. The goal is to talk, generate options, and reveal better questions, not produce final code.
-
-**Writing and reviewing daily code**: balanced models, such as Claude Sonnet or code-specialized models inside IDEs, often provide the best tradeoff.
-
-**Planning architecture or large refactors**: models with deeper reasoning and large context make more sense, especially when they need to consider many modules at once.
-
-**Analyzing long documents or many sources**: models with large context and strong synthesis, such as Gemini Pro or Claude Opus, may shine more than models focused mainly on code editing.
-
-**Privacy, cost, or control**: open-weight and open source models, such as Llama, Gemma, DeepSeek, and GLM, matter when a team needs more control over hosting, cost, privacy, or customization.
-
-Use names as a market snapshot, not as a belief system. In April 2026, GPT-5.3-Codex, Claude Sonnet 4.6, Claude Opus 4.7, Gemini 2.5 Pro, and Kimi K2.6 are important examples in this conversation. That will change.
-
-## How to choose in practice
-
-Choose the workflow first, then the model.
-
-If you are learning a project and editing small components, an AI-native IDE can remove a lot of friction. You see the diff, navigate files, and learn project patterns inside the editor.
-
-If you need to touch many files, run tests, inspect git, and iterate with commands, an AI CLI or terminal-first agent often fits better.
-
-If the task is well specified and can run in parallel without occupying your machine, a cloud agent can be better. It behaves more like delegation: you provide context, acceptance criteria, and review the PR.
-
-Then comes the model: fast for exploration, balanced for daily editing, strong for difficult planning, cheap or local when cost and privacy drive the decision.
-
 ## Why this matters
 
 Choosing by hype is the fastest way to get frustrated. You switch tools, change models, subscribe to another product, and keep the same underlying problem: vague request, weak context, and missing validation.
@@ -121,23 +91,3 @@ A team of four working on the same project:
 **Pedro, tech lead**, uses a cloud agent for well-defined tasks that can become PRs and a local CLI to investigate sensitive problems. He chooses the tool by workflow friction and the model by task difficulty.
 
 None of them is wrong. They did not choose a brand to root for. They chose a combination of surface, model, and process.
-
-## Where this breaks
-
-- **Confusing product and model**: "ChatGPT is good at code" can mean many things. Which model? Inside which product? With what context?
-
-- **Benchmark worship**: rankings help reveal trends, but they know nothing about your repository, tests, domain, or constraints.
-
-- **One-tool thinking**: IDEs, CLIs, and cloud agents are complementary. Experienced people switch based on the task.
-
-- **Endless switching**: experimenting is healthy. Switching every week can become procrastination dressed as productivity.
-
-- **Tool instead of method**: the best AI IDE does not replace a clear spec, good context, diff review, and validation.
-
-## Takeaway
-
-- Separate tool, product, and model before comparing options.
-- Choose the tool by workflow friction and the model by task difficulty.
-- Treat benchmarks as signal, not as the final answer.
-- Treat every answer as a draft until it passes review and validation.
-- The advantage is not "using the strongest AI"; it is building a combination that helps you ship software with more clarity and control.
