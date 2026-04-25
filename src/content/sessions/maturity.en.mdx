@@ -41,16 +41,6 @@ Two ideas need to work together:
 
 Separately, these ideas help. Together, they change the level of the workflow.
 
-## Why this matters
-
-A small team can tolerate more improvisation. A prototype can start from a short conversation with the model. A larger organization needs coherence. Different people need to request, execute, review, and maintain software with the same standard.
-
-Without SDD, the agent works from ambiguous intent. It may generate something polished, functional, and wrong.
-
-Without a harness, the spec becomes a document someone has to police manually. The agent may receive good instructions, but the system does not help prove that it followed them.
-
-Professional AI-native development starts when the team stops thinking only about "better prompts" and starts designing a **delivery system**.
-
 ## What SDD is
 
 SDD means **Spec-Driven Development**.
@@ -85,21 +75,6 @@ A harness can include:
 - learning loops that turn failures into rules, tests, or docs.
 
 The goal is not to trap the agent. It is to create rails. Rails do not prevent movement; they make movement predictable.
-
-## How SDD and Harness Design work together
-
-Think of it this way:
-
-| Layer      | SDD defines                             | Harness ensures                                  |
-| ---------- | --------------------------------------- | ------------------------------------------------ |
-| Intent     | problem, scope, and expected behavior   | templates and rituals to capture it consistently |
-| Context    | which files, APIs, and decisions matter | docs, rules, and repo maps the agent can access  |
-| Execution  | which changes should happen             | tools, permissions, and task plans               |
-| Validation | how we know it is correct               | tests, lint, typecheck, CI, and evidence         |
-| Governance | risk, approval, and rollback            | PRs, ownership, audit trails, and policies       |
-| Learning   | what the spec left ambiguous            | updates to rules, docs, and checks               |
-
-SDD without a harness becomes pretty documentation. A harness without SDD becomes automation without direction. A professional flow needs both.
 
 ## Applied example: enterprise SSO
 

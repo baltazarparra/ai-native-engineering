@@ -41,16 +41,6 @@ Vibe coding, a prática de construir pela conversa com o modelo, mostrou que IA 
 
 Separadas, essas ideias ajudam. Juntas, elas mudam o padrão da entrega.
 
-## Por que isso importa
-
-Em um protótipo, improviso pode ser parte do caminho. Em uma organização, improviso vira custo de coordenação. A mesma mudança pode passar por produto, engenharia, QA, segurança, suporte e liderança. Todo mundo precisa entender o que foi pedido, por que foi pedido, como será validado e quem assume o risco.
-
-Sem SDD, o agente trabalha em cima de intenção ambígua. Ele pode gerar algo plausível, funcional e errado.
-
-Sem harness, a spec vira um documento que alguém precisa policiar manualmente. O agente até recebe boas instruções, mas o sistema não ajuda a provar que elas viraram comportamento real.
-
-O fluxo profissional nasce quando o time para de pensar em "prompt bom" e começa a pensar em **sistema de entrega**.
-
 ## O que é SDD
 
 SDD significa **Spec-Driven Development**, desenvolvimento guiado por especificação.
@@ -85,21 +75,6 @@ Um harness pode incluir:
 - loops de aprendizado para transformar falhas em regras, testes ou docs.
 
 O ponto não é criar uma prisão para o agente. É criar trilhos. Bons trilhos não impedem movimento; eles tornam o movimento previsível, revisável e seguro.
-
-## Como SDD e Harness Design trabalham juntos
-
-Pense assim:
-
-| Camada      | SDD define                                      | Harness garante                                          |
-| ----------- | ----------------------------------------------- | -------------------------------------------------------- |
-| Intenção    | o problema, o escopo e o comportamento esperado | templates e rotinas para capturar isso sempre            |
-| Contexto    | quais arquivos, APIs e decisões importam        | docs, regras e mapas do repositório acessíveis ao agente |
-| Execução    | quais mudanças devem acontecer                  | ferramentas, permissões e plano de tarefas               |
-| Validação   | como saber que está correto                     | testes, lint, typecheck, CI e evidências                 |
-| Governança  | risco, aprovação e rollback                     | PRs, responsáveis claros, auditoria e políticas          |
-| Aprendizado | o que ficou ambíguo ou desatualizado            | atualização de regras, docs e checagens                  |
-
-SDD sem harness vira documento bonito. Harness sem SDD vira automação sem direção. O fluxo profissional precisa dos dois.
 
 ## Exemplo aplicado: login único corporativo
 
