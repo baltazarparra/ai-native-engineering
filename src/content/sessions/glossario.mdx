@@ -27,7 +27,7 @@ updatedAt: 2026-04-23
 
 import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid.tsx';
 
-## O app abriu no preview. E agora?
+## Fiz um app via prompt. E agora?
 
 Você entra no Lovable, Bolt, v0, Replit Agent ou alguma plataforma parecida. Digita: "cria um app pra organizar meus estudos, com login, dashboard e lista de tarefas". A ferramenta pensa, instala coisas, gera telas, cria código, abre um preview e pronto: parece software.
 
@@ -35,7 +35,7 @@ Esse momento é viciante porque dá a sensação de ter pulado meses de aprendiz
 
 Mas aqui entra a frase mais importante desta sessão: **preview não é produção**.
 
-Um app que abre no navegador ainda pode ter regra de acesso errada, segredo exposto, fluxo quebrado, código impossível de manter, dependência mal escolhida, teste inexistente e uma arquitetura que só funciona enquanto o projeto é pequeno. O flex não é gerar em 30 minutos. O flex é conseguir manter amanhã.
+Um app que abre no navegador ainda pode ter regra de acesso errada, segredo exposto, fluxo quebrado, código impossível de manter, dependência mal escolhida, teste inexistente e uma arquitetura que só funciona enquanto o projeto é pequeno.
 
 ## O que é vibe coding
 
@@ -53,34 +53,6 @@ Isso não é automaticamente ruim. Vibe coding é ótimo para:
 
 Onde começa o problema: quando alguém confunde "a IA gerou" com "está correto". Se você não entende o código, não revisou dados, não testou permissões e não sabe como fazer rollback, você ainda não é dono do software. Você só tem uma demo com autoestima.
 
-## As plataformas prompt-to-app
-
-Essas ferramentas não são só chatbots. Elas misturam modelo de linguagem, editor, terminal, preview, deploy, integrações e, às vezes, banco de dados e autenticação. A categoria é melhor descrita como **prompt-to-app**: você descreve um app, a plataforma monta uma versão funcional.
-
-### Lovable
-
-Lovable se posiciona como uma plataforma full-stack para criar, iterar e publicar aplicações web usando linguagem natural. O foco é transformar ideia em app real com frontend, backend, banco, autenticação, integrações e código que pode ser sincronizado com GitHub.
-
-Na prática: bom para MVPs, protótipos ricos, ferramentas internas e validação rápida de produto. O cuidado: quando uma plataforma cuida de muita coisa por você, também concentra muita decisão invisível. Você precisa revisar código, permissões, variáveis de ambiente, regras de dados e configurações de visibilidade.
-
-### Bolt
-
-Bolt é um agente de desenvolvimento web no navegador. Ele combina IA com um ambiente capaz de instalar pacotes, rodar servidor Node, editar arquivos, mostrar preview e publicar o projeto. A diferença principal é que a IA não só escreve trechos soltos: ela mexe no ambiente.
-
-Na prática: ótimo para protótipos front-end/full-stack em JavaScript, experimentos rápidos e aprendizado visual. O cuidado: se você pedir algo vago, ele vai escolher stack, estrutura e atalhos por você. Depois alguém vai herdar essas escolhas.
-
-### v0
-
-v0, da Vercel, começou muito associado a geração de UI e hoje se apresenta como agente para criar código real, protótipos, features e apps full-stack com prompt, integração com Vercel, GitHub e fluxos de deploy.
-
-Na prática: forte para interfaces, landing pages, dashboards, componentes e protótipos de produto. O cuidado: uma interface bonita pode esconder regra de negócio frágil. Visual polido não prova segurança, acessibilidade, performance ou manutenção.
-
-### Replit Agent, Firebase Studio e similares
-
-Replit Agent promete transformar uma descrição em projeto, configurar infraestrutura, testar e publicar. Firebase Studio oferece fluxo de prototipação com prompt multimodal, blueprint, preview, Firebase e publicação. Base44, Tempo, Emergent e outras seguem variações da mesma ideia.
-
-O padrão é o mesmo: quanto mais a plataforma empacota o caminho da ideia até o deploy, mais fácil fica começar e mais importante fica entender o que foi gerado.
-
 ## Por que isso parece funcionar tão bem
 
 Porque para protótipo a barra é outra. Um protótipo precisa mostrar intenção, não sustentar tráfego, auditoria, pagamento, LGPD, permissões finas e manutenção por dois anos.
@@ -88,94 +60,6 @@ Porque para protótipo a barra é outra. Um protótipo precisa mostrar intençã
 Também funciona porque muitos apps têm padrões repetidos: tela de login, lista, formulário, dashboard, CRUD, filtros, sidebar, tabela. Modelos viram muito código parecido durante o treino e conseguem recombinar esses padrões com velocidade absurda.
 
 Você não precisa esperar "saber tudo" para brincar com produto. Dá pra construir, quebrar, perguntar, comparar e aprender no ciclo. Só não pula a parte de entender. A IA acelera feedback. Ela não substitui fundamento.
-
-## Onde quebra
-
-### 1. Código quase certo
-
-O Stack Overflow Developer Survey 2025 mostrou que a maior frustração com ferramentas de IA é receber soluções "quase certas, mas não exatamente". Esse é o bug mais perigoso para iniciantes porque o código parece profissional.
-
-Quase certo em software pode ser totalmente errado: um teste que passa sem testar nada, uma regra de autenticação invertida, um botão bonito que não trata erro, uma query que funciona com 10 registros e morre com 10 mil.
-
-### 2. Produtividade imaginária
-
-Um estudo da METR com devs experientes em projetos open source encontrou um resultado contraintuitivo: com ferramentas de IA de início de 2025, os participantes acharam que estavam mais rápidos, mas terminaram tarefas mais devagar. O motivo não foi "IA é inútil"; foi overhead de prompt, espera, revisão e correção.
-
-Moral da história: sensação de velocidade não é métrica. O app apareceu rápido, mas talvez você só tenha movido o trabalho para debug, revisão e dívida técnica.
-
-### 3. Segurança que ninguém pediu
-
-Pesquisas sobre assistentes de código já mostraram aumento de risco quando pessoas aceitam código gerado sem entender segurança. OWASP também lista riscos comuns de sistemas com LLMs, como excesso de autonomia, vazamento de informação sensível e confiança excessiva no output.
-
-Em vibe coding, isso aparece em coisas básicas:
-
-- API key colada no prompt ou no arquivo errado;
-- banco sem regra de acesso por usuário;
-- rota de admin sem autorização real;
-- dados pessoais aparecendo em preview público;
-- agente com permissão demais para editar, publicar ou apagar.
-
-### 4. Manutenção sem dono
-
-O projeto cresce além da sua compreensão. Você pede "só adiciona pagamento", depois "agora multi-tenant", depois "coloca relatório", depois "corrige esse bug". Em algum ponto, ninguém sabe por que a arquitetura está daquele jeito.
-
-Quando a pessoa que criou não entende, o time que recebe paga a conta. Isso é dívida técnica instantânea.
-
-## A forma correta de fazer
-
-Não é parar de usar. É mudar o processo.
-
-### 1. Comece com uma mini spec
-
-Antes do prompt, escreva o básico:
-
-- quem usa;
-- qual problema resolve;
-- quais telas existem;
-- quais dados são salvos;
-- quem pode ver ou editar cada coisa;
-- quais integrações entram;
-- o que fica fora da primeira versão.
-
-Prompt sem spec vira pedido de delivery: chega alguma coisa, mas talvez não seja seu produto.
-
-### 2. Gere o protótipo
-
-Use Lovable, Bolt, v0, Replit Agent ou a ferramenta que fizer sentido. Nesta etapa, velocidade é bem-vinda. O objetivo é ver fluxo, copy, layout, estados e interações.
-
-Aqui pode "vibar". Só não confunda essa etapa com entrega final.
-
-### 3. Peça explicação do código
-
-Se você é dev júnior, esse é o hack de aprendizado: depois que a plataforma gerar, peça para ela explicar a estrutura, arquivos principais, dependências, fluxo de dados e pontos frágeis.
-
-Perguntas boas:
-
-- "Onde está a regra de autenticação?"
-- "Quais arquivos controlam acesso aos dados?"
-- "Que partes estão mockadas?"
-- "O que quebraria se tivesse 1000 usuários?"
-- "Onde eu colocaria testes?"
-
-### 4. Revise como software
-
-Antes de chamar de pronto:
-
-- rode o app localmente, quando possível;
-- revise o diff;
-- procure secrets e dados sensíveis;
-- teste login, permissões e estados de erro;
-- rode lint, typecheck e testes;
-- crie testes para o fluxo principal;
-- mande para GitHub como PR, não como fé.
-
-Se não existe revisão, ainda é vibe coding. Se existe spec, diff, teste e ownership, você está entrando em engenharia assistida por IA.
-
-### 5. Decida o destino
-
-Nem todo protótipo merece virar produto. Alguns servem para aprender. Outros servem para vender uma ideia. Outros precisam ser reconstruídos com mais cuidado.
-
-Regra prática: se envolve dinheiro, dados pessoais, login real, cliente externo ou operação do time, trate como software de produção. Aí entra processo.
 
 ## Como isso conecta com as próximas sessões
 
@@ -189,25 +73,6 @@ Nesta sessão, você está pegando vocabulário para não cair no marketing. Nas
 Use a busca abaixo como mapa de bolso. A ideia não é decorar jargão; é entender o suficiente para fazer perguntas melhores.
 
 <GlossaryCardGrid client:visible />
-
-## Exemplo aplicado
-
-Uma PM, um dev júnior e uma QA querem testar uma ideia de portal de onboarding interno.
-
-**PM**: cria uma mini spec com telas, perfis de usuário e fluxo principal. Pede para o Lovable gerar um protótipo navegável.
-
-**Dev júnior**: abre o código, pede explicação da estrutura, identifica onde estão auth, dados e componentes. Marca trechos que parecem mágicos demais para revisar com alguém mais experiente.
-
-**QA**: transforma a spec em cenários: usuário comum não vê painel admin, convite expirado falha, formulário mostra erro quando falta dado obrigatório.
-
-O protótipo ajuda o time a conversar. A spec e a validação impedem o time de tratar preview como produto.
-
-## Onde isso quebra
-
-- **Hype como identidade**: "eu sou vibe coder" não resolve bug. Use a técnica quando ela ajuda, não como personalidade profissional.
-- **Ferramenta no lugar de processo**: trocar Lovable por Bolt, v0 ou Replit não conserta pedido vago nem falta de teste.
-- **Aprendizado terceirizado**: se a IA sempre faz e você nunca entende, sua evolução trava.
-- **Deploy cedo demais**: publicar antes de validar permissões, dados e erros é transformar protótipo em risco.
 
 ## O que levar daqui
 

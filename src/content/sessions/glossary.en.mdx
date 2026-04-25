@@ -27,7 +27,7 @@ updatedAt: 2026-04-23
 
 import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid.tsx';
 
-## The app opened in preview. Now what?
+## Made an app via prompts. Now what?
 
 You open Lovable, Bolt, v0, Replit Agent, or a similar platform. You type: "create an app to organize my study routine, with login, a dashboard, and a task list". The tool thinks, installs things, generates screens, writes code, opens a preview, and suddenly it looks like software.
 
@@ -53,34 +53,6 @@ That is not automatically bad. Vibe coding is great for:
 
 The problem starts when someone confuses "AI generated it" with "it is correct". If you do not understand the code, have not reviewed data access, have not tested permissions, and do not know how to roll back, you do not own the software yet. You have a demo with confidence.
 
-## Prompt-to-app platforms
-
-These tools are not just chatbots. They mix a language model, editor, terminal, preview, deploy, integrations, and sometimes database and authentication. The category is better described as **prompt-to-app**: you describe an app, and the platform assembles a working version.
-
-### Lovable
-
-Lovable positions itself as a full-stack platform for creating, iterating, and publishing web applications using natural language. Its focus is turning an idea into a real app with frontend, backend, database, authentication, integrations, and code that can sync to GitHub.
-
-In practice: useful for MVPs, richer prototypes, internal tools, and fast product validation. The caution: when a platform handles many things for you, it also makes many invisible decisions. You still need to review code, permissions, environment variables, data rules, and visibility settings.
-
-### Bolt
-
-Bolt is a web development agent in the browser. It combines AI with an environment that can install packages, run a Node server, edit files, show a preview, and publish the project. The key difference is that AI is not only writing snippets: it can operate the environment.
-
-In practice: strong for JavaScript front-end/full-stack prototypes, quick experiments, and visual learning. The caution: if your prompt is vague, it will choose stack, structure, and shortcuts for you. Someone will inherit those choices later.
-
-### v0
-
-v0, from Vercel, started strongly associated with UI generation and now presents itself as an agent for creating real code, prototypes, features, and full-stack apps with prompts, Vercel integration, GitHub, and deploy workflows.
-
-In practice: strong for interfaces, landing pages, dashboards, components, and product prototypes. The caution: a polished UI can hide fragile business logic. Nice visuals do not prove security, accessibility, performance, or maintainability.
-
-### Replit Agent, Firebase Studio, and similar tools
-
-Replit Agent promises to turn a description into a project, configure infrastructure, test, and publish. Firebase Studio offers a prototyping flow with multimodal prompts, blueprint, preview, Firebase, and publishing. Base44, Tempo, Emergent, and others follow variations of the same idea.
-
-The pattern is the same: the more the platform packages the path from idea to deploy, the easier it is to start and the more important it becomes to understand what was generated.
-
 ## Why it feels like it works so well
 
 Because prototypes have a different bar. A prototype needs to show intent. It does not need to survive traffic, audits, payments, privacy requirements, fine-grained permissions, and two years of maintenance.
@@ -88,94 +60,6 @@ Because prototypes have a different bar. A prototype needs to show intent. It do
 It also works because many apps repeat patterns: login screen, list, form, dashboard, CRUD, filters, sidebar, table. Models have seen a lot of similar code and can recombine those patterns extremely fast.
 
 This changes the game: you do not need to wait until you "know everything" to play with product ideas. You can build, break, ask, compare, and learn in the loop. Just do not skip understanding. AI accelerates feedback. It does not replace fundamentals.
-
-## Where it breaks
-
-### 1. Almost-right code
-
-The Stack Overflow Developer Survey 2025 found that the biggest frustration with AI tools is getting solutions that are "almost right, but not quite". That is especially dangerous for beginners because the code can look professional.
-
-Almost right in software can be fully wrong: a test that passes but tests nothing, an inverted auth rule, a pretty button with no error handling, a query that works with 10 rows and dies with 10,000.
-
-### 2. Imaginary productivity
-
-A METR study with experienced open-source developers found a counterintuitive result: with early-2025 AI tools, participants believed they were faster, but finished tasks more slowly. The point was not "AI is useless"; it was the overhead of prompting, waiting, reviewing, and fixing output.
-
-Moral: feeling fast is not a metric. The app appeared quickly, but you may have moved the work into debugging, review, and technical debt.
-
-### 3. Security nobody asked for
-
-Research on coding assistants has shown higher risk when people accept generated code without understanding security. OWASP also lists common LLM application risks such as excessive agency, sensitive information disclosure, and overreliance on model output.
-
-In vibe coding, this shows up in basic ways:
-
-- an API key pasted into a prompt or the wrong file;
-- a database with no per-user access rule;
-- an admin route without real authorization;
-- personal data visible in a public preview;
-- an agent with too much permission to edit, publish, or delete.
-
-### 4. Maintenance without an owner
-
-The project grows beyond your understanding. You ask "just add payments", then "now make it multi-tenant", then "add reports", then "fix this bug". At some point, nobody knows why the architecture looks the way it does.
-
-When the person who created it does not understand it, the team that receives it pays the bill. That is instant technical debt.
-
-## The right way to do it
-
-The answer is not to stop using these tools. It is to change the process.
-
-### 1. Start with a mini spec
-
-Before the prompt, write the basics:
-
-- who uses it;
-- what problem it solves;
-- which screens exist;
-- which data gets saved;
-- who can view or edit each thing;
-- which integrations are involved;
-- what is out of scope for the first version.
-
-A prompt without a spec is a delivery order: something arrives, but it may not be your product.
-
-### 2. Generate the prototype
-
-Use Lovable, Bolt, v0, Replit Agent, or whichever tool fits the job. At this stage, speed is welcome. The goal is to inspect flow, copy, layout, states, and interactions.
-
-This is where you can vibe. Just do not confuse this stage with the final delivery.
-
-### 3. Ask for a code explanation
-
-If you are a junior dev, this is the learning move: after the platform generates code, ask it to explain the structure, main files, dependencies, data flow, and fragile points.
-
-Good questions:
-
-- "Where is the authentication rule?"
-- "Which files control data access?"
-- "Which parts are mocked?"
-- "What would break with 1,000 users?"
-- "Where would I add tests?"
-
-### 4. Review it like software
-
-Before calling it done:
-
-- run the app locally when possible;
-- review the diff;
-- look for secrets and sensitive data;
-- test login, permissions, and error states;
-- run lint, typecheck, and tests;
-- add tests for the main flow;
-- send it to GitHub as a PR, not as a leap of faith.
-
-If there is no review, it is still vibe coding. If there is a spec, diff, tests, and ownership, you are moving into AI-assisted engineering.
-
-### 5. Decide its destination
-
-Not every prototype deserves to become a product. Some are for learning. Some are for selling an idea. Some need to be rebuilt with more care.
-
-Rule of thumb: if it involves money, personal data, real login, external customers, or team operations, treat it as production software. That is where process matters.
 
 ## How this connects to the next sessions
 
@@ -189,25 +73,6 @@ In this session, you are getting the vocabulary to avoid falling for marketing. 
 Use the search below as a pocket map. The goal is not to memorize jargon; it is to understand enough to ask better questions.
 
 <GlossaryCardGrid lang="en" client:visible />
-
-## Real example
-
-A PM, a junior dev, and a QA want to test an idea for an internal onboarding portal.
-
-**PM**: writes a mini spec with screens, user roles, and the main flow. Then asks Lovable to generate a clickable prototype.
-
-**Junior dev**: opens the code, asks for an explanation of the structure, identifies where auth, data, and components live, and marks anything that feels too magical for review with someone more experienced.
-
-**QA**: turns the spec into scenarios: a regular user cannot see the admin panel, an expired invite fails, a form shows an error when required data is missing.
-
-The prototype helps the team talk. The spec and validation stop the team from treating preview as product.
-
-## Where this breaks
-
-- **Hype as identity**: "I am a vibe coder" does not fix bugs. Use the technique when it helps, not as a professional personality.
-- **Tool instead of process**: switching Lovable for Bolt, v0, or Replit does not fix vague prompts or missing tests.
-- **Outsourced learning**: if AI always does it and you never understand it, your growth stalls.
-- **Deploying too early**: publishing before validating permissions, data, and errors turns a prototype into risk.
 
 ## Takeaway
 
