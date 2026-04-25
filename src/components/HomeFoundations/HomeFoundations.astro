@@ -24,6 +24,7 @@ const content: Record<
   {
     id: string;
     badge: string;
+    subtitle: string;
     title: string;
     intro: string;
     cards: FoundationCard[];
@@ -32,6 +33,8 @@ const content: Record<
   'pt-BR': {
     id: 'fundamentos',
     badge: 'Fundamentos',
+    subtitle:
+      '* Grandes modelos de linguagem (LLM) são sistemas de IA que compreendem e geram linguagem humana através do processamento de grandes quantidades de dados',
     title: 'Três ideias antes de começar',
     intro:
       'Sem estas definições, o resto vira jargão. Guarde o mapa mental: pessoa, agente e agente de código.',
@@ -41,7 +44,7 @@ const content: Record<
         eyebrow: 'Pessoa',
         title: 'AI-Native Engineer',
         description:
-          'Profissional que usa agentes como parte normal do fluxo para transformar problemas em software, sem terceirizar julgamento.',
+          'Profissional que usa agentes como parte normal do fluxo para transformar problemas em software.',
         points: ['define problema', 'dá contexto', 'revisa e valida'],
         accent: 'yellow',
       },
@@ -50,7 +53,7 @@ const content: Record<
         eyebrow: 'Sistema',
         title: 'Agente de IA',
         description:
-          'Modelo com instruções e ferramentas, capaz de executar passos, observar resultados e ajustar o próximo movimento dentro de limites.',
+          'LLM* com instruções e ferramentas, capaz de executar passos, observar resultados e ajustar o próximo movimento dentro de limites.',
         points: ['usa ferramentas', 'segue objetivos', 'precisa de limites'],
         accent: 'blue',
       },
@@ -59,7 +62,7 @@ const content: Record<
         eyebrow: 'Especialização',
         title: 'Agente de código',
         description:
-          'Agente de IA conectado ao repositório: lê arquivos, edita código, roda comandos, executa testes e entrega diffs revisáveis.',
+          'Agente de IA integrado a sua base de código: lê seus arquivos, edita código, roda comandos, executa testes e entrega pull requests inteiras.',
         points: ['trabalha no repo', 'gera diff', 'não substitui review'],
         accent: 'green',
       },
@@ -68,6 +71,8 @@ const content: Record<
   en: {
     id: 'foundations',
     badge: 'Foundations',
+    subtitle:
+      '* Large language model (LLM) is a neural network trained on a vast amount of text for natural language processing tasks',
     title: 'Three ideas before you start',
     intro:
       'Without these definitions, the rest becomes jargon. Keep the mental map: person, agent, and coding agent.',
@@ -90,7 +95,7 @@ const content: Record<
         eyebrow: 'System',
         title: 'AI agent',
         description:
-          'Model with instructions and tools, able to take steps, observe results, and adjust its next move within defined boundaries.',
+          'LLM* with instructions and tools, able to take steps, observe results, and adjust its next move within defined boundaries.',
         points: ['uses tools', 'follows goals', 'needs boundaries'],
         accent: 'blue',
       },
@@ -118,7 +123,6 @@ const copy = content[lang];
   <div class={styles.header}>
     <Badge variant="yellow">{copy.badge}</Badge>
     <h2>{copy.title}</h2>
-    <p>{copy.intro}</p>
   </div>
 
   <div class={styles.grid}>
@@ -140,4 +144,5 @@ const copy = content[lang];
       ))
     }
   </div>
+  <small class={styles.subtitle}>{copy.subtitle}</small>
 </SectionBlock>

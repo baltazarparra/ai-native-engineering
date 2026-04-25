@@ -37,7 +37,7 @@ export const sessions: SessionCardData[] = [
     summary:
       'Entenda a diferença entre ferramenta, produto e modelo para escolher melhor IDEs, CLIs, agentes na nuvem e LLMs.',
     readingTime: 20,
-    level: 'beginner',
+    level: 'intermediate',
     heroLabel: 'Mapa de escolha',
     accent: 'green',
   },
@@ -76,7 +76,7 @@ export const sessions: SessionCardData[] = [
     summary:
       'Understand the difference between tools, products, and models so you can choose IDEs, CLIs, cloud agents, and LLMs with intent.',
     readingTime: 20,
-    level: 'beginner',
+    level: 'intermediate',
     heroLabel: 'Choice map',
     accent: 'green',
   },

@@ -25,7 +25,7 @@ interface StickerDef {
   desktopSlot: StickerSlot;
   mobileSlot?: StickerSlot;
   showOnMobile?: boolean;
-  tone?: 'default' | 'rubberDuck';
+  tone?: 'default';
 }
 
 const STICKERS: StickerDef[] = [
@@ -67,13 +67,12 @@ const STICKERS: StickerDef[] = [
     showOnMobile: true,
   },
   {
-    id: 'rubber-duck',
-    labels: { 'pt-BR': 'pato de borracha', en: 'rubber duck' },
-    visual: { kind: 'asset', src: withBase('stickers/rubber-duck.svg') },
+    id: 'duck',
+    labels: { 'pt-BR': 'pato', en: 'duck' },
+    visual: { kind: 'emoji', emoji: '🦆' },
     desktopSlot: { left: 50, top: 24, rotate: -6 },
     mobileSlot: { left: 50, top: 18, rotate: -6 },
     showOnMobile: true,
-    tone: 'rubberDuck',
   },
 ];
 
@@ -140,12 +139,7 @@ function Sticker({
   return (
     <motion.button
       type="button"
-      className={[
-        styles.sticker,
-        def.tone === 'rubberDuck' ? styles.rubberDuckSticker : '',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={styles.sticker}
       style={{
         left: `calc(${slot.left}% - var(--sticker-half))`,
         top: `calc(${slot.top}% - var(--sticker-half))`,

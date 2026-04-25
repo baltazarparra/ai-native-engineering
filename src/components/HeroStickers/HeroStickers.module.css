@@ -45,8 +45,7 @@
   line-height: 1;
   display: block;
   pointer-events: none;
-  filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 2px #fff)
-    drop-shadow(0 0 2px #fff);
+  filter: none;
 }
 
 .asset {
@@ -56,11 +55,6 @@
   object-fit: contain;
   pointer-events: none;
   user-select: none;
-}
-
-.rubberDuckSticker {
-  --sticker-size: 124px;
-  --sticker-half: 62px;
 }
 
 @media (max-width: 767px) {
@@ -73,10 +67,6 @@
     font-size: 40px;
   }
 
-  .rubberDuckSticker {
-    --sticker-size: 92px;
-    --sticker-half: 46px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

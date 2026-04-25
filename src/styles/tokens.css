@@ -140,14 +140,14 @@
   color-scheme: dark;
 
   /* graphite surfaces, clearly stepped */
-  --color-surface: #0f1115;
-  --color-surface-alt: #171a20;
-  --color-surface-raised: #1f232a;
+  --color-surface: #282c33;
+  --color-surface-alt: #2e323a;
+  --color-surface-raised: #363b44;
 
-  /* text hierarchy (cool off-white) */
-  --color-text: #dbe0e8;
-  --color-text-muted: #8c94a1;
-  --color-heading: #f2f4f8;
+  /* text hierarchy */
+  --color-text: #acb2be;
+  --color-text-muted: #b3bbc7;
+  --color-heading: #d1d5dc;
 
   /* brutalist cool ink for borders + inverted blocks + hard shadows */
   --color-ink: #edf0f5;
@@ -160,14 +160,14 @@
   --color-accent-3: #5be37a; /* neon green */
   --color-accent-4: #ff8aa0; /* coral-pink */
 
-  /* text on accents: all accents are bright on graphite, text goes dark */
-  --color-fg-on-yellow: #0f1115;
-  --color-fg-on-blue: #0f1115;
-  --color-fg-on-green: #0b0d10;
-  --color-fg-on-coral: #0f1115;
+  /* text on accents: all accents are bright, text goes dark */
+  --color-fg-on-yellow: #1e2128;
+  --color-fg-on-blue: #1e2128;
+  --color-fg-on-green: #1e2128;
+  --color-fg-on-coral: #1e2128;
 
-  /* code stays native to graphite, deeper than surface */
-  --color-code-bg: #0a0c0f;
+  /* code stays deeper than surface */
+  --color-code-bg: #1e2128;
   --color-code-fg: #edf0f5;
 
   --color-focus: #7cd7ff;

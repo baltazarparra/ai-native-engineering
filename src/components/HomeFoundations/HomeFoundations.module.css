@@ -115,6 +115,11 @@
   font-weight: var(--weight-bold);
 }
 
+.subtitle {
+  display: block;
+  margin: 1em;
+}
+
 @media (max-width: 1023px) {
   .grid {
     grid-template-columns: 1fr;
