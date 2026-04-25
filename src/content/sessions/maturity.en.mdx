@@ -67,54 +67,6 @@ In this context, a spec is not a huge PDF and it is not waterfall theatre. It is
 
 The central shift is simple: the agent does not implement "the idea that was implicit in the chat." It implements against a contract.
 
-## Anatomy of a useful spec
-
-A useful agent-facing spec usually has seven blocks.
-
-### 1. Problem and expected outcome
-
-Explain the business or user outcome, not only the technical task.
-
-Weak: "add auth".
-
-Better: "enterprise users need to sign in through the identity provider configured by their organization, without breaking email login for existing accounts".
-
-### 2. Scope and non-goals
-
-Say what is included and what is excluded. This prevents the agent from "helping too much".
-
-Example: "implement callback and error screen; do not migrate existing users; do not change billing plans".
-
-### 3. Interfaces and contracts
-
-List relevant endpoints, events, schemas, components, permissions, states, and integrations. The clearer the boundaries, the less the agent invents architecture.
-
-### 4. Acceptance criteria
-
-Acceptance criteria are tests in human language. They should be verifiable.
-
-Example: "when the provider returns a domain-not-allowed error, the user sees a recoverable message and no new user is created".
-
-### 5. Constraints
-
-Include boundaries such as "do not add a dependency", "do not change the public API", "keep Safari compatibility", or "do not persist tokens in localStorage".
-
-### 6. Validation plan
-
-Define which commands, manual checks, QA scenarios, security checks, and evidence must exist before the PR is accepted.
-
-### 7. Risks and rollback
-
-For enterprise work, the question is not only "does it work?". It is "if it fails, how do we notice and how do we roll back?".
-
-## What SDD is not
-
-SDD is not writing three pages to change button copy. It is also not freezing requirements as if nothing will change.
-
-The spec should be proportional to risk. A simple visual tweak may need a five-line spec. A change to authentication, payments, personal data, or infrastructure deserves more care.
-
-SDD does not replace judgment either. A bad spec simply produces a bad implementation with more confidence theater. The value is making intent explicit so humans and agents can review the same thing.
-
 ## What Harness Design is
 
 Harness Design is the design of the **agent operating environment**.
@@ -187,16 +139,6 @@ That is not enterprise engineering. It is a prototype in a blazer.
 
 If something fails, the team does not just ask the agent to "try again". It asks: was an acceptance criterion missing? A test? A rule? A tool? The answer becomes an improvement to the harness.
 
-## Where this breaks
-
-- **Spec theater**: writing a vague spec just to look mature. If it does not guide implementation or validation, it is not useful.
-- **Premature harnessing**: creating rules, hooks, and automations before understanding the manual flow. Automating a bad process only scales noise.
-- **Too much context**: dumping all documentation into the agent. A good harness works through maps and links, not infinite encyclopedias.
-- **Permission without boundaries**: giving broad access to sensitive tools without policy, logs, or risk-appropriate review.
-- **Surface-level validation**: running build and calling it done. Build proves compilation, not product correctness.
-- **Spec drift**: code changes, the spec does not. After a few deliveries, the contract becomes fiction.
-- **Confusing autonomy with abandonment**: good autonomy is delegation with evidence. Abandonment is accepting output without responsibility.
-
 ## How to start without bureaucracy
 
 You do not need an agent laboratory before using this.
@@ -210,11 +152,3 @@ Start small:
 5. Review the harness once per sprint or before major delivery.
 
 The goal is not bureaucracy. The goal is reducing improvisation where improvisation is expensive.
-
-## What to take with you
-
-- SDD turns intent into a verifiable contract.
-- Harness Design turns that contract into execution, validation, and governance.
-- In enterprise teams, quality comes from the system, not from one brilliant prompt.
-- The higher the risk, the more explicit the spec, context, validation, and ownership need to be.
-- The best harness is alive: it learns from failures, removes useless rules, and makes work more legible for humans and agents.

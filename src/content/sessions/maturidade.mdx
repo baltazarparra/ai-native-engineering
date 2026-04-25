@@ -67,54 +67,6 @@ Neste contexto, uma spec, ou especificação, não é um PDF gigante nem um reto
 
 A mudança central é simples: o agente não implementa "a ideia que ficou implícita na conversa". Ele implementa contra uma referência explícita, revisável e verificável.
 
-## Anatomia de uma boa spec
-
-Uma spec útil para agentes costuma ter sete blocos. Eles não precisam ser longos em toda tarefa, mas precisam estar claros.
-
-### 1. Problema e resultado esperado
-
-Explique o resultado de negócio ou de usuário, não só a tarefa técnica.
-
-Fraco: "crie autenticação".
-
-Melhor: "usuários corporativos precisam entrar via SSO, o login único configurado pela empresa, sem quebrar login por e-mail para contas existentes".
-
-### 2. Escopo e não-objetivos
-
-Diga o que entra e o que não entra. Isso evita que o agente "ajude demais".
-
-Exemplo: "implementar o callback de retorno do provedor e a tela de erro; não migrar usuários existentes; não alterar plano de cobrança".
-
-### 3. Interfaces e contratos
-
-Liste endpoints, eventos, schemas (formatos dos dados), componentes, permissões, estados e integrações relevantes. Em termos simples: deixe claras as bordas entre sistemas, telas, dados e responsabilidades. Quanto mais explícitas forem as bordas, menor a chance de o agente inventar arquitetura.
-
-### 4. Critérios de aceite
-
-Critérios de aceite são testes em linguagem humana. Eles devem ser verificáveis.
-
-Exemplo: "quando o provedor retorna erro de domínio não permitido, o usuário vê uma mensagem recuperável e nenhum usuário novo é criado".
-
-### 5. Restrições
-
-Inclua limites como "não adicionar dependência", "não mudar API pública", "manter compatibilidade com Safari", "não persistir token em localStorage".
-
-### 6. Plano de validação
-
-Defina quais comandos, testes manuais, cenários de QA, checagens de segurança e evidências precisam existir antes do pull request (PR).
-
-### 7. Riscos e rollback
-
-Para trabalho corporativo, a pergunta não é só "funciona?". É "se falhar, como percebemos e como voltamos com segurança?".
-
-## O que SDD não é
-
-SDD não é escrever três páginas para trocar um texto de botão. Também não é congelar requisitos como se nada fosse mudar.
-
-A spec precisa ser proporcional ao risco. Um ajuste visual simples pode ter uma especificação de cinco linhas. Uma mudança em autenticação, pagamento, dados pessoais ou infraestrutura merece mais cuidado.
-
-SDD também não substitui julgamento. Uma spec ruim só gera uma implementação ruim com mais confiança aparente. O valor está em tornar a intenção explícita para que humanos e agentes revisem a mesma coisa.
-
 ## O que é Harness Design
 
 Harness Design é o desenho do **ambiente operacional do agente**.
@@ -187,16 +139,6 @@ Isso não é engenharia corporativa. É uma demo vestida de entrega.
 
 Se algo falha, o time não só pede "tenta de novo". Ele pergunta: faltou critério de aceite? Faltou teste? Faltou regra? Faltou ferramenta? A resposta vira melhoria no harness.
 
-## Onde isso quebra
-
-- **Spec como teatro**: escrever uma spec vaga só para parecer maduro. Se ela não orienta implementação nem validação, não é spec útil.
-- **Harness prematuro**: criar regras, hooks e automações antes de entender o fluxo manual. Automatizar processo ruim só escala ruído.
-- **Contexto sem curadoria**: despejar toda a documentação no agente. Um bom harness funciona por mapa e links, não por enciclopédia infinita.
-- **Permissão sem fronteiras**: dar ao agente acesso amplo a ferramentas sensíveis sem política, logs ou revisão proporcional ao risco.
-- **Validação superficial**: rodar build e achar que está pronto. Build prova que compila, não que resolve o problema.
-- **Spec drift**: a especificação fica parada enquanto o código muda. Depois de algumas entregas, o contrato vira ficção.
-- **Confundir autonomia com abandono**: autonomia boa é delegação com evidência. Abandono é aceitar output sem responsabilidade.
-
 ## Como começar sem burocratizar
 
 Você não precisa montar um laboratório de agentes antes de usar isso. Comece com uma mudança real, de risco médio, boa o suficiente para revelar onde o processo atual é frágil.
@@ -210,11 +152,3 @@ Comece pequeno:
 5. Revise o harness uma vez por sprint ou por entrega importante.
 
 O objetivo não é burocracia. O objetivo é reduzir improviso onde improviso custa caro.
-
-## O que levar daqui
-
-- SDD transforma intenção em contrato verificável.
-- Harness Design transforma contrato em fluxo de execução, validação e governança.
-- Em times corporativos, qualidade vem do sistema, não da genialidade de um prompt isolado.
-- Quanto maior o risco, mais explícitos precisam ser spec, contexto, validação e responsáveis.
-- O melhor harness é vivo: aprende com erros, remove regras inúteis e torna o trabalho mais legível para humanos e agentes.
