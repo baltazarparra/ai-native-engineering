@@ -40,14 +40,17 @@ Quando alguém pergunta "qual IA eu devo usar para programar?", geralmente está
 
 Essas duas camadas se combinam, mas não são a mesma coisa. Cursor e Claude Code são ferramentas. GPT-5.3-Codex, Claude Sonnet 4.6, Gemini 2.5 Pro e Kimi K2.6 são modelos. ChatGPT, Claude, Gemini e Kimi são produtos que podem embutir modelos diferentes por baixo.
 
+A regra simples: **produto e ferramenta são onde você interage. Modelo é quem gera ou decide o próximo passo.**
+
 ## Três superfícies de trabalho
+
+Toda semana aparece ferramenta nova prometendo revolucionar como você programa. Em vez de listar tudo que existe, pense em três superfícies:
 
 1. **IDEs com IA integrada**: editores de código que embutem IA na interface de edição. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot, Google Antigravity.
 
 2. **CLIs de IA**: ferramentas de linha de comando que leem arquivos, executam comandos e fazem mudanças diretamente no terminal. Exemplos: Claude Code, Kimi Code, Codex CLI, OpenCode, GitHub Copilot CLI.
 
 3. **Apps e agentes na nuvem**: você manda uma tarefa bem descrita, a ferramenta trabalha em um ambiente isolado e entrega o resultado como diff ou pull request. Exemplos: Codex App, Google Jules, Devin.
-
 A fronteira está ficando borrada. Kimi Code, por exemplo, pode aparecer no terminal, no browser local, no VS Code e em IDEs compatíveis via ACP. A categoria ainda ajuda, mas a pergunta principal não é "qual ferramenta é melhor?". A pergunta é: **qual superfície reduz mais fricção para esta tarefa?**
 
 ## O que muda entre modelos
@@ -70,6 +73,34 @@ Alguns modelos foram ajustados para operar bem com ferramentas: ler arquivos, ch
 
 Todo modelo alucina, tem corte de conhecimento e pode gerar código que parece correto mas não resolve o problema. Benchmark é sinal, não oráculo. Um ranking mede tarefas padronizadas; o seu projeto tem contexto, histórico, restrições e dívidas próprias.
 
+## Perfis por tarefa, não ranking
+
+Não existe "o melhor modelo". Existe o modelo certo para a tarefa certa.
+
+**Explorar ideias**: modelos rápidos e baratos costumam bastar. O objetivo é conversar, gerar alternativas e revelar perguntas melhores, não produzir código final.
+
+**Escrever e revisar código do dia a dia**: modelos equilibrados, como Claude Sonnet ou modelos especializados de código dentro de IDEs, tendem a entregar bom custo-benefício.
+
+**Planejar arquitetura ou refactors grandes**: modelos com raciocínio mais profundo e janela de contexto ampla fazem mais sentido, especialmente quando precisam considerar muitos módulos ao mesmo tempo.
+
+**Analisar documentos longos ou muitas fontes**: modelos com contexto grande e boa síntese, como Gemini Pro ou Claude Opus, podem brilhar mais que modelos puramente focados em edição de código.
+
+**Privacidade, custo ou controle**: modelos open-weight ou open source, como Llama, Gemma, DeepSeek e GLM, entram quando o time precisa de mais controle sobre hospedagem, custo, privacidade ou customização.
+
+Use nomes como retrato de mercado, não como religião. Em abril de 2026, GPT-5.3-Codex, Claude Sonnet 4.6, Claude Opus 4.7, Gemini 2.5 Pro e Kimi K2.6 são exemplos importantes nesta conversa. Isso vai mudar.
+
+## Como escolher na pratica
+
+Escolha primeiro o fluxo, depois o modelo.
+
+Se você está aprendendo um projeto e editando componentes pequenos, uma IDE com IA integrada pode reduzir muito atrito. Você vê o diff, navega pelos arquivos e aprende o padrão do projeto dentro do editor.
+
+Se você precisa mexer em muitos arquivos, rodar testes, inspecionar git e iterar com comandos, uma CLI de IA ou agente terminal-first costuma encaixar melhor.
+
+Se a tarefa está bem especificada e pode rodar em paralelo sem ocupar sua máquina, um agente na nuvem pode ser melhor. Ele funciona mais como delegação: você entrega contexto, critério de aceite e revisa o PR.
+
+Depois vem o modelo: rápido para explorar, equilibrado para edição diária, forte para planejamento difícil, barato ou local quando custo e privacidade mandam.
+
 ## Por que isso importa
 
 Escolher por hype é o jeito mais rápido de se frustrar. Você troca ferramenta, muda modelo, assina outro produto e continua com o mesmo problema: pedido vago, contexto fraco e validação ausente.
@@ -82,10 +113,30 @@ Time de 4 pessoas trabalhando no mesmo projeto:
 
 **Dev junior (Ana)** usa uma IDE com IA integrada. O autocomplete, o chat inline e o diff visual ajudam a aprender os padrões do projeto sem sair do editor. Para explicar código e sugerir pequenas mudanças, um modelo rápido já resolve a maior parte do dia.
 
-**Dev senior (Carlos)** usa uma CLI de IA no terminal. Prefere trabalhar com múltiplos arquivos, rodando testes e fazendo refactors com acesso direto a git e lint. Para planejar a migração, usa um modelo mais forte; para aplicar mudanças repetitivas, troca para um modelo mais barato e rápido.
+**Dev sênior (Carlos)** usa uma CLI de IA no terminal. Prefere trabalhar com múltiplos arquivos, rodando testes e fazendo refactors com acesso direto a git e lint. Para planejar a migração, usa um modelo mais forte; para aplicar mudanças repetitivas, troca para um modelo mais barato e rápido.
 
 **QA (Marina)** usa GitHub Copilot no VS Code para acelerar testes automatizados. Quando precisa desenhar cenários, conversa com um modelo rápido. Quando revisa risco de permissão ou casos de borda, pede uma análise mais cuidadosa.
 
 **Tech lead (Pedro)** usa agente na nuvem para tarefas bem definidas que podem virar PR e uma CLI local para investigar problemas sensíveis. Ele escolhe a ferramenta pela fricção e o modelo pela dificuldade da tarefa.
 
 Nenhum deles está errado. Eles não escolheram uma marca para torcer. Escolheram uma combinação de superfície, modelo e processo.
+
+## Onde isso quebra
+
+- **Confundir produto com modelo**: "ChatGPT é bom em código" pode significar muita coisa. Qual modelo? Em qual produto? Com qual contexto?
+
+- **Adoração de benchmark**: rankings ajudam a perceber tendência, mas não sabem nada sobre seu repositório, seus testes, seu domínio ou suas restrições.
+
+- **Pensamento de ferramenta única**: IDE, CLI e agente na nuvem são complementares. Profissionais experientes alternam conforme a tarefa.
+
+- **Troca infinita**: experimentar é saudável. Trocar toda semana pode virar procrastinação com cara de produtividade.
+
+- **Ferramenta no lugar de método**: a melhor IDE com IA não substitui especificação clara, contexto bem dado, revisão de diff e validação.
+
+## O que levar daqui
+
+- Separe ferramenta, produto e modelo antes de comparar opções.
+- Escolha a ferramenta pela fricção do workflow e o modelo pela dificuldade da tarefa.
+- Use benchmarks como sinal, não como resposta final.
+- Trate toda resposta como rascunho até passar por revisão e validação.
+- O diferencial não é "usar a IA mais forte"; é montar uma combinação que ajuda você a entregar software com mais clareza e controle.
