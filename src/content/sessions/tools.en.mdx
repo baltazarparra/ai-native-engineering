@@ -5,7 +5,7 @@ lang: 'en'
 translationKey: 'tools'
 order: 2
 summary: 'Understand the difference between tools, products, and models so you can choose IDEs, CLIs, cloud agents, and LLMs with intent.'
-readingTime: 20
+readingTime: 28
 level: 'intermediate'
 tags: ['tools', 'models', 'ide', 'cli', 'comparison']
 heroLabel: 'Choice map'
@@ -27,7 +27,7 @@ references:
     'meta-llama-docs',
     'vellum-llm-leaderboard',
   ]
-updatedAt: 2026-04-24
+updatedAt: 2026-05-04
 ---
 
 ## Two different choices
@@ -40,7 +40,11 @@ When someone asks "which AI should I use for programming?", they are usually mix
 
 These layers combine, but they are not the same thing. Cursor and Claude Code are tools. GPT-5.3-Codex, Claude Sonnet 4.6, Gemini 2.5 Pro, and Kimi K2.6 are models. ChatGPT, Claude, Gemini, and Kimi are products that can embed different models underneath.
 
+The simple rule: **product and tool are where you interact. Model is who generates or decides the next step.**
+
 ## Three work surfaces
+
+New tools appear every week promising to revolutionize how you code. Instead of listing everything that exists, think in three surfaces:
 
 1. **AI-native IDEs**: code editors with AI built into the editing experience. Examples: Cursor, Windsurf, VS Code with GitHub Copilot, Google Antigravity.
 
@@ -56,7 +60,7 @@ You do not need to become an AI researcher to work well with LLMs. But a few con
 
 ### Context
 
-Models process text as tokens, and each model has a context window. In 2026, windows range from ~128K tokens to ~1M+, but a medium software project can contain much more than that. Large context helps, but it does not remove the need to choose relevant files, examples, and constraints.
+Models process text as tokens, and each model has a context window. In 2026, windows range from ~128K tokens to ~1M+, but a medium software project can contain much more than that. Although context helps, it does not remove the need to choose relevant files, examples, and constraints.
 
 ### Reasoning, speed, and cost
 
@@ -69,6 +73,34 @@ Some models are tuned to work well with tools: reading files, calling APIs, runn
 ### Real limits
 
 Every model hallucinates, has a knowledge cutoff, and can generate code that looks correct but solves the wrong problem. A benchmark is a signal, not an oracle. A ranking measures standardized tasks; your project has its own context, history, constraints, and debt.
+
+## Task profiles, not rankings
+
+There is no "best model". There is the right model for the right task.
+
+**Exploring ideas**: fast and cheap models are usually enough when the goal is to brainstorm, generate alternatives, and surface better questions — not to produce final code.
+
+**Writing and reviewing everyday code**: balanced models, such as Claude Sonnet or specialized coding models inside IDEs, tend to deliver good cost-effectiveness.
+
+**Planning architecture or large refactors**: models with deeper reasoning and wide context windows make more sense, especially when they need to consider many modules at once.
+
+**Analyzing long documents or many sources**: models with large context and strong synthesis, such as Gemini Pro or Claude Opus, can outperform models focused purely on code editing.
+
+**Privacy, cost, or control**: open-weight or open-source models, such as Llama, Gemma, DeepSeek, and GLM, come in when the team needs more control over hosting, cost, privacy, or customization.
+
+Use model names as a market snapshot, not a religion. In April 2026, GPT-5.3-Codex, Claude Sonnet 4.6, Claude Opus 4.7, Gemini 2.5 Pro, and Kimi K2.6 are relevant examples in this conversation. That will change.
+
+## How to choose in practice
+
+Choose the workflow first, then the model.
+
+If you are learning a project and editing small components, an AI-native IDE can significantly reduce friction. You see the diff, navigate files, and learn project patterns without leaving the editor.
+
+If you need to work across many files, run tests, inspect git history, and iterate with commands, an AI CLI or terminal-first agent tends to fit better.
+
+If the task is well specified and can run in parallel without tying up your machine, a cloud agent may be the better choice. It works more like delegation: you provide context, acceptance criteria, and review the PR.
+
+Then comes the model: fast to explore, balanced for daily editing, strong for hard planning, cheap or local when cost and privacy are the priority.
 
 ## Why this matters
 
@@ -88,4 +120,24 @@ A team of four working on the same project:
 
 **Pedro, tech lead**, uses a cloud agent for well-defined tasks that can become PRs and a local CLI to investigate sensitive problems. He chooses the tool by workflow friction and the model by task difficulty.
 
-None of them is wrong. They did not choose a brand to root for. They chose a combination of surface, model, and process.
+None of them is wrong. They did not choose a brand to be a fan of. They chose a combination of surface, model, and process.
+
+## Where it breaks
+
+- **Confusing product with model**: "ChatGPT is good at code" can mean many things. Which model? In which product? With what context?
+
+- **Benchmark worship**: rankings help spot trends, but they know nothing about your repository, your tests, your domain, or your constraints.
+
+- **Single-tool thinking**: IDE, CLI, and cloud agent are complementary. Experienced practitioners switch based on the task.
+
+- **Endless switching**: experimenting is healthy. Switching every week can turn into procrastination dressed as productivity.
+
+- **Tool instead of method**: the best AI IDE does not replace a clear specification, good context, diff review, and validation.
+
+## Takeaway
+
+- Separate tool, product, and model before comparing options.
+- Choose the tool by workflow friction and the model by task difficulty.
+- Use benchmarks as a signal, not a final answer.
+- Treat every response as a draft until it has passed review and validation.
+- The differentiator is not "using the most powerful AI"; it is building a combination that helps you deliver software with more clarity and control.

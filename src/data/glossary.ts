@@ -16,11 +16,11 @@ export const glossary: GlossaryTerm[] = [
     id: 'llm',
     term: 'LLM',
     simpleDefinition:
-      'Um programa de computador treinado pra ler e escrever texto. Você manda uma pergunta, ele gera uma resposta.',
+      'Um programa de computador treinado para ler e escrever texto. Você manda uma pergunta, ele gera uma resposta.',
     technicalDefinition:
       'Large Language Model. Rede neural com bilhões de parâmetros, treinada em grandes volumes de texto, que gera saída token a token com base em probabilidade condicional sobre a entrada.',
     example:
-      'Quando você pede pro ChatGPT explicar um bug, o LLM por trás (GPT-4o) processa seu texto e gera uma resposta palavra por palavra.',
+      'Quando você pede ao ChatGPT para explicar um bug, o LLM por trás (GPT-4o) processa seu texto e gera uma resposta palavra por palavra.',
     commonMistake:
       'Achar que LLM é sinônimo de ChatGPT. ChatGPT é um produto. GPT-4o é o LLM dentro dele. São coisas diferentes.',
     relatedTerms: ['modelo', 'token', 'inferencia', 'contexto'],
@@ -41,7 +41,7 @@ export const glossary: GlossaryTerm[] = [
   {
     id: 'inferencia',
     term: 'Inferência',
-    simpleDefinition: 'O processo de pedir pro modelo gerar uma resposta.',
+    simpleDefinition: 'O processo de pedir ao modelo para gerar uma resposta.',
     technicalDefinition:
       'Execução do modelo sobre uma entrada (prompt) para gerar uma saída (completion). Consome recursos computacionais e é cobrada por token processado na maioria das APIs.',
     example:
@@ -60,7 +60,7 @@ export const glossary: GlossaryTerm[] = [
     example:
       'A frase "Bom dia" pode virar 2-3 tokens. Um arquivo de 500 linhas pode ter milhares de tokens (~3-4 caracteres por token em português).',
     commonMistake:
-      'Ignorar a contagem de tokens. Se você manda um arquivo gigante pro modelo e ele "esquece" o começo, provavelmente estourou a janela de contexto.',
+      'Ignorar a contagem de tokens. Se você manda um arquivo gigante para o modelo e ele "esquece" o começo, provavelmente estourou a janela de contexto.',
     relatedTerms: ['contexto', 'llm', 'inferencia'],
   },
   {
@@ -82,7 +82,7 @@ export const glossary: GlossaryTerm[] = [
     id: 'prompt',
     term: 'Prompt',
     simpleDefinition:
-      'O texto que você manda pro modelo. Pode ser uma pergunta, um pedido, uma instrução, ou tudo junto.',
+      'O texto que você manda para o modelo. Pode ser uma pergunta, um pedido, uma instrução, ou tudo junto.',
     technicalDefinition:
       'Entrada textual fornecida ao modelo para gerar uma completion. Pode incluir instruções, exemplos (few-shot), restrições e formato esperado.',
     example:
@@ -300,7 +300,7 @@ export const glossary: GlossaryTerm[] = [
     example:
       'Cursor é uma IDE com IA embutida. VS Code com Copilot vira uma IDE com IA via plugin.',
     commonMistake:
-      'Achar que IDE com IA é automaticamente melhor que terminal com IA. São interfaces diferentes pra workflows diferentes. Nenhuma é universalmente superior.',
+      'Achar que IDE com IA é automaticamente melhor que terminal com IA. São interfaces diferentes para workflows diferentes. Nenhuma é universalmente superior.',
     relatedTerms: ['cli', 'autocomplete', 'contexto-de-codigo'],
   },
   {
@@ -313,14 +313,14 @@ export const glossary: GlossaryTerm[] = [
     example:
       'Em vez de clicar em menus, você digita "claude code review src/api.ts" no terminal. A IA lê o arquivo, analisa e responde ali mesmo.',
     commonMistake:
-      'Achar que CLI é só pra devs hardcore. CLIs de IA modernas são conversacionais e acessíveis. A curva de entrada é menor do que parece.',
+      'Achar que CLI é só para devs hardcore. CLIs de IA modernas são conversacionais e acessíveis. A curva de entrada é menor do que parece.',
     relatedTerms: ['ide', 'agente-de-codigo'],
   },
   {
     id: 'autocomplete',
     term: 'Autocomplete',
     simpleDefinition:
-      'Quando a IA sugere o próximo trecho de código enquanto você digita. Tipo o autocomplete do celular, mas pra código.',
+      'Quando a IA sugere o próximo trecho de código enquanto você digita. Tipo o autocomplete do celular, mas para código.',
     technicalDefinition:
       'Sistema de completamento de código que usa LLMs para prever e sugerir trechos baseado no contexto do arquivo atual, arquivos abertos e histórico de edição.',
     example:
@@ -333,13 +333,13 @@ export const glossary: GlossaryTerm[] = [
     id: 'contexto-de-codigo',
     term: 'Contexto de código',
     simpleDefinition:
-      'As informações sobre seu projeto que a IA usa pra entender o que você está fazendo: arquivos abertos, estrutura de pastas, dependências.',
+      'As informações sobre seu projeto que a IA usa para entender o que você está fazendo: arquivos abertos, estrutura de pastas, dependências.',
     technicalDefinition:
       'Conjunto de informações do repositório fornecido ao modelo como parte do contexto. Ferramentas diferentes coletam contexto de código de formas diferentes.',
     example:
       'Quando o Cursor sugere código, ele olha não só o arquivo atual mas também os imports, tipos definidos em outros arquivos e padrões do projeto. Quanto melhor o contexto, melhor a sugestão.',
     commonMistake:
-      'Achar que a IA "conhece" todo seu projeto automaticamente. Cada ferramenta tem limites de quanto contexto consegue incluir. Projetos grandes precisam de curadoria do que vai pro contexto.',
+      'Achar que a IA "conhece" todo seu projeto automaticamente. Cada ferramenta tem limites de quanto contexto consegue incluir. Projetos grandes precisam de curadoria do que vai para o contexto.',
     relatedTerms: ['contexto', 'ide', 'autocomplete'],
   },
 
@@ -348,11 +348,11 @@ export const glossary: GlossaryTerm[] = [
     id: 'agente',
     term: 'Agente',
     simpleDefinition:
-      'Um programa que usa IA pra tomar decisões e executar ações sozinho, não só responder perguntas.',
+      'Um programa que usa IA para tomar decisões e executar ações sozinho, não só responder perguntas.',
     technicalDefinition:
       'Sistema que combina um LLM com ferramentas (tool use) e lógica de controle para executar tarefas de forma autônoma.',
     example:
-      'Você pede "refatora esse módulo pra usar o padrão repository". O agente lê os arquivos, planeja as mudanças, edita o código, roda os testes e reporta o resultado. Tudo sem você intervir em cada passo.',
+      'Você pede "refatora esse módulo para usar o padrão repository". O agente lê os arquivos, planeja as mudanças, edita o código, roda os testes e reporta o resultado. Tudo sem você intervir em cada passo.',
     commonMistake:
       'Confundir chatbot com agente. Um chatbot responde perguntas. Um agente executa tarefas. A diferença é autonomia e acesso a ferramentas.',
     relatedTerms: ['agente-de-codigo', 'llm', 'harness'],
@@ -374,7 +374,7 @@ export const glossary: GlossaryTerm[] = [
     id: 'mcp',
     term: 'MCP',
     simpleDefinition:
-      'Um padrão que permite que ferramentas de IA se conectem a serviços externos de forma organizada. Tipo um USB pra IA.',
+      'Um padrão que permite que ferramentas de IA se conectem a serviços externos de forma organizada. Tipo um USB para IA.',
     technicalDefinition:
       'Model Context Protocol. Protocolo aberto que padroniza como aplicações de IA se conectam a fontes de dados e ferramentas externas. Define um formato comum para servidores de contexto que podem ser consumidos por qualquer cliente compatível.',
     example:
@@ -389,7 +389,7 @@ export const glossary: GlossaryTerm[] = [
     simpleDefinition:
       'O sistema completo de trabalho de um agente de IA: instruções, ferramentas, regras, contexto. É o "ambiente" onde o agente opera.',
     technicalDefinition:
-      'Camada de orquestração que define como um agente de código opera. Não é um padrão universal; o termo é usado aqui pra descrever essa camada.',
+      'Camada de orquestração que define como um agente de código opera. Não é um padrão universal; o termo é usado aqui para descrever essa camada.',
     example:
       'Um harness pode incluir: um AGENTS.md com regras do projeto (CLAUDE.md no Claude Code), um pre-commit hook que roda testes, um system prompt que define tom e padrões, e acesso a ferramentas específicas via MCP.',
     commonMistake:
