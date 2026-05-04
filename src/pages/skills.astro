@@ -353,6 +353,7 @@ skills installs the skill into the agent</code></pre>
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);
+    min-width: 0;
   }
 
   .section-copy {
@@ -360,6 +361,7 @@ skills installs the skill into the agent</code></pre>
     flex-direction: column;
     gap: var(--space-md);
     max-width: 72ch;
+    min-width: 0;
   }
 
   .section-copy h2,
@@ -374,6 +376,7 @@ skills installs the skill into the agent</code></pre>
 
   .card-grid {
     margin-block: var(--space-sm);
+    min-width: 0;
   }
 
   .after-grid {
@@ -384,6 +387,7 @@ skills installs the skill into the agent</code></pre>
   .share-options {
     display: grid;
     gap: var(--space-lg);
+    min-width: 0;
   }
 
   .share-option {
@@ -392,6 +396,9 @@ skills installs the skill into the agent</code></pre>
     background: var(--color-white);
     box-shadow: var(--shadow-md);
     padding: var(--space-lg);
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .share-option h3 {
@@ -418,6 +425,7 @@ skills installs the skill into the agent</code></pre>
     display: grid;
     gap: var(--space-xl);
     align-items: center;
+    min-width: 0;
   }
 
   .intro-grid h2 {
@@ -450,6 +458,8 @@ skills installs the skill into the agent</code></pre>
     border-radius: var(--radius-md);
     background: var(--color-white);
     box-shadow: var(--shadow-md);
+    min-width: 0;
+    max-width: 100%;
   }
 
   .code-card,
@@ -460,9 +470,17 @@ skills installs the skill into the agent</code></pre>
   .code-card pre,
   .flow-card pre {
     margin: 0;
+    max-width: 100%;
     overflow-x: auto;
+    white-space: pre;
     font-family: var(--font-mono);
     line-height: var(--leading-relaxed);
+  }
+
+  .code-card code,
+  .flow-card code {
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .skill-card {
@@ -474,6 +492,7 @@ skills installs the skill into the agent</code></pre>
   .skill-copy {
     display: grid;
     gap: var(--space-lg);
+    min-width: 0;
   }
 
   .skill-copy h3 {
@@ -495,6 +514,7 @@ skills installs the skill into the agent</code></pre>
   .reference-list {
     padding-left: var(--space-lg);
     line-height: var(--leading-relaxed);
+    min-width: 0;
   }
 
   .reference-list li {
