@@ -9,7 +9,7 @@ interface Props {
   title: string;
 }
 
-const { lang, title } = Astro.props;
+const { lang, slug, title } = Astro.props;
 const labels = ui[lang].discussion;
 
 const repo =
@@ -19,6 +19,7 @@ const category = import.meta.env.PUBLIC_GISCUS_CATEGORY || 'General';
 const categoryId =
   import.meta.env.PUBLIC_GISCUS_CATEGORY_ID || 'DIC_kwDOSDoWVM4C68fs';
 const giscusLang = import.meta.env.PUBLIC_GISCUS_LANG || 'pt';
+const discussionTerm = `page:${lang}:${slug}`;
 const discussionsUrl = `https://github.com/${repo}/discussions`;
 const isConfigured = Boolean(repo && repoId && category && categoryId);
 
@@ -74,8 +75,9 @@ const themeSyncScript = `
             data-repo-id={repoId}
             data-category={category}
             data-category-id={categoryId}
-            data-mapping="pathname"
-            data-strict="0"
+            data-mapping="specific"
+            data-term={discussionTerm}
+            data-strict="1"
             data-reactions-enabled="1"
             data-emit-metadata="0"
             data-input-position="bottom"

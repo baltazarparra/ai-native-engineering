@@ -65,7 +65,9 @@ npm run format     # Prettier
 Session pages include a Giscus-powered discussion area backed by GitHub
 Discussions. The default embed is configured for
 `baltazarparra/ai-native-engineering` using the `General` discussion category
-and `pathname` mapping.
+and explicit per-page terms, such as `page:pt-BR:glossario`, instead of URL
+pathnames. This keeps local preview, GitHub Pages, and client-side navigation
+from accidentally sharing a discussion thread.
 
 To reconfigure the embedded comments:
 
