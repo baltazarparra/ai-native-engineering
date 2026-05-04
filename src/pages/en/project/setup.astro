@@ -139,8 +139,8 @@ IMPORTANT RULES
   </p>
 
   <p>
-    That is why this chapter starts manually on purpose. Before bringing AI
-    into the loop, you create the repository on GitHub yourself. That helps you
+    That is why this chapter starts manually on purpose. Before bringing AI into
+    the loop, you create the repository on GitHub yourself. That helps you
     understand where the project begins, what the official URL is, and how your
     local folder connects to the remote.
   </p>
@@ -152,13 +152,12 @@ IMPORTANT RULES
     <li>Pick a short, clear name such as <code>deezer-explorer</code>.</li>
     <li>Add a simple one-line description.</li>
     <li>
-      Choose <strong>Public</strong> if you want to publish later on GitHub
-      Pages.
+      Choose <strong>Public</strong> if you want to publish later on GitHub Pages.
     </li>
     <li>
       Leave <strong>Add a README file</strong>, <strong>Add .gitignore</strong>,
-      and <strong>Choose a license</strong> unchecked. We will create those
-      files later, once the project is open and we have better context.
+      and <strong>Choose a license</strong> unchecked. We will create those files
+      later, once the project is open and we have better context.
     </li>
     <li>Click <strong>Create repository</strong>.</li>
   </ol>
@@ -176,9 +175,7 @@ IMPORTANT RULES
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
-    <p>
-      The repository exists on GitHub and you can see its clone URL.
-    </p>
+    <p>The repository exists on GitHub and you can see its clone URL.</p>
   </div>
 
   <hr />
@@ -187,8 +184,8 @@ IMPORTANT RULES
 
   <p>
     With the repository created, the next step is bringing that project to your
-    machine. On GitHub, click <strong>Code</strong>, copy the HTTPS URL, and
-    run these commands in your terminal.
+    machine. On GitHub, click <strong>Code</strong>, copy the HTTPS URL, and run
+    these commands in your terminal.
   </p>
 
   <div class="prompt-example prompt-good">
@@ -201,8 +198,8 @@ git status</code></pre>
   </div>
 
   <p>
-    If the repository is empty, that is fine: <code>git clone</code> will still
-    create the folder, and <code>git status</code> may show something like
+    If the repository is empty, that is fine: <code>git clone</code> will still create
+    the folder, and <code>git status</code> may show something like
     <code>No commits yet</code>. What matters here is confirming that your local
     folder points to the right GitHub repository.
   </p>
@@ -210,8 +207,8 @@ git status</code></pre>
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      The repository is cloned on your computer, <code>git status</code> works,
-      and <code>git remote -v</code> shows <code>origin</code>.
+      The repository is cloned on your computer, <code>git status</code> works, and
+      <code>git remote -v</code> shows <code>origin</code>.
     </p>
   </div>
 
@@ -257,10 +254,10 @@ git status</code></pre>
   </p>
 
   <p>
-    One important detail: only <code>PLAN.md</code> starts as an initial draft
-    that we refine in the next chapter. <code>README.md</code> and
-    <code>AGENTS.md</code> or <code>CLAUDE.md</code> should already come out as
-    genuinely useful project documents.
+    One important detail: only <code>PLAN.md</code> starts as an initial draft that
+    we refine in the next chapter. <code>README.md</code> and
+    <code>AGENTS.md</code> or <code>CLAUDE.md</code> should already come out as genuinely
+    useful project documents.
   </p>
 
   <p>These prompts already carry this product context:</p>
@@ -270,7 +267,9 @@ git status</code></pre>
     <li>it is a responsive static website</li>
     <li>the user searches artists, sees albums, and opens album details</li>
     <li>the data source is the public Deezer API</li>
-    <li>the core endpoints are artist search, albums by artist, and album by ID</li>
+    <li>
+      the core endpoints are artist search, albums by artist, and album by ID
+    </li>
     <li>those public catalog endpoints work without end-user login</li>
     <li>the final deploy target is GitHub Pages</li>
     <li>the project needs to account for the browser CORS problem</li>
@@ -290,8 +289,8 @@ git status</code></pre>
   <h3>1. Base prompt for PLAN.md</h3>
 
   <p>
-    This is the first prompt. It defines the product scope, the constraints,
-    and the planning expectation without asking for implementation yet.
+    This is the first prompt. It defines the product scope, the constraints, and
+    the planning expectation without asking for implementation yet.
   </p>
 
   <CopyPromptBlock client:visible content={planPrompt} lang={lang} />
@@ -316,9 +315,9 @@ git status</code></pre>
   <CopyPromptBlock client:visible content={agentsPrompt} lang={lang} />
 
   <p>
-    Read each file as soon as it is generated. If there is a command that does
-    not exist, invented scope, vague promises, or a technical decision you do
-    not understand, ask for an adjustment before moving to the next one. That
+    ⚠️ Read each file as soon as it is generated. If there is a command that
+    does not exist, invented scope, vague promises, or a technical decision you
+    do not understand, ask for an adjustment before moving to the next one. That
     care saves a lot of correction later.
   </p>
 
@@ -329,23 +328,24 @@ git status</code></pre>
   <p>
     This step is optional, but very worth it. <strong>GitHub CLI</strong>
     (<code>gh</code>) lets you access GitHub directly from the terminal:
-    authenticate your account, open repositories, inspect issues, work with
-    pull requests, and give the agent more autonomy while it operates on the
-    project.
+    authenticate your account, open repositories, inspect issues, work with pull
+    requests, and give the agent more autonomy while it operates on the project.
   </p>
 
   <p>The most common installation paths are:</p>
 
   <ul>
     <li>
-      <strong>macOS:</strong> <code>brew install gh</code>
+      <strong>macOS:</strong>
+      <code>brew install gh</code>
     </li>
     <li>
-      <strong>Windows:</strong> <code>winget install --id GitHub.cli</code>
+      <strong>Windows:</strong>
+      <code>winget install --id GitHub.cli</code>
     </li>
     <li>
-      <strong>Linux:</strong> use your distribution's official packages from
-      the GitHub CLI documentation
+      <strong>Linux:</strong> use your distribution's official packages from the GitHub
+      CLI documentation
     </li>
   </ul>
 
@@ -371,16 +371,15 @@ gh auth status</code></pre>
 
   <p>
     This command configures Git to use GitHub CLI credentials. If everything
-    worked, <code>gh auth status</code> should show your account as
-    authenticated.
+    worked, <code>gh auth status</code> should show your account as authenticated.
   </p>
 
   <p>
     If you finished this chapter, you already handled the core setup: you
     created the remote repository, connected the local copy, opened the project
     in your tool, and recorded the rules and the initial plan. In the next
-    chapter, we will use that base to refine <code>PLAN.md</code> and break the
-    execution into small phases.
+    chapter, we will use that base to refine <code>PLAN.md</code> and break the execution
+    into small phases.
   </p>
 
   <div class="checkpoint">

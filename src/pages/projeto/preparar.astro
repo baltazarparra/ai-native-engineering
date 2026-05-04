@@ -139,10 +139,10 @@ REGRAS IMPORTANTES
   </p>
 
   <p>
-    Por isso, o começo é manual de propósito. Antes de envolver a IA, você
-    mesmo cria o repositório no GitHub. Isso ajuda a entender onde o projeto
-    nasce, qual é a URL oficial dele e como a sua pasta local vai se conectar
-    ao remoto.
+    Por isso, o começo é manual de propósito. Antes de envolver a IA, você mesmo
+    cria o repositório no GitHub. Isso ajuda a entender onde o projeto nasce,
+    qual é a URL oficial dele e como a sua pasta local vai se conectar ao
+    remoto.
   </p>
 
   <p>Abra o GitHub no navegador e siga este passo a passo:</p>
@@ -158,8 +158,8 @@ REGRAS IMPORTANTES
     </li>
     <li>
       Deixe <strong>Add a README file</strong>, <strong>Add .gitignore</strong> e
-      <strong>Choose a license</strong> desmarcados. Vamos criar esses arquivos
-      depois, já com o projeto aberto e com mais contexto.
+      <strong>Choose a license</strong> desmarcados. Vamos criar esses arquivos depois,
+      já com o projeto aberto e com mais contexto.
     </li>
     <li>Clique em <strong>Create repository</strong>.</li>
   </ol>
@@ -202,8 +202,8 @@ git status</code></pre>
   </div>
 
   <p>
-    Se o repositório estiver vazio, isso é normal: o <code>git clone</code> vai
-    criar a pasta e o <code>git status</code> pode mostrar algo como
+    Se o repositório estiver vazio, isso é normal: o <code>git clone</code> vai criar
+    a pasta e o <code>git status</code> pode mostrar algo como
     <code>No commits yet</code>. O importante aqui é confirmar que a pasta local
     está ligada ao repositório certo no GitHub.
   </p>
@@ -222,15 +222,15 @@ git status</code></pre>
 
   <p>
     Com a pasta local pronta, abra esse diretório na ferramenta em que você vai
-    trabalhar: Cursor, Windsurf, VS Code, Claude Code ou outra parecida. O
-    ponto importante aqui é abrir a raiz do projeto, não arquivos soltos.
+    trabalhar: Cursor, Windsurf, VS Code, Claude Code ou outra parecida. O ponto
+    importante aqui é abrir a raiz do projeto, não arquivos soltos.
   </p>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      A pasta clonada está aberta na sua ferramenta e o agente consegue
-      enxergar a raiz do projeto.
+      A pasta clonada está aberta na sua ferramenta e o agente consegue enxergar
+      a raiz do projeto.
     </p>
   </div>
 
@@ -258,10 +258,10 @@ git status</code></pre>
   </p>
 
   <p>
-    Aqui tem um detalhe importante: só o <code>PLAN.md</code> nasce como plano
-    inicial e será refinado no próximo capítulo. O <code>README.md</code> e o
-    <code>AGENTS.md</code> ou <code>CLAUDE.md</code> já devem sair úteis de
-    verdade para o projeto real.
+    Aqui tem um detalhe importante: só o <code>PLAN.md</code> nasce como plano inicial
+    e será refinado no próximo capítulo. O <code>README.md</code> e o
+    <code>AGENTS.md</code> ou <code>CLAUDE.md</code> já devem sair úteis de verdade
+    para o projeto real.
   </p>
 
   <p>Os prompts abaixo já carregam este contexto do produto:</p>
@@ -271,8 +271,13 @@ git status</code></pre>
     <li>é um site estático e responsivo</li>
     <li>o usuário pesquisa artistas, vê álbuns e abre detalhes de álbum</li>
     <li>a fonte de dados é a API pública do Deezer</li>
-    <li>os endpoints centrais são busca de artista, álbuns por artista e álbum por ID</li>
-    <li>esses endpoints públicos de catálogo funcionam sem login do usuário final</li>
+    <li>
+      os endpoints centrais são busca de artista, álbuns por artista e álbum por
+      ID
+    </li>
+    <li>
+      esses endpoints públicos de catálogo funcionam sem login do usuário final
+    </li>
     <li>o deploy final será no GitHub Pages</li>
     <li>o projeto precisa considerar o problema de CORS no browser</li>
     <li>os arquivos de harness e operação devem ser escritos em inglês</li>
@@ -291,8 +296,8 @@ git status</code></pre>
   <h3>1. Prompt base para gerar o PLAN.md</h3>
 
   <p>
-    Esse é o primeiro prompt. Ele define o escopo do produto, as restrições e
-    a expectativa de planejamento sem pedir implementação ainda.
+    Esse é o primeiro prompt. Ele define o escopo do produto, as restrições e a
+    expectativa de planejamento sem pedir implementação ainda.
   </p>
 
   <CopyPromptBlock client:visible content={planPrompt} lang={lang} />
@@ -300,9 +305,10 @@ git status</code></pre>
   <h3>2. Prompt base para gerar o README.md</h3>
 
   <p>
-    Depois que o <code>PLAN.md</code> existir e fizer sentido para você, peça o
-    <code>README.md</code>. Aqui o plano já vira fonte de verdade para evitar
-    README inventado.
+    Depois de revisar o <code>PLAN.md</code> que foi gerado e ele fizer sentido para
+    você, peça ao agente para criar o
+    <code>README.md</code>. Aqui o plano já vira fonte para evitar README
+    inventado.
   </p>
 
   <CopyPromptBlock client:visible content={readmePrompt} lang={lang} />
@@ -318,10 +324,9 @@ git status</code></pre>
   <CopyPromptBlock client:visible content={agentsPrompt} lang={lang} />
 
   <p>
-    Leia cada arquivo assim que ele for gerado. Se tiver comando que não existe,
-    escopo inventado, promessa vaga ou decisão técnica que você não entende,
-    peça ajuste antes de passar para o próximo. Esse cuidado economiza muita
-    correção depois.
+    ⚠️ Leia cada arquivo assim que ele for gerado. Se tiver comando que não
+    existe, escopo inventado ou decisão técnica que você não entende, pare e
+    corrija o agente. Esse cuidado economiza muita correção depois.
   </p>
 
   <hr />
@@ -339,14 +344,16 @@ git status</code></pre>
 
   <ul>
     <li>
-      <strong>macOS:</strong> <code>brew install gh</code>
+      <strong>macOS:</strong>
+      <code>brew install gh</code>
     </li>
     <li>
-      <strong>Windows:</strong> <code>winget install --id GitHub.cli</code>
+      <strong>Windows:</strong>
+      <code>winget install --id GitHub.cli</code>
     </li>
     <li>
-      <strong>Linux:</strong> usar os pacotes oficiais da sua distribuição na
-      documentação do GitHub CLI
+      <strong>Linux:</strong> usar os pacotes oficiais da sua distribuição na documentação
+      do GitHub CLI
     </li>
   </ul>
 
@@ -379,8 +386,8 @@ gh auth status</code></pre>
     Se você terminou este capítulo, já fez o essencial do setup: criou o
     repositório remoto, conectou a cópia local, abriu o projeto na ferramenta e
     deixou registradas as regras e o plano inicial. No próximo capítulo, vamos
-    usar essa base para detalhar o <code>PLAN.md</code> e quebrar a execução em
-    fases pequenas.
+    usar essa base para detalhar o <code>PLAN.md</code> e quebrar a execução em fases
+    pequenas.
   </p>
 
   <div class="checkpoint">

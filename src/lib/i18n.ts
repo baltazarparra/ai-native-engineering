@@ -96,9 +96,9 @@ export const ui = {
     project: {
       title: 'Projeto Prático',
       heroLabel: 'Mão na massa',
-      heading: 'Construa seu primeiro projeto com um agente de código',
+      heading: 'Construa seu primeiro projeto usando Agente de IA',
       summary:
-        'Um guia prático para criar, planejar e publicar um projeto do zero usando o fluxo agêntico de desenvolvimento.',
+        'Um guia prático para criar, planejar e publicar um projeto AI-Native do zero.',
       readingTime: '45 min (prática guiada)',
       navAriaLabel: 'Navegação do projeto',
       checkpointLabel: 'Checkpoint',
