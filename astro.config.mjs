@@ -4,8 +4,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://baltazarparra.github.io',
-  base: '/ai-native-engineering/',
+  site: 'https://ai-native-engineers.com',
   integrations: [
     mdx(),
     react(),
