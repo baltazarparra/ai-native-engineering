@@ -4,7 +4,7 @@ slug: 'maturity'
 lang: 'en'
 translationKey: 'maturity'
 order: 3
-summary: 'SDD turns intent into a verifiable contract. Harness Design gives agents the environment, tools, and validation gates to execute that contract safely at enterprise level.'
+summary: 'SDD turns intent into development plan. Harness Design gives agents the tools and validation gates to develop safely at enterprise level.'
 readingTime: 24
 level: 'advanced'
 tags: ['sdd', 'harness', 'agents', 'governance', 'workflow']
@@ -36,7 +36,7 @@ Vibe coding showed that models can generate a lot of code from natural language.
 
 Two ideas need to work together:
 
-- **SDD**, or Spec-Driven Development: writing and evolving specifications that act as an intent contract.
+- **SDD**, or Spec-Driven Development: writing and evolving specifications that act as an contract.
 - **Harness Design**: designing the work system around the agent so it has context, tools, boundaries, validation, and governance.
 
 Separately, these ideas help. Together, they change the level of the workflow.
@@ -45,7 +45,7 @@ Separately, these ideas help. Together, they change the level of the workflow.
 
 SDD means **Spec-Driven Development**.
 
-In this context, a spec is not a huge PDF and it is not waterfall theatre. It is a living, versioned, reviewable artifact that answers:
+In this context, a spec is a living, versioned, reviewable artifact that answers:
 
 - what problem we are solving;
 - who it matters to;
@@ -110,8 +110,6 @@ That is not enterprise engineering. It is a prototype in a blazer.
 
 **Harness** runs the gates: typecheck, lint, unit tests, integration tests, build, diff review, and security checklist.
 
-**PR** includes evidence: what changed, which commands ran, which risks remain, and how to roll back.
-
 If something fails, the team does not just ask the agent to "try again". It asks: was an acceptance criterion missing? A test? A rule? A tool? The answer becomes an improvement to the harness.
 
 ## How to start without bureaucracy
@@ -123,7 +121,6 @@ Start small:
 1. Create a simple spec template for medium-risk features.
 2. Write a short `AGENTS.md` with commands, architecture, and essential rules.
 3. Define the minimum bar before accepting a PR: diff read, lint, typecheck, tests, and acceptance criteria.
-4. For each recurring agent failure, choose an action: improve the spec, add a test, update a rule, or create a script.
-5. Review the harness once per sprint or before major delivery.
+4. Review the harness once per sprint or before major delivery.
 
 The goal is not bureaucracy. The goal is reducing improvisation where improvisation is expensive.

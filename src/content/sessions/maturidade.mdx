@@ -4,7 +4,7 @@ slug: 'maturidade'
 lang: 'pt-BR'
 translationKey: 'maturity'
 order: 3
-summary: 'SDD transforma intenção em contrato verificável. Harness Design organiza contexto, ferramentas, permissões e validações para agentes executarem esse contrato com qualidade e segurança.'
+summary: 'SDD transforma intenção em planejamento. Harness Design organiza ferramentas e validações para agentes desenvolverem com qualidade e segurança.'
 readingTime: 24
 level: 'advanced'
 tags: ['sdd', 'harness', 'agentes', 'governança', 'workflow']
@@ -30,14 +30,14 @@ import SDDHarnessFlow from '../../components/SDDHarnessFlow/SDDHarnessFlow.tsx';
 
 ## O salto que importa
 
-O problema central de trabalhar com IA em software não é escolher "o modelo da semana". Modelos mudam rápido. A pergunta difícil é: **como transformar uma intenção humana em software confiável sem perder controle, qualidade e responsabilidade no caminho**.
+O problema em usar agentes de IA para desenvolver, não é "o modelo da semana". Modelos mudam rápido. A pergunta difícil é: **como transformar uma intenção humana em software confiável sem perder controle, qualidade e responsabilidade no caminho**.
 
 Vibe coding, a prática de construir pela conversa com o modelo, mostrou que IA consegue gerar muito código a partir de linguagem natural. Isso é poderoso para protótipos. Mas, em ambiente corporativo, entregar software não termina quando o código aparece. A entrega também envolve alinhar escopo, preservar arquitetura, proteger dados, validar comportamento, revisar mudanças, auditar decisões e manter o sistema saudável depois do deploy.
 
 É aqui que entram duas ideias que precisam andar juntas:
 
-- **SDD**, ou Spec-Driven Development: escrever e evoluir especificações que funcionam como um contrato verificável de intenção.
-- **Harness Design**: desenhar o sistema de trabalho em volta do agente para que ele tenha contexto, ferramentas, limites, validação e governança.
+- **SDD**, ou Spec-Driven Development: escrever e evoluir especificações que funcionam como um contrato.
+- **Harness Design**: As ferramentas em volta do agente para que ele tenha contexto, limites e validação.
 
 Separadas, essas ideias ajudam. Juntas, elas mudam o padrão da entrega.
 
@@ -45,7 +45,7 @@ Separadas, essas ideias ajudam. Juntas, elas mudam o padrão da entrega.
 
 SDD significa **Spec-Driven Development**, desenvolvimento guiado por especificação.
 
-Neste contexto, uma spec, ou especificação, não é um PDF gigante nem um retorno ao waterfall, aquele modelo pesado em que tudo parece precisar estar fechado antes de começar. É um artefato vivo, versionado e revisável que responde:
+Neste contexto, uma spec, ou especificação é um artefato vivo, versionado e revisável que responde:
 
 - qual problema estamos resolvendo;
 - para quem isso importa;
@@ -55,13 +55,13 @@ Neste contexto, uma spec, ou especificação, não é um PDF gigante nem um reto
 - quais critérios provam que a entrega está correta;
 - quais riscos precisam de revisão humana.
 
-A mudança central é simples: o agente não implementa "a ideia que ficou implícita na conversa". Ele implementa contra uma referência explícita, revisável e verificável.
+A mudança é simples: o agente não implementa "o prompt", ele implementa um plano sólido, revisável e verificável.
 
 ## O que é Harness Design
 
-Harness Design é o desenho do **ambiente operacional do agente**.
+Harness Design é o ambiente do **agente de código**.
 
-Se SDD responde "o que precisa ser verdade?", o harness responde "como criamos um sistema onde o agente consegue executar, validar e melhorar sem depender de memória informal, sorte ou contexto perdido na conversa?".
+Se SDD responde "o que precisa ser verdade?", o harness responde "como criamos um sistema onde o agente consegue executar, validar e melhorar sem depender de sorte ou contexto perdido na conversa?".
 
 Um harness pode incluir:
 
@@ -110,20 +110,13 @@ Isso não é engenharia corporativa. É uma demo vestida de entrega.
 
 **Harness** executa os gates de validação, ou checagens obrigatórias: typecheck, lint, testes unitários, testes de integração, build, revisão de diff e checklist de segurança.
 
-**PR** traz evidências: o que mudou, quais comandos rodaram, quais riscos permanecem e como fazer rollback.
-
 Se algo falha, o time não só pede "tenta de novo". Ele pergunta: faltou critério de aceite? Faltou teste? Faltou regra? Faltou ferramenta? A resposta vira melhoria no harness.
 
 ## Como começar sem burocratizar
 
-Você não precisa montar um laboratório de agentes antes de usar isso. Comece com uma mudança real, de risco médio, boa o suficiente para revelar onde o processo atual é frágil.
-
-Comece pequeno:
-
-1. Crie um template simples de spec para features com risco médio.
+1. Crie um template simples para suas Specs.
 2. Escreva um `AGENTS.md` curto com comandos, arquitetura e regras essenciais.
 3. Defina o "mínimo aceitável" antes de aceitar PR: diff revisado, lint, typecheck, testes e critérios de aceite.
-4. Para cada erro recorrente do agente, escolha uma ação: melhorar spec, adicionar teste, atualizar regra ou criar script.
-5. Revise o harness uma vez por sprint ou por entrega importante.
+4. Revise o harness uma vez por sprint ou por entrega importante.
 
 O objetivo não é burocracia. O objetivo é reduzir improviso onde improviso custa caro.
