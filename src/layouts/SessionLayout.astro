@@ -6,6 +6,7 @@ import SectionNav from '../components/SectionNav/SectionNav.astro';
 import ReferencesList from '../components/ReferencesList/ReferencesList.astro';
 import NextSessionCTA from '../components/NextSessionCTA/NextSessionCTA.astro';
 import Footer from '../components/Footer/Footer.astro';
+import Discussion from '../components/Discussion/Discussion.astro';
 import ProgressTracker from '../components/ProgressTracker/ProgressTracker.tsx';
 import type { Lang } from '../lib/i18n';
 import { languages, ui } from '../lib/i18n';
@@ -115,7 +116,7 @@ const formattedUpdatedAt = updatedAt.toLocaleDateString(
     <!-- references -->
     {
       references.length > 0 && (
-        <SectionBlock padding="xl" alt>
+        <SectionBlock padding="xl" alt id="referencias">
           <ReferencesList references={references} lang={lang} />
         </SectionBlock>
       )
@@ -134,6 +135,8 @@ const formattedUpdatedAt = updatedAt.toLocaleDateString(
         <NextSessionCTA lang={lang} isLast />
       )
     }
+
+    <Discussion lang={lang} slug={slug} title={title} />
 
     <Footer lang={lang} />
   </main>

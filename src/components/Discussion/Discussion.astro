@@ -1,0 +1,101 @@
+---
+import styles from './Discussion.module.css';
+import type { Lang } from '../../lib/i18n';
+import { ui } from '../../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  slug: string;
+  title: string;
+}
+
+const { lang, title } = Astro.props;
+const labels = ui[lang].discussion;
+
+const repo =
+  import.meta.env.PUBLIC_GISCUS_REPO || 'baltazarparra/ai-native-engineering';
+const repoId = import.meta.env.PUBLIC_GISCUS_REPO_ID || 'R_kgDOSDoWVA';
+const category = import.meta.env.PUBLIC_GISCUS_CATEGORY || 'General';
+const categoryId =
+  import.meta.env.PUBLIC_GISCUS_CATEGORY_ID || 'DIC_kwDOSDoWVM4C68fs';
+const giscusLang = import.meta.env.PUBLIC_GISCUS_LANG || 'pt';
+const discussionsUrl = `https://github.com/${repo}/discussions`;
+const isConfigured = Boolean(repo && repoId && category && categoryId);
+
+const themeSyncScript = `
+(function () {
+  if (window.__aiNativeGiscusThemeSync) {
+    window.__aiNativeGiscusThemeSync();
+    return;
+  }
+
+  function getGiscusTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'dark'
+      ? 'dark'
+      : 'light';
+  }
+
+  function syncGiscusTheme() {
+    var iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe || !iframe.contentWindow) return;
+    iframe.contentWindow.postMessage(
+      { giscus: { setConfig: { theme: getGiscusTheme() } } },
+      'https://giscus.app'
+    );
+  }
+
+  window.__aiNativeGiscusThemeSync = syncGiscusTheme;
+
+  window.addEventListener('message', function (event) {
+    if (event.origin !== 'https://giscus.app') return;
+    syncGiscusTheme();
+  });
+
+  document.documentElement.addEventListener('data-ai-theme', syncGiscusTheme);
+  document.addEventListener('astro:page-load', syncGiscusTheme);
+})();
+`;
+---
+
+<section class={styles.section} id="discussao" aria-labelledby="discussion-title">
+  <div class={styles.inner}>
+    <div class={styles.header}>
+      <p class={styles.kicker}>{labels.kicker}</p>
+      <h2 id="discussion-title">{labels.heading}</h2>
+      <p>{labels.description}</p>
+    </div>
+
+    {
+      isConfigured ? (
+        <div class:list={[styles.embed, 'giscus']} data-page-title={title}>
+          <script
+            src="https://giscus.app/client.js"
+            data-repo={repo}
+            data-repo-id={repoId}
+            data-category={category}
+            data-category-id={categoryId}
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="light"
+            data-lang={giscusLang}
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            data-astro-rerun
+          />
+          <script is:inline data-astro-rerun set:html={themeSyncScript} />
+        </div>
+      ) : (
+        <div class={styles.fallback}>
+          <p>{labels.notConfigured}</p>
+          <a href={discussionsUrl} target="_blank" rel="noreferrer">
+            {labels.openDiscussions}
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>

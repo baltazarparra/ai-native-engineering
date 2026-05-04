@@ -58,6 +58,16 @@ export const ui = {
       ariaLabel: 'Navegação da sessão',
       summaryFallback: 'Resumo',
       references: 'Referências',
+      discussion: 'Discussão',
+    },
+    discussion: {
+      kicker: 'Comunidade',
+      heading: 'Pergunte, responda, destrave',
+      description:
+        'Use este espaço para fazer perguntas sobre a sessão, compartilhar exemplos e ajudar outras pessoas a entenderem o tema.',
+      notConfigured:
+        'A área de discussão ainda precisa ser conectada ao Giscus. Enquanto isso, você pode abrir uma discussão direto no GitHub.',
+      openDiscussions: 'Abrir discussões no GitHub',
     },
     references: {
       heading: 'Quer se aprofundar?',
@@ -151,6 +161,16 @@ export const ui = {
       ariaLabel: 'Session navigation',
       summaryFallback: 'Summary',
       references: 'References',
+      discussion: 'Discussion',
+    },
+    discussion: {
+      kicker: 'Community',
+      heading: 'Ask, answer, get unstuck',
+      description:
+        'Use this space to ask questions about the session, share examples, and help other people understand the topic.',
+      notConfigured:
+        'The discussion area still needs to be connected to Giscus. For now, you can open a discussion directly on GitHub.',
+      openDiscussions: 'Open GitHub discussions',
     },
     references: {
       heading: 'Want to go deeper?',

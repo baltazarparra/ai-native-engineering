@@ -60,6 +60,32 @@ npm run lint       # ESLint
 npm run format     # Prettier
 ```
 
+## Discussion Comments
+
+Session pages include a Giscus-powered discussion area backed by GitHub
+Discussions. The default embed is configured for
+`baltazarparra/ai-native-engineering` using the `General` discussion category
+and `pathname` mapping.
+
+To reconfigure the embedded comments:
+
+1. Enable GitHub Discussions in the repository.
+2. Install and authorize the [Giscus GitHub app](https://github.com/apps/giscus).
+3. Use the [Giscus configuration page](https://giscus.app/) to get the repo and
+   category IDs.
+4. Override these public build variables when needed:
+
+```bash
+PUBLIC_GISCUS_REPO=baltazarparra/ai-native-engineering
+PUBLIC_GISCUS_REPO_ID=R_kgDOSDoWVA
+PUBLIC_GISCUS_CATEGORY=General
+PUBLIC_GISCUS_CATEGORY_ID=DIC_kwDOSDoWVM4C68fs
+PUBLIC_GISCUS_LANG=pt
+```
+
+The embed starts with the light Giscus theme and syncs to the site's own
+dark/light toggle at runtime.
+
 ## Agent Skills
 
 This repository also exposes reusable agent skills through the open `npx skills`

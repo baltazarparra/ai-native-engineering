@@ -16,6 +16,7 @@ const labels = ui[lang].sectionNav;
   aria-label={labels.ariaLabel}
   data-summary-fallback={labels.summaryFallback}
   data-references-label={labels.references}
+  data-discussion-label={labels.discussion}
 >
   <ul class={styles.list} id="section-nav-list"></ul>
 </nav>
@@ -37,6 +38,8 @@ const labels = ui[lang].sectionNav;
       nav?.getAttribute('data-summary-fallback') || 'Resumo';
     const referencesLabel =
       nav?.getAttribute('data-references-label') || 'Referencias';
+    const discussionLabel =
+      nav?.getAttribute('data-discussion-label') || 'Discussao';
 
     // collect headings from fixed layout sections and MDX body
     const contentHeadings = Array.from(
@@ -69,6 +72,11 @@ const labels = ui[lang].sectionNav;
     const refEl = document.getElementById('referencias');
     if (refEl) {
       entries.push({ id: 'referencias', text: referencesLabel });
+    }
+
+    const discussionEl = document.getElementById('discussao');
+    if (discussionEl) {
+      entries.push({ id: 'discussao', text: discussionLabel });
     }
 
     if (entries.length === 0) return;
