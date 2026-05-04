@@ -4,10 +4,6 @@ import styles from './HeroStickers.module.css';
 
 type Lang = 'pt-BR' | 'en';
 
-function withBase(path: string) {
-  return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
-}
-
 interface StickerSlot {
   left: number;
   top: number;
@@ -101,7 +97,7 @@ function Sticker({
 }: StickerProps) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const slot = isMobile ? def.mobileSlot ?? def.desktopSlot : def.desktopSlot;
+  const slot = isMobile ? (def.mobileSlot ?? def.desktopSlot) : def.desktopSlot;
 
   const dragLabel =
     lang === 'pt-BR'

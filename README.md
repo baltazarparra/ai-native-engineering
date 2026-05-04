@@ -60,6 +60,21 @@ npm run lint       # ESLint
 npm run format     # Prettier
 ```
 
+## Agent Skills
+
+This repository also exposes reusable agent skills through the open `npx skills`
+workflow. List the available skills:
+
+```bash
+npx skills@latest add baltazarparra/ai-native-engineering --list
+```
+
+Install the quality gate skill for Codex:
+
+```bash
+npx skills@latest add baltazarparra/ai-native-engineering --skill quality-gate --agent codex --global
+```
+
 ## Design: Neo Brutalism
 
 - High contrast, thick black borders, offset shadows with no blur
