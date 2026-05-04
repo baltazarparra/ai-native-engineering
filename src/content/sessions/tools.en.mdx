@@ -88,52 +88,6 @@ There is no "best model". There is the right model for the right task.
 
 **Privacy, cost, or control**: open-weight or open-source models, such as Llama, Gemma, DeepSeek, and GLM, come in when the team needs more control over hosting, cost, privacy, or customization.
 
-Use model names as a market snapshot, not a religion. In April 2026, GPT-5.3-Codex, Claude Sonnet 4.6, Claude Opus 4.7, Gemini 2.5 Pro, and Kimi K2.6 are relevant examples in this conversation. That will change.
-
-## How to choose in practice
-
-Choose the workflow first, then the model.
-
-If you are learning a project and editing small components, an AI-native IDE can significantly reduce friction. You see the diff, navigate files, and learn project patterns without leaving the editor.
-
-If you need to work across many files, run tests, inspect git history, and iterate with commands, an AI CLI or terminal-first agent tends to fit better.
-
-If the task is well specified and can run in parallel without tying up your machine, a cloud agent may be the better choice. It works more like delegation: you provide context, acceptance criteria, and review the PR.
-
-Then comes the model: fast to explore, balanced for daily editing, strong for hard planning, cheap or local when cost and privacy are the priority.
-
-## Why this matters
-
-Choosing by hype is the fastest way to get frustrated. You switch tools, change models, subscribe to another product, and keep the same underlying problem: vague request, weak context, and missing validation.
-
-A good tool reduces friction. A good model increases capability. A good process turns both into reliable output.
-
-## Real example
-
-A team of four working on the same project:
-
-**Ana, junior dev**, uses an AI-native IDE. Autocomplete, inline chat, and visual diffs help her learn project patterns without leaving the editor. For explaining code and suggesting small changes, a fast model handles most of the day.
-
-**Carlos, senior dev**, uses an AI CLI in the terminal. He prefers working across many files, running tests, and doing refactors with direct access to git and lint. To plan the migration, he uses a stronger model; to apply repetitive changes, he switches to a cheaper and faster model.
-
-**Marina, QA**, uses GitHub Copilot in VS Code to speed up automated tests. When she needs to design scenarios, she talks to a fast model. When she reviews permission risk or edge cases, she asks for a more careful analysis.
-
-**Pedro, tech lead**, uses a cloud agent for well-defined tasks that can become PRs and a local CLI to investigate sensitive problems. He chooses the tool by workflow friction and the model by task difficulty.
-
-None of them is wrong. They did not choose a brand to be a fan of. They chose a combination of surface, model, and process.
-
-## Where it breaks
-
-- **Confusing product with model**: "ChatGPT is good at code" can mean many things. Which model? In which product? With what context?
-
-- **Benchmark worship**: rankings help spot trends, but they know nothing about your repository, your tests, your domain, or your constraints.
-
-- **Single-tool thinking**: IDE, CLI, and cloud agent are complementary. Experienced practitioners switch based on the task.
-
-- **Endless switching**: experimenting is healthy. Switching every week can turn into procrastination dressed as productivity.
-
-- **Tool instead of method**: the best AI IDE does not replace a clear specification, good context, diff review, and validation.
-
 ## Takeaway
 
 - Separate tool, product, and model before comparing options.
