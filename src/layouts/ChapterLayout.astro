@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
 import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
+import Discussion from '../components/Discussion/Discussion.astro';
 import ProgressTracker from '../components/ProgressTracker/ProgressTracker.tsx';
 import ChapterNav from '../components/ChapterNav/ChapterNav.tsx';
 import ChapterFooter from '../components/ChapterFooter/ChapterFooter.tsx';
@@ -88,6 +89,12 @@ git push`}</code></pre>
         </SectionBlock>
       )
     }
+
+    <Discussion
+      lang={lang}
+      slug={`projeto-${chapter.id}`}
+      title={chapter.title[lang]}
+    />
 
     <Footer lang={lang} />
   </main>

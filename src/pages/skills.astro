@@ -5,6 +5,7 @@ import Grid from '../components/Grid/Grid.astro';
 import Card from '../components/Card/Card.astro';
 import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
+import Discussion from '../components/Discussion/Discussion.astro';
 import CopyCommandBlock from '../components/CopyCommandBlock/CopyCommandBlock';
 import { getSkillsAlternateLinks } from '../lib/i18n';
 
@@ -322,6 +323,8 @@ skills installs the skill into the agent</code></pre>
         </ul>
       </div>
     </SectionBlock>
+
+    <Discussion lang={lang} slug="skills" title="Skills para agentes de código" />
 
     <Footer lang={lang} />
   </main>
