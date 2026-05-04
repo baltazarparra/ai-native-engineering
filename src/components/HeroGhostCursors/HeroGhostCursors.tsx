@@ -182,10 +182,8 @@ export default function HeroGhostCursors() {
 
     const handlePointerMove = (event: PointerEvent) => {
       const rect = layer.getBoundingClientRect();
-      const insideX =
-        event.clientX >= rect.left && event.clientX <= rect.right;
-      const insideY =
-        event.clientY >= rect.top && event.clientY <= rect.bottom;
+      const insideX = event.clientX >= rect.left && event.clientX <= rect.right;
+      const insideY = event.clientY >= rect.top && event.clientY <= rect.bottom;
       if (insideX && insideY) {
         mouseX = event.clientX - rect.left;
         mouseY = event.clientY - rect.top;
@@ -248,10 +246,7 @@ export default function HeroGhostCursors() {
       intersectionObserver.disconnect();
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('pointerleave', handlePointerLeave);
-      document.removeEventListener(
-        'visibilitychange',
-        handleVisibilityChange,
-      );
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
 

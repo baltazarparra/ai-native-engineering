@@ -4,20 +4,6 @@ const lang = 'en';
 ---
 
 <ChapterLayout chapterNumber={4} lang={lang}>
-  <h2 id="push">Push to GitHub</h2>
-
-  <p>Your code needs to be on GitHub before Pages can work.</p>
-
-  <div class="prompt-example prompt-good">
-    <strong>Prompt:</strong>
-    <p>
-      "Commit all project code and push to the GitHub repository. Then set up
-      GitHub Actions for automatic deployment to GitHub Pages on push to main."
-    </p>
-  </div>
-
-  ---
-
   <h2 id="validate-deploy">Validate the deploy</h2>
 
   <p>After pushing, validate each step:</p>
@@ -45,31 +31,34 @@ const lang = 'en';
 
   <ul>
     <li>
-      <strong>Context before code</strong>, README, PLAN.md, and agent rules come
-      before the first component
+      <strong>Context before code</strong>, README, PLAN.md, and agent rules
+      come before the first component
     </li>
     <li>
-      <strong>Plan before building</strong>, an iterated plan with the agent prevents
-      rework
+      <strong>Plan before building</strong>, an iterated plan with the agent
+      prevents rework
     </li>
     <li>
-      <strong>One phase at a time</strong>, SDD works because each step is verifiable
+      <strong>One phase at a time</strong>, SDD works because each step is
+      verifiable
     </li>
     <li>
-      <strong>Prompts with context</strong>, interaction quality defines output quality
+      <strong>Prompts with context</strong>, interaction quality defines output
+      quality
     </li>
     <li>
-      <strong>Read what the agent generates</strong>, accepting without reading is
-      the most common failure
+      <strong>Read what the agent generates</strong>, accepting without reading
+      is the most common failure
     </li>
     <li>
-      <strong>Publishing is part of the flow</strong>, deployment isn't extra, it's
-      the natural conclusion
+      <strong>Publishing is part of the flow</strong>, deployment isn't extra,
+      it's the natural conclusion
     </li>
   </ul>
 
   <p>
-    This workflow, with context, planning, phased execution, validation and publishing, is the same one that works in real projects. The scale changes, the
-    process doesn't.
+    This workflow, with context, planning, phased execution, validation and
+    publishing, is the same one that works in real projects. The scale changes,
+    the process doesn't.
   </p>
 </ChapterLayout>

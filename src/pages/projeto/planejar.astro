@@ -1,6 +1,9 @@
 ---
 import ChapterLayout from '../../layouts/ChapterLayout.astro';
+import CopyPromptBlock from '../../components/CopyPromptBlock/CopyPromptBlock.tsx';
 const lang = 'pt-BR';
+
+const improvePlanPrompt = `Revise o PLAN.md inicial com base no AGENTS.md (ou CLAUDE.md, se eu estiver usando Claude Code). Detalhe as fases de implementação, mantenha cada fase pequena e testável, adicione critérios de aceite claros e só mude a stack inicial se existir uma razão concreta para isso.`;
 ---
 
 <ChapterLayout chapterNumber={2} lang={lang}>
@@ -23,25 +26,14 @@ const lang = 'pt-BR';
 
   <p>
     Todos os endpoints são da <strong>API pública do Deezer</strong>. Não
-    precisa de autenticação para os endpoints de catálogo usados neste projeto,
-    mas o portal de documentação hoje pede login para aceitar os termos da
-    Simple API. Além disso, existe uma questão de CORS que vamos resolver no
-    próximo capítulo.
+    precisa de autenticação para os endpoints de catálogo usados neste projeto.
   </p>
 
   ---
 
   <h2 id="pedir-plano">Melhorar o PLAN.md</h2>
 
-  <div class="prompt-example prompt-good">
-    <strong>Prompt:</strong>
-    <p>
-      "Revise o PLAN.md inicial com base no AGENTS.md (ou CLAUDE.md, se eu
-      estiver usando Claude Code). Detalhe as fases de implementação, mantenha
-      cada fase pequena e testável, adicione critérios de aceite claros e só
-      mude a stack inicial se existir uma razão concreta para isso."
-    </p>
-  </div>
+  <CopyPromptBlock client:visible content={improvePlanPrompt} lang={lang} />
 
   <p>
     O agente vai melhorar o rascunho e organizar a execução. Se quiser trocar a

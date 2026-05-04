@@ -147,7 +147,7 @@ export const CHAPTERS: Chapter[] = [
     },
     description: {
       'pt-BR':
-        'Definir as funcionalidades, pedir um plano de implementação ao agente e revisar.',
+        'Definir as funcionalidades, criar o plano para desenvolver as tarefas e revisar.',
       en: 'Define the features, ask the agent for an implementation plan, and review it.',
     },
     slug: {

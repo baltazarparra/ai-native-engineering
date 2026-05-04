@@ -96,9 +96,7 @@ export default function ChapterFooter({ chapterNumber, lang }: Props) {
       >
         <div className={styles.checkpointHeader}>
           <h4 className={styles.checkpointTitle}>
-            {allComplete
-              ? labels.complete
-              : labels.chapterLabel(chapterNumber)}
+            {allComplete ? labels.complete : labels.chapterLabel(chapterNumber)}
           </h4>
           <span className={styles.checkpointCount}>
             {labels.checkpointsOf(doneCount, checkpoints.length)}
@@ -118,9 +116,7 @@ export default function ChapterFooter({ chapterNumber, lang }: Props) {
           />
         </div>
 
-        {!allComplete && (
-          <p className={styles.hint}>{labels.checkpointHint}</p>
-        )}
+        {!allComplete && <p className={styles.hint}>{labels.checkpointHint}</p>}
 
         <div className={styles.checkpoints}>
           {checkpoints.map((cp) => (

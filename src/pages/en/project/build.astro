@@ -105,9 +105,11 @@ IMPORTANT RULES
   <h2 id="phase-loop">The loop for each phase</h2>
 
   <p>
-    By this point, you should already have an <strong>implementation plan</strong>
-    split into <strong>phases</strong>. The goal of this chapter is simple:
-    show the loop you repeat starting with <strong>phase 1</strong> and moving
+    By this point, you should already have an <strong
+      >implementation plan</strong
+    >
+    split into <strong>phases</strong>. The goal of this chapter is simple: show
+    the loop you repeat starting with <strong>phase 1</strong> and moving
     <strong>phase by phase</strong> until the full plan is complete.
   </p>
 
@@ -119,28 +121,36 @@ IMPORTANT RULES
   </p>
 
   <ol>
-    <li>Open the implementation plan and focus only on phase 1 or the next unfinished phase</li>
+    <li>
+      Open the implementation plan and focus only on phase 1 or the next
+      unfinished phase
+    </li>
     <li>Review and refine that phase before execution</li>
     <li>Ask the agent to create the PRD for that phase</li>
     <li>Switch the tool to PLAN mode</li>
     <li>Ask for an execution and validation plan based on that PRD</li>
     <li>Return to normal mode and implement the phase</li>
     <li>Test and validate against the PRD</li>
-    <li>Generate the phase report, mark the phase complete, and move to the next one</li>
+    <li>
+      Generate the phase report, mark the phase complete, and move to the next
+      one
+    </li>
   </ol>
 
   <div class="checkpoint">
     <strong>Main rule:</strong>
     <p>
-      Always in order. First phase 1. Then phase 2. Then phase 3. One phase at
-      a time. When a phase is done, it needs a PRD, implementation, validation,
+      Always in order. First phase 1. Then phase 2. Then phase 3. One phase at a
+      time. When a phase is done, it needs a PRD, implementation, validation,
       and a report before you open the next one.
     </p>
   </div>
 
   <hr />
 
-  <h2 id="step-1-prd">1. Read the implementation plan, review the phase, and create the PRD</h2>
+  <h2 id="step-1-prd">
+    1. Read the implementation plan, review the phase, and create the PRD
+  </h2>
 
   <p>
     The first step in the loop is to open the implementation plan and take
@@ -151,8 +161,8 @@ IMPORTANT RULES
 
   <p>
     Then ask the agent to turn that phase into a specific PRD. The PRD is the
-    execution document for the phase: what is included, what is excluded, how
-    it should work, and how you will validate it. Once phase 1 is closed, you
+    execution document for the phase: what is included, what is excluded, how it
+    should work, and how you will validate it. Once phase 1 is closed, you
     repeat exactly the same process for phase 2, and so on.
   </p>
 
@@ -169,8 +179,8 @@ IMPORTANT RULES
 
   <p>
     Once the PRD is ready, do not ask for code yet. First, switch the tool to
-    <strong>PLAN mode</strong> and ask for a plan to execute and validate the
-    current phase.
+    <strong>PLAN mode</strong> and ask for a plan to execute and validate the current
+    phase.
   </p>
 
   <p>
@@ -214,9 +224,9 @@ IMPORTANT RULES
   <div class="checkpoint">
     <strong>Practical note:</strong>
     <p>
-      If this phase uses <code>fetch()</code> from the browser to Deezer, the
-      CORS problem will likely appear. Treat that as a phase risk and resolve it
-      inside the loop before closing validation.
+      If this phase uses <code>fetch()</code> from the browser to Deezer, the CORS
+      problem will likely appear. Treat that as a phase risk and resolve it inside
+      the loop before closing validation.
     </p>
   </div>
 
@@ -248,8 +258,7 @@ IMPORTANT RULES
     <p>
       Before moving on, confirm four things: the PRD exists, the phase was
       implemented, validation passed, and the report was saved. If that is true,
-      go back to the implementation plan and repeat the loop for the next
-      phase.
+      go back to the implementation plan and repeat the loop for the next phase.
     </p>
   </div>
 </ChapterLayout>

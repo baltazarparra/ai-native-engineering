@@ -120,14 +120,19 @@ REGRAS IMPORTANTES
   </p>
 
   <ol>
-    <li>Abra o implementation plan e foque só na phase 1 ou na próxima ainda não concluída</li>
+    <li>
+      Abra o implementation plan e foque só na phase 1 ou na próxima ainda não
+      concluída
+    </li>
     <li>Revise e refine essa phase antes de executar</li>
     <li>Peça ao agente para criar a PRD dessa phase</li>
     <li>Mude a ferramenta para o modo PLAN</li>
     <li>Peça um plano de execução e validação baseado nessa PRD</li>
     <li>Volte para o modo normal e implemente a phase</li>
     <li>Teste e valide contra a PRD</li>
-    <li>Gere o report da phase, marque-a como concluída e siga para a próxima</li>
+    <li>
+      Gere o report da phase, marque-a como concluída e siga para a próxima
+    </li>
   </ol>
 
   <div class="checkpoint">
@@ -141,7 +146,9 @@ REGRAS IMPORTANTES
 
   <hr />
 
-  <h2 id="passo-1-prd">1. Ler o implementation plan, revisar a phase e gerar a PRD</h2>
+  <h2 id="passo-1-prd">
+    1. Ler o implementation plan, revisar a phase e gerar a PRD
+  </h2>
 
   <p>
     O primeiro passo do loop é abrir o implementation plan e pegar a
@@ -155,8 +162,8 @@ REGRAS IMPORTANTES
     Depois disso, peça ao agente para transformar essa phase em uma PRD
     específica. A PRD é o documento de execução da phase: o que entra, o que
     fica fora, como deve funcionar e como você vai validar. Quando a phase 1
-    estiver fechada, você repete exatamente o mesmo processo na phase 2, e
-    assim por diante.
+    estiver fechada, você repete exatamente o mesmo processo na phase 2, e assim
+    por diante.
   </p>
 
   <CopyPromptBlock
@@ -172,15 +179,15 @@ REGRAS IMPORTANTES
 
   <p>
     Com a PRD pronta, ainda não peça código. Primeiro, mude a ferramenta para o
-    <strong>modo PLAN</strong> e peça um plano para executar e validar aquela
-    phase atual.
+    <strong>modo PLAN</strong> e peça um plano para executar e validar aquela phase
+    atual.
   </p>
 
   <p>
-    Isso força o agente a pensar antes de agir: quais arquivos vai tocar, qual
-    a sequência, quais riscos existem e como provar que a phase foi entregue.
-    Você faz isso para a phase 1, depois repete para a phase 2, e assim até o
-    fim do implementation plan.
+    Isso força o agente a pensar antes de agir: quais arquivos vai tocar, qual a
+    sequência, quais riscos existem e como provar que a phase foi entregue. Você
+    faz isso para a phase 1, depois repete para a phase 2, e assim até o fim do
+    implementation plan.
   </p>
 
   <CopyPromptBlock
@@ -217,9 +224,9 @@ REGRAS IMPORTANTES
   <div class="checkpoint">
     <strong>Nota prática:</strong>
     <p>
-      Se essa phase fizer <code>fetch()</code> no browser para a API do Deezer,
-      o problema de CORS provavelmente vai aparecer. Trate isso como risco da
-      phase e resolva dentro do próprio loop, antes de fechar a validação.
+      Se essa phase fizer <code>fetch()</code> no browser para a API do Deezer, o
+      problema de CORS provavelmente vai aparecer. Trate isso como risco da phase
+      e resolva dentro do próprio loop, antes de fechar a validação.
     </p>
   </div>
 
@@ -228,8 +235,8 @@ REGRAS IMPORTANTES
   <h2 id="passo-4-report">4. Gerar o report e seguir para a próxima</h2>
 
   <p>
-    Quando a phase estiver implementada e validada localmente, feche o ciclo
-    com um report. Esse report vira memória do projeto: o que foi feito, o que
+    Quando a phase estiver implementada e validada localmente, feche o ciclo com
+    um report. Esse report vira memória do projeto: o que foi feito, o que
     mudou, como foi validado e o que ficou pendente.
   </p>
 
