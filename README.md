@@ -38,10 +38,6 @@ Each session follows a fixed template: 30-second summary, main explanation, why 
 - Every interaction must explain better, organize better, or improve retention
 - Acronyms are explained before any deep dive
 
-## Design
-
-The site uses Neo Brutalism as a visual language: high contrast, thick borders, hard shadows, bold type — **striking at first glance, easy to use by the fifth minute**.
-
 ## Contributing
 
 Contributions are welcome — whether it's suggesting new content, fixing inaccuracies, or improving clarity.
