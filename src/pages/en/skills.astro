@@ -1,0 +1,514 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
+import Grid from '../../components/Grid/Grid.astro';
+import Card from '../../components/Card/Card.astro';
+import Badge from '../../components/Badge/Badge.astro';
+import Footer from '../../components/Footer/Footer.astro';
+import CopyCommandBlock from '../../components/CopyCommandBlock/CopyCommandBlock';
+import { getSkillsAlternateLinks } from '../../lib/i18n';
+
+const lang = 'en';
+const alternateLinks = getSkillsAlternateLinks();
+const qualityGateCommand =
+  'npx skills@latest add baltazarparra/ai-native-engineering --skill quality-gate --agent codex --global';
+---
+
+<BaseLayout
+  title="Skills for coding agents | AI-Native Engineering"
+  description="Learn what agent skills are, why they matter, and install a quality gate skill with NPX."
+  lang={lang}
+  alternateLinks={alternateLinks}
+>
+  <main id="main-content" class="skills-page">
+    <SectionBlock as="header" padding="xl">
+      <Badge variant="blue">Skills</Badge>
+      <h1 class="page-title">Skills for coding agents</h1>
+      <p class="page-summary">
+        A simple way to package processes, habits, and tiny checklists so your
+        agents can repeat the work better.
+      </p>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
+      <div class="intro-grid">
+        <div class="section-copy">
+          <h2>What is a skill?</h2>
+          <p>
+            A skill is a reusable instruction set for an agent. Think of it as a
+            small operating guide: when a situation shows up, the agent loads
+            that process and follows the steps.
+          </p>
+          <p>
+            In practice, it is usually a folder with a <code>SKILL.md</code>
+            file containing a name, a description, and the instructions the agent
+            should follow.
+          </p>
+        </div>
+        <div class="code-card" aria-label="Skill folder example">
+          <pre><code>skills/
+  quality-gate/
+    SKILL.md</code></pre>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg">
+      <div class="section-stack">
+        <div class="section-copy">
+          <h2>What is it for?</h2>
+          <p class="section-lead">
+            Skills work best when they package a small, clear, repeatable
+            behavior.
+          </p>
+        </div>
+        <div class="card-grid">
+          <Grid columns={3} gap="lg" align="stretch">
+            <Card title="Quality gates" accent="yellow">
+              <p>
+                Run lint, tests, build, or type checks before handing a code
+                change back.
+              </p>
+            </Card>
+            <Card title="PR review" accent="blue">
+              <p>
+                Review pull requests using the team's criteria, not just loose
+                preferences.
+              </p>
+            </Card>
+            <Card title="Handoff" accent="green">
+              <p>
+                Prepare a clear summary of what changed, risks, validation, and
+                next steps.
+              </p>
+            </Card>
+          </Grid>
+        </div>
+        <p class="after-grid">
+          Start with the minimum: instructions, small examples, and validation
+          criteria. If the skill grows, move details into supporting files
+          inside the skill folder. That lets the agent load the basics first and
+          pull in extra resources only when needed.
+        </p>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
+      <div class="section-stack">
+        <div class="section-copy">
+          <h2>How does a skill get activated?</h2>
+          <p>
+            A skill is not a hard guarantee. It is a capability the agent can
+            use. Most of the time, the agent sees the skill name and
+            description, decides whether it matches the task, and only then
+            loads the full <code>SKILL.md</code>.
+          </p>
+          <p>
+            That makes the description very important. It should say what the
+            skill does and when to use it. If the trigger is vague, the agent
+            may simply continue without using the skill.
+          </p>
+        </div>
+        <div class="card-grid">
+          <Grid columns={3} gap="lg" align="stretch">
+            <Card title="Implicit" accent="yellow">
+              <p>
+                The agent chooses the skill when the task appears to match its
+                description.
+              </p>
+            </Card>
+            <Card title="Explicit" accent="blue">
+              <p>
+                You call the skill by name, when the tool supports slash
+                commands or direct invocation.
+              </p>
+            </Card>
+            <Card title="Reinforced" accent="green">
+              <p>
+                A project rule reminds the agent to consider the skill at
+                important moments.
+              </p>
+            </Card>
+          </Grid>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg">
+      <div class="section-stack">
+        <div class="section-copy">
+          <h2>Claude Code, Cursor, and the harness</h2>
+          <p>
+            Claude Code treats skills as capabilities the agent can discover.
+            You can let Claude choose automatically, or invoke a skill directly
+            with <code>/skill-name</code>. Claude Code also has frontmatter
+            controls for manual-only or agent-only skills.
+          </p>
+          <p>
+            Cursor also supports Agent Skills, but its strongest mental model
+            still goes through Rules. Rules are persistent context for the
+            Agent, and they can be always applied, attached by file patterns,
+            requested by the agent, or called manually.
+          </p>
+          <p>
+            In practice: if you want an implicit skill to fire more consistently
+            in Cursor, pair it with a short project rule. The rule does not need
+            to duplicate the whole skill. It only needs to remind the harness
+            when to consider it.
+          </p>
+        </div>
+        <div class="flow-card">
+          <pre><code>---
+description: Use the quality-gate skill after technical code tasks.
+alwaysApply: true
+---
+
+After code edits, remind the agent to use the quality-gate skill
+before handing the task back.</code></pre>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
+      <div class="section-stack">
+        <div class="section-copy">
+          <h2>Sharing skills</h2>
+          <p>
+            There are two useful paths for distributing skills: a simple
+            <code>npx</code> command, or marketplaces/plugins when you need discovery,
+            updates, and scale.
+          </p>
+        </div>
+
+        <div class="share-options">
+          <div class="share-option">
+            <Badge variant="yellow">Repo + NPX</Badge>
+            <h3>For getting started fast</h3>
+            <p>
+              Vercel created the
+              <a href="https://www.npmjs.com/package/skills">skills</a> package: a
+              CLI that installs, lists, updates, and removes skills for different
+              coding agents. You do not publish your skill to npm. npm gives you the
+              <code>skills</code> tool; your skill still lives on GitHub.
+            </p>
+            <div class="flow-card">
+              <pre><code>npx runs the "skills" CLI
+skills reads the GitHub repo
+skills looks for SKILL.md files
+skills installs the skill into the agent</code></pre>
+            </div>
+            <p>
+              The CLI accepts <code>owner/repo</code>, a full GitHub URL, a
+              direct path to a skill, GitLab, any git URL, and even a local
+              folder while you are testing.
+            </p>
+          </div>
+
+          <div class="share-option">
+            <Badge variant="blue">Marketplaces</Badge>
+            <h3>For distributing at scale</h3>
+            <p>
+              Claude Code also has
+              <a href="https://code.claude.com/docs/en/plugins">plugins</a> and
+              <a href="https://code.claude.com/docs/en/discover-plugins">
+                marketplaces
+              </a>. A plugin can bundle skills, agents, hooks, MCP servers, and
+              other integrations.
+            </p>
+            <p>
+              The practical difference:
+              <strong>skills are the content</strong>;
+              <strong>plugins are a distribution format</strong>. Anthropic's
+              official marketplace is the
+              <a href="https://claude.com/plugins">
+                Claude plugins marketplace
+              </a>, and Anthropic also documents how to
+              <a href="https://code.claude.com/docs/en/plugin-marketplaces">
+                create your own marketplace
+              </a>.
+            </p>
+            <p>
+              That does not automatically install anything into Cursor. For
+              Cursor, see the
+              <a href="https://cursor.com/marketplace">Cursor Marketplace</a> or use
+              an installation path Cursor can discover. The
+              <code>SKILL.md</code> format helps reuse, but each harness decides how
+              to discover and apply the skill.
+            </p>
+          </div>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="xl" id="ready-skills">
+      <div class="section-stack">
+        <div class="section-copy">
+          <Badge variant="coral">Copy and paste</Badge>
+          <h2 class="section-title">Ready-to-use skills</h2>
+          <p class="section-lead">
+            Starting small: one skill that reminds the agent to validate the
+            project before handing code back.
+          </p>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-copy">
+            <div>
+              <h3>quality-gate</h3>
+              <p>
+                At the end of a technical task, the agent should find and run
+                the best quality gate available: lint, tests, type check, build,
+                or formatting.
+              </p>
+            </div>
+            <CopyCommandBlock
+              client:visible
+              lang={lang}
+              command={qualityGateCommand}
+            />
+          </div>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
+      <div class="section-stack">
+        <h2>References</h2>
+        <ul class="reference-list">
+          <li>
+            <a
+              href="https://help.openai.com/en/articles/20001066-skills-in-chatgpt"
+            >
+              OpenAI: Skills in ChatGPT
+            </a>
+          </li>
+          <li>
+            <a href="https://openai.com/index/introducing-the-codex-app/">
+              OpenAI: Introducing the Codex app
+            </a>
+          </li>
+          <li>
+            <a href="https://claude.com/blog/skills-explained">
+              Anthropic: Skills explained
+            </a>
+          </li>
+          <li>
+            <a href="https://code.claude.com/docs/en/skills">
+              Claude Code: Extend Claude with skills
+            </a>
+          </li>
+          <li>
+            <a href="https://code.claude.com/docs/en/discover-plugins">
+              Claude Code: Discover and install plugins
+            </a>
+          </li>
+          <li>
+            <a href="https://code.claude.com/docs/en/plugin-marketplaces">
+              Claude Code: Create and distribute a plugin marketplace
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.cursor.com/context/rules"> Cursor: Rules </a>
+          </li>
+          <li>
+            <a href="https://cursor.com/changelog/2-4">
+              Cursor: Skills support changelog
+            </a>
+          </li>
+          <li>
+            <a href="https://cursor.com/marketplace"> Cursor: Marketplace </a>
+          </li>
+        </ul>
+      </div>
+    </SectionBlock>
+
+    <Footer lang={lang} />
+  </main>
+</BaseLayout>
+
+<style>
+  .page-title {
+    margin-top: var(--space-md);
+    max-width: 16ch;
+  }
+
+  .page-summary,
+  .section-lead {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .page-summary {
+    font-size: var(--text-lg);
+    margin-top: var(--space-md);
+    max-width: 62ch;
+  }
+
+  .section-title {
+    margin-top: var(--space-sm);
+  }
+
+  .section-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .section-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 72ch;
+  }
+
+  .section-copy h2,
+  .section-copy p {
+    margin: 0;
+  }
+
+  .section-lead {
+    font-size: var(--text-lg);
+    max-width: 62ch;
+  }
+
+  .card-grid {
+    margin-block: var(--space-sm);
+  }
+
+  .after-grid {
+    margin: 0;
+    max-width: 72ch;
+  }
+
+  .share-options {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .share-option {
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-lg);
+  }
+
+  .share-option h3 {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  .share-option p {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 72ch;
+  }
+
+  .share-option p + p {
+    margin-top: var(--space-md);
+  }
+
+  .share-option .flow-card {
+    margin-block: var(--space-lg);
+  }
+
+  .intro-grid {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .intro-grid h2 {
+    margin-bottom: var(--space-md);
+  }
+
+  .intro-grid p,
+  .skills-page section > p {
+    line-height: var(--leading-relaxed);
+    max-width: 72ch;
+  }
+
+  .skills-page section > h2 + p {
+    margin-top: var(--space-md);
+  }
+
+  .skills-page section > p + p {
+    margin-top: var(--space-md);
+  }
+
+  .skills-page section > p + .flow-card,
+  .flow-card + p {
+    margin-top: var(--space-lg);
+  }
+
+  .code-card,
+  .flow-card,
+  .skill-card {
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+  }
+
+  .code-card,
+  .flow-card {
+    padding: var(--space-lg);
+  }
+
+  .code-card pre,
+  .flow-card pre {
+    margin: 0;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    line-height: var(--leading-relaxed);
+  }
+
+  .skill-card {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background: var(--color-bg-alt);
+  }
+
+  .skill-copy {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .skill-copy h3 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .skill-copy p {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  :global(.skills-page .card p) {
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .reference-list {
+    padding-left: var(--space-lg);
+    line-height: var(--leading-relaxed);
+  }
+
+  .reference-list li {
+    margin-bottom: var(--space-xs);
+  }
+
+  code {
+    font-family: var(--font-mono);
+  }
+
+  @media (min-width: 900px) {
+    .intro-grid,
+    .skill-copy,
+    .share-options {
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+    }
+  }
+</style>

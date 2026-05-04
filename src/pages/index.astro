@@ -14,6 +14,7 @@ import {
   getHomeAlternateLinks,
   getSessionHref,
   getProjectHref,
+  getSkillsHref,
 } from '../lib/i18n';
 
 const lang = 'pt-BR';
@@ -106,6 +107,19 @@ function levelToLabel(level: string) {
       </div>
     </SectionBlock>
 
+    <!-- skills -->
+    <SectionBlock padding="xl">
+      <div class="skills-cta-block">
+        <Badge variant="blue">Skills</Badge>
+        <h2>Compartilhe processos com seus agentes</h2>
+        <p>
+          Entenda o que são skills, como elas ajudam times a manter boas
+          práticas e instale uma quality gate com um comando NPX.
+        </p>
+        <Button href={getSkillsHref(lang)} size="lg"> Ver skills </Button>
+      </div>
+    </SectionBlock>
+
     <!-- footer -->
     <Footer lang={lang} />
   </main>
@@ -155,6 +169,28 @@ function levelToLabel(level: string) {
     margin-block: var(--space-md) var(--space-lg);
     color: var(--color-text-muted);
     line-height: var(--leading-relaxed);
+  }
+
+  .skills-cta-block {
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-alt);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-xl);
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .skills-cta-block h2 {
+    margin-top: var(--space-sm);
+  }
+
+  .skills-cta-block p {
+    margin: var(--space-md) auto var(--space-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 54ch;
   }
 
   h2 + p {
