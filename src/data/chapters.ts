@@ -294,8 +294,8 @@ export const CHAPTERS: Chapter[] = [
     },
     description: {
       'pt-BR':
-        'Fazer push, configurar GitHub Actions e validar o site publicado no GitHub Pages.',
-      en: 'Push code, set up GitHub Actions, and validate the published site on GitHub Pages.',
+        'Publicar o primeiro deploy no GitHub Pages a partir do projeto final já enviado ao GitHub.',
+      en: 'Publish the first GitHub Pages deploy from the final project already pushed to GitHub.',
     },
     slug: {
       'pt-BR': 'publicar',
@@ -305,8 +305,8 @@ export const CHAPTERS: Chapter[] = [
       {
         id: 'gh-actions',
         text: {
-          'pt-BR': 'GitHub Actions configurado',
-          en: 'GitHub Actions configured',
+          'pt-BR': 'Fonte de publicação do GitHub Pages configurada',
+          en: 'GitHub Pages publishing source configured',
         },
       },
       {
@@ -340,19 +340,37 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'GitHub Pages, Documentação',
-          en: 'GitHub Pages, Documentation',
+          'pt-BR': 'GitHub Pages, Configurar fonte de publicação',
+          en: 'GitHub Pages, Configure a publishing source',
         },
-        url: 'https://docs.github.com/pages',
+        url: 'https://docs.github.com/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site',
         type: 'documentacao',
         source: { 'pt-BR': 'GitHub', en: 'GitHub' },
       },
       {
         title: {
-          'pt-BR': 'GitHub Actions, Documentação',
-          en: 'GitHub Actions, Documentation',
+          'pt-BR': 'Vite, Deploy de site estático',
+          en: 'Vite, Static deploy',
         },
-        url: 'https://docs.github.com/actions',
+        url: 'https://vite.dev/guide/static-deploy',
+        type: 'documentacao',
+        source: { 'pt-BR': 'Vite', en: 'Vite' },
+      },
+      {
+        title: {
+          'pt-BR': 'Astro, Deploy no GitHub Pages',
+          en: 'Astro, Deploy to GitHub Pages',
+        },
+        url: 'https://docs.astro.build/en/guides/deploy/github/',
+        type: 'documentacao',
+        source: { 'pt-BR': 'Astro Docs', en: 'Astro Docs' },
+      },
+      {
+        title: {
+          'pt-BR': 'GitHub Pages, Workflows customizados',
+          en: 'GitHub Pages, Custom workflows',
+        },
+        url: 'https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages',
         type: 'documentacao',
         source: { 'pt-BR': 'GitHub', en: 'GitHub' },
       },

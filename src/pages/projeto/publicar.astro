@@ -1,62 +1,258 @@
 ---
 import ChapterLayout from '../../layouts/ChapterLayout.astro';
+import CopyPromptBlock from '../../components/CopyPromptBlock/CopyPromptBlock.tsx';
 const lang = 'pt-BR';
+
+const deployBranchPrompt = `
+Você vai me ajudar a publicar este projeto no GitHub Pages pela primeira vez usando uma branch de deploy.
+
+Antes de alterar qualquer arquivo, leia:
+- package.json
+- astro.config.mjs, se existir
+- vite.config.js, vite.config.ts ou configuração equivalente, se existir
+- README.md
+- PLAN.md
+- AGENTS.md ou CLAUDE.md
+
+CONTEXTO
+- Eu já terminei o projeto, fiz o commit final e fiz push para o GitHub.
+- Agora quero o caminho com menor atrito para ver o projeto em uma URL pública.
+- O GitHub Pages deve publicar a partir de uma branch de deploy.
+- A branch principal continua com o código-fonte.
+- A branch gh-pages deve conter apenas o site estático gerado, na raiz da branch.
+- Use a documentação oficial atual como referência:
+  - GitHub Pages publishing source: https://docs.github.com/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+  - Astro GitHub Pages: https://docs.astro.build/en/guides/deploy/github/
+  - Vite static deploy: https://vite.dev/guide/static-deploy
+
+TAREFA
+Prepare o primeiro deploy do projeto no GitHub Pages usando a branch gh-pages.
+
+Faça o seguinte:
+1. Confirme qual comando de build existe no package.json.
+2. Confirme qual é a pasta de saída do build. Normalmente é dist, mas verifique a configuração real do projeto.
+3. Verifique se a configuração do framework precisa de base, public path ou site para funcionar em:
+   https://[USUARIO_GITHUB].github.io/[NOME_DO_REPO]/
+4. Rode ou me oriente a rodar o build de produção.
+5. Prepare um procedimento seguro para publicar o conteúdo gerado na raiz da branch gh-pages.
+6. Explique exatamente quais configurações devo escolher em Settings > Pages:
+   - Source: Deploy from a branch
+   - Branch: gh-pages
+   - Folder: / (root)
+7. Explique como validar a URL pública depois.
+
+REGRAS IMPORTANTES
+- Não publique segredos.
+- Não mude a stack do projeto.
+- Não use GitHub Actions agora; isso fica como upgrade posterior.
+- Não use comandos destrutivos sem explicar antes.
+- Não reescreva uma branch de deploy existente sem pedir confirmação.
+- Se a pasta de build não for dist, adapte o procedimento à configuração real.
+- Antes de executar qualquer comando que altere branches, me mostre o plano.
+`.trim();
 ---
 
 <ChapterLayout chapterNumber={4} lang={lang}>
-  <h2 id="validar-deploy">Vamos configurar o site no github</h2>
+  <h2 id="commit-final-publico">Você já fez o push final</h2>
+
+  <p>
+    Neste ponto, você executou as phases, validou localmente, gerou reports, fez o
+    commit final e enviou o código para o GitHub. Agora falta uma coisa: publicar o projeto.
+  </p>
+
+  <p>
+    A referência principal aqui é a documentação oficial do GitHub sobre
+    <a
+      href="https://docs.github.com/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
+      >configurar a fonte de publicação do Pages</a
+    >.
+  </p>
+
+  <hr />
+
+  <h2 id="o-que-o-pages-precisa">O que o GitHub Pages precisa</h2>
+
+  <p>
+    GitHub Pages publica arquivos estáticos: HTML, CSS, JavaScript e assets
+    prontos para o navegador. Ele pode publicar a partir de uma branch, usando a
+    raiz da branch ou a pasta <code>/docs</code>.
+  </p>
+
+  <p>
+    Em projetos com build, a pasta gerada costuma ser <code>dist</code>, mas o
+    GitHub Pages não permite simplesmente escolher <code>dist</code> dentro da branch
+    principal. Por isso, o caminho mais simples para o primeiro deploy é colocar o
+    conteúdo gerado na raiz de uma branch separada chamada
+    <code>gh-pages</code>.
+  </p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Modelo mental simples</strong>
+    <ul>
+      <li><code>main</code>: código-fonte editável do projeto.</li>
+      <li><code>gh-pages</code>: arquivos finais que o navegador vai abrir.</li>
+    </ul>
+  </div>
+
+  <p>
+    Sim, isso cria duas versões do projeto no repositório. Neste capítulo, isso
+    é uma escolha consciente: primeiro queremos uma URL pública funcionando.
+    Automatizar esse processo pode vir depois.
+  </p>
+
+  <hr />
+
+  <h2 id="preparar-branch-deploy">1. Preparar a branch de deploy</h2>
+
+  <p>
+    Agora peça ao seu agente de código para preparar o deploy. Ele precisa olhar
+    o projeto real, descobrir o comando de build, confirmar a pasta de saída e
+    verificar se existe configuração de <code>base</code> ou
+    <code>public path</code> para URLs do GitHub Pages.
+  </p>
+
+  <CopyPromptBlock
+    client:visible
+    content={deployBranchPrompt}
+    lang={lang}
+    label="Prompt para preparar o primeiro deploy no GitHub Pages"
+  />
+
+  <p>
+    O ponto importante: não aceite um comando só porque parece familiar. O
+    agente precisa confirmar a pasta gerada pelo build e explicar como ela vai
+    parar na raiz da branch <code>gh-pages</code>.
+  </p>
+
+  <hr />
+
+  <h2 id="conferir-url-base">2. Conferir URL, base e caminhos</h2>
+
+  <p>
+    Para repositórios comuns, o GitHub Pages publica no formato:
+    <code>https://[USUARIO_GITHUB].github.io/[NOME_DO_REPO]/</code>.
+  </p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Exemplo</strong>
+    <p>
+      Usuário: <code>ana-dev</code><br />
+      Repositório: <code>deezer-explorer</code><br />
+      URL esperada:
+      <code>https://ana-dev.github.io/deezer-explorer/</code>
+    </p>
+  </div>
+
+  <p>
+    Essa parte é onde muitos primeiros deploys quebram. Se o site abrir sem CSS,
+    imagens ou rotas corretas, normalmente o problema está no <code>base</code>,
+    no <code>public path</code> ou em caminhos absolutos. As docs de
+    <a href="https://docs.astro.build/en/guides/deploy/github/">Astro</a> e
+    <a href="https://vite.dev/guide/static-deploy">Vite</a> explicam esse ajuste para
+    GitHub Pages.
+  </p>
+
+  <hr />
+
+  <h2 id="configurar-pages-ui">3. Configurar o GitHub Pages</h2>
+
+  <p>
+    Depois que a branch <code>gh-pages</code> existir no GitHub com os arquivos gerados
+    na raiz, configure o Pages pela interface do GitHub:
+  </p>
 
   <ol>
+    <li>Abra o repositório no GitHub.</li>
+    <li>Entre em <strong>Settings → Pages</strong>.</li>
     <li>
-      No repositório, <strong>Settings → Pages</strong>: source = GitHub Actions
+      Em <strong>Build and deployment</strong>, escolha <strong
+        >Deploy from a branch</strong
+      >.
     </li>
-    <li>Aba <strong>Actions</strong>: workflow completou sem erro</li>
-    <li>Acesse <code>https://seu-usuario.github.io/deezer-explorer/</code></li>
-    <li>Teste busca, discografia e detalhes do álbum no site publicado</li>
+    <li>Em branch, selecione <strong>gh-pages</strong>.</li>
+    <li>Em folder, selecione <strong>/ (root)</strong>.</li>
+    <li>Clique em <strong>Save</strong>.</li>
   </ol>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      Site publicado e acessível. As três funcionalidades funcionam na URL do
-      GitHub Pages.
+      O GitHub Pages está configurado para publicar a raiz da branch
+      <code>gh-pages</code>.
     </p>
   </div>
 
-  ---
+  <hr />
 
-  <h2 id="o-que-levar">O que levar daqui</h2>
-
-  <ul>
-    <li>
-      <strong>Contexto antes de código</strong>, README, PLAN.md e regras do
-      agente vêm antes do primeiro componente
-    </li>
-    <li>
-      <strong>Planejar antes de executar</strong>, um plano iterado com o agente
-      evita retrabalho
-    </li>
-    <li>
-      <strong>Uma fase por vez</strong>, SDD funciona porque cada passo é
-      validável
-    </li>
-    <li>
-      <strong>Prompts com contexto</strong>, a qualidade da interação define a
-      qualidade do resultado
-    </li>
-    <li>
-      <strong>Ler o que o agente gera</strong>, aceitar sem ler é a falha mais
-      comum
-    </li>
-    <li>
-      <strong>Publicar é parte do fluxo</strong>, deploy não é um passo extra, é
-      a conclusão natural
-    </li>
-  </ul>
+  <h2 id="abrir-url-publica">4. Abrir a URL pública</h2>
 
   <p>
-    Esse fluxo, com contexto, planejamento, execução por partes, validação e
-    publicação, é o mesmo que funciona em projetos reais. A escala muda, o
-    processo não.
+    O GitHub pode levar alguns minutos para publicar. A própria página de
+    <strong>Settings → Pages</strong> costuma mostrar a URL quando o site fica disponível.
+  </p>
+
+  <p>
+    A URL normalmente será:
+    <code>https://[USUARIO_GITHUB].github.io/[NOME_DO_REPO]/</code>. Se ela
+    ainda der 404 logo depois de salvar, espere alguns minutos antes de mexer em
+    tudo.
+  </p>
+
+  <hr />
+
+  <h2 id="validar-site-publicado">5. Validar como usuário</h2>
+
+  <p>
+    Agora valide o projeto publicado como alguém que abriu o link pela primeira
+    vez:
+  </p>
+
+  <ol>
+    <li>Abra a página inicial publicada.</li>
+    <li>Pesquise um artista.</li>
+    <li>Abra a discografia.</li>
+    <li>Abra os detalhes de um álbum.</li>
+    <li>Teste no celular ou em largura pequena.</li>
+    <li>Atualize a página e confirme que ela continua carregando.</li>
+    <li>Abra o console do navegador e confira se não há erro óbvio.</li>
+  </ol>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      O site está publicado no GitHub Pages e o fluxo principal funciona na URL
+      pública.
+    </p>
+  </div>
+
+  <hr />
+
+  <h2 id="quando-quebra">Quando algo quebra</h2>
+
+  <p>
+    Se a URL dá 404, confira se a branch <code>gh-pages</code> existe no GitHub, se
+    o Pages está usando <strong>Deploy from a branch</strong>, se a pasta é
+    <strong>/ (root)</strong> e se você esperou alguns minutos.
+  </p>
+
+  <p>
+    Se a página abre sem estilo, imagens ou rotas corretas, investigue
+    <code>base</code>, <code>public path</code> e caminhos absolutos. Se o site abre
+    mas os dados não carregam, investigue API, CORS e console do navegador.
+  </p>
+
+  <p>
+    O próximo capítulo existe para isso:
+    <a href="/projeto/troubleshooting/">Onde isso quebra</a>. Use ele quando
+    tiver um erro específico, um log ou um comportamento claro para investigar.
+  </p>
+
+  <hr />
+
+  <p>
+    O fluxo completo agora fecha: preparar contexto, planejar, construir em
+    phases, validar localmente, fazer push e publicar. O primeiro deploy não
+    precisa ser perfeito como infraestrutura; ele precisa funcionar, ser
+    compreendido e abrir caminho para automação quando ela fizer sentido.
   </p>
 </ChapterLayout>

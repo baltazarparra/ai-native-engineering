@@ -1,64 +1,319 @@
 ---
 import ChapterLayout from '../../../layouts/ChapterLayout.astro';
+import CopyPromptBlock from '../../../components/CopyPromptBlock/CopyPromptBlock.tsx';
 const lang = 'en';
+
+const deployBranchPrompt = `
+You will help me publish this project to GitHub Pages for the first time using a deploy branch.
+
+Before changing any files, read:
+- package.json
+- astro.config.mjs, if it exists
+- vite.config.js, vite.config.ts, or equivalent framework config, if it exists
+- README.md
+- PLAN.md
+- AGENTS.md or CLAUDE.md
+
+CONTEXT
+- I have already finished the project, made the final commit, and pushed it to GitHub.
+- Now I want the lowest-friction path to see the project at a public URL.
+- GitHub Pages should publish from a deploy branch.
+- The main branch keeps the source code.
+- The gh-pages branch should contain only the generated static site at the branch root.
+- Use the current official documentation as reference:
+  - GitHub Pages publishing source: https://docs.github.com/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+  - Astro GitHub Pages: https://docs.astro.build/en/guides/deploy/github/
+  - Vite static deploy: https://vite.dev/guide/static-deploy
+
+TASK
+Prepare the first GitHub Pages deploy using the gh-pages branch.
+
+Do the following:
+1. Check which build command exists in package.json.
+2. Confirm the build output folder. It is usually dist, but verify the actual project config.
+3. Check whether the framework config needs base, public path, or site for:
+   https://[GITHUB_USERNAME].github.io/[REPO_NAME]/
+4. Run, or tell me to run, the production build.
+5. Prepare a safe procedure to publish the generated output to the root of the gh-pages branch.
+6. Explain exactly which settings I should choose in Settings > Pages:
+   - Source: Deploy from a branch
+   - Branch: gh-pages
+   - Folder: / (root)
+7. Explain how to validate the public URL after publishing.
+
+IMPORTANT RULES
+- Do not publish secrets.
+- Do not change the project stack.
+- Do not use GitHub Actions now; that is a later upgrade.
+- Do not use destructive commands without explaining first.
+- Do not rewrite an existing deploy branch without asking for confirmation.
+- If the build folder is not dist, adapt the procedure to the real config.
+- Before running any command that changes branches, show me the plan.
+`.trim();
 ---
 
 <ChapterLayout chapterNumber={4} lang={lang}>
-  <h2 id="validate-deploy">Validate the deploy</h2>
+  <h2 id="final-commit-pushed">You already pushed the final commit</h2>
 
-  <p>After pushing, validate each step:</p>
+  <p>
+    At this point, you are not starting a project. You came from the build
+    chapter, executed the phases, validated locally, created reports, made the
+    final commit, and pushed the code to GitHub. Now one thing is missing: open
+    the project at a public URL.
+  </p>
+
+  <p>
+    This is not the moment to invent a new feature. The goal of this chapter is
+    to reduce friction for the first <strong>GitHub Pages</strong> deploy: take the
+    project that already works, publish it, and validate the main flow as a user.
+  </p>
+
+  <p>
+    The main reference here is GitHub's official documentation for
+    <a
+      href="https://docs.github.com/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
+      >configuring a Pages publishing source</a
+    >.
+  </p>
+
+  <hr />
+
+  <h2 id="what-pages-needs">What GitHub Pages needs</h2>
+
+  <p>
+    GitHub Pages publishes static files: HTML, CSS, JavaScript, and assets ready
+    for the browser. It can publish from a branch, using either the branch root
+    or the <code>/docs</code> folder.
+  </p>
+
+  <p>
+    In projects with a build step, the generated folder is often
+    <code>dist</code>, but GitHub Pages does not let you simply choose
+    <code>dist</code> inside the main branch. That is why the simplest first deploy
+    path is to put the generated output at the root of a separate branch called <code
+      >gh-pages</code
+    >.
+  </p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Simple mental model</strong>
+    <ul>
+      <li><code>main</code>: editable project source code.</li>
+      <li><code>gh-pages</code>: final files the browser will open.</li>
+    </ul>
+  </div>
+
+  <p>
+    Yes, this creates two versions of the project in the repository. In this
+    chapter, that is an intentional choice: first we want a working public URL.
+    Automating the process can come later.
+  </p>
+
+  <hr />
+
+  <h2 id="prepare-deploy-branch">1. Prepare the deploy branch</h2>
+
+  <p>
+    Now ask your coding agent to prepare the deploy. It needs to inspect the
+    real project, find the build command, confirm the output folder, and check
+    whether there is a <code>base</code> or <code>public path</code> setting for GitHub
+    Pages URLs.
+  </p>
+
+  <CopyPromptBlock
+    client:visible
+    content={deployBranchPrompt}
+    lang={lang}
+    label="Prompt to prepare the first GitHub Pages deploy"
+  />
+
+  <p>
+    The important point: do not accept a command only because it looks familiar.
+    The agent needs to confirm the build output folder and explain how it will
+    land at the root of the <code>gh-pages</code> branch.
+  </p>
+
+  <hr />
+
+  <h2 id="check-url-base">2. Check URL, base, and paths</h2>
+
+  <p>
+    For regular repositories, GitHub Pages publishes at:
+    <code>https://[GITHUB_USERNAME].github.io/[REPO_NAME]/</code>.
+  </p>
+
+  <div class="prompt-example prompt-good">
+    <strong>Example</strong>
+    <p>
+      User: <code>ana-dev</code><br />
+      Repository: <code>deezer-explorer</code><br />
+      Expected URL:
+      <code>https://ana-dev.github.io/deezer-explorer/</code>
+    </p>
+  </div>
+
+  <p>
+    This is where many first deploys break. If the site opens without CSS,
+    images, or correct routes, the problem is usually <code>base</code>,
+    <code>public path</code>, or absolute paths. The
+    <a href="https://docs.astro.build/en/guides/deploy/github/">Astro</a> and
+    <a href="https://vite.dev/guide/static-deploy">Vite</a> docs explain this adjustment
+    for GitHub Pages.
+  </p>
+
+  <hr />
+
+  <h2 id="configure-pages-ui">3. Configure GitHub Pages</h2>
+
+  <p>
+    After the <code>gh-pages</code> branch exists on GitHub with the generated files
+    at its root, configure Pages from the GitHub UI:
+  </p>
 
   <ol>
+    <li>Open the repository on GitHub.</li>
+    <li>Go to <strong>Settings → Pages</strong>.</li>
     <li>
-      <strong>Settings → Pages</strong> in the repository: source = GitHub Actions
+      Under <strong>Build and deployment</strong>, choose <strong
+        >Deploy from a branch</strong
+      >.
     </li>
-    <li><strong>Actions</strong> tab: workflow completed without errors</li>
-    <li>Visit <code>https://your-username.github.io/deezer-explorer/</code></li>
-    <li>Test search, discography, and album details on the published site</li>
+    <li>For branch, select <strong>gh-pages</strong>.</li>
+    <li>For folder, select <strong>/ (root)</strong>.</li>
+    <li>Click <strong>Save</strong>.</li>
   </ol>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      Site published and accessible. All three features work on the GitHub Pages
-      URL.
+      GitHub Pages is configured to publish the root of the
+      <code>gh-pages</code> branch.
     </p>
   </div>
 
-  ---
+  <hr />
+
+  <h2 id="open-public-url">4. Open the public URL</h2>
+
+  <p>
+    GitHub may take a few minutes to publish. The <strong
+      >Settings → Pages</strong
+    >
+    page usually shows the URL once the site is available.
+  </p>
+
+  <p>
+    The URL will usually be:
+    <code>https://[GITHUB_USERNAME].github.io/[REPO_NAME]/</code>. If it still
+    shows 404 right after saving, wait a few minutes before changing everything.
+  </p>
+
+  <hr />
+
+  <h2 id="validate-published-site">5. Validate as a user</h2>
+
+  <p>
+    Now validate the published project as someone opening the link for the first
+    time:
+  </p>
+
+  <ol>
+    <li>Open the published home page.</li>
+    <li>Search for an artist.</li>
+    <li>Open the discography.</li>
+    <li>Open album details.</li>
+    <li>Test on a phone or narrow viewport.</li>
+    <li>Refresh the page and confirm it still loads.</li>
+    <li>Open the browser console and check for obvious errors.</li>
+  </ol>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      The site is published on GitHub Pages and the main flow works on the
+      public URL.
+    </p>
+  </div>
+
+  <hr />
+
+  <h2 id="when-it-breaks">When something breaks</h2>
+
+  <p>
+    If the URL returns 404, check whether the <code>gh-pages</code> branch exists
+    on GitHub, whether Pages is using <strong>Deploy from a branch</strong>,
+    whether the folder is <strong>/ (root)</strong>, and whether you waited a
+    few minutes.
+  </p>
+
+  <p>
+    If the page opens without styles, images, or correct routes, investigate
+    <code>base</code>, <code>public path</code>, and absolute paths. If the site
+    opens but data does not load, investigate the API, CORS, and the browser
+    console.
+  </p>
+
+  <p>
+    The next chapter exists for this:
+    <a href="/en/project/troubleshooting/">Where it breaks</a>. Use it when you
+    have a specific error, log, or clear behavior to investigate.
+  </p>
+
+  <hr />
+
+  <h2 id="when-to-automate">When to automate with GitHub Actions</h2>
+
+  <p>
+    The <code>gh-pages</code> path is good for the first deploy because it reduces
+    new concepts. After you have seen the project working in public, GitHub Actions
+    starts to make more sense.
+  </p>
+
+  <p>
+    Automate when you want to publish on every push, avoid updating the deploy
+    branch manually, work with a team, or keep a clear build history. For that,
+    use the official docs for
+    <a href="https://docs.astro.build/en/guides/deploy/github/"
+      >Astro on GitHub Pages</a
+    >
+    or
+    <a
+      href="https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages"
+      >custom workflows with GitHub Pages</a
+    >.
+  </p>
+
+  <hr />
 
   <h2 id="takeaway">What to take from here</h2>
 
   <ul>
     <li>
-      <strong>Context before code</strong>, README, PLAN.md, and agent rules
-      come before the first component
+      <strong>First public URL first</strong>, automation can come later
     </li>
     <li>
-      <strong>Plan before building</strong>, an iterated plan with the agent
-      prevents rework
+      <strong>GitHub Pages publishes static files</strong>, not the full app
+      source code
     </li>
     <li>
-      <strong>One phase at a time</strong>, SDD works because each step is
-      verifiable
+      <strong
+        ><code>main</code> and <code>gh-pages</code> have different roles</strong
+      >, one keeps the code and the other keeps the generated site
     </li>
     <li>
-      <strong>Prompts with context</strong>, interaction quality defines output
-      quality
+      <strong>Path configuration matters</strong>, many sites break because of
+      <code>base</code> or assets pointing to the wrong place
     </li>
     <li>
-      <strong>Read what the agent generates</strong>, accepting without reading
-      is the most common failure
-    </li>
-    <li>
-      <strong>Publishing is part of the flow</strong>, deployment isn't extra,
-      it's the natural conclusion
+      <strong>Official references matter</strong>, Astro Docs and GitHub Docs
+      are the main source for publishing and automating later
     </li>
   </ul>
 
   <p>
-    This workflow, with context, planning, phased execution, validation and
-    publishing, is the same one that works in real projects. The scale changes,
-    the process doesn't.
+    The full flow now closes: prepare context, plan, build in phases, validate
+    locally, push, and publish. The first deploy does not need perfect
+    infrastructure; it needs to work, be understood, and create a path for
+    automation when automation makes sense.
   </p>
 </ChapterLayout>
