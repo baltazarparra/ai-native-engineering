@@ -15,10 +15,14 @@ interface Props {
 
 export default function ChapterStepper({ lang }: Props) {
   const [active, setActive] = useState(0);
-  const [checked] = useLocalStorage<Record<string, boolean>>(
+  const [checked, setChecked] = useLocalStorage<Record<string, boolean>>(
     'ai-native-project-checkpoints',
     {},
   );
+
+  const handleReset = useCallback(() => {
+    setChecked({});
+  }, [setChecked]);
   const labels = ui[lang].chapters;
 
   const isChapterComplete = (chapterNumber: number) => {
@@ -126,47 +130,52 @@ export default function ChapterStepper({ lang }: Props) {
         aria-labelledby={`ch-tab-${active}`}
         className={styles.panel}
       >
-        {allComplete && active === 0 ? (
-          <div className={styles.congratsPanel}>
-            <span className={styles.congratsIcon}>🎉</span>
-            <h3 className={styles.congratsTitle}>{labels.congrats}</h3>
-            <p className={styles.congratsDesc}>{labels.congratsDesc}</p>
+        <div className={styles.panelHeader}>
+          <span className={styles.chapterBadge}>
+            {chapter.isReference
+              ? labels.reference
+              : labels.chapterLabel(chapter.number)}
+          </span>
+          {chapterDone && (
+            <span className={styles.doneBadge}>{labels.complete}</span>
+          )}
+        </div>
+        <h3 className={styles.panelTitle}>{chapter.title[lang]}</h3>
+        <p className={styles.panelDesc}>{chapter.description[lang]}</p>
+
+        {chapter.checkpoints.length > 0 && !chapterDone && (
+          <div className={styles.panelProgress}>
+            {labels.checkpointsOf(cpDone, chapter.checkpoints.length)}
           </div>
-        ) : (
-          <>
-            <div className={styles.panelHeader}>
-              <span className={styles.chapterBadge}>
-                {chapter.isReference
-                  ? labels.reference
-                  : labels.chapterLabel(chapter.number)}
-              </span>
-              {chapterDone && (
-                <span className={styles.doneBadge}>{labels.complete}</span>
-              )}
-            </div>
-            <h3 className={styles.panelTitle}>{chapter.title[lang]}</h3>
-            <p className={styles.panelDesc}>{chapter.description[lang]}</p>
-
-            {chapter.checkpoints.length > 0 && !chapterDone && (
-              <div className={styles.panelProgress}>
-                {labels.checkpointsOf(cpDone, chapter.checkpoints.length)}
-              </div>
-            )}
-
-            <a
-              href={getChapterHref(chapter.number, lang)}
-              className={styles.panelCta}
-            >
-              {chapterDone
-                ? labels.chapterLabel(chapter.number)
-                : cpDone > 0
-                  ? labels.continueProject
-                  : labels.goToChapter}
-              {' →'}
-            </a>
-          </>
         )}
+
+        <a
+          href={getChapterHref(chapter.number, lang)}
+          className={styles.panelCta}
+        >
+          {chapterDone
+            ? labels.continueProject
+            : cpDone > 0
+              ? labels.continueProject
+              : labels.goToChapter}
+          {' →'}
+        </a>
       </div>
+
+      {allComplete && (
+        <div className={styles.congratsBanner}>
+          <span className={styles.congratsIcon}>🎉</span>
+          <h3 className={styles.congratsTitle}>{labels.congrats}</h3>
+          <p className={styles.congratsDesc}>{labels.congratsDesc}</p>
+          <button
+            className={styles.resetBtn}
+            onClick={handleReset}
+            aria-label={labels.resetAria}
+          >
+            {labels.reset}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

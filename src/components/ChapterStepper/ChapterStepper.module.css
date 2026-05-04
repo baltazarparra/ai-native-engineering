@@ -261,13 +261,53 @@
   transition-duration: var(--motion-instant);
 }
 
-.congratsPanel {
+.congratsBanner {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-md);
   text-align: center;
-  padding: var(--space-lg);
+  padding: var(--space-xl);
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent-1);
+  color: var(--color-fg-on-yellow);
+  box-shadow: var(--shadow-lg);
+  animation: var(--motion-key-pop-in) var(--motion-enter) var(--ease-out-back)
+    both;
+}
+
+.resetBtn {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-xl);
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+  background-color: var(--color-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  box-shadow: 3px 3px 0 var(--color-ink);
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.resetBtn:hover {
+  transform: var(--motion-lift-md);
+  box-shadow: var(--shadow-md);
+}
+
+.resetBtn:active {
+  transform: var(--motion-press);
+  box-shadow: none;
+  transition-duration: var(--motion-instant);
+}
+
+.resetBtn:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 .congratsIcon {

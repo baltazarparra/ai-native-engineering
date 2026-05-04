@@ -52,6 +52,10 @@ export default function ChapterFooter({ chapterNumber, lang }: Props) {
     [setChecked],
   );
 
+  const handleReset = useCallback(() => {
+    setChecked({});
+  }, [setChecked]);
+
   if (isReference) {
     return (
       <div className={styles.container}>
@@ -72,72 +76,76 @@ export default function ChapterFooter({ chapterNumber, lang }: Props) {
 
   return (
     <div className={styles.container}>
-      {isProjectComplete && chapterNumber === 4 ? (
+      {isProjectComplete && chapterNumber === 4 && (
         <div className={styles.congratsCard}>
           <span className={styles.congratsIcon}>🎉</span>
           <h4 className={styles.congratsTitle}>{labels.congrats}</h4>
           <p className={styles.congratsDesc}>{labels.congratsDesc}</p>
-          <a href={getProjectHref(lang)} className={styles.overviewLink}>
-            &larr; {labels.backToOverview}
-          </a>
-        </div>
-      ) : (
-        <div
-          className={`${styles.checkpointCard} ${allComplete ? styles.checkpointCardDone : ''}`}
-        >
-          <div className={styles.checkpointHeader}>
-            <h4 className={styles.checkpointTitle}>
-              {allComplete
-                ? labels.complete
-                : labels.chapterLabel(chapterNumber)}
-            </h4>
-            <span className={styles.checkpointCount}>
-              {labels.checkpointsOf(doneCount, checkpoints.length)}
-            </span>
-          </div>
-
-          <div
-            className={styles.progressBar}
-            role="progressbar"
-            aria-valuenow={progressPct}
-            aria-valuemin={0}
-            aria-valuemax={100}
+          <button
+            className={styles.resetBtn}
+            onClick={handleReset}
+            aria-label={labels.resetAria}
           >
-            <div
-              className={styles.progressFill}
-              style={{ width: `${progressPct}%` }}
-            />
-          </div>
-
-          {!allComplete && (
-            <p className={styles.hint}>{labels.checkpointHint}</p>
-          )}
-
-          <div className={styles.checkpoints}>
-            {checkpoints.map((cp) => (
-              <label key={cp.id} className={styles.checkItem}>
-                <input
-                  type="checkbox"
-                  checked={!!checked[cp.id]}
-                  onChange={() => toggleCheck(cp.id)}
-                  className={styles.checkbox}
-                />
-                <span className={checked[cp.id] ? styles.checkedText : ''}>
-                  {cp.text[lang]}
-                </span>
-              </label>
-            ))}
-          </div>
-
-          {allComplete ? (
-            <a href={nextHref} className={styles.nextBtn}>
-              {nextLabel} &rarr;
-            </a>
-          ) : (
-            <span className={styles.nextBtnDisabled}>{nextLabel} &rarr;</span>
-          )}
+            {labels.reset}
+          </button>
         </div>
       )}
+
+      <div
+        className={`${styles.checkpointCard} ${allComplete ? styles.checkpointCardDone : ''}`}
+      >
+        <div className={styles.checkpointHeader}>
+          <h4 className={styles.checkpointTitle}>
+            {allComplete
+              ? labels.complete
+              : labels.chapterLabel(chapterNumber)}
+          </h4>
+          <span className={styles.checkpointCount}>
+            {labels.checkpointsOf(doneCount, checkpoints.length)}
+          </span>
+        </div>
+
+        <div
+          className={styles.progressBar}
+          role="progressbar"
+          aria-valuenow={progressPct}
+          aria-valuemin={0}
+          aria-valuemax={100}
+        >
+          <div
+            className={styles.progressFill}
+            style={{ width: `${progressPct}%` }}
+          />
+        </div>
+
+        {!allComplete && (
+          <p className={styles.hint}>{labels.checkpointHint}</p>
+        )}
+
+        <div className={styles.checkpoints}>
+          {checkpoints.map((cp) => (
+            <label key={cp.id} className={styles.checkItem}>
+              <input
+                type="checkbox"
+                checked={!!checked[cp.id]}
+                onChange={() => toggleCheck(cp.id)}
+                className={styles.checkbox}
+              />
+              <span className={checked[cp.id] ? styles.checkedText : ''}>
+                {cp.text[lang]}
+              </span>
+            </label>
+          ))}
+        </div>
+
+        {allComplete ? (
+          <a href={nextHref} className={styles.nextBtn}>
+            {nextLabel} &rarr;
+          </a>
+        ) : (
+          <span className={styles.nextBtnDisabled}>{nextLabel} &rarr;</span>
+        )}
+      </div>
 
       <a href={getProjectHref(lang)} className={styles.overviewLink}>
         &larr; {labels.backToOverview}
