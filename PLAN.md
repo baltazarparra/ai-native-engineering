@@ -1146,7 +1146,7 @@ It must work as:
 
 ## 25. Seed References for Initial Curation
 
-### Market and AI-Native Engineering
+### Market and AI-Native Engineers
 
 - Addy Osmani, The AI-Native Software Engineer
   https://addyo.substack.com/p/the-ai-native-software-engineer

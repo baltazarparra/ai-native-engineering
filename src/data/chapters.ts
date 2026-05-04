@@ -79,8 +79,8 @@ export const CHAPTERS: Chapter[] = [
           getSessionHref(lang, lang === 'pt-BR' ? 'ferramentas' : 'tools'),
         type: 'artigo',
         source: {
-          'pt-BR': 'AI-Native Engineering',
-          en: 'AI-Native Engineering',
+          'pt-BR': 'AI-Native Engineers',
+          en: 'AI-Native Engineers',
         },
       },
       {
@@ -92,8 +92,8 @@ export const CHAPTERS: Chapter[] = [
           getSessionHref(lang, lang === 'pt-BR' ? 'maturidade' : 'maturity'),
         type: 'artigo',
         source: {
-          'pt-BR': 'AI-Native Engineering',
-          en: 'AI-Native Engineering',
+          'pt-BR': 'AI-Native Engineers',
+          en: 'AI-Native Engineers',
         },
       },
       {
@@ -187,8 +187,8 @@ export const CHAPTERS: Chapter[] = [
           getSessionHref(lang, lang === 'pt-BR' ? 'maturidade' : 'maturity'),
         type: 'artigo',
         source: {
-          'pt-BR': 'AI-Native Engineering',
-          en: 'AI-Native Engineering',
+          'pt-BR': 'AI-Native Engineers',
+          en: 'AI-Native Engineers',
         },
       },
       {
@@ -257,8 +257,8 @@ export const CHAPTERS: Chapter[] = [
           getSessionHref(lang, lang === 'pt-BR' ? 'maturidade' : 'maturity'),
         type: 'artigo',
         source: {
-          'pt-BR': 'AI-Native Engineering',
-          en: 'AI-Native Engineering',
+          'pt-BR': 'AI-Native Engineers',
+          en: 'AI-Native Engineers',
         },
       },
       {
@@ -334,8 +334,8 @@ export const CHAPTERS: Chapter[] = [
           getSessionHref(lang, lang === 'pt-BR' ? 'maturidade' : 'maturity'),
         type: 'artigo',
         source: {
-          'pt-BR': 'AI-Native Engineering',
-          en: 'AI-Native Engineering',
+          'pt-BR': 'AI-Native Engineers',
+          en: 'AI-Native Engineers',
         },
       },
       {
@@ -398,8 +398,8 @@ export const CHAPTERS: Chapter[] = [
           getSessionHref(lang, lang === 'pt-BR' ? 'ferramentas' : 'tools'),
         type: 'artigo',
         source: {
-          'pt-BR': 'AI-Native Engineering',
-          en: 'AI-Native Engineering',
+          'pt-BR': 'AI-Native Engineers',
+          en: 'AI-Native Engineers',
         },
       },
       {

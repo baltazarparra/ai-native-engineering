@@ -31,11 +31,11 @@ export interface AlternateLink {
 
 export const defaultLang: Lang = 'pt-BR';
 export const languagePreferenceStorageKey =
-  'ai-native-engineering:preferred-language';
+  'ai-native-engineers:preferred-language';
 export const supportedLangs = Object.keys(languages) as Lang[];
 export const ui = {
   'pt-BR': {
-    siteDescription: 'AI-Native Engineering: o mapa que importa',
+    siteDescription: 'AI-Native Engineers: o mapa que importa',
     skipToContent: 'Pular para o conteúdo',
     languageNav: 'Selecionar idioma',
     themeToggle: {
@@ -138,7 +138,7 @@ export const ui = {
     },
   },
   en: {
-    siteDescription: 'AI-Native Engineering: the map that actually matters',
+    siteDescription: 'AI-Native Engineers: the map that actually matters',
     skipToContent: 'Skip to content',
     languageNav: 'Choose language',
     themeToggle: {

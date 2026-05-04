@@ -1,4 +1,4 @@
-export const themeStorageKey = 'ai-native-engineering:theme';
+export const themeStorageKey = 'ai-native-engineers:theme';
 
 export type Theme = 'light' | 'dark';
 

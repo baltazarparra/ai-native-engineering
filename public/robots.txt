@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /ai-native-engineering/kitchen-sink/
+Disallow: /kitchen-sink/
 
-Sitemap: https://baltazarparra.github.io/ai-native-engineering/sitemap-index.xml
+Sitemap: https://ai-native-engineers.com/sitemap-index.xml
