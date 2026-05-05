@@ -215,7 +215,7 @@ export const CHAPTERS: Chapter[] = [
     },
     description: {
       'pt-BR':
-        'Começar pela phase 1 e executar o implementation plan phase por phase com um loop claro: PRD, PLAN mode, implementação, validação e report.',
+        'Começar pela fase 1 e executar o implementation plan fase por fase com um loop claro: PRD, PLAN mode, implementação, validação e report.',
       en: 'Start with phase 1 and execute the implementation plan phase by phase with a clear loop: PRD, PLAN mode, implementation, validation, and report.',
     },
     slug: {
@@ -227,14 +227,14 @@ export const CHAPTERS: Chapter[] = [
         id: 'phases-reviewed',
         text: {
           'pt-BR':
-            'As phases do implementation plan foram revisadas e refinadas',
+            'As fases do implementation plan foram revisadas e refinadas',
           en: 'The implementation plan phases were reviewed and refined',
         },
       },
       {
         id: 'phases-executed',
         text: {
-          'pt-BR': 'As phases foram executadas e validadas uma por vez',
+          'pt-BR': 'As fases foram executadas e validadas uma por vez',
           en: 'The phases were executed and validated one by one',
         },
       },
@@ -242,7 +242,7 @@ export const CHAPTERS: Chapter[] = [
         id: 'phase-reports-saved',
         text: {
           'pt-BR':
-            'Cada phase concluída gerou report e o projeto roda localmente',
+            'Cada fase concluída gerou report e o projeto roda localmente',
           en: 'Each completed phase produced a report and the project runs locally',
         },
       },
