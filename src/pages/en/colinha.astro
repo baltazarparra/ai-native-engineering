@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Badge from '../../components/Badge/Badge.astro';
+import Footer from '../../components/Footer/Footer.astro';
+import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
+import type { AlternateLink } from '../../lib/i18n';
+
+const lang = 'en';
+const alternateLinks: AlternateLink[] = [
+  { lang: 'pt-BR', href: '/colinha', label: 'PT-BR' },
+  { lang: 'en', href: '/en/colinha', label: 'English' },
+  { lang: 'x-default', href: '/colinha' },
+];
+
+const blocks = [
+  {
+    title: 'Planning',
+    eyebrow: 'Before touching code',
+    accent: 'planning',
+    steps: [
+      {
+        mode: 'Ask',
+        title: 'Explain the idea and revise until it makes sense.',
+        body: 'Use the conversation to clarify the goal, context, constraints, and open questions. The idea should become simple enough to turn into work.',
+      },
+      {
+        mode: 'Plan',
+        title: 'Ask for a coherent roadmap divided into phases.',
+        body: 'Each phase should be small, testable, and have clear acceptance criteria. If a phase feels too large, ask the agent to split it.',
+      },
+      {
+        mode: 'Agent',
+        title: 'Ask the agent to create a .md doc with the plan.',
+        body: 'The document becomes the execution reference. It should capture phases, criteria, risks, and development order.',
+      },
+    ],
+  },
+  {
+    title: 'Execution',
+    eyebrow: 'One phase at a time',
+    accent: 'execution',
+    steps: [
+      {
+        mode: 'Ask',
+        title: 'Ask the agent to analyze the .md plan.',
+        body: 'Before implementation, the agent needs to understand the scope, the current project state, and what has already been decided.',
+      },
+      {
+        mode: 'Plan',
+        title: 'Ask the agent to analyze the current phase and plan the work.',
+        body: 'The phase plan should cover likely files, work sequence, risks, and how the result will be validated.',
+      },
+      {
+        mode: 'Agent',
+        title: 'Ask the agent to review, execute, and validate this phase plan.',
+        body: 'The phase is only done when the agent implements, tests what it can, and clearly explains what changed.',
+      },
+    ],
+  },
+] as const;
+
+const modeVariant = {
+  Ask: 'yellow',
+  Plan: 'blue',
+  Agent: 'green',
+} as const;
+---
+
+<BaseLayout
+  title="Cheatsheet for working with a code agent"
+  description="A simple recipe for planning and executing technical tasks with a code agent."
+  lang={lang}
+  alternateLinks={alternateLinks}
+>
+  <main id="main-content">
+    <SectionBlock padding="lg" maxWidth="xl">
+      <div class="recipe-grid">
+        {
+          blocks.map((block) => (
+            <section class:list={['recipe-block', block.accent]}>
+              <div class="block-header">
+                <p class="eyebrow">{block.eyebrow}</p>
+                <h2>{block.title}</h2>
+              </div>
+
+              <ol class="step-list">
+                {block.steps.map((step, index) => (
+                  <li class="step-card">
+                    <div class="step-topline">
+                      <span class="step-number">{index + 1}</span>
+                      <Badge variant={modeVariant[step.mode]} size="sm">
+                        {step.mode} mode
+                      </Badge>
+                    </div>
+                    <h3>{step.title}</h3>
+                    <p>{step.body}</p>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ))
+        }
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="md" alt maxWidth="md">
+      <aside class="closing-note" aria-label="Final reminder">
+        <Badge variant="green">Reminder</Badge>
+        <p>
+          Do not skip planning. The agent executes better when the next phase is
+          small, clear, and validatable.
+        </p>
+      </aside>
+    </SectionBlock>
+
+    <Footer lang={lang} />
+  </main>
+</BaseLayout>
+
+<style>
+  .block-header {
+    display: grid;
+    gap: var(--space-sm);
+  }
+
+  .block-header h2 {
+    max-width: 15ch;
+  }
+
+  .eyebrow {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-snug);
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  .recipe-grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .recipe-block {
+    display: grid;
+    gap: var(--space-lg);
+    min-width: 0;
+    padding: var(--space-md);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-raised);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .recipe-block.planning {
+    border-top-color: var(--color-accent-1);
+  }
+
+  .recipe-block.execution {
+    border-top-color: var(--color-accent-2);
+  }
+
+  .step-list {
+    display: grid;
+    gap: var(--space-md);
+    list-style: none;
+  }
+
+  .step-card {
+    display: grid;
+    gap: var(--space-sm);
+    min-width: 0;
+    padding: var(--space-md);
+    border: var(--border-thin);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .step-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+
+  .step-number {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    aspect-ratio: 1;
+    border: var(--border-thick);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-ink);
+    color: var(--color-fg-on-ink);
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    line-height: 1;
+  }
+
+  .step-card h3 {
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+  }
+
+  .step-card p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .closing-note {
+    display: grid;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-raised);
+    box-shadow: var(--shadow-md);
+  }
+
+  .closing-note p {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-snug);
+    color: var(--color-heading);
+  }
+
+  @media (min-width: 768px) {
+    .recipe-block {
+      padding: var(--space-lg);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .recipe-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+  }
+</style>
