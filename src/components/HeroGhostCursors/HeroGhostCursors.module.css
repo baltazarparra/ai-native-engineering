@@ -30,3 +30,7 @@
     display: none;
   }
 }
+
+.captured svg path {
+  stroke-width: 4;
+}

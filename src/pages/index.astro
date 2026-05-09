@@ -10,6 +10,8 @@ import Discussion from '../components/Discussion/Discussion.astro';
 import HomeFoundations from '../components/HomeFoundations/HomeFoundations.astro';
 import HeroStickers from '../components/HeroStickers/HeroStickers';
 import HeroGhostCursors from '../components/HeroGhostCursors/HeroGhostCursors';
+import HeroCaptureCounter from '../components/HeroCaptureCounter/HeroCaptureCounter';
+import HeroCursorTrail from '../components/HeroCursorTrail/HeroCursorTrail';
 import { getSessions } from '../data/sessions';
 import {
   getHomeAlternateLinks,
@@ -52,8 +54,12 @@ function levelToLabel(level: string) {
       <div class="hero-layer">
         <HeroGhostCursors client:idle />
         <HeroStickers client:idle lang={lang} />
+        <HeroCursorTrail client:idle />
         <div class="hero-content">
-          <Badge variant="green">100% gratuito e open source</Badge>
+          <span class="hero-badge-row">
+            <Badge variant="green">100% gratuito e open source</Badge>
+            <HeroCaptureCounter client:idle />
+          </span>
           <h1 class="hero-title">Engenharia de Software na Era da IA</h1>
           <p class="hero-tagline">
             Um guia prático para quem quer usar IA de verdade no dia a dia de
@@ -144,6 +150,13 @@ function levelToLabel(level: string) {
     position: relative;
     z-index: 3;
     isolation: isolate;
+  }
+
+  .hero-badge-row {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
   }
 
   .hero-title {

@@ -1,0 +1,14 @@
+.canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9000;
+}
+
+@media (max-width: 640px) {
+  .canvas {
+    display: none;
+  }
+}
