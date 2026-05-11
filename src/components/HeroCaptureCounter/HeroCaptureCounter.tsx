@@ -5,6 +5,12 @@ interface CountEventDetail {
   count: number;
 }
 
+type Lang = 'pt-BR' | 'en';
+
+interface Props {
+  lang?: Lang;
+}
+
 const TOTAL_PIPS = 6;
 const PIP_COLORS = [
   'var(--color-accent-1)',
@@ -15,8 +21,12 @@ const PIP_COLORS = [
   'var(--color-accent-2)',
 ];
 
-export default function HeroCaptureCounter() {
+export default function HeroCaptureCounter({ lang = 'pt-BR' }: Props) {
   const [count, setCount] = useState(0);
+  const label =
+    lang === 'en'
+      ? `${count} of ${TOTAL_PIPS} cursors captured`
+      : `${count} de ${TOTAL_PIPS} cursores capturados`;
 
   useEffect(() => {
     const handle = (event: Event) => {
@@ -37,7 +47,7 @@ export default function HeroCaptureCounter() {
     <span
       className={styles.slot}
       role="status"
-      aria-label={`${count} de ${TOTAL_PIPS} cursores capturados`}
+      aria-label={label}
     >
       {Array.from({ length: TOTAL_PIPS }).map((_, index) => {
         const filled = index < count;

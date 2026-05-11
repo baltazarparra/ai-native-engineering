@@ -18,6 +18,7 @@ import {
   getSessionHref,
   getProjectHref,
   getSkillsHref,
+  getHarnessHref,
 } from '../lib/i18n';
 
 const lang = 'pt-BR';
@@ -58,7 +59,7 @@ function levelToLabel(level: string) {
         <div class="hero-content">
           <span class="hero-badge-row">
             <Badge variant="green">100% gratuito e open source</Badge>
-            <HeroCaptureCounter client:idle />
+            <HeroCaptureCounter client:idle lang={lang} />
           </span>
           <h1 class="hero-title">Engenharia de Software na Era da IA</h1>
           <p class="hero-tagline">
@@ -101,8 +102,23 @@ function levelToLabel(level: string) {
       </Grid>
     </SectionBlock>
 
-    <!-- projeto prático -->
+    <!-- harness engineering -->
     <SectionBlock padding="xl" alt>
+      <div class="harness-cta-block">
+        <div>
+          <Badge variant="coral">Aprofundamento</Badge>
+          <h2>Harness Engineering</h2>
+          <p>
+            Entenda como prompts, ferramentas, contexto, limites e validações
+            transformam um modelo em um agente mais confiável.
+          </p>
+        </div>
+        <Button href={getHarnessHref(lang)} size="lg">Entender harness</Button>
+      </div>
+    </SectionBlock>
+
+    <!-- projeto prático -->
+    <SectionBlock padding="xl">
       <div class="project-cta-block">
         <Badge variant="coral">Novo</Badge>
         <h2>Projeto Prático</h2>
@@ -184,6 +200,28 @@ function levelToLabel(level: string) {
     margin-inline: auto;
   }
 
+  .harness-cta-block {
+    display: grid;
+    gap: var(--space-lg);
+    align-items: center;
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-raised);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-xl);
+  }
+
+  .harness-cta-block h2 {
+    margin-top: var(--space-sm);
+  }
+
+  .harness-cta-block p {
+    margin-top: var(--space-md);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 58ch;
+  }
+
   .project-cta-block h2 {
     margin-top: var(--space-sm);
   }
@@ -218,5 +256,11 @@ function levelToLabel(level: string) {
 
   h2 + p {
     margin-block: var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .harness-cta-block {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
   }
 </style>

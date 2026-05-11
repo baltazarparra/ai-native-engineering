@@ -43,3 +43,9 @@
     transform: none;
   }
 }
+
+@media (max-width: 640px) {
+  .slot {
+    display: none;
+  }
+}

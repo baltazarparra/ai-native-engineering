@@ -1,0 +1,515 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
+import Grid from '../../components/Grid/Grid.astro';
+import Card from '../../components/Card/Card.astro';
+import Badge from '../../components/Badge/Badge.astro';
+import Footer from '../../components/Footer/Footer.astro';
+import Discussion from '../../components/Discussion/Discussion.astro';
+import {
+  getHarnessAlternateLinks,
+  getProjectHref,
+  getSessionHref,
+  getSkillsHref,
+} from '../../lib/i18n';
+
+const lang = 'en';
+const alternateLinks = getHarnessAlternateLinks();
+const maturityHref = getSessionHref(lang, 'maturity');
+---
+
+<BaseLayout
+  title="Harness Engineering: what it is and how to use it with AI agents"
+  description="An English guide to Harness Engineering: prompts, tools, context, hooks, validation, and boundaries for working better with coding agents."
+  lang={lang}
+  alternateLinks={alternateLinks}
+>
+  <main id="main-content" class="harness-page">
+    <SectionBlock as="header" padding="xl">
+      <Badge variant="coral">Deep dive</Badge>
+      <h1 class="page-title">Harness Engineering</h1>
+      <p class="page-summary">
+        The operating environment that turns an AI model into an agent that can
+        work with context, boundaries, and validation.
+      </p>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
+      <div class="section-copy">
+        <h2>In 30 seconds</h2>
+        <p class="section-lead">
+          Harness Engineering is the practice of designing everything around an
+          AI agent: instructions, tools, context, permissions, validation, and
+          feedback loops.
+        </p>
+        <p>
+          Without a harness, the agent depends too much on the prompt of the
+          moment. With a harness, the work becomes more predictable, reviewable,
+          and safe. The point is not to freeze the AI. It is to give it rails so
+          it can execute without forgetting what matters.
+        </p>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg">
+      <div class="intro-grid">
+        <div class="section-copy">
+          <h2>A model is not an agent</h2>
+          <p>
+            A model responds. An agent tries to complete a task using tools in a
+            loop: it reads context, takes an action, observes the result, and
+            decides the next step.
+          </p>
+          <p>
+            The harness is what makes that loop useful in real work. It tells
+            the agent which rules to follow, which tools to use, where to find
+            context, when to ask for approval, and how to prove it is done.
+          </p>
+        </div>
+        <div class="equation-card" aria-label="Agent with harness equation">
+          <span>agent</span>
+          <strong>= model + harness</strong>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
+      <div class="section-stack">
+        <div class="section-copy">
+          <h2>What goes into a harness?</h2>
+          <p class="section-lead">
+            Think of the harness as the agent's work infrastructure. It is not
+            one tool. It is the system that helps the team move from chat to a
+            validated delivery.
+          </p>
+        </div>
+
+        <Grid columns={3} gap="lg" align="stretch">
+          <Card title="Instructions" accent="yellow">
+            <p>
+              Files like <code>AGENTS.md</code>, rules, and skills that carry
+              commands, standards, and project agreements.
+            </p>
+          </Card>
+          <Card title="Context" accent="blue">
+            <p>
+              Specs, technical decisions, architecture, product docs, and enough
+              history so the agent is not working in the dark.
+            </p>
+          </Card>
+          <Card title="Tools" accent="green">
+            <p>
+              Terminal, Git, browser, GitHub, logs, MCP servers, and other
+              integrations that let the agent act in the right environment.
+            </p>
+          </Card>
+          <Card title="Boundaries" accent="coral">
+            <p>
+              Sandbox, permissions, human approvals, and blocks for destructive
+              or sensitive actions.
+            </p>
+          </Card>
+          <Card title="Validation" accent="yellow">
+            <p>
+              Lint, tests, typecheck, build, diff review, and checklists that
+              push back against broken delivery.
+            </p>
+          </Card>
+          <Card title="Learning" accent="blue">
+            <p>
+              Each recurring failure becomes a rule, test, hook, doc, or skill.
+              The harness improves because the team learned.
+            </p>
+          </Card>
+        </Grid>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg">
+      <div class="section-stack">
+        <div class="section-copy">
+          <h2>A practical example</h2>
+          <p class="section-lead">
+            The difference shows up when a task leaves the prototype stage and
+            enters a real product.
+          </p>
+        </div>
+
+        <div class="comparison-grid">
+          <article class="comparison-card weak">
+            <Badge variant="coral">Without a harness</Badge>
+            <h3>"Build the user invite screen"</h3>
+            <p>
+              The agent might create a nice screen, but ignore permissions,
+              error states, product copy, responsiveness, tests, and existing
+              design rules.
+            </p>
+          </article>
+
+          <article class="comparison-card strong">
+            <Badge variant="green">With a harness</Badge>
+            <h3>The same task, with rails</h3>
+            <p>
+              The agent gets a short spec, UI rules, existing components,
+              acceptance criteria, validation commands, and permission limits.
+              At the end, it must explain what changed and how it tested it.
+            </p>
+          </article>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
+      <div class="section-stack">
+        <div class="section-copy">
+          <h2>Why this matters</h2>
+          <p class="section-lead">
+            Harness Engineering is not only for senior developers. It changes
+            how entire teams ask for, validate, and trust AI-assisted work.
+          </p>
+        </div>
+
+        <Grid columns={3} gap="lg" align="stretch">
+          <Card title="PM and product" accent="yellow">
+            <p>
+              Turn intent into scope, acceptance criteria, and clear decisions
+              before the agent starts implementing.
+            </p>
+          </Card>
+          <Card title="QA" accent="blue">
+            <p>
+              Convert risk into testable scenarios and help the harness block
+              regressions that already happened before.
+            </p>
+          </Card>
+          <Card title="Design" accent="green">
+            <p>
+              Protect visual consistency with components, tokens, states, and
+              interaction rules already defined by the product.
+            </p>
+          </Card>
+          <Card title="Engineering" accent="coral">
+            <p>
+              Reduce rework because the agent operates inside the real
+              conventions, commands, and boundaries of the codebase.
+            </p>
+          </Card>
+          <Card title="Founders" accent="yellow">
+            <p>
+              Move faster without treating every demo as production-ready. The
+              delivery still needs validation.
+            </p>
+          </Card>
+          <Card title="Recruiting" accent="blue">
+            <p>
+              Evaluate maturity beyond prompting. Strong professionals know how
+              to create context, boundaries, and verification.
+            </p>
+          </Card>
+        </Grid>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg">
+      <div class="section-stack">
+        <div class="section-copy">
+          <h2>Where harnesses break</h2>
+          <p class="section-lead">
+            A bad harness can also get in the way. Maturity means adding control
+            without turning everything into noise.
+          </p>
+        </div>
+
+        <ul class="brutal-list">
+          <li>Too many rules make the agent ignore what is essential.</li>
+          <li>Too many tools increase the chance of a wrong choice.</li>
+          <li>A long prompt does not replace tests, build, and review.</li>
+          <li>No validation creates a false sense of safety.</li>
+          <li>A harness that never changes collects old decisions and weakens.</li>
+        </ul>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt id="start-small">
+      <div class="section-stack">
+        <div class="section-copy">
+          <Badge variant="green">Start small</Badge>
+          <h2 class="section-title">A harness in one week</h2>
+          <p class="section-lead">
+            You do not need to build a platform. Start with one real failure and
+            turn learning into structure.
+          </p>
+        </div>
+
+        <ol class="step-list">
+          <li class="step-card">
+            <span class="step-number">1</span>
+            <div>
+              <h3>Write a short <code>AGENTS.md</code></h3>
+              <p>
+                Include project commands, important standards, and two or three
+                rules the agent should always respect.
+              </p>
+            </div>
+          </li>
+          <li class="step-card">
+            <span class="step-number">2</span>
+            <div>
+              <h3>Document how to validate</h3>
+              <p>
+                List lint, tests, typecheck, build, and any check that proves a
+                change did not break the basics.
+              </p>
+            </div>
+          </li>
+          <li class="step-card">
+            <span class="step-number">3</span>
+            <div>
+              <h3>Pick a recurring failure</h3>
+              <p>
+                Choose a problem that already happened: skipped test, broken UI
+                pattern, wrong file, forgotten command.
+              </p>
+            </div>
+          </li>
+          <li class="step-card">
+            <span class="step-number">4</span>
+            <div>
+              <h3>Turn the failure into a rail</h3>
+              <p>
+                Create a rule, test, checklist, hook, or skill. If it happens
+                again, the harness is not clear enough yet.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="xl">
+      <div class="next-grid">
+        <div class="section-copy">
+          <Badge variant="blue">Next step</Badge>
+          <h2 class="section-title">Now connect harness to delivery</h2>
+          <p>
+            Harness Engineering gets stronger when it works with SDD, skills,
+            and a real project. Use these paths to go deeper without losing the
+            thread.
+          </p>
+        </div>
+
+        <div class="link-stack">
+          <Card
+            title="Session 3: SDD and Harness Design"
+            href={maturityHref}
+            accent="blue"
+          >
+            <p>Understand the professional workflow that combines spec, agent, and validation.</p>
+          </Card>
+          <Card title="Skills for agents" href={getSkillsHref(lang)} accent="green">
+            <p>See how to package reusable process for your harness.</p>
+          </Card>
+          <Card title="Hands-on Project" href={getProjectHref(lang)} accent="yellow">
+            <p>Practice the workflow by creating and publishing a project.</p>
+          </Card>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
+      <div class="section-copy">
+        <h2>Main reference</h2>
+        <p>
+          This page is inspired by
+          <a href="https://addyosmani.com/blog/agent-harness-engineering/">
+            Agent Harness Engineering
+          </a>, by Addy Osmani, and adapts the concept for this guide's audience.
+        </p>
+      </div>
+    </SectionBlock>
+
+    <Discussion lang={lang} slug="harness-engineering" title="Harness Engineering" />
+
+    <Footer lang={lang} />
+  </main>
+</BaseLayout>
+
+<style>
+  .page-title {
+    margin-top: var(--space-md);
+    max-width: 12ch;
+  }
+
+  .page-summary,
+  .section-lead {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .page-summary {
+    font-size: var(--text-xl);
+    margin-top: var(--space-md);
+    max-width: 58ch;
+  }
+
+  .section-title {
+    margin-top: var(--space-sm);
+  }
+
+  .section-stack,
+  .section-copy {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .section-stack {
+    gap: var(--space-xl);
+  }
+
+  .section-copy {
+    gap: var(--space-md);
+    max-width: 74ch;
+  }
+
+  .section-copy h2,
+  .section-copy p {
+    margin: 0;
+  }
+
+  .section-lead {
+    font-size: var(--text-lg);
+    max-width: 64ch;
+  }
+
+  .intro-grid,
+  .comparison-grid,
+  .next-grid {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+    min-width: 0;
+  }
+
+  .equation-card,
+  .comparison-card,
+  .step-card {
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+  }
+
+  .equation-card {
+    display: grid;
+    gap: var(--space-sm);
+    padding: var(--space-xl);
+    border-top-color: var(--color-accent-1);
+    font-family: var(--font-heading);
+  }
+
+  .equation-card span {
+    font-size: var(--text-xl);
+    color: var(--color-text-muted);
+  }
+
+  .equation-card strong {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+  }
+
+  .comparison-card {
+    padding: var(--space-lg);
+  }
+
+  .comparison-card.weak {
+    border-top-color: var(--color-accent-4);
+  }
+
+  .comparison-card.strong {
+    border-top-color: var(--color-accent-3);
+  }
+
+  .comparison-card h3 {
+    margin-block: var(--space-md);
+    font-size: var(--text-2xl);
+  }
+
+  .comparison-card p,
+  :global(.harness-page .card p),
+  .step-card p,
+  .brutal-list {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  :global(.harness-page .card p) {
+    margin: 0;
+  }
+
+  .brutal-list {
+    display: grid;
+    gap: var(--space-sm);
+    max-width: 74ch;
+    padding-left: var(--space-lg);
+    margin: 0;
+  }
+
+  .step-list {
+    display: grid;
+    gap: var(--space-md);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .step-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-md);
+    align-items: start;
+    padding: var(--space-lg);
+  }
+
+  .step-number {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    aspect-ratio: 1;
+    border: var(--border-thick);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-ink);
+    color: var(--color-fg-on-ink);
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    line-height: 1;
+  }
+
+  .step-card h3 {
+    margin: 0 0 var(--space-sm);
+    font-size: var(--text-xl);
+  }
+
+  .step-card p {
+    margin: 0;
+  }
+
+  .link-stack {
+    display: grid;
+    gap: var(--space-md);
+    min-width: 0;
+  }
+
+  code {
+    font-family: var(--font-mono);
+  }
+
+  @media (min-width: 900px) {
+    .intro-grid,
+    .comparison-grid,
+    .next-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+    }
+  }
+</style>
