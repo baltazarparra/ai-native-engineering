@@ -270,6 +270,16 @@
     "priority": 1
   },
   {
+    "id": "addy-agent-harness-engineering",
+    "title": "Agent Harness Engineering",
+    "url": "https://addyosmani.com/blog/agent-harness-engineering/",
+    "type": "artigo",
+    "source": "Addy Osmani",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
     "id": "github-spec-kit",
     "title": "Spec Kit Documentation",
     "url": "https://github.github.com/spec-kit/",

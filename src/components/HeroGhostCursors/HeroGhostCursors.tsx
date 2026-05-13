@@ -15,12 +15,17 @@ interface Ghost {
   pauseInterval: number;
   nextPauseAt: number;
   pauseUntil: number;
+  captured: boolean;
 }
 
 const DESKTOP_COUNT = 6;
 const MOBILE_COUNT = 3;
 const MOBILE_BREAKPOINT = 640;
 const MAGNETIC_RADIUS = 180;
+const CAPTURE_RADIUS = 28;
+const CAPTURE_RADIUS_SQ = CAPTURE_RADIUS * CAPTURE_RADIUS;
+const RELEASE_RADIUS = 240;
+const RELEASE_RADIUS_SQ = RELEASE_RADIUS * RELEASE_RADIUS;
 const DAMPING = 0.96;
 const PAUSE_DAMPING = 0.75;
 const BOUNCE = -0.6;
@@ -56,6 +61,7 @@ function createGhosts(count: number, width: number, height: number): Ghost[] {
       pauseInterval,
       nextPauseAt: now + 1500 + startOffset,
       pauseUntil: 0,
+      captured: false,
     });
   }
   return ghosts;
@@ -87,6 +93,8 @@ export default function HeroGhostCursors() {
     let mouseX = 0;
     let mouseY = 0;
     let mouseActive = false;
+    let captureCount = 0;
+    let trailUnlocked = false;
 
     const applyTransforms = () => {
       for (let i = 0; i < ghosts.length; i += 1) {
@@ -95,6 +103,38 @@ export default function HeroGhostCursors() {
         const g = ghosts[i];
         node.style.transform = `translate3d(${g.x}px, ${g.y}px, 0)`;
       }
+    };
+
+    const captureGhost = (i: number) => {
+      const g = ghosts[i];
+      if (g.captured) return;
+      g.captured = true;
+      const node = nodesRef.current[i];
+      if (node) node.classList.add(styles.captured);
+      captureCount += 1;
+      window.dispatchEvent(
+        new CustomEvent('hero-ghost-captured', {
+          detail: { count: captureCount },
+        }),
+      );
+      if (!trailUnlocked && captureCount >= DESKTOP_COUNT) {
+        trailUnlocked = true;
+        window.dispatchEvent(new CustomEvent('hero-trail-unlocked'));
+      }
+    };
+
+    const releaseGhost = (i: number) => {
+      const g = ghosts[i];
+      if (!g.captured) return;
+      g.captured = false;
+      const node = nodesRef.current[i];
+      if (node) node.classList.remove(styles.captured);
+      captureCount = Math.max(0, captureCount - 1);
+      window.dispatchEvent(
+        new CustomEvent('hero-ghost-released', {
+          detail: { count: captureCount },
+        }),
+      );
     };
 
     applyTransforms();
@@ -109,6 +149,20 @@ export default function HeroGhostCursors() {
     const tick = (t: number) => {
       for (let i = 0; i < ghosts.length; i += 1) {
         const g = ghosts[i];
+
+        if (!isMobile && mouseActive && !g.captured) {
+          const dx = mouseX - g.x;
+          const dy = mouseY - g.y;
+          if (dx * dx + dy * dy < CAPTURE_RADIUS_SQ) {
+            captureGhost(i);
+          }
+        } else if (!isMobile && g.captured) {
+          const dx = mouseX - g.x;
+          const dy = mouseY - g.y;
+          if (dx * dx + dy * dy > RELEASE_RADIUS_SQ) {
+            releaseGhost(i);
+          }
+        }
 
         const isPaused = t < g.pauseUntil;
 

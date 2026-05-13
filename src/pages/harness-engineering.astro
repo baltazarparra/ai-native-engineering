@@ -1,0 +1,448 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
+import Grid from '../components/Grid/Grid.astro';
+import Card from '../components/Card/Card.astro';
+import Badge from '../components/Badge/Badge.astro';
+import Footer from '../components/Footer/Footer.astro';
+import Discussion from '../components/Discussion/Discussion.astro';
+import {
+  getHarnessAlternateLinks,
+  getProjectHref,
+  getSessionHref,
+  getSkillsHref,
+} from '../lib/i18n';
+
+const lang = 'pt-BR';
+const alternateLinks = getHarnessAlternateLinks();
+const maturityHref = getSessionHref(lang, 'maturidade');
+---
+
+<BaseLayout
+  title="Harness Engineering: o que é e como usar com agentes de IA"
+  description="Guia em português para entender Harness Engineering: prompts, ferramentas, contexto, hooks, validações e limites para trabalhar melhor com agentes de código."
+  lang={lang}
+  alternateLinks={alternateLinks}
+>
+  <main id="main-content" class="harness-page">
+    <SectionBlock as="header" padding="xl">
+      <Badge variant="coral">Aprofundamento</Badge>
+      <h1 class="page-title">Harness Engineering</h1>
+      <p class="page-summary">
+        O ambiente que transforma um modelo de IA em um agente capaz de
+        trabalhar com contexto, limites e validação.
+      </p>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
+      <div class="section-copy">
+        <h2>Em 30 segundos</h2>
+        <p class="section-lead">
+          Harness Engineering é a prática de desenhar tudo que fica em volta de
+          um agente de IA: instruções, ferramentas, contexto, permissões,
+          validações e ciclos de feedback.
+        </p>
+        <p>
+          Sem harness, o agente depende demais do prompt do momento. Com
+          harness, o trabalho fica mais previsível, revisável e seguro. A ideia
+          não é engessar a IA. É dar trilhos para ela conseguir executar sem
+          esquecer o que importa.
+        </p>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg">
+      <div class="intro-grid">
+        <div class="section-copy">
+          <h2>Modelo não é agente</h2>
+          <p>
+            Um modelo responde. Um agente tenta concluir uma tarefa usando
+            ferramentas em ciclo: ele lê contexto, toma uma ação, observa o
+            resultado e decide o próximo passo.
+          </p>
+          <p>
+            O harness é o que torna esse ciclo útil no trabalho real. Ele diz ao
+            agente quais regras respeitar, quais ferramentas usar, onde buscar
+            contexto, quando pedir aprovação e como provar que terminou.
+          </p>
+        </div>
+        <div class="equation-card" aria-label="Equação de agente com harness">
+          <span>agente</span>
+          <strong>= modelo + harness</strong>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
+      <div class="section-stack">
+        <div class="section-copy">
+          <h2>O que entra em um harness?</h2>
+          <p class="section-lead">
+            Pense no harness como a infraestrutura de trabalho do agente. Não é
+            uma ferramenta única. É o conjunto que permite sair da conversa e
+            chegar numa entrega validável.
+          </p>
+        </div>
+
+        <Grid columns={3} gap="lg" align="stretch">
+          <Card title="Instruções" accent="yellow">
+            <p>
+              Arquivos como <code>AGENTS.md</code>, rules e skills que carregam
+              comandos, padrões e combinados do projeto.
+            </p>
+          </Card>
+          <Card title="Contexto" accent="blue">
+            <p>
+              Specs, decisões técnicas, arquitetura, docs de produto e histórico
+              suficiente para o agente não trabalhar no escuro.
+            </p>
+          </Card>
+          <Card title="Ferramentas" accent="green">
+            <p>
+              Terminal, Git, navegador, GitHub, logs, MCP servers e outras
+              integrações que deixam o agente agir no ambiente certo.
+            </p>
+          </Card>
+          <Card title="Limites" accent="coral">
+            <p>
+              Sandbox, permissões, aprovações humanas e bloqueios para ações
+              destrutivas ou sensíveis.
+            </p>
+          </Card>
+          <Card title="Validação" accent="yellow">
+            <p>
+              Lint, testes, typecheck, build, revisão de diff e checklists que
+              criam pressão contra entrega quebrada.
+            </p>
+          </Card>
+          <Card title="Aprendizado" accent="blue">
+            <p>
+              Cada falha recorrente vira uma regra, teste, hook, doc ou skill.
+              O harness melhora porque o time aprendeu.
+            </p>
+          </Card>
+        </Grid>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg">
+      <div class="section-stack">
+        <div class="section-copy">
+          <h2>Exemplo prático</h2>
+          <p class="section-lead">
+            A diferença aparece quando a tarefa sai do protótipo e entra num
+            produto de verdade.
+          </p>
+        </div>
+
+        <div class="comparison-grid">
+          <article class="comparison-card weak">
+            <Badge variant="coral">Sem harness</Badge>
+            <h3>"Faz a tela de convite de usuários"</h3>
+            <p>
+              O agente pode criar uma tela bonita, mas talvez ignore permissões,
+              estados de erro, texto do produto, responsividade, testes e regras
+              de design já existentes.
+            </p>
+          </article>
+
+          <article class="comparison-card strong">
+            <Badge variant="green">Com harness</Badge>
+            <h3>A mesma tarefa, com trilhos</h3>
+            <p>
+              O agente recebe uma spec curta, regras de UI, componentes
+              existentes, critérios de aceite, comandos de validação e limites
+              de permissão. No final, precisa mostrar o que mudou e como testou.
+            </p>
+          </article>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt id="comecar">
+      <div class="section-stack">
+        <div class="section-copy">
+          <Badge variant="green">Comece pequeno</Badge>
+          <h2 class="section-title">Um harness em uma semana</h2>
+          <p class="section-lead">
+            Você não precisa montar uma plataforma. Comece por uma falha real e
+            transforme aprendizado em estrutura.
+          </p>
+        </div>
+
+        <ol class="step-list">
+          <li class="step-card">
+            <span class="step-number">1</span>
+            <div>
+              <h3>Escreva um <code>AGENTS.md</code> curto</h3>
+              <p>
+                Inclua comandos do projeto, padrões importantes e duas ou três
+                regras que o agente precisa respeitar sempre.
+              </p>
+            </div>
+          </li>
+          <li class="step-card">
+            <span class="step-number">2</span>
+            <div>
+              <h3>Documente como validar</h3>
+              <p>
+                Liste lint, testes, typecheck, build e qualquer checagem que
+                prove que uma mudança não quebrou o básico.
+              </p>
+            </div>
+          </li>
+          <li class="step-card">
+            <span class="step-number">3</span>
+            <div>
+              <h3>Escolha uma falha recorrente</h3>
+              <p>
+                Pegue um problema que já aconteceu: teste ignorado, padrão de UI
+                quebrado, arquivo errado, comando esquecido.
+              </p>
+            </div>
+          </li>
+          <li class="step-card">
+            <span class="step-number">4</span>
+            <div>
+              <h3>Transforme a falha em trilho</h3>
+              <p>
+                Crie uma regra, teste, checklist, hook ou skill. Se acontecer de
+                novo, o harness ainda não está claro o bastante.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="xl">
+      <div class="next-grid">
+        <div class="section-copy">
+          <Badge variant="blue">Próximo passo</Badge>
+          <h2 class="section-title">Agora conecte harness com entrega</h2>
+          <p>
+            Harness Engineering fica mais forte quando anda junto com SDD,
+            skills e um projeto real. Use estes caminhos para aprofundar sem
+            perder o fio.
+          </p>
+        </div>
+
+        <div class="link-stack">
+          <Card
+            title="Sessão 3: SDD e Harness Design"
+            href={maturityHref}
+            accent="blue"
+          >
+            <p>Entenda o fluxo profissional que combina spec, agente e validação.</p>
+          </Card>
+          <Card title="Skills para agentes" href={getSkillsHref(lang)} accent="green">
+            <p>Veja como empacotar processos reutilizáveis para seu harness.</p>
+          </Card>
+          <Card title="Projeto prático" href={getProjectHref(lang)} accent="yellow">
+            <p>Coloque o fluxo em prática criando e publicando um projeto.</p>
+          </Card>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
+      <div class="section-copy">
+        <h2>Referência principal</h2>
+        <p>
+          Esta página se inspira no artigo
+          <a href="https://addyosmani.com/blog/agent-harness-engineering/">
+            Agent Harness Engineering
+          </a>, de Addy Osmani, e adapta o conceito para o público deste guia.
+        </p>
+      </div>
+    </SectionBlock>
+
+    <Discussion
+      lang={lang}
+      slug="harness-engineering"
+      title="Harness Engineering"
+    />
+
+    <Footer lang={lang} />
+  </main>
+</BaseLayout>
+
+<style>
+  .page-title {
+    margin-top: var(--space-md);
+    max-width: 12ch;
+  }
+
+  .page-summary,
+  .section-lead {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .page-summary {
+    font-size: var(--text-xl);
+    margin-top: var(--space-md);
+    max-width: 58ch;
+  }
+
+  .section-title {
+    margin-top: var(--space-sm);
+  }
+
+  .section-stack,
+  .section-copy {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .section-stack {
+    gap: var(--space-xl);
+  }
+
+  .section-copy {
+    gap: var(--space-md);
+    max-width: 74ch;
+  }
+
+  .section-copy h2,
+  .section-copy p {
+    margin: 0;
+  }
+
+  .section-lead {
+    font-size: var(--text-lg);
+    max-width: 64ch;
+  }
+
+  .intro-grid,
+  .comparison-grid,
+  .next-grid {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+    min-width: 0;
+  }
+
+  .equation-card,
+  .comparison-card,
+  .step-card {
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+  }
+
+  .equation-card {
+    display: grid;
+    gap: var(--space-sm);
+    padding: var(--space-xl);
+    border-top-color: var(--color-accent-1);
+    font-family: var(--font-heading);
+  }
+
+  .equation-card span {
+    font-size: var(--text-xl);
+    color: var(--color-text-muted);
+  }
+
+  .equation-card strong {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+  }
+
+  .comparison-card {
+    padding: var(--space-lg);
+  }
+
+  .comparison-card.weak {
+    border-top-color: var(--color-accent-4);
+  }
+
+  .comparison-card.strong {
+    border-top-color: var(--color-accent-3);
+  }
+
+  .comparison-card h3 {
+    margin-block: var(--space-md);
+    font-size: var(--text-2xl);
+  }
+
+  .comparison-card p,
+  :global(.harness-page .card p),
+  .step-card p,
+  .brutal-list {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  :global(.harness-page .card p) {
+    margin: 0;
+  }
+
+  .brutal-list {
+    display: grid;
+    gap: var(--space-sm);
+    max-width: 74ch;
+    padding-left: var(--space-lg);
+    margin: 0;
+  }
+
+  .step-list {
+    display: grid;
+    gap: var(--space-md);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .step-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-md);
+    align-items: start;
+    padding: var(--space-lg);
+  }
+
+  .step-number {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    aspect-ratio: 1;
+    border: var(--border-thick);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-ink);
+    color: var(--color-fg-on-ink);
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    line-height: 1;
+  }
+
+  .step-card h3 {
+    margin: 0 0 var(--space-sm);
+    font-size: var(--text-xl);
+  }
+
+  .step-card p {
+    margin: 0;
+  }
+
+  .link-stack {
+    display: grid;
+    gap: var(--space-md);
+    min-width: 0;
+  }
+
+  code {
+    font-family: var(--font-mono);
+  }
+
+  @media (min-width: 900px) {
+    .intro-grid,
+    .comparison-grid,
+    .next-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+    }
+  }
+</style>

@@ -10,12 +10,15 @@ import Discussion from '../../components/Discussion/Discussion.astro';
 import HomeFoundations from '../../components/HomeFoundations/HomeFoundations.astro';
 import HeroStickers from '../../components/HeroStickers/HeroStickers';
 import HeroGhostCursors from '../../components/HeroGhostCursors/HeroGhostCursors';
+import HeroCaptureCounter from '../../components/HeroCaptureCounter/HeroCaptureCounter';
+import HeroCursorTrail from '../../components/HeroCursorTrail/HeroCursorTrail';
 import { getSessions } from '../../data/sessions';
 import {
   getHomeAlternateLinks,
   getSessionHref,
   getProjectHref,
   getSkillsHref,
+  getHarnessHref,
 } from '../../lib/i18n';
 
 const lang = 'en';
@@ -42,8 +45,12 @@ function levelToBadgeVariant(level: string) {
       <div class="hero-layer">
         <HeroGhostCursors client:idle />
         <HeroStickers client:idle lang={lang} />
+        <HeroCursorTrail client:idle />
         <div class="hero-content">
-          <Badge variant="green">100% free and open source</Badge>
+          <span class="hero-badge-row">
+            <Badge variant="green">100% free and open source</Badge>
+            <HeroCaptureCounter client:idle lang={lang} />
+          </span>
           <h1 class="hero-title">Software Engineering in the Age of AI</h1>
           <p class="hero-tagline">
             A practical guide for using AI in real software work, without hype
@@ -85,6 +92,20 @@ function levelToBadgeVariant(level: string) {
     </SectionBlock>
 
     <SectionBlock padding="xl" alt>
+      <div class="harness-cta-block">
+        <div>
+          <Badge variant="coral">Deep dive</Badge>
+          <h2>Harness Engineering</h2>
+          <p>
+            Learn how prompts, tools, context, boundaries, and validation turn a
+            model into a more reliable agent.
+          </p>
+        </div>
+        <Button href={getHarnessHref(lang)} size="lg">Understand harness</Button>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="xl">
       <div class="project-cta-block">
         <Badge variant="coral">New</Badge>
         <h2>Hands-on Project</h2>
@@ -132,6 +153,13 @@ function levelToBadgeVariant(level: string) {
     isolation: isolate;
   }
 
+  .hero-badge-row {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
   .hero-title {
     margin-top: var(--space-md);
   }
@@ -155,6 +183,28 @@ function levelToBadgeVariant(level: string) {
     text-align: center;
     max-width: 42ch;
     margin-inline: auto;
+  }
+
+  .harness-cta-block {
+    display: grid;
+    gap: var(--space-lg);
+    align-items: center;
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-raised);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-xl);
+  }
+
+  .harness-cta-block h2 {
+    margin-top: var(--space-sm);
+  }
+
+  .harness-cta-block p {
+    margin-top: var(--space-md);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 58ch;
   }
 
   .project-cta-block h2 {
@@ -191,5 +241,11 @@ function levelToBadgeVariant(level: string) {
 
   h2 + p {
     margin-block: var(--space-md);
+  }
+
+  @media (min-width: 768px) {
+    .harness-cta-block {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
   }
 </style>
