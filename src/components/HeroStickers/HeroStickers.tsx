@@ -17,6 +17,7 @@ import {
 } from './physics';
 import { initAudioOnGesture, pickFrequency, playImpact } from './sound';
 import { triggerShake } from './shake';
+import { mountImpactParticles, spawnImpactParticles } from './particles';
 
 type Lang = 'pt-BR' | 'en';
 
@@ -282,6 +283,7 @@ function Sticker({
 
 export default function HeroStickers({ lang = 'pt-BR' }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const particlesCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [topId, setTopId] = useState<string | null>(null);
   const [orderMap, setOrderMap] = useState<Record<string, number>>({});
   const [mounted, setMounted] = useState(false);
@@ -332,6 +334,14 @@ export default function HeroStickers({ lang = 'pt-BR' }: Props) {
       window.removeEventListener('scroll', handle);
     };
   }, [mounted, isMobile, refreshBounds]);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const canvasEl = particlesCanvasRef.current;
+    const containerEl = containerRef.current;
+    if (!canvasEl || !containerEl) return;
+    return mountImpactParticles(canvasEl, containerEl);
+  }, [mounted]);
 
   const register = useCallback(
     ({ id, x, y, rotate, slot, radius }: RegisterArgs): StickerPhysicsBody => {
@@ -497,6 +507,7 @@ export default function HeroStickers({ lang = 'pt-BR' }: Props) {
 
         if (impactStrength >= IMPACT_THRESHOLD) {
           const midX = (ax + bx) / 2;
+          const midY = (ay + by) / 2;
           const panX = clamp((midX / bounds.width) * 2 - 1, -1, 1);
           const freq = pickFrequency(a.id, b.id);
           playImpact({ strength: impactStrength, panX, freq });
@@ -505,6 +516,14 @@ export default function HeroStickers({ lang = 'pt-BR' }: Props) {
             nx,
             ny,
             reducedMotion: false,
+          });
+          spawnImpactParticles({
+            x: midX,
+            y: midY,
+            strength: impactStrength,
+            nx,
+            ny,
+            reducedMotion,
           });
         }
       }
@@ -532,6 +551,11 @@ export default function HeroStickers({ lang = 'pt-BR' }: Props) {
       className={styles.layer}
       aria-hidden={!mounted ? 'true' : undefined}
     >
+      <canvas
+        ref={particlesCanvasRef}
+        className={styles.particles}
+        aria-hidden="true"
+      />
       {mounted &&
         visibleStickers.map((def) => (
           <Sticker
