@@ -19,6 +19,8 @@
     "@astrojs/mdx": "^5.0.1",
     "@astrojs/react": "^5.0.0",
     "@astrojs/sitemap": "^3.7.2",
+    "@liveblocks/client": "^3.19.1",
+    "@liveblocks/react": "^3.19.1",
     "astro": "^6.0.5",
     "motion": "^12.38.0",
     "react": "^19.2.5",

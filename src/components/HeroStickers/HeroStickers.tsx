@@ -1,11 +1,20 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  animate,
   motion,
   useAnimationFrame,
   useMotionValue,
   type MotionValue,
   type PanInfo,
 } from 'motion/react';
+import {
+  LiveblocksProvider,
+  RoomProvider,
+  useMutation,
+  useSelf,
+  useStorage,
+  useUpdateMyPresence,
+} from '@liveblocks/react';
 import styles from './HeroStickers.module.css';
 import {
   applySpin,
@@ -18,6 +27,16 @@ import {
 import { initAudioOnGesture, pickFrequency, playImpact } from './sound';
 import { triggerShake } from './shake';
 import { mountImpactParticles, spawnImpactParticles } from './particles';
+import {
+  CURSOR_COLORS,
+  LiveMap,
+  LiveObject,
+  liveblocksEnabled,
+  liveblocksPublicKey,
+  type Presence,
+  type StickerSync,
+} from '../../lib/liveblocks';
+import RemoteCursors from './RemoteCursors';
 
 type Lang = 'pt-BR' | 'en';
 
@@ -110,6 +129,40 @@ interface StickerPhysicsBody {
   radius: number;
   slotLeft: number;
   slotTop: number;
+  wasDragging: boolean;
+  ownerUntilMs: number;
+  lastPublishMs: number;
+}
+
+interface SyncAPI {
+  updateSticker: (id: string, patch: Partial<StickerSync>) => void;
+  updateMyPresence: (patch: Partial<Presence>) => void;
+  myId: string | null;
+}
+
+const PUBLISH_INTERVAL_MS = 50;
+const CURSOR_PUBLISH_INTERVAL_MS = 33;
+const OWNER_HOLD_AFTER_RELEASE_MS = 1500;
+const OWNER_REFRESH_DRAG_MS = 5000;
+const ROOM_ID = 'stickers-global-v1';
+
+function makeInitialStorage(): { stickers: LiveMap<string, LiveObject<StickerSync>> } {
+  return {
+    stickers: new LiveMap(
+      STICKERS.map(
+        (def) =>
+          [
+            def.id,
+            new LiveObject<StickerSync>({
+              x: def.desktopSlot.left,
+              y: def.desktopSlot.top,
+              rotate: def.desktopSlot.rotate,
+              owner: null,
+            }),
+          ] as const,
+      ),
+    ),
+  };
 }
 
 const KEY_IMPULSE = 240;
@@ -281,7 +334,16 @@ function Sticker({
   );
 }
 
-export default function HeroStickers({ lang = 'pt-BR' }: Props) {
+interface BodyProps extends Props {
+  sync?: SyncAPI;
+  remoteStickers?: ReadonlyMap<string, StickerSync> | null;
+}
+
+function HeroStickersBody({
+  lang = 'pt-BR',
+  sync,
+  remoteStickers = null,
+}: BodyProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const particlesCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [topId, setTopId] = useState<string | null>(null);
@@ -294,6 +356,9 @@ export default function HeroStickers({ lang = 'pt-BR' }: Props) {
     width: 0,
     height: 0,
   });
+  const lastCursorPublishMs = useRef(0);
+  const myId = sync?.myId ?? null;
+  const multiplayer = Boolean(sync);
 
   useEffect(() => {
     setMounted(true);
@@ -343,6 +408,57 @@ export default function HeroStickers({ lang = 'pt-BR' }: Props) {
     return mountImpactParticles(canvasEl, containerEl);
   }, [mounted]);
 
+  useEffect(() => {
+    if (!multiplayer || !remoteStickers) return;
+    const bounds = boundsRef.current;
+    if (!bounds.width || !bounds.height) return;
+    const now = performance.now();
+    for (const body of bodiesRef.current) {
+      if (body.isDragging) continue;
+      if (now < body.ownerUntilMs) continue;
+      const remote = remoteStickers.get(body.id);
+      if (!remote) continue;
+      if (remote.owner && remote.owner === myId) continue;
+      const targetX = (remote.x / 100) * bounds.width - body.basePx;
+      const targetY = (remote.y / 100) * bounds.height - body.basePy;
+      animate(body.x, targetX, { duration: 0.08, ease: 'linear' });
+      animate(body.y, targetY, { duration: 0.08, ease: 'linear' });
+      animate(body.rotate, remote.rotate, { duration: 0.08, ease: 'linear' });
+      body.vx = 0;
+      body.vy = 0;
+      body.vr = 0;
+    }
+  }, [multiplayer, remoteStickers, myId]);
+
+  useEffect(() => {
+    if (!multiplayer || !sync) return;
+    const containerEl = containerRef.current;
+    if (!containerEl) return;
+    const handlePointerMove = (event: PointerEvent) => {
+      const rect = containerEl.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const now = performance.now();
+      if (now - lastCursorPublishMs.current < CURSOR_PUBLISH_INTERVAL_MS) return;
+      lastCursorPublishMs.current = now;
+      const xPct = ((event.clientX - rect.left) / rect.width) * 100;
+      const yPct = ((event.clientY - rect.top) / rect.height) * 100;
+      if (xPct < -5 || xPct > 105 || yPct < -5 || yPct > 105) {
+        sync.updateMyPresence({ cursor: null });
+        return;
+      }
+      sync.updateMyPresence({ cursor: { x: xPct, y: yPct } });
+    };
+    const handlePointerLeave = () => sync.updateMyPresence({ cursor: null });
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    window.addEventListener('pointerleave', handlePointerLeave);
+    window.addEventListener('blur', handlePointerLeave);
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerleave', handlePointerLeave);
+      window.removeEventListener('blur', handlePointerLeave);
+    };
+  }, [multiplayer, sync]);
+
   const register = useCallback(
     ({ id, x, y, rotate, slot, radius }: RegisterArgs): StickerPhysicsBody => {
       const rect = containerRef.current?.getBoundingClientRect();
@@ -365,6 +481,9 @@ export default function HeroStickers({ lang = 'pt-BR' }: Props) {
         radius,
         slotLeft: slot.left,
         slotTop: slot.top,
+        wasDragging: false,
+        ownerUntilMs: 0,
+        lastPublishMs: 0,
       };
       bodiesRef.current = [...bodiesRef.current, body];
       return body;
@@ -528,6 +647,56 @@ export default function HeroStickers({ lang = 'pt-BR' }: Props) {
         }
       }
     }
+
+    if (sync && myId) {
+      const now = performance.now();
+      for (const body of bodies) {
+        if (body.isDragging) {
+          body.ownerUntilMs = now + OWNER_REFRESH_DRAG_MS;
+        } else if (body.wasDragging) {
+          body.ownerUntilMs = now + OWNER_HOLD_AFTER_RELEASE_MS;
+        }
+        const isMoving =
+          Math.abs(body.vx) > 1 ||
+          Math.abs(body.vy) > 1 ||
+          Math.abs(body.vr) > 1;
+        if (
+          !body.isDragging &&
+          !body.wasDragging &&
+          body.ownerUntilMs === 0 &&
+          isMoving
+        ) {
+          body.ownerUntilMs = now + OWNER_HOLD_AFTER_RELEASE_MS;
+        }
+        const ownsNow = now < body.ownerUntilMs && (body.isDragging || isMoving);
+        body.wasDragging = body.isDragging;
+
+        if (ownsNow) {
+          if (now - body.lastPublishMs >= PUBLISH_INTERVAL_MS) {
+            const absX = body.basePx + body.x.get();
+            const absY = body.basePy + body.y.get();
+            sync.updateSticker(body.id, {
+              x: (absX / bounds.width) * 100,
+              y: (absY / bounds.height) * 100,
+              rotate: body.rotate.get(),
+              owner: myId,
+            });
+            body.lastPublishMs = now;
+          }
+        } else if (body.ownerUntilMs > 0) {
+          const absX = body.basePx + body.x.get();
+          const absY = body.basePy + body.y.get();
+          sync.updateSticker(body.id, {
+            x: (absX / bounds.width) * 100,
+            y: (absY / bounds.height) * 100,
+            rotate: body.rotate.get(),
+            owner: null,
+          });
+          body.ownerUntilMs = 0;
+          body.lastPublishMs = now;
+        }
+      }
+    }
   });
 
   const visibleStickers = useMemo(
@@ -556,6 +725,7 @@ export default function HeroStickers({ lang = 'pt-BR' }: Props) {
         className={styles.particles}
         aria-hidden="true"
       />
+      {multiplayer && <RemoteCursors />}
       {mounted &&
         visibleStickers.map((def) => (
           <Sticker
@@ -573,5 +743,66 @@ export default function HeroStickers({ lang = 'pt-BR' }: Props) {
           />
         ))}
     </div>
+  );
+}
+
+function MultiplayerBridge({ lang }: Props) {
+  const stickers = useStorage((root) => root.stickers);
+  const self = useSelf();
+  const updateMyPresence = useUpdateMyPresence();
+  const updateSticker = useMutation(
+    ({ storage }, id: string, patch: Partial<StickerSync>) => {
+      const map = storage.get('stickers');
+      const obj = map.get(id);
+      if (obj) obj.update(patch);
+    },
+    [],
+  );
+
+  const myId = self ? String(self.connectionId) : null;
+
+  const sync: SyncAPI = useMemo(
+    () => ({
+      updateSticker,
+      updateMyPresence,
+      myId,
+    }),
+    [updateSticker, updateMyPresence, myId],
+  );
+
+  return (
+    <HeroStickersBody lang={lang} sync={sync} remoteStickers={stickers} />
+  );
+}
+
+export default function HeroStickers({ lang = 'pt-BR' }: Props) {
+  const [shouldUseMultiplayer, setShouldUseMultiplayer] = useState(false);
+  const [myColor] = useState<string>(
+    () => CURSOR_COLORS[Math.floor(Math.random() * CURSOR_COLORS.length)],
+  );
+
+  useEffect(() => {
+    if (!liveblocksEnabled) return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setShouldUseMultiplayer(!mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  if (!shouldUseMultiplayer) {
+    return <HeroStickersBody lang={lang} />;
+  }
+
+  return (
+    <LiveblocksProvider publicApiKey={liveblocksPublicKey}>
+      <RoomProvider
+        id={ROOM_ID}
+        initialPresence={{ cursor: null, color: myColor }}
+        initialStorage={makeInitialStorage}
+      >
+        <MultiplayerBridge lang={lang} />
+      </RoomProvider>
+    </LiveblocksProvider>
   );
 }

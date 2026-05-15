@@ -24,6 +24,8 @@ jobs:
 
       - name: Build and upload Pages artifact
         uses: withastro/action@v6
+        env:
+          PUBLIC_LIVEBLOCKS_KEY: ${{ secrets.PUBLIC_LIVEBLOCKS_KEY }}
         with:
           node-version: 22
           package-manager: npm
