@@ -648,7 +648,7 @@ function HeroStickersBody({
       }
     }
 
-    if (sync && myId) {
+    if (sync && myId && remoteStickers) {
       const now = performance.now();
       for (const body of bodies) {
         if (body.isDragging) {
