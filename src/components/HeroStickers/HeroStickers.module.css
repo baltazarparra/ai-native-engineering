@@ -59,12 +59,12 @@
 
 @media (max-width: 767px) {
   .sticker {
-    --sticker-size: 72px;
-    --sticker-half: 36px;
+    --sticker-size: 126px;
+    --sticker-half: 63px;
   }
 
   .emoji {
-    font-size: 40px;
+    font-size: 70px;
   }
 }
 
