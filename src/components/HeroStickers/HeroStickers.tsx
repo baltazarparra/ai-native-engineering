@@ -336,7 +336,7 @@ function Sticker({
 
 interface BodyProps extends Props {
   sync?: SyncAPI;
-  remoteStickers?: ReadonlyMap<string, StickerSync> | null;
+  remoteStickers?: Readonly<Record<string, StickerSync>> | null;
 }
 
 function HeroStickersBody({
@@ -416,7 +416,7 @@ function HeroStickersBody({
     for (const body of bodiesRef.current) {
       if (body.isDragging) continue;
       if (now < body.ownerUntilMs) continue;
-      const remote = remoteStickers.get(body.id);
+      const remote = remoteStickers[body.id];
       if (!remote) continue;
       if (remote.owner && remote.owner === myId) continue;
       const targetX = (remote.x / 100) * bounds.width - body.basePx;
