@@ -195,6 +195,7 @@ interface StickerProps {
   register: (args: RegisterArgs) => StickerPhysicsBody;
   unregister: (id: string) => void;
   clampPosition: (body: StickerPhysicsBody) => void;
+  initialRemote?: StickerSync;
 }
 
 function Sticker({
@@ -208,11 +209,24 @@ function Sticker({
   register,
   unregister,
   clampPosition,
+  initialRemote,
 }: StickerProps) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
   const slot = isMobile ? (def.mobileSlot ?? def.desktopSlot) : def.desktopSlot;
-  const rotate = useMotionValue(slot.rotate);
+  const refW =
+    initialRemote && typeof window !== 'undefined' ? window.innerWidth : 0;
+  const refH =
+    initialRemote && typeof window !== 'undefined' ? window.innerHeight : 0;
+  const initialOffsetX =
+    initialRemote && refW
+      ? ((initialRemote.x - slot.left) / 100) * refW
+      : 0;
+  const initialOffsetY =
+    initialRemote && refH
+      ? ((initialRemote.y - slot.top) / 100) * refH
+      : 0;
+  const x = useMotionValue(initialOffsetX);
+  const y = useMotionValue(initialOffsetY);
+  const rotate = useMotionValue(initialRemote?.rotate ?? slot.rotate);
   const bodyRef = useRef<StickerPhysicsBody | null>(null);
   const radius = isMobile ? 38 : 30;
 
@@ -356,9 +370,17 @@ function HeroStickersBody({
     width: 0,
     height: 0,
   });
+  const referenceRef = useRef<{ width: number; height: number }>({
+    width: 0,
+    height: 0,
+  });
   const lastCursorPublishMs = useRef(0);
+  const firstSyncedRef = useRef<Set<string>>(new Set());
+  const [liveblocksTimedOut, setLiveblocksTimedOut] = useState(false);
   const myId = sync?.myId ?? null;
   const multiplayer = Boolean(sync);
+  const remoteReady = remoteStickers !== null;
+  const stickersReady = !multiplayer || remoteReady || liveblocksTimedOut;
 
   useEffect(() => {
     setMounted(true);
@@ -382,9 +404,13 @@ function HeroStickersBody({
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
     boundsRef.current = { width: rect.width, height: rect.height };
+    referenceRef.current = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
     bodiesRef.current.forEach((b) => {
-      b.basePx = (b.slotLeft / 100) * rect.width;
-      b.basePy = (b.slotTop / 100) * rect.height;
+      b.basePx = (b.slotLeft / 100) * referenceRef.current.width;
+      b.basePy = (b.slotTop / 100) * referenceRef.current.height;
     });
   }, []);
 
@@ -394,24 +420,34 @@ function HeroStickersBody({
     const handle = () => refreshBounds();
     window.addEventListener('resize', handle, { passive: true });
     window.addEventListener('scroll', handle, { passive: true });
+    const ro =
+      typeof ResizeObserver !== 'undefined' ? new ResizeObserver(handle) : null;
+    if (ro && document.body) ro.observe(document.body);
     return () => {
       window.removeEventListener('resize', handle);
       window.removeEventListener('scroll', handle);
+      ro?.disconnect();
     };
   }, [mounted, isMobile, refreshBounds]);
 
   useEffect(() => {
     if (!mounted) return;
     const canvasEl = particlesCanvasRef.current;
-    const containerEl = containerRef.current;
-    if (!canvasEl || !containerEl) return;
-    return mountImpactParticles(canvasEl, containerEl);
+    if (!canvasEl) return;
+    return mountImpactParticles(canvasEl);
   }, [mounted]);
 
   useEffect(() => {
+    if (!multiplayer) return;
+    if (remoteStickers !== null) return;
+    const timer = window.setTimeout(() => setLiveblocksTimedOut(true), 3000);
+    return () => window.clearTimeout(timer);
+  }, [multiplayer, remoteStickers]);
+
+  useEffect(() => {
     if (!multiplayer || !remoteStickers) return;
-    const bounds = boundsRef.current;
-    if (!bounds.width || !bounds.height) return;
+    const reference = referenceRef.current;
+    if (!reference.width || !reference.height) return;
     const now = performance.now();
     for (const body of bodiesRef.current) {
       if (body.isDragging) continue;
@@ -419,11 +455,21 @@ function HeroStickersBody({
       const remote = remoteStickers[body.id];
       if (!remote) continue;
       if (remote.owner && remote.owner === myId) continue;
-      const targetX = (remote.x / 100) * bounds.width - body.basePx;
-      const targetY = (remote.y / 100) * bounds.height - body.basePy;
-      animate(body.x, targetX, { duration: 0.08, ease: 'linear' });
-      animate(body.y, targetY, { duration: 0.08, ease: 'linear' });
-      animate(body.rotate, remote.rotate, { duration: 0.08, ease: 'linear' });
+      const targetX = (remote.x / 100) * reference.width - body.basePx;
+      const targetY = (remote.y / 100) * reference.height - body.basePy;
+      if (!firstSyncedRef.current.has(body.id)) {
+        firstSyncedRef.current.add(body.id);
+        body.x.set(targetX);
+        body.y.set(targetY);
+        body.rotate.set(remote.rotate);
+      } else {
+        animate(body.x, targetX, { duration: 0.08, ease: 'linear' });
+        animate(body.y, targetY, { duration: 0.08, ease: 'linear' });
+        animate(body.rotate, remote.rotate, {
+          duration: 0.08,
+          ease: 'linear',
+        });
+      }
       body.vx = 0;
       body.vy = 0;
       body.vr = 0;
@@ -461,9 +507,12 @@ function HeroStickersBody({
 
   const register = useCallback(
     ({ id, x, y, rotate, slot, radius }: RegisterArgs): StickerPhysicsBody => {
-      const rect = containerRef.current?.getBoundingClientRect();
-      const width = rect?.width ?? boundsRef.current.width;
-      const height = rect?.height ?? boundsRef.current.height;
+      const refW =
+        referenceRef.current.width ||
+        (typeof window !== 'undefined' ? window.innerWidth : 0);
+      const refH =
+        referenceRef.current.height ||
+        (typeof window !== 'undefined' ? window.innerHeight : 0);
       const body: StickerPhysicsBody = {
         id,
         x,
@@ -475,8 +524,8 @@ function HeroStickersBody({
         isDragging: false,
         lastX: 0,
         lastY: 0,
-        basePx: (slot.left / 100) * width,
-        basePy: (slot.top / 100) * height,
+        basePx: (slot.left / 100) * refW,
+        basePy: (slot.top / 100) * refH,
         baseRotate: slot.rotate,
         radius,
         slotLeft: slot.left,
@@ -516,6 +565,7 @@ function HeroStickersBody({
     if (bodies.length === 0) return;
     const bounds = boundsRef.current;
     if (!bounds.width || !bounds.height) return;
+    const reference = referenceRef.current;
 
     const dt = Math.min(deltaMs / 1000, 1 / 30);
     if (dt <= 0) return;
@@ -676,8 +726,8 @@ function HeroStickersBody({
             const absX = body.basePx + body.x.get();
             const absY = body.basePy + body.y.get();
             sync.updateSticker(body.id, {
-              x: (absX / bounds.width) * 100,
-              y: (absY / bounds.height) * 100,
+              x: (absX / reference.width) * 100,
+              y: (absY / reference.height) * 100,
               rotate: body.rotate.get(),
               owner: myId,
             });
@@ -687,8 +737,8 @@ function HeroStickersBody({
           const absX = body.basePx + body.x.get();
           const absY = body.basePy + body.y.get();
           sync.updateSticker(body.id, {
-            x: (absX / bounds.width) * 100,
-            y: (absY / bounds.height) * 100,
+            x: (absX / reference.width) * 100,
+            y: (absY / reference.height) * 100,
             rotate: body.rotate.get(),
             owner: null,
           });
@@ -727,6 +777,7 @@ function HeroStickersBody({
       />
       {multiplayer && <RemoteCursors />}
       {mounted &&
+        stickersReady &&
         visibleStickers.map((def) => (
           <Sticker
             key={def.id}
@@ -740,6 +791,7 @@ function HeroStickersBody({
             register={register}
             unregister={unregister}
             clampPosition={clampPosition}
+            initialRemote={remoteStickers?.[def.id]}
           />
         ))}
     </div>

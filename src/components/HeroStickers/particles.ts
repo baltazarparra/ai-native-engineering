@@ -31,7 +31,6 @@ const MAX_LINES = 8;
 const STRENGTH_DIVISOR = 220;
 
 let canvasEl: HTMLCanvasElement | null = null;
-let containerEl: HTMLElement | null = null;
 let ctx: CanvasRenderingContext2D | null = null;
 let width = 0;
 let height = 0;
@@ -42,7 +41,6 @@ const lines: ImpactLine[] = [];
 let rafId = 0;
 let running = false;
 let lastTickMs = 0;
-let resizeObserver: ResizeObserver | null = null;
 
 function readColors(): void {
   if (typeof document === 'undefined') return;
@@ -56,11 +54,10 @@ function readColors(): void {
 }
 
 function resize(): void {
-  if (!canvasEl || !containerEl || !ctx) return;
-  const rect = containerEl.getBoundingClientRect();
+  if (!canvasEl || !ctx) return;
   dpr = window.devicePixelRatio || 1;
-  width = rect.width;
-  height = rect.height;
+  width = window.innerWidth;
+  height = window.innerHeight;
   canvasEl.width = Math.max(1, Math.floor(width * dpr));
   canvasEl.height = Math.max(1, Math.floor(height * dpr));
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -153,24 +150,17 @@ function ensureLoop(): void {
 
 export function mountImpactParticles(
   canvas: HTMLCanvasElement,
-  container: HTMLElement,
 ): () => void {
   canvasEl = canvas;
-  containerEl = container;
   ctx = canvas.getContext('2d');
   if (!ctx) {
     return () => {
       canvasEl = null;
-      containerEl = null;
     };
   }
   readColors();
   resize();
 
-  if (typeof ResizeObserver !== 'undefined') {
-    resizeObserver = new ResizeObserver(() => resize());
-    resizeObserver.observe(container);
-  }
   const onWindowResize = () => resize();
   window.addEventListener('resize', onWindowResize, { passive: true });
 
@@ -181,13 +171,8 @@ export function mountImpactParticles(
     lastTickMs = 0;
     chunks.length = 0;
     lines.length = 0;
-    if (resizeObserver) {
-      resizeObserver.disconnect();
-      resizeObserver = null;
-    }
     window.removeEventListener('resize', onWindowResize);
     canvasEl = null;
-    containerEl = null;
     ctx = null;
   };
 }

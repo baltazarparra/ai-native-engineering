@@ -41,10 +41,10 @@ function levelToBadgeVariant(level: string) {
   alternateLinks={getHomeAlternateLinks()}
 >
   <main id="main-content">
+    <HeroStickers client:idle lang={lang} />
     <SectionBlock as="header" padding="xl" maxWidth="lg">
-      <div class="hero-layer">
+      <div class="hero-layer" data-screen-shake>
         <HeroGhostCursors client:idle />
-        <HeroStickers client:idle lang={lang} />
         <HeroCursorTrail client:idle />
         <div class="hero-content">
           <span class="hero-badge-row">
@@ -145,6 +145,8 @@ function levelToBadgeVariant(level: string) {
 <style>
   .hero-layer {
     position: relative;
+    z-index: 1;
+    isolation: isolate;
   }
 
   .hero-content {
