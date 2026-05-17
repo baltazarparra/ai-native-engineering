@@ -401,16 +401,13 @@ function HeroStickersBody({
   }, []);
 
   const refreshBounds = useCallback(() => {
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    boundsRef.current = { width: rect.width, height: rect.height };
-    referenceRef.current = {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    boundsRef.current = { width, height };
+    referenceRef.current = { width, height };
     bodiesRef.current.forEach((b) => {
-      b.basePx = (b.slotLeft / 100) * referenceRef.current.width;
-      b.basePy = (b.slotTop / 100) * referenceRef.current.height;
+      b.basePx = (b.slotLeft / 100) * width;
+      b.basePy = (b.slotTop / 100) * height;
     });
   }, []);
 
