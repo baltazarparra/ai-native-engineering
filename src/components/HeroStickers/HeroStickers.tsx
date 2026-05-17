@@ -24,7 +24,13 @@ import {
   resolveOverlap,
   wallBounce,
 } from './physics';
-import { initAudioOnGesture, pickFrequency, playImpact } from './sound';
+import {
+  FANFARE_NOTES,
+  initAudioOnGesture,
+  pickFrequency,
+  playImpact,
+  playMelodyNote,
+} from './sound';
 import { triggerShake } from './shake';
 import { mountImpactParticles, spawnImpactParticles } from './particles';
 import {
@@ -423,6 +429,32 @@ function HeroStickersBody({
     const canvasEl = particlesCanvasRef.current;
     if (!canvasEl) return;
     return mountImpactParticles(canvasEl);
+  }, [mounted]);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const handler = (event: KeyboardEvent) => {
+      if (event.repeat) return;
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      const target = event.target as HTMLElement | null;
+      if (target) {
+        const tag = target.tagName;
+        if (
+          tag === 'INPUT' ||
+          tag === 'TEXTAREA' ||
+          tag === 'SELECT' ||
+          target.isContentEditable
+        ) {
+          return;
+        }
+      }
+      const freq = FANFARE_NOTES[event.key.toLowerCase()];
+      if (freq === undefined) return;
+      initAudioOnGesture();
+      playMelodyNote(freq);
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
   }, [mounted]);
 
   useEffect(() => {

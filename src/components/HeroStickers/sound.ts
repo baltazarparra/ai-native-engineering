@@ -5,7 +5,9 @@ type AudioWindow = Window & {
 let ctx: AudioContext | null = null;
 let masterGain: GainNode | null = null;
 let lastPlayedAt = 0;
+let lastSwooshAt = 0;
 const THROTTLE_MS = 35;
+const SWOOSH_THROTTLE_MS = 250;
 
 const PENTATONIC_HZ = [
   261.63, // C4
@@ -14,6 +16,16 @@ const PENTATONIC_HZ = [
   392.0, // G4
   466.16, // Bb4
 ];
+
+// Last 5 notes of the Final Fantasy Victory Fanfare resolution,
+// in C major: E5 D5 C5 D5 C5. Played in order A→S→D→F→G.
+export const FANFARE_NOTES: Record<string, number> = {
+  a: 659.25, // E5
+  s: 587.33, // D5
+  d: 523.25, // C5
+  f: 587.33, // D5
+  g: 523.25, // C5
+};
 
 function hashString(s: string): number {
   let h = 2166136261;
@@ -101,6 +113,89 @@ export function playImpact({ strength, panX, freq }: ImpactSoundOpts): void {
   noiseGain.gain.setValueAtTime(gain * 0.35, t0);
   noiseGain.gain.exponentialRampToValueAtTime(0.0001, t0 + noiseDuration);
   noise.connect(noiseGain).connect(panner);
+  noise.start(t0);
+  noise.stop(t0 + noiseDuration + 0.01);
+}
+
+export function playMelodyNote(freq: number): void {
+  const c = ensureContext();
+  if (!c || !masterGain) return;
+  if (c.state !== 'running') return;
+
+  const t0 = c.currentTime;
+  const duration = 0.32;
+  const gain = 0.22;
+
+  const panner = c.createStereoPanner();
+  panner.pan.value = 0;
+  panner.connect(masterGain);
+
+  const osc = c.createOscillator();
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(freq, t0);
+
+  const oscGain = c.createGain();
+  oscGain.gain.setValueAtTime(0.0001, t0);
+  oscGain.gain.exponentialRampToValueAtTime(gain, t0 + 0.012);
+  oscGain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+  osc.connect(oscGain).connect(panner);
+  osc.start(t0);
+  osc.stop(t0 + duration + 0.02);
+}
+
+export function playPageSwoosh(
+  direction: 'forward' | 'back' = 'forward',
+): void {
+  const c = ensureContext();
+  if (!c || !masterGain) return;
+  if (c.state !== 'running') return;
+  const now = c.currentTime * 1000;
+  if (now - lastSwooshAt < SWOOSH_THROTTLE_MS) return;
+  lastSwooshAt = now;
+
+  const t0 = c.currentTime;
+  const duration = 0.22;
+  const gain = 0.18;
+  const startFreq = direction === 'back' ? 180 : 320;
+  const endFreq = direction === 'back' ? 320 : 180;
+
+  const panner = c.createStereoPanner();
+  panner.pan.value = 0;
+  panner.connect(masterGain);
+
+  const osc = c.createOscillator();
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(startFreq, t0);
+  osc.frequency.exponentialRampToValueAtTime(endFreq, t0 + duration);
+
+  const oscGain = c.createGain();
+  oscGain.gain.setValueAtTime(0.0001, t0);
+  oscGain.gain.exponentialRampToValueAtTime(gain, t0 + 0.012);
+  oscGain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+  osc.connect(oscGain).connect(panner);
+  osc.start(t0);
+  osc.stop(t0 + duration + 0.02);
+
+  const noiseDuration = 0.18;
+  const noiseLen = Math.floor(c.sampleRate * noiseDuration);
+  const buffer = c.createBuffer(1, noiseLen, c.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < noiseLen; i += 1) {
+    data[i] = (Math.random() * 2 - 1) * (1 - i / noiseLen);
+  }
+  const noise = c.createBufferSource();
+  noise.buffer = buffer;
+
+  const bp = c.createBiquadFilter();
+  bp.type = 'bandpass';
+  bp.frequency.setValueAtTime(startFreq * 3, t0);
+  bp.frequency.exponentialRampToValueAtTime(endFreq * 3, t0 + noiseDuration);
+  bp.Q.value = 1.2;
+
+  const noiseGain = c.createGain();
+  noiseGain.gain.setValueAtTime(gain * 0.5, t0);
+  noiseGain.gain.exponentialRampToValueAtTime(0.0001, t0 + noiseDuration);
+  noise.connect(bp).connect(noiseGain).connect(panner);
   noise.start(t0);
   noise.stop(t0 + noiseDuration + 0.01);
 }

@@ -217,6 +217,24 @@ const navDirectionScript = `
     />
     <title>{title}</title>
     <ClientRouter />
+    <script>
+      import {
+        initAudioOnGesture,
+        playPageSwoosh,
+      } from '../components/HeroStickers/sound';
+
+      let navDirection: 'forward' | 'back' = 'forward';
+
+      document.addEventListener('astro:before-preparation', (event) => {
+        const ev = event as Event & { direction?: 'forward' | 'back' };
+        navDirection = ev.direction ?? 'forward';
+        initAudioOnGesture();
+      });
+
+      document.addEventListener('astro:before-swap', () => {
+        playPageSwoosh(navDirection);
+      });
+    </script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">{ui[lang].skipToContent}</a>
