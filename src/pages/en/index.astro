@@ -41,15 +41,15 @@ function levelToBadgeVariant(level: string) {
   alternateLinks={getHomeAlternateLinks()}
 >
   <main id="main-content">
-    <HeroStickers client:idle lang={lang} />
+    <HeroStickers client:visible lang={lang} />
     <SectionBlock as="header" padding="xl" maxWidth="lg">
       <div class="hero-layer" data-screen-shake>
-        <HeroGhostCursors client:idle />
-        <HeroCursorTrail client:idle />
+        <HeroGhostCursors client:visible />
+        <HeroCursorTrail client:visible />
         <div class="hero-content">
           <span class="hero-badge-row">
             <Badge variant="green">100% free and open source</Badge>
-            <HeroCaptureCounter client:idle lang={lang} />
+            <HeroCaptureCounter client:visible lang={lang} />
           </span>
           <h1 class="hero-title">Software Engineering in the Age of AI</h1>
           <p class="hero-tagline">
@@ -101,7 +101,8 @@ function levelToBadgeVariant(level: string) {
             model into a more reliable agent.
           </p>
         </div>
-        <Button href={getHarnessHref(lang)} size="lg">Understand harness</Button>
+        <Button href={getHarnessHref(lang)} size="lg">Understand harness</Button
+        >
       </div>
     </SectionBlock>
 

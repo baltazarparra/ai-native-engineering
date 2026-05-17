@@ -82,30 +82,11 @@
     var(--ease-out-back);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .icon {
-    transition: none;
-  }
-
-  :global(html[data-theme='light']) .sun,
-  :global(html[data-theme='dark']) .moon {
-    animation: none;
-  }
-
-  :global(html[data-theme='light']) .moon,
-  :global(html:not([data-theme])) .moon,
-  :global(html[data-theme='dark']) .sun {
-    transform: none;
-  }
-}
-
 /* View Transition flourish: a quick, tokenized crossfade on theme change.
    Works alongside Astro's ::view-transition-* (globals.css) because a theme
    toggle starts a new transition that overrides the navigation one for its
-   short duration. Disabled under reduced motion. */
-@media (prefers-reduced-motion: no-preference) {
-  :global(::view-transition-old(root)),
-  :global(::view-transition-new(root)) {
-    animation-duration: var(--motion-fast);
-  }
+   short duration. */
+:global(::view-transition-old(root)),
+:global(::view-transition-new(root)) {
+  animation-duration: var(--motion-fast);
 }

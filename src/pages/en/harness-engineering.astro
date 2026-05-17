@@ -233,12 +233,23 @@ const maturityHref = getSessionHref(lang, 'maturity');
             href={maturityHref}
             accent="blue"
           >
-            <p>Understand the professional workflow that combines spec, agent, and validation.</p>
+            <p>
+              Understand the professional workflow that combines spec, agent,
+              and validation.
+            </p>
           </Card>
-          <Card title="Skills for agents" href={getSkillsHref(lang)} accent="green">
+          <Card
+            title="Skills for agents"
+            href={getSkillsHref(lang)}
+            accent="green"
+          >
             <p>See how to package reusable process for your harness.</p>
           </Card>
-          <Card title="Hands-on Project" href={getProjectHref(lang)} accent="yellow">
+          <Card
+            title="Hands-on Project"
+            href={getProjectHref(lang)}
+            accent="yellow"
+          >
             <p>Practice the workflow by creating and publishing a project.</p>
           </Card>
         </div>
@@ -252,12 +263,17 @@ const maturityHref = getSessionHref(lang, 'maturity');
           This page is inspired by
           <a href="https://addyosmani.com/blog/agent-harness-engineering/">
             Agent Harness Engineering
-          </a>, by Addy Osmani, and adapts the concept for this guide's audience.
+          </a>, by Addy Osmani, and adapts the concept for this guide's
+          audience.
         </p>
       </div>
     </SectionBlock>
 
-    <Discussion lang={lang} slug="harness-engineering" title="Harness Engineering" />
+    <Discussion
+      lang={lang}
+      slug="harness-engineering"
+      title="Harness Engineering"
+    />
 
     <Footer lang={lang} />
   </main>

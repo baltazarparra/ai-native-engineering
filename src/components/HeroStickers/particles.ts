@@ -148,9 +148,7 @@ function ensureLoop(): void {
   rafId = requestAnimationFrame(tick);
 }
 
-export function mountImpactParticles(
-  canvas: HTMLCanvasElement,
-): () => void {
+export function mountImpactParticles(canvas: HTMLCanvasElement): () => void {
   canvasEl = canvas;
   ctx = canvas.getContext('2d');
   if (!ctx) {
@@ -183,7 +181,6 @@ export interface SpawnOpts {
   strength: number;
   nx: number;
   ny: number;
-  reducedMotion: boolean;
 }
 
 export function spawnImpactParticles({
@@ -192,9 +189,7 @@ export function spawnImpactParticles({
   strength,
   nx,
   ny,
-  reducedMotion,
 }: SpawnOpts): void {
-  if (reducedMotion) return;
   if (!canvasEl || !ctx) return;
 
   const intensity = clamp(strength / STRENGTH_DIVISOR, 0.4, 3);

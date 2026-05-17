@@ -44,14 +44,12 @@ export default function HeroCaptureCounter({ lang = 'pt-BR' }: Props) {
   }, []);
 
   return (
-    <span
-      className={styles.slot}
-      role="status"
-      aria-label={label}
-    >
+    <span className={styles.slot} role="status" aria-label={label}>
       {Array.from({ length: TOTAL_PIPS }).map((_, index) => {
         const filled = index < count;
-        const className = filled ? `${styles.pip} ${styles.filled}` : styles.pip;
+        const className = filled
+          ? `${styles.pip} ${styles.filled}`
+          : styles.pip;
         return (
           <span
             key={index}

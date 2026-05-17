@@ -146,7 +146,9 @@ const OWNER_HOLD_AFTER_RELEASE_MS = 1500;
 const OWNER_REFRESH_DRAG_MS = 5000;
 const ROOM_ID = 'stickers-global-v1';
 
-function makeInitialStorage(): { stickers: LiveMap<string, LiveObject<StickerSync>> } {
+function makeInitialStorage(): {
+  stickers: LiveMap<string, LiveObject<StickerSync>>;
+} {
   return {
     stickers: new LiveMap(
       STICKERS.map(
@@ -217,13 +219,9 @@ function Sticker({
   const refH =
     initialRemote && typeof window !== 'undefined' ? window.innerHeight : 0;
   const initialOffsetX =
-    initialRemote && refW
-      ? ((initialRemote.x - slot.left) / 100) * refW
-      : 0;
+    initialRemote && refW ? ((initialRemote.x - slot.left) / 100) * refW : 0;
   const initialOffsetY =
-    initialRemote && refH
-      ? ((initialRemote.y - slot.top) / 100) * refH
-      : 0;
+    initialRemote && refH ? ((initialRemote.y - slot.top) / 100) * refH : 0;
   const x = useMotionValue(initialOffsetX);
   const y = useMotionValue(initialOffsetY);
   const rotate = useMotionValue(initialRemote?.rotate ?? slot.rotate);
@@ -364,7 +362,6 @@ function HeroStickersBody({
   const [orderMap, setOrderMap] = useState<Record<string, number>>({});
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
   const bodiesRef = useRef<StickerPhysicsBody[]>([]);
   const boundsRef = useRef<{ width: number; height: number }>({
     width: 0,
@@ -389,14 +386,8 @@ function HeroStickersBody({
     updateMobile();
     mqMobile.addEventListener('change', updateMobile);
 
-    const mqReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const updateReduced = () => setReducedMotion(mqReduced.matches);
-    updateReduced();
-    mqReduced.addEventListener('change', updateReduced);
-
     return () => {
       mqMobile.removeEventListener('change', updateMobile);
-      mqReduced.removeEventListener('change', updateReduced);
     };
   }, []);
 
@@ -481,7 +472,8 @@ function HeroStickersBody({
       const rect = containerEl.getBoundingClientRect();
       if (!rect.width || !rect.height) return;
       const now = performance.now();
-      if (now - lastCursorPublishMs.current < CURSOR_PUBLISH_INTERVAL_MS) return;
+      if (now - lastCursorPublishMs.current < CURSOR_PUBLISH_INTERVAL_MS)
+        return;
       lastCursorPublishMs.current = now;
       const xPct = ((event.clientX - rect.left) / rect.width) * 100;
       const yPct = ((event.clientY - rect.top) / rect.height) * 100;
@@ -492,7 +484,9 @@ function HeroStickersBody({
       sync.updateMyPresence({ cursor: { x: xPct, y: yPct } });
     };
     const handlePointerLeave = () => sync.updateMyPresence({ cursor: null });
-    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    window.addEventListener('pointermove', handlePointerMove, {
+      passive: true,
+    });
     window.addEventListener('pointerleave', handlePointerLeave);
     window.addEventListener('blur', handlePointerLeave);
     return () => {
@@ -557,7 +551,6 @@ function HeroStickersBody({
   }, []);
 
   useAnimationFrame((_t, deltaMs) => {
-    if (reducedMotion) return;
     const bodies = bodiesRef.current;
     if (bodies.length === 0) return;
     const bounds = boundsRef.current;
@@ -619,13 +612,7 @@ function HeroStickersBody({
         const nx = dx / dist;
         const ny = dy / dist;
         const overlap = minDist - dist;
-        const res = resolveOverlap(
-          nx,
-          ny,
-          overlap,
-          a.isDragging,
-          b.isDragging,
-        );
+        const res = resolveOverlap(nx, ny, overlap, a.isDragging, b.isDragging);
         if (res.deltaAx || res.deltaAy) {
           a.x.set(a.x.get() + res.deltaAx);
           a.y.set(a.y.get() + res.deltaAy);
@@ -659,17 +646,22 @@ function HeroStickersBody({
             vrely = b.vy - a.vy;
           }
         } else if (vn < 0) {
-          const result = elasticExchange(
-            a,
-            b,
-            nx,
-            ny,
-            COLLISION_RESTITUTION,
-          );
+          const result = elasticExchange(a, b, nx, ny, COLLISION_RESTITUTION);
           impactStrength = result.impulse;
         }
 
-        applySpin(a, b, a.radius, b.radius, nx, ny, vrelx, vrely, SPIN_K, MAX_VR);
+        applySpin(
+          a,
+          b,
+          a.radius,
+          b.radius,
+          nx,
+          ny,
+          vrelx,
+          vrely,
+          SPIN_K,
+          MAX_VR,
+        );
 
         if (impactStrength >= IMPACT_THRESHOLD) {
           const midX = (ax + bx) / 2;
@@ -681,7 +673,6 @@ function HeroStickersBody({
             strength: impactStrength,
             nx,
             ny,
-            reducedMotion: false,
           });
           spawnImpactParticles({
             x: midX,
@@ -689,7 +680,6 @@ function HeroStickersBody({
             strength: impactStrength,
             nx,
             ny,
-            reducedMotion,
           });
         }
       }
@@ -715,7 +705,8 @@ function HeroStickersBody({
         ) {
           body.ownerUntilMs = now + OWNER_HOLD_AFTER_RELEASE_MS;
         }
-        const ownsNow = now < body.ownerUntilMs && (body.isDragging || isMoving);
+        const ownsNow =
+          now < body.ownerUntilMs && (body.isDragging || isMoving);
         body.wasDragging = body.isDragging;
 
         if (ownsNow) {
@@ -819,27 +810,15 @@ function MultiplayerBridge({ lang }: Props) {
     [updateSticker, updateMyPresence, myId],
   );
 
-  return (
-    <HeroStickersBody lang={lang} sync={sync} remoteStickers={stickers} />
-  );
+  return <HeroStickersBody lang={lang} sync={sync} remoteStickers={stickers} />;
 }
 
 export default function HeroStickers({ lang = 'pt-BR' }: Props) {
-  const [shouldUseMultiplayer, setShouldUseMultiplayer] = useState(false);
   const [myColor] = useState<string>(
     () => CURSOR_COLORS[Math.floor(Math.random() * CURSOR_COLORS.length)],
   );
 
-  useEffect(() => {
-    if (!liveblocksEnabled) return;
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => setShouldUseMultiplayer(!mq.matches);
-    update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
-
-  if (!shouldUseMultiplayer) {
+  if (!liveblocksEnabled) {
     return <HeroStickersBody lang={lang} />;
   }
 

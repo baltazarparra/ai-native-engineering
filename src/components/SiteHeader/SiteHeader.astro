@@ -23,7 +23,7 @@ function getHref(targetLang: Lang) {
 }
 ---
 
-<header class={styles.header}>
+<header class={styles.header} transition:persist>
   <div class={styles.inner}>
     <div class={styles.brandGroup}>
       <a class={styles.brand} href={getHomeHref(lang)}>AI-Native Engineers</a>
@@ -38,7 +38,7 @@ function getHref(targetLang: Lang) {
       </a>
     </div>
     <div class={styles.actions}>
-      <ThemeToggle client:load lang={lang} />
+      <ThemeToggle client:idle lang={lang} />
       <nav class={styles.langNav} aria-label={labels.languageNav}>
         {
           supportedLangs.map((targetLang) => {

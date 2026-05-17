@@ -38,7 +38,12 @@ export function resolveOverlap(
   bDragging: boolean,
 ): OverlapResolution {
   if (aDragging && !bDragging) {
-    return { deltaAx: 0, deltaAy: 0, deltaBx: nx * overlap, deltaBy: ny * overlap };
+    return {
+      deltaAx: 0,
+      deltaAy: 0,
+      deltaBx: nx * overlap,
+      deltaBy: ny * overlap,
+    };
   }
   if (bDragging && !aDragging) {
     return {

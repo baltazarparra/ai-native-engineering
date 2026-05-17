@@ -50,16 +50,16 @@ function levelToLabel(level: string) {
   alternateLinks={getHomeAlternateLinks()}
 >
   <main id="main-content">
-    <HeroStickers client:idle lang={lang} />
+    <HeroStickers client:visible lang={lang} />
     <!-- hero -->
     <SectionBlock as="header" padding="xl" maxWidth="lg">
       <div class="hero-layer" data-screen-shake>
-        <HeroGhostCursors client:idle />
-        <HeroCursorTrail client:idle />
+        <HeroGhostCursors client:visible />
+        <HeroCursorTrail client:visible />
         <div class="hero-content">
           <span class="hero-badge-row">
             <Badge variant="green">100% gratuito e open source</Badge>
-            <HeroCaptureCounter client:idle lang={lang} />
+            <HeroCaptureCounter client:visible lang={lang} />
           </span>
           <h1 class="hero-title">Engenharia de Software na Era da IA</h1>
           <p class="hero-tagline">

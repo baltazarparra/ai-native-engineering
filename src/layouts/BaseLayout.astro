@@ -165,6 +165,15 @@ const themePersistScript = `
   });
 })();
 `;
+
+const navDirectionScript = `
+(function () {
+  document.addEventListener('astro:before-preparation', function (event) {
+    var dir = event && event.direction ? event.direction : 'forward';
+    document.documentElement.dataset.navDirection = dir;
+  });
+})();
+`;
 ---
 
 <!doctype html>
@@ -174,6 +183,7 @@ const themePersistScript = `
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline set:html={themeInitScript} />
     <script is:inline set:html={themePersistScript} />
+    <script is:inline set:html={navDirectionScript} />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link

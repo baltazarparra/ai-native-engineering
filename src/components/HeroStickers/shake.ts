@@ -15,16 +15,9 @@ export interface ShakeOpts {
   strength: number;
   nx: number;
   ny: number;
-  reducedMotion: boolean;
 }
 
-export function triggerShake({
-  strength,
-  nx,
-  ny,
-  reducedMotion,
-}: ShakeOpts): void {
-  if (reducedMotion) return;
+export function triggerShake({ strength, nx, ny }: ShakeOpts): void {
   const el = getShakeTarget();
   if (!el) return;
 

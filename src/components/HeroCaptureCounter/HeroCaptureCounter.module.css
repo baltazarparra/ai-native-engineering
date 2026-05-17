@@ -35,15 +35,6 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .pip,
-  .pip.filled {
-    transition: background-color 120ms linear;
-    animation: none;
-    transform: none;
-  }
-}
-
 @media (max-width: 640px) {
   .slot {
     display: none;
