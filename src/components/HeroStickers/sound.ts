@@ -18,13 +18,13 @@ const PENTATONIC_HZ = [
 ];
 
 // Last 5 notes of the Final Fantasy Victory Fanfare resolution,
-// in C major: E5 D5 C5 D5 C5. Played in order A→S→D→F→G.
+// in C major: C5 E5 F5 E5 F5 (Do Mi Fá Mi Fá). Played in order A→S→D→F→G.
 export const FANFARE_NOTES: Record<string, number> = {
-  a: 659.25, // E5
-  s: 587.33, // D5
-  d: 523.25, // C5
-  f: 587.33, // D5
-  g: 523.25, // C5
+  a: 523.25, // C5 (Do)
+  s: 659.25, // E5 (Mi)
+  d: 698.46, // F5 (Fá)
+  f: 659.25, // E5 (Mi)
+  g: 698.46, // F5 (Fá)
 };
 
 function hashString(s: string): number {
