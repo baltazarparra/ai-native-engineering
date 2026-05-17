@@ -17,13 +17,13 @@ const PENTATONIC_HZ = [
   466.16, // Bb4
 ];
 
-// Last 5 notes of the Final Fantasy Victory Fanfare resolution,
-// in C major: C5 E5 F5 E5 F5 (Do Mi Fá Mi Fá). Played in order A→S→D→F→G.
+// Keyboard melody played by A→S→D→F→G:
+// C5 D5 F5 D5 F5 (Dó Ré Fá Ré Fá).
 export const FANFARE_NOTES: Record<string, number> = {
-  a: 523.25, // C5 (Do)
-  s: 659.25, // E5 (Mi)
+  a: 523.25, // C5 (Dó)
+  s: 587.33, // D5 (Ré)
   d: 698.46, // F5 (Fá)
-  f: 659.25, // E5 (Mi)
+  f: 587.33, // D5 (Ré)
   g: 698.46, // F5 (Fá)
 };
 
