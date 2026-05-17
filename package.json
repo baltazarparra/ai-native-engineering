@@ -19,6 +19,7 @@
     "@astrojs/mdx": "^5.0.1",
     "@astrojs/react": "^5.0.0",
     "@astrojs/sitemap": "^3.7.2",
+    "@notionhq/client": "^5.21.0",
     "astro": "^6.0.5",
     "motion": "^12.38.0",
     "react": "^19.2.5",
@@ -27,12 +28,20 @@
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "dotenv": "^17.4.2",
     "eslint": "^10.2.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.7.0",
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.58.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
