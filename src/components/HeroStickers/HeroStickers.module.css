@@ -1,14 +1,20 @@
 .layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.particles {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 4;
-  overflow: visible;
-  isolation: isolate;
+  z-index: 5;
 }
 
 .sticker {
@@ -29,6 +35,14 @@
   pointer-events: auto;
   font-family: inherit;
   color: inherit;
+  opacity: 0;
+  animation: stickerFadeIn 180ms ease-out forwards;
+}
+
+@keyframes stickerFadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 .sticker:active {
@@ -59,17 +73,11 @@
 
 @media (max-width: 767px) {
   .sticker {
-    --sticker-size: 72px;
-    --sticker-half: 36px;
+    --sticker-size: 126px;
+    --sticker-half: 63px;
   }
 
   .emoji {
-    font-size: 40px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sticker {
-    transition: none;
+    font-size: 70px;
   }
 }

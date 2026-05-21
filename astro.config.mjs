@@ -22,4 +22,8 @@ export default defineConfig({
     }),
   ],
   output: 'static',
+  prefetch: {
+    prefetchAll: false,
+    defaultStrategy: 'hover',
+  },
 });

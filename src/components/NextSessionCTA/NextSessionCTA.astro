@@ -22,13 +22,13 @@ const {
 const labels = ui[lang].nextSession;
 ---
 
-<div class={styles.cta}>
+<div class={styles.cta} transition:name="next-session-cta">
   {
     isLast ? (
       <>
         <span class={styles.label}>{labels.lastLabel}</span>
         <p class={styles.title}>{labels.lastTitle}</p>
-        <Button href={getProjectHref(lang)} size="lg">
+        <Button href={getProjectHref(lang)} size="lg" data-astro-prefetch>
           {labels.home}
         </Button>
       </>
@@ -37,7 +37,11 @@ const labels = ui[lang].nextSession;
         <span class={styles.label}>{labels.label}</span>
         {nextHeroLabel && <span class={styles.heroLabel}>{nextHeroLabel}</span>}
         <p class={styles.title}>{nextTitle}</p>
-        <Button href={getSessionHref(lang, nextSlug || '')} size="lg">
+        <Button
+          href={getSessionHref(lang, nextSlug || '')}
+          size="lg"
+          data-astro-prefetch
+        >
           {labels.continue}
         </Button>
       </>

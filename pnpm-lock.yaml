@@ -20,6 +20,12 @@ importers:
       '@notionhq/client':
         specifier: ^5.21.0
         version: 5.21.0
+      '@liveblocks/client':
+        specifier: ^3.19.1
+        version: 3.19.1(@types/json-schema@7.0.15)
+      '@liveblocks/react':
+        specifier: ^3.19.1
+        version: 3.19.1(@types/json-schema@7.0.15)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.5)
       astro:
         specifier: ^6.0.5
         version: 6.1.7(@types/node@24.12.2)(rollup@4.60.1)(tsx@4.21.0)(typescript@5.9.3)
@@ -579,6 +585,35 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@liveblocks/client@3.19.1':
+    resolution:
+      {
+        integrity: sha512-+h645g0o7jCYhkg6b3P8rR8iOacNfIre+GqBkP8G/7WuSMquiEkwW4Ub+N5F74wqC+ssuQWLo6QdJ0ICkWlI5w==,
+      }
+
+  '@liveblocks/core@3.19.1':
+    resolution:
+      {
+        integrity: sha512-OPRPJLq/TkFatL+5ECZQaAKijwCF9j9pQDC9MZGBzD9suvcJ9/rvnkYDVko6JI9HKpLmvkPQJNxC13IpsPUAtw==,
+      }
+    peerDependencies:
+      '@types/json-schema': ^7
+
+  '@liveblocks/react@3.19.1':
+    resolution:
+      {
+        integrity: sha512-torDKWpXqyu7F/YpsCNTREzZtQVaZq7NzXW9czMFRJtLTjgyGU5H+5WbtRLvnZpEnYtIAerl19qBWUs7I+IE4w==,
+      }
+    peerDependencies:
+      '@types/react': ^18 || ^19
+      '@types/react-dom': ^18 || ^19
+      react: ^18 || ^19 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
 
   '@mdx-js/mdx@3.1.1':
     resolution: {integrity: sha512-f6ZO2ifpwAQIpzGWaBQT2TXxPv6z3RBzQKpVftEWN78Vl/YweF1uwussDx8ECAXVtr3Rs89fKyG9YlzUs9DyGQ==}
@@ -2888,6 +2923,27 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@liveblocks/client@3.19.1(@types/json-schema@7.0.15)':
+    dependencies:
+      '@liveblocks/core': 3.19.1(@types/json-schema@7.0.15)
+    transitivePeerDependencies:
+      - '@types/json-schema'
+
+  '@liveblocks/core@3.19.1(@types/json-schema@7.0.15)':
+    dependencies:
+      '@types/json-schema': 7.0.15
+
+  '@liveblocks/react@3.19.1(@types/json-schema@7.0.15)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react@19.2.5)':
+    dependencies:
+      '@liveblocks/client': 3.19.1(@types/json-schema@7.0.15)
+      '@liveblocks/core': 3.19.1(@types/json-schema@7.0.15)
+      react: 19.2.5
+    optionalDependencies:
+      '@types/react': 19.2.14
+      '@types/react-dom': 19.2.3(@types/react@19.2.14)
+    transitivePeerDependencies:
+      - '@types/json-schema'
 
   '@mdx-js/mdx@3.1.1':
     dependencies:

@@ -84,7 +84,9 @@ const formattedUpdatedAt = updatedAt.toLocaleDateString(
     <!-- hero -->
     <SectionBlock as="header" padding="xl">
       <Badge variant="default">{heroLabel}</Badge>
-      <h1 class="session-title">{title}</h1>
+      <h1 class="session-title" transition:name="session-hero-title">
+        {title}
+      </h1>
       <div class="session-meta">
         <Badge variant={levelVariants[level]} size="sm">
           {labels.levels[level]}
@@ -219,6 +221,14 @@ const formattedUpdatedAt = updatedAt.toLocaleDateString(
     max-width: 100%;
     min-width: 0;
     margin-block: var(--space-xl) var(--space-2xl);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 400px;
+  }
+
+  .session-content :global(figure),
+  .session-content :global(pre) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 320px;
   }
 
   .session-content :global(blockquote) {

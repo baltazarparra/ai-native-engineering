@@ -75,10 +75,6 @@ export default function HeroGhostCursors() {
     const layer = layerRef.current;
     if (!layer) return;
 
-    const reduced = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches;
-
     const isMobile = window.matchMedia(
       `(max-width: ${MOBILE_BREAKPOINT}px)`,
     ).matches;
@@ -138,10 +134,6 @@ export default function HeroGhostCursors() {
     };
 
     applyTransforms();
-
-    if (reduced) {
-      return;
-    }
 
     let rafId = 0;
     let running = false;

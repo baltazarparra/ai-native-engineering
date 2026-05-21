@@ -21,27 +21,36 @@ html {
 }
 
 body {
+  position: relative;
   min-height: 100dvh;
   overflow-x: clip;
 }
 
-/* --- page transitions --- */
+/* --- page transitions: brutalist slide + shadow kick --- */
 
-@media (prefers-reduced-motion: no-preference) {
-  ::view-transition-old(root) {
-    animation: page-transition-out var(--motion-fast) var(--ease-standard) both;
-  }
-
-  ::view-transition-new(root) {
-    animation: page-transition-in var(--motion-normal) var(--ease-standard) both;
-  }
+::view-transition-old(root) {
+  animation: page-slide-out var(--motion-fast) var(--ease-standard) both;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none;
-  }
+::view-transition-new(root) {
+  animation: page-slide-in var(--motion-slow) var(--ease-snap) both;
+}
+
+[data-nav-direction='back'] ::view-transition-old(root) {
+  animation-name: page-slide-out-back;
+}
+
+[data-nav-direction='back'] ::view-transition-new(root) {
+  animation-name: page-slide-in-back;
+}
+
+/* shared elements get a slight overshoot for the brutalist snap feel */
+::view-transition-old(session-hero-title),
+::view-transition-new(session-hero-title),
+::view-transition-old(next-session-cta),
+::view-transition-new(next-session-cta) {
+  animation-duration: var(--motion-slow);
+  animation-timing-function: var(--ease-snap);
 }
 
 img,
@@ -274,27 +283,61 @@ pre code {
   }
 }
 
-@keyframes page-transition-out {
+@keyframes page-slide-out {
   from {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 
   to {
     opacity: 0;
-    transform: translateY(-4px);
+    transform: translate3d(-24px, 0, 0);
   }
 }
 
-@keyframes page-transition-in {
-  from {
+@keyframes page-slide-in {
+  0% {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translate3d(32px, 0, 0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(-2px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes page-slide-out-back {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 
   to {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+}
+
+@keyframes page-slide-in-back {
+  0% {
+    opacity: 0;
+    transform: translate3d(-32px, 0, 0);
+  }
+
+  60% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(2px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -370,4 +413,9 @@ pre code {
   100% {
     box-shadow: 0 0 0 var(--color-shadow);
   }
+}
+
+/* Liveblocks injects this badge at runtime with inline positioning styles. */
+#liveblocks-badge {
+  display: none !important;
 }

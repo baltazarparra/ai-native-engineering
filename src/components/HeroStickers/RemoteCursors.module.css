@@ -1,0 +1,25 @@
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 30;
+}
+
+.cursor {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #000;
+  transform: translate(-50%, -50%);
+  transition:
+    left 80ms linear,
+    top 80ms linear;
+  will-change: left, top;
+}
+
+@media (max-width: 767px) {
+  .cursor {
+    width: 18px;
+    height: 18px;
+  }
+}

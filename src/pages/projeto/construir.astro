@@ -122,6 +122,10 @@ REGRAS IMPORTANTES
 
   <ol>
     <li>Abra o implementation plan e foque só na fase 1 ou na próxima ainda não concluída</li>
+    <li>
+      Abra o implementation plan e foque só na fase 1 ou na próxima ainda não
+      concluída
+    </li>
     <li>Revise e refine essa fase antes de executar</li>
     <li>Peça ao agente para criar a PRD dessa fase</li>
     <li>Mude a ferramenta para o modo PLAN</li>
@@ -129,26 +133,32 @@ REGRAS IMPORTANTES
     <li>Volte para o modo normal e implemente a fase</li>
     <li>Teste e valide contra a PRD</li>
     <li>Gere o report da fase, marque-a como concluída e siga para a próxima</li>
+    <li>
+      Gere o report da fase, marque-a como concluída e siga para a próxima
+    </li>
   </ol>
 
   <div class="checkpoint">
     <strong>Regra principal:</strong>
     <p>
-      Sempre em ordem. Primeiro fase 1. Depois fase 2. Depois fase 3. Uma
-      fase por vez. Quando uma fase termina, ela precisa ter PRD,
-      implementação, validação e report antes de você abrir a próxima.
+      Sempre em ordem. Primeiro fase 1. Depois fase 2. Depois fase 3. Uma fase
+      por vez. Quando uma fase termina, ela precisa ter PRD, implementação,
+      validação e report antes de você abrir a próxima.
     </p>
   </div>
 
   <hr />
 
   <h2 id="passo-1-prd">1. Ler o implementation plan, revisar a fase e gerar a PRD</h2>
+  <h2 id="passo-1-prd">
+    1. Ler o implementation plan, revisar a fase e gerar a PRD
+  </h2>
 
   <p>
     O primeiro passo do loop é abrir o implementation plan e pegar a
     <strong>fase 1</strong>. Nos ciclos seguintes, você sempre pega a próxima
-    fase ainda não concluída. Antes de qualquer código, revise se essa fase
-    está clara o suficiente. Se estiver vaga, grande demais ou sem critérios
+    fase ainda não concluída. Antes de qualquer código, revise se essa fase está
+    clara o suficiente. Se estiver vaga, grande demais ou sem critérios
     testáveis, ajuste antes de seguir.
   </p>
 
@@ -158,6 +168,10 @@ REGRAS IMPORTANTES
     fica fora, como deve funcionar e como você vai validar. Quando a fase 1
     estiver fechada, você repete exatamente o mesmo processo na fase 2, e
     assim por diante.
+    específica. A PRD é o documento de execução da fase: o que entra, o que fica
+    fora, como deve funcionar e como você vai validar. Quando a fase 1 estiver
+    fechada, você repete exatamente o mesmo processo na fase 2, e assim por
+    diante.
   </p>
 
   <CopyPromptBlock
@@ -182,6 +196,15 @@ REGRAS IMPORTANTES
     a sequência, quais riscos existem e como provar que a fase foi entregue.
     Você faz isso para a fase 1, depois repete para a fase 2, e assim até o
     fim do implementation plan.
+    <strong>modo PLAN</strong> e peça um plano para executar e validar aquela fase
+    atual.
+  </p>
+
+  <p>
+    Isso força o agente a pensar antes de agir: quais arquivos vai tocar, qual a
+    sequência, quais riscos existem e como provar que a fase foi entregue. Você
+    faz isso para a fase 1, depois repete para a fase 2, e assim até o fim do
+    implementation plan.
   </p>
 
   <CopyPromptBlock
@@ -221,6 +244,9 @@ REGRAS IMPORTANTES
       Se essa fase fizer <code>fetch()</code> no browser para a API do Deezer,
       o problema de CORS provavelmente vai aparecer. Trate isso como risco da
       fase e resolva dentro do próprio loop, antes de fechar a validação.
+      Se essa fase fizer <code>fetch()</code> no browser para a API do Deezer, o problema
+      de CORS provavelmente vai aparecer. Trate isso como risco da fase e resolva
+      dentro do próprio loop, antes de fechar a validação.
     </p>
   </div>
 
@@ -231,13 +257,15 @@ REGRAS IMPORTANTES
   <p>
     Quando a fase estiver implementada e validada localmente, feche o ciclo
     com um report. Esse report vira memória do projeto: o que foi feito, o que
+    Quando a fase estiver implementada e validada localmente, feche o ciclo com
+    um report. Esse report vira memória do projeto: o que foi feito, o que
     mudou, como foi validado e o que ficou pendente.
   </p>
 
   <p>
     Depois disso, volte para o implementation plan, marque a fase atual como
-    concluída e abra a próxima ainda não concluída. É assim que você vai da
-    fase 1 até a última fase sem perder clareza.
+    concluída e abra a próxima ainda não concluída. É assim que você vai da fase
+    1 até a última fase sem perder clareza.
   </p>
 
   <CopyPromptBlock

@@ -18,20 +18,15 @@ export function getThemeFromDocument(): Theme {
 
 /**
  * Runs `commit` inside a View Transition when available. Falls back to a
- * direct call on unsupported browsers and when the user prefers reduced motion
- * (so page-level crossfades don't fight accessibility settings).
+ * direct call on unsupported browsers.
  */
 export function commitThemeWithTransition(commit: () => void): void {
-  const prefersReduced =
-    typeof window !== 'undefined' &&
-    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-
   type DocumentWithVT = Document & {
     startViewTransition?: (cb: () => void) => unknown;
   };
   const docVT = document as DocumentWithVT;
 
-  if (prefersReduced || typeof docVT.startViewTransition !== 'function') {
+  if (typeof docVT.startViewTransition !== 'function') {
     commit();
     return;
   }

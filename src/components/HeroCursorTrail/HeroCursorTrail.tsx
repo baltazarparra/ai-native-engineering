@@ -26,11 +26,6 @@ export default function HeroCursorTrail() {
     ).matches;
     if (isMobile) return;
 
-    const reduced = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches;
-    if (reduced) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
