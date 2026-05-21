@@ -1,0 +1,85 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: 2.75rem;
+  background-color: var(--color-bg);
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  min-width: 0;
+  transform-origin: center;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.root:hover {
+  transform: var(--motion-lift-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.root:active {
+  transform: var(--motion-press);
+  box-shadow: none;
+  transition-duration: var(--motion-instant);
+}
+
+/* No cover placeholder in B3: omit band when Cover is absent (PRD Phase B3). */
+
+.coverWrap {
+  position: relative;
+  border-bottom: var(--border-thin);
+  background-color: var(--color-bg-alt);
+  aspect-ratio: 16 / 9;
+}
+
+.coverImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--color-primary);
+  overflow-wrap: break-word;
+}
+
+.metaRow {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.dateMuted {
+  color: var(--color-text-muted);
+}
+
+.summary {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.summary:empty {
+  display: none;
+}

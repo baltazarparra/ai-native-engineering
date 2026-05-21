@@ -131,10 +131,19 @@ export const ui = {
       resetAria: 'Limpar progresso',
       reset: 'Recomeçar',
     },
+    blogCta: {
+      badge: 'Atualizações',
+      heading: 'Blog',
+      description:
+        'Artigos publicados no Notion e gerados no build do site — contexto, validação e fluxo no dia a dia.',
+      button: 'Ver blog',
+    },
     footer: {
       tagline: 'baltz',
       personalSite: 'Site baltz.dev',
       repositoryLink: 'Repositório no GitHub',
+      blogLink: 'Blog',
+      blogLinkAria: 'Ir para o blog',
     },
   },
   en: {
@@ -237,6 +246,8 @@ export const ui = {
       tagline: 'baltz',
       personalSite: 'baltz.dev website',
       repositoryLink: 'GitHub repository',
+      blogLink: 'Blog',
+      blogLinkAria: 'Go to blog',
     },
   },
 } as const;
@@ -283,6 +294,12 @@ export function getSkillsHref(lang: Lang): string {
 export function getHarnessHref(lang: Lang): string {
   const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
   return withBase(`${prefix}${harnessSlug}`);
+}
+
+/** Blog listing — PT-BR routes only in B7; lang reserved for future `/en/blog/`. */
+export function getBlogHref(lang: Lang): string {
+  void lang;
+  return withBase('blog/');
 }
 
 export function getProjectAlternateLinks(): AlternateLink[] {

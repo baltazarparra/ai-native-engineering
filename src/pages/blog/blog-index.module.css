@@ -1,0 +1,30 @@
+/* Blog listing: vertical stack (Phase B3). */
+.listReset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.emptyTitle {
+  font-size: var(--text-2xl);
+  margin-block-end: var(--space-md);
+}
+
+.emptyBody {
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  max-width: 60ch;
+}
+
+.pageIntro {
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  max-width: 62ch;
+  margin-block-start: var(--space-md);
+}

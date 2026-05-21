@@ -18,10 +18,13 @@ import {
   getSessionHref,
   getProjectHref,
   getSkillsHref,
+  getBlogHref,
   getHarnessHref,
+  ui,
 } from '../lib/i18n';
 
 const lang = 'pt-BR';
+const labels = ui[lang];
 const sessions = getSessions(lang);
 
 function levelToBadgeVariant(level: string) {
@@ -114,6 +117,18 @@ function levelToLabel(level: string) {
           </p>
         </div>
         <Button href={getHarnessHref(lang)} size="lg">Entender harness</Button>
+      </div>
+    </SectionBlock>
+
+    <!-- blog -->
+    <SectionBlock padding="xl">
+      <div class="blog-cta-block">
+        <div>
+          <Badge variant="yellow">{labels.blogCta.badge}</Badge>
+          <h2>{labels.blogCta.heading}</h2>
+          <p>{labels.blogCta.description}</p>
+        </div>
+        <Button href={getBlogHref(lang)} size="lg">{labels.blogCta.button}</Button>
       </div>
     </SectionBlock>
 
@@ -224,6 +239,28 @@ function levelToLabel(level: string) {
     max-width: 58ch;
   }
 
+  .blog-cta-block {
+    display: grid;
+    gap: var(--space-lg);
+    align-items: center;
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-raised);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-xl);
+  }
+
+  .blog-cta-block h2 {
+    margin-top: var(--space-sm);
+  }
+
+  .blog-cta-block p {
+    margin-top: var(--space-md);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 58ch;
+  }
+
   .project-cta-block h2 {
     margin-top: var(--space-sm);
   }
@@ -261,7 +298,8 @@ function levelToLabel(level: string) {
   }
 
   @media (min-width: 768px) {
-    .harness-cta-block {
+    .harness-cta-block,
+    .blog-cta-block {
       grid-template-columns: minmax(0, 1fr) auto;
     }
   }
