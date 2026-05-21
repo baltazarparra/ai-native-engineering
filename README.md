@@ -125,8 +125,7 @@ Production deploys use [`.github/workflows/deploy.yml`](.github/workflows/deploy
 
 ### Further reading
 
-- Implementation plan: [docs-blog/blog-plan.md](docs-blog/blog-plan.md)
-- Phase reports: [docs-blog/reports/](docs-blog/reports/)
+- Maintainer reference: [docs-blog/blog-plan.md](docs-blog/blog-plan.md)
 
 ## Contributing
 

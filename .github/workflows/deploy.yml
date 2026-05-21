@@ -2,7 +2,7 @@
 #
 # Blog (Notion) at build time requires Actions secrets (never commit values):
 #   NOTION_TOKEN, NOTION_DATABASE_ID
-# See README.md § Blog (Notion) → CI / GitHub Actions and docs-blog/prd-blog/phase8.md.
+# See README.md § Blog (Notion) → CI / GitHub Actions and docs-blog/blog-plan.md.
 #
 # Policy: missing secrets on push to main → build fails (no silent empty blog).
 # Fork workflows do not receive upstream secrets; use local .env for blog development.

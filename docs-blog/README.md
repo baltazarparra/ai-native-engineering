@@ -1,11 +1,10 @@
 # Blog feature documentation
 
-Canonical location for blog implementation artifacts (Notion-backed `/blog` work).
+Canonical location for Notion-backed **`/blog`** harness docs.
 
 | Path | Purpose |
 |------|---------|
-| [blog-plan.md](blog-plan.md) | Phased implementation plan for the blog |
-| [prd-blog/](prd-blog/) | Phase PRDs (e.g. [`phase1.md`](prd-blog/phase1.md) … [`phase7.md`](prd-blog/phase7.md), [`phase8.md`](prd-blog/phase8.md)) |
-| [reports/](reports/) | Phase completion reports — [`blog-b1-report.md`](reports/blog-b1-report.md) … [`blog-b7-report.md`](reports/blog-b7-report.md), [`blog-b8-report.md`](reports/blog-b8-report.md) |
+| [blog-plan.md](blog-plan.md) | Architecture, Notion contract, block matrix, CI policy, maintenance checklist |
+| [README.md](../README.md) § Blog (Notion) | Contributor setup (integration, `.env`, Actions secrets, publishing) |
 
 Harness docs (`AGENTS.md`, `PLAN.md`) remain at the repository root.

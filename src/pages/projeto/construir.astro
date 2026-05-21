@@ -17,8 +17,10 @@ Antes de qualquer código, leia:
 TAREFA
 Analise a fase [FASE_NAME] do implementation plan, refine o que estiver vago e crie uma PRD para essa fase.
 
-Crie o arquivo:
-- docs-blog/prd-blog/[FASE_FILE].md
+Para o blog Notion (já implementado), use como referência:
+- docs-blog/blog-plan.md
+
+Para novas features, crie uma PRD no local apropriado do plano (ex.: docs-blog/ ou PLAN.md).
 
 A PRD deve estar em inglês e precisa incluir:
 - Goal
@@ -48,7 +50,7 @@ Leia estes arquivos:
 - PLAN.md
 - README.md
 - AGENTS.md ou CLAUDE.md
-- docs-blog/prd-blog/[FASE_FILE].md
+- docs-blog/blog-plan.md (se a fase for do blog)
 
 Estou colocando a ferramenta em modo PLAN.
 
@@ -78,13 +80,12 @@ Use estes arquivos como contexto:
 - PLAN.md
 - README.md
 - AGENTS.md ou CLAUDE.md
-- docs-blog/prd-blog/[FASE_FILE].md
+- docs-blog/blog-plan.md (se a fase for do blog)
 
 TAREFA
-Crie um arquivo:
-- docs-blog/reports/[FASE_SLUG]-report.md
+Documente o fechamento da fase (em inglês) — por exemplo atualizando README ou docs-blog/blog-plan.md se necessário. Não crie arquivos em docs-blog/reports/ (removidos após B1–B8).
 
-O report deve estar em inglês e incluir:
+O fechamento deve incluir:
 - resumo do que foi implementado
 - arquivos criados ou alterados
 - decisões técnicas tomadas
@@ -209,7 +210,7 @@ REGRAS IMPORTANTES
     <strong>Exemplo de pedido para execução</strong>
     <p>
       "Implemente a fase [FASE_NAME] seguindo a PRD
-      <code>docs-blog/prd-blog/[FASE_FILE].md</code>. Siga as regras do AGENTS.md (ou
+      <code>docs-blog/blog-plan.md</code> (blog). Siga as regras do AGENTS.md (ou
       CLAUDE.md). Me mostre como validar que o resultado atende a PRD."
     </p>
   </div>
