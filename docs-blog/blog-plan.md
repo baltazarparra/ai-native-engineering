@@ -123,7 +123,7 @@ Use existing **`BaseLayout.astro`** (or equivalent) for shared chrome unless a m
 Production builds run in **GitHub Actions**. If the workflow invokes Notion:
 
 - Store **`NOTION_TOKEN`** and **`NOTION_DATABASE_ID`** as **encrypted repository secrets**.
-- If secrets are absent (forks, optional jobs), define explicit behavior: **fail blog build**, **skip blog pages**, or **build empty blog** — pick one and document it in `README.md` and in Phase B8.
+- **Phase B8 (locked):** On **`push` to `main`**, missing secrets **fail the build** (no silent empty blog). Fork PRs do not receive upstream secrets — see root **`README.md`** § Blog (Notion) → CI / GitHub Actions and [prd-blog/phase8.md](prd-blog/phase8.md).
 
 Static output remains ordinary HTML/CSS/JS; nothing Notion-specific ships to browsers except public image URLs returned by the API.
 

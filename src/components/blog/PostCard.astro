@@ -1,0 +1,61 @@
+---
+/**
+ * Listing card — PRD Phase B3. Missing Cover: omit image band (omit placeholder).
+ * Missing PublishedAt: show muted “Sem data” (prd-blog/phase3.md default).
+ */
+import NotionImage from './NotionImage.astro';
+import { withBase } from '../../lib/i18n';
+import styles from './PostCard.module.css';
+
+interface Props {
+  title: string;
+  slug: string;
+  summary: string;
+  publishedAt: Date | null;
+  coverUrl: string | null;
+}
+
+const { title, slug, summary, publishedAt, coverUrl } = Astro.props;
+
+const href = withBase(`blog/${encodeURIComponent(slug)}`);
+
+const publishedLabel = publishedAt
+  ? publishedAt.toLocaleDateString('pt-BR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })
+  : null;
+
+const noDateLabel = 'Sem data';
+---
+
+<a href={href} class={styles.root}>
+  {
+    coverUrl ? (
+      <div class={styles.coverWrap}>
+        <NotionImage
+          src={coverUrl}
+          alt={title}
+          class={styles.coverImg}
+          width={800}
+          height={450}
+          loading="lazy"
+        />
+      </div>
+    ) : null
+  }
+  <div class={styles.body}>
+    <span class={styles.title}>{title}</span>
+    <div class={styles.metaRow}>
+      {
+        publishedLabel && publishedAt ? (
+          <time datetime={publishedAt.toISOString()}>{publishedLabel}</time>
+        ) : (
+          <span class={styles.dateMuted}>{noDateLabel}</span>
+        )
+      }
+    </div>
+    {summary.trim() ? <p class={styles.summary}>{summary}</p> : null}
+  </div>
+</a>

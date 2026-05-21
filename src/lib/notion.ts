@@ -5,22 +5,19 @@
  */
 
 import { Client, isFullPage } from "@notionhq/client";
-import type {
-  BlockObjectResponse,
-  PageObjectResponse,
-  RichTextItemResponse,
-} from "@notionhq/client";
+import type { BlockObjectResponse, PageObjectResponse } from "@notionhq/client";
+import { notionRichPlain } from "./notion-rich-text";
 
 function env(key: string): string | undefined {
+  if (typeof process !== "undefined" && process.env) {
+    const v = process.env[key];
+    if (typeof v === "string" && v.trim()) return v.trim();
+  }
   try {
     const fromMeta = import.meta.env[key];
     if (typeof fromMeta === "string" && fromMeta.trim()) return fromMeta.trim();
   } catch {
     /* import.meta.env unavailable */
-  }
-  if (typeof process !== "undefined") {
-    const v = process.env[key];
-    if (typeof v === "string" && v.trim()) return v.trim();
   }
   return undefined;
 }
@@ -73,16 +70,12 @@ async function getBlogDataSourceId(): Promise<string> {
   return cachedBlogDataSourceId;
 }
 
-function plainRichText(items: RichTextItemResponse[]): string {
-  return items.map((t) => t.plain_text).join("");
-}
-
 function readTitle(page: PageObjectResponse): string {
   const p = page.properties.Title;
   if (!p || p.type !== "title") {
     throw new Error(`Notion page ${page.id}: expected Title as title property`);
   }
-  return plainRichText(p.title).trim();
+  return notionRichPlain(p.title).trim();
 }
 
 function readSlug(page: PageObjectResponse): string {
@@ -90,7 +83,7 @@ function readSlug(page: PageObjectResponse): string {
   if (!p || p.type !== "rich_text") {
     throw new Error(`Notion page ${page.id}: expected Slug as rich_text property`);
   }
-  return plainRichText(p.rich_text).trim();
+  return notionRichPlain(p.rich_text).trim();
 }
 
 function readSummary(page: PageObjectResponse): string {
@@ -98,7 +91,7 @@ function readSummary(page: PageObjectResponse): string {
   if (!p || p.type !== "rich_text") {
     throw new Error(`Notion page ${page.id}: expected Summary as rich_text property`);
   }
-  return plainRichText(p.rich_text).trim();
+  return notionRichPlain(p.rich_text).trim();
 }
 
 function readPublishedAt(page: PageObjectResponse): Date | null {

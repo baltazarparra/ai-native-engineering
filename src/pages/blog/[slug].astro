@@ -1,0 +1,110 @@
+---
+/**
+ * Blog post detail — NotionBlocks body (Phase B5); Phase B4 static paths unchanged.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
+import Footer from '../../components/Footer/Footer.astro';
+import NotionBlocks from '../../components/blog/NotionBlocks.astro';
+import NotionImage from '../../components/blog/NotionImage.astro';
+import { getPosts, getPostBySlug } from '../../lib/notion';
+import { withBase } from '../../lib/i18n';
+import styles from './blog-post.module.css';
+
+/** Meta description soft cap (~160 chars) — avoids empty meta noise. */
+const META_DESC_MAX = 160;
+
+function trimMetaDescription(raw: string): string {
+  const t = raw.trim().replace(/\s+/g, ' ');
+  if (t.length <= META_DESC_MAX) return t;
+  return `${t.slice(0, META_DESC_MAX - 1)}…`;
+}
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const lang = 'pt-BR';
+const slugParam = Astro.params.slug;
+
+if (slugParam === undefined) {
+  throw new Error('Blog detail route emitted without slug param');
+}
+
+const post = await getPostBySlug(slugParam);
+
+if (post === null) {
+  throw new Error(
+    `Blog post missing for emitted slug "${slugParam}" (getPostBySlug returned null)`,
+  );
+}
+
+const pageTitle = `${post.title} | AI-Native Engineers`;
+const description = trimMetaDescription(post.summary);
+
+const publishedLabel = post.publishedAt
+  ? post.publishedAt.toLocaleDateString('pt-BR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })
+  : null;
+
+const listHref = withBase('blog/');
+---
+
+<BaseLayout title={pageTitle} description={description} lang={lang}>
+  <main id="main-content">
+    <article>
+      <SectionBlock as="header" padding="xl">
+        <nav aria-label="Navegação do blog">
+          <a href={listHref} class:list={[styles.backLink]}>&larr; Voltar ao blog</a>
+        </nav>
+        <h1>{post.title}</h1>
+        <p class:list={[styles.metaRow]}>
+          {
+            publishedLabel ? (
+              <time datetime={post.publishedAt?.toISOString() ?? undefined}>
+                {publishedLabel}
+              </time>
+            ) : (
+              <span class:list={[styles.dateMuted]}>Sem data</span>
+            )
+          }
+        </p>
+        {
+          post.coverUrl ? (
+            <div class:list={[styles.hero]}>
+              <NotionImage
+                class:list={[styles.heroImg]}
+                src={post.coverUrl}
+                alt={post.title}
+                width={960}
+                height={540}
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          ) : null
+        }
+      </SectionBlock>
+
+      <SectionBlock padding="lg">
+        <div class:list={[styles.articleBody]}>
+          {
+            post.blocks.length > 0 ? (
+              <NotionBlocks blocks={post.blocks} />
+            ) : (
+              /* Notion empty page — keep listing summary so post is not visually blank */
+              <p class:list={[styles.summary]}>{post.summary}</p>
+            )
+          }
+        </div>
+      </SectionBlock>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

@@ -1,0 +1,134 @@
+# PRD: Blog Phase B5 — NotionBlocks MVP (`/blog/[slug]/` body)
+
+**References:** [blog-plan.md](../blog-plan.md) (Phase B5, Minimum Notion block support); [phase4.md](phase4.md); [phase3.md](phase3.md); [phase2.md](phase2.md); [AGENTS.md](../../AGENTS.md); [PLAN.md](../../PLAN.md).
+
+**Phase mapping:** Blog **Phase B5**. Renders the **published post body** from **`BlogPostDetail.blocks`** supplied by **`getPostBySlug`** in [`src/lib/notion.ts`](../../src/lib/notion.ts). Replaces the Phase B4 **summary surrogate** whenever the block tree is non-empty. Does **not** implement syntax highlighting, Astro **`<Image />`** / **`image.domains`** policy (**Phase B6**), global README / nav for Notion authoring (**Phase B7**), or CI **`NOTION_*`** behaviour (**Phase B8**).
+
+**Package manager:** [pnpm](../../pnpm-lock.yaml) — same conventions as [phase1.md](phase1.md).
+
+---
+
+## Goal
+
+Map Notion **`BlockObjectResponse`** trees (**`BlogBlockWithChildren`**, recursive **`children`**) into **semantic HTML** at build time so **`/blog/{slug}/`** reads like a normal article (**headings, lists, prose, quotes, rules, code, embedded images**) for types listed in **`blog-plan.md`**. Presentation stays **Neo Brutalism** (**CSS Modules + tokens**, **no Tailwind**, **AGENTS** alignment).
+
+---
+
+## Scope
+
+### 1. `src/components/blog/NotionBlocks.astro` (primary contract)
+
+- **Pure Astro** + **`client:*`** **forbidden** for this subtree.
+- **Props:** **`blocks: BlogBlockWithChildren[]`** (typed export from **`notion.ts`).
+- Render the **minimum block matrix** (see below).
+- **List grouping:** Consecutive **`bulleted_list_item`** siblings → **one** **`<ul>`**; consecutive **`numbered_list_item`** → **one** **`<ol>``**. Nested lists live under **`list_item`** **`children`** (recurse).
+- **`quote`:** **`rich_text`** line + optional **`children`** (recursive).
+- **`notion`** / **`@notionhq/client`** must **not** be imported by blog UI components (**blocks-only** inputs).
+
+Implementers MAY add helpers (**e.g.** **`segment-blocks.ts`**, **`NotionBlockPiece.astro`**); **`[slug].astro`** only needs to import **`NotionBlocks`**.
+
+### 2. Module CSS
+
+- **`NotionBlocks.module.css`** (name flexible): typography, **`blockquote`** accent rail, **`pre`/`code`**, **`ul`/`ol`**, **`hr`**, **`figure`/`img`**, unsupported fallback styling.
+
+### 3. `src/pages/blog/[slug].astro`
+
+- **`post.blocks.length > 0`:** Article body (**after** title/meta/cover hero) renders **`<NotionBlocks blocks={post.blocks} />`**.
+- **`post.blocks.length === 0`:** Keep **`post.summary`** visible (**non-empty UX**, Phase B4 shell preserved).
+- No second Notion fetch on the page (**detail already carries blocks**).
+
+### 4. Shared rich-text helper (**recommended**)
+
+- **`src/lib/notion-rich-text.ts`**: **`notionRichPlain(rich_text[])`** = join **`plain_text`**. **`notion.ts`** reuses it for Title/Slug/Summary (**no duplicate string logic**).
+
+---
+
+## Minimum Notion block support (canonical)
+
+Aligned with **`blog-plan.md`**:
+
+| Type | Requirement |
+|------|-------------|
+| **`paragraph`** | **`<p>`**; skip if **`plain_text`** empty after trim. |
+| **`heading_1`, `heading_2`, `heading_3`** | Map to **`h2` / `h3` / `h4`** **or** downgrade one heading level so **`[slug].astro`** post **`h1`** remains the sole document **`h1`** (**document mapping in completion report**). |
+| **`bulleted_list_item`, `numbered_list_item`** | Valid grouped **`<ul>`** / **`&lt;ol&gt;`**; **`li`** holds line text + recurse **`children`**. |
+| **`code`** | **`<pre><code>`**; **no** third-party highlighter (**Phase B6** optional). Preserve optional **`language-*`** **`class`** for future tooling. |
+| **`image`** | **`<img>`** with **`alt`** (**caption-derived or empty**, pick one rule and stick to it); **`lazy`** acceptable below fold (**Phase **B6**: **`<Image />`**). |
+| **`quote`** | **`&lt;blockquote&gt;`** + nested **`children`**. |
+| **`divider`** | **`&lt;hr&gt;`** (styled). |
+
+**Rich text MVP:** **`plain_text`** concatenation only — **annotations** (**bold**, **italic**, **`href`**) **explicitly out of scope** (**Phase **B5 MVP**)**.
+
+---
+
+## Unsupported block types (**policy **— **Must document in code comments or **`blog-b**5** report`)
+
+- **Preferred (default):** Visible **muted**, **PT-BR** line naming **`block.type`** (**helps authors recognise gaps**)**; **do not **`throw`** during **`build`** **` for **` unsupported **` **` types**.
+- Alternative (**requires product approval):** silent skip (**explicitly discouraged by **`blog-plan`** risk note**)**.
+
+---
+
+## Out of scope
+
+- Syntax highlighting (**B6**)**.
+- Astro **`<Image />`**, **`image.domains`**, Lighthouse tuning (**B6**)**.
+- **`README`** Notion setup, **`/blog/`** global nav/footer link (**B7**)**.
+- CI **`NOTION_*`** forks policy (**B8**)**.
+- **`/en/blog/[slug]`** unless rescoped.
+
+---
+
+## Technical notes
+
+- **Bundles:** **`NotionBlocks`** pulls **types + plain_text** only — **never** **`@notionhq/client`**.
+- **Performance:** Rendering is **`O(nodes)`**; Notion paging already solved in **`getPostBySlug`** (**B2**)**.
+- **A11y:** Single **`h1`** per route; headings do not skip bogus levels (**mapped **`Notion`** heading tier **→ **` chosen **` **` HTML **` **` rank **)**.
+
+---
+
+## Acceptance criteria
+
+1. **`NotionBlocks.astro`** + module CSS ships and is used by **`[`slug].astro`** **` when **` **` blocks.length **` > **` 0**.
+2. All **minimum** types render **without build throw **` on **` a **` reference **` **` post **` using **` only **` those **` **` types**.
+3. Sibling bullets / numbers **` group **` **` into **` one **` **` list **` **` element**.
+4. **Nested **` children **` recurse **` (**lists**, **`quotes**)** **` correctly**.
+5. **Empty **` **` block **` **` tree **` → **` **` summary **` fallback **` **` visible**.
+6. **Unsupported **` type **` **` policy **` applied **` (**marker **` **` vs **` **` silent **` ) **` **` and **` documented**.
+7. **`pnpm`** **` run`** **` lint`** **` and **` **` pnpm`** **` run`** **` build`** **` exit **` **` 0`** with **` **`NOTION_*`** (**B8 **` caveat **` **` unchanged **` )**.
+8. **`rg`** **` '`@notionhq/client`' src`** **` → **` **` notion.ts`** only**; **` no **` **` notion`** **` **` from **` **` client:*** **` **` islands**.
+
+---
+
+## Manual validation
+
+| Step | Action |
+|------|--------|
+| 1 | **`pnpm install`**, **`pnpm run lint`**, **`pnpm run build`**. |
+| 2 | **`pnpm run preview`**: **`/blog/`** → **`/blog/{slug}/`** for **≥2** **` posts **` (**if **` available **)**. |
+| 3 | **Side-by **` side **` **` Notion **` vs **` built **` page **` headings**, **` paragraphs**, **` bullets**, **` numbers**, **` quote**, **` divider**, **` code**, **` **` image**.
+| 4 | **Add **` **` one **` **` unsupported **` block **` (**equation**, **` **` table **` , **` **` etc **` . **)** → **` **` confirm **` **` policy **` (**marker **` **` or **` **` silent **` )**.
+| 5 | **Temporarily **` empty **` **` Notion **` body **` (**if **` **` safe **` test **` **` DB **` ) **` **` → **` **` summary **` fallback**.
+| 6 | **Keyboard **` / **` axe **` heuristic **` (**focus **` **` visible **` **` on **` **` interactive **` **` surfaces **` **` if **` any **)**.**
+
+---
+
+## Risks (**mitigations**)
+
+| Risk | Mitigation |
+|------|------------|
+| Silent loss of authoring (**annotations**)** | Document **` **` plain-text **` **` MVP **` in **` **` report **` **` / **` **` README **` excerpt **` (**B **7 **` )**.
+| Large trees / slow **` build **` ** | **` Monitor **` **` Notion **` **` rate **` limits **` (**B **2 **` pagination **` **` already **` **` required **` )**.
+| Heading outline confusion | **Document **` **` Notion **` → **` **` HTML **` **` map **` (**h2 **` start **` **` for **` **` heading **`_**`1`).
+| Remote **` image **` **` 404 **` / **` **` CORS **` | **` Accept **` **` in **` **` B **`5 **` ; **` optimise **` (**B **`6 **` )**.
+
+---
+
+## Honest vagueness (**defaults **` **` locked **` **` here **` )**
+
+| Ambiguity | PRD **` default **` |
+|-----------|---------------------|
+| **Unsupported **` **` blocks **` | **Visible **` PT-BR **` marker **` (**unless **` **` product **` picks **` **` silent **` )**. |
+| **Rich **` **` text **` fidelity | **` **` plain_text **` join **` **` only**.
+| **` heading **` **` HTML **` level | **` One **` **` step **` down **` **` from **` Notion (**`h2`–`h4`**) **` so **` **` page **` **` title **` **` stays **` **` h1**.
+| **` Code **` brighten | **` None **` (**B **`6 **` )**.
+| **` Image **` ** | **` **`<img>`**`,` **` **` B **`6 **` **`<Image /&gt;`**. |
