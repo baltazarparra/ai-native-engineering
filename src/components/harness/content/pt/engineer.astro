@@ -1,0 +1,114 @@
+---
+import SectionBlock from '../../../SectionBlock/SectionBlock.astro';
+import Badge from '../../../Badge/Badge.astro';
+---
+
+<!-- ═══════════════════════════════════════════════
+     CAPÍTULO 5 · O ENGENHEIRO
+════════════════════════════════════════════════ -->
+<SectionBlock padding="lg" alt>
+  <div class="chapter-intro">
+    <Badge variant="blue">Capítulo 5</Badge>
+    <span class="chapter-label">O engenheiro</span>
+  </div>
+  <div class="section-stack">
+
+    <div class="section-copy">
+      <h2>Harness Engineering e AI-native engineering</h2>
+      <p>
+        AI-native engineering não é usar IA dentro do processo antigo. É
+        redesenhar o processo assumindo que agentes podem participar da
+        execução do trabalho.
+      </p>
+      <p>Isso exige novas perguntas:</p>
+      <ul class="brutal-list">
+        <li>Como descrevemos intenção de forma operacional?</li>
+        <li>Como o agente descobre contexto relevante?</li>
+        <li>Como ele planeja mudanças?</li>
+        <li>Como ele executa com segurança?</li>
+        <li>Como ele verifica o próprio trabalho?</li>
+        <li>Como humanos revisam com evidência?</li>
+        <li>Como aprendizados viram melhorias permanentes?</li>
+        <li>Como múltiplos agentes compartilham estado?</li>
+        <li>Como medimos qualidade do sistema, não só do output?</li>
+      </ul>
+      <p>
+        Essas perguntas não pertencem apenas a prompt engineering. Elas
+        pertencem a uma disciplina mais ampla. Harness Engineering é essa
+        disciplina.
+      </p>
+
+      <h2>O novo papel do engenheiro</h2>
+      <p>
+        Nesse cenário, o engenheiro não desaparece. Ele sobe um nível de
+        abstração.
+      </p>
+      <p>
+        Parte do trabalho continua sendo escrever e revisar código. Mas uma
+        parte crescente passa a ser projetar o sistema onde código é
+        produzido, validado e sustentado. Não deixamos de programar quando
+        surgiram frameworks, cloud, CI/CD ou DevOps — mas mudamos o nível
+        em que boa parte do trabalho acontece.
+      </p>
+      <p>
+        Com agentes, a mudança é semelhante. A qualidade deixa de depender
+        apenas do código que escrevemos. Passa a depender também do harness
+        que permite que humanos e agentes trabalhem sobre o mesmo sistema
+        com segurança e evidência.
+      </p>
+    </div>
+
+    <div class="section-copy">
+      <h2>Dez perguntas para um bom harness</h2>
+      <p>
+        Um harness não precisa ser complexo desde o primeiro dia. Mas
+        precisa ser explícito. Uma versão inicial saudável deveria responder
+        a estas dez perguntas:
+      </p>
+    </div>
+
+    <ol class="questions-list">
+      <li class="question-card">
+        <span class="question-number">1</span>
+        <p>Qual é o estado de verdade do sistema?</p>
+      </li>
+      <li class="question-card">
+        <span class="question-number">2</span>
+        <p>Quais arquivos, logs e documentos o agente pode consultar?</p>
+      </li>
+      <li class="question-card">
+        <span class="question-number">3</span>
+        <p>Quais ações ele pode executar sozinho?</p>
+      </li>
+      <li class="question-card">
+        <span class="question-number">4</span>
+        <p>Quais ações exigem aprovação?</p>
+      </li>
+      <li class="question-card">
+        <span class="question-number">5</span>
+        <p>Quais comandos validam uma mudança?</p>
+      </li>
+      <li class="question-card">
+        <span class="question-number">6</span>
+        <p>Quais critérios definem sucesso?</p>
+      </li>
+      <li class="question-card">
+        <span class="question-number">7</span>
+        <p>Como erros são registrados?</p>
+      </li>
+      <li class="question-card">
+        <span class="question-number">8</span>
+        <p>Como aprendizados viram regra, teste ou memória?</p>
+      </li>
+      <li class="question-card">
+        <span class="question-number">9</span>
+        <p>Como humanos revisam com evidência suficiente?</p>
+      </li>
+      <li class="question-card">
+        <span class="question-number">10</span>
+        <p>Como o sistema evita repetir a mesma falha?</p>
+      </li>
+    </ol>
+
+  </div>
+</SectionBlock>

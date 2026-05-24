@@ -1,0 +1,48 @@
+---
+import type { Lang } from '../../lib/i18n';
+import {
+  HARNESS_CHAPTERS,
+  HARNESS_SERIES,
+  getHarnessChapterHref,
+  type HarnessChapterId,
+} from '../../data/harness-chapters';
+import { getHarnessHref } from '../../lib/i18n';
+import styles from './HarnessChapterTabs.module.css';
+
+interface Props {
+  lang: Lang;
+  activeTab: 'overview' | HarnessChapterId;
+}
+
+const { lang, activeTab } = Astro.props;
+const overviewHref = getHarnessHref(lang);
+---
+
+<nav class={styles.bar} aria-label={HARNESS_SERIES.tabsAria[lang]}>
+  <div class={styles.scroll}>
+    <a
+      href={overviewHref}
+      class:list={[styles.tab, activeTab === 'overview' && styles.tabActive]}
+      aria-current={activeTab === 'overview' ? 'page' : undefined}
+    >
+      {HARNESS_SERIES.overviewTab[lang]}
+    </a>
+    {
+      HARNESS_CHAPTERS.map((chapter) => {
+        const isConclusion = chapter.id === 'conclusion';
+        const label = isConclusion
+          ? chapter.tabLabel[lang]
+          : `${HARNESS_SERIES.chapterTabPrefix[lang]} ${chapter.number} · ${chapter.tabLabel[lang]}`;
+        return (
+          <a
+            href={getHarnessChapterHref(lang, chapter.id)}
+            class:list={[styles.tab, activeTab === chapter.id && styles.tabActive]}
+            aria-current={activeTab === chapter.id ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        );
+      })
+    }
+  </div>
+</nav>

@@ -281,8 +281,12 @@ export function getSkillsHref(lang: Lang): string {
 }
 
 export function getHarnessHref(lang: Lang): string {
+  return getHarnessOverviewHref(lang);
+}
+
+export function getHarnessOverviewHref(lang: Lang): string {
   const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
-  return withBase(`${prefix}${harnessSlug}`);
+  return withBase(`${prefix}${harnessSlug}/`);
 }
 
 export function getProjectAlternateLinks(): AlternateLink[] {

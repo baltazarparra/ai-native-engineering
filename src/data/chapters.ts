@@ -1,5 +1,11 @@
-import type { Lang } from '../lib/i18n';
-import { withBase, defaultLang, languages, getSessionHref } from '../lib/i18n';
+import type { AlternateLink, Lang } from '../lib/i18n';
+import {
+  withBase,
+  defaultLang,
+  languages,
+  getSessionHref,
+  supportedLangs,
+} from '../lib/i18n';
 
 export interface ChapterCheckpoint {
   id: string;
@@ -442,6 +448,23 @@ export function getChapterHref(chapterNumber: number, lang: Lang): string {
   const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
   const projectSlug = lang === defaultLang ? 'projeto' : 'project';
   return withBase(`${prefix}${projectSlug}/${chapter.slug[lang]}`);
+}
+
+export function getChapterAlternateLinks(
+  chapterNumber: number,
+): AlternateLink[] {
+  const links: AlternateLink[] = supportedLangs.map((lang) => ({
+    lang,
+    href: getChapterHref(chapterNumber, lang),
+    label: languages[lang].label,
+  }));
+
+  links.push({
+    lang: 'x-default',
+    href: getChapterHref(chapterNumber, defaultLang),
+  });
+
+  return links;
 }
 
 export function getChapterByNumber(num: number): Chapter | undefined {

@@ -1,0 +1,86 @@
+---
+import SectionBlock from '../../../SectionBlock/SectionBlock.astro';
+import Badge from '../../../Badge/Badge.astro';
+import Grid from '../../../Grid/Grid.astro';
+import Card from '../../../Card/Card.astro';
+---
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 4 · GOVERNANCE AND SECURITY
+════════════════════════════════════════════════ -->
+<SectionBlock padding="lg">
+  <div class="chapter-intro">
+    <Badge variant="coral">Chapter 4</Badge>
+    <span class="chapter-label">Governance and security</span>
+  </div>
+  <div class="section-stack">
+
+    <div class="section-copy">
+      <h2>Human-in-the-loop is not an approval button</h2>
+      <p>
+        Many teams treat human review as a pause in the flow. The agent
+        does something risky, then asks for approval. That is better than
+        nothing, but it is still shallow.
+      </p>
+      <p>
+        In a mature harness, human-in-the-loop is part of the system state.
+        Human review must record what was approved, by whom, with what
+        context, with what evidence, with what known risks, with what
+        permission scope, and for how long the decision stands.
+      </p>
+      <blockquote class="key-insight">
+        Approval without context becomes ritual. Approval with evidence
+        becomes governance.
+      </blockquote>
+
+      <h2>Security starts in the harness design</h2>
+      <p>
+        Agents amplify capability. That also amplifies the risk surface.
+        An agent can leak a secret, delete a file, run a destructive
+        command, call the wrong API, change critical behavior without
+        enough tests, or follow a malicious instruction hidden inside
+        documentation, an issue, a comment, or a web page.
+      </p>
+      <p>
+        You cannot fix this by asking the agent to "be careful" in the
+        prompt. Security must be in the harness.
+      </p>
+    </div>
+
+    <Grid columns={3} gap="lg" align="stretch">
+      <Card title="Isolation" accent="coral">
+        <p>Isolated environments and minimum permissions per scope.</p>
+      </Card>
+      <Card title="Action control" accent="yellow">
+        <p>
+          Blocking irreversible actions and mandatory review for sensitive
+          operations.
+        </p>
+      </Card>
+      <Card title="Traceability" accent="blue">
+        <p>
+          Audit trail of commands and a log of every action the agent
+          executes.
+        </p>
+      </Card>
+      <Card title="Data protection" accent="green">
+        <p>Scoped credentials and clear policies for sensitive data.</p>
+      </Card>
+      <Card title="Detection" accent="coral">
+        <p>
+          Prompt injection detection and separation of read, write, and
+          execute permissions.
+        </p>
+      </Card>
+      <Card title="Reversibility" accent="yellow">
+        <p>Rollback available for any change applied to the system.</p>
+      </Card>
+    </Grid>
+
+    <blockquote class="key-insight">
+      The more autonomous the agent, the more explicit the harness must be.
+      Autonomy without a harness is not maturity. It is exposure.
+    </blockquote>
+
+  </div>
+</SectionBlock>
