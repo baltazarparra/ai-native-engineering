@@ -5,6 +5,7 @@ import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
 import Discussion from '../components/Discussion/Discussion.astro';
 import HarnessChapterTabs from '../components/harness/HarnessChapterTabs.astro';
+import HarnessShareBar from '../components/harness/HarnessShareBar';
 import type { AlternateLink, Lang } from '../lib/i18n';
 import type { HarnessChapterId } from '../data/harness-chapters';
 
@@ -33,6 +34,8 @@ const {
   heroTitle,
   heroSummary,
 } = Astro.props;
+
+const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <BaseLayout
@@ -40,12 +43,19 @@ const {
   description={description}
   lang={lang}
   alternateLinks={alternateLinks}
+  ogImage="/og-harness.png"
 >
   <main id="main-content" class="harness-page">
     <SectionBlock as="header" padding="xl">
       {heroBadge ? <Badge variant="coral">{heroBadge}</Badge> : null}
       <h1 class="harness-page-title">{heroTitle}</h1>
       {heroSummary ? <p class="harness-page-summary">{heroSummary}</p> : null}
+      <HarnessShareBar
+        client:visible
+        url={shareUrl}
+        title={heroTitle}
+        lang={lang}
+      />
     </SectionBlock>
 
     <HarnessChapterTabs lang={lang} activeTab={activeTab} />
