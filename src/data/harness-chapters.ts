@@ -249,3 +249,65 @@ export function getHarnessChapterAlternateLinks(chapterId: HarnessChapterId) {
 
   return links;
 }
+
+export type HarnessNavTarget =
+  | { type: 'overview' }
+  | { type: 'chapter'; id: HarnessChapterId };
+
+export interface HarnessNavLink {
+  href: string;
+  kicker: string;
+  title: string;
+}
+
+export function getHarnessChapterNeighbors(chapterId: HarnessChapterId): {
+  prev: HarnessNavTarget;
+  next: HarnessNavTarget | null;
+} {
+  const index = HARNESS_CHAPTERS.findIndex((ch) => ch.id === chapterId);
+  if (index === -1) {
+    return { prev: { type: 'overview' }, next: null };
+  }
+
+  const prev: HarnessNavTarget =
+    index === 0
+      ? { type: 'overview' }
+      : { type: 'chapter', id: HARNESS_CHAPTERS[index - 1].id };
+
+  const next: HarnessNavTarget | null =
+    index >= HARNESS_CHAPTERS.length - 1
+      ? null
+      : { type: 'chapter', id: HARNESS_CHAPTERS[index + 1].id };
+
+  return { prev, next };
+}
+
+export function resolveHarnessNavTarget(
+  lang: Lang,
+  target: HarnessNavTarget,
+  direction: 'prev' | 'next',
+  labels: { previous: string; next: string; backToOverview: string },
+): HarnessNavLink {
+  if (target.type === 'overview') {
+    return {
+      href: getHarnessOverviewHref(lang),
+      kicker: labels.backToOverview,
+      title: HARNESS_SERIES.title[lang],
+    };
+  }
+
+  const chapter = HARNESS_CHAPTERS.find((ch) => ch.id === target.id);
+  if (!chapter) {
+    return {
+      href: getHarnessOverviewHref(lang),
+      kicker: labels.backToOverview,
+      title: HARNESS_SERIES.title[lang],
+    };
+  }
+
+  return {
+    href: getHarnessChapterHref(lang, target.id),
+    kicker: direction === 'prev' ? labels.previous : labels.next,
+    title: chapter.title[lang],
+  };
+}

@@ -5,6 +5,7 @@ import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
 import Discussion from '../components/Discussion/Discussion.astro';
 import HarnessChapterTabs from '../components/harness/HarnessChapterTabs.astro';
+import HarnessChapterPager from '../components/harness/HarnessChapterPager.astro';
 import HarnessShareBar from '../components/harness/HarnessShareBar';
 import type { AlternateLink, Lang } from '../lib/i18n';
 import type { HarnessChapterId } from '../data/harness-chapters';
@@ -61,6 +62,10 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
     <HarnessChapterTabs lang={lang} activeTab={activeTab} />
 
     <slot />
+
+    {activeTab !== 'overview' && (
+      <HarnessChapterPager lang={lang} chapterId={activeTab} />
+    )}
 
     <Discussion lang={lang} slug={discussionSlug} title={discussionTitle} />
 
