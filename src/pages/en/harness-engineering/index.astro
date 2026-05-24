@@ -1,14 +1,14 @@
 ---
-import HarnessChapterLayout from '../../layouts/HarnessChapterLayout.astro';
-import Card from '../../components/Card/Card.astro';
-import Grid from '../../components/Grid/Grid.astro';
+import HarnessChapterLayout from '../../../layouts/HarnessChapterLayout.astro';
+import Card from '../../../components/Card/Card.astro';
+import Grid from '../../../components/Grid/Grid.astro';
 import {
   HARNESS_CHAPTERS,
   HARNESS_OVERVIEW_DISCUSSION_SLUG,
   HARNESS_SERIES,
   getHarnessChapterHref,
-} from '../../data/harness-chapters';
-import { getHarnessAlternateLinks } from '../../lib/i18n';
+} from '../../../data/harness-chapters';
+import { getHarnessAlternateLinks } from '../../../lib/i18n';
 
 const lang = 'en';
 const alternateLinks = getHarnessAlternateLinks();
