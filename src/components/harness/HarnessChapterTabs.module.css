@@ -51,6 +51,19 @@
   border-color: var(--color-ink);
 }
 
+.tabDone {
+  border-color: var(--color-accent-3);
+}
+
+.tabDone:not(.tabActive) {
+  color: var(--color-accent-3);
+}
+
+.tabCheck {
+  margin-right: var(--space-2xs);
+  font-weight: var(--weight-bold);
+}
+
 @media (min-width: 768px) {
   .scroll {
     padding-inline: var(--space-lg);

@@ -77,6 +77,13 @@
   overflow-wrap: break-word;
 }
 
+.cardAction {
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  width: 100%;
+}
+
 @media (max-width: 767px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
