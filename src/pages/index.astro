@@ -77,7 +77,7 @@ function levelToLabel(level: string) {
 
     <!-- session cards -->
     <SectionBlock padding="xl" id="sessoes">
-      <h2>Sessões</h2>
+      <h2>Aulas</h2>
       <Grid columns={3} gap="lg" align="stretch">
         {
           sessions.map((session) => (
@@ -94,7 +94,7 @@ function levelToLabel(level: string) {
               </Fragment>
               <p>{session.summary}</p>
               <Fragment slot="footer">
-                <span class="session-order">Sessão {session.order}</span>
+                <span class="session-order">Aula {session.order}</span>
               </Fragment>
             </Card>
           ))
@@ -106,7 +106,7 @@ function levelToLabel(level: string) {
     <SectionBlock padding="xl" alt>
       <div class="harness-cta-block">
         <div>
-          <Badge variant="coral">Aprofundamento</Badge>
+          <Badge variant="coral">Conceito</Badge>
           <h2>Harness Engineering</h2>
           <p>
             Entenda como prompts, ferramentas, contexto, limites e validações
