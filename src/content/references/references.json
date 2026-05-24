@@ -468,5 +468,75 @@
     "category": "ferramentas",
     "relatedSessions": ["ferramentas"],
     "priority": 2
+  },
+  {
+    "id": "anthropic-agentic-coding-trends-2026",
+    "title": "2026 Agentic Coding Trends Report",
+    "url": "https://resources.anthropic.com/2026-agentic-coding-trends-report",
+    "type": "pesquisa",
+    "source": "Anthropic",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade", "ferramentas"],
+    "priority": 1
+  },
+  {
+    "id": "openai-symphony-orchestration",
+    "title": "An open-source spec for Codex orchestration: Symphony",
+    "url": "https://openai.com/index/open-source-codex-orchestration-symphony/",
+    "type": "artigo",
+    "source": "OpenAI",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "github-copilot-cloud-agent-research-plan",
+    "title": "Research, plan, and iterate on code changes with Copilot cloud agent",
+    "url": "https://docs.github.com/en/copilot/how-tos/copilot-on-github/use-copilot-agents/research-plan-iterate",
+    "type": "documentacao",
+    "source": "GitHub",
+    "category": "ferramentas",
+    "relatedSessions": ["ferramentas", "maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "owasp-agentic-applications-2026",
+    "title": "OWASP Top 10 for Agentic Applications for 2026",
+    "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+    "type": "documentacao",
+    "source": "OWASP",
+    "category": "maturidade",
+    "relatedSessions": ["glossario", "maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "owasp-agentic-skills-top-10",
+    "title": "OWASP Agentic Skills Top 10",
+    "url": "https://owasp.org/www-project-agentic-skills-top-10/",
+    "type": "documentacao",
+    "source": "OWASP",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "mcp-tool-poisoning-research",
+    "title": "Model Context Protocol Threat Modeling and Tool Poisoning",
+    "url": "https://arxiv.org/abs/2603.22489",
+    "type": "pesquisa",
+    "source": "arXiv",
+    "category": "glossario",
+    "relatedSessions": ["glossario", "maturidade"],
+    "priority": 2
+  },
+  {
+    "id": "vercel-agent-skills",
+    "title": "Vercel Agent Skills",
+    "url": "https://vercel.com/docs/agent-resources/skills",
+    "type": "documentacao",
+    "source": "Vercel",
+    "category": "maturidade",
+    "relatedSessions": ["maturidade"],
+    "priority": 2
   }
 ]

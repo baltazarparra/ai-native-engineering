@@ -818,6 +818,9 @@ function MultiplayerBridge({ lang }: Props) {
   return <HeroStickersBody lang={lang} sync={sync} remoteStickers={stickers} />;
 }
 
+function HeroStickersHost() {
+  return <div className={styles.layer} aria-hidden="true" />;
+}
 function useIsMobileViewport(): boolean | null {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
@@ -838,8 +841,8 @@ export default function HeroStickers({ lang = 'pt-BR' }: Props) {
     () => CURSOR_COLORS[Math.floor(Math.random() * CURSOR_COLORS.length)],
   );
 
-  if (isMobileViewport === null || isMobileViewport) {
-    return null;
+  if (isMobileViewport !== false) {
+    return <HeroStickersHost />;
   }
 
   if (!liveblocksEnabled) {

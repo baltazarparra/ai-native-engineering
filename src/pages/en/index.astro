@@ -19,10 +19,12 @@ import {
   getProjectHref,
   getSkillsHref,
   getHarnessHref,
+  ui,
 } from '../../lib/i18n';
 
 const lang = 'en';
 const sessions = getSessions(lang);
+const levelLabels = ui[lang].levels;
 
 function levelToBadgeVariant(level: string) {
   const map = {
@@ -31,6 +33,10 @@ function levelToBadgeVariant(level: string) {
     advanced: 'green',
   } as const;
   return map[level as keyof typeof map] || 'default';
+}
+
+function levelToLabel(level: string) {
+  return levelLabels[level as keyof typeof levelLabels] || level;
 }
 ---
 
@@ -67,6 +73,10 @@ function levelToBadgeVariant(level: string) {
 
     <SectionBlock padding="xl" id="sessions">
       <h2>Sessions</h2>
+      <p class="section-intro">
+        Three steps to build the foundation: vocabulary, tools, and a
+        professional AI-native workflow.
+      </p>
       <Grid columns={3} gap="lg" align="stretch">
         {
           sessions.map((session) => (
@@ -77,7 +87,7 @@ function levelToBadgeVariant(level: string) {
             >
               <Fragment slot="meta">
                 <Badge variant={levelToBadgeVariant(session.level)} size="sm">
-                  {session.level}
+                  {levelToLabel(session.level)}
                 </Badge>
                 <Badge size="sm">{session.readingTime} min</Badge>
               </Fragment>
@@ -97,8 +107,9 @@ function levelToBadgeVariant(level: string) {
           <Badge variant="coral">Deep dive</Badge>
           <h2>Harness Engineering</h2>
           <p>
-            Learn how prompts, tools, context, boundaries, and validation turn a
-            model into a more reliable agent.
+            After the sessions, go deeper into how context, tools, boundaries,
+            and validation turn a model into a reliable agent. Session 3 shows
+            how to operate; this series explains the system behind it.
           </p>
         </div>
         <Button href={getHarnessHref(lang)} size="lg">Understand harness</Button
@@ -111,9 +122,8 @@ function levelToBadgeVariant(level: string) {
         <Badge variant="coral">New</Badge>
         <h2>Hands-on Project</h2>
         <p>
-          Done with theory? Build a project from scratch with your code agent
-          and publish it to GitHub Pages. A practical guide that teaches the
-          real agentic workflow.
+          When the theory clicks, put it to work: build a project from scratch
+          with your code agent and publish it to GitHub Pages.
         </p>
         <Button href={getProjectHref(lang)} size="lg">
           Go to the hands-on project
@@ -126,8 +136,8 @@ function levelToBadgeVariant(level: string) {
         <Badge variant="blue">Skills</Badge>
         <h2>Share process with your agents</h2>
         <p>
-          Learn what skills are, how they help teams keep good habits, and
-          install a quality gate with one NPX command.
+          Finally, learn how to turn good habits into reusable skills for your
+          agents.
         </p>
         <Button href={getSkillsHref(lang)} size="lg">Explore skills</Button>
       </div>
@@ -172,6 +182,14 @@ function levelToBadgeVariant(level: string) {
     color: var(--color-text-muted);
     max-width: 42ch;
     margin-block: var(--space-lg);
+    line-height: var(--leading-relaxed);
+  }
+
+  .section-intro {
+    max-width: 42ch;
+    margin-block: var(--space-md) var(--space-xl);
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
     line-height: var(--leading-relaxed);
   }
 
