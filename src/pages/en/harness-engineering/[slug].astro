@@ -1,0 +1,45 @@
+---
+import HarnessChapterLayout from '../../../layouts/HarnessChapterLayout.astro';
+import {
+  HARNESS_CHAPTERS,
+  getHarnessChapterAlternateLinks,
+  getHarnessChapterBySlug,
+} from '../../../data/harness-chapters';
+import { getHarnessChapterContent } from '../../../components/harness/chapter-content';
+
+export function getStaticPaths() {
+  return HARNESS_CHAPTERS.map((chapter) => ({
+    params: { slug: chapter.slug.en },
+    props: { chapterId: chapter.id },
+  }));
+}
+
+const lang = 'en';
+const { chapterId } = Astro.props;
+const chapter = HARNESS_CHAPTERS.find((ch) => ch.id === chapterId)!;
+const slugParam = Astro.params.slug;
+const resolved = slugParam ? getHarnessChapterBySlug(lang, slugParam) : undefined;
+
+if (!resolved || resolved.id !== chapter.id) {
+  throw new Error(`Harness chapter route mismatch for slug "${slugParam}"`);
+}
+
+const Content = getHarnessChapterContent(lang, chapter.id);
+const alternateLinks = getHarnessChapterAlternateLinks(chapter.id);
+const pageTitle = `${chapter.title[lang]} | Harness Engineering | AI-Native Engineers`;
+---
+
+<HarnessChapterLayout
+  lang={lang}
+  activeTab={chapter.id}
+  title={pageTitle}
+  description={chapter.description[lang]}
+  alternateLinks={alternateLinks}
+  discussionSlug={chapter.discussionSlug}
+  discussionTitle={chapter.title[lang]}
+  heroBadge={chapter.shortLabel[lang]}
+  heroTitle={chapter.title[lang]}
+  heroSummary={chapter.description[lang]}
+>
+  <Content />
+</HarnessChapterLayout>

@@ -1,0 +1,263 @@
+---
+import SectionBlock from '../../../SectionBlock/SectionBlock.astro';
+import Badge from '../../../Badge/Badge.astro';
+import Grid from '../../../Grid/Grid.astro';
+import Card from '../../../Card/Card.astro';
+---
+
+<!-- ═══════════════════════════════════════════════
+     CAPÍTULO 2 · ANATOMIA
+════════════════════════════════════════════════ -->
+<SectionBlock padding="lg">
+  <div class="chapter-intro">
+    <Badge variant="blue">Capítulo 2</Badge>
+    <span class="chapter-label">A anatomia do harness</span>
+  </div>
+  <div class="section-stack">
+
+    <div class="section-copy">
+      <h2>Código como parte do harness</h2>
+      <p class="section-lead">
+        Em sistemas agentic modernos, código não é apenas o resultado
+        produzido por um agente. Código também pode ser o meio pelo qual o
+        agente pensa, age, observa o mundo, mantém estado e verifica
+        progresso.
+      </p>
+      <p>
+        Isso é mais profundo do que "IA que escreve código". A ideia central
+        é que código passa a ser parte do próprio runtime do agente: ele
+        cria scripts, testes, validadores, traces e planos executáveis que
+        não são apenas outputs — são parte do processo de trabalho.
+      </p>
+    </div>
+
+    <Grid columns={3} gap="lg" align="stretch">
+      <Card title="Substrato de raciocínio" accent="yellow">
+        <p>
+          O agente externaliza pensamento em código executável. Em vez de
+          inferir se algo funciona, ele escreve um script, roda contra
+          exemplos reais e compara o resultado.
+        </p>
+      </Card>
+      <Card title="Interface de ação" accent="blue">
+        <p>
+          Código é a ponte entre intenção e modificação real no ambiente:
+          editar arquivos, chamar APIs, rodar comandos, abrir PRs.
+        </p>
+      </Card>
+      <Card title="Modelo do ambiente" accent="green">
+        <p>
+          O harness torna repositório, logs, erros e convenções
+          inspecionáveis, reduzindo o desvio entre o que o agente pensa que
+          o sistema é e o que ele realmente é.
+        </p>
+      </Card>
+      <Card title="Mecanismo de verificação" accent="coral">
+        <p>
+          Testes, lint, typecheck e build provam que o comportamento está
+          correto. O harness tira carga de "confiança no modelo" e
+          transfere para "evidência gerada por execução".
+        </p>
+      </Card>
+      <Card title="Memória operacional" accent="yellow">
+        <p>
+          Scripts, traces e planos executáveis registram estado entre
+          sessões: decisões tomadas, caminhos descartados, restrições
+          ativas.
+        </p>
+      </Card>
+      <Card title="Artefato compartilhado" accent="blue">
+        <p>
+          Em sistemas multi-agent, código é o substrato comum de
+          colaboração. Agentes coordenam por artefatos verificáveis, não
+          apenas por mensagens.
+        </p>
+      </Card>
+    </Grid>
+
+    <div class="section-copy">
+      <h2>As três camadas do harness</h2>
+      <p class="section-lead">
+        O harness pode ser entendido em três camadas progressivas, cada
+        uma construída sobre a anterior.
+      </p>
+    </div>
+
+    <!-- Camada 1: Interface -->
+    <div class="layer-block">
+      <div class="layer-header">
+        <span class="layer-number">1</span>
+        <div>
+          <h3>Camada de interface</h3>
+          <p class="layer-desc">
+            A interface entre o modelo e o ambiente. Aqui código transforma
+            intenção em algo executável.
+          </p>
+        </div>
+      </div>
+      <div class="layer-points">
+        <div class="layer-point">
+          <h4>Código para raciocinar</h4>
+          <p>
+            Linguagem natural é ambígua. Código é mais restrito: pode ser
+            executado, pode falhar, pode ser testado. Quando um agente usa
+            código para raciocinar, ele externaliza parte do pensamento em
+            uma forma verificável.
+          </p>
+        </div>
+        <div class="layer-point">
+          <h4>Código para agir</h4>
+          <p>
+            Um agente maduro não apenas responde com um diff. Ele opera
+            dentro de um ciclo controlado: entender o objetivo → inspecionar
+            o ambiente → propor plano → alterar o mínimo necessário →
+            executar validação → corrigir se falhar → apresentar evidências.
+          </p>
+          <p>Essa sequência depende de harness.</p>
+        </div>
+        <div class="layer-point">
+          <h4>Código para modelar o ambiente</h4>
+          <p>
+            O ambiente de um agente não é apenas o prompt. É o repositório,
+            a árvore de arquivos, os testes, os logs, os erros, o CI, os
+            contratos de API, as dependências e as decisões anteriores.
+          </p>
+          <p>
+            Muitos erros de agentes acontecem porque eles trabalham com uma
+            versão imaginada do sistema. Harness bom reduz esse desvio.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camada 2: Mecanismos -->
+    <div class="layer-block">
+      <div class="layer-header">
+        <span class="layer-number">2</span>
+        <div>
+          <h3>Camada de mecanismos</h3>
+          <p class="layer-desc">
+            Os mecanismos que permitem ao agente operar de forma confiável.
+            É aqui que Harness Engineering fica mais prática.
+          </p>
+        </div>
+      </div>
+      <div class="layer-points">
+        <div class="layer-point">
+          <h4>Planejamento como contrato operacional</h4>
+          <p>
+            Em um harness maduro, o plano funciona como contrato. Ele deixa
+            claro o que será alterado, por que, quais arquivos serão
+            tocados, quais riscos existem, quais validações serão
+            executadas e qual evidência define sucesso.
+          </p>
+          <p>
+            O plano não serve apenas para organizar pensamento. Serve para
+            controlar execução. Se o agente se desvia do plano, o harness
+            pode detectar.
+          </p>
+        </div>
+        <div class="layer-point">
+          <h4>Memória e contexto</h4>
+          <p>
+            Agentes falham quando perdem estado: esquecem decisões, repetem
+            erros, confundem requisitos antigos com atuais, ignoram
+            restrições que não cabem no contexto ativo.
+          </p>
+          <p>
+            Memória útil é estado operacional: decisões arquiteturais,
+            comandos de validação, padrões do repositório, falhas
+            recorrentes, restrições de segurança, critérios de aceite.
+            Context engineering entra aqui como disciplina central — não é
+            colocar mais informação no prompt, é colocar a informação certa
+            no momento certo.
+          </p>
+        </div>
+        <div class="layer-point">
+          <h4>Ferramentas governadas</h4>
+          <p>
+            Ferramentas aumentam a superfície de ação, mas ferramenta sem
+            governança aumenta risco. Harness Engineering trata ferramentas
+            como interfaces governadas com escopo claro, permissão
+            explícita, retorno interpretável, limites de uso e política de
+            erro.
+          </p>
+          <p>
+            A pergunta não é "quais ferramentas o agente tem?". A pergunta
+            melhor é: quais ações o agente pode executar, em quais
+            condições, com quais evidências e com qual possibilidade de
+            reversão?
+          </p>
+        </div>
+        <div class="layer-point">
+          <h4>O loop Plan-Execute-Verify</h4>
+          <p>
+            O coração de um harness confiável é o loop:
+            <strong>planejar → executar → verificar → revisar</strong>.
+          </p>
+          <p>
+            No modelo com harness, o agente gera uma mudança, executa em
+            ambiente controlado, observa feedback real e decide se deve
+            aceitar, corrigir, escalar ou reverter. Verificação usa sensores
+            determinísticos: testes, typecheck, lint, build, análise
+            estática, logs, contratos e políticas de segurança.
+          </p>
+          <blockquote>
+            O harness torna a incerteza visível. Ele reduz dependência de
+            confiança subjetiva e aumenta a quantidade de evidência
+            operacional.
+          </blockquote>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camada 3: Escala -->
+    <div class="layer-block">
+      <div class="layer-header">
+        <span class="layer-number">3</span>
+        <div>
+          <h3>Camada de escala</h3>
+          <p class="layer-desc">
+            Quando entramos em sistemas multi-agent, o harness se torna
+            ainda mais importante.
+          </p>
+        </div>
+      </div>
+      <div class="scale-grid">
+        <div class="section-copy">
+          <p>
+            Dois ou mais agentes não deveriam colaborar apenas por conversa.
+            Conversa é volátil, fácil de perder estado, difícil de auditar.
+            Multi-agent confiável precisa de um substrato compartilhado:
+            repositório, branch, issue, pull request, plano versionado,
+            teste, trace, log, memória compartilhada, quadro de tarefas,
+            workflow de revisão ou contrato de interface.
+          </p>
+          <p>
+            A colaboração entre agentes deve acontecer sobre artefatos
+            verificáveis, não apenas sobre mensagens.
+          </p>
+        </div>
+        <div class="scale-cards">
+          <article class="comparison-card weak">
+            <Badge variant="coral">Sem harness</Badge>
+            <h3>Multi-agent vira teatro</h3>
+            <p>
+              Vários personagens conversando, pouca garantia de progresso
+              real.
+            </p>
+          </article>
+          <article class="comparison-card strong">
+            <Badge variant="green">Com harness</Badge>
+            <h3>Multi-agent vira sistema</h3>
+            <p>
+              Papéis especializados, estado compartilhado, validação comum
+              e trilha auditável.
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</SectionBlock>

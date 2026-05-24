@@ -5,6 +5,10 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://ai-native-engineers.com',
+  redirects: {
+    '/harness-engineering': '/harness-engineering/',
+    '/en/harness-engineering': '/en/harness-engineering/',
+  },
   integrations: [
     mdx(),
     react(),
