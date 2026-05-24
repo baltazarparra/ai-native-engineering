@@ -63,18 +63,43 @@ Harness Design is the design of the **agent operating environment**.
 
 If SDD answers "what must be true?", the harness answers "how do we create a system where the agent can execute, validate, and improve without relying on informal memory?".
 
-A harness can include:
+### A model is not an agent
 
-- persistent instructions such as `AGENTS.md`, `CLAUDE.md`, or `.cursor/rules/`;
-- versioned architecture, product, and domain documentation;
-- spec, PRD, plan, and review templates;
-- tools available to the agent, such as terminal, GitHub, browser, logs, and MCP servers;
-- permission boundaries and human approval points;
-- validation commands, CI, lint, typecheck, tests, and security checks;
-- PR standards, ownership, rollback, and audit practices;
-- learning loops that turn failures into rules, tests, or docs.
+A model responds. An agent tries to complete a task using tools in a loop: it reads context, takes an action, observes the result, and decides the next step.
 
-The goal is not to trap the agent. It is to create rails. Rails do not prevent movement; they make movement predictable.
+The harness is what makes that loop useful in real work. It tells the agent which rules to follow, which tools to use, where to find context, when to ask for approval, and how to prove the work is done.
+
+> **agent = model + harness**
+
+### What goes into a harness?
+
+Think of the harness as the agent's work infrastructure. It is not one tool. It is the system that lets you move from conversation to a validated delivery.
+
+- **Instructions**: files like `AGENTS.md`, rules, and skills that carry commands, standards, and project agreements.
+- **Context**: specs, technical decisions, architecture, product docs, and enough history so the agent is not working in the dark.
+- **Tools**: terminal, Git, browser, GitHub, logs, MCP servers, and other integrations that let the agent act in the right environment.
+- **Boundaries**: sandbox, permissions, human approvals, and blocks for destructive or sensitive actions.
+- **Validation**: lint, tests, typecheck, build, diff review, and checklists that push back against broken delivery.
+- **Learning**: each recurring failure becomes a rule, test, hook, doc, or skill. The harness improves because the team learned.
+
+The goal is not to trap the agent. It is to create rails. Good rails do not prevent movement; they make movement predictable, reviewable, and safe.
+
+### Harness in practice
+
+The difference shows up when a task leaves the prototype stage and enters a real product.
+
+**Without a harness**: someone asks "build the user invite screen." The agent might create a nice screen, but ignore permissions, error states, product copy, responsiveness, tests, and existing design rules.
+
+**With a harness**: the same task, with rails. The agent gets a short spec, UI rules, existing components, acceptance criteria, validation commands, and permission limits. At the end, it must explain what changed and how it tested it.
+
+### A harness in one week
+
+You do not need to build a platform. Start with one real failure and turn learning into structure.
+
+1. **Write a short `AGENTS.md`**: include project commands, important standards, and two or three rules the agent should always respect.
+2. **Document how to validate**: list lint, tests, typecheck, build, and any check that proves a change did not break the basics.
+3. **Pick a recurring failure**: choose a problem that already happened: skipped test, broken UI pattern, wrong file, forgotten command.
+4. **Turn the failure into a rail**: create a rule, test, checklist, hook, or skill. If it happens again, the harness is not clear enough yet.
 
 ## Applied example: enterprise SSO
 
