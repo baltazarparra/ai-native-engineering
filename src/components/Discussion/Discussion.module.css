@@ -2,6 +2,7 @@
   border-top: var(--border-thick);
   background-color: var(--color-surface-alt);
   padding: var(--space-xl) var(--space-md) var(--space-2xl);
+  margin-top: var(--space-2xl);
 }
 
 .inner {
