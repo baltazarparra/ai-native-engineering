@@ -18,7 +18,8 @@ const repoId = import.meta.env.PUBLIC_GISCUS_REPO_ID || 'R_kgDOSDoWVA';
 const category = import.meta.env.PUBLIC_GISCUS_CATEGORY || 'General';
 const categoryId =
   import.meta.env.PUBLIC_GISCUS_CATEGORY_ID || 'DIC_kwDOSDoWVM4C68fs';
-const giscusLang = import.meta.env.PUBLIC_GISCUS_LANG || 'pt';
+const giscusLang =
+  import.meta.env.PUBLIC_GISCUS_LANG || (lang === 'en' ? 'en' : 'pt');
 const discussionTerm = `page:${lang}:${slug}`;
 const discussionsUrl = `https://github.com/${repo}/discussions`;
 const isConfigured = Boolean(repo && repoId && category && categoryId);

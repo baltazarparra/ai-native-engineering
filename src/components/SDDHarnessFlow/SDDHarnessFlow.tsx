@@ -190,14 +190,14 @@ const LABELS = {
     spec: 'Papel do SDD',
     harness: 'Papel do harness',
     artifacts: 'Artefatos',
-    signal: 'Sinal corporativo',
+    signal: 'Sinal prático',
   },
   en: {
     aria: 'SDD and Harness Design flow',
     spec: 'SDD role',
     harness: 'Harness role',
     artifacts: 'Artifacts',
-    signal: 'Enterprise signal',
+    signal: 'Practical signal',
   },
 } as const;
 

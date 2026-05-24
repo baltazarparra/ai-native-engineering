@@ -210,6 +210,35 @@ IMPORTANT RULES
 
   <hr />
 
+  <h2 id="production-checklist">Production checklist before publishing</h2>
+
+  <p>
+    Before opening the site to other people, run through this minimum checklist.
+    It does not turn the project into enterprise software, but it avoids common
+    publishing mistakes:
+  </p>
+
+  <ul>
+    <li>No secrets, tokens, or API keys in the client or repository.</li>
+    <li>Minimum permissions and scope: the site only does what v1 promises.</li>
+    <li>CORS and API calls work on the public URL, not just on localhost.</li>
+    <li>Visible error states: loading, empty, and network failure.</li>
+    <li>Browser console free of critical errors on the main flow.</li>
+    <li>Simple rollback plan: you know how to return to the previous commit or deploy.</li>
+    <li>Dependencies reviewed: nothing suspicious or unnecessary for a static site.</li>
+    <li>Manual validation of the critical path: search, discography, and album details.</li>
+  </ul>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      You reviewed secrets, permissions, errors, rollback, and the main flow
+      before treating the deploy as ready.
+    </p>
+  </div>
+
+  <hr />
+
   <h2 id="validate-published-site">5. Validate as a user</h2>
 
   <p>

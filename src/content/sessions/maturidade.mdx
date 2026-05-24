@@ -12,6 +12,9 @@ heroLabel: 'Fluxo profissional'
 references:
   [
     'openai-harness-engineering',
+    'anthropic-agentic-coding-trends-2026',
+    'openai-symphony-orchestration',
+    'github-copilot-cloud-agent-research-plan',
     'github-spec-kit',
     'kiro-specs',
     'shimony-sdd',
@@ -20,10 +23,12 @@ references:
     'claude-code-hooks',
     'cursor-docs',
     'mcp-spec',
+    'mcp-tool-poisoning-research',
     'owasp-llm-top-10',
     'owasp-agentic-ai-threats',
+    'owasp-agentic-applications-2026',
   ]
-updatedAt: 2026-05-04
+updatedAt: 2026-05-24
 ---
 
 import SDDHarnessFlow from '../../components/SDDHarnessFlow/SDDHarnessFlow.tsx';
@@ -80,6 +85,7 @@ Pense no harness como a infraestrutura de trabalho do agente. Não é uma ferram
 - **Ferramentas**: terminal, Git, navegador, GitHub, logs, MCP servers e outras integrações que deixam o agente agir no ambiente certo.
 - **Limites**: sandbox, permissões, aprovações humanas e bloqueios para ações destrutivas ou sensíveis.
 - **Validação**: lint, testes, typecheck, build, revisão de diff e checklists que criam pressão contra entrega quebrada.
+- **Observabilidade**: UI, logs, métricas, traces, screenshots e checks reproduzíveis que o agente (e o humano) conseguem ler para entender o que aconteceu.
 - **Aprendizado**: cada falha recorrente vira uma regra, teste, hook, doc ou skill. O harness melhora porque o time aprendeu.
 
 O ponto não é criar uma prisão para o agente. É criar trilhos. Bons trilhos não impedem movimento; eles tornam o movimento previsível, revisável e seguro.
@@ -100,6 +106,35 @@ Você não precisa montar uma plataforma. Comece por uma falha real e transforme
 2. **Documente como validar**: liste lint, testes, typecheck, build e qualquer checagem que prove que uma mudança não quebrou o básico.
 3. **Escolha uma falha recorrente**: pegue um problema que já aconteceu: teste ignorado, padrão de UI quebrado, arquivo errado, comando esquecido.
 4. **Transforme a falha em trilho**: crie uma regra, teste, checklist, hook ou skill. Se acontecer de novo, o harness ainda não está claro o bastante.
+
+## O fluxo da indústria em 2026
+
+Em 2026, times maduros não tratam agente como chat glorificado. Eles operam um ciclo repetível:
+
+1. **Pesquisa**: o agente (ou o humano) busca evidência no repositório, docs e histórico antes de decidir.
+2. **Plano**: a intenção vira spec ou plano revisável, com escopo, riscos e critérios de aceite.
+3. **Execução**: o agente implementa em branch, com ferramentas e limites definidos pelo harness.
+4. **Revisão**: diff, testes, segurança e checklist antes de merge ou PR.
+5. **Publicação**: deploy com rollback, logs e validação manual do caminho crítico.
+6. **Aprendizado**: falhas viram regra, teste ou doc. O harness evolui.
+
+### Context-grounding
+
+Antes de especificar, planejar ou implementar, o agente precisa **ancorar a resposta no repositório**. Isso significa ler arquivos reais, conferir padrões existentes, checar dependências e não inventar estrutura que o projeto não tem. Spec sem grounding vira texto bonito. Código sem grounding vira patch plausível e errado.
+
+### Agentes cloud
+
+Agentes cloud pesquisam o repo, propõem plano, trabalham em branch isolada e entregam diff. O PR só nasce quando um humano aprova. Esse modelo reduz risco: você revisa antes de merge, não depois de deploy.
+
+### Coordenação multi-agente
+
+Vários agentes em paralelo podem acelerar tarefas independentes (testes, docs, refactors isolados). Mas precisam de limites claros, revisão humana e escopo separado. Paralelismo sem harness vira caos difícil de auditar.
+
+## O fluxo em seis etapas
+
+Antes do exemplo, veja o mapa do fluxo SDD + Harness Design. Cada etapa mostra o que a spec define, o que o harness garante e quais sinais provam que o trabalho está maduro.
+
+<SDDHarnessFlow client:visible lang="pt-BR" />
 
 ## Exemplo aplicado: login único corporativo
 

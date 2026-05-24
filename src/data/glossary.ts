@@ -240,13 +240,13 @@ export const glossary: GlossaryTerm[] = [
     id: 'validacao',
     term: 'Validação',
     simpleDefinition:
-      'Checar se o que a IA gerou funciona, faz o que foi pedido e não cria risco.',
+      'Checar se o que a IA gerou funciona, faz o que foi pedido, não vaza segredo e não cria risco.',
     technicalDefinition:
-      'Conjunto de verificações manuais e automatizadas como revisão de diff, testes, typecheck, lint, análise de segurança, QA e critérios de aceite.',
+      'Conjunto de verificações manuais e automatizadas: revisão de diff, testes, typecheck, lint, análise de segurança, checagem de secrets, permissões, logs e critérios de aceite.',
     example:
-      'Depois de gerar uma feature, você roda testes, revisa permissões, checa erros e compara com a spec antes de publicar.',
+      'Depois de gerar uma feature, você revisa o diff, roda testes, confere permissões, procura secrets no client, valida erros e compara com a spec antes de publicar.',
     commonMistake:
-      'Validar só clicando no caminho feliz. Software quebra nos estados vazios, erros, permissões e casos de borda.',
+      'Validar só clicando no caminho feliz. Software quebra nos estados vazios, erros, permissões, logs ausentes e casos de borda.',
     relatedTerms: ['spec', 'diff', 'pull-request', 'ownership'],
   },
   {
@@ -361,13 +361,13 @@ export const glossary: GlossaryTerm[] = [
     id: 'agente-de-codigo',
     term: 'Agente de código',
     simpleDefinition:
-      'Um agente especializado em escrever, editar e revisar código. Tem acesso ao seu projeto e pode fazer mudanças diretamente.',
+      'Um agente especializado em escrever, editar e revisar código. Pode rodar no terminal, na IDE ou na nuvem, e entregar diff ou PR.',
     technicalDefinition:
-      'Agente de IA com acesso a ferramentas de desenvolvimento: leitura/escrita de arquivos, terminal, navegação no repositório e testes.',
+      'Agente de IA com acesso a ferramentas de desenvolvimento: leitura/escrita de arquivos, terminal, navegação no repositório, testes, branch, diff e pull request.',
     example:
-      'Claude Code é um agente de código. Você descreve o que quer, ele lê seus arquivos, escreve código, roda testes e commita. Cursor em modo agente também funciona assim.',
+      'Claude Code no terminal lê seus arquivos, edita, roda testes e commita. Um agente cloud pesquisa o repo, propõe plano, trabalha em branch e entrega diff para revisão antes do PR.',
     commonMistake:
-      'Dar autonomia total sem supervisão. Agentes de código são poderosos mas precisam de revisão humana.',
+      'Dar autonomia total sem supervisão. Agentes de código são poderosos, mas diff, testes e revisão humana ainda são obrigatórios.',
     relatedTerms: ['agente', 'cli', 'ide', 'harness'],
   },
   {
@@ -376,24 +376,24 @@ export const glossary: GlossaryTerm[] = [
     simpleDefinition:
       'Um padrão que permite que ferramentas de IA se conectem a serviços externos de forma organizada. Tipo um USB para IA.',
     technicalDefinition:
-      'Model Context Protocol. Protocolo aberto que padroniza como aplicações de IA se conectam a fontes de dados e ferramentas externas. Define um formato comum para servidores de contexto que podem ser consumidos por qualquer cliente compatível.',
+      'Model Context Protocol. Protocolo aberto que padroniza como aplicações de IA se conectam a fontes de dados e ferramentas externas. Em 2026 é padrão de fato na indústria, mas segurança e governança ainda amadurecem.',
     example:
       'Um servidor MCP de GitHub permite que qualquer ferramenta de IA (Claude Code, Cursor, etc.) acesse issues, PRs e repositórios sem cada ferramenta precisar implementar a integração do zero.',
     commonMistake:
-      'Achar que MCP já é um padrão universal consolidado. É relativamente novo e ainda está em evolução.',
+      'Achar que MCP é seguro por padrão. Riscos reais incluem tool poisoning, tool shadowing, permissões excessivas e servidores sem autenticação.',
     relatedTerms: ['agente', 'harness', 'contexto'],
   },
   {
     id: 'harness',
     term: 'Harness',
     simpleDefinition:
-      'O sistema completo de trabalho de um agente de IA: instruções, ferramentas, regras, contexto. É o "ambiente" onde o agente opera.',
+      'O sistema completo de trabalho de um agente de IA: instruções, ferramentas, regras, contexto, validação e feedback.',
     technicalDefinition:
-      'Camada de orquestração que define como um agente de código opera. Não é um padrão universal; o termo é usado aqui para descrever essa camada.',
+      'Camada de orquestração que define como um agente de código opera: ambiente, ferramentas, validação, observabilidade, revisão humana e loops de aprendizado.',
     example:
-      'Um harness pode incluir: um AGENTS.md com regras do projeto (CLAUDE.md no Claude Code), um pre-commit hook que roda testes, um system prompt que define tom e padrões, e acesso a ferramentas específicas via MCP.',
+      'Um harness pode incluir AGENTS.md, hooks de pre-commit, MCP com escopo mínimo, testes automatizados, logs legíveis, revisão de diff e critérios de aceite antes de merge.',
     commonMistake:
-      'Tratar harness como algo que você "instala". É uma prática, não um produto. Você constrói o harness do seu time ao longo do tempo, ajustando conforme o projeto evolui.',
+      'Tratar harness como algo que você "instala". É uma prática que o time constrói e ajusta conforme o projeto e os riscos evoluem.',
     relatedTerms: ['agente-de-codigo', 'mcp', 'system-prompt'],
   },
 ];
@@ -623,13 +623,13 @@ export const glossaryEn: GlossaryTerm[] = [
     id: 'validacao',
     term: 'Validation',
     simpleDefinition:
-      'Checking whether what AI generated works, matches the request, and does not create risk.',
+      'Checking whether what AI generated works, matches the request, does not leak secrets, and does not create risk.',
     technicalDefinition:
-      'A set of manual and automated checks such as diff review, tests, typecheck, lint, security analysis, QA, and acceptance criteria verification.',
+      'A set of manual and automated checks: diff review, tests, typecheck, lint, security analysis, secrets checks, permissions, logs, and acceptance criteria.',
     example:
-      'After generating a feature, you run tests, review permissions, inspect error states, and compare the result with the spec before publishing.',
+      'After generating a feature, you review the diff, run tests, check permissions, scan for client-side secrets, validate error states, and compare with the spec before publishing.',
     commonMistake:
-      'Validating only by clicking the happy path. Software usually breaks on empty states, errors, permissions, and edge cases.',
+      'Validating only by clicking the happy path. Software usually breaks on empty states, errors, permissions, missing logs, and edge cases.',
     relatedTerms: ['spec', 'diff', 'pull request', 'ownership'],
   },
   {
@@ -740,13 +740,13 @@ export const glossaryEn: GlossaryTerm[] = [
     id: 'agente-de-codigo',
     term: 'Coding agent',
     simpleDefinition:
-      'An agent specialized in writing, editing, and reviewing code. It can access your project directly.',
+      'An agent specialized in writing, editing, and reviewing code. It can run in the terminal, IDE, or cloud, and deliver diffs or PRs.',
     technicalDefinition:
-      'An AI agent with development tools: file read/write, terminal, repo navigation, and test execution.',
+      'An AI agent with development tools: file read/write, terminal, repo navigation, tests, branches, diffs, and pull requests.',
     example:
-      'Claude Code and Codex CLI are coding agents. Cursor agent mode also follows this pattern.',
+      'Claude Code in the terminal reads files, edits, runs tests, and commits. A cloud agent researches the repo, proposes a plan, works on a branch, and delivers a diff for review before a PR.',
     commonMistake:
-      'Giving full autonomy without validation. Coding agents are powerful, but output still needs review.',
+      'Giving full autonomy without supervision. Coding agents are powerful, but diff review, tests, and human approval are still required.',
     relatedTerms: ['agent', 'CLI', 'IDE', 'harness'],
   },
   {
@@ -755,24 +755,24 @@ export const glossaryEn: GlossaryTerm[] = [
     simpleDefinition:
       'A standard that lets AI tools connect to external services in an organized way. Kind of like USB for AI tools.',
     technicalDefinition:
-      'Model Context Protocol. An open protocol for connecting AI applications to data sources and tools through shared server interfaces.',
+      'Model Context Protocol. An open protocol for connecting AI applications to data sources and tools through shared server interfaces. In 2026 it is a de facto industry standard, but security and governance are still maturing.',
     example:
       'A GitHub MCP server can let compatible AI tools access issues, PRs, and repositories.',
     commonMistake:
-      "Treating MCP as fully settled and universal. It's useful, but the ecosystem is still evolving.",
+      'Assuming MCP is secure by default. Real risks include tool poisoning, tool shadowing, excessive permissions, and unauthenticated servers.',
     relatedTerms: ['agent', 'harness', 'context'],
   },
   {
     id: 'harness',
     term: 'Harness',
     simpleDefinition:
-      'The complete work system around an AI agent: instructions, tools, rules, context, and validation.',
+      'The complete work system around an AI agent: instructions, tools, rules, context, validation, and feedback.',
     technicalDefinition:
-      'The orchestration layer defining how a coding agent operates. Not a universal standard; the term describes this conceptual layer.',
+      'The orchestration layer defining how a coding agent operates: environment, tools, validation, observability, human review, and learning loops.',
     example:
-      'A harness can include `AGENTS.md` (`CLAUDE.md` in Claude Code), pre-commit checks, MCP tools, and project-specific instructions.',
+      'A harness can include `AGENTS.md`, pre-commit hooks, scoped MCP tools, automated tests, readable logs, diff review, and acceptance criteria before merge.',
     commonMistake:
-      "Treating harness as something you install. It's a practice you build around the work.",
+      "Treating harness as something you install. It's a practice the team builds and adjusts as the project and risks evolve.",
     relatedTerms: ['coding agent', 'MCP', 'system prompt'],
   },
 ];

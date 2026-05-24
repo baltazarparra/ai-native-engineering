@@ -201,6 +201,35 @@ REGRAS IMPORTANTES
 
   <hr />
 
+  <h2 id="checklist-producao">Checklist de produção antes de publicar</h2>
+
+  <p>
+    Antes de abrir o site para outras pessoas, passe por este checklist mínimo.
+    Ele não transforma o projeto em enterprise, mas evita erros comuns de
+    publicação:
+  </p>
+
+  <ul>
+    <li>Nenhum secret, token ou chave de API no client ou no repositório.</li>
+    <li>Permissões e escopo mínimos: o site só faz o que a v1 promete.</li>
+    <li>CORS e chamadas de API funcionando na URL pública, não só no localhost.</li>
+    <li>Estados de erro visíveis: loading, vazio e falha de rede.</li>
+    <li>Console do navegador sem erro crítico no fluxo principal.</li>
+    <li>Plano simples de rollback: você sabe voltar para o commit ou deploy anterior.</li>
+    <li>Dependências revisadas: nada suspeito ou desnecessário para um site estático.</li>
+    <li>Validação manual do caminho crítico: busca, discografia e detalhe de álbum.</li>
+  </ul>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      Você revisou secrets, permissões, erros, rollback e o fluxo principal
+      antes de considerar o deploy pronto.
+    </p>
+  </div>
+
+  <hr />
+
   <h2 id="validar-site-publicado">5. Validar como usuário</h2>
 
   <p>

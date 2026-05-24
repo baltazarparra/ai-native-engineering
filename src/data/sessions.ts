@@ -22,7 +22,7 @@ export const sessions: SessionCardData[] = [
     translationKey: 'glossary',
     order: 1,
     summary:
-      'O que é vibe coding, quais plataformas criam apps por prompt, onde isso ajuda e onde quebra.',
+      'O que é vibe coding, quais plataformas criam apps por prompt, onde isso ajuda, onde quebra e como transformar demo em software de verdade.',
     readingTime: 14,
     level: 'beginner',
     heroLabel: 'Vocabulário essencial',
@@ -42,13 +42,13 @@ export const sessions: SessionCardData[] = [
     accent: 'green',
   },
   {
-    title: 'SDD e Harness Design',
+    title: 'SDD e Harness Design: o fluxo profissional com IA',
     slug: 'maturidade',
     lang: 'pt-BR',
     translationKey: 'maturity',
     order: 3,
     summary:
-      'Transforme intenção em contrato verificável e organize o harness para agentes trabalharem com contexto, validação e responsabilidade.',
+      'SDD transforma intenção em planejamento. Harness Design organiza ferramentas e validações para agentes desenvolverem com qualidade e segurança.',
     readingTime: 24,
     level: 'advanced',
     heroLabel: 'Fluxo profissional',
@@ -61,7 +61,7 @@ export const sessions: SessionCardData[] = [
     translationKey: 'glossary',
     order: 1,
     summary:
-      'What vibe coding is, which platforms turn prompts into apps, where it helps, and where it breaks.',
+      'What vibe coding is, which platforms turn prompts into apps, where it helps, where it breaks, and how to turn a demo into real software.',
     readingTime: 14,
     level: 'beginner',
     heroLabel: 'Essential vocabulary',
@@ -81,13 +81,13 @@ export const sessions: SessionCardData[] = [
     accent: 'green',
   },
   {
-    title: 'SDD and Harness Design',
+    title: 'SDD and Harness Design: professional AI-native development',
     slug: 'maturity',
     lang: 'en',
     translationKey: 'maturity',
     order: 3,
     summary:
-      'Turn intent into a verifiable contract and design the harness that lets agents work with enterprise-grade quality.',
+      'SDD turns intent into a verifiable plan. Harness Design organizes tools and validation so agents can deliver with quality and safety.',
     readingTime: 24,
     level: 'advanced',
     heroLabel: 'Professional flow',

@@ -21,8 +21,10 @@ references:
     'metr-ai-productivity-2025',
     'stanford-insecure-code-ai-assistants',
     'owasp-llm-top-10',
+    'owasp-agentic-applications-2026',
+    'mcp-tool-poisoning-research',
   ]
-updatedAt: 2026-04-23
+updatedAt: 2026-05-24
 ---
 
 import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid.tsx';
@@ -35,7 +37,18 @@ That moment is addictive because it feels like you skipped months of learning. A
 
 But this is the most important line in the session: **preview is not production**.
 
-An app that opens in the browser can still have broken access rules, exposed secrets, fragile flows, unmaintainable code, odd dependencies, no tests, and an architecture that only works while the project is tiny. The flex is not generating something in 30 minutes. The flex is being able to maintain it tomorrow.
+An app that opens in the browser can still have broken access rules, exposed secrets, fragile flows, unmaintainable code, odd dependencies, no tests, and an architecture that only works while the project is tiny.
+
+**Concrete risks that show up in production:**
+
+- **Missing RLS:** any user can read or change another user's data.
+- **Secrets in the client:** API keys or tokens visible in the browser.
+- **Front-end-only validation:** the backend accepts any malicious payload.
+- **Overly broad permissions:** the app does more than it should, with no fine-grained control.
+- **No rollback plan:** when something breaks, there is no safe way to revert.
+- **No logs:** nobody knows what happened when something fails.
+
+Generating something in 30 minutes is not the hard part. Maintaining it tomorrow is.
 
 ## What vibe coding is
 
@@ -78,4 +91,4 @@ Use the search below as a pocket map. The goal is not to memorize jargon; it is 
 
 - Vibe coding is great for starting, learning, and prototyping. It is not an excuse to stop understanding.
 - Prompt-to-app platforms move fast, but they make technical choices for you.
-- Preview is not production. Generated code needs a spec, review, tests, and an owner.
+- Preview is not production. A prototype can become a product, but only after spec, validation, security, and ownership.

@@ -43,8 +43,8 @@ export const HARNESS_SERIES = {
   },
   description: {
     'pt-BR':
-      'Série em 5 capítulos sobre Harness Engineering — da distinção modelo vs agente à governança, maturidade e papel do engenheiro.',
-    en: 'A 5-chapter series on Harness Engineering — from the model-vs-agent distinction to governance, maturity, and the engineer’s role.',
+      'Série em 6 capítulos sobre Harness Engineering: da distinção modelo vs agente à governança, maturidade e papel do engenheiro.',
+    en: 'A 6-chapter series on Harness Engineering: from the model-vs-agent distinction to governance, maturity, and the engineer’s role.',
   },
   overviewTab: {
     'pt-BR': 'Visão geral',
@@ -209,8 +209,8 @@ export const HARNESS_CHAPTERS: HarnessChapter[] = [
     },
     description: {
       'pt-BR':
-        'Tese central: sistemas capazes de transformar modelos em trabalho confiável — referência acadêmica e próximo passo na Sessão 3.',
-      en: 'Central thesis: systems that turn models into reliable work — academic reference and next step in Session 3.',
+        'Tese central: sistemas capazes de transformar modelos em trabalho confiável. Referência acadêmica e próximo passo na Sessão 3.',
+      en: 'Central thesis: systems that turn models into reliable work. Academic reference and next step in Session 3.',
     },
     discussionSlug: 'harness-conclusion',
     badgeVariant: 'coral',

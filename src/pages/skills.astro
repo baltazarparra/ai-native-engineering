@@ -174,6 +174,54 @@ before handing the task back.</code></pre>
     <SectionBlock padding="lg" alt>
       <div class="section-stack">
         <div class="section-copy">
+          <h2 id="seguranca-de-skills">Segurança de skills</h2>
+          <p>
+            Skills são convenientes, mas também são supply chain. Uma skill mal
+            escrita ou maliciosa pode pedir permissões demais, rodar comandos
+            perigosos ou mudar de comportamento depois de instalada.
+          </p>
+          <p>Riscos comuns em 2026:</p>
+          <ul class="reference-list">
+            <li>
+              <strong>Skill maliciosa:</strong> instruções escondidas em
+              <code>SKILL.md</code> ou scripts auxiliares.
+            </li>
+            <li>
+              <strong>Permissão excessiva:</strong> acesso amplo a terminal, rede
+              ou secrets sem necessidade.
+            </li>
+            <li>
+              <strong>Update drift:</strong> a skill muda depois da instalação e
+              ninguém revisa de novo.
+            </li>
+            <li>
+              <strong>Metadata ruim:</strong> descrição vaga faz o agente usar a
+              skill no momento errado.
+            </li>
+            <li>
+              <strong>Comandos perigosos:</strong> scripts que apagam arquivos,
+              exfiltram dados ou alteram config sensível.
+            </li>
+            <li>
+              <strong>Falta de inventário:</strong> o time não sabe quais skills
+              estão instaladas em cada agente.
+            </li>
+          </ul>
+          <p>Recomendações práticas:</p>
+          <ul class="reference-list">
+            <li>Leia o <code>SKILL.md</code> inteiro antes de instalar.</li>
+            <li>Prefira fontes confiáveis e repositórios que você consegue auditar.</li>
+            <li>Revise permissões e escopo mínimo necessário.</li>
+            <li>Mantenha inventário das skills instaladas por agente.</li>
+            <li>Revalide skills após updates, como faria com dependência crítica.</li>
+          </ul>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg">
+      <div class="section-stack">
+        <div class="section-copy">
           <h2>Compartilhando skills</h2>
           <p>
             Existem dois caminhos úteis para distribuir skills: um comando
@@ -319,6 +367,16 @@ skills installs the skill into the agent</code></pre>
           </li>
           <li>
             <a href="https://cursor.com/marketplace"> Cursor: Marketplace </a>
+          </li>
+          <li>
+            <a href="https://owasp.org/www-project-agentic-skills-top-10/">
+              OWASP Agentic Skills Top 10
+            </a>
+          </li>
+          <li>
+            <a href="https://vercel.com/docs/agent-resources/skills">
+              Vercel: Agent Skills
+            </a>
           </li>
         </ul>
       </div>

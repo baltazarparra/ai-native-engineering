@@ -78,6 +78,10 @@ function levelToLabel(level: string) {
     <!-- session cards -->
     <SectionBlock padding="xl" id="sessoes">
       <h2>Sessões</h2>
+      <p class="section-intro">
+        Três passos para montar a base: vocabulário, ferramentas e fluxo
+        profissional com IA.
+      </p>
       <Grid columns={3} gap="lg" align="stretch">
         {
           sessions.map((session) => (
@@ -109,8 +113,9 @@ function levelToLabel(level: string) {
           <Badge variant="coral">Aprofundamento</Badge>
           <h2>Harness Engineering</h2>
           <p>
-            Entenda como prompts, ferramentas, contexto, limites e validações
-            transformam um modelo em um agente mais confiável.
+            Depois das sessões, aprofunde como contexto, ferramentas, limites e
+            validação transformam um modelo em agente confiável. A Sessão 3
+            mostra como operar; esta série explica o sistema por trás.
           </p>
         </div>
         <Button href={getHarnessHref(lang)} size="lg">Entender harness</Button>
@@ -123,9 +128,8 @@ function levelToLabel(level: string) {
         <Badge variant="coral">Novo</Badge>
         <h2>Projeto Prático</h2>
         <p>
-          Já viu a teoria? Agora crie um projeto do zero com seu agente de
-          código e publique no GitHub Pages. Um guia prático que ensina o fluxo
-          agêntico de verdade.
+          Quando a teoria fizer sentido, coloque em prática: crie um projeto do
+          zero com seu agente de código e publique no GitHub Pages.
         </p>
         <Button href={getProjectHref(lang)} size="lg">
           Ir para o projeto prático
@@ -139,8 +143,8 @@ function levelToLabel(level: string) {
         <Badge variant="blue">Skills</Badge>
         <h2>Compartilhe processos com seus agentes</h2>
         <p>
-          Entenda o que são skills, como elas ajudam times a manter boas
-          práticas e instale uma quality gate com um comando NPX.
+          Por fim, aprenda a transformar bons hábitos em skills reutilizáveis
+          para seus agentes.
         </p>
         <Button href={getSkillsHref(lang)} size="lg"> Ver skills </Button>
       </div>
@@ -186,6 +190,14 @@ function levelToLabel(level: string) {
     color: var(--color-text-muted);
     max-width: 42ch;
     margin-block: var(--space-lg);
+    line-height: var(--leading-relaxed);
+  }
+
+  .section-intro {
+    max-width: 42ch;
+    margin-block: var(--space-md) var(--space-xl);
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
     line-height: var(--leading-relaxed);
   }
 

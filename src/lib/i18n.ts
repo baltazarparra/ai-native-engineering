@@ -207,7 +207,7 @@ export const ui = {
       heroLabel: 'Hands-on',
       heading: 'Build your first project with a code agent',
       summary:
-        'A practical guide to creating, planning, and publishing a project from scratch using the agentic development workflow.',
+        'A practical guide to creating, planning, and publishing an AI-Native project from scratch.',
       readingTime: '45 min (guided practice)',
       navAriaLabel: 'Project navigation',
       checkpointLabel: 'Checkpoint',
