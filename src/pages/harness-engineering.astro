@@ -6,12 +6,7 @@ import Card from '../components/Card/Card.astro';
 import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
 import Discussion from '../components/Discussion/Discussion.astro';
-import {
-  getHarnessAlternateLinks,
-  getProjectHref,
-  getSessionHref,
-  getSkillsHref,
-} from '../lib/i18n';
+import { getHarnessAlternateLinks, getSessionHref } from '../lib/i18n';
 
 const lang = 'pt-BR';
 const alternateLinks = getHarnessAlternateLinks();
@@ -19,251 +14,804 @@ const maturityHref = getSessionHref(lang, 'maturidade');
 ---
 
 <BaseLayout
-  title="Harness Engineering: o que é e como usar com agentes de IA"
-  description="Guia em português para entender Harness Engineering: prompts, ferramentas, contexto, hooks, validações e limites para trabalhar melhor com agentes de código."
+  title="Harness Engineering: a camada que transforma modelos em agentes confiáveis"
+  description="A disciplina por trás do harness: contexto, ferramentas, execução, validação, segurança e loops de feedback que tornam agentes operacionais e confiáveis."
   lang={lang}
   alternateLinks={alternateLinks}
 >
   <main id="main-content" class="harness-page">
+
+    <!-- Hero -->
     <SectionBlock as="header" padding="xl">
-      <Badge variant="coral">Aprofundamento</Badge>
+      <Badge variant="coral">Fundamentos</Badge>
       <h1 class="page-title">Harness Engineering</h1>
       <p class="page-summary">
-        O ambiente que transforma um modelo de IA em um agente capaz de
-        trabalhar com contexto, limites e validação.
+        A disciplina que transforma modelos em agentes operacionais: contexto,
+        ferramentas, execução, validação, segurança e loops de feedback.
       </p>
+      <nav class="chapter-nav" aria-label="Capítulos">
+        <a href="#fundamentos">Cap. 1 · Fundamentos</a>
+        <a href="#anatomia">Cap. 2 · Anatomia</a>
+        <a href="#maturidade">Cap. 3 · Maturidade</a>
+        <a href="#governanca">Cap. 4 · Governança</a>
+        <a href="#engenheiro">Cap. 5 · O engenheiro</a>
+        <a href="#conclusao">Conclusão</a>
+      </nav>
     </SectionBlock>
 
-    <SectionBlock padding="lg" alt>
-      <div class="section-copy">
-        <h2>Em 30 segundos</h2>
-        <p class="section-lead">
-          Harness Engineering é a prática de desenhar tudo que fica em volta de
-          um agente de IA: instruções, ferramentas, contexto, permissões,
-          validações e ciclos de feedback.
-        </p>
-        <p>
-          Sem harness, o agente depende demais do prompt do momento. Com
-          harness, o trabalho fica mais previsível, revisável e seguro. A ideia
-          não é engessar a IA. É dar trilhos para ela conseguir executar sem
-          esquecer o que importa.
-        </p>
+    <!-- ═══════════════════════════════════════════════
+         CAPÍTULO 1 · FUNDAMENTOS
+    ════════════════════════════════════════════════ -->
+    <SectionBlock padding="lg" alt id="fundamentos">
+      <div class="chapter-intro">
+        <Badge variant="yellow">Capítulo 1</Badge>
+        <span class="chapter-label">Fundamentos</span>
       </div>
-    </SectionBlock>
-
-    <SectionBlock padding="lg">
-      <div class="intro-grid">
-        <div class="section-copy">
-          <h2>Modelo não é agente</h2>
-          <p>
-            Um modelo responde. Um agente tenta concluir uma tarefa usando
-            ferramentas em ciclo: ele lê contexto, toma uma ação, observa o
-            resultado e decide o próximo passo.
-          </p>
-          <p>
-            O harness é o que torna esse ciclo útil no trabalho real. Ele diz ao
-            agente quais regras respeitar, quais ferramentas usar, onde buscar
-            contexto, quando pedir aprovação e como provar que terminou.
-          </p>
-        </div>
-        <div class="equation-card" aria-label="Equação de agente com harness">
-          <span>agente</span>
-          <strong>= modelo + harness</strong>
-        </div>
-      </div>
-    </SectionBlock>
-
-    <SectionBlock padding="lg" alt>
       <div class="section-stack">
+
         <div class="section-copy">
-          <h2>O que entra em um harness?</h2>
-          <p class="section-lead">
-            Pense no harness como a infraestrutura de trabalho do agente. Não é
-            uma ferramenta única. É o conjunto que permite sair da conversa e
-            chegar numa entrega validável.
+          <h2>O modelo não é o agente</h2>
+          <p>
+            Durante os últimos anos, boa parte da conversa sobre IA em
+            engenharia ficou concentrada em uma pergunta simples:
+            <em>qual modelo escreve melhor código?</em>
           </p>
+          <p>
+            A pergunta faz sentido, mas é incompleta.
+          </p>
+          <p>
+            Um modelo pode ser excelente em raciocínio, geração de código e
+            interpretação de contexto. Ainda assim, sozinho, ele continua sendo
+            uma função estatística que recebe entrada e produz saída. Ele não
+            tem estado persistente por padrão. Não sabe quais comandos pode
+            executar. Não sabe quais arquivos pode alterar. Não sabe quando deve
+            parar. Não sabe quais testes são obrigatórios. Não sabe quais
+            mudanças são perigosas. Não sabe o que já foi validado.
+          </p>
+          <p>
+            Para transformar um modelo em um agente, precisamos cercá-lo de
+            infraestrutura: ferramentas, permissões, memória, contexto, testes,
+            validadores, sandbox, logs, políticas de segurança, workflows,
+            revisão humana e mecanismos de feedback.
+          </p>
+          <p>Essa camada é o harness.</p>
         </div>
 
-        <Grid columns={3} gap="lg" align="stretch">
-          <Card title="Instruções" accent="yellow">
-            <p>
-              Arquivos como <code>AGENTS.md</code>, rules e skills que carregam
-              comandos, padrões e combinados do projeto.
-            </p>
-          </Card>
-          <Card title="Contexto" accent="blue">
-            <p>
-              Specs, decisões técnicas, arquitetura, docs de produto e histórico
-              suficiente para o agente não trabalhar no escuro.
-            </p>
-          </Card>
-          <Card title="Ferramentas" accent="green">
-            <p>
-              Terminal, Git, navegador, GitHub, logs, MCP servers e outras
-              integrações que deixam o agente agir no ambiente certo.
-            </p>
-          </Card>
-          <Card title="Limites" accent="coral">
-            <p>
-              Sandbox, permissões, aprovações humanas e bloqueios para ações
-              destrutivas ou sensíveis.
-            </p>
-          </Card>
-          <Card title="Validação" accent="yellow">
-            <p>
-              Lint, testes, typecheck, build, revisão de diff e checklists que
-              criam pressão contra entrega quebrada.
-            </p>
-          </Card>
-          <Card title="Aprendizado" accent="blue">
-            <p>
-              Cada falha recorrente vira uma regra, teste, hook, doc ou skill. O
-              harness melhora porque o time aprendeu.
-            </p>
-          </Card>
-        </Grid>
-      </div>
-    </SectionBlock>
+        <div class="equation-card" aria-label="Equação do agente real">
+          <span>O agente real não é o modelo isolado.</span>
+          <strong>
+            agente = modelo + contexto + ferramentas + estado + permissões +
+            validação + loop de execução
+          </strong>
+          <span class="equation-caption">
+            Harness Engineering é a prática de projetar esse sistema.
+          </span>
+        </div>
 
-    <SectionBlock padding="lg">
-      <div class="section-stack">
         <div class="section-copy">
-          <h2>Exemplo prático</h2>
+          <h2>O que é um harness</h2>
           <p class="section-lead">
-            A diferença aparece quando a tarefa sai do protótipo e entra num
-            produto de verdade.
+            Um harness é a camada de software que permite que um modelo aja
+            sobre um ambiente real sem depender apenas de uma resposta em
+            linguagem natural.
+          </p>
+          <p>Em um agente de código, o harness pode incluir:</p>
+          <ul class="brutal-list">
+            <li>acesso ao repositório e leitura e edição de arquivos;</li>
+            <li>terminal e execução de testes;</li>
+            <li>análise estática, lint e typecheck;</li>
+            <li>logs de runtime e histórico de decisões;</li>
+            <li>regras de projeto e permissões por escopo;</li>
+            <li>workflows de pull request e revisão humana;</li>
+            <li>mecanismos de rollback.</li>
+          </ul>
+        </div>
+
+        <div class="contrast-card">
+          <div class="contrast-side weak">
+            <Badge variant="coral">Sem harness</Badge>
+            <p>O modelo apenas <strong>sugere</strong>.</p>
+          </div>
+          <div class="contrast-arrow" aria-hidden="true">→</div>
+          <div class="contrast-side strong">
+            <Badge variant="green">Com harness</Badge>
+            <p>
+              O agente pode <strong>observar, modificar, executar, verificar e
+              corrigir</strong>.
+            </p>
+          </div>
+        </div>
+
+        <blockquote class="key-insight">
+          Uma resposta pode parecer correta. Uma execução precisa provar que é
+          correta dentro de um ambiente específico.
+        </blockquote>
+
+        <div class="section-copy">
+          <h2>Por que harness importa mais do que prompt</h2>
+          <p>
+            Prompt engineering foi importante porque nos ensinou a estruturar
+            intenção. Mas agentes de software precisam de mais do que intenção
+            bem escrita. Eles precisam de <strong>controle operacional</strong>.
           </p>
         </div>
 
         <div class="comparison-grid">
           <article class="comparison-card weak">
-            <Badge variant="coral">Sem harness</Badge>
-            <h3>"Faz a tela de convite de usuários"</h3>
-            <p>
-              O agente pode criar uma tela bonita, mas talvez ignore permissões,
-              estados de erro, texto do produto, responsividade, testes e regras
-              de design já existentes.
-            </p>
+            <Badge variant="coral">Prompt</Badge>
+            <h3>"implemente essa feature com testes"</h3>
+            <p>Orienta o modelo. Deixa tudo o mais em aberto.</p>
           </article>
-
           <article class="comparison-card strong">
-            <Badge variant="green">Com harness</Badge>
-            <h3>A mesma tarefa, com trilhos</h3>
-            <p>
-              O agente recebe uma spec curta, regras de UI, componentes
-              existentes, critérios de aceite, comandos de validação e limites
-              de permissão. No final, precisa mostrar o que mudou e como testou.
-            </p>
+            <Badge variant="green">Harness</Badge>
+            <h3>Define o ambiente de execução</h3>
+            <ul class="brutal-list compact">
+              <li>quais arquivos são relevantes;</li>
+              <li>quais padrões do repositório seguir;</li>
+              <li>quais comandos validam a mudança;</li>
+              <li>quais áreas são proibidas;</li>
+              <li>quando pedir aprovação;</li>
+              <li>qual evidência prova que a tarefa terminou;</li>
+              <li>como registrar falhas para melhorar o sistema.</li>
+            </ul>
           </article>
         </div>
+
+        <blockquote class="key-insight">
+          O prompt orienta o modelo. O harness governa o agente. A evolução
+          natural não é de prompt engineering para prompts mais longos. É de
+          prompt engineering para Harness Engineering.
+        </blockquote>
+
       </div>
     </SectionBlock>
 
-    <SectionBlock padding="lg" alt id="comecar">
+    <!-- ═══════════════════════════════════════════════
+         CAPÍTULO 2 · ANATOMIA
+    ════════════════════════════════════════════════ -->
+    <SectionBlock padding="lg" id="anatomia">
+      <div class="chapter-intro">
+        <Badge variant="blue">Capítulo 2</Badge>
+        <span class="chapter-label">A anatomia do harness</span>
+      </div>
       <div class="section-stack">
+
         <div class="section-copy">
-          <Badge variant="green">Comece pequeno</Badge>
-          <h2 class="section-title">Um harness em uma semana</h2>
+          <h2>Código como parte do harness</h2>
           <p class="section-lead">
-            Você não precisa montar uma plataforma. Comece por uma falha real e
-            transforme aprendizado em estrutura.
+            Em sistemas agentic modernos, código não é apenas o resultado
+            produzido por um agente. Código também pode ser o meio pelo qual o
+            agente pensa, age, observa o mundo, mantém estado e verifica
+            progresso.
+          </p>
+          <p>
+            Isso é mais profundo do que "IA que escreve código". A ideia central
+            é que código passa a ser parte do próprio runtime do agente: ele
+            cria scripts, testes, validadores, traces e planos executáveis que
+            não são apenas outputs — são parte do processo de trabalho.
           </p>
         </div>
 
-        <ol class="step-list">
-          <li class="step-card">
-            <span class="step-number">1</span>
+        <Grid columns={3} gap="lg" align="stretch">
+          <Card title="Substrato de raciocínio" accent="yellow">
+            <p>
+              O agente externaliza pensamento em código executável. Em vez de
+              inferir se algo funciona, ele escreve um script, roda contra
+              exemplos reais e compara o resultado.
+            </p>
+          </Card>
+          <Card title="Interface de ação" accent="blue">
+            <p>
+              Código é a ponte entre intenção e modificação real no ambiente:
+              editar arquivos, chamar APIs, rodar comandos, abrir PRs.
+            </p>
+          </Card>
+          <Card title="Modelo do ambiente" accent="green">
+            <p>
+              O harness torna repositório, logs, erros e convenções
+              inspecionáveis, reduzindo o desvio entre o que o agente pensa que
+              o sistema é e o que ele realmente é.
+            </p>
+          </Card>
+          <Card title="Mecanismo de verificação" accent="coral">
+            <p>
+              Testes, lint, typecheck e build provam que o comportamento está
+              correto. O harness tira carga de "confiança no modelo" e
+              transfere para "evidência gerada por execução".
+            </p>
+          </Card>
+          <Card title="Memória operacional" accent="yellow">
+            <p>
+              Scripts, traces e planos executáveis registram estado entre
+              sessões: decisões tomadas, caminhos descartados, restrições
+              ativas.
+            </p>
+          </Card>
+          <Card title="Artefato compartilhado" accent="blue">
+            <p>
+              Em sistemas multi-agent, código é o substrato comum de
+              colaboração. Agentes coordenam por artefatos verificáveis, não
+              apenas por mensagens.
+            </p>
+          </Card>
+        </Grid>
+
+        <div class="section-copy">
+          <h2>As três camadas do harness</h2>
+          <p class="section-lead">
+            O harness pode ser entendido em três camadas progressivas, cada
+            uma construída sobre a anterior.
+          </p>
+        </div>
+
+        <!-- Camada 1: Interface -->
+        <div class="layer-block">
+          <div class="layer-header">
+            <span class="layer-number">1</span>
             <div>
-              <h3>Escreva um <code>AGENTS.md</code> curto</h3>
-              <p>
-                Inclua comandos do projeto, padrões importantes e duas ou três
-                regras que o agente precisa respeitar sempre.
+              <h3>Camada de interface</h3>
+              <p class="layer-desc">
+                A interface entre o modelo e o ambiente. Aqui código transforma
+                intenção em algo executável.
               </p>
             </div>
+          </div>
+          <div class="layer-points">
+            <div class="layer-point">
+              <h4>Código para raciocinar</h4>
+              <p>
+                Linguagem natural é ambígua. Código é mais restrito: pode ser
+                executado, pode falhar, pode ser testado. Quando um agente usa
+                código para raciocinar, ele externaliza parte do pensamento em
+                uma forma verificável.
+              </p>
+            </div>
+            <div class="layer-point">
+              <h4>Código para agir</h4>
+              <p>
+                Um agente maduro não apenas responde com um diff. Ele opera
+                dentro de um ciclo controlado: entender o objetivo → inspecionar
+                o ambiente → propor plano → alterar o mínimo necessário →
+                executar validação → corrigir se falhar → apresentar evidências.
+              </p>
+              <p>Essa sequência depende de harness.</p>
+            </div>
+            <div class="layer-point">
+              <h4>Código para modelar o ambiente</h4>
+              <p>
+                O ambiente de um agente não é apenas o prompt. É o repositório,
+                a árvore de arquivos, os testes, os logs, os erros, o CI, os
+                contratos de API, as dependências e as decisões anteriores.
+              </p>
+              <p>
+                Muitos erros de agentes acontecem porque eles trabalham com uma
+                versão imaginada do sistema. Harness bom reduz esse desvio.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Camada 2: Mecanismos -->
+        <div class="layer-block">
+          <div class="layer-header">
+            <span class="layer-number">2</span>
+            <div>
+              <h3>Camada de mecanismos</h3>
+              <p class="layer-desc">
+                Os mecanismos que permitem ao agente operar de forma confiável.
+                É aqui que Harness Engineering fica mais prática.
+              </p>
+            </div>
+          </div>
+          <div class="layer-points">
+            <div class="layer-point">
+              <h4>Planejamento como contrato operacional</h4>
+              <p>
+                Em um harness maduro, o plano funciona como contrato. Ele deixa
+                claro o que será alterado, por que, quais arquivos serão
+                tocados, quais riscos existem, quais validações serão
+                executadas e qual evidência define sucesso.
+              </p>
+              <p>
+                O plano não serve apenas para organizar pensamento. Serve para
+                controlar execução. Se o agente se desvia do plano, o harness
+                pode detectar.
+              </p>
+            </div>
+            <div class="layer-point">
+              <h4>Memória e contexto</h4>
+              <p>
+                Agentes falham quando perdem estado: esquecem decisões, repetem
+                erros, confundem requisitos antigos com atuais, ignoram
+                restrições que não cabem no contexto ativo.
+              </p>
+              <p>
+                Memória útil é estado operacional: decisões arquiteturais,
+                comandos de validação, padrões do repositório, falhas
+                recorrentes, restrições de segurança, critérios de aceite.
+                Context engineering entra aqui como disciplina central — não é
+                colocar mais informação no prompt, é colocar a informação certa
+                no momento certo.
+              </p>
+            </div>
+            <div class="layer-point">
+              <h4>Ferramentas governadas</h4>
+              <p>
+                Ferramentas aumentam a superfície de ação, mas ferramenta sem
+                governança aumenta risco. Harness Engineering trata ferramentas
+                como interfaces governadas com escopo claro, permissão
+                explícita, retorno interpretável, limites de uso e política de
+                erro.
+              </p>
+              <p>
+                A pergunta não é "quais ferramentas o agente tem?". A pergunta
+                melhor é: quais ações o agente pode executar, em quais
+                condições, com quais evidências e com qual possibilidade de
+                reversão?
+              </p>
+            </div>
+            <div class="layer-point">
+              <h4>O loop Plan-Execute-Verify</h4>
+              <p>
+                O coração de um harness confiável é o loop:
+                <strong>planejar → executar → verificar → revisar</strong>.
+              </p>
+              <p>
+                No modelo com harness, o agente gera uma mudança, executa em
+                ambiente controlado, observa feedback real e decide se deve
+                aceitar, corrigir, escalar ou reverter. Verificação usa sensores
+                determinísticos: testes, typecheck, lint, build, análise
+                estática, logs, contratos e políticas de segurança.
+              </p>
+              <blockquote>
+                O harness torna a incerteza visível. Ele reduz dependência de
+                confiança subjetiva e aumenta a quantidade de evidência
+                operacional.
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+        <!-- Camada 3: Escala -->
+        <div class="layer-block">
+          <div class="layer-header">
+            <span class="layer-number">3</span>
+            <div>
+              <h3>Camada de escala</h3>
+              <p class="layer-desc">
+                Quando entramos em sistemas multi-agent, o harness se torna
+                ainda mais importante.
+              </p>
+            </div>
+          </div>
+          <div class="scale-grid">
+            <div class="section-copy">
+              <p>
+                Dois ou mais agentes não deveriam colaborar apenas por conversa.
+                Conversa é volátil, fácil de perder estado, difícil de auditar.
+                Multi-agent confiável precisa de um substrato compartilhado:
+                repositório, branch, issue, pull request, plano versionado,
+                teste, trace, log, memória compartilhada, quadro de tarefas,
+                workflow de revisão ou contrato de interface.
+              </p>
+              <p>
+                A colaboração entre agentes deve acontecer sobre artefatos
+                verificáveis, não apenas sobre mensagens.
+              </p>
+            </div>
+            <div class="scale-cards">
+              <article class="comparison-card weak">
+                <Badge variant="coral">Sem harness</Badge>
+                <h3>Multi-agent vira teatro</h3>
+                <p>
+                  Vários personagens conversando, pouca garantia de progresso
+                  real.
+                </p>
+              </article>
+              <article class="comparison-card strong">
+                <Badge variant="green">Com harness</Badge>
+                <h3>Multi-agent vira sistema</h3>
+                <p>
+                  Papéis especializados, estado compartilhado, validação comum
+                  e trilha auditável.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </SectionBlock>
+
+    <!-- ═══════════════════════════════════════════════
+         CAPÍTULO 3 · MATURIDADE
+    ════════════════════════════════════════════════ -->
+    <SectionBlock padding="lg" alt id="maturidade">
+      <div class="chapter-intro">
+        <Badge variant="green">Capítulo 3</Badge>
+        <span class="chapter-label">Maturidade</span>
+      </div>
+      <div class="section-stack">
+
+        <div class="section-copy">
+          <h2>O erro comum: tratar harness como wrapper</h2>
+          <p>
+            É tentador pensar em harness como uma camada fina ao redor do
+            modelo. Um pouco de prompt. Algumas tools. Um arquivo de
+            instruções. Talvez um script de teste. Isso é um começo, mas não é
+            suficiente.
+          </p>
+          <p>
+            <strong>Harness não é embalagem. Harness é infraestrutura
+            operacional.</strong>
+          </p>
+          <p>
+            Quando uma falha acontece, a pergunta madura não é apenas "o modelo
+            errou?". A pergunta madura é:
+            <em>o harness permitiu esse erro?</em>
+          </p>
+          <p>
+            Talvez o agente não tivesse contexto suficiente. Talvez o teste
+            correto não existisse. Talvez a ferramenta retornou sinal ambíguo.
+            Talvez o plano não tinha critério de aceite. Talvez a permissão era
+            ampla demais. Talvez o erro já tinha acontecido antes, mas não virou
+            memória, teste ou regra.
+          </p>
+          <blockquote class="key-insight">
+            Harness Engineering transforma falhas em melhoria estrutural. Cada
+            erro deveria deixar o sistema melhor: uma regra nova, um teste novo,
+            uma checagem nova, um limite de permissão, uma memória operacional.
+          </blockquote>
+
+          <h2>Avaliar o modelo é insuficiente</h2>
+          <p>
+            Hoje ainda comparamos agentes de forma superficial: "esse modelo é
+            melhor que aquele." Mas em sistemas reais, performance não vem só do
+            modelo. Ela vem do conjunto: qualidade do contexto, acesso ao
+            ambiente, ferramentas disponíveis, capacidade de executar, qualidade
+            dos testes, política de permissões, memória, recuperação de erro,
+            revisão humana, telemetry e design do workflow.
+          </p>
+          <p>
+            Dois times podem usar o mesmo modelo e obter resultados
+            completamente diferentes. A diferença está no harness.
+          </p>
+          <blockquote class="key-insight">
+            A pergunta mais relevante não é "qual modelo você usa?". É:
+            <em>como seu harness transforma intenção em mudança validada?</em>
+          </blockquote>
+
+          <h2>Cinco níveis de maturidade</h2>
+          <p>
+            Um harness fraco depende de confiança no output. Um harness forte
+            cria um ciclo controlado de mudança, validação, aprendizado e
+            governança.
+          </p>
+        </div>
+
+        <ol class="maturity-list">
+          <li class="maturity-card">
+            <div class="maturity-header">
+              <span class="maturity-number">1</span>
+              <h3>Resposta</h3>
+            </div>
+            <p>
+              O modelo responde com instruções ou código. Não há execução. Não
+              há validação. O humano precisa interpretar tudo.
+            </p>
           </li>
-          <li class="step-card">
-            <span class="step-number">2</span>
-            <div>
-              <h3>Documente como validar</h3>
-              <p>
-                Liste lint, testes, typecheck, build e qualquer checagem que
-                prove que uma mudança não quebrou o básico.
-              </p>
+          <li class="maturity-card">
+            <div class="maturity-header">
+              <span class="maturity-number">2</span>
+              <h3>Ação assistida</h3>
             </div>
+            <p>
+              O agente edita arquivos ou sugere diffs. Ainda depende muito do
+              humano para saber se funcionou.
+            </p>
           </li>
-          <li class="step-card">
-            <span class="step-number">3</span>
-            <div>
-              <h3>Escolha uma falha recorrente</h3>
-              <p>
-                Pegue um problema que já aconteceu: teste ignorado, padrão de UI
-                quebrado, arquivo errado, comando esquecido.
-              </p>
+          <li class="maturity-card">
+            <div class="maturity-header">
+              <span class="maturity-number">3</span>
+              <h3>Execução validada</h3>
             </div>
+            <p>
+              O agente altera, executa testes, lê erros e corrige. Aqui começa
+              o comportamento agentic real.
+            </p>
           </li>
-          <li class="step-card">
-            <span class="step-number">4</span>
-            <div>
-              <h3>Transforme a falha em trilho</h3>
-              <p>
-                Crie uma regra, teste, checklist, hook ou skill. Se acontecer de
-                novo, o harness ainda não está claro o bastante.
-              </p>
+          <li class="maturity-card">
+            <div class="maturity-header">
+              <span class="maturity-number">4</span>
+              <h3>Workflow governado</h3>
             </div>
+            <p>
+              O agente opera com permissões, critérios de aceite, logs,
+              rollback, revisão e políticas de risco. O sistema passa a ser
+              parte do processo de engenharia.
+            </p>
+          </li>
+          <li class="maturity-card maturity-card--peak">
+            <div class="maturity-header">
+              <span class="maturity-number">5</span>
+              <h3>Harness evolutivo</h3>
+            </div>
+            <p>
+              O sistema aprende com falhas, melhora suas regras, adiciona
+              verificadores, registra memória operacional e reduz regressões ao
+              longo do tempo. O harness vira um ativo da organização.
+            </p>
           </li>
         </ol>
+
       </div>
     </SectionBlock>
 
-    <SectionBlock padding="xl">
-      <div class="next-grid">
+    <!-- ═══════════════════════════════════════════════
+         CAPÍTULO 4 · GOVERNANÇA E SEGURANÇA
+    ════════════════════════════════════════════════ -->
+    <SectionBlock padding="lg" id="governanca">
+      <div class="chapter-intro">
+        <Badge variant="coral">Capítulo 4</Badge>
+        <span class="chapter-label">Governança e segurança</span>
+      </div>
+      <div class="section-stack">
+
         <div class="section-copy">
-          <Badge variant="blue">Próximo passo</Badge>
-          <h2 class="section-title">Agora conecte harness com entrega</h2>
+          <h2>Human-in-the-loop não é botão de aprovação</h2>
           <p>
-            Harness Engineering fica mais forte quando anda junto com SDD,
-            skills e um projeto real. Use estes caminhos para aprofundar sem
-            perder o fio.
+            Muita gente trata revisão humana como uma pausa no fluxo. O agente
+            faz algo perigoso, então pede aprovação. Isso é melhor do que nada,
+            mas ainda é raso.
+          </p>
+          <p>
+            Em um harness maduro, human-in-the-loop é parte do estado do
+            sistema. A revisão humana deve registrar o que foi aprovado, por
+            quem, com qual contexto, com quais evidências, com quais riscos
+            conhecidos, com qual escopo de permissão e por quanto tempo a
+            decisão vale.
+          </p>
+          <blockquote class="key-insight">
+            Aprovação sem contexto vira ritual. Aprovação com evidência vira
+            governança.
+          </blockquote>
+
+          <h2>Segurança começa no design do harness</h2>
+          <p>
+            Agentes ampliam capacidade. Isso também amplia superfície de risco.
+            Um agente pode vazar segredo, apagar arquivo, executar comando
+            destrutivo, chamar API errada, alterar comportamento crítico sem
+            teste suficiente, ou obedecer instrução maliciosa escondida em
+            documentação, issue, comentário ou página web.
+          </p>
+          <p>
+            Não dá para resolver isso apenas pedindo "seja cuidadoso" no
+            prompt. Segurança precisa estar no harness.
           </p>
         </div>
 
-        <div class="link-stack">
-          <Card
-            title="Sessão 3: SDD e Harness Design"
-            href={maturityHref}
-            accent="blue"
-          >
+        <Grid columns={3} gap="lg" align="stretch">
+          <Card title="Isolamento" accent="coral">
+            <p>Ambientes isolados e permissões mínimas por escopo.</p>
+          </Card>
+          <Card title="Controle de ação" accent="yellow">
             <p>
-              Entenda o fluxo profissional que combina spec, agente e validação.
+              Bloqueio de ações irreversíveis e revisão obrigatória para
+              operações sensíveis.
             </p>
           </Card>
-          <Card
-            title="Skills para agentes"
-            href={getSkillsHref(lang)}
-            accent="green"
-          >
-            <p>Veja como empacotar processos reutilizáveis para seu harness.</p>
+          <Card title="Rastreabilidade" accent="blue">
+            <p>
+              Auditoria de comandos e log de cada ação executada pelo agente.
+            </p>
           </Card>
-          <Card
-            title="Projeto prático"
-            href={getProjectHref(lang)}
-            accent="yellow"
-          >
-            <p>Coloque o fluxo em prática criando e publicando um projeto.</p>
+          <Card title="Proteção de dados" accent="green">
+            <p>Credenciais por escopo e políticas claras para dados sensíveis.</p>
           </Card>
+          <Card title="Detecção" accent="coral">
+            <p>
+              Detecção de prompt injection e separação entre leitura, escrita
+              e execução.
+            </p>
+          </Card>
+          <Card title="Reversibilidade" accent="yellow">
+            <p>Rollback disponível para qualquer mudança aplicada ao sistema.</p>
+          </Card>
+        </Grid>
+
+        <blockquote class="key-insight">
+          Quanto mais autônomo o agente, mais explícito precisa ser o harness.
+          Autonomia sem harness não é maturidade. É exposição.
+        </blockquote>
+
+      </div>
+    </SectionBlock>
+
+    <!-- ═══════════════════════════════════════════════
+         CAPÍTULO 5 · O ENGENHEIRO
+    ════════════════════════════════════════════════ -->
+    <SectionBlock padding="lg" alt id="engenheiro">
+      <div class="chapter-intro">
+        <Badge variant="blue">Capítulo 5</Badge>
+        <span class="chapter-label">O engenheiro</span>
+      </div>
+      <div class="section-stack">
+
+        <div class="section-copy">
+          <h2>Harness Engineering e AI-native engineering</h2>
+          <p>
+            AI-native engineering não é usar IA dentro do processo antigo. É
+            redesenhar o processo assumindo que agentes podem participar da
+            execução do trabalho.
+          </p>
+          <p>Isso exige novas perguntas:</p>
+          <ul class="brutal-list">
+            <li>Como descrevemos intenção de forma operacional?</li>
+            <li>Como o agente descobre contexto relevante?</li>
+            <li>Como ele planeja mudanças?</li>
+            <li>Como ele executa com segurança?</li>
+            <li>Como ele verifica o próprio trabalho?</li>
+            <li>Como humanos revisam com evidência?</li>
+            <li>Como aprendizados viram melhorias permanentes?</li>
+            <li>Como múltiplos agentes compartilham estado?</li>
+            <li>Como medimos qualidade do sistema, não só do output?</li>
+          </ul>
+          <p>
+            Essas perguntas não pertencem apenas a prompt engineering. Elas
+            pertencem a uma disciplina mais ampla. Harness Engineering é essa
+            disciplina.
+          </p>
+
+          <h2>O novo papel do engenheiro</h2>
+          <p>
+            Nesse cenário, o engenheiro não desaparece. Ele sobe um nível de
+            abstração.
+          </p>
+          <p>
+            Parte do trabalho continua sendo escrever e revisar código. Mas uma
+            parte crescente passa a ser projetar o sistema onde código é
+            produzido, validado e sustentado. Não deixamos de programar quando
+            surgiram frameworks, cloud, CI/CD ou DevOps — mas mudamos o nível
+            em que boa parte do trabalho acontece.
+          </p>
+          <p>
+            Com agentes, a mudança é semelhante. A qualidade deixa de depender
+            apenas do código que escrevemos. Passa a depender também do harness
+            que permite que humanos e agentes trabalhem sobre o mesmo sistema
+            com segurança e evidência.
+          </p>
+        </div>
+
+        <div class="section-copy">
+          <h2>Dez perguntas para um bom harness</h2>
+          <p>
+            Um harness não precisa ser complexo desde o primeiro dia. Mas
+            precisa ser explícito. Uma versão inicial saudável deveria responder
+            a estas dez perguntas:
+          </p>
+        </div>
+
+        <ol class="questions-list">
+          <li class="question-card">
+            <span class="question-number">1</span>
+            <p>Qual é o estado de verdade do sistema?</p>
+          </li>
+          <li class="question-card">
+            <span class="question-number">2</span>
+            <p>Quais arquivos, logs e documentos o agente pode consultar?</p>
+          </li>
+          <li class="question-card">
+            <span class="question-number">3</span>
+            <p>Quais ações ele pode executar sozinho?</p>
+          </li>
+          <li class="question-card">
+            <span class="question-number">4</span>
+            <p>Quais ações exigem aprovação?</p>
+          </li>
+          <li class="question-card">
+            <span class="question-number">5</span>
+            <p>Quais comandos validam uma mudança?</p>
+          </li>
+          <li class="question-card">
+            <span class="question-number">6</span>
+            <p>Quais critérios definem sucesso?</p>
+          </li>
+          <li class="question-card">
+            <span class="question-number">7</span>
+            <p>Como erros são registrados?</p>
+          </li>
+          <li class="question-card">
+            <span class="question-number">8</span>
+            <p>Como aprendizados viram regra, teste ou memória?</p>
+          </li>
+          <li class="question-card">
+            <span class="question-number">9</span>
+            <p>Como humanos revisam com evidência suficiente?</p>
+          </li>
+          <li class="question-card">
+            <span class="question-number">10</span>
+            <p>Como o sistema evita repetir a mesma falha?</p>
+          </li>
+        </ol>
+
+      </div>
+    </SectionBlock>
+
+    <!-- ═══════════════════════════════════════════════
+         CONCLUSÃO
+    ════════════════════════════════════════════════ -->
+    <SectionBlock padding="xl" id="conclusao">
+      <div class="section-stack">
+        <div class="section-copy">
+          <h2>A tese central</h2>
+          <blockquote class="thesis">
+            Não basta ter um modelo capaz. É preciso ter um sistema capaz de
+            transformar capacidade em trabalho confiável.
+          </blockquote>
+          <p>
+            Modelos vão continuar melhorando. Eles vão raciocinar melhor,
+            escrever melhor, planejar melhor e lidar com contextos maiores. Mas
+            isso não elimina a necessidade de harness. Pelo contrário: quanto
+            mais capazes os modelos ficam, mais importante se torna a
+            infraestrutura que define como eles podem agir.
+          </p>
+          <p>
+            O futuro da engenharia com IA não será decidido apenas por quem
+            acessa o melhor modelo. Será decidido por quem souber projetar os
+            melhores sistemas de trabalho ao redor desses modelos — sistemas com
+            estado claro, execução segura, validação objetiva, memória útil,
+            revisão humana bem posicionada e aprendizado contínuo.
+          </p>
+
+          <h2>Conclusão</h2>
+          <blockquote class="thesis">
+            Harness Engineering é a prática de transformar modelos em agentes
+            operacionais por meio de contexto, ferramentas, estado, execução,
+            validação, segurança e loops de feedback.
+          </blockquote>
+          <blockquote class="thesis secondary">
+            Harness Engineering é como tornamos o trabalho com agentes menos
+            mágico e mais engenheirável.
+          </blockquote>
+          <p>
+            A era dos agentes não exige apenas melhores prompts. Exige melhores
+            sistemas. E esses sistemas precisam ser executáveis, verificáveis e
+            stateful desde o design.
+          </p>
+          <p>
+            Não é sobre pedir código para uma IA. É sobre projetar o ambiente
+            onde agentes conseguem trabalhar bem.
+          </p>
         </div>
       </div>
     </SectionBlock>
 
+    <!-- Referência + próximo passo -->
     <SectionBlock padding="lg" alt>
-      <div class="section-copy">
-        <h2>Referência principal</h2>
-        <p>
-          Esta página se inspira no artigo
-          <a href="https://addyosmani.com/blog/agent-harness-engineering/">
-            Agent Harness Engineering
-          </a>, de Addy Osmani, e adapta o conceito para o público deste guia.
-        </p>
+      <div class="footer-grid">
+        <div class="section-copy">
+          <h2>Referência</h2>
+          <p>
+            Este artigo se baseia em
+            <a
+              href="https://arxiv.org/abs/2605.18747"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Code as Agent Harness: Toward Executable, Verifiable, and
+              Stateful Agent Systems
+            </a>
+            e adapta as ideias para o público e contexto deste guia.
+          </p>
+        </div>
+        <div class="section-copy">
+          <h2>Continue lendo</h2>
+          <p>
+            Veja como SDD e Harness Design se combinam em um fluxo profissional
+            completo na
+            <a href={maturityHref}>Sessão 3: SDD e Harness Design</a>.
+          </p>
+        </div>
       </div>
     </SectionBlock>
 
@@ -278,91 +826,175 @@ const maturityHref = getSessionHref(lang, 'maturidade');
 </BaseLayout>
 
 <style>
+  /* ── Base ──────────────────────────────────────── */
   .page-title {
     margin-top: var(--space-md);
     max-width: 12ch;
   }
 
-  .page-summary,
-  .section-lead {
-    color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
-  }
-
   .page-summary {
     font-size: var(--text-xl);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
     margin-top: var(--space-md);
     max-width: 58ch;
   }
 
-  .section-title {
-    margin-top: var(--space-sm);
-  }
-
-  .section-stack,
-  .section-copy {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
+  .section-lead {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 64ch;
+    margin: 0;
   }
 
   .section-stack {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-xl);
   }
 
   .section-copy {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-md);
     max-width: 74ch;
   }
 
   .section-copy h2,
-  .section-copy p {
+  .section-copy h3,
+  .section-copy p,
+  .section-copy ul,
+  .section-copy ol {
     margin: 0;
   }
 
-  .section-lead {
-    font-size: var(--text-lg);
-    max-width: 64ch;
+  /* ── Chapter nav in hero ───────────────────────── */
+  .chapter-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
   }
 
-  .intro-grid,
-  .comparison-grid,
-  .next-grid {
-    display: grid;
-    gap: var(--space-xl);
+  .chapter-nav a {
+    font-size: var(--text-sm);
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border: var(--border-thin);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xs) var(--space-sm);
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .chapter-nav a:hover {
+    color: var(--color-ink);
+    border-color: var(--color-ink);
+  }
+
+  /* ── Chapter intro ─────────────────────────────── */
+  .chapter-intro {
+    display: flex;
     align-items: center;
-    min-width: 0;
+    gap: var(--space-sm);
   }
 
-  .equation-card,
-  .comparison-card,
-  .step-card {
+  .chapter-label {
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Equation card ─────────────────────────────── */
+  .equation-card {
+    display: grid;
+    gap: var(--space-sm);
+    padding: var(--space-xl);
+    border: var(--border-thick);
+    border-top-color: var(--color-accent-1);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+    font-family: var(--font-heading);
+  }
+
+  .equation-card span {
+    font-size: var(--text-md);
+    color: var(--color-text-muted);
+  }
+
+  .equation-card strong {
+    font-size: var(--text-xl);
+    line-height: var(--leading-tight);
+  }
+
+  .equation-caption {
+    font-size: var(--text-sm) !important;
+    font-style: italic;
+  }
+
+  /* ── Contrast card (sem / com harness) ─────────── */
+  .contrast-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
     border: var(--border-thick);
     border-radius: var(--radius-md);
     background: var(--color-white);
     box-shadow: var(--shadow-md);
   }
 
-  .equation-card {
-    display: grid;
+  .contrast-side {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-sm);
-    padding: var(--space-xl);
-    border-top-color: var(--color-accent-1);
-    font-family: var(--font-heading);
   }
 
-  .equation-card span {
-    font-size: var(--text-xl);
+  .contrast-side p {
     color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0;
   }
 
-  .equation-card strong {
-    font-size: var(--text-3xl);
-    line-height: var(--leading-tight);
+  .contrast-arrow {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  /* ── Key insight blockquote ────────────────────── */
+  .key-insight {
+    border-left: 4px solid var(--color-accent-1);
+    padding: var(--space-md) var(--space-lg);
+    margin: 0;
+    background: var(--color-surface-alt);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 74ch;
+  }
+
+  /* ── Comparison grid ───────────────────────────── */
+  .comparison-grid {
+    display: grid;
+    gap: var(--space-lg);
   }
 
   .comparison-card {
     padding: var(--space-lg);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
   }
 
   .comparison-card.weak {
@@ -375,46 +1007,50 @@ const maturityHref = getSessionHref(lang, 'maturidade');
 
   .comparison-card h3 {
     margin-block: var(--space-md);
-    font-size: var(--text-2xl);
+    font-size: var(--text-xl);
   }
 
   .comparison-card p,
-  :global(.harness-page .card p),
-  .step-card p,
+  .comparison-card ul {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ── Brutal list ───────────────────────────────── */
   .brutal-list {
+    display: grid;
+    gap: var(--space-xs);
+    padding-left: var(--space-lg);
+    margin: 0;
     color: var(--color-text-muted);
     line-height: var(--leading-relaxed);
   }
 
-  :global(.harness-page .card p) {
-    margin: 0;
+  .brutal-list.compact {
+    font-size: var(--text-sm);
   }
 
-  .brutal-list {
-    display: grid;
-    gap: var(--space-sm);
-    max-width: 74ch;
-    padding-left: var(--space-lg);
-    margin: 0;
+  /* ── Layer blocks ──────────────────────────────── */
+  .layer-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding: var(--space-xl);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
   }
 
-  .step-list {
-    display: grid;
-    gap: var(--space-md);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .step-card {
+  .layer-header {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     gap: var(--space-md);
     align-items: start;
-    padding: var(--space-lg);
   }
 
-  .step-number {
+  .layer-number {
     display: inline-grid;
     place-items: center;
     width: 2.5rem;
@@ -427,32 +1063,230 @@ const maturityHref = getSessionHref(lang, 'maturidade');
     font-size: var(--text-xl);
     font-weight: var(--weight-bold);
     line-height: 1;
+    flex-shrink: 0;
   }
 
-  .step-card h3 {
+  .layer-header h3 {
+    margin: 0 0 var(--space-xs);
+    font-size: var(--text-2xl);
+  }
+
+  .layer-desc {
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .layer-points {
+    display: grid;
+    gap: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: var(--border-thin);
+  }
+
+  .layer-point {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .layer-point h4 {
+    margin: 0;
+    font-size: var(--text-lg);
+  }
+
+  .layer-point p {
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .layer-point blockquote {
+    border-left: 3px solid var(--color-accent-1);
+    padding-left: var(--space-md);
+    margin: 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Scale (multi-agent) ───────────────────────── */
+  .scale-grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .scale-cards {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  /* ── Maturity levels ───────────────────────────── */
+  .maturity-list {
+    display: grid;
+    gap: var(--space-md);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .maturity-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-md);
+    align-items: start;
+    padding: var(--space-lg);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+  }
+
+  .maturity-card--peak {
+    border-top-color: var(--color-accent-3);
+  }
+
+  .maturity-header {
+    display: contents;
+  }
+
+  .maturity-number {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    aspect-ratio: 1;
+    border: var(--border-thick);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-ink);
+    color: var(--color-fg-on-ink);
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    line-height: 1;
+    align-self: start;
+  }
+
+  .maturity-card h3 {
     margin: 0 0 var(--space-sm);
     font-size: var(--text-xl);
   }
 
-  .step-card p {
+  .maturity-card p {
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    grid-column: 2;
+  }
+
+  /* ── 10 questions ──────────────────────────────── */
+  .questions-list {
+    display: grid;
+    gap: var(--space-sm);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .question-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-md);
+    align-items: center;
+    padding: var(--space-md) var(--space-lg);
+    border: var(--border-thick);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .question-number {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    aspect-ratio: 1;
+    border: var(--border-thick);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-accent-1);
+    color: var(--color-fg-on-yellow);
+    font-family: var(--font-heading);
+    font-size: var(--text-md);
+    font-weight: var(--weight-bold);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .question-card p {
+    margin: 0;
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Thesis blockquote ─────────────────────────── */
+  .thesis {
+    border-left: 4px solid var(--color-ink);
+    padding: var(--space-lg) var(--space-xl);
+    margin: 0;
+    background: var(--color-ink);
+    color: var(--color-fg-on-ink);
+    border-radius: var(--radius-md);
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-style: normal;
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-relaxed);
+  }
+
+  .thesis.secondary {
+    background: var(--color-surface-alt);
+    color: var(--color-ink);
+    border-left-color: var(--color-accent-1);
+  }
+
+  /* ── Footer grid ───────────────────────────────── */
+  .footer-grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .footer-grid a {
+    color: var(--color-ink);
+    font-weight: var(--weight-bold);
+  }
+
+  /* ── Card prose ─────────────────────────────────── */
+  :global(.harness-page .card p) {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
     margin: 0;
   }
 
-  .link-stack {
-    display: grid;
-    gap: var(--space-md);
-    min-width: 0;
+  /* ── Responsive ────────────────────────────────── */
+  @media (min-width: 768px) {
+    .comparison-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .scale-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .scale-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
-  code {
-    font-family: var(--font-mono);
-  }
+  @media (min-width: 1024px) {
+    .layer-points {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-  @media (min-width: 900px) {
-    .intro-grid,
-    .comparison-grid,
-    .next-grid {
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+    .questions-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 </style>
