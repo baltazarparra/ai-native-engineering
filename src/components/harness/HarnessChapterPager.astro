@@ -1,0 +1,38 @@
+---
+import type { Lang } from '../../lib/i18n';
+import { ui } from '../../lib/i18n';
+import {
+  getHarnessChapterNeighbors,
+  resolveHarnessNavTarget,
+  type HarnessChapterId,
+} from '../../data/harness-chapters';
+import styles from './HarnessChapterPager.module.css';
+
+interface Props {
+  lang: Lang;
+  chapterId: HarnessChapterId;
+}
+
+const { lang, chapterId } = Astro.props;
+const labels = ui[lang].harness;
+const { prev, next } = getHarnessChapterNeighbors(chapterId);
+const prevLink = resolveHarnessNavTarget(lang, prev, 'prev', labels);
+const nextLink = next ? resolveHarnessNavTarget(lang, next, 'next', labels) : null;
+---
+
+<nav class={styles.pager} aria-label={labels.pagerAria}>
+  <div class:list={[styles.grid, !nextLink && styles.gridSingle]}>
+    <a href={prevLink.href} class:list={[styles.card, styles.cardPrev]} data-astro-prefetch>
+      <span class={styles.kicker}>&larr; {prevLink.kicker}</span>
+      <span class={styles.title}>{prevLink.title}</span>
+    </a>
+    {
+      nextLink && (
+        <a href={nextLink.href} class:list={[styles.card, styles.cardNext]} data-astro-prefetch>
+          <span class={styles.kicker}>{nextLink.kicker} &rarr;</span>
+          <span class={styles.title}>{nextLink.title}</span>
+        </a>
+      )
+    }
+  </div>
+</nav>

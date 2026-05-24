@@ -131,6 +131,12 @@ export const ui = {
       resetAria: 'Limpar progresso',
       reset: 'Recomeçar',
     },
+    harness: {
+      pagerAria: 'Navegação entre capítulos',
+      previous: 'Capítulo anterior',
+      next: 'Próximo capítulo',
+      backToOverview: 'Visão geral',
+    },
     footer: {
       tagline: 'baltz',
       personalSite: 'Site baltz.dev',
@@ -232,6 +238,12 @@ export const ui = {
       tabAria: 'Project chapters',
       resetAria: 'Reset progress',
       reset: 'Start over',
+    },
+    harness: {
+      pagerAria: 'Chapter navigation',
+      previous: 'Previous chapter',
+      next: 'Next chapter',
+      backToOverview: 'Overview',
     },
     footer: {
       tagline: 'baltz',
