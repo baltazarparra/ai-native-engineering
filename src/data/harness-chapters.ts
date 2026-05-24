@@ -23,6 +23,9 @@ export interface HarnessChapter {
   shortLabel: Record<Lang, string>;
   tabLabel: Record<Lang, string>;
   description: Record<Lang, string>;
+  learningQuestion: Record<Lang, string>;
+  learningObjectives: Record<Lang, string[]>;
+  pathRole: Record<Lang, string>;
   discussionSlug: string;
   badgeVariant: 'yellow' | 'blue' | 'green' | 'coral';
   sectionPadding: 'lg' | 'xl';
@@ -82,6 +85,26 @@ export const HARNESS_CHAPTERS: HarnessChapter[] = [
         'Modelo não é agente: o que é um harness, por que importa mais que prompt e como a equação agente = modelo + contexto + ferramentas + validação se aplica.',
       en: 'The model is not the agent: what a harness is, why it matters more than prompts, and the agent = model + context + tools + validation equation.',
     },
+    learningQuestion: {
+      'pt-BR': 'O que separa um modelo de um agente?',
+      en: 'What separates a model from an agent?',
+    },
+    learningObjectives: {
+      'pt-BR': [
+        'Por que o modelo sozinho não executa trabalho confiável.',
+        'O que é um harness e o que ele governa.',
+        'Por que harness importa mais do que prompt.',
+      ],
+      en: [
+        'Why a model alone cannot deliver reliable work.',
+        'What a harness is and what it governs.',
+        'Why harness matters more than prompts.',
+      ],
+    },
+    pathRole: {
+      'pt-BR': 'Comece aqui: entenda a distinção modelo vs agente.',
+      en: 'Start here: understand the model-vs-agent distinction.',
+    },
     discussionSlug: 'harness-fundamentals',
     badgeVariant: 'yellow',
     sectionPadding: 'lg',
@@ -107,6 +130,26 @@ export const HARNESS_CHAPTERS: HarnessChapter[] = [
       'pt-BR':
         'Código como parte do harness e as três camadas: interface, mecanismos (plan-execute-verify) e escala multi-agent.',
       en: 'Code as part of the harness and the three layers: interface, mechanisms (plan-execute-verify), and multi-agent scale.',
+    },
+    learningQuestion: {
+      'pt-BR': 'Que partes formam um harness?',
+      en: 'What parts make up a harness?',
+    },
+    learningObjectives: {
+      'pt-BR': [
+        'Como código vira parte do runtime do agente.',
+        'As três camadas: interface, mecanismos e escala.',
+        'O loop plan-execute-verify como coração operacional.',
+      ],
+      en: [
+        'How code becomes part of the agent runtime.',
+        'The three layers: interface, mechanisms, and scale.',
+        'The plan-execute-verify loop as the operational core.',
+      ],
+    },
+    pathRole: {
+      'pt-BR': 'Depois veja a estrutura: interface, mecanismos e escala.',
+      en: 'Next, see the structure: interface, mechanisms, and scale.',
     },
     discussionSlug: 'harness-anatomy',
     badgeVariant: 'blue',
@@ -134,6 +177,26 @@ export const HARNESS_CHAPTERS: HarnessChapter[] = [
         'Harness não é wrapper: cinco níveis de maturidade de resposta assistida a harness evolutivo e como falhas viram melhoria estrutural.',
       en: 'Harness is not a wrapper: five maturity levels from assisted response to evolutionary harness, and turning failures into structural improvement.',
     },
+    learningQuestion: {
+      'pt-BR': 'Como saber se um harness é fraco ou maduro?',
+      en: 'How do you tell a weak harness from a mature one?',
+    },
+    learningObjectives: {
+      'pt-BR': [
+        'Por que harness não é só um wrapper em volta do modelo.',
+        'Os cinco níveis de maturidade, do assistido ao evolutivo.',
+        'Como falhas viram melhoria estrutural no sistema.',
+      ],
+      en: [
+        'Why a harness is not just a wrapper around the model.',
+        'The five maturity levels, from assisted to evolutionary.',
+        'How failures become structural improvement in the system.',
+      ],
+    },
+    pathRole: {
+      'pt-BR': 'Entenda maturidade: do assistido ao harness evolutivo.',
+      en: 'Understand maturity: from assisted to evolutionary harness.',
+    },
     discussionSlug: 'harness-maturity',
     badgeVariant: 'green',
     sectionPadding: 'lg',
@@ -159,6 +222,26 @@ export const HARNESS_CHAPTERS: HarnessChapter[] = [
       'pt-BR':
         'Human-in-the-loop como governança, segurança no design do harness e autonomia com limites explícitos.',
       en: 'Human-in-the-loop as governance, security by harness design, and autonomy with explicit boundaries.',
+    },
+    learningQuestion: {
+      'pt-BR': 'Como autonomia continua segura?',
+      en: 'How can autonomy stay safe?',
+    },
+    learningObjectives: {
+      'pt-BR': [
+        'Human-in-the-loop como governança, não só botão de aprovação.',
+        'Segurança desenhada no harness, não só no prompt.',
+        'Autonomia com limites explícitos e reversibilidade.',
+      ],
+      en: [
+        'Human-in-the-loop as governance, not just an approval button.',
+        'Security designed into the harness, not just the prompt.',
+        'Autonomy with explicit boundaries and reversibility.',
+      ],
+    },
+    pathRole: {
+      'pt-BR': 'Aprenda governança: autonomia com limites claros.',
+      en: 'Learn governance: autonomy with clear boundaries.',
     },
     discussionSlug: 'harness-governance',
     badgeVariant: 'coral',
@@ -186,6 +269,26 @@ export const HARNESS_CHAPTERS: HarnessChapter[] = [
         'Harness Engineering e engenharia AI-native: o novo papel do engenheiro e dez perguntas para um harness explícito.',
       en: 'Harness Engineering and AI-native engineering: the engineer’s evolving role and ten questions for an explicit harness.',
     },
+    learningQuestion: {
+      'pt-BR': 'Qual é o papel do engenheiro nesse sistema?',
+      en: "What is the engineer's role in this system?",
+    },
+    learningObjectives: {
+      'pt-BR': [
+        'Como Harness Engineering se conecta à engenharia AI-native.',
+        'O engenheiro sobe de abstração sem desaparecer.',
+        'Dez perguntas para tornar um harness explícito.',
+      ],
+      en: [
+        'How Harness Engineering connects to AI-native engineering.',
+        'The engineer moves up a level of abstraction without disappearing.',
+        'Ten questions to make a harness explicit.',
+      ],
+    },
+    pathRole: {
+      'pt-BR': 'Veja o papel do engenheiro e as perguntas que importam.',
+      en: 'See the engineer role and the questions that matter.',
+    },
     discussionSlug: 'harness-engineer',
     badgeVariant: 'blue',
     sectionPadding: 'lg',
@@ -211,6 +314,26 @@ export const HARNESS_CHAPTERS: HarnessChapter[] = [
       'pt-BR':
         'Tese central: sistemas capazes de transformar modelos em trabalho confiável. Referência acadêmica e próximo passo na Sessão 3.',
       en: 'Central thesis: systems that turn models into reliable work. Academic reference and next step in Session 3.',
+    },
+    learningQuestion: {
+      'pt-BR': 'Qual tese eu levo daqui?',
+      en: 'What thesis should I take from this path?',
+    },
+    learningObjectives: {
+      'pt-BR': [
+        'A tese central: capacidade vira trabalho confiável via sistema.',
+        'Por que modelos melhores não eliminam a necessidade de harness.',
+        'O próximo passo na Sessão 3: SDD e Harness Design.',
+      ],
+      en: [
+        'The central thesis: capability becomes reliable work through systems.',
+        'Why better models do not remove the need for harness.',
+        'The next step in Session 3: SDD and Harness Design.',
+      ],
+    },
+    pathRole: {
+      'pt-BR': 'Feche a trilha: tese central e próximo passo.',
+      en: 'Close the path: central thesis and next step.',
     },
     discussionSlug: 'harness-conclusion',
     badgeVariant: 'coral',

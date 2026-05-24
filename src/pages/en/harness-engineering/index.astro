@@ -1,12 +1,9 @@
 ---
 import HarnessChapterLayout from '../../../layouts/HarnessChapterLayout.astro';
-import Card from '../../../components/Card/Card.astro';
-import Grid from '../../../components/Grid/Grid.astro';
+import HarnessCourseOverview from '../../../components/harness/HarnessCourseOverview';
 import {
-  HARNESS_CHAPTERS,
   HARNESS_OVERVIEW_DISCUSSION_SLUG,
   HARNESS_SERIES,
-  getHarnessChapterHref,
 } from '../../../data/harness-chapters';
 import { getHarnessAlternateLinks } from '../../../lib/i18n';
 
@@ -27,45 +24,5 @@ const pageTitle = `${HARNESS_SERIES.title[lang]} | AI-Native Engineers`;
   heroTitle={HARNESS_SERIES.title[lang]}
   heroSummary={HARNESS_SERIES.summary[lang]}
 >
-  <section class="harness-overview-grid">
-    <Grid columns={2} gap="lg" align="stretch">
-      {
-        HARNESS_CHAPTERS.map((chapter) => (
-          <Card
-            title={`${chapter.shortLabel[lang]} · ${chapter.title[lang]}`}
-            accent={chapter.badgeVariant}
-          >
-            <p>{chapter.description[lang]}</p>
-            <a class="harness-overview-link" href={getHarnessChapterHref(lang, chapter.id)}>
-              Read chapter →
-            </a>
-          </Card>
-        ))
-      }
-    </Grid>
-  </section>
+  <HarnessCourseOverview client:visible lang={lang} />
 </HarnessChapterLayout>
-
-<style>
-  .harness-overview-grid {
-    max-width: var(--container-xl);
-    margin-inline: auto;
-    padding: var(--space-xl) var(--space-md);
-  }
-
-  .harness-overview-link {
-    display: inline-block;
-    margin-top: var(--space-md);
-    font-family: var(--font-heading);
-    font-weight: var(--weight-bold);
-    color: var(--color-primary);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  @media (min-width: 1024px) {
-    .harness-overview-grid {
-      padding-inline: var(--space-xl);
-    }
-  }
-</style>
