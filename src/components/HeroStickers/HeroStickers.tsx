@@ -821,7 +821,6 @@ function MultiplayerBridge({ lang }: Props) {
 function HeroStickersHost() {
   return <div className={styles.layer} aria-hidden="true" />;
 }
-
 function useIsMobileViewport(): boolean | null {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
