@@ -23,7 +23,11 @@ const { lang = 'pt-BR' } = Astro.props;
     >
       {ui[lang].footer.tagline}
     </a>
-    <a class={styles.blogLink} href={getBlogHref(lang)}>
+    <a
+      class={styles.blogLink}
+      href={getBlogHref(lang)}
+      aria-label={ui[lang].footer.blogLinkAria}
+    >
       {ui[lang].footer.blogLink}
     </a>
     <div class={styles.meta}>
