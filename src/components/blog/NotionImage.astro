@@ -2,7 +2,7 @@
 /**
  * Notion remote image — Astro Image when host is allowlisted; warn + <img> fallback otherwise.
  */
-import { Image, getImage } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import { isNotionRemoteImageHost } from '../../lib/blog-image-host';
 
 interface Props {
@@ -25,43 +25,29 @@ const {
   class: className,
 } = Astro.props;
 
-let useFallback = !isNotionRemoteImageHost(src);
+let optimizedSrc: string | undefined;
 
-if (!useFallback) {
+if (!isNotionRemoteImageHost(src)) {
+  console.warn(`[blog] NotionImage: host not allowlisted, using <img> fallback for ${src}`);
+} else {
   try {
-    await getImage({ src, width, height, format: 'webp' });
+    const result = await getImage({ src, width, height, format: 'webp' });
+    optimizedSrc = result.src;
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(
       `[blog] NotionImage: optimization failed, using <img> fallback for ${src} (${message})`,
     );
-    useFallback = true;
   }
-} else {
-  console.warn(`[blog] NotionImage: host not allowlisted, using <img> fallback for ${src}`);
 }
 ---
 
-{
-  useFallback ? (
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      loading={loading}
-      decoding={decoding}
-      class={className}
-    />
-  ) : (
-    <Image
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      loading={loading}
-      decoding={decoding}
-      class={className}
-    />
-  )
-}
+<img
+  src={optimizedSrc ?? src}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding={decoding}
+  class={className}
+/>
