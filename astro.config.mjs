@@ -5,6 +5,14 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://ai-native-engineers.com',
+  image: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'notion.so' },
+      { protocol: 'https', hostname: '**.notion.so' },
+      { protocol: 'https', hostname: '**.amazonaws.com' },
+      { protocol: 'https', hostname: '**.cloudfront.net' },
+    ],
+  },
   integrations: [
     mdx(),
     react(),
