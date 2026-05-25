@@ -1,3 +1,12 @@
+# Deploy static site to GitHub Pages.
+#
+# Blog (Notion) at build time requires Actions secrets (never commit values):
+#   NOTION_TOKEN, NOTION_DATABASE_ID
+# See README.md § Blog (Notion) → CI / GitHub Actions and docs-blog/blog-plan.md.
+#
+# Policy: missing secrets on push to main → build fails (no silent empty blog).
+# Fork workflows do not receive upstream secrets; use local .env for blog development.
+
 name: Deploy to GitHub Pages
 
 on:
@@ -18,6 +27,9 @@ jobs:
   build:
     name: Build site
     runs-on: ubuntu-latest
+    env:
+      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -28,8 +40,8 @@ jobs:
           PUBLIC_LIVEBLOCKS_KEY: ${{ secrets.PUBLIC_LIVEBLOCKS_KEY }}
         with:
           node-version: 22
-          package-manager: npm
-          build-cmd: npm run build
+          package-manager: pnpm
+          build-cmd: pnpm run build
 
   deploy:
     name: Deploy site
