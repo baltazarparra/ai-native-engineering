@@ -28,8 +28,24 @@ function wrapRichTextSegment(item: RichTextItemResponse): string {
   if (a?.italic) html = `<em>${html}</em>`;
   if (a?.strikethrough) html = `<s>${html}</s>`;
   if (item.type === "text" && item.text.link?.url) {
-    const href = escapeHtml(item.text.link.url);
-    html = `<a href="${href}" rel="noopener noreferrer">${html}</a>`;
+    const raw = item.text.link.url;
+    let safeHref: string | null = null;
+    try {
+      const parsed = new URL(raw);
+      if (
+        parsed.protocol === "https:" ||
+        parsed.protocol === "http:" ||
+        parsed.protocol === "mailto:"
+      ) {
+        safeHref = raw;
+      }
+    } catch {
+      // invalid URL — render plain text, no anchor
+    }
+    if (safeHref !== null) {
+      const href = escapeHtml(safeHref);
+      html = `<a href="${href}" rel="noopener noreferrer">${html}</a>`;
+    }
   }
   return html;
 }
