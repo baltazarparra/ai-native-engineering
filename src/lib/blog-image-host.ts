@@ -1,6 +1,4 @@
-/**
- * Host allowlist for Notion remote images — keep in sync with astro.config.mjs image.remotePatterns.
- */
+/** Host allowlist for Notion remote images used by `isNotionRemoteImageHost`. */
 
 function hostMatchesNotionSo(hostname: string): boolean {
   return hostname === 'notion.so' || hostname.endsWith('.notion.so');
@@ -16,7 +14,7 @@ function hostMatchesCloudfront(hostname: string): boolean {
 
 const HOST_CHECKS = [hostMatchesNotionSo, hostMatchesAws, hostMatchesCloudfront];
 
-/** Whether Astro Image may optimize this URL (mirrors remotePatterns). */
+/** Whether this URL matches the Notion remote image host allowlist. */
 export function isNotionRemoteImageHost(url: string): boolean {
   try {
     const parsed = new URL(url);
