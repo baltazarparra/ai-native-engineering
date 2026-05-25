@@ -1,0 +1,85 @@
+---
+import SectionBlock from '../../../SectionBlock/SectionBlock.astro';
+import { getSessionHref } from '../../../../lib/i18n';
+const lang = 'pt-BR';
+const maturityHref = getSessionHref(lang, 'maturidade');
+---
+
+<!-- ═══════════════════════════════════════════════
+     CONCLUSÃO
+════════════════════════════════════════════════ -->
+<SectionBlock padding="xl">
+  <div class="section-stack">
+    <div class="section-copy">
+      <h2>A tese central</h2>
+      <blockquote class="thesis">
+        Não basta ter um modelo capaz. É preciso ter um sistema capaz de
+        transformar capacidade em trabalho confiável.
+      </blockquote>
+      <p>
+        Modelos vão continuar melhorando. Eles vão raciocinar melhor,
+        escrever melhor, planejar melhor e lidar com contextos maiores. Mas
+        isso não elimina a necessidade de harness. Pelo contrário: quanto
+        mais capazes os modelos ficam, mais importante se torna a
+        infraestrutura que define como eles podem agir.
+      </p>
+      <p>
+        O futuro da engenharia com IA não será decidido apenas por quem
+        acessa o melhor modelo. Será decidido por quem souber projetar os
+        melhores sistemas de trabalho ao redor desses modelos: sistemas com
+        estado claro, execução segura, validação objetiva, memória útil,
+        revisão humana bem posicionada e aprendizado contínuo.
+      </p>
+
+      <h2>Conclusão</h2>
+      <blockquote class="thesis">
+        Harness Engineering é a prática de transformar modelos em agentes
+        operacionais por meio de contexto, ferramentas, estado, execução,
+        validação, segurança e loops de feedback.
+      </blockquote>
+      <blockquote class="thesis secondary">
+        Harness Engineering é como tornamos o trabalho com agentes menos
+        mágico e mais engenheirável.
+      </blockquote>
+      <p>
+        A era dos agentes não exige apenas melhores prompts. Exige melhores
+        sistemas. E esses sistemas precisam ser executáveis, verificáveis e
+        stateful desde o design.
+      </p>
+      <p>
+        Não é sobre pedir código para uma IA. É sobre projetar o ambiente
+        onde agentes conseguem trabalhar bem.
+      </p>
+    </div>
+  </div>
+</SectionBlock>
+
+<!-- Referência + próximo passo -->
+<SectionBlock padding="lg" alt>
+  <div class="footer-grid">
+    <div class="section-copy">
+      <h2>Referência</h2>
+      <p>
+        Este artigo se baseia em
+        <a
+          href="https://arxiv.org/abs/2605.18747"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Code as Agent Harness: Toward Executable, Verifiable, and
+          Stateful Agent Systems
+        </a>
+        e adapta as ideias para o público e contexto deste guia.
+      </p>
+    </div>
+    <div class="section-copy">
+      <h2>Continue lendo</h2>
+      <p>
+        Veja como SDD e Harness Design se combinam em um fluxo profissional
+        completo na
+        <a href={maturityHref}>Sessão 3: SDD e Harness Design</a>. Esta série
+        explica o sistema por trás; a sessão mostra como operar no dia a dia.
+      </p>
+    </div>
+  </div>
+</SectionBlock>

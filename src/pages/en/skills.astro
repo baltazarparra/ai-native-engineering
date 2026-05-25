@@ -173,6 +173,54 @@ before handing the task back.</code></pre>
     <SectionBlock padding="lg" alt>
       <div class="section-stack">
         <div class="section-copy">
+          <h2 id="skills-security">Skills security</h2>
+          <p>
+            Skills are convenient, but they are also supply chain. A poorly
+            written or malicious skill can request too many permissions, run
+            dangerous commands, or change behavior after installation.
+          </p>
+          <p>Common risks in 2026:</p>
+          <ul class="reference-list">
+            <li>
+              <strong>Malicious skill:</strong> hidden instructions in
+              <code>SKILL.md</code> or helper scripts.
+            </li>
+            <li>
+              <strong>Excessive permissions:</strong> broad access to terminal,
+              network, or secrets without a clear need.
+            </li>
+            <li>
+              <strong>Update drift:</strong> the skill changes after install and
+              nobody reviews it again.
+            </li>
+            <li>
+              <strong>Poor metadata:</strong> vague descriptions make the agent
+              use the skill at the wrong time.
+            </li>
+            <li>
+              <strong>Dangerous commands:</strong> scripts that delete files,
+              exfiltrate data, or change sensitive config.
+            </li>
+            <li>
+              <strong>No inventory:</strong> the team does not know which skills
+              are installed on each agent.
+            </li>
+          </ul>
+          <p>Practical recommendations:</p>
+          <ul class="reference-list">
+            <li>Read the full <code>SKILL.md</code> before installing.</li>
+            <li>Prefer trusted sources and repos you can audit.</li>
+            <li>Review permissions and keep the smallest scope possible.</li>
+            <li>Maintain an inventory of installed skills per agent.</li>
+            <li>Revalidate skills after updates, like any critical dependency.</li>
+          </ul>
+        </div>
+      </div>
+    </SectionBlock>
+
+    <SectionBlock padding="lg">
+      <div class="section-stack">
+        <div class="section-copy">
           <h2>Sharing skills</h2>
           <p>
             There are two useful paths for distributing skills: a simple
@@ -318,6 +366,16 @@ skills installs the skill into the agent</code></pre>
           </li>
           <li>
             <a href="https://cursor.com/marketplace"> Cursor: Marketplace </a>
+          </li>
+          <li>
+            <a href="https://owasp.org/www-project-agentic-skills-top-10/">
+              OWASP Agentic Skills Top 10
+            </a>
+          </li>
+          <li>
+            <a href="https://vercel.com/docs/agent-resources/skills">
+              Vercel: Agent Skills
+            </a>
           </li>
         </ul>
       </div>

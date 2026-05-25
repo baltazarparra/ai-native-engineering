@@ -137,6 +137,30 @@ export const ui = {
       description:
         'Artigos publicados no Notion e gerados no build do site — contexto, validação e fluxo no dia a dia.',
       button: 'Ver blog',
+    harness: {
+      pagerAria: 'Navegação entre capítulos',
+      previous: 'Capítulo anterior',
+      next: 'Próximo capítulo',
+      backToOverview: 'Visão geral',
+      courseProgressAria: 'Progresso da trilha',
+      progressOf: (done: number, total: number) =>
+        `${done} de ${total} capítulos concluídos`,
+      chapterRead: 'Capítulo lido',
+      alreadySeen: 'Você já passou por esta ideia',
+      lessonIntro: 'Nesta aula você vai entender',
+      start: 'Começar',
+      continue: 'Continuar',
+      reviewChapter: 'Revisar capítulo',
+      markReadAndContinue: 'Marcar como lido e avançar',
+      finishPath: 'Concluir trilha',
+      pathComplete: 'Trilha concluída',
+      pathCompleteDesc:
+        'Agora você enxerga o sistema por trás dos agentes.',
+      pathCompleteSubline:
+        'Você saiu de "modelo que responde" para "sistema que opera".',
+      resetProgress: 'Recomeçar progresso',
+      resetAria: 'Recomeçar progresso da trilha',
+      tabCompleteLabel: 'Capítulo concluído',
     },
     footer: {
       tagline: 'baltz',
@@ -210,7 +234,7 @@ export const ui = {
       heroLabel: 'Hands-on',
       heading: 'Build your first project with a code agent',
       summary:
-        'A practical guide to creating, planning, and publishing a project from scratch using the agentic development workflow.',
+        'A practical guide to creating, planning, and publishing an AI-Native project from scratch.',
       readingTime: '45 min (guided practice)',
       navAriaLabel: 'Project navigation',
       checkpointLabel: 'Checkpoint',
@@ -241,6 +265,30 @@ export const ui = {
       tabAria: 'Project chapters',
       resetAria: 'Reset progress',
       reset: 'Start over',
+    },
+    harness: {
+      pagerAria: 'Chapter navigation',
+      previous: 'Previous chapter',
+      next: 'Next chapter',
+      backToOverview: 'Overview',
+      courseProgressAria: 'Learning path progress',
+      progressOf: (done: number, total: number) =>
+        `${done} of ${total} chapters complete`,
+      chapterRead: 'Chapter read',
+      alreadySeen: 'You have already seen this idea',
+      lessonIntro: 'This lesson helps you understand',
+      start: 'Start',
+      continue: 'Continue',
+      reviewChapter: 'Review chapter',
+      markReadAndContinue: 'Mark as read and continue',
+      finishPath: 'Finish path',
+      pathComplete: 'Learning path complete',
+      pathCompleteDesc: 'Now you can see the system behind agents.',
+      pathCompleteSubline:
+        'You moved from "a model that responds" to "a system that operates".',
+      resetProgress: 'Start over',
+      resetAria: 'Reset learning path progress',
+      tabCompleteLabel: 'Chapter complete',
     },
     footer: {
       tagline: 'baltz',
@@ -292,6 +340,10 @@ export function getSkillsHref(lang: Lang): string {
 }
 
 export function getHarnessHref(lang: Lang): string {
+  return getHarnessOverviewHref(lang);
+}
+
+export function getHarnessOverviewHref(lang: Lang): string {
   const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
   return withBase(`${prefix}${harnessSlug}`);
 }

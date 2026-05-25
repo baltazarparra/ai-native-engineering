@@ -21,8 +21,10 @@ references:
     'metr-ai-productivity-2025',
     'stanford-insecure-code-ai-assistants',
     'owasp-llm-top-10',
+    'owasp-agentic-applications-2026',
+    'mcp-tool-poisoning-research',
   ]
-updatedAt: 2026-05-04
+updatedAt: 2026-05-24
 ---
 
 import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid.tsx';
@@ -36,6 +38,17 @@ Esse momento é viciante porque dá a sensação de ter pulado meses de aprendiz
 Mas aqui entra a frase mais importante desta sessão: **preview não é produção**.
 
 Um app que abre no navegador ainda pode ter regra de acesso errada, segredo exposto, fluxo quebrado, código impossível de manter, dependência mal escolhida, teste inexistente e uma arquitetura que só funciona enquanto o projeto é pequeno.
+
+**Riscos concretos que aparecem em produção:**
+
+- **RLS ausente:** qualquer usuário pode ler ou alterar dados de outro.
+- **Secrets no client:** chaves de API ou tokens visíveis no navegador.
+- **Validação só no front:** o backend aceita qualquer payload malicioso.
+- **Permissões largas:** o app faz mais do que deveria, sem controle fino.
+- **Falta de rollback:** quando quebra, não tem como voltar atrás com segurança.
+- **Ausência de logs:** ninguém sabe o que aconteceu quando algo falha.
+
+Gerar algo em 30 minutos não é a parte difícil. Manter amanhã é.
 
 ## O que é vibe coding
 
@@ -78,4 +91,4 @@ Use a busca abaixo como mapa de bolso. A ideia não é decorar jargão; é enten
 
 - Vibe coding é ótimo para começar, aprender e prototipar. Não é desculpa para parar de entender.
 - Plataformas prompt-to-app aceleram muito, mas fazem escolhas técnicas por você.
-- Preview não é produção. Código gerado precisa de spec, revisão, teste e dono.
+- Preview não é produção. Um protótipo pode virar produto, mas só depois de spec, validação, segurança e ownership.

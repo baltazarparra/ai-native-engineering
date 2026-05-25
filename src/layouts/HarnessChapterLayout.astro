@@ -1,0 +1,108 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
+import Badge from '../components/Badge/Badge.astro';
+import Footer from '../components/Footer/Footer.astro';
+import Discussion from '../components/Discussion/Discussion.astro';
+import HarnessChapterTabs from '../components/harness/HarnessChapterTabs';
+import HarnessChapterPager from '../components/harness/HarnessChapterPager';
+import HarnessChapterIntro from '../components/harness/HarnessChapterIntro';
+import HarnessShareBar from '../components/harness/HarnessShareBar';
+import type { AlternateLink, Lang } from '../lib/i18n';
+import type { HarnessChapterId } from '../data/harness-chapters';
+
+interface Props {
+  lang: Lang;
+  activeTab: 'overview' | HarnessChapterId;
+  title: string;
+  description: string;
+  alternateLinks: AlternateLink[];
+  discussionSlug: string;
+  discussionTitle: string;
+  heroBadge?: string;
+  heroTitle: string;
+  heroSummary?: string;
+}
+
+const {
+  lang,
+  activeTab,
+  title,
+  description,
+  alternateLinks,
+  discussionSlug,
+  discussionTitle,
+  heroBadge,
+  heroTitle,
+  heroSummary,
+} = Astro.props;
+
+const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateLinks={alternateLinks}
+  ogImage="/og-harness.png"
+>
+  <main id="main-content" class="harness-page">
+    <SectionBlock as="header" padding="xl">
+      {heroBadge ? <Badge variant="coral">{heroBadge}</Badge> : null}
+      <h1 class="harness-page-title">{heroTitle}</h1>
+      {heroSummary ? <p class="harness-page-summary">{heroSummary}</p> : null}
+      <HarnessShareBar
+        client:visible
+        url={shareUrl}
+        title={heroTitle}
+        lang={lang}
+      />
+    </SectionBlock>
+
+    <HarnessChapterTabs client:load lang={lang} activeTab={activeTab} />
+
+    {
+      activeTab !== 'overview' && (
+        <HarnessChapterIntro
+          client:visible
+          lang={lang}
+          chapterId={activeTab}
+        />
+      )
+    }
+
+    <slot />
+
+    {
+      activeTab !== 'overview' && (
+        <HarnessChapterPager
+          client:visible
+          lang={lang}
+          chapterId={activeTab}
+        />
+      )
+    }
+
+    <Discussion lang={lang} slug={discussionSlug} title={discussionTitle} />
+
+    <Footer lang={lang} />
+  </main>
+</BaseLayout>
+
+<style is:global>
+  @import '../styles/harness-chapter.css';
+
+  .harness-page-title {
+    margin-top: var(--space-md);
+    max-width: 14ch;
+  }
+
+  .harness-page-summary {
+    font-size: var(--text-xl);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-md);
+    max-width: 58ch;
+  }
+</style>

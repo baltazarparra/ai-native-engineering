@@ -9,8 +9,12 @@ import ChapterNav from '../components/ChapterNav/ChapterNav.tsx';
 import ChapterFooter from '../components/ChapterFooter/ChapterFooter.tsx';
 import type { Lang } from '../lib/i18n';
 import ReferencesList from '../components/ReferencesList/ReferencesList.astro';
-import { ui, getProjectAlternateLinks } from '../lib/i18n';
-import { CHAPTERS, resolveChapterReferences } from '../data/chapters';
+import { ui } from '../lib/i18n';
+import {
+  CHAPTERS,
+  getChapterAlternateLinks,
+  resolveChapterReferences,
+} from '../data/chapters';
 
 interface Props {
   chapterNumber: number;
@@ -20,7 +24,7 @@ interface Props {
 const { chapterNumber, lang } = Astro.props;
 const chapter = CHAPTERS.find((ch) => ch.number === chapterNumber)!;
 const labels = ui[lang].chapters;
-const alternateLinks = getProjectAlternateLinks();
+const alternateLinks = getChapterAlternateLinks(chapterNumber);
 const references = resolveChapterReferences(chapter, lang);
 const badgeVariant = chapter.isReference ? 'blue' : 'coral';
 const badgeText = chapter.isReference

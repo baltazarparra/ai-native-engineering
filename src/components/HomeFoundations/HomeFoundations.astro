@@ -34,7 +34,7 @@ const content: Record<
     id: 'fundamentos',
     badge: 'Fundamentos',
     subtitle:
-      '* Grandes modelos de linguagem (LLM) são sistemas de IA que compreendem e geram linguagem humana através do processamento de grandes quantidades de dados',
+      '* LLM (Large Language Model) é o motor de linguagem por trás de muitos agentes de IA.',
     title: 'Três ideias antes de começar',
     intro:
       'Sem estas definições, o resto vira jargão. Guarde o mapa mental: pessoa, agente e agente de código.',
@@ -72,7 +72,7 @@ const content: Record<
     id: 'foundations',
     badge: 'Foundations',
     subtitle:
-      '* Large language model (LLM) is a neural network trained on a vast amount of text for natural language processing tasks',
+      '* An LLM (Large Language Model) is the language engine behind many AI agents.',
     title: 'Three ideas before you start',
     intro:
       'Without these definitions, the rest becomes jargon. Keep the mental map: person, agent, and coding agent.',
@@ -123,6 +123,7 @@ const copy = content[lang];
   <div class={styles.header}>
     <Badge variant="yellow">{copy.badge}</Badge>
     <h2>{copy.title}</h2>
+    <p>{copy.intro}</p>
   </div>
 
   <div class={styles.grid}>

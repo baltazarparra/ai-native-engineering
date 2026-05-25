@@ -4,7 +4,7 @@ slug: 'maturity'
 lang: 'en'
 translationKey: 'maturity'
 order: 3
-summary: 'SDD turns intent into development plan. Harness Design gives agents the tools and validation gates to develop safely at enterprise level.'
+summary: 'SDD turns intent into a verifiable plan. Harness Design organizes tools and validation so agents can deliver with quality and safety.'
 readingTime: 24
 level: 'advanced'
 tags: ['sdd', 'harness', 'agents', 'governance', 'workflow']
@@ -12,6 +12,9 @@ heroLabel: 'Professional flow'
 references:
   [
     'openai-harness-engineering',
+    'anthropic-agentic-coding-trends-2026',
+    'openai-symphony-orchestration',
+    'github-copilot-cloud-agent-research-plan',
     'github-spec-kit',
     'kiro-specs',
     'shimony-sdd',
@@ -20,10 +23,12 @@ references:
     'claude-code-hooks',
     'cursor-docs',
     'mcp-spec',
+    'mcp-tool-poisoning-research',
     'owasp-llm-top-10',
     'owasp-agentic-ai-threats',
+    'owasp-agentic-applications-2026',
   ]
-updatedAt: 2026-04-24
+updatedAt: 2026-05-24
 ---
 
 import SDDHarnessFlow from '../../components/SDDHarnessFlow/SDDHarnessFlow.tsx';
@@ -32,11 +37,11 @@ import SDDHarnessFlow from '../../components/SDDHarnessFlow/SDDHarnessFlow.tsx';
 
 The core problem in AI-assisted software work is not "which model should we use?" That changes constantly. The real problem is: **how do we turn human intent into reliable software without losing control, quality, and responsibility along the way?**
 
-Vibe coding showed that models can generate a lot of code from natural language. That is powerful for prototypes. But in an enterprise environment, delivery cost is not just writing code. It is aligning scope, preserving architecture, protecting data, validating behavior, reviewing changes, auditing decisions, and keeping the system healthy after deployment.
+Vibe coding showed that models can generate a lot of code from natural language. That is powerful for prototypes. But in real product work, delivery cost is not just writing code. It is aligning scope, preserving architecture, protecting data, validating behavior, reviewing changes, auditing decisions, and keeping the system healthy after deployment.
 
 Two ideas need to work together:
 
-- **SDD**, or Spec-Driven Development: writing and evolving specifications that act as an contract.
+- **SDD**, or Spec-Driven Development: writing and evolving specifications that act as a contract.
 - **Harness Design**: designing the work system around the agent so it has context, tools, boundaries, validation, and governance.
 
 Separately, these ideas help. Together, they change the level of the workflow.
@@ -63,18 +68,73 @@ Harness Design is the design of the **agent operating environment**.
 
 If SDD answers "what must be true?", the harness answers "how do we create a system where the agent can execute, validate, and improve without relying on informal memory?".
 
-A harness can include:
+### A model is not an agent
 
-- persistent instructions such as `AGENTS.md`, `CLAUDE.md`, or `.cursor/rules/`;
-- versioned architecture, product, and domain documentation;
-- spec, PRD, plan, and review templates;
-- tools available to the agent, such as terminal, GitHub, browser, logs, and MCP servers;
-- permission boundaries and human approval points;
-- validation commands, CI, lint, typecheck, tests, and security checks;
-- PR standards, ownership, rollback, and audit practices;
-- learning loops that turn failures into rules, tests, or docs.
+A model responds. An agent tries to complete a task using tools in a loop: it reads context, takes an action, observes the result, and decides the next step.
 
-The goal is not to trap the agent. It is to create rails. Rails do not prevent movement; they make movement predictable.
+The harness is what makes that loop useful in real work. It tells the agent which rules to follow, which tools to use, where to find context, when to ask for approval, and how to prove the work is done.
+
+> **agent = model + harness**
+
+### What goes into a harness?
+
+Think of the harness as the agent's work infrastructure. It is not one tool. It is the system that lets you move from conversation to a validated delivery.
+
+- **Instructions**: files like `AGENTS.md`, rules, and skills that carry commands, standards, and project agreements.
+- **Context**: specs, technical decisions, architecture, product docs, and enough history so the agent is not working in the dark.
+- **Tools**: terminal, Git, browser, GitHub, logs, MCP servers, and other integrations that let the agent act in the right environment.
+- **Boundaries**: sandbox, permissions, human approvals, and blocks for destructive or sensitive actions.
+- **Validation**: lint, tests, typecheck, build, diff review, and checklists that push back against broken delivery.
+- **Observability**: UI, logs, metrics, traces, screenshots, and reproducible checks that the agent (and the human) can read to understand what happened.
+- **Learning**: each recurring failure becomes a rule, test, hook, doc, or skill. The harness improves because the team learned.
+
+The goal is not to trap the agent. It is to create rails. Good rails do not prevent movement; they make movement predictable, reviewable, and safe.
+
+### Harness in practice
+
+The difference shows up when a task leaves the prototype stage and enters a real product.
+
+**Without a harness**: someone asks "build the user invite screen." The agent might create a nice screen, but ignore permissions, error states, product copy, responsiveness, tests, and existing design rules.
+
+**With a harness**: the same task, with rails. The agent gets a short spec, UI rules, existing components, acceptance criteria, validation commands, and permission limits. At the end, it must explain what changed and how it tested it.
+
+### A harness in one week
+
+You do not need to build a platform. Start with one real failure and turn learning into structure.
+
+1. **Write a short `AGENTS.md`**: include project commands, important standards, and two or three rules the agent should always respect.
+2. **Document how to validate**: list lint, tests, typecheck, build, and any check that proves a change did not break the basics.
+3. **Pick a recurring failure**: choose a problem that already happened: skipped test, broken UI pattern, wrong file, forgotten command.
+4. **Turn the failure into a rail**: create a rule, test, checklist, hook, or skill. If it happens again, the harness is not clear enough yet.
+
+## The industry flow in 2026
+
+In 2026, mature teams do not treat an agent as glorified chat. They run a repeatable cycle:
+
+1. **Research**: the agent (or the human) gathers evidence from the repo, docs, and history before deciding.
+2. **Plan**: intent becomes a reviewable spec or plan, with scope, risks, and acceptance criteria.
+3. **Execute**: the agent implements on a branch, with tools and boundaries defined by the harness.
+4. **Review**: diff, tests, security, and checklist before merge or PR.
+5. **Ship**: deploy with rollback, logs, and manual validation of the critical path.
+6. **Learn**: failures become rules, tests, or docs. The harness evolves.
+
+### Context-grounding
+
+Before specifying, planning, or implementing, the agent needs to **ground the answer in the repository**. That means reading real files, checking existing patterns, verifying dependencies, and not inventing structure the project does not have. A spec without grounding is pretty text. Code without grounding is a plausible but wrong patch.
+
+### Cloud agents
+
+Cloud agents research the repo, propose a plan, work on an isolated branch, and deliver a diff. The PR only appears when a human approves. That model reduces risk: you review before merge, not after deploy.
+
+### Multi-agent coordination
+
+Several agents in parallel can speed up independent tasks (tests, docs, isolated refactors). But they need clear boundaries, human review, and separate scope. Parallelism without a harness becomes hard-to-audit chaos.
+
+## The flow in six stages
+
+Before the example, see the SDD + Harness Design map. Each stage shows what the spec defines, what the harness guarantees, and which signals prove the work is mature.
+
+<SDDHarnessFlow client:visible lang="en" />
 
 ## Applied example: enterprise SSO
 
@@ -94,7 +154,7 @@ But nobody answered:
 - how to roll back if the provider fails;
 - which tests prove permissions do not leak.
 
-That is not enterprise engineering. It is a prototype in a blazer.
+That is not serious engineering. It is a demo dressed up as delivery.
 
 ### SDD + Harness flow
 
@@ -114,7 +174,7 @@ If something fails, the team does not just ask the agent to "try again". It asks
 
 ## How to start without bureaucracy
 
-You do not need an agent laboratory before using this.
+You do not need a perfect setup before using this.
 
 Start small:
 
