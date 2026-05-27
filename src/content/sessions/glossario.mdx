@@ -5,7 +5,7 @@ lang: 'pt-BR'
 translationKey: 'glossary'
 order: 1
 summary: 'O que é vibe coding, quais plataformas criam apps por prompt, onde isso ajuda, onde quebra e como transformar demo em software de verdade.'
-readingTime: 14
+readingTime: 10
 level: 'beginner'
 tags: ['glossario', 'vibe coding', 'ferramentas', 'fundamentos']
 heroLabel: 'Vocabulário essencial'
@@ -24,10 +24,8 @@ references:
     'owasp-agentic-applications-2026',
     'mcp-tool-poisoning-research',
   ]
-updatedAt: 2026-05-24
+updatedAt: 2026-05-26
 ---
-
-import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid.tsx';
 
 ## Fiz um app via prompt. E agora?
 
@@ -38,17 +36,6 @@ Esse momento é viciante porque dá a sensação de ter pulado meses de aprendiz
 Mas aqui entra a frase mais importante desta sessão: **preview não é produção**.
 
 Um app que abre no navegador ainda pode ter regra de acesso errada, segredo exposto, fluxo quebrado, código impossível de manter, dependência mal escolhida, teste inexistente e uma arquitetura que só funciona enquanto o projeto é pequeno.
-
-**Riscos concretos que aparecem em produção:**
-
-- **RLS ausente:** qualquer usuário pode ler ou alterar dados de outro.
-- **Secrets no client:** chaves de API ou tokens visíveis no navegador.
-- **Validação só no front:** o backend aceita qualquer payload malicioso.
-- **Permissões largas:** o app faz mais do que deveria, sem controle fino.
-- **Falta de rollback:** quando quebra, não tem como voltar atrás com segurança.
-- **Ausência de logs:** ninguém sabe o que aconteceu quando algo falha.
-
-Gerar algo em 30 minutos não é a parte difícil. Manter amanhã é.
 
 ## O que é vibe coding
 
@@ -80,15 +67,3 @@ Nesta sessão, você está pegando vocabulário para não cair no marketing. Nas
 
 - [Sessão 2: Ferramentas e modelos](../ferramentas) mostra como escolher entre IDE com IA, CLI, agente na nuvem e modelos por tarefa.
 - [Sessão 3: SDD e Harness Design](../maturidade) mostra como transformar intenção em contrato verificável e operar agentes com contexto, validação e governança.
-
-## Busca rápida de termos
-
-Use a busca abaixo como mapa de bolso. A ideia não é decorar jargão; é entender o suficiente para fazer perguntas melhores.
-
-<GlossaryCardGrid client:visible />
-
-## O que levar daqui
-
-- Vibe coding é ótimo para começar, aprender e prototipar. Não é desculpa para parar de entender.
-- Plataformas prompt-to-app aceleram muito, mas fazem escolhas técnicas por você.
-- Preview não é produção. Um protótipo pode virar produto, mas só depois de spec, validação, segurança e ownership.

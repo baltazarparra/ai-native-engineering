@@ -5,7 +5,7 @@ lang: 'pt-BR'
 translationKey: 'tools'
 order: 2
 summary: 'Entenda a diferença entre ferramenta, produto e modelo para escolher melhor IDEs, CLIs, agentes na nuvem e LLMs.'
-readingTime: 28
+readingTime: 22
 level: 'intermediate'
 tags: ['ferramentas', 'modelos', 'ide', 'cli', 'comparativo']
 heroLabel: 'Mapa de escolha'
@@ -29,7 +29,7 @@ references:
     'meta-llama-docs',
     'vellum-llm-leaderboard',
   ]
-updatedAt: 2026-05-24
+updatedAt: 2026-05-26
 ---
 
 ## Duas escolhas diferentes
@@ -79,25 +79,3 @@ Alguns modelos foram ajustados para operar bem com ferramentas: ler arquivos, ch
 ### Limites reais
 
 Todo modelo alucina, tem corte de conhecimento e pode gerar código que parece correto mas não resolve o problema. Benchmark é sinal, não oráculo. Um ranking mede tarefas padronizadas; o seu projeto tem contexto, histórico, restrições e dívidas próprias.
-
-## Perfis por tarefa, não ranking
-
-Não existe "o melhor modelo". Existe o modelo certo para a tarefa certa.
-
-**Explorar ideias**: modelos rápidos e baratos costumam bastar quando o objetivo é conversar, gerar alternativas e revelar perguntas melhores, mas não produzir código final.
-
-**Escrever e revisar código do dia a dia**: modelos equilibrados, como Claude Sonnet ou modelos especializados de código dentro de IDEs, tendem a entregar bom custo-benefício.
-
-**Planejar arquitetura ou refactors grandes**: modelos com raciocínio mais profundo e janela de contexto ampla fazem mais sentido, especialmente quando precisam considerar muitos módulos ao mesmo tempo.
-
-**Analisar documentos longos ou muitas fontes**: modelos com contexto grande e boa síntese, como Gemini Pro ou Claude Opus, podem brilhar mais que modelos puramente focados em edição de código.
-
-**Privacidade, custo ou controle**: modelos open-weight ou open source, como Llama, Gemma, DeepSeek e GLM, entram quando o time precisa de mais controle sobre hospedagem, custo, privacidade ou customização.
-
-## O que levar daqui
-
-- Separe ferramenta, produto e modelo antes de comparar opções.
-- Escolha a ferramenta pela fricção do workflow e o modelo pela dificuldade da tarefa.
-- Use benchmarks como sinal, não como resposta final.
-- Trate toda resposta como rascunho até passar por revisão e validação.
-- O diferencial não é "usar a IA mais forte"; é montar uma combinação que ajuda você a entregar software com mais clareza e controle.
