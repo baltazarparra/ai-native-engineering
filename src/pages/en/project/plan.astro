@@ -3,70 +3,276 @@ import ChapterLayout from '../../../layouts/ChapterLayout.astro';
 import CopyPromptBlock from '../../../components/CopyPromptBlock/CopyPromptBlock.tsx';
 const lang = 'en';
 
-const improvePlanPrompt = `Review the initial PLAN.md based on AGENTS.md (or CLAUDE.md if I'm using Claude Code). Detail the implementation phases, keep each phase small and testable, add clear acceptance criteria, and only change the initial stack if there is a concrete reason to do so.`;
+const roadmapPrompt = `I am going to build a live news newspaper published on GitHub Pages. I want to start with a simple, executable ROADMAP.md.
+
+PROJECT CONTEXT
+- Repository name: [REPO_NAME]
+- What we are building: a news newspaper that fetches the top 10 Hacker News stories and displays them as a newspaper page — headline, articles section, and listing
+- Public API: https://hacker-news.firebaseio.com/v0/
+  - Top stories: GET /topstories.json (returns array of IDs)
+  - Individual story: GET /item/{id}.json (returns { id, title, url, score, by, time, descendants })
+- Deployment: GitHub Pages
+- Tool in use: [CHOSEN_TOOL]
+
+REAL CONSTRAINTS
+- no custom backend
+- no database
+- no authentication
+- the site is 100% static and runs in the browser
+- few dependencies — prefer Vanilla JS + HTML/CSS, or a minimal framework (Vite + Vanilla, Parcel, etc.)
+- do not use React, Vue, Angular, or any SPA framework — simplicity is the goal
+
+TASK
+Create a ROADMAP.md file at the repository root.
+
+ROADMAP.md must include:
+- product summary in 2-3 lines
+- chosen stack with a short justification (choose ONE concrete direction, do not list options)
+- the three core features: fetch IDs, fetch details, render newspaper layout
+- expected file structure at the end of the project
+- development sequence in 3 to 5 steps, from simplest to most complete
+- acceptance criteria for the complete project
+- note about deploying to GitHub Pages
+
+IMPORTANT RULES
+- write in English
+- be specific and avoid generic filler
+- do not implement code
+- do not invent features beyond the described scope
+- generate only the final ROADMAP.md content`.trim();
+
+const agentsPrompt = `The ROADMAP.md already exists in the repository. Use it as the primary source of truth.
+
+PROJECT CONTEXT
+- Repository name: [REPO_NAME]
+- What we are building: static news newspaper with the top 10 Hacker News stories, published on GitHub Pages
+- Tool in use: [CHOSEN_TOOL]
+
+TASK
+Create the agent operation file at the project root.
+
+FILE NAME RULES
+- if I am using Claude Code, the file must be named CLAUDE.md
+- for any other tool, the file must be named AGENTS.md
+
+The file must include the following sections:
+
+1. Project overview
+   - what this project is and what it delivers
+   - what the final goal is
+
+2. Stack and constraints
+   - technologies chosen in ROADMAP.md
+   - what must not be used (no SPA frameworks, no backend, no database)
+
+3. File structure
+   - list of expected files and folders at the end of the project
+
+4. Main commands
+   - how to run locally
+   - how to create a production build
+   - if commands do not exist yet, state that explicitly
+
+5. Code conventions
+   - naming patterns
+   - how to organize functions and modules
+   - how to handle fetch errors
+
+6. Deploy process
+   - how GitHub Pages deployment works for this project
+   - deploy branch and output folder
+
+7. What NOT to do
+   - clear list of what the agent must not invent, change, or assume without explicit alignment
+
+IMPORTANT RULES
+- write in English
+- base everything on the existing ROADMAP.md
+- do not invent stack, commands, or structure that contradicts ROADMAP.md
+- generate only the final content of the correct file: AGENTS.md or CLAUDE.md`.trim();
+
+const devPlanPrompt = `The ROADMAP.md and the agent operation file (AGENTS.md or CLAUDE.md) already exist in the repository. Use them as the primary source of truth.
+
+PROJECT CONTEXT
+- Repository name: [REPO_NAME]
+- What we are building: static news newspaper with the top 10 Hacker News stories, published on GitHub Pages
+- Tool in use: [CHOSEN_TOOL]
+
+TASK
+Analyze the ROADMAP.md and create a DEV_PLAN.md file at the repository root.
+
+DEV_PLAN.md must organize development into atomic, testable phases. Each phase must:
+- have a short, descriptive name
+- have a clear objective in one sentence
+- list concrete deliverables (files created or changed)
+- have acceptance criteria that can be manually validated in the browser
+- be small enough to complete in one agent session
+- indicate initial status as TODO
+
+Structure the phases in natural build order. A suggested sequence:
+- Phase 1: Initial project structure (HTML, basic CSS, main JS file)
+- Phase 2: Top stories fetch (fetch IDs and details via HN API)
+- Phase 3: Newspaper layout rendering (headline, articles, listing)
+- Phase 4: Loading and error states (skeleton, fallback message)
+- Phase 5: GitHub Pages deploy (config, build, gh-pages branch)
+
+Adapt the phases to the existing ROADMAP.md. If the chosen stack requires different steps, reflect that in the plan.
+
+IMPORTANT RULES
+- write in English
+- use ROADMAP.md as the source of truth for stack and structure
+- each phase must be independent and have clear manual validation
+- do not implement code
+- generate only the final DEV_PLAN.md content`.trim();
 ---
 
 <ChapterLayout chapterNumber={2} lang={lang}>
-  <h2 id="features">The three features</h2>
-
-  <p>The project has a defined scope:</p>
-
-  <ol>
-    <li><strong>Artist search</strong>, <code>/search/artist?q=name</code></li>
-    <li>
-      <strong>Discography</strong>, <code>/artist/&#123;id&#125;/albums</code>
-    </li>
-    <li>
-      <strong>Album details</strong>, <code>/album/&#123;id&#125;</code> (tracklist,
-      cover, date)
-    </li>
-  </ol>
-
   <p>
-    All endpoints come from the <strong>Deezer public API</strong>. No
-    authentication is needed for the catalog endpoints used in this project.
+    This chapter ends with three files in the repository: <code>ROADMAP.md</code>,
+    <code>AGENTS.md</code> or <code>CLAUDE.md</code>, and <code>DEV_PLAN.md</code>.
+    Together they form the project harness: product context, agent operation
+    rules, and a phased execution plan.
   </p>
 
-  ---
-
-  <h2 id="ask-for-plan">Improve PLAN.md</h2>
-
-  <CopyPromptBlock client:visible content={improvePlanPrompt} lang={lang} />
-
   <p>
-    The agent will improve the draft and organize execution. If it wants to
-    change the initial stack, it should justify that clearly. Don't accept
-    automatically.
+    Order matters. ROADMAP.md comes first because it becomes the source of truth
+    for the other two. Then the agent operation file, which uses the ROADMAP to
+    generate coherent rules. Finally, DEV_PLAN.md, which uses both to create
+    testable phases.
   </p>
 
-  ---
-
-  <h2 id="review-plan">Review and iterate</h2>
-
-  <p>Read the entire plan and ask yourself:</p>
-
-  <ul>
-    <li>Do the phases make sense? Is each one independently testable?</li>
-    <li>Is the scope clear? Is any phase too large?</li>
-    <li>
-      Is the stack simple enough? Do you understand the suggested technologies?
-    </li>
-  </ul>
-
-  <p>If something doesn't make sense, iterate:</p>
-
-  <div class="prompt-example prompt-good">
-    <strong>Adjustment examples:</strong>
-    <p>"This phase is too big, split it in two."</p>
-    <p>"I don't want that library, suggest something simpler."</p>
-    <p>"Add acceptance criteria for each phase."</p>
+  <div class="checkpoint">
+    <strong>Before you start:</strong>
+    <p>
+      Repository created, cloned, and open in your tool. If you have not done
+      this yet, go back to the previous chapter.
+    </p>
   </div>
+
+  <hr />
+
+  <h2 id="create-roadmap">1. Create ROADMAP.md</h2>
+
+  <p>
+    ROADMAP.md is the shortest harness document but the most important. It
+    defines the product in 2–3 lines, chooses a concrete stack, and organizes
+    development into clear steps. Everything that comes next relies on it.
+  </p>
+
+  <p>
+    In the placeholders below, replace <code>[REPO_NAME]</code> with your
+    repository name and <code>[CHOSEN_TOOL]</code> with the tool you are using
+    (Cursor, Claude Code, Windsurf, etc.).
+  </p>
+
+  <CopyPromptBlock
+    client:visible
+    content={roadmapPrompt}
+    lang={lang}
+    label="Prompt to create ROADMAP.md"
+  />
+
+  <p>
+    Read the generated ROADMAP.md before moving on. If the stack seems too
+    complex or the scope is inflated, adjust with the agent before continuing.
+  </p>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      PLAN.md is detailed, saved in the repository, and reviewed by you. Each
-      phase has acceptance criteria you can actually test.
+      ROADMAP.md exists in the repository, you have read it, and it makes sense
+      to you.
     </p>
   </div>
+
+  <hr />
+
+  <h2 id="create-agents">2. Create the agent operation file</h2>
+
+  <p>
+    With ROADMAP.md ready, ask the agent to create the operation file. This file
+    tells the agent what the project is, what the rules are, what must not be
+    invented, and how to validate work.
+  </p>
+
+  <p>The file name depends on the tool you are using:</p>
+
+  <ul>
+    <li>
+      <strong>Claude Code</strong> → <code>CLAUDE.md</code>
+    </li>
+    <li>
+      <strong>Any other tool</strong> → <code>AGENTS.md</code>
+    </li>
+  </ul>
+
+  <p>
+    The prompt already includes this rule. The agent will generate the file with
+    the correct name if you specify the tool in <code>[CHOSEN_TOOL]</code>.
+  </p>
+
+  <CopyPromptBlock
+    client:visible
+    content={agentsPrompt}
+    lang={lang}
+    label="Prompt to create AGENTS.md or CLAUDE.md"
+  />
+
+  <p>
+    ⚠️ Read the file as soon as it is generated. If it contains a command that
+    does not exist, invented scope, or a rule that contradicts ROADMAP.md, fix
+    it with the agent before continuing.
+  </p>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      AGENTS.md or CLAUDE.md exists, you have read it, and it is aligned with
+      ROADMAP.md.
+    </p>
+  </div>
+
+  <hr />
+
+  <h2 id="create-devplan">3. Create DEV_PLAN.md</h2>
+
+  <p>
+    DEV_PLAN.md turns ROADMAP.md into execution phases. Each phase has an
+    objective, deliverables, and acceptance criteria you can validate in the
+    browser. In the next chapter, you will execute these phases one by one.
+  </p>
+
+  <p>
+    The prompt uses ROADMAP.md as its source of truth and suggests a phase
+    sequence. The agent will adapt if the chosen stack requires different steps.
+  </p>
+
+  <CopyPromptBlock
+    client:visible
+    content={devPlanPrompt}
+    lang={lang}
+    label="Prompt to create DEV_PLAN.md"
+  />
+
+  <p>
+    Review the DEV_PLAN.md phases carefully. Each phase should be small enough
+    to complete in a single agent session. If a phase seems too large, ask the
+    agent to split it before moving on.
+  </p>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      DEV_PLAN.md created, reviewed, and with testable phases. You understand
+      what each phase delivers.
+    </p>
+  </div>
+
+  <hr />
+
+  <p>
+    With these three files, the agent has context (ROADMAP.md), rules (AGENTS.md
+    or CLAUDE.md), and a plan (DEV_PLAN.md). In the next chapter, you will
+    execute DEV_PLAN.md phase by phase.
+  </p>
 </ChapterLayout>

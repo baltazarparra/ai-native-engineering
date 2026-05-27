@@ -7,11 +7,11 @@ const deployBranchPrompt = `
 You will help me publish this project to GitHub Pages for the first time using a deploy branch.
 
 Before changing any files, read:
-- package.json
-- astro.config.mjs, if it exists
-- vite.config.js, vite.config.ts, or equivalent framework config, if it exists
-- README.md
-- PLAN.md
+- package.json if it exists
+- index.html
+- any build config file (vite.config.js, webpack.config.js, etc.) if it exists
+- DEV_PLAN.md
+- ROADMAP.md
 - AGENTS.md or CLAUDE.md
 
 CONTEXT
@@ -22,8 +22,6 @@ CONTEXT
 - The gh-pages branch should contain only the generated static site at the branch root.
 - Use the current official documentation as reference:
   - GitHub Pages publishing source: https://docs.github.com/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
-  - Astro GitHub Pages: https://docs.astro.build/en/guides/deploy/github/
-  - Vite static deploy: https://vite.dev/guide/static-deploy
 
 TASK
 Prepare the first GitHub Pages deploy using the gh-pages branch.
@@ -146,9 +144,9 @@ IMPORTANT RULES
     <strong>Example</strong>
     <p>
       User: <code>ana-dev</code><br />
-      Repository: <code>deezer-explorer</code><br />
+      Repository: <code>my-hn-newspaper</code><br />
       Expected URL:
-      <code>https://ana-dev.github.io/deezer-explorer/</code>
+      <code>https://ana-dev.github.io/my-hn-newspaper/</code>
     </p>
   </div>
 
@@ -226,7 +224,7 @@ IMPORTANT RULES
     <li>Browser console free of critical errors on the main flow.</li>
     <li>Simple rollback plan: you know how to return to the previous commit or deploy.</li>
     <li>Dependencies reviewed: nothing suspicious or unnecessary for a static site.</li>
-    <li>Manual validation of the critical path: search, discography, and album details.</li>
+    <li>Manual validation of the critical path: page loads, stories appear, external links open.</li>
   </ul>
 
   <div class="checkpoint">
@@ -248,9 +246,8 @@ IMPORTANT RULES
 
   <ol>
     <li>Open the published home page.</li>
-    <li>Search for an artist.</li>
-    <li>Open the discography.</li>
-    <li>Open album details.</li>
+    <li>The top Hacker News stories appear in the newspaper layout.</li>
+    <li>Click a story link and confirm it opens the correct URL.</li>
     <li>Test on a phone or narrow viewport.</li>
     <li>Refresh the page and confirm it still loads.</li>
     <li>Open the browser console and check for obvious errors.</li>
@@ -283,9 +280,9 @@ IMPORTANT RULES
   </p>
 
   <p>
-    The next chapter exists for this:
-    <a href="/en/project/troubleshooting/">Where it breaks</a>. Use it when you
-    have a specific error, log, or clear behavior to investigate.
+    If data is not loading, check the console. The HackerNews Firebase API is
+    public and has no CORS restriction, so the issue is likely a network error,
+    incorrect URL, or a bug in the fetch script.
   </p>
 
   <hr />

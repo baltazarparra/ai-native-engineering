@@ -1,0 +1,218 @@
+/* HackerNewsNewspaper — Neo Brutalism newspaper layout */
+
+.newspaper {
+  border: var(--border-thick);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-lg);
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+/* ─── Masthead ─────────────────────────────────────────── */
+.masthead {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xl);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-top: var(--border-thick);
+  border-bottom: var(--border-thick);
+  padding-block: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+/* ─── Manchete (top story) ─────────────────────────────── */
+.manchete {
+  border-bottom: var(--border-thick);
+  padding-bottom: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.mancheteTitle {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  margin: 0 0 var(--space-sm);
+}
+
+/* ─── Matérias grid (stories 2–4) ──────────────────────── */
+.materias {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  border-bottom: var(--border-thick);
+  padding-bottom: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.materiaCard {
+  border-left: 4px solid var(--color-accent-1);
+  padding-left: var(--space-md);
+}
+
+.materiaTitle {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  margin: 0 0 var(--space-xs);
+}
+
+/* ─── Listagem (stories 5–10) ──────────────────────────── */
+.listagem {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listaItem {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: var(--space-sm);
+  align-items: baseline;
+  border-bottom: var(--border-thin);
+  padding-block: var(--space-sm);
+}
+
+.listaItem:last-child {
+  border-bottom: none;
+}
+
+.listaNum {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+.listaContent {
+  min-width: 0;
+}
+
+/* ─── Shared link style ────────────────────────────────── */
+.storyLink {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.storyLink:hover {
+  color: var(--color-accent-2);
+  text-decoration: underline;
+}
+
+.storyLink:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Story meta ───────────────────────────────────────── */
+.storyMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+}
+
+/* ─── Error state ──────────────────────────────────────── */
+.errorState {
+  text-align: center;
+  padding: var(--space-xl);
+  color: var(--color-text-muted);
+}
+
+.retryBtn {
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-lg);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent-1);
+  color: var(--color-fg-on-yellow);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.retryBtn:hover {
+  transform: var(--motion-lift-md);
+  box-shadow: var(--shadow-md);
+}
+
+.retryBtn:active {
+  transform: var(--motion-press);
+  box-shadow: none;
+}
+
+/* ─── Skeleton loading ─────────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeletonBlock,
+.skeletonCard,
+.skeletonRow {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-alt) 25%,
+    var(--color-surface) 50%,
+    var(--color-surface-alt) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeletonBlock {
+  height: 120px;
+  margin-bottom: var(--space-lg);
+}
+
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.skeletonCard {
+  height: 80px;
+}
+
+.skeletonList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.skeletonRow {
+  height: 24px;
+}
+
+/* ─── Responsive ───────────────────────────────────────── */
+@media (min-width: 768px) {
+  .mancheteTitle {
+    font-size: var(--text-4xl);
+  }
+
+  .materias {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .skeletonGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .skeletonCard {
+    height: 100px;
+  }
+}
