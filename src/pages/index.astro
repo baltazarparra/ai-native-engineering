@@ -7,7 +7,6 @@ import Card from '../components/Card/Card.astro';
 import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
 import Discussion from '../components/Discussion/Discussion.astro';
-import HomeFoundations from '../components/HomeFoundations/HomeFoundations.astro';
 import HeroStickers from '../components/HeroStickers/HeroStickers';
 import HeroGhostCursors from '../components/HeroGhostCursors/HeroGhostCursors';
 import HeroCaptureCounter from '../components/HeroCaptureCounter/HeroCaptureCounter';
@@ -17,7 +16,6 @@ import {
   getHomeAlternateLinks,
   getSessionHref,
   getProjectHref,
-  getSkillsHref,
   getHarnessHref,
 } from '../lib/i18n';
 
@@ -73,15 +71,9 @@ function levelToLabel(level: string) {
       </div>
     </SectionBlock>
 
-    <HomeFoundations lang={lang} />
-
     <!-- session cards -->
-    <SectionBlock padding="xl" id="sessoes">
+    <SectionBlock padding="lg" id="sessoes">
       <h2>Aulas</h2>
-      <p class="section-intro">
-        Três passos para montar a base: vocabulário, ferramentas e fluxo
-        profissional com IA.
-      </p>
       <Grid columns={3} gap="lg" align="stretch">
         {
           sessions.map((session) => (
@@ -106,24 +98,8 @@ function levelToLabel(level: string) {
       </Grid>
     </SectionBlock>
 
-    <!-- harness engineering -->
-    <SectionBlock padding="xl" alt>
-      <div class="harness-cta-block">
-        <div>
-          <Badge variant="coral">Conceito</Badge>
-          <h2>Harness Engineering</h2>
-          <p>
-            Depois das sessões, aprofunde como contexto, ferramentas, limites e
-            validação transformam um modelo em agente confiável. A Sessão 3
-            mostra como operar; esta série explica o sistema por trás.
-          </p>
-        </div>
-        <Button href={getHarnessHref(lang)} size="lg">Entender harness</Button>
-      </div>
-    </SectionBlock>
-
     <!-- projeto prático -->
-    <SectionBlock padding="xl">
+    <SectionBlock padding="xl" alt>
       <div class="project-cta-block">
         <Badge variant="coral">Novo</Badge>
         <h2>Projeto Prático</h2>
@@ -137,16 +113,19 @@ function levelToLabel(level: string) {
       </div>
     </SectionBlock>
 
-    <!-- skills -->
+    <!-- harness engineering -->
     <SectionBlock padding="xl">
-      <div class="skills-cta-block">
-        <Badge variant="blue">Skills</Badge>
-        <h2>Compartilhe processos com seus agentes</h2>
-        <p>
-          Por fim, aprenda a transformar bons hábitos em skills reutilizáveis
-          para seus agentes.
-        </p>
-        <Button href={getSkillsHref(lang)} size="lg"> Ver skills </Button>
+      <div class="harness-cta-block">
+        <div>
+          <Badge variant="coral">Conceito</Badge>
+          <h2>Harness Engineering</h2>
+          <p>
+            Depois das sessões, aprofunde como contexto, ferramentas, limites e
+            validação transformam um modelo em agente confiável. A Sessão 3
+            mostra como operar; esta série explica o sistema por trás.
+          </p>
+        </div>
+        <Button href={getHarnessHref(lang)} size="lg">Entender harness</Button>
       </div>
     </SectionBlock>
 
@@ -193,19 +172,21 @@ function levelToLabel(level: string) {
     line-height: var(--leading-relaxed);
   }
 
-  .section-intro {
-    max-width: 42ch;
-    margin-block: var(--space-md) var(--space-xl);
-    font-size: var(--text-lg);
-    color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
-  }
-
   .session-order {
     font-family: var(--font-heading);
     font-weight: var(--weight-medium);
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+  }
+
+  :global(#sessoes) {
+    margin-bottom: var(--space-2xl);
+  }
+
+  @media (min-width: 1024px) {
+    :global(#sessoes) {
+      margin-bottom: var(--space-3xl);
+    }
   }
 
   .project-cta-block {
@@ -244,28 +225,6 @@ function levelToLabel(level: string) {
     margin-block: var(--space-md) var(--space-lg);
     color: var(--color-text-muted);
     line-height: var(--leading-relaxed);
-  }
-
-  .skills-cta-block {
-    border: var(--border-thick);
-    border-radius: var(--radius-md);
-    background-color: var(--color-bg-alt);
-    box-shadow: var(--shadow-lg);
-    padding: var(--space-xl);
-    max-width: 760px;
-    margin-inline: auto;
-    text-align: center;
-  }
-
-  .skills-cta-block h2 {
-    margin-top: var(--space-sm);
-  }
-
-  .skills-cta-block p {
-    margin: var(--space-md) auto var(--space-lg);
-    color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
-    max-width: 54ch;
   }
 
   h2 + p {

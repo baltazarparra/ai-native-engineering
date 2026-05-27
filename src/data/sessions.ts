@@ -23,7 +23,7 @@ export const sessions: SessionCardData[] = [
     order: 1,
     summary:
       'O que é vibe coding, quais plataformas criam apps por prompt, onde isso ajuda, onde quebra e como transformar demo em software de verdade.',
-    readingTime: 14,
+    readingTime: 10,
     level: 'beginner',
     heroLabel: 'Vocabulário essencial',
     accent: 'blue',
@@ -36,7 +36,7 @@ export const sessions: SessionCardData[] = [
     order: 2,
     summary:
       'Entenda a diferença entre ferramenta, produto e modelo para escolher melhor IDEs, CLIs, agentes na nuvem e LLMs.',
-    readingTime: 28,
+    readingTime: 22,
     level: 'intermediate',
     heroLabel: 'Mapa de escolha',
     accent: 'green',
@@ -49,7 +49,7 @@ export const sessions: SessionCardData[] = [
     order: 3,
     summary:
       'SDD transforma intenção em planejamento. Harness Design organiza ferramentas e validações para agentes desenvolverem com qualidade e segurança.',
-    readingTime: 24,
+    readingTime: 12,
     level: 'advanced',
     heroLabel: 'Fluxo profissional',
     accent: 'coral',
@@ -62,7 +62,7 @@ export const sessions: SessionCardData[] = [
     order: 1,
     summary:
       'What vibe coding is, which platforms turn prompts into apps, where it helps, where it breaks, and how to turn a demo into real software.',
-    readingTime: 14,
+    readingTime: 10,
     level: 'beginner',
     heroLabel: 'Essential vocabulary',
     accent: 'blue',
@@ -75,7 +75,7 @@ export const sessions: SessionCardData[] = [
     order: 2,
     summary:
       'Understand the difference between tools, products, and models so you can choose IDEs, CLIs, cloud agents, and LLMs with intent.',
-    readingTime: 28,
+    readingTime: 22,
     level: 'intermediate',
     heroLabel: 'Choice map',
     accent: 'green',
@@ -88,7 +88,7 @@ export const sessions: SessionCardData[] = [
     order: 3,
     summary:
       'SDD turns intent into a verifiable plan. Harness Design organizes tools and validation so agents can deliver with quality and safety.',
-    readingTime: 24,
+    readingTime: 12,
     level: 'advanced',
     heroLabel: 'Professional flow',
     accent: 'coral',

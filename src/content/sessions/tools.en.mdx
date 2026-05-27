@@ -5,7 +5,7 @@ lang: 'en'
 translationKey: 'tools'
 order: 2
 summary: 'Understand the difference between tools, products, and models so you can choose IDEs, CLIs, cloud agents, and LLMs with intent.'
-readingTime: 28
+readingTime: 22
 level: 'intermediate'
 tags: ['tools', 'models', 'ide', 'cli', 'comparison']
 heroLabel: 'Choice map'
@@ -29,7 +29,7 @@ references:
     'meta-llama-docs',
     'vellum-llm-leaderboard',
   ]
-updatedAt: 2026-05-24
+updatedAt: 2026-05-26
 ---
 
 ## Two different choices
@@ -79,25 +79,3 @@ Some models are tuned to work well with tools: reading files, calling APIs, runn
 ### Real limits
 
 Every model hallucinates, has a knowledge cutoff, and can generate code that looks correct but solves the wrong problem. A benchmark is a signal, not an oracle. A ranking measures standardized tasks; your project has its own context, history, constraints, and debt.
-
-## Task profiles, not rankings
-
-There is no "best model". There is the right model for the right task.
-
-**Exploring ideas**: fast and cheap models are usually enough when the goal is to brainstorm, generate alternatives, and surface better questions, not to produce final code.
-
-**Writing and reviewing everyday code**: balanced models, such as Claude Sonnet or specialized coding models inside IDEs, tend to deliver good cost-effectiveness.
-
-**Planning architecture or large refactors**: models with deeper reasoning and wide context windows make more sense, especially when they need to consider many modules at once.
-
-**Analyzing long documents or many sources**: models with large context and strong synthesis, such as Gemini Pro or Claude Opus, can outperform models focused purely on code editing.
-
-**Privacy, cost, or control**: open-weight or open-source models, such as Llama, Gemma, DeepSeek, and GLM, come in when the team needs more control over hosting, cost, privacy, or customization.
-
-## Takeaway
-
-- Separate tool, product, and model before comparing options.
-- Choose the tool by workflow friction and the model by task difficulty.
-- Use benchmarks as a signal, not a final answer.
-- Treat every response as a draft until it has passed review and validation.
-- The differentiator is not "using the most powerful AI"; it is building a combination that helps you deliver software with more clarity and control.

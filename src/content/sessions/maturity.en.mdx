@@ -5,7 +5,7 @@ lang: 'en'
 translationKey: 'maturity'
 order: 3
 summary: 'SDD turns intent into a verifiable plan. Harness Design organizes tools and validation so agents can deliver with quality and safety.'
-readingTime: 24
+readingTime: 12
 level: 'advanced'
 tags: ['sdd', 'harness', 'agents', 'governance', 'workflow']
 heroLabel: 'Professional flow'
@@ -28,10 +28,8 @@ references:
     'owasp-agentic-ai-threats',
     'owasp-agentic-applications-2026',
   ]
-updatedAt: 2026-05-24
+updatedAt: 2026-05-26
 ---
-
-import SDDHarnessFlow from '../../components/SDDHarnessFlow/SDDHarnessFlow.tsx';
 
 ## The shift that matters
 
@@ -89,98 +87,3 @@ Think of the harness as the agent's work infrastructure. It is not one tool. It 
 - **Learning**: each recurring failure becomes a rule, test, hook, doc, or skill. The harness improves because the team learned.
 
 The goal is not to trap the agent. It is to create rails. Good rails do not prevent movement; they make movement predictable, reviewable, and safe.
-
-### Harness in practice
-
-The difference shows up when a task leaves the prototype stage and enters a real product.
-
-**Without a harness**: someone asks "build the user invite screen." The agent might create a nice screen, but ignore permissions, error states, product copy, responsiveness, tests, and existing design rules.
-
-**With a harness**: the same task, with rails. The agent gets a short spec, UI rules, existing components, acceptance criteria, validation commands, and permission limits. At the end, it must explain what changed and how it tested it.
-
-### A harness in one week
-
-You do not need to build a platform. Start with one real failure and turn learning into structure.
-
-1. **Write a short `AGENTS.md`**: include project commands, important standards, and two or three rules the agent should always respect.
-2. **Document how to validate**: list lint, tests, typecheck, build, and any check that proves a change did not break the basics.
-3. **Pick a recurring failure**: choose a problem that already happened: skipped test, broken UI pattern, wrong file, forgotten command.
-4. **Turn the failure into a rail**: create a rule, test, checklist, hook, or skill. If it happens again, the harness is not clear enough yet.
-
-## The industry flow in 2026
-
-In 2026, mature teams do not treat an agent as glorified chat. They run a repeatable cycle:
-
-1. **Research**: the agent (or the human) gathers evidence from the repo, docs, and history before deciding.
-2. **Plan**: intent becomes a reviewable spec or plan, with scope, risks, and acceptance criteria.
-3. **Execute**: the agent implements on a branch, with tools and boundaries defined by the harness.
-4. **Review**: diff, tests, security, and checklist before merge or PR.
-5. **Ship**: deploy with rollback, logs, and manual validation of the critical path.
-6. **Learn**: failures become rules, tests, or docs. The harness evolves.
-
-### Context-grounding
-
-Before specifying, planning, or implementing, the agent needs to **ground the answer in the repository**. That means reading real files, checking existing patterns, verifying dependencies, and not inventing structure the project does not have. A spec without grounding is pretty text. Code without grounding is a plausible but wrong patch.
-
-### Cloud agents
-
-Cloud agents research the repo, propose a plan, work on an isolated branch, and deliver a diff. The PR only appears when a human approves. That model reduces risk: you review before merge, not after deploy.
-
-### Multi-agent coordination
-
-Several agents in parallel can speed up independent tasks (tests, docs, isolated refactors). But they need clear boundaries, human review, and separate scope. Parallelism without a harness becomes hard-to-audit chaos.
-
-## The flow in six stages
-
-Before the example, see the SDD + Harness Design map. Each stage shows what the spec defines, what the harness guarantees, and which signals prove the work is mature.
-
-<SDDHarnessFlow client:visible lang="en" />
-
-## Applied example: enterprise SSO
-
-Imagine a company needs to add SSO login for enterprise customers.
-
-### Amateur flow
-
-Someone asks the agent: "implement SSO with Google". The agent creates an integration, adds dependencies, changes auth, passes the build, and the screen opens. It looks like progress.
-
-But nobody answered:
-
-- which providers are supported;
-- how domains map to organizations;
-- what happens to existing users;
-- who can configure SSO;
-- how login is audited;
-- how to roll back if the provider fails;
-- which tests prove permissions do not leak.
-
-That is not serious engineering. It is a demo dressed up as delivery.
-
-### SDD + Harness flow
-
-**PM** writes the intent: enterprise customers need to authenticate users through the SSO provider configured for their organization.
-
-**Tech lead** turns that into a spec: flows, states, permissions, boundaries, schemas, endpoints, and risks.
-
-**QA** derives scenarios: user without an allowed domain, provider unavailable, expired invitation, organization without SSO, existing user with the same email.
-
-**Security** defines constraints: tokens cannot go into unsafe storage; logs cannot contain secrets; callback must validate state.
-
-**Agent** receives the spec, auth-module context, project rules, and validation commands.
-
-**Harness** runs the gates: typecheck, lint, unit tests, integration tests, build, diff review, and security checklist.
-
-If something fails, the team does not just ask the agent to "try again". It asks: was an acceptance criterion missing? A test? A rule? A tool? The answer becomes an improvement to the harness.
-
-## How to start without bureaucracy
-
-You do not need a perfect setup before using this.
-
-Start small:
-
-1. Create a simple spec template for medium-risk features.
-2. Write a short `AGENTS.md` with commands, architecture, and essential rules.
-3. Define the minimum bar before accepting a PR: diff read, lint, typecheck, tests, and acceptance criteria.
-4. Review the harness once per sprint or before major delivery.
-
-The goal is not bureaucracy. The goal is reducing improvisation where improvisation is expensive.

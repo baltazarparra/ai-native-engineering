@@ -5,7 +5,7 @@ lang: 'en'
 translationKey: 'glossary'
 order: 1
 summary: 'What vibe coding is, which platforms turn prompts into apps, where it helps, where it breaks, and how to turn a demo into real software.'
-readingTime: 14
+readingTime: 10
 level: 'beginner'
 tags: ['glossary', 'vibe coding', 'tools', 'fundamentals']
 heroLabel: 'Essential vocabulary'
@@ -24,10 +24,8 @@ references:
     'owasp-agentic-applications-2026',
     'mcp-tool-poisoning-research',
   ]
-updatedAt: 2026-05-24
+updatedAt: 2026-05-26
 ---
-
-import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid.tsx';
 
 ## Made an app via prompts. Now what?
 
@@ -38,17 +36,6 @@ That moment is addictive because it feels like you skipped months of learning. A
 But this is the most important line in the session: **preview is not production**.
 
 An app that opens in the browser can still have broken access rules, exposed secrets, fragile flows, unmaintainable code, odd dependencies, no tests, and an architecture that only works while the project is tiny.
-
-**Concrete risks that show up in production:**
-
-- **Missing RLS:** any user can read or change another user's data.
-- **Secrets in the client:** API keys or tokens visible in the browser.
-- **Front-end-only validation:** the backend accepts any malicious payload.
-- **Overly broad permissions:** the app does more than it should, with no fine-grained control.
-- **No rollback plan:** when something breaks, there is no safe way to revert.
-- **No logs:** nobody knows what happened when something fails.
-
-Generating something in 30 minutes is not the hard part. Maintaining it tomorrow is.
 
 ## What vibe coding is
 
@@ -80,15 +67,3 @@ In this session, you are getting the vocabulary to avoid falling for marketing. 
 
 - [Session 2: Tools and models](../tools) shows how to choose between AI IDEs, CLIs, cloud agents, and task-fit models.
 - [Session 3: SDD and Harness Design](../maturity) shows how to turn intent into a verifiable contract and operate agents with context, validation, and governance.
-
-## Quick term search
-
-Use the search below as a pocket map. The goal is not to memorize jargon; it is to understand enough to ask better questions.
-
-<GlossaryCardGrid lang="en" client:visible />
-
-## Takeaway
-
-- Vibe coding is great for starting, learning, and prototyping. It is not an excuse to stop understanding.
-- Prompt-to-app platforms move fast, but they make technical choices for you.
-- Preview is not production. A prototype can become a product, but only after spec, validation, security, and ownership.

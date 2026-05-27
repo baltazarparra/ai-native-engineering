@@ -5,7 +5,7 @@ lang: 'pt-BR'
 translationKey: 'maturity'
 order: 3
 summary: 'SDD transforma intenção em planejamento. Harness Design organiza ferramentas e validações para agentes desenvolverem com qualidade e segurança.'
-readingTime: 24
+readingTime: 12
 level: 'advanced'
 tags: ['sdd', 'harness', 'agentes', 'governança', 'workflow']
 heroLabel: 'Fluxo profissional'
@@ -28,10 +28,8 @@ references:
     'owasp-agentic-ai-threats',
     'owasp-agentic-applications-2026',
   ]
-updatedAt: 2026-05-24
+updatedAt: 2026-05-26
 ---
-
-import SDDHarnessFlow from '../../components/SDDHarnessFlow/SDDHarnessFlow.tsx';
 
 ## O salto que importa
 
@@ -89,94 +87,3 @@ Pense no harness como a infraestrutura de trabalho do agente. Não é uma ferram
 - **Aprendizado**: cada falha recorrente vira uma regra, teste, hook, doc ou skill. O harness melhora porque o time aprendeu.
 
 O ponto não é criar uma prisão para o agente. É criar trilhos. Bons trilhos não impedem movimento; eles tornam o movimento previsível, revisável e seguro.
-
-### O harness na prática
-
-A diferença aparece quando a tarefa sai do protótipo e entra num produto de verdade.
-
-**Sem harness**: alguém pede "faz a tela de convite de usuários". O agente pode criar uma tela bonita, mas talvez ignore permissões, estados de erro, texto do produto, responsividade, testes e regras de design já existentes.
-
-**Com harness**: a mesma tarefa, com trilhos. O agente recebe uma spec curta, regras de UI, componentes existentes, critérios de aceite, comandos de validação e limites de permissão. No final, precisa mostrar o que mudou e como testou.
-
-### Um harness em uma semana
-
-Você não precisa montar uma plataforma. Comece por uma falha real e transforme aprendizado em estrutura.
-
-1. **Escreva um `AGENTS.md` curto**: inclua comandos do projeto, padrões importantes e duas ou três regras que o agente precisa respeitar sempre.
-2. **Documente como validar**: liste lint, testes, typecheck, build e qualquer checagem que prove que uma mudança não quebrou o básico.
-3. **Escolha uma falha recorrente**: pegue um problema que já aconteceu: teste ignorado, padrão de UI quebrado, arquivo errado, comando esquecido.
-4. **Transforme a falha em trilho**: crie uma regra, teste, checklist, hook ou skill. Se acontecer de novo, o harness ainda não está claro o bastante.
-
-## O fluxo da indústria em 2026
-
-Em 2026, times maduros não tratam agente como chat glorificado. Eles operam um ciclo repetível:
-
-1. **Pesquisa**: o agente (ou o humano) busca evidência no repositório, docs e histórico antes de decidir.
-2. **Plano**: a intenção vira spec ou plano revisável, com escopo, riscos e critérios de aceite.
-3. **Execução**: o agente implementa em branch, com ferramentas e limites definidos pelo harness.
-4. **Revisão**: diff, testes, segurança e checklist antes de merge ou PR.
-5. **Publicação**: deploy com rollback, logs e validação manual do caminho crítico.
-6. **Aprendizado**: falhas viram regra, teste ou doc. O harness evolui.
-
-### Context-grounding
-
-Antes de especificar, planejar ou implementar, o agente precisa **ancorar a resposta no repositório**. Isso significa ler arquivos reais, conferir padrões existentes, checar dependências e não inventar estrutura que o projeto não tem. Spec sem grounding vira texto bonito. Código sem grounding vira patch plausível e errado.
-
-### Agentes cloud
-
-Agentes cloud pesquisam o repo, propõem plano, trabalham em branch isolada e entregam diff. O PR só nasce quando um humano aprova. Esse modelo reduz risco: você revisa antes de merge, não depois de deploy.
-
-### Coordenação multi-agente
-
-Vários agentes em paralelo podem acelerar tarefas independentes (testes, docs, refactors isolados). Mas precisam de limites claros, revisão humana e escopo separado. Paralelismo sem harness vira caos difícil de auditar.
-
-## O fluxo em seis etapas
-
-Antes do exemplo, veja o mapa do fluxo SDD + Harness Design. Cada etapa mostra o que a spec define, o que o harness garante e quais sinais provam que o trabalho está maduro.
-
-<SDDHarnessFlow client:visible lang="pt-BR" />
-
-## Exemplo aplicado: login único corporativo
-
-Imagine que uma empresa precisa adicionar SSO, ou login único, para clientes corporativos.
-
-### Fluxo amador
-
-Alguém pede ao agente: "implementa SSO com Google". O agente cria uma integração, adiciona dependências, muda autenticação, passa no build e a tela abre. Parece progresso.
-
-Mas ninguém respondeu:
-
-- quais provedores são suportados;
-- como mapear domínio para organização;
-- o que acontece com usuários existentes;
-- quem pode configurar SSO;
-- como auditar login;
-- como reverter se o provedor cair;
-- quais testes provam que permissões não vazam.
-
-Isso não é engenharia corporativa. É uma demo vestida de entrega.
-
-### Fluxo SDD + Harness
-
-**Pessoa de produto ou PM** escreve a intenção: clientes corporativos precisam autenticar usuários pelo provedor SSO configurado por organização.
-
-**Liderança técnica ou tech lead** transforma isso em spec: fluxos, estados, permissões, limites, schemas, endpoints e riscos.
-
-**QA** deriva cenários: usuário sem domínio permitido, provedor indisponível, convite expirado, organização sem SSO, usuário existente com e-mail igual.
-
-**Segurança** define restrições: tokens não podem ir para armazenamento inseguro; logs não podem conter segredos; o callback do provedor precisa validar estado.
-
-**Agente** recebe spec, contexto do módulo de autenticação, regras do projeto e comandos de validação.
-
-**Harness** executa os gates de validação, ou checagens obrigatórias: typecheck, lint, testes unitários, testes de integração, build, revisão de diff e checklist de segurança.
-
-Se algo falha, o time não só pede "tenta de novo". Ele pergunta: faltou critério de aceite? Faltou teste? Faltou regra? Faltou ferramenta? A resposta vira melhoria no harness.
-
-## Como começar sem burocratizar
-
-1. Crie um template simples para suas Specs.
-2. Escreva um `AGENTS.md` curto com comandos, arquitetura e regras essenciais.
-3. Defina o "mínimo aceitável" antes de aceitar PR: diff revisado, lint, typecheck, testes e critérios de aceite.
-4. Revise o harness uma vez por sprint ou por entrega importante.
-
-O objetivo não é burocracia. O objetivo é reduzir improviso onde improviso custa caro.

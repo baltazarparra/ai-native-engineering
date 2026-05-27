@@ -316,17 +316,11 @@ const projectSlugs: Record<Lang, string> = {
   en: 'project',
 };
 
-const skillsSlug = 'skills';
 const harnessSlug = 'harness-engineering';
 
 export function getProjectHref(lang: Lang): string {
   const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
   return withBase(`${prefix}${projectSlugs[lang]}`);
-}
-
-export function getSkillsHref(lang: Lang): string {
-  const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
-  return withBase(`${prefix}${skillsSlug}`);
 }
 
 export function getHarnessHref(lang: Lang): string {
@@ -345,16 +339,6 @@ export function getProjectAlternateLinks(): AlternateLink[] {
     label: languages[lang].label,
   }));
   links.push({ lang: 'x-default' as const, href: getProjectHref(defaultLang) });
-  return links;
-}
-
-export function getSkillsAlternateLinks(): AlternateLink[] {
-  const links: AlternateLink[] = supportedLangs.map((lang) => ({
-    lang,
-    href: getSkillsHref(lang),
-    label: languages[lang].label,
-  }));
-  links.push({ lang: 'x-default' as const, href: getSkillsHref(defaultLang) });
   return links;
 }
 
