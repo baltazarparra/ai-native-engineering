@@ -1,133 +1,6 @@
 ---
 import ChapterLayout from '../../layouts/ChapterLayout.astro';
-import CopyPromptBlock from '../../components/CopyPromptBlock/CopyPromptBlock.tsx';
 const lang = 'pt-BR';
-
-const planPrompt = `
-Você vai me ajudar a iniciar um projeto real do zero. Neste momento eu quero apenas um PLAN.md inicial, honesto e útil. Não quero implementação ainda.
-
-CONTEXTO DO PRODUTO
-- Nome do repositório: [NOME_DO_REPO]
-- Nome de trabalho do produto: Deezer Explorer
-- O que vamos construir: um site estático e responsivo onde a pessoa digita o nome de um artista, escolhe um resultado, vê a discografia em cards com capa e abre um álbum para ver tracklist, data de lançamento e capa
-- Fonte de dados: API pública do Deezer
-- Endpoints obrigatórios da v1:
-  - GET /search/artist?q=...
-  - GET /artist/{id}/albums
-  - GET /album/{id}
-- Fluxo principal do usuário:
-  1. abrir o site
-  2. pesquisar um artista
-  3. ver resultados de artistas
-  4. escolher um artista
-  5. ver a lista de álbuns com capas
-  6. abrir um álbum
-  7. ver tracklist, capa e data
-- Publicação final: GitHub Pages
-- Restrições reais do projeto:
-  - sem backend próprio
-  - sem autenticação
-  - sem banco de dados
-  - mobile-first e responsivo
-  - acessível o suficiente para navegação por teclado
-  - poucas dependências
-  - precisamos considerar o problema de CORS no browser
-  - o repositório está no começo e pode estar quase vazio
-- Ferramenta em uso: [FERRAMENTA_ESCOLHIDA]
-
-TAREFA
-Crie um arquivo PLAN.md na raiz do projeto.
-
-O PLAN.md deve incluir:
-- resumo objetivo do produto
-- escopo exato da v1
-- uma stack inicial concreta, escolhendo uma única direção técnica em vez de listar várias opções
-- justificativa curta para essa stack
-- plano de implementação em fases pequenas e testáveis
-- para cada fase: objetivo, entregáveis, critérios de aceite, validação manual, riscos e decisões abertas
-- uma nota sobre publicação no GitHub Pages
-- uma seção curta de “fora de escopo por enquanto”
-
-REGRAS IMPORTANTES
-- escreva o arquivo em inglês
-- seja específico e evite frases genéricas
-- não invente funcionalidades além do escopo descrito
-- não implemente código
-- este é um plano inicial: ele pode ser refinado depois, mas já precisa ser coerente e executável
-- gere apenas o conteúdo final do PLAN.md
-`.trim();
-
-const readmePrompt = `
-Use o PLAN.md já existente no repositório como fonte principal de verdade.
-
-CONTEXTO DO PRODUTO
-- Nome do repositório: [NOME_DO_REPO]
-- Produto: Deezer Explorer
-- O produto final é um site estático e responsivo para pesquisar artistas, listar álbuns e abrir detalhes de um álbum usando a API pública do Deezer
-- Publicação final: GitHub Pages
-- Estado atual do repositório: começo do projeto, com PLAN.md inicial já criado e revisado
-- Ferramenta em uso: [FERRAMENTA_ESCOLHIDA]
-
-TAREFA
-Crie um README.md real para este repositório no estado atual dele.
-
-O README.md deve ser útil para alguém que abrir o repositório agora e precisa entender:
-- o que este projeto é
-- o que ele vai entregar na v1
-- qual é o fluxo principal do usuário
-- quais endpoints da API do Deezer são centrais para o projeto
-- qual stack foi escolhida no PLAN.md
-- qual é o estado atual do repositório neste momento
-- como o projeto deve ser desenvolvido localmente
-- como a publicação no GitHub Pages deve funcionar
-- quais riscos e limitações já são conhecidos
-- quais são os próximos passos imediatos
-
-REGRAS IMPORTANTES
-- escreva o arquivo em inglês
-- faça um README real, não um placeholder
-- use o PLAN.md como base para stack, escopo e fases
-- se a implementação ainda não começou, deixe isso explícito na seção de status em vez de fingir que o produto já existe
-- não invente funcionalidades fora do escopo
-- não encha o arquivo com texto genérico de template
-- gere apenas o conteúdo final do README.md
-`.trim();
-
-const agentsPrompt = `
-Use o PLAN.md e o README.md já existentes como fonte principal de verdade.
-
-CONTEXTO DO PRODUTO
-- Nome do repositório: [NOME_DO_REPO]
-- Produto: Deezer Explorer
-- O produto final é um site estático e responsivo para pesquisar artistas, listar álbuns e abrir detalhes de um álbum usando a API pública do Deezer
-- Publicação final: GitHub Pages
-- Ferramenta em uso: [FERRAMENTA_ESCOLHIDA]
-
-TAREFA
-Crie o arquivo de operação do agente na raiz do projeto.
-
-REGRAS DE NOME DO ARQUIVO
-- se eu estiver usando Claude Code, o arquivo deve se chamar CLAUDE.md
-- em qualquer outra ferramenta, o arquivo deve se chamar AGENTS.md
-
-O arquivo precisa ser realmente útil para o trabalho diário neste repositório e deve incluir:
-- visão geral concreta do projeto
-- objetivos e escopo atual da v1
-- quais arquivos são fonte de verdade do projeto
-- como o agente deve usar PLAN.md e README.md antes de propor mudanças
-- comandos principais do projeto se eles já existirem; se ainda não existirem, isso deve ser dito de forma explícita
-- padrões de qualidade e validação
-- regras para atualizar PLAN.md e README.md quando decisões mudarem
-- regras para propor mudanças em fases pequenas
-- o que não deve ser inventado, alterado ou assumido sem alinhamento
-
-REGRAS IMPORTANTES
-- escreva o arquivo em inglês
-- faça um documento real de operação, não um template genérico
-- use PLAN.md e README.md como base
-- não invente stack, comandos ou fluxo que contradigam os arquivos existentes
-- gere apenas o conteúdo final do arquivo correto: AGENTS.md ou CLAUDE.md
-`.trim();
 ---
 
 <ChapterLayout chapterNumber={1} lang={lang}>
@@ -150,7 +23,8 @@ REGRAS IMPORTANTES
   <ol>
     <li>Clique em <strong>New repository</strong>.</li>
     <li>
-      Escolha um nome curto e claro, como <code>deezer-explorer</code>.
+      Escolha um nome curto e claro, como <code>meu-jornal-hn</code> ou
+      <code>[NOME_DO_REPO]</code>.
     </li>
     <li>Adicione uma descrição simples do projeto.</li>
     <li>
@@ -167,10 +41,11 @@ REGRAS IMPORTANTES
   <div class="prompt-example prompt-good">
     <strong>Exemplo simples</strong>
     <p>
-      Nome: <code>deezer-explorer</code><br />
+      Nome: <code>meu-jornal-hn</code><br />
       Descrição:
       <code>
-        Site para explorar artistas, álbuns e faixas usando a API do Deezer
+        Jornal de notícias ao vivo com as top stories do Hacker News, publicado
+        no GitHub Pages
       </code>
     </p>
   </div>
@@ -195,8 +70,8 @@ REGRAS IMPORTANTES
   <div class="prompt-example prompt-good">
     <strong>No terminal</strong>
     <pre><code>cd ~/projetos
-git clone https://github.com/seu-usuario/deezer-explorer.git
-cd deezer-explorer
+git clone https://github.com/seu-usuario/[NOME_DO_REPO].git
+cd [NOME_DO_REPO]
 git remote -v
 git status</code></pre>
   </div>
@@ -222,8 +97,36 @@ git status</code></pre>
 
   <p>
     Com a pasta local pronta, abra esse diretório na ferramenta em que você vai
-    trabalhar: Cursor, Windsurf, VS Code, Claude Code ou outra parecida. O ponto
-    importante aqui é abrir a raiz do projeto, não arquivos soltos.
+    trabalhar. O ponto importante aqui é abrir a raiz do projeto, não arquivos
+    soltos.
+  </p>
+
+  <p>
+    As ferramentas de IA para desenvolvimento se dividem em três categorias
+    principais — todas funcionam bem para este projeto:
+  </p>
+
+  <ul>
+    <li>
+      <strong>IDEs com IA integrada</strong> (Cursor, Windsurf): ambiente completo
+      com editor de código, terminal e agente no mesmo lugar. Boa escolha se você
+      quer tudo integrado.
+    </li>
+    <li>
+      <strong>CLIs de IA no terminal</strong> (Claude Code, OpenCode): agente que
+      opera diretamente pelo terminal, lê e edita arquivos, roda comandos. Boa
+      escolha se você já tem um editor preferido.
+    </li>
+    <li>
+      <strong>Assistentes de IDE</strong> (GitHub Copilot, Codeium, etc.):
+      sugestões inline dentro de IDEs como VS Code ou JetBrains. Funciona, mas
+      exige mais gerenciamento manual de contexto.
+    </li>
+  </ul>
+
+  <p>
+    Qualquer uma dessas categorias vai servir. O que importa é que o agente
+    consiga enxergar a raiz do projeto e operar nos arquivos.
   </p>
 
   <div class="checkpoint">
@@ -236,125 +139,13 @@ git status</code></pre>
 
   <hr />
 
-  <h2 id="harness">Criar os arquivos que guiam o projeto</h2>
-
-  <p>
-    Agora sim entra o fluxo normal. Antes de pedir interface, busca ou
-    integração com API, vale registrar o contexto do projeto e a forma de
-    trabalhar. Isso evita que o agente invente escopo cedo demais.
-  </p>
-
-  <p>
-    Para esse começo funcionar bem, peça um arquivo por vez. Primeiro o
-    <code>PLAN.md</code>, porque ele vira a base dos próximos. Depois o
-    <code>README.md</code>. Por último, peça o <code>AGENTS.md</code> ou
-    <code>CLAUDE.md</code>, já usando os dois anteriores como contexto.
-  </p>
-
-  <p>
-    Esses arquivos não são burocracia. Eles são parte do harness do projeto:
-    contexto, regras e validação que o agente precisa antes de escrever código.
-  </p>
-
-  <p>
-    Se você ainda está se acostumando com os modos Ask, Plan e Agent, abra a
-    <a href="/colinha">colinha de modos</a> antes de colar os prompts.
-  </p>
-
-  <p>
-    Os prompts pedem arquivos em inglês porque <code>PLAN.md</code>,
-    <code>README.md</code> e <code>AGENTS.md</code> viraram convenção global em
-    repositórios de software. Isso ajuda o agente, revisores e ferramentas a
-    reconhecerem o material certo, mesmo com a interface do site em português.
-  </p>
-
-  <p>
-    Nos blocos abaixo, troque os campos entre colchetes e clique em
-    <strong>Copiar prompt</strong>. A ideia é você colar direto na ferramenta e
-    receber um arquivo mais consistente, sem começar de um pedido genérico.
-  </p>
-
-  <p>
-    Aqui tem um detalhe importante: só o <code>PLAN.md</code> nasce como plano inicial
-    e será refinado no próximo capítulo. O <code>README.md</code> e o
-    <code>AGENTS.md</code> ou <code>CLAUDE.md</code> já devem sair úteis de verdade
-    para o projeto real.
-  </p>
-
-  <p>Os prompts abaixo já carregam este contexto do produto:</p>
-
-  <ul>
-    <li>o produto se chama Deezer Explorer</li>
-    <li>é um site estático e responsivo</li>
-    <li>o usuário pesquisa artistas, vê álbuns e abre detalhes de álbum</li>
-    <li>a fonte de dados é a API pública do Deezer</li>
-    <li>
-      os endpoints centrais são busca de artista, álbuns por artista e álbum por
-      ID
-    </li>
-    <li>
-      esses endpoints públicos de catálogo funcionam sem login do usuário final
-    </li>
-    <li>o deploy final será no GitHub Pages</li>
-    <li>o projeto precisa considerar o problema de CORS no browser</li>
-    <li>os arquivos de harness e operação devem ser escritos em inglês</li>
-  </ul>
-
-  <div class="checkpoint">
-    <strong>Nota importante:</strong>
-    <p>
-      O portal de documentação do Deezer hoje pede login para aceitar os termos
-      da Simple API, mas os endpoints públicos de catálogo usados neste projeto
-      continuam funcionando sem autenticação do usuário final. O que exige token
-      são endpoints de conta, como <code>/user/me</code>.
-    </p>
-  </div>
-
-  <h3>1. Prompt base para gerar o PLAN.md</h3>
-
-  <p>
-    Esse é o primeiro prompt. Ele define o escopo do produto, as restrições e a
-    expectativa de planejamento sem pedir implementação ainda.
-  </p>
-
-  <CopyPromptBlock client:visible content={planPrompt} lang={lang} />
-
-  <h3>2. Prompt base para gerar o README.md</h3>
-
-  <p>
-    Depois de revisar o <code>PLAN.md</code> que foi gerado e ele fizer sentido para
-    você, peça ao agente para criar o
-    <code>README.md</code>. Aqui o plano já vira fonte para evitar README
-    inventado.
-  </p>
-
-  <CopyPromptBlock client:visible content={readmePrompt} lang={lang} />
-
-  <h3>3. Prompt base para gerar o AGENTS.md ou CLAUDE.md</h3>
-
-  <p>
-    Por último, peça o arquivo de operação do agente. Como ele vem depois do
-    plano e do README, fica muito mais fácil gerar regras coerentes com o
-    projeto real.
-  </p>
-
-  <CopyPromptBlock client:visible content={agentsPrompt} lang={lang} />
-
-  <p>
-    ⚠️ Leia cada arquivo assim que ele for gerado. Se tiver comando que não
-    existe, escopo inventado ou decisão técnica que você não entende, pare e
-    corrija o agente. Esse cuidado economiza muita correção depois.
-  </p>
-
-  <hr />
-
   <h2 id="github-cli-bonus">Bônus: instalar e autenticar o GitHub CLI</h2>
 
   <p>
     Esse passo é opcional, mas vale muito a pena. O <strong>GitHub CLI</strong>
-    (<code>gh</code>) permite acessar GitHub direto do terminal: autenticar sua
-    conta, abrir repositórios, ver issues, trabalhar com PRs e dar mais
-    autonomia ao agente quando ele estiver operando no projeto.
+    (<code>gh</code>) permite acessar o GitHub direto do terminal: autenticar sua
+    conta, abrir repositórios, ver issues e trabalhar com PRs sem sair do
+    ambiente de desenvolvimento.
   </p>
 
   <p>Os caminhos mais comuns de instalação são:</p>
@@ -401,17 +192,16 @@ gh auth status</code></pre>
 
   <p>
     Se você terminou este capítulo, já fez o essencial do setup: criou o
-    repositório remoto, conectou a cópia local, abriu o projeto na ferramenta e
-    deixou registradas as regras e o plano inicial. No próximo capítulo, vamos
-    usar essa base para detalhar o <code>PLAN.md</code> e quebrar a execução em fases
-    pequenas.
+    repositório remoto, conectou a cópia local e abriu o projeto na ferramenta.
+    No próximo capítulo, vamos usar essa base para criar os três arquivos de
+    planejamento que vão guiar o agente: <code>ROADMAP.md</code>,
+    <code>AGENTS.md</code> ou <code>CLAUDE.md</code>, e <code>DEV_PLAN.md</code>.
   </p>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      <code>PLAN.md</code>, <code>README.md</code> e <code>AGENTS.md</code> ou
-      <code>CLAUDE.md</code> existem, foram lidos e fazem sentido para você.
+      Repositório criado, clonado, aberto na ferramenta. Pronto para planejar.
     </p>
   </div>
 </ChapterLayout>

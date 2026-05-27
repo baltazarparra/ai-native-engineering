@@ -4,6 +4,7 @@ import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
 import Badge from '../../components/Badge/Badge.astro';
 import Footer from '../../components/Footer/Footer.astro';
 import ChapterStepper from '../../components/ChapterStepper/ChapterStepper.tsx';
+import HackerNewsNewspaper from '../../components/HackerNewsNewspaper/HackerNewsNewspaper.tsx';
 import { ui, getProjectAlternateLinks } from '../../lib/i18n';
 
 const lang = 'pt-BR';
@@ -21,37 +22,52 @@ const alternateLinks = getProjectAlternateLinks();
     <SectionBlock as="header" padding="xl">
       <Badge variant="coral">{labels.heroLabel}</Badge>
       <h1 class="landing-title">{labels.heading}</h1>
-      <p class="landing-summary">{labels.summary}</p>
+      <p class="landing-summary">
+        Um guia prático para criar um jornal de notícias ao vivo com a
+        HackerNews API, publicado no GitHub Pages.
+      </p>
     </SectionBlock>
 
     <SectionBlock padding="lg" alt>
       <h2 class="section-heading">O que você vai construir</h2>
       <p>
-        Um site onde você digita o nome de um artista, vê a discografia com
-        capas de álbum, e clica em um álbum para ver a tracklist e detalhes.
-        Tudo consumindo a <strong>API pública do Deezer</strong>, publicado no
-        seu
-        <strong>GitHub Pages</strong>.
+        Um jornal de notícias estático que busca as <strong>top 10 stories do Hacker News</strong>
+        em tempo real e exibe como uma página de jornal: manchete principal,
+        seção de matérias e listagem numerada. Tudo consumindo a
+        <strong>API pública do HackerNews</strong> (sem autenticação), publicado
+        no seu <strong>GitHub Pages</strong>.
       </p>
       <p>
-        O projeto é o veículo. O que você vai aprender de verdade é
-        <strong>AI-Native Engineering</strong>: contexto, planejamento, execução
-        por partes e publicação.
+        O projeto é o veículo. O que você vai aprender de verdade é o fluxo
+        <strong>AI-Native Engineering</strong>: contexto, planejamento com
+        ROADMAP.md e DEV_PLAN.md, execução por fases e publicação.
       </p>
     </SectionBlock>
 
     <SectionBlock padding="lg">
+      <Badge variant="yellow">Demo ao vivo</Badge>
+      <h2 class="section-heading demo-heading">Este é o projeto que você vai construir</h2>
+      <p class="demo-desc">
+        O componente abaixo faz fetch da HackerNews API agora e renderiza as
+        histórias no layout de jornal que você vai criar do zero.
+      </p>
+      <HackerNewsNewspaper client:load lang={lang} />
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
       <h2 class="section-heading">Pré-requisitos</h2>
       <ul class="prereq-list">
         <li>Conta no <strong>GitHub</strong></li>
         <li>
-          Ferramenta com IA configurada (Cursor, Windsurf, Claude Code, etc.)
+          Ferramenta com IA configurada — IDE com IA integrada (Cursor,
+          Windsurf), CLI de IA no terminal (Claude Code, OpenCode) ou assistente
+          de IDE (Copilot, etc.)
         </li>
         <li>LLM configurada na ferramenta (Claude, GPT, Gemini, etc.)</li>
       </ul>
     </SectionBlock>
 
-    <SectionBlock padding="xl" alt>
+    <SectionBlock padding="xl">
       <h2 class="section-heading">Seu progresso</h2>
       <ChapterStepper client:visible lang={lang} />
     </SectionBlock>
@@ -76,6 +92,16 @@ const alternateLinks = getProjectAlternateLinks();
 
   .section-heading {
     margin-bottom: var(--space-md);
+  }
+
+  .demo-heading {
+    margin-top: var(--space-sm);
+  }
+
+  .demo-desc {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    max-width: 64ch;
   }
 
   .prereq-list {
