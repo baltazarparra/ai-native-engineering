@@ -84,10 +84,14 @@ function getHref(targetLang: Lang) {
       return htmlLangToChoice[htmlLang] || htmlLang;
     }
 
-    function syncLanguageLinks(event) {
+    function syncLanguageLinks() {
       const header = document.querySelector('[data-site-header]');
-      const doc = event && event.newDocument;
-      if (!header || !doc) return;
+      // On astro:after-swap the document has already been replaced, so read the
+      // live (new) document directly. event.newDocument only exists on
+      // astro:before-swap and would be undefined here, which left the persisted
+      // header pointing at the previous page's language hrefs.
+      const doc = document;
+      if (!header) return;
 
       const alternates = {};
       doc.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function (link) {

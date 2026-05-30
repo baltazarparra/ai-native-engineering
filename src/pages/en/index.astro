@@ -16,13 +16,13 @@ import {
   getHomeAlternateLinks,
   getSessionHref,
   getProjectHref,
-  getHarnessHref,
   ui,
 } from '../../lib/i18n';
 
 const lang = 'en';
 const sessions = getSessions(lang);
 const levelLabels = ui[lang].levels;
+const project = ui[lang].project;
 
 function levelToBadgeVariant(level: string) {
   const map = {
@@ -39,14 +39,14 @@ function levelToLabel(level: string) {
 ---
 
 <BaseLayout
-  title="Software Engineering in the Age of AI"
-  description="A practical guide for using AI in real software work, without hype and without panic."
+  title="AI-Native Engineering"
+  description="A practical guide to building with coding agents"
   lang={lang}
   alternateLinks={getHomeAlternateLinks()}
 >
   <main id="main-content">
     <HeroStickers client:visible lang={lang} />
-    <SectionBlock as="header" padding="xl" maxWidth="lg">
+    <SectionBlock as="header" padding="md" maxWidth="lg" id="hero">
       <div class="hero-layer" data-screen-shake>
         <HeroGhostCursors client:visible />
         <HeroCursorTrail client:visible />
@@ -55,20 +55,20 @@ function levelToLabel(level: string) {
             <Badge variant="green">100% free and open source</Badge>
             <HeroCaptureCounter client:visible lang={lang} />
           </span>
-          <h1 class="hero-title">Software Engineering in the Age of AI</h1>
+          <h1 class="hero-title">AI-Native Engineering</h1>
           <p class="hero-tagline">
-            A practical guide for using AI in real software work, without hype
-            and without panic.
+            A practical guide to building with coding agents
           </p>
-          <Button href={getSessionHref(lang, sessions[0].slug)} size="lg">
-            Start learning
-          </Button>
         </div>
       </div>
     </SectionBlock>
 
     <SectionBlock padding="lg" id="sessions">
       <h2>Sessions</h2>
+      <p class="sessions-intro">
+        Three sessions in sequence: from vibe coding to AI tools and the
+        professional workflow with coding agents.
+      </p>
       <Grid columns={3} gap="lg" align="stretch">
         {
           sessions.map((session) => (
@@ -85,7 +85,13 @@ function levelToLabel(level: string) {
               </Fragment>
               <p>{session.summary}</p>
               <Fragment slot="footer">
-                <span class="session-order">Session {session.order}</span>
+                <div class="card-footer-row">
+                  <span class="session-order">Session {session.order}</span>
+                  <span class="card-cta">
+                    Read session
+                    <span class="card-cta-arrow" aria-hidden="true">→</span>
+                  </span>
+                </div>
               </Fragment>
             </Card>
           ))
@@ -96,37 +102,18 @@ function levelToLabel(level: string) {
     <SectionBlock padding="xl" alt>
       <div class="project-cta-block">
         <Badge variant="coral">New</Badge>
-        <h2>Hands-on Project</h2>
-        <p>
-          When the theory clicks, put it to work: build a project from scratch
-          with your code agent and publish it to GitHub Pages.
-        </p>
+        <h2>{project.title}</h2>
+        <p>{project.homeDesc}</p>
         <Button href={getProjectHref(lang)} size="lg">
-          Go to the hands-on project
+          {project.homeCta}
         </Button>
-      </div>
-    </SectionBlock>
-
-    <SectionBlock padding="xl">
-      <div class="harness-cta-block">
-        <div>
-          <Badge variant="coral">Deep dive</Badge>
-          <h2>Harness Engineering</h2>
-          <p>
-            After the sessions, go deeper into how context, tools, boundaries,
-            and validation turn a model into a reliable agent. Session 3 shows
-            how to operate; this series explains the system behind it.
-          </p>
-        </div>
-        <Button href={getHarnessHref(lang)} size="lg">Understand harness</Button
-        >
       </div>
     </SectionBlock>
 
     <Discussion
       lang={lang}
       slug="home"
-      title="Software Engineering in the Age of AI"
+      title="AI-Native Engineering"
     />
 
     <Footer lang={lang} />
@@ -165,6 +152,13 @@ function levelToLabel(level: string) {
     line-height: var(--leading-relaxed);
   }
 
+  .sessions-intro {
+    max-width: 60ch;
+    margin-block: var(--space-md) var(--space-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
   .session-order {
     font-family: var(--font-heading);
     font-weight: var(--weight-medium);
@@ -172,12 +166,47 @@ function levelToLabel(level: string) {
     color: var(--color-text-muted);
   }
 
+  .card-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+  }
+
+  .card-cta-arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  :global(.linkable):hover .card-cta-arrow {
+    transform: translateX(4px);
+  }
+
+  :global(#hero) {
+    padding-bottom: var(--space-lg);
+  }
+
   :global(#sessions) {
+    padding-top: var(--space-lg);
     margin-bottom: var(--space-2xl);
   }
 
   @media (min-width: 1024px) {
+    :global(#hero) {
+      padding-bottom: var(--space-xl);
+    }
+
     :global(#sessions) {
+      padding-top: var(--space-xl);
       margin-bottom: var(--space-3xl);
     }
   }
@@ -186,28 +215,6 @@ function levelToLabel(level: string) {
     text-align: center;
     max-width: 42ch;
     margin-inline: auto;
-  }
-
-  .harness-cta-block {
-    display: grid;
-    gap: var(--space-lg);
-    align-items: center;
-    border: var(--border-thick);
-    border-radius: var(--radius-md);
-    background-color: var(--color-surface-raised);
-    box-shadow: var(--shadow-lg);
-    padding: var(--space-xl);
-  }
-
-  .harness-cta-block h2 {
-    margin-top: var(--space-sm);
-  }
-
-  .harness-cta-block p {
-    margin-top: var(--space-md);
-    color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
-    max-width: 58ch;
   }
 
   .project-cta-block h2 {
@@ -224,9 +231,5 @@ function levelToLabel(level: string) {
     margin-block: var(--space-md);
   }
 
-  @media (min-width: 768px) {
-    .harness-cta-block {
-      grid-template-columns: minmax(0, 1fr) auto;
-    }
-  }
+
 </style>

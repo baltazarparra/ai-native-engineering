@@ -8,8 +8,11 @@ import HarnessChapterTabs from '../components/harness/HarnessChapterTabs';
 import HarnessChapterPager from '../components/harness/HarnessChapterPager';
 import HarnessChapterIntro from '../components/harness/HarnessChapterIntro';
 import HarnessShareBar from '../components/harness/HarnessShareBar';
+import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs.astro';
 import type { AlternateLink, Lang } from '../lib/i18n';
+import { ui, getHomeHref, getHarnessOverviewHref } from '../lib/i18n';
 import type { HarnessChapterId } from '../data/harness-chapters';
+import { HARNESS_SERIES } from '../data/harness-chapters';
 
 interface Props {
   lang: Lang;
@@ -38,6 +41,21 @@ const {
 } = Astro.props;
 
 const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+const breadcrumbItems =
+  activeTab === 'overview'
+    ? [
+        { label: ui[lang].breadcrumb.home, href: getHomeHref(lang) },
+        { label: HARNESS_SERIES.title[lang] },
+      ]
+    : [
+        { label: ui[lang].breadcrumb.home, href: getHomeHref(lang) },
+        {
+          label: HARNESS_SERIES.title[lang],
+          href: getHarnessOverviewHref(lang),
+        },
+        { label: heroTitle },
+      ];
 ---
 
 <BaseLayout
@@ -49,6 +67,7 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
 >
   <main id="main-content" class="harness-page">
     <SectionBlock as="header" padding="xl">
+      <Breadcrumbs items={breadcrumbItems} lang={lang} />
       {heroBadge ? <Badge variant="coral">{heroBadge}</Badge> : null}
       <h1 class="harness-page-title">{heroTitle}</h1>
       {heroSummary ? <p class="harness-page-summary">{heroSummary}</p> : null}

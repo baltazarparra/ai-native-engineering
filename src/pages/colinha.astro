@@ -3,13 +3,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
 import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
-import { withBase, type AlternateLink } from '../lib/i18n';
+import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs.astro';
+import { withBase, getHomeHref, ui, type AlternateLink } from '../lib/i18n';
 
 const lang = 'pt-BR';
 const alternateLinks: AlternateLink[] = [
   { lang: 'pt-BR', href: withBase('colinha'), label: 'PT-BR' },
   { lang: 'en', href: withBase('en/colinha'), label: 'English' },
   { lang: 'x-default', href: withBase('colinha') },
+];
+const breadcrumbItems = [
+  { label: ui[lang].breadcrumb.home, href: getHomeHref(lang) },
+  { label: 'Colinha' },
 ];
 
 const blocks = [
@@ -74,6 +79,7 @@ const modeVariant = {
 >
   <main id="main-content">
     <SectionBlock padding="lg" maxWidth="xl">
+      <Breadcrumbs items={breadcrumbItems} lang={lang} />
       <div class="recipe-grid">
         {
           blocks.map((block) => (

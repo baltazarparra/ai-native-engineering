@@ -5,11 +5,16 @@ import Badge from '../../components/Badge/Badge.astro';
 import Footer from '../../components/Footer/Footer.astro';
 import ChapterStepper from '../../components/ChapterStepper/ChapterStepper.tsx';
 import HackerNewsNewspaper from '../../components/HackerNewsNewspaper/HackerNewsNewspaper.tsx';
-import { ui, getProjectAlternateLinks } from '../../lib/i18n';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs.astro';
+import { ui, getProjectAlternateLinks, getHomeHref } from '../../lib/i18n';
 
 const lang = 'pt-BR';
 const labels = ui[lang].project;
 const alternateLinks = getProjectAlternateLinks();
+const breadcrumbItems = [
+  { label: ui[lang].breadcrumb.home, href: getHomeHref(lang) },
+  { label: labels.title },
+];
 ---
 
 <BaseLayout
@@ -20,6 +25,7 @@ const alternateLinks = getProjectAlternateLinks();
 >
   <main id="main-content" class="project-landing">
     <SectionBlock as="header" padding="xl">
+      <Breadcrumbs items={breadcrumbItems} lang={lang} />
       <Badge variant="coral">{labels.heroLabel}</Badge>
       <h1 class="landing-title">{labels.heading}</h1>
       <p class="landing-summary">

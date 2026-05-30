@@ -29,7 +29,7 @@ export const sessions: SessionCardData[] = [
     accent: 'blue',
   },
   {
-    title: 'Ferramentas e modelos',
+    title: 'Ferramentas e modelos de IA: IDEs, CLIs e LLMs',
     slug: 'ferramentas',
     lang: 'pt-BR',
     translationKey: 'tools',
@@ -48,7 +48,7 @@ export const sessions: SessionCardData[] = [
     translationKey: 'maturity',
     order: 3,
     summary:
-      'SDD transforma intenção em planejamento. Harness Design organiza ferramentas e validações para agentes desenvolverem com qualidade e segurança.',
+      'Spec-Driven Development (SDD) transforma intenção em planejamento. Harness Design organiza ferramentas e validações para agentes desenvolverem com qualidade e segurança.',
     readingTime: 12,
     level: 'advanced',
     heroLabel: 'Fluxo profissional',
@@ -68,7 +68,7 @@ export const sessions: SessionCardData[] = [
     accent: 'blue',
   },
   {
-    title: 'Tools and models',
+    title: 'AI tools and models: IDEs, CLIs and LLMs',
     slug: 'tools',
     lang: 'en',
     translationKey: 'tools',
@@ -87,7 +87,7 @@ export const sessions: SessionCardData[] = [
     translationKey: 'maturity',
     order: 3,
     summary:
-      'SDD turns intent into a verifiable plan. Harness Design organizes tools and validation so agents can deliver with quality and safety.',
+      'Spec-Driven Development (SDD) turns intent into a verifiable plan. Harness Design organizes tools and validation so agents can deliver with quality and safety.',
     readingTime: 12,
     level: 'advanced',
     heroLabel: 'Professional flow',

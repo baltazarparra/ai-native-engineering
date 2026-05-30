@@ -93,10 +93,16 @@ export const ui = {
       label: 'Próxima sessão',
       continue: 'Continuar',
     },
+    breadcrumb: {
+      ariaLabel: 'Trilha de navegação',
+      home: 'Início',
+      sessions: 'Aulas',
+      sessionsAnchor: '#sessoes',
+    },
     project: {
       title: 'Projeto Prático',
       heroLabel: 'Mão na massa',
-      heading: 'Construa seu primeiro projeto usando Agente de IA',
+      heading: 'Construa seu primeiro projeto com seu agente de código',
       summary:
         'Um guia prático para criar, planejar e publicar um projeto AI-Native do zero.',
       readingTime: '45 min (prática guiada)',
@@ -104,7 +110,7 @@ export const ui = {
       checkpointLabel: 'Checkpoint',
       homeCta: 'Ir para o projeto prático',
       homeDesc:
-        'Já viu a teoria? Agora crie um projeto do zero com seu agente de código e publique no GitHub Pages.',
+        'Quando a teoria fizer sentido, coloque em prática: crie um projeto AI-Native do zero com seu agente de código e publique no GitHub Pages.',
     },
     chapters: {
       chapterLabel: (n: number) => `Capítulo ${n}`,
@@ -221,6 +227,12 @@ export const ui = {
       label: 'Next session',
       continue: 'Keep going',
     },
+    breadcrumb: {
+      ariaLabel: 'Breadcrumb',
+      home: 'Home',
+      sessions: 'Sessions',
+      sessionsAnchor: '#sessions',
+    },
     project: {
       title: 'Hands-on Project',
       heroLabel: 'Hands-on',
@@ -232,7 +244,7 @@ export const ui = {
       checkpointLabel: 'Checkpoint',
       homeCta: 'Go to the hands-on project',
       homeDesc:
-        'Done with theory? Build a project from scratch with your code agent and publish it to GitHub Pages.',
+        'When the theory clicks, put it to work: build an AI-Native project from scratch with your coding agent and publish it to GitHub Pages.',
     },
     chapters: {
       chapterLabel: (n: number) => `Chapter ${n}`,
