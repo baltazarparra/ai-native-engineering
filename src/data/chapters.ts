@@ -131,8 +131,8 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'HackerNews API — documentação oficial',
-          en: 'HackerNews API — official documentation',
+          'pt-BR': 'HackerNews API: documentação oficial',
+          en: 'HackerNews API: official documentation',
         },
         url: 'https://github.com/HackerNews/API',
         type: 'documentacao',
@@ -199,8 +199,8 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         title: {
-          'pt-BR': 'HackerNews API — documentação oficial',
-          en: 'HackerNews API — official documentation',
+          'pt-BR': 'HackerNews API: documentação oficial',
+          en: 'HackerNews API: official documentation',
         },
         url: 'https://github.com/HackerNews/API',
         type: 'documentacao',

@@ -39,7 +39,7 @@ function levelToLabel(level: string) {
 ---
 
 <BaseLayout
-  title="AI-Native Engineering"
+  title="AI-Native Engineers"
   description="A practical guide to building with coding agents"
   lang={lang}
   alternateLinks={getHomeAlternateLinks()}
@@ -55,7 +55,7 @@ function levelToLabel(level: string) {
             <Badge variant="green">100% free and open source</Badge>
             <HeroCaptureCounter client:visible lang={lang} />
           </span>
-          <h1 class="hero-title">AI-Native Engineering</h1>
+          <h1 class="hero-title">AI-Native Engineers</h1>
           <p class="hero-tagline">
             A practical guide to building with coding agents
           </p>
@@ -64,9 +64,9 @@ function levelToLabel(level: string) {
     </SectionBlock>
 
     <SectionBlock padding="lg" id="sessions">
-      <h2>Sessions</h2>
+      <h2>Lessons</h2>
       <p class="sessions-intro">
-        Three sessions in sequence: from vibe coding to AI tools and the
+        Three lessons in sequence: from vibe coding to AI tools and the
         professional workflow with coding agents.
       </p>
       <Grid columns={3} gap="lg" align="stretch">
@@ -86,9 +86,9 @@ function levelToLabel(level: string) {
               <p>{session.summary}</p>
               <Fragment slot="footer">
                 <div class="card-footer-row">
-                  <span class="session-order">Session {session.order}</span>
+                  <span class="session-order">Lesson {session.order}</span>
                   <span class="card-cta">
-                    Read session
+                    Read lesson
                     <span class="card-cta-arrow" aria-hidden="true">→</span>
                   </span>
                 </div>
@@ -113,7 +113,7 @@ function levelToLabel(level: string) {
     <Discussion
       lang={lang}
       slug="home"
-      title="AI-Native Engineering"
+      title="AI-Native Engineers"
     />
 
     <Footer lang={lang} />

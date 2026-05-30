@@ -7,7 +7,7 @@ const roadmapPrompt = `Vou criar um jornal de notícias ao vivo publicado no Git
 
 CONTEXTO DO PROJETO
 - Nome do repositório: [NOME_DO_REPO]
-- O que vamos construir: um jornal de notícias que busca as top 10 stories do Hacker News e exibe como página de jornal — manchete, seção de matérias e listagem
+- O que vamos construir: um jornal de notícias que busca as top 10 stories do Hacker News e exibe como página de jornal: manchete, seção de matérias e listagem
 - API pública: https://hacker-news.firebaseio.com/v0/
   - Top stories: GET /topstories.json (retorna array de IDs)
   - Story individual: GET /item/{id}.json (retorna { id, title, url, score, by, time, descendants })
@@ -19,8 +19,8 @@ RESTRIÇÕES REAIS
 - sem banco de dados
 - sem autenticação
 - o site é 100% estático e roda no browser
-- poucas dependências — prefira Vanilla JS + HTML/CSS, ou um framework mínimo (Vite + Vanilla, Parcel, etc.)
-- não use React, Vue, Angular ou qualquer framework SPA — a simplicidade é o objetivo
+- poucas dependências, prefira Vanilla JS + HTML/CSS, ou um framework mínimo (Vite + Vanilla, Parcel, etc.)
+- não use React, Vue, Angular ou qualquer framework SPA, porque a simplicidade é o objetivo
 
 TAREFA
 Crie um arquivo ROADMAP.md na raiz do repositório.

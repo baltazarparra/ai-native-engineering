@@ -55,7 +55,7 @@ export const ui = {
       advanced: 'avançado',
     },
     sectionNav: {
-      ariaLabel: 'Navegação da sessão',
+      ariaLabel: 'Navegação da aula',
       summaryFallback: 'Resumo',
       references: 'Referências',
       discussion: 'Discussão',
@@ -64,7 +64,7 @@ export const ui = {
       kicker: 'Comunidade',
       heading: 'Pergunte, responda, destrave',
       description:
-        'Use este espaço para fazer perguntas sobre a sessão, compartilhar exemplos e ajudar outras pessoas a entenderem o tema.',
+        'Use este espaço para fazer perguntas sobre a aula, compartilhar exemplos e ajudar outras pessoas a entenderem o tema.',
       notConfigured:
         'A área de discussão ainda precisa ser conectada ao Giscus. Enquanto isso, você pode abrir uma discussão direto no GitHub.',
       openDiscussions: 'Abrir discussões no GitHub',
@@ -90,7 +90,7 @@ export const ui = {
       lastLabel: 'Você chegou ao fim',
       lastTitle: 'Agora é hora de colocar em prática.',
       home: 'Ir para o projeto prático',
-      label: 'Próxima sessão',
+      label: 'Próxima aula',
       continue: 'Continuar',
     },
     breadcrumb: {
@@ -189,7 +189,7 @@ export const ui = {
       advanced: 'advanced',
     },
     sectionNav: {
-      ariaLabel: 'Session navigation',
+      ariaLabel: 'Lesson navigation',
       summaryFallback: 'Summary',
       references: 'References',
       discussion: 'Discussion',
@@ -198,7 +198,7 @@ export const ui = {
       kicker: 'Community',
       heading: 'Ask, answer, get unstuck',
       description:
-        'Use this space to ask questions about the session, share examples, and help other people understand the topic.',
+        'Use this space to ask questions about the lesson, share examples, and help other people understand the topic.',
       notConfigured:
         'The discussion area still needs to be connected to Giscus. For now, you can open a discussion directly on GitHub.',
       openDiscussions: 'Open GitHub discussions',
@@ -224,13 +224,13 @@ export const ui = {
       lastLabel: 'You made it to the end',
       lastTitle: 'Now put it to work.',
       home: 'Go to the hands-on project',
-      label: 'Next session',
+      label: 'Next lesson',
       continue: 'Keep going',
     },
     breadcrumb: {
       ariaLabel: 'Breadcrumb',
       home: 'Home',
-      sessions: 'Sessions',
+      sessions: 'Lessons',
       sessionsAnchor: '#sessions',
     },
     project: {

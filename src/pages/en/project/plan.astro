@@ -7,7 +7,7 @@ const roadmapPrompt = `I am going to build a live news newspaper published on Gi
 
 PROJECT CONTEXT
 - Repository name: [REPO_NAME]
-- What we are building: a news newspaper that fetches the top 10 Hacker News stories and displays them as a newspaper page — headline, articles section, and listing
+- What we are building: a news newspaper that fetches the top 10 Hacker News stories and displays them as a newspaper page: headline, articles section, and listing
 - Public API: https://hacker-news.firebaseio.com/v0/
   - Top stories: GET /topstories.json (returns array of IDs)
   - Individual story: GET /item/{id}.json (returns { id, title, url, score, by, time, descendants })
@@ -19,8 +19,8 @@ REAL CONSTRAINTS
 - no database
 - no authentication
 - the site is 100% static and runs in the browser
-- few dependencies — prefer Vanilla JS + HTML/CSS, or a minimal framework (Vite + Vanilla, Parcel, etc.)
-- do not use React, Vue, Angular, or any SPA framework — simplicity is the goal
+- few dependencies, prefer Vanilla JS + HTML/CSS, or a minimal framework (Vite + Vanilla, Parcel, etc.)
+- do not use React, Vue, Angular, or any SPA framework, because simplicity is the goal
 
 TASK
 Create a ROADMAP.md file at the repository root.
