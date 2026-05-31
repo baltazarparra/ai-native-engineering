@@ -1,0 +1,23 @@
+// src/version.ts
+var PKG_NAME = "@liveblocks/react";
+var PKG_VERSION = "3.19.1";
+var PKG_FORMAT = "esm";
+
+// src/ClientSideSuspense.tsx
+import { Suspense, useEffect, useState } from "react";
+import { jsx } from "react/jsx-runtime";
+function ClientSideSuspense(props) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  return /* @__PURE__ */ jsx(Suspense, { fallback: props.fallback, children: mounted ? typeof props.children === "function" ? props.children() : props.children : props.fallback });
+}
+
+export {
+  PKG_NAME,
+  PKG_VERSION,
+  PKG_FORMAT,
+  ClientSideSuspense
+};
+//# sourceMappingURL=chunk-KHWFIGKD.js.map

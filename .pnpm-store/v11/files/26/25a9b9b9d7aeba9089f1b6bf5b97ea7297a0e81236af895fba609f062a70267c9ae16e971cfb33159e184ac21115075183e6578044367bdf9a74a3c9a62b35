@@ -1,0 +1,41 @@
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});// src/index.ts
+var _core = require('@liveblocks/core');
+
+// src/version.ts
+var PKG_NAME = "@liveblocks/client";
+var PKG_VERSION = "3.19.1";
+var PKG_FORMAT = "cjs";
+
+// src/index.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_core.detectDupes.call(void 0, PKG_NAME, PKG_VERSION, PKG_FORMAT);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exports.FeedRequestErrorCode = _core.FeedRequestErrorCode; exports.LiveList = _core.LiveList; exports.LiveMap = _core.LiveMap; exports.LiveObject = _core.LiveObject; exports.LiveblocksError = _core.LiveblocksError; exports.createClient = _core.createClient; exports.defineAiTool = _core.defineAiTool; exports.getMentionsFromCommentBody = _core.getMentionsFromCommentBody; exports.isNotificationChannelEnabled = _core.isNotificationChannelEnabled; exports.nanoid = _core.nanoid; exports.shallow = _core.shallow; exports.stringifyCommentBody = _core.stringifyCommentBody; exports.toPlainLson = _core.toPlainLson;
+//# sourceMappingURL=index.cjs.map

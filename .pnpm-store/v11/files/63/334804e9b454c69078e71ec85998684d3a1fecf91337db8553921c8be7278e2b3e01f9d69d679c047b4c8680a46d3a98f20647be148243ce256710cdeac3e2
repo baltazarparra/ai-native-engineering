@@ -1,0 +1,23 @@
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});// src/version.ts
+var PKG_NAME = "@liveblocks/react";
+var PKG_VERSION = "3.19.1";
+var PKG_FORMAT = "cjs";
+
+// src/ClientSideSuspense.tsx
+var _react = require('react');
+var _jsxruntime = require('react/jsx-runtime');
+function ClientSideSuspense(props) {
+  const [mounted, setMounted] = _react.useState.call(void 0, false);
+  _react.useEffect.call(void 0, () => {
+    setMounted(true);
+  }, []);
+  return /* @__PURE__ */ _jsxruntime.jsx.call(void 0, _react.Suspense, { fallback: props.fallback, children: mounted ? typeof props.children === "function" ? props.children() : props.children : props.fallback });
+}
+
+
+
+
+
+
+exports.PKG_NAME = PKG_NAME; exports.PKG_VERSION = PKG_VERSION; exports.PKG_FORMAT = PKG_FORMAT; exports.ClientSideSuspense = ClientSideSuspense;
+//# sourceMappingURL=chunk-WUMM3WEZ.cjs.map

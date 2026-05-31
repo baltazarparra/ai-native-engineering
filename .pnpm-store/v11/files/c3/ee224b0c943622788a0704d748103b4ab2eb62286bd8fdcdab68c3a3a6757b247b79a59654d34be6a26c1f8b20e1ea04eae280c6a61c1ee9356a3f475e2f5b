@@ -1,0 +1,49 @@
+import { G as GroupAsyncResult } from './room-DG1r0yeF.cjs';
+export { g as getUmbrellaStoreForClient, u as useAddRoomCommentReaction, a as useClientOrNull, b as useCreateRoomComment, c as useCreateRoomThread, d as useCreateTextMention, e as useDeleteRoomComment, f as useDeleteRoomThread, h as useDeleteTextMention, i as useEditRoomComment, j as useEditRoomThreadMetadata, k as useMarkRoomThreadAsRead, l as useMarkRoomThreadAsResolved, m as useMarkRoomThreadAsUnresolved, n as useMentionSuggestionsCache, o as useRemoveRoomCommentReaction, p as useReportTextEditor, q as useResolveMentionSuggestions, r as useRoomAttachmentUrl, s as useRoomPermissions, t as useRoomThreadSubscription, v as useSuspendUntilPresenceReady, w as useSuspendUntilStorageReady, x as useYjsProvider } from './room-DG1r0yeF.cjs';
+import { MutableRefObject, useEffect } from 'react';
+import { MentionData, ISignal, SyncSource } from '@liveblocks/core';
+import '@liveblocks/client';
+import 'react/jsx-runtime';
+
+/**
+ * "Freezes" a given value, so that it will return the same value/instance on
+ * each subsequent render. This can be used to freeze "initial" values for
+ * custom hooks, much like how `useState(initialState)` or
+ * `useRef(initialValue)` works.
+ */
+declare function useInitial<T>(value: T, roomId?: string): T;
+
+/**
+ * Keeps a ref in sync with a given value that may or may not change on
+ * every render.
+ *
+ * The purpose of this hook is to return a stable ref that can be passed
+ * to a callback function so the callback can be registered but still can
+ * access the latest value at a later point in time.
+ */
+declare function useLatest<T>(value: T): MutableRefObject<T>;
+
+declare const useLayoutEffect: typeof useEffect;
+
+/** @private - Internal API, do not rely on it. */
+declare function useGroup(groupId: string): GroupAsyncResult;
+
+/**
+ * @private For internal use only. Do not rely on this hook.
+ *
+ * Simplistic debounced search, we don't need to worry too much about deduping
+ * and race conditions as there can only be one search at a time.
+ */
+declare function useMentionSuggestions(roomId: string, search?: string): MentionData[] | undefined;
+
+declare function useSignal<T>(signal: ISignal<T>): T;
+declare function useSignal<T, V>(signal: ISignal<T>, selector: (value: T) => V, isEqual?: (a: V, b: V) => boolean): V;
+
+declare function useSyncExternalStoreWithSelector<Snapshot, Selection>(subscribe: (callback: () => void) => () => void, getSnapshot: () => Snapshot, getServerSnapshot: void | null | (() => Snapshot), selector: (snapshot: Snapshot) => Selection, isEqual?: (a: Selection, b: Selection) => boolean): Selection;
+
+/**
+ * @private For internal use only. Do not rely on this hook.
+ */
+declare function useSyncSource(): SyncSource | undefined;
+
+export { useGroup, useInitial, useLatest, useLayoutEffect, useMentionSuggestions, useSignal, useSyncExternalStoreWithSelector, useSyncSource };

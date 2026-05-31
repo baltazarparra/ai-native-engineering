@@ -1,0 +1,94 @@
+{
+  "name": "@liveblocks/react",
+  "version": "3.19.1",
+  "description": "A set of React hooks and providers to use Liveblocks declaratively. Liveblocks is the all-in-one toolkit to build collaborative products like Figma, Notion, and more.",
+  "license": "Apache-2.0",
+  "author": "Liveblocks Inc.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "module": "./dist/index.js",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./suspense": {
+      "import": {
+        "types": "./dist/suspense.d.ts",
+        "default": "./dist/suspense.js"
+      },
+      "require": {
+        "types": "./dist/suspense.d.cts",
+        "module": "./dist/suspense.js",
+        "default": "./dist/suspense.cjs"
+      }
+    },
+    "./_private": {
+      "import": {
+        "types": "./dist/_private.d.ts",
+        "default": "./dist/_private.js"
+      },
+      "require": {
+        "types": "./dist/_private.d.cts",
+        "module": "./dist/_private.js",
+        "default": "./dist/_private.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist/**",
+    "suspense/**",
+    "_private/**",
+    "README.md"
+  ],
+  "dependencies": {
+    "@liveblocks/client": "3.19.1",
+    "@liveblocks/core": "3.19.1"
+  },
+  "peerDependencies": {
+    "@types/react": "^18 || ^19",
+    "@types/react-dom": "^18 || ^19",
+    "react": "^18 || ^19 || ^19.0.0-rc"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "@types/react-dom": {
+      "optional": true
+    }
+  },
+  "sideEffects": false,
+  "bugs": {
+    "url": "https://github.com/liveblocks/liveblocks/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liveblocks/liveblocks.git",
+    "directory": "packages/liveblocks-react"
+  },
+  "homepage": "https://liveblocks.io",
+  "keywords": [
+    "react",
+    "liveblocks",
+    "real-time",
+    "toolkit",
+    "multiplayer",
+    "websockets",
+    "collaboration",
+    "collaborative",
+    "presence",
+    "crdts",
+    "synchronize",
+    "rooms",
+    "documents",
+    "conflict resolution"
+  ]
+}

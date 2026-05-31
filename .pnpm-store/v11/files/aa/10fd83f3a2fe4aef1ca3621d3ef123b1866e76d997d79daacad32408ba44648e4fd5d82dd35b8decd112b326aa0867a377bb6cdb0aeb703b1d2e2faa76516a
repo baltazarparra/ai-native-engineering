@@ -1,0 +1,186 @@
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _nullishCoalesce(lhs, rhsFn) { if (lhs != null) { return lhs; } else { return rhsFn(); } } function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _chunkK7TLHUJMcjs = require('./chunk-K7TLHUJM.cjs');
+
+// src/lib/use-layout-effect.ts
+var _react = require('react');
+var useLayoutEffect = typeof window !== "undefined" ? _react.useLayoutEffect : _react.useEffect;
+
+// src/use-group.ts
+
+
+
+var _core = require('@liveblocks/core');
+
+function selectorFor_useGroup(state) {
+  if (state === void 0 || _optionalChain([state, 'optionalAccess', _ => _.isLoading])) {
+    return _nullishCoalesce(state, () => ( { isLoading: true }));
+  }
+  if (state.error) {
+    return state;
+  }
+  return {
+    isLoading: false,
+    group: state.data
+  };
+}
+function useGroup(groupId) {
+  const client = _chunkK7TLHUJMcjs.useClient.call(void 0, );
+  const store = client[_core.kInternal].httpClient.groupsStore;
+  const getGroupState = _react.useCallback.call(void 0, 
+    () => store.getItemState(groupId),
+    [store, groupId]
+  );
+  _react.useEffect.call(void 0, () => {
+    void store.enqueue(groupId);
+  }, [store, groupId]);
+  return _chunkK7TLHUJMcjs.useSyncExternalStoreWithSelector.call(void 0, 
+    store.subscribe,
+    getGroupState,
+    getGroupState,
+    selectorFor_useGroup,
+    _core.shallow
+  );
+}
+
+// src/use-mention-suggestions.ts
+
+
+var MENTION_SUGGESTIONS_DEBOUNCE = 500;
+function normalizeMentionSuggestions(suggestions) {
+  return suggestions.map(
+    (suggestion) => typeof suggestion === "string" ? { kind: "user", id: suggestion } : suggestion
+  );
+}
+function useMentionSuggestions(roomId, search) {
+  const [mentionSuggestions, setMentionSuggestions] = _react.useState.call(void 0, );
+  const lastInvokedAt = _react.useRef.call(void 0, );
+  const resolveMentionSuggestions = _chunkK7TLHUJMcjs.useResolveMentionSuggestions.call(void 0, );
+  const mentionSuggestionsCache = _chunkK7TLHUJMcjs.useMentionSuggestionsCache.call(void 0, );
+  _react.useEffect.call(void 0, () => {
+    if (search === void 0 || !resolveMentionSuggestions) {
+      return;
+    }
+    const resolveMentionSuggestionsArgs = { text: search, roomId };
+    const mentionSuggestionsCacheKey = _core.stableStringify.call(void 0, 
+      resolveMentionSuggestionsArgs
+    );
+    let debounceTimeout;
+    let isCanceled = false;
+    const getMentionSuggestions = async () => {
+      try {
+        lastInvokedAt.current = performance.now();
+        const rawMentionSuggestions = await resolveMentionSuggestions(
+          resolveMentionSuggestionsArgs
+        );
+        if (!isCanceled) {
+          const normalizedSuggestions = normalizeMentionSuggestions(
+            rawMentionSuggestions
+          );
+          setMentionSuggestions(normalizedSuggestions);
+          mentionSuggestionsCache.set(
+            mentionSuggestionsCacheKey,
+            normalizedSuggestions
+          );
+        }
+      } catch (error) {
+        console.error(_optionalChain([error, 'optionalAccess', _2 => _2.message]));
+      }
+    };
+    if (mentionSuggestionsCache.has(mentionSuggestionsCacheKey)) {
+      const cachedSuggestions = mentionSuggestionsCache.get(
+        mentionSuggestionsCacheKey
+      );
+      setMentionSuggestions(cachedSuggestions);
+    } else if (!lastInvokedAt.current || Math.abs(performance.now() - lastInvokedAt.current) > MENTION_SUGGESTIONS_DEBOUNCE) {
+      void getMentionSuggestions();
+    } else {
+      debounceTimeout = window.setTimeout(() => {
+        void getMentionSuggestions();
+      }, MENTION_SUGGESTIONS_DEBOUNCE);
+    }
+    return () => {
+      isCanceled = true;
+      window.clearTimeout(debounceTimeout);
+    };
+  }, [search, roomId, resolveMentionSuggestions, mentionSuggestionsCache]);
+  return mentionSuggestions;
+}
+
+// src/use-sync-source.ts
+
+
+function useSyncSource() {
+  const client = _chunkK7TLHUJMcjs.useClient.call(void 0, );
+  const createSyncSource = client[_core.kInternal].createSyncSource;
+  const [syncSource, setSyncSource] = _react.useState.call(void 0, );
+  _react.useEffect.call(void 0, () => {
+    const newSyncSource = createSyncSource();
+    setSyncSource(newSyncSource);
+    return () => newSyncSource.destroy();
+  }, [createSyncSource]);
+  return syncSource;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exports.getUmbrellaStoreForClient = _chunkK7TLHUJMcjs.getUmbrellaStoreForClient; exports.useAddRoomCommentReaction = _chunkK7TLHUJMcjs.useAddRoomCommentReaction; exports.useClientOrNull = _chunkK7TLHUJMcjs.useClientOrNull; exports.useCreateRoomComment = _chunkK7TLHUJMcjs.useCreateRoomComment; exports.useCreateRoomThread = _chunkK7TLHUJMcjs.useCreateRoomThread; exports.useCreateTextMention = _chunkK7TLHUJMcjs.useCreateTextMention; exports.useDeleteRoomComment = _chunkK7TLHUJMcjs.useDeleteRoomComment; exports.useDeleteRoomThread = _chunkK7TLHUJMcjs.useDeleteRoomThread; exports.useDeleteTextMention = _chunkK7TLHUJMcjs.useDeleteTextMention; exports.useEditRoomComment = _chunkK7TLHUJMcjs.useEditRoomComment; exports.useEditRoomThreadMetadata = _chunkK7TLHUJMcjs.useEditRoomThreadMetadata; exports.useGroup = useGroup; exports.useInitial = _chunkK7TLHUJMcjs.useInitial; exports.useLatest = _chunkK7TLHUJMcjs.useLatest; exports.useLayoutEffect = useLayoutEffect; exports.useMarkRoomThreadAsRead = _chunkK7TLHUJMcjs.useMarkRoomThreadAsRead; exports.useMarkRoomThreadAsResolved = _chunkK7TLHUJMcjs.useMarkRoomThreadAsResolved; exports.useMarkRoomThreadAsUnresolved = _chunkK7TLHUJMcjs.useMarkRoomThreadAsUnresolved; exports.useMentionSuggestions = useMentionSuggestions; exports.useMentionSuggestionsCache = _chunkK7TLHUJMcjs.useMentionSuggestionsCache; exports.useRemoveRoomCommentReaction = _chunkK7TLHUJMcjs.useRemoveRoomCommentReaction; exports.useReportTextEditor = _chunkK7TLHUJMcjs.useReportTextEditor; exports.useResolveMentionSuggestions = _chunkK7TLHUJMcjs.useResolveMentionSuggestions; exports.useRoomAttachmentUrl = _chunkK7TLHUJMcjs.useRoomAttachmentUrl; exports.useRoomPermissions = _chunkK7TLHUJMcjs.useRoomPermissions; exports.useRoomThreadSubscription = _chunkK7TLHUJMcjs.useRoomThreadSubscription; exports.useSignal = _chunkK7TLHUJMcjs.useSignal; exports.useSuspendUntilPresenceReady = _chunkK7TLHUJMcjs.useSuspendUntilPresenceReady; exports.useSuspendUntilStorageReady = _chunkK7TLHUJMcjs.useSuspendUntilStorageReady; exports.useSyncExternalStoreWithSelector = _chunkK7TLHUJMcjs.useSyncExternalStoreWithSelector; exports.useSyncSource = useSyncSource; exports.useYjsProvider = _chunkK7TLHUJMcjs.useYjsProvider;
+//# sourceMappingURL=_private.cjs.map
