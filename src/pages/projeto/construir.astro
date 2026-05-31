@@ -4,18 +4,18 @@ import CopyPromptBlock from '../../components/CopyPromptBlock/CopyPromptBlock.ts
 const lang = 'pt-BR';
 
 const prdPrompt = `
-Quero executar a fase [FASE_NAME] do implementation plan.
+Quero executar a fase [FASE_NAME] do DEV_PLAN.md.
 
 Se este for o primeiro ciclo, comece pela fase 1.
 Se a fase 1 já estiver concluída, use a próxima fase ainda não concluída.
 
 Antes de qualquer código, leia:
-- PLAN.md
-- README.md
+- DEV_PLAN.md
+- ROADMAP.md
 - AGENTS.md ou CLAUDE.md
 
 TAREFA
-Analise a fase [FASE_NAME] do implementation plan, refine o que estiver vago e crie uma PRD para essa fase.
+Analise a fase [FASE_NAME] do DEV_PLAN.md, refine o que estiver vago e crie uma PRD para essa fase.
 
 Para o blog Notion (já implementado), use como referência:
 - docs-blog/blog-plan.md
@@ -44,11 +44,11 @@ REGRAS IMPORTANTES
 const planModePrompt = `
 Agora vou executar a fase [FASE_NAME].
 
-Estou seguindo o implementation plan uma fase por vez.
+Estou seguindo o DEV_PLAN.md uma fase por vez.
 
 Leia estes arquivos:
-- PLAN.md
-- README.md
+- DEV_PLAN.md
+- ROADMAP.md
 - AGENTS.md ou CLAUDE.md
 - docs-blog/blog-plan.md (se a fase for do blog)
 
@@ -74,11 +74,11 @@ REGRAS IMPORTANTES
 const reportPrompt = `
 A fase [FASE_NAME] foi implementada e validada localmente.
 
-Depois deste report, vou marcar essa fase como concluída e seguir para a próxima fase ainda não concluída do implementation plan.
+Depois deste report, vou marcar essa fase como DONE no DEV_PLAN.md e seguir para a próxima fase ainda não concluída.
 
 Use estes arquivos como contexto:
-- PLAN.md
-- README.md
+- DEV_PLAN.md
+- ROADMAP.md
 - AGENTS.md ou CLAUDE.md
 - docs-blog/blog-plan.md (se a fase for do blog)
 
@@ -103,27 +103,44 @@ REGRAS IMPORTANTES
 ---
 
 <ChapterLayout chapterNumber={3} lang={lang}>
+  <h2 id="devplan-como-guia">Antes do loop: o DEV_PLAN.md como guia</h2>
+
+  <p>
+    No capítulo anterior você criou o <code>DEV_PLAN.md</code>: um arquivo com
+    fases numeradas, cada uma com objetivo, entregáveis e critérios de aceite.
+    Ele é a fonte de verdade deste capítulo. Antes de escrever qualquer código,
+    abra o arquivo e localize a primeira fase com status <code>TODO</code>.
+  </p>
+
+  <p>
+    O agente deve sempre ler o <code>DEV_PLAN.md</code> antes de começar uma
+    fase. Quando a fase termina, você marca como <code>DONE</code> no arquivo.
+    Esse estado é visível, auditável e evita que o agente repita trabalho ou
+    pule etapas.
+  </p>
+
+  <hr />
+
   <h2 id="loop-da-fase">O loop de cada fase</h2>
 
   <p>
-    A esta altura, você já deve ter um <strong>implementation plan</strong>
-    dividido em <strong>fases</strong>. O objetivo deste capítulo é simples:
-    mostrar o loop que você vai repetir começando pela <strong>fase 1</strong>
-    e seguindo <strong>fase por fase</strong> até fechar o plano inteiro.
+    Você já deve ter um <strong>DEV_PLAN.md</strong> dividido em <strong>fases</strong>.
+    O objetivo deste capítulo é simples: mostrar o loop que você vai repetir
+    começando pela <strong>fase 1</strong> e seguindo <strong>fase por fase</strong>
+    até fechar o plano inteiro.
   </p>
 
   <p>
     Não é para pegar o plano inteiro e mandar implementar tudo de uma vez, nem
     para escolher uma fase aleatória porque parece mais fácil. Você começa na
     fase 1. Quando a fase 1 terminar com validação e report, volta ao
-    implementation plan, pega a fase 2 e repete. Depois fase 3, e assim por
-    diante.
+    DEV_PLAN.md, marca como DONE, pega a fase 2 e repete.
   </p>
 
   <ol>
     <li>Abra o implementation plan e foque só na fase 1 ou na próxima ainda não concluída</li>
     <li>
-      Abra o implementation plan e foque só na fase 1 ou na próxima ainda não
+      Abra o DEV_PLAN.md e foque só na fase 1 ou na próxima ainda não
       concluída
     </li>
     <li>Revise e refine essa fase antes de executar</li>
@@ -134,7 +151,7 @@ REGRAS IMPORTANTES
     <li>Teste e valide contra a PRD</li>
     <li>Gere o report da fase, marque-a como concluída e siga para a próxima</li>
     <li>
-      Gere o report da fase, marque-a como concluída e siga para a próxima
+      Gere o report da fase, marque como DONE no DEV_PLAN.md e siga para a próxima
     </li>
   </ol>
 
@@ -151,14 +168,14 @@ REGRAS IMPORTANTES
 
   <h2 id="passo-1-prd">1. Ler o implementation plan, revisar a fase e gerar a PRD</h2>
   <h2 id="passo-1-prd">
-    1. Ler o implementation plan, revisar a fase e gerar a PRD
+    1. Ler o DEV_PLAN.md, revisar a fase e gerar a PRD
   </h2>
 
   <p>
-    O primeiro passo do loop é abrir o implementation plan e pegar a
+    O primeiro passo do loop é abrir o DEV_PLAN.md e pegar a
     <strong>fase 1</strong>. Nos ciclos seguintes, você sempre pega a próxima
-    fase ainda não concluída. Antes de qualquer código, revise se essa fase está
-    clara o suficiente. Se estiver vaga, grande demais ou sem critérios
+    fase com status <code>TODO</code>. Antes de qualquer código, revise se essa
+    fase está clara o suficiente. Se estiver vaga, grande demais ou sem critérios
     testáveis, ajuste antes de seguir.
   </p>
 
@@ -203,8 +220,8 @@ REGRAS IMPORTANTES
   <p>
     Isso força o agente a pensar antes de agir: quais arquivos vai tocar, qual a
     sequência, quais riscos existem e como provar que a fase foi entregue. Você
-    faz isso para a fase 1, depois repete para a fase 2, e assim até o fim do
-    implementation plan.
+    faz isso para a fase 1, depois repete para a fase 2, e assim até fechar o
+    DEV_PLAN.md inteiro.
   </p>
 
   <CopyPromptBlock
@@ -241,12 +258,9 @@ REGRAS IMPORTANTES
   <div class="checkpoint">
     <strong>Nota prática:</strong>
     <p>
-      Se essa fase fizer <code>fetch()</code> no browser para a API do Deezer,
-      o problema de CORS provavelmente vai aparecer. Trate isso como risco da
-      fase e resolva dentro do próprio loop, antes de fechar a validação.
-      Se essa fase fizer <code>fetch()</code> no browser para a API do Deezer, o problema
-      de CORS provavelmente vai aparecer. Trate isso como risco da fase e resolva
-      dentro do próprio loop, antes de fechar a validação.
+      A HackerNews Firebase API responde com <code>Access-Control-Allow-Origin: *</code>,
+      então não há problema de CORS no browser. Se aparecer erro de rede,
+      verifique o console e a URL exata antes de pedir ao agente para corrigir.
     </p>
   </div>
 
@@ -263,9 +277,9 @@ REGRAS IMPORTANTES
   </p>
 
   <p>
-    Depois disso, volte para o implementation plan, marque a fase atual como
-    concluída e abra a próxima ainda não concluída. É assim que você vai da fase
-    1 até a última fase sem perder clareza.
+    Depois disso, volte para o DEV_PLAN.md, marque a fase atual como
+    <code>DONE</code> e abra a próxima com status <code>TODO</code>. É assim que
+    você vai da fase 1 até a última fase sem perder clareza.
   </p>
 
   <CopyPromptBlock
@@ -279,9 +293,9 @@ REGRAS IMPORTANTES
     <strong>✓ Fechamento de uma fase:</strong>
     <p>
       Antes de seguir para a próxima, confirme quatro coisas: a PRD existe, a
-      fase foi implementada, a validação passou e o report foi salvo. Se isso
-      estiver certo, volte ao implementation plan e repita o loop na próxima
-      fase.
+      fase foi implementada, a validação passou e o commit foi feito. Se isso
+      estiver certo, marque a fase como <code>DONE</code> no DEV_PLAN.md e repita
+      o loop na próxima fase.
     </p>
   </div>
 </ChapterLayout>

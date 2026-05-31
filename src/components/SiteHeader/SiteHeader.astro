@@ -23,7 +23,13 @@ function getHref(targetLang: Lang) {
 }
 ---
 
-<header class={styles.header} transition:persist>
+<header
+  class={styles.header}
+  transition:persist
+  data-site-header
+  data-active-class={styles.active}
+  data-current-language-label={labels.currentLanguage}
+>
   <div class={styles.inner}>
     <div class={styles.brandGroup}>
       <a class={styles.brand} href={getHomeHref(lang)}>AI-Native Engineers</a>
@@ -48,6 +54,7 @@ function getHref(targetLang: Lang) {
                 class:list={[styles.langLink, isCurrent && styles.active]}
                 href={getHref(targetLang)}
                 data-language-choice={targetLang}
+                data-lang-label={languages[targetLang].label}
                 aria-current={isCurrent ? 'true' : undefined}
                 aria-label={
                   isCurrent
@@ -67,3 +74,70 @@ function getHref(targetLang: Lang) {
     </div>
   </div>
 </header>
+
+<script is:inline>
+  (function () {
+    const htmlLangToChoice = { 'pt-BR': 'pt-BR', pt: 'pt-BR', en: 'en' };
+
+    function resolveCurrentLang(doc) {
+      const htmlLang = doc.documentElement.getAttribute('lang') || '';
+      return htmlLangToChoice[htmlLang] || htmlLang;
+    }
+
+    function syncLanguageLinks() {
+      const header = document.querySelector('[data-site-header]');
+      // On astro:after-swap the document has already been replaced, so read the
+      // live (new) document directly. event.newDocument only exists on
+      // astro:before-swap and would be undefined here, which left the persisted
+      // header pointing at the previous page's language hrefs.
+      const doc = document;
+      if (!header) return;
+
+      const alternates = {};
+      doc.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function (link) {
+        const hreflang = link.getAttribute('hreflang');
+        if (hreflang && hreflang !== 'x-default') {
+          alternates[hreflang] = link.getAttribute('href');
+        }
+      });
+
+      const currentLang = resolveCurrentLang(doc);
+      const activeClass = header.getAttribute('data-active-class');
+      const currentLanguageLabel =
+        header.getAttribute('data-current-language-label') || '';
+
+      header.querySelectorAll('[data-language-choice]').forEach(function (link) {
+        const choice = link.getAttribute('data-language-choice');
+        if (choice && alternates[choice]) {
+          link.setAttribute('href', alternates[choice]);
+        }
+
+        const isCurrent = choice === currentLang;
+        if (activeClass) {
+          link.classList.toggle(activeClass, isCurrent);
+        }
+        if (isCurrent) {
+          link.setAttribute('aria-current', 'true');
+          const langLabel = link.getAttribute('data-lang-label') || choice || '';
+          link.setAttribute(
+            'aria-label',
+            currentLanguageLabel
+              ? langLabel + ': ' + currentLanguageLabel
+              : langLabel,
+          );
+        } else {
+          link.removeAttribute('aria-current');
+          link.setAttribute(
+            'aria-label',
+            link.getAttribute('data-lang-label') || choice || '',
+          );
+        }
+      });
+    }
+
+    if (!window.__aiNativeLanguageLinkSync) {
+      window.__aiNativeLanguageLinkSync = true;
+      document.addEventListener('astro:after-swap', syncLanguageLinks);
+    }
+  })();
+</script>

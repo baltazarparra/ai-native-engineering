@@ -1,0 +1,58 @@
+---
+import styles from './Breadcrumbs.module.css';
+import { ui, type Lang } from '../../lib/i18n';
+
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+  lang: Lang;
+}
+
+const { items, lang } = Astro.props;
+const t = ui[lang].breadcrumb;
+
+// Single source of truth: the same `items` feed both the visual trail and the
+// schema.org BreadcrumbList. URLs are made absolute by resolving each href
+// (which already carries the GitHub Pages base path) against the current URL.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    item: new URL(item.href ?? Astro.url.pathname, Astro.url).href,
+  })),
+};
+---
+
+<nav aria-label={t.ariaLabel} class={styles.breadcrumb}>
+  <ol class={styles.list}>
+    {
+      items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        return (
+          <li class={styles.item}>
+            {item.href && !isLast ? (
+              <a href={item.href} class={styles.link}>
+                {item.label}
+              </a>
+            ) : (
+              <span
+                class={styles.current}
+                aria-current={isLast ? 'page' : undefined}
+              >
+                {item.label}
+              </span>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

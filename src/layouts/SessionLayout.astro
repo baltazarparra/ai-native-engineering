@@ -8,8 +8,9 @@ import NextSessionCTA from '../components/NextSessionCTA/NextSessionCTA.astro';
 import Footer from '../components/Footer/Footer.astro';
 import Discussion from '../components/Discussion/Discussion.astro';
 import ProgressTracker from '../components/ProgressTracker/ProgressTracker.tsx';
+import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs.astro';
 import type { Lang } from '../lib/i18n';
-import { languages, ui } from '../lib/i18n';
+import { languages, ui, getHomeHref } from '../lib/i18n';
 import { getSessionAlternateLinks } from '../data/sessions';
 
 interface Reference {
@@ -60,6 +61,15 @@ const levelVariants: Record<string, 'yellow' | 'blue' | 'green'> = {
 
 const labels = ui[lang];
 const alternateLinks = getSessionAlternateLinks(translationKey);
+
+const breadcrumbItems = [
+  { label: labels.breadcrumb.home, href: getHomeHref(lang) },
+  {
+    label: labels.breadcrumb.sessions,
+    href: `${getHomeHref(lang)}${labels.breadcrumb.sessionsAnchor}`,
+  },
+  { label: title },
+];
 const formattedUpdatedAt = updatedAt.toLocaleDateString(
   languages[lang].dateLocale,
   {
@@ -83,6 +93,7 @@ const formattedUpdatedAt = updatedAt.toLocaleDateString(
   <main id="main-content" class="session-page">
     <!-- hero -->
     <SectionBlock as="header" padding="xl">
+      <Breadcrumbs items={breadcrumbItems} lang={lang} />
       <Badge variant="default">{heroLabel}</Badge>
       <h1 class="session-title" transition:name="session-hero-title">
         {title}

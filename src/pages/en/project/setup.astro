@@ -1,163 +1,39 @@
 ---
 import ChapterLayout from '../../../layouts/ChapterLayout.astro';
-import CopyPromptBlock from '../../../components/CopyPromptBlock/CopyPromptBlock.tsx';
 const lang = 'en';
-
-const planPrompt = `
-You are helping me start a real project from scratch. At this moment I only want an initial PLAN.md that is honest and useful. I do not want implementation code yet.
-
-PRODUCT CONTEXT
-- Repository name: [REPOSITORY_NAME]
-- Working product name: Deezer Explorer
-- What we are building: a responsive static website where a person types an artist name, chooses a result, sees the discography in cover-based cards, and opens an album to view tracklist, release date, and cover art
-- Data source: public Deezer API
-- Required v1 endpoints:
-  - GET /search/artist?q=...
-  - GET /artist/{id}/albums
-  - GET /album/{id}
-- Main user flow:
-  1. open the site
-  2. search for an artist
-  3. see artist results
-  4. choose an artist
-  5. see album cards with covers
-  6. open an album
-  7. view tracklist, cover art, and date
-- Final deployment: GitHub Pages
-- Real project constraints:
-  - no custom backend
-  - no authentication
-  - no database
-  - mobile-first and responsive
-  - accessible enough for keyboard navigation
-  - few dependencies
-  - we need to account for the Deezer browser CORS problem
-  - the repository is at the very beginning and may be almost empty
-- Tool in use: [CHOSEN_TOOL]
-
-TASK
-Create a PLAN.md file at the repository root.
-
-PLAN.md must include:
-- a concise product summary
-- the exact v1 scope
-- a concrete initial stack, choosing one technical direction instead of listing many options
-- a short justification for that stack
-- an implementation plan broken into small, testable phases
-- for each phase: goal, deliverables, acceptance criteria, manual validation, risks, and open decisions
-- a note about publishing on GitHub Pages
-- a short “out of scope for now” section
-
-IMPORTANT RULES
-- write the file in English
-- be specific and avoid generic filler
-- do not invent features beyond the scope described above
-- do not implement code
-- this is an initial plan: it can be refined later, but it already needs to be coherent and executable
-- generate only the final PLAN.md content
-`.trim();
-
-const readmePrompt = `
-Use the existing PLAN.md as the main source of truth.
-
-PRODUCT CONTEXT
-- Repository name: [REPOSITORY_NAME]
-- Product: Deezer Explorer
-- The final product is a responsive static website for searching artists, listing albums, and opening album details with the public Deezer API
-- Final deployment: GitHub Pages
-- Current repository state: very early project setup, with an initial PLAN.md already created and reviewed
-- Tool in use: [CHOSEN_TOOL]
-
-TASK
-Create a real README.md for this repository in its current state.
-
-README.md needs to be useful for someone opening the repo right now and should explain:
-- what this project is
-- what version 1 will deliver
-- what the main user flow is
-- which Deezer API endpoints are central to the project
-- which stack was chosen in PLAN.md
-- what the repository status is right now
-- how the project is expected to be developed locally
-- how GitHub Pages deployment is expected to work
-- which risks and limitations are already known
-- what the immediate next steps are
-
-IMPORTANT RULES
-- write the file in English
-- make it a real README, not a placeholder
-- use PLAN.md for stack, scope, and phase information
-- if implementation has not started yet, say that clearly in the status section instead of pretending the product already exists
-- do not invent features outside the scope
-- do not fill the file with generic template language
-- generate only the final README.md content
-`.trim();
-
-const agentsPrompt = `
-Use the existing PLAN.md and README.md as the main source of truth.
-
-PRODUCT CONTEXT
-- Repository name: [REPOSITORY_NAME]
-- Product: Deezer Explorer
-- The final product is a responsive static website for searching artists, listing albums, and opening album details with the public Deezer API
-- Final deployment: GitHub Pages
-- Tool in use: [CHOSEN_TOOL]
-
-TASK
-Create the agent operating file at the repository root.
-
-FILE NAMING RULES
-- if I am using Claude Code, the file must be named CLAUDE.md
-- in any other tool, the file must be named AGENTS.md
-
-The file needs to be genuinely useful for day-to-day work in this repository and must include:
-- a concrete project overview
-- goals and current v1 scope
-- which files are the source of truth
-- how the agent should use PLAN.md and README.md before proposing changes
-- main project commands if they already exist; if they do not exist yet, say that explicitly
-- quality and validation standards
-- rules for updating PLAN.md and README.md when decisions change
-- rules for proposing changes in small phases
-- what must not be invented, changed, or assumed without alignment
-
-IMPORTANT RULES
-- write the file in English
-- make it a real operating document, not a generic template
-- use PLAN.md and README.md as the basis
-- do not invent stack, commands, or workflow that contradict the existing files
-- generate only the final content of the correct file: AGENTS.md or CLAUDE.md
-`.trim();
 ---
 
 <ChapterLayout chapterNumber={1} lang={lang}>
   <h2 id="create-repository">Create the repository on GitHub</h2>
 
   <p>
-    The goal of this chapter is not to write code yet. It is to go from zero to
-    a project that is ready to be planned and executed with an agent.
+    The goal of this chapter is not to write code. It is to go from absolute
+    zero and set up a project ready to be planned and executed with an agent.
   </p>
 
   <p>
-    That is why this chapter starts manually on purpose. Before bringing AI into
-    the loop, you create the repository on GitHub yourself. That helps you
-    understand where the project begins, what the official URL is, and how your
-    local folder connects to the remote.
+    That is why the start is manual on purpose. Before involving AI, you create
+    the repository on GitHub yourself. This helps you understand where the
+    project originates, what its official URL is, and how your local folder will
+    connect to the remote.
   </p>
 
-  <p>Open GitHub in the browser and follow this flow:</p>
+  <p>Open GitHub in your browser and follow these steps:</p>
 
   <ol>
     <li>Click <strong>New repository</strong>.</li>
-    <li>Pick a short, clear name such as <code>deezer-explorer</code>.</li>
-    <li>Add a simple one-line description.</li>
     <li>
-      Choose <strong>Public</strong> if you want to publish later on GitHub Pages.
+      Choose a short, clear name such as <code>my-hn-newspaper</code> or
+      <code>[REPO_NAME]</code>.
+    </li>
+    <li>Add a simple project description.</li>
+    <li>
+      Check <strong>Public</strong> if you want to publish later on GitHub Pages.
     </li>
     <li>
       Leave <strong>Add a README file</strong>, <strong>Add .gitignore</strong>,
-      and <strong>Choose a license</strong> unchecked. We will create those files
-      later, once the project is open and we have better context.
+      and <strong>Choose a license</strong> unchecked. You will create these files
+      later with the project open and with more context.
     </li>
     <li>Click <strong>Create repository</strong>.</li>
   </ol>
@@ -165,61 +41,91 @@ IMPORTANT RULES
   <div class="prompt-example prompt-good">
     <strong>Simple example</strong>
     <p>
-      Name: <code>deezer-explorer</code><br />
+      Name: <code>my-hn-newspaper</code><br />
       Description:
       <code>
-        Site for exploring artists, albums, and tracks with the Deezer API
+        Live news newspaper with the top Hacker News stories, published on
+        GitHub Pages
       </code>
     </p>
   </div>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
-    <p>The repository exists on GitHub and you can see its clone URL.</p>
-  </div>
-
-  <hr />
-
-  <h2 id="clone-in-terminal">Clone it in the terminal</h2>
-
-  <p>
-    With the repository created, the next step is bringing that project to your
-    machine. On GitHub, click <strong>Code</strong>, copy the HTTPS URL, and run
-    these commands in your terminal.
-  </p>
-
-  <div class="prompt-example prompt-good">
-    <strong>In the terminal</strong>
-    <pre><code>cd ~/projects
-git clone https://github.com/your-user/deezer-explorer.git
-cd deezer-explorer
-git remote -v
-git status</code></pre>
-  </div>
-
-  <p>
-    If the repository is empty, that is fine: <code>git clone</code> will still create
-    the folder, and <code>git status</code> may show something like
-    <code>No commits yet</code>. What matters here is confirming that your local
-    folder points to the right GitHub repository.
-  </p>
-
-  <div class="checkpoint">
-    <strong>✓ Checkpoint:</strong>
     <p>
-      The repository is cloned on your computer, <code>git status</code> works, and
-      <code>git remote -v</code> shows <code>origin</code>.
+      The repository exists on GitHub and you can see its clone URL.
     </p>
   </div>
 
   <hr />
 
-  <h2 id="open-tool">Open it in your chosen tool</h2>
+  <h2 id="clone-in-terminal">Clone in the terminal</h2>
 
   <p>
-    With the local folder ready, open that directory in the tool you want to
-    use: Cursor, Windsurf, VS Code, Claude Code, or something similar. The key
-    point here is to open the project root, not a few loose files.
+    With the repository created, the next step is to bring the project to your
+    machine. On GitHub, click <strong>Code</strong>, copy the HTTPS URL, and run
+    the commands in your terminal.
+  </p>
+
+  <div class="prompt-example prompt-good">
+    <strong>In the terminal</strong>
+    <pre><code>cd ~/projects
+git clone https://github.com/your-user/[REPO_NAME].git
+cd [REPO_NAME]
+git remote -v
+git status</code></pre>
+  </div>
+
+  <p>
+    If the repository is empty, that is normal: <code>git clone</code> will
+    create the folder and <code>git status</code> may show
+    <code>No commits yet</code>. The important thing here is to confirm that the
+    local folder is linked to the correct repository on GitHub.
+  </p>
+
+  <div class="checkpoint">
+    <strong>✓ Checkpoint:</strong>
+    <p>
+      The repository is cloned on your computer, <code>git status</code> works,
+      and <code>git remote -v</code> shows the <code>origin</code>.
+    </p>
+  </div>
+
+  <hr />
+
+  <h2 id="open-in-tool">Open in your chosen tool</h2>
+
+  <p>
+    With the local folder ready, open that directory in the tool you will work
+    with. The important point is to open the project root, not individual files.
+  </p>
+
+  <p>
+    AI development tools fall into three main categories, and all work well for
+    this project:
+  </p>
+
+  <ul>
+    <li>
+      <strong>AI-integrated IDEs</strong> (Cursor, Windsurf): complete environment
+      with editor, terminal, and agent in the same place. Good choice if you want
+      everything integrated.
+    </li>
+    <li>
+      <strong>AI CLIs for the terminal</strong> (Claude Code, OpenCode): agent
+      that operates directly in the terminal, reads and edits files, runs commands.
+      Good choice if you already have a preferred editor.
+    </li>
+    <li>
+      <strong>IDE assistants</strong> (GitHub Copilot, Codeium, etc.): inline
+      suggestions inside IDEs like VS Code or JetBrains. Works, but requires more
+      manual context management.
+    </li>
+  </ul>
+
+  <p>
+    Any of these categories will work. What matters is that the agent can see the
+    project root and operate on its files.
   </p>
 
   <div class="checkpoint">
@@ -232,104 +138,13 @@ git status</code></pre>
 
   <hr />
 
-  <h2 id="harness">Create the files that guide the project</h2>
+  <h2 id="github-cli-bonus">Bonus: install and authenticate the GitHub CLI</h2>
 
   <p>
-    Now the normal workflow begins. Before asking for UI, search, or API
-    integration, it is worth writing down the project context and the working
-    rules. That keeps the agent from inventing scope too early.
-  </p>
-
-  <p>
-    For this early setup, ask for one file at a time. First
-    <code>PLAN.md</code>, because it becomes the base for the next two. Then
-    <code>README.md</code>. Finally, ask for <code>AGENTS.md</code> or
-    <code>CLAUDE.md</code>, now grounded in the previous two files.
-  </p>
-
-  <p>
-    In the blocks below, replace the bracketed placeholders and click
-    <strong>Copy prompt</strong>. The goal is to paste them directly into your
-    tool and get a more reliable result than a vague generic request.
-  </p>
-
-  <p>
-    One important detail: only <code>PLAN.md</code> starts as an initial draft that
-    we refine in the next chapter. <code>README.md</code> and
-    <code>AGENTS.md</code> or <code>CLAUDE.md</code> should already come out as genuinely
-    useful project documents.
-  </p>
-
-  <p>These prompts already carry this product context:</p>
-
-  <ul>
-    <li>the product is called Deezer Explorer</li>
-    <li>it is a responsive static website</li>
-    <li>the user searches artists, sees albums, and opens album details</li>
-    <li>the data source is the public Deezer API</li>
-    <li>
-      the core endpoints are artist search, albums by artist, and album by ID
-    </li>
-    <li>those public catalog endpoints work without end-user login</li>
-    <li>the final deploy target is GitHub Pages</li>
-    <li>the project needs to account for the browser CORS problem</li>
-    <li>harness and operational files should be written in English</li>
-  </ul>
-
-  <div class="checkpoint">
-    <strong>Important note:</strong>
-    <p>
-      Deezer's developer portal currently asks you to log in so you can accept
-      the Simple API terms, but the public catalog endpoints used in this
-      project still work without end-user authentication. What does require a
-      token are account endpoints such as <code>/user/me</code>.
-    </p>
-  </div>
-
-  <h3>1. Base prompt for PLAN.md</h3>
-
-  <p>
-    This is the first prompt. It defines the product scope, the constraints, and
-    the planning expectation without asking for implementation yet.
-  </p>
-
-  <CopyPromptBlock client:visible content={planPrompt} lang={lang} />
-
-  <h3>2. Base prompt for README.md</h3>
-
-  <p>
-    Once <code>PLAN.md</code> exists and makes sense to you, ask for
-    <code>README.md</code>. Here the plan becomes the source of truth so the
-    README does not drift into invented details.
-  </p>
-
-  <CopyPromptBlock client:visible content={readmePrompt} lang={lang} />
-
-  <h3>3. Base prompt for AGENTS.md or CLAUDE.md</h3>
-
-  <p>
-    Finally, ask for the agent operating file. Because it comes after the plan
-    and README, it is much easier to produce rules that match the real project.
-  </p>
-
-  <CopyPromptBlock client:visible content={agentsPrompt} lang={lang} />
-
-  <p>
-    ⚠️ Read each file as soon as it is generated. If there is a command that
-    does not exist, invented scope, vague promises, or a technical decision you
-    do not understand, ask for an adjustment before moving to the next one. That
-    care saves a lot of correction later.
-  </p>
-
-  <hr />
-
-  <h2 id="github-cli-bonus">Bonus: install and authenticate GitHub CLI</h2>
-
-  <p>
-    This step is optional, but very worth it. <strong>GitHub CLI</strong>
+    This step is optional but well worth it. The <strong>GitHub CLI</strong>
     (<code>gh</code>) lets you access GitHub directly from the terminal:
-    authenticate your account, open repositories, inspect issues, work with pull
-    requests, and give the agent more autonomy while it operates on the project.
+    authenticate your account, open repositories, view issues, and work with
+    PRs without leaving your development environment.
   </p>
 
   <p>The most common installation paths are:</p>
@@ -344,13 +159,13 @@ git status</code></pre>
       <code>winget install --id GitHub.cli</code>
     </li>
     <li>
-      <strong>Linux:</strong> use your distribution's official packages from the GitHub
-      CLI documentation
+      <strong>Linux:</strong> use the official packages for your distribution in
+      the GitHub CLI documentation
     </li>
   </ul>
 
   <div class="prompt-example prompt-good">
-    <strong>Authenticate in the terminal</strong>
+    <strong>Authentication in the terminal</strong>
     <pre><code>gh auth login
 gh auth status</code></pre>
   </div>
@@ -361,7 +176,7 @@ gh auth status</code></pre>
     <li>Choose <strong>GitHub.com</strong>.</li>
     <li>Choose <strong>HTTPS</strong> as the Git protocol.</li>
     <li>Select browser-based authentication.</li>
-    <li>Finish the login in the browser when GitHub opens.</li>
+    <li>Complete the login in the browser when GitHub opens.</li>
   </ol>
 
   <div class="prompt-example prompt-good">
@@ -370,23 +185,22 @@ gh auth status</code></pre>
   </div>
 
   <p>
-    This command configures Git to use GitHub CLI credentials. If everything
-    worked, <code>gh auth status</code> should show your account as authenticated.
+    This command configures Git to use the GitHub CLI credentials. If it works,
+    <code>gh auth status</code> should show your authenticated account.
   </p>
 
   <p>
-    If you finished this chapter, you already handled the core setup: you
-    created the remote repository, connected the local copy, opened the project
-    in your tool, and recorded the rules and the initial plan. In the next
-    chapter, we will use that base to refine <code>PLAN.md</code> and break the execution
-    into small phases.
+    If you finished this chapter, you have done the essential setup: created the
+    remote repository, connected the local copy, and opened the project in your
+    tool. In the next chapter, you will create the three planning files that will
+    guide the agent: <code>ROADMAP.md</code>, <code>AGENTS.md</code> or
+    <code>CLAUDE.md</code>, and <code>DEV_PLAN.md</code>.
   </p>
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
     <p>
-      <code>PLAN.md</code>, <code>README.md</code>, and <code>AGENTS.md</code>
-      or <code>CLAUDE.md</code> exist, have been read, and make sense to you.
+      Repository created, cloned, and open in the tool. Ready to plan.
     </p>
   </div>
 </ChapterLayout>

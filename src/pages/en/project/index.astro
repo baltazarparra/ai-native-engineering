@@ -4,11 +4,17 @@ import SectionBlock from '../../../components/SectionBlock/SectionBlock.astro';
 import Badge from '../../../components/Badge/Badge.astro';
 import Footer from '../../../components/Footer/Footer.astro';
 import ChapterStepper from '../../../components/ChapterStepper/ChapterStepper.tsx';
-import { ui, getProjectAlternateLinks } from '../../../lib/i18n';
+import HackerNewsNewspaper from '../../../components/HackerNewsNewspaper/HackerNewsNewspaper.tsx';
+import Breadcrumbs from '../../../components/Breadcrumbs/Breadcrumbs.astro';
+import { ui, getProjectAlternateLinks, getHomeHref } from '../../../lib/i18n';
 
 const lang = 'en';
 const labels = ui[lang].project;
 const alternateLinks = getProjectAlternateLinks();
+const breadcrumbItems = [
+  { label: ui[lang].breadcrumb.home, href: getHomeHref(lang) },
+  { label: labels.title },
+];
 ---
 
 <BaseLayout
@@ -19,39 +25,55 @@ const alternateLinks = getProjectAlternateLinks();
 >
   <main id="main-content" class="project-landing">
     <SectionBlock as="header" padding="xl">
+      <Breadcrumbs items={breadcrumbItems} lang={lang} />
       <Badge variant="coral">{labels.heroLabel}</Badge>
       <h1 class="landing-title">{labels.heading}</h1>
-      <p class="landing-summary">{labels.summary}</p>
+      <p class="landing-summary">
+        A practical guide to building a live news newspaper with the HackerNews
+        API, published on GitHub Pages.
+      </p>
     </SectionBlock>
 
     <SectionBlock padding="lg" alt>
       <h2 class="section-heading">What you'll build</h2>
       <p>
-        A site where you type an artist's name, see their discography with album
-        covers, and click an album to view the tracklist and details. All
-        powered by the <strong>Deezer public API</strong>, published on your
-        <strong>GitHub Pages</strong>.
+        A static news newspaper that fetches the <strong>top 10 Hacker News stories</strong>
+        in real time and renders them as a newspaper page: main headline, articles
+        section, and numbered listing. All powered by the
+        <strong>HackerNews public API</strong> (no authentication), published on
+        your <strong>GitHub Pages</strong>.
       </p>
       <p>
         The project is the vehicle. What you'll actually learn is the
-        <strong>agentic development workflow</strong>: context, planning, phased
-        execution, and publishing.
+        <strong>AI-Native Engineering workflow</strong>: context, planning with
+        ROADMAP.md and DEV_PLAN.md, phased execution, and publishing.
       </p>
     </SectionBlock>
 
     <SectionBlock padding="lg">
+      <Badge variant="yellow">Live demo</Badge>
+      <h2 class="section-heading demo-heading">This is the project you'll build</h2>
+      <p class="demo-desc">
+        The component below fetches the HackerNews API right now and renders the
+        stories in the newspaper layout you'll create from scratch.
+      </p>
+      <HackerNewsNewspaper client:load lang={lang} />
+    </SectionBlock>
+
+    <SectionBlock padding="lg" alt>
       <h2 class="section-heading">Prerequisites</h2>
       <ul class="prereq-list">
         <li><strong>GitHub</strong> account</li>
         <li>
-          AI-powered development tool configured (Cursor, Windsurf, Claude Code,
-          etc.)
+          AI-powered development tool configured: AI-integrated IDE (Cursor,
+          Windsurf), AI CLI for the terminal (Claude Code, OpenCode), or IDE
+          assistant (Copilot, etc.)
         </li>
         <li>LLM configured in your tool (Claude, GPT, Gemini, etc.)</li>
       </ul>
     </SectionBlock>
 
-    <SectionBlock padding="xl" alt>
+    <SectionBlock padding="xl">
       <h2 class="section-heading">Your progress</h2>
       <ChapterStepper client:visible lang={lang} />
     </SectionBlock>
@@ -76,6 +98,16 @@ const alternateLinks = getProjectAlternateLinks();
 
   .section-heading {
     margin-bottom: var(--space-md);
+  }
+
+  .demo-heading {
+    margin-top: var(--space-sm);
+  }
+
+  .demo-desc {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    max-width: 64ch;
   }
 
   .prereq-list {

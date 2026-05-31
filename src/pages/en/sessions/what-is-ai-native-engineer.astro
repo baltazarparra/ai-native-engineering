@@ -9,7 +9,7 @@ import {
 } from '../../../lib/i18n';
 
 const lang = 'en';
-const target = `${getHomeHref(lang)}#foundations`;
+const target = getHomeHref(lang);
 const redirectScript = `window.location.replace(${JSON.stringify(target)});`;
 const alternateLinks: AlternateLink[] = [
   { lang: 'pt-BR', href: getSessionHref('pt-BR', 'ai-native-engineer') },
@@ -20,7 +20,7 @@ const alternateLinks: AlternateLink[] = [
 
 <BaseLayout
   title="Foundations moved | AI-Native Engineers"
-  description="The former session 0 is now summarized on the home page."
+  description="The former lesson 0 was discontinued. You will be redirected to the home page."
   lang={lang}
   noindex
   alternateLinks={alternateLinks}
@@ -28,12 +28,12 @@ const alternateLinks: AlternateLink[] = [
   <main id="main-content">
     <script is:inline set:html={redirectScript} />
     <SectionBlock padding="xl">
-      <h1>The foundations moved to the home page</h1>
+      <h1>This page was discontinued</h1>
       <p>
-        The former session 0 is now summarized in three cards: AI-Native
-        Engineer, AI agent, and coding agent.
+        The former lesson 0 no longer exists. Start with the lessons on the
+        home page.
       </p>
-      <Button href={target} size="lg">See foundations</Button>
+      <Button href={target} size="lg">Go to home</Button>
     </SectionBlock>
   </main>
 </BaseLayout>

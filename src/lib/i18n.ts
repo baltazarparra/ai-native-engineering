@@ -55,7 +55,7 @@ export const ui = {
       advanced: 'avançado',
     },
     sectionNav: {
-      ariaLabel: 'Navegação da sessão',
+      ariaLabel: 'Navegação da aula',
       summaryFallback: 'Resumo',
       references: 'Referências',
       discussion: 'Discussão',
@@ -64,7 +64,7 @@ export const ui = {
       kicker: 'Comunidade',
       heading: 'Pergunte, responda, destrave',
       description:
-        'Use este espaço para fazer perguntas sobre a sessão, compartilhar exemplos e ajudar outras pessoas a entenderem o tema.',
+        'Use este espaço para fazer perguntas sobre a aula, compartilhar exemplos e ajudar outras pessoas a entenderem o tema.',
       notConfigured:
         'A área de discussão ainda precisa ser conectada ao Giscus. Enquanto isso, você pode abrir uma discussão direto no GitHub.',
       openDiscussions: 'Abrir discussões no GitHub',
@@ -90,13 +90,19 @@ export const ui = {
       lastLabel: 'Você chegou ao fim',
       lastTitle: 'Agora é hora de colocar em prática.',
       home: 'Ir para o projeto prático',
-      label: 'Próxima sessão',
+      label: 'Próxima aula',
       continue: 'Continuar',
+    },
+    breadcrumb: {
+      ariaLabel: 'Trilha de navegação',
+      home: 'Início',
+      sessions: 'Aulas',
+      sessionsAnchor: '#sessoes',
     },
     project: {
       title: 'Projeto Prático',
       heroLabel: 'Mão na massa',
-      heading: 'Construa seu primeiro projeto usando Agente de IA',
+      heading: 'Construa seu primeiro projeto com seu agente de código',
       summary:
         'Um guia prático para criar, planejar e publicar um projeto AI-Native do zero.',
       readingTime: '45 min (prática guiada)',
@@ -104,7 +110,7 @@ export const ui = {
       checkpointLabel: 'Checkpoint',
       homeCta: 'Ir para o projeto prático',
       homeDesc:
-        'Já viu a teoria? Agora crie um projeto do zero com seu agente de código e publique no GitHub Pages.',
+        'Quando a teoria fizer sentido, coloque em prática: crie um projeto AI-Native do zero com seu agente de código e publique no GitHub Pages.',
     },
     chapters: {
       chapterLabel: (n: number) => `Capítulo ${n}`,
@@ -138,6 +144,31 @@ export const ui = {
         'Artigos publicados no Notion e gerados no build do site — contexto, validação e fluxo no dia a dia.',
       button: 'Ver blog',
     },
+    harness: {
+      pagerAria: 'Navegação entre capítulos',
+      previous: 'Capítulo anterior',
+      next: 'Próximo capítulo',
+      backToOverview: 'Visão geral',
+      courseProgressAria: 'Progresso da trilha',
+      progressOf: (done: number, total: number) =>
+        `${done} de ${total} capítulos concluídos`,
+      chapterRead: 'Capítulo lido',
+      alreadySeen: 'Você já passou por esta ideia',
+      lessonIntro: 'Nesta aula você vai entender',
+      start: 'Começar',
+      continue: 'Continuar',
+      reviewChapter: 'Revisar capítulo',
+      markReadAndContinue: 'Marcar como lido e avançar',
+      finishPath: 'Concluir trilha',
+      pathComplete: 'Trilha concluída',
+      pathCompleteDesc:
+        'Agora você enxerga o sistema por trás dos agentes.',
+      pathCompleteSubline:
+        'Você saiu de "modelo que responde" para "sistema que opera".',
+      resetProgress: 'Recomeçar progresso',
+      resetAria: 'Recomeçar progresso da trilha',
+      tabCompleteLabel: 'Capítulo concluído',
+    },
     footer: {
       tagline: 'baltz',
       personalSite: 'Site baltz.dev',
@@ -167,7 +198,7 @@ export const ui = {
       advanced: 'advanced',
     },
     sectionNav: {
-      ariaLabel: 'Session navigation',
+      ariaLabel: 'Lesson navigation',
       summaryFallback: 'Summary',
       references: 'References',
       discussion: 'Discussion',
@@ -176,7 +207,7 @@ export const ui = {
       kicker: 'Community',
       heading: 'Ask, answer, get unstuck',
       description:
-        'Use this space to ask questions about the session, share examples, and help other people understand the topic.',
+        'Use this space to ask questions about the lesson, share examples, and help other people understand the topic.',
       notConfigured:
         'The discussion area still needs to be connected to Giscus. For now, you can open a discussion directly on GitHub.',
       openDiscussions: 'Open GitHub discussions',
@@ -202,21 +233,27 @@ export const ui = {
       lastLabel: 'You made it to the end',
       lastTitle: 'Now put it to work.',
       home: 'Go to the hands-on project',
-      label: 'Next session',
+      label: 'Next lesson',
       continue: 'Keep going',
+    },
+    breadcrumb: {
+      ariaLabel: 'Breadcrumb',
+      home: 'Home',
+      sessions: 'Lessons',
+      sessionsAnchor: '#sessions',
     },
     project: {
       title: 'Hands-on Project',
       heroLabel: 'Hands-on',
       heading: 'Build your first project with a code agent',
       summary:
-        'A practical guide to creating, planning, and publishing a project from scratch using the agentic development workflow.',
+        'A practical guide to creating, planning, and publishing an AI-Native project from scratch.',
       readingTime: '45 min (guided practice)',
       navAriaLabel: 'Project navigation',
       checkpointLabel: 'Checkpoint',
       homeCta: 'Go to the hands-on project',
       homeDesc:
-        'Done with theory? Build a project from scratch with your code agent and publish it to GitHub Pages.',
+        'When the theory clicks, put it to work: build an AI-Native project from scratch with your coding agent and publish it to GitHub Pages.',
     },
     chapters: {
       chapterLabel: (n: number) => `Chapter ${n}`,
@@ -241,6 +278,30 @@ export const ui = {
       tabAria: 'Project chapters',
       resetAria: 'Reset progress',
       reset: 'Start over',
+    },
+    harness: {
+      pagerAria: 'Chapter navigation',
+      previous: 'Previous chapter',
+      next: 'Next chapter',
+      backToOverview: 'Overview',
+      courseProgressAria: 'Learning path progress',
+      progressOf: (done: number, total: number) =>
+        `${done} of ${total} chapters complete`,
+      chapterRead: 'Chapter read',
+      alreadySeen: 'You have already seen this idea',
+      lessonIntro: 'This lesson helps you understand',
+      start: 'Start',
+      continue: 'Continue',
+      reviewChapter: 'Review chapter',
+      markReadAndContinue: 'Mark as read and continue',
+      finishPath: 'Finish path',
+      pathComplete: 'Learning path complete',
+      pathCompleteDesc: 'Now you can see the system behind agents.',
+      pathCompleteSubline:
+        'You moved from "a model that responds" to "a system that operates".',
+      resetProgress: 'Start over',
+      resetAria: 'Reset learning path progress',
+      tabCompleteLabel: 'Chapter complete',
     },
     footer: {
       tagline: 'baltz',
@@ -278,7 +339,6 @@ const projectSlugs: Record<Lang, string> = {
   en: 'project',
 };
 
-const skillsSlug = 'skills';
 const harnessSlug = 'harness-engineering';
 
 export function getProjectHref(lang: Lang): string {
@@ -286,12 +346,11 @@ export function getProjectHref(lang: Lang): string {
   return withBase(`${prefix}${projectSlugs[lang]}`);
 }
 
-export function getSkillsHref(lang: Lang): string {
-  const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
-  return withBase(`${prefix}${skillsSlug}`);
+export function getHarnessHref(lang: Lang): string {
+  return getHarnessOverviewHref(lang);
 }
 
-export function getHarnessHref(lang: Lang): string {
+export function getHarnessOverviewHref(lang: Lang): string {
   const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
   return withBase(`${prefix}${harnessSlug}`);
 }
@@ -309,16 +368,6 @@ export function getProjectAlternateLinks(): AlternateLink[] {
     label: languages[lang].label,
   }));
   links.push({ lang: 'x-default' as const, href: getProjectHref(defaultLang) });
-  return links;
-}
-
-export function getSkillsAlternateLinks(): AlternateLink[] {
-  const links: AlternateLink[] = supportedLangs.map((lang) => ({
-    lang,
-    href: getSkillsHref(lang),
-    label: languages[lang].label,
-  }));
-  links.push({ lang: 'x-default' as const, href: getSkillsHref(defaultLang) });
   return links;
 }
 

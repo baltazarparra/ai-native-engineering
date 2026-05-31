@@ -4,7 +4,7 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 ## Project Overview
 
-An interactive, static, responsive educational website (PT-BR) that teaches what it means to work as an AI-Native Engineer in 2026. Built for non-technical and junior audiences (QA, PM, designers, recruiters, founders), not just senior devs. The full product spec is in `PLAN.md`.
+An interactive, static, responsive educational website (PT-BR) that teaches what it means to work as an AI-Native Engineer. Built for non-technical and junior audiences (QA, PM, designers, recruiters, founders), not just senior devs. The full product spec is in `PLAN.md`.
 
 ## Harness Documentation Language
 

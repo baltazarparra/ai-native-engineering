@@ -61,8 +61,6 @@ interface StickerDef {
   labels: Record<Lang, string>;
   visual: StickerVisual;
   desktopSlot: StickerSlot;
-  mobileSlot?: StickerSlot;
-  showOnMobile?: boolean;
   tone?: 'default';
 }
 
@@ -72,45 +70,36 @@ const STICKERS: StickerDef[] = [
     labels: { 'pt-BR': 'robô', en: 'robot' },
     visual: { kind: 'emoji', emoji: '🤖' },
     desktopSlot: { left: 88, top: 15, rotate: -7 },
-    mobileSlot: { left: 80, top: 16, rotate: -7 },
-    showOnMobile: true,
   },
   {
     id: 'bulb',
     labels: { 'pt-BR': 'ideia', en: 'idea' },
     visual: { kind: 'emoji', emoji: '💡' },
     desktopSlot: { left: 72, top: 55, rotate: 6 },
-    showOnMobile: false,
   },
   {
     id: 'bolt',
     labels: { 'pt-BR': 'raio', en: 'bolt' },
     visual: { kind: 'emoji', emoji: '⚡' },
     desktopSlot: { left: 92, top: 78, rotate: 4 },
-    showOnMobile: false,
   },
   {
     id: 'brain',
     labels: { 'pt-BR': 'cérebro', en: 'brain' },
     visual: { kind: 'emoji', emoji: '🧠' },
     desktopSlot: { left: 62, top: 12, rotate: -5 },
-    showOnMobile: false,
   },
   {
     id: 'sparkles',
     labels: { 'pt-BR': 'faíscas', en: 'sparkles' },
     visual: { kind: 'emoji', emoji: '✨' },
     desktopSlot: { left: 82, top: 40, rotate: 8 },
-    mobileSlot: { left: 70, top: 42, rotate: 8 },
-    showOnMobile: true,
   },
   {
     id: 'duck',
     labels: { 'pt-BR': 'pato', en: 'duck' },
     visual: { kind: 'emoji', emoji: '🦆' },
     desktopSlot: { left: 50, top: 24, rotate: -6 },
-    mobileSlot: { left: 50, top: 18, rotate: -6 },
-    showOnMobile: true,
   },
 ];
 
@@ -151,6 +140,7 @@ const CURSOR_PUBLISH_INTERVAL_MS = 33;
 const OWNER_HOLD_AFTER_RELEASE_MS = 1500;
 const OWNER_REFRESH_DRAG_MS = 5000;
 const ROOM_ID = 'stickers-global-v1';
+const MOBILE_MAX_WIDTH = 767;
 
 function makeInitialStorage(): {
   stickers: LiveMap<string, LiveObject<StickerSync>>;
@@ -195,7 +185,6 @@ interface RegisterArgs {
 interface StickerProps {
   def: StickerDef;
   lang: Lang;
-  isMobile: boolean;
   containerRef: React.RefObject<HTMLDivElement | null>;
   onActivate: () => void;
   topIndex: number;
@@ -209,7 +198,6 @@ interface StickerProps {
 function Sticker({
   def,
   lang,
-  isMobile,
   containerRef,
   onActivate,
   topIndex,
@@ -219,7 +207,7 @@ function Sticker({
   clampPosition,
   initialRemote,
 }: StickerProps) {
-  const slot = isMobile ? (def.mobileSlot ?? def.desktopSlot) : def.desktopSlot;
+  const slot = def.desktopSlot;
   const refW =
     initialRemote && typeof window !== 'undefined' ? window.innerWidth : 0;
   const refH =
@@ -232,7 +220,7 @@ function Sticker({
   const y = useMotionValue(initialOffsetY);
   const rotate = useMotionValue(initialRemote?.rotate ?? slot.rotate);
   const bodyRef = useRef<StickerPhysicsBody | null>(null);
-  const radius = isMobile ? 38 : 30;
+  const radius = 30;
 
   useEffect(() => {
     bodyRef.current = register({
@@ -367,7 +355,6 @@ function HeroStickersBody({
   const [topId, setTopId] = useState<string | null>(null);
   const [orderMap, setOrderMap] = useState<Record<string, number>>({});
   const [mounted, setMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const bodiesRef = useRef<StickerPhysicsBody[]>([]);
   const boundsRef = useRef<{ width: number; height: number }>({
     width: 0,
@@ -387,14 +374,6 @@ function HeroStickersBody({
 
   useEffect(() => {
     setMounted(true);
-    const mqMobile = window.matchMedia('(max-width: 640px)');
-    const updateMobile = () => setIsMobile(mqMobile.matches);
-    updateMobile();
-    mqMobile.addEventListener('change', updateMobile);
-
-    return () => {
-      mqMobile.removeEventListener('change', updateMobile);
-    };
   }, []);
 
   const refreshBounds = useCallback(() => {
@@ -422,7 +401,7 @@ function HeroStickersBody({
       window.removeEventListener('scroll', handle);
       ro?.disconnect();
     };
-  }, [mounted, isMobile, refreshBounds]);
+  }, [mounted, refreshBounds]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -769,11 +748,6 @@ function HeroStickersBody({
     }
   });
 
-  const visibleStickers = useMemo(
-    () => (isMobile ? STICKERS.filter((def) => def.showOnMobile) : STICKERS),
-    [isMobile],
-  );
-
   const activate = (id: string) => {
     setTopId(id);
     setOrderMap((prev) => {
@@ -798,12 +772,11 @@ function HeroStickersBody({
       {multiplayer && <RemoteCursors />}
       {mounted &&
         stickersReady &&
-        visibleStickers.map((def) => (
+        STICKERS.map((def) => (
           <Sticker
             key={def.id}
             def={def}
             lang={lang}
-            isMobile={isMobile}
             containerRef={containerRef}
             onActivate={() => activate(def.id)}
             topIndex={orderMap[def.id] || 0}
@@ -845,10 +818,32 @@ function MultiplayerBridge({ lang }: Props) {
   return <HeroStickersBody lang={lang} sync={sync} remoteStickers={stickers} />;
 }
 
+function HeroStickersHost() {
+  return <div className={styles.layer} aria-hidden="true" />;
+}
+function useIsMobileViewport(): boolean | null {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${MOBILE_MAX_WIDTH}px)`);
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  return isMobile;
+}
+
 export default function HeroStickers({ lang = 'pt-BR' }: Props) {
+  const isMobileViewport = useIsMobileViewport();
   const [myColor] = useState<string>(
     () => CURSOR_COLORS[Math.floor(Math.random() * CURSOR_COLORS.length)],
   );
+
+  if (isMobileViewport !== false) {
+    return <HeroStickersHost />;
+  }
 
   if (!liveblocksEnabled) {
     return <HeroStickersBody lang={lang} />;

@@ -4,14 +4,17 @@ slug: 'maturity'
 lang: 'en'
 translationKey: 'maturity'
 order: 3
-summary: 'SDD turns intent into development plan. Harness Design gives agents the tools and validation gates to develop safely at enterprise level.'
-readingTime: 24
+summary: 'Spec-Driven Development (SDD) turns intent into a verifiable plan. Harness Design organizes tools and validation so agents can deliver with quality and safety.'
+readingTime: 12
 level: 'advanced'
 tags: ['sdd', 'harness', 'agents', 'governance', 'workflow']
 heroLabel: 'Professional flow'
 references:
   [
     'openai-harness-engineering',
+    'anthropic-agentic-coding-trends-2026',
+    'openai-symphony-orchestration',
+    'github-copilot-cloud-agent-research-plan',
     'github-spec-kit',
     'kiro-specs',
     'shimony-sdd',
@@ -20,23 +23,23 @@ references:
     'claude-code-hooks',
     'cursor-docs',
     'mcp-spec',
+    'mcp-tool-poisoning-research',
     'owasp-llm-top-10',
     'owasp-agentic-ai-threats',
+    'owasp-agentic-applications-2026',
   ]
-updatedAt: 2026-04-24
+updatedAt: 2026-05-26
 ---
-
-import SDDHarnessFlow from '../../components/SDDHarnessFlow/SDDHarnessFlow.tsx';
 
 ## The shift that matters
 
 The core problem in AI-assisted software work is not "which model should we use?" That changes constantly. The real problem is: **how do we turn human intent into reliable software without losing control, quality, and responsibility along the way?**
 
-Vibe coding showed that models can generate a lot of code from natural language. That is powerful for prototypes. But in an enterprise environment, delivery cost is not just writing code. It is aligning scope, preserving architecture, protecting data, validating behavior, reviewing changes, auditing decisions, and keeping the system healthy after deployment.
+Vibe coding showed that models can generate a lot of code from natural language. That is powerful for prototypes. But in real product work, delivery cost is not just writing code. It is aligning scope, preserving architecture, protecting data, validating behavior, reviewing changes, auditing decisions, and keeping the system healthy after deployment.
 
 Two ideas need to work together:
 
-- **SDD**, or Spec-Driven Development: writing and evolving specifications that act as an contract.
+- **SDD**, or Spec-Driven Development: writing and evolving specifications that act as a contract.
 - **Harness Design**: designing the work system around the agent so it has context, tools, boundaries, validation, and governance.
 
 Separately, these ideas help. Together, they change the level of the workflow.
@@ -63,64 +66,24 @@ Harness Design is the design of the **agent operating environment**.
 
 If SDD answers "what must be true?", the harness answers "how do we create a system where the agent can execute, validate, and improve without relying on informal memory?".
 
-A harness can include:
+### A model is not an agent
 
-- persistent instructions such as `AGENTS.md`, `CLAUDE.md`, or `.cursor/rules/`;
-- versioned architecture, product, and domain documentation;
-- spec, PRD, plan, and review templates;
-- tools available to the agent, such as terminal, GitHub, browser, logs, and MCP servers;
-- permission boundaries and human approval points;
-- validation commands, CI, lint, typecheck, tests, and security checks;
-- PR standards, ownership, rollback, and audit practices;
-- learning loops that turn failures into rules, tests, or docs.
+A model responds. An agent tries to complete a task using tools in a loop: it reads context, takes an action, observes the result, and decides the next step.
 
-The goal is not to trap the agent. It is to create rails. Rails do not prevent movement; they make movement predictable.
+The harness is what makes that loop useful in real work. It tells the agent which rules to follow, which tools to use, where to find context, when to ask for approval, and how to prove the work is done.
 
-## Applied example: enterprise SSO
+> **agent = model + harness**
 
-Imagine a company needs to add SSO login for enterprise customers.
+### What goes into a harness?
 
-### Amateur flow
+Think of the harness as the agent's work infrastructure. It is not one tool. It is the system that lets you move from conversation to a validated delivery.
 
-Someone asks the agent: "implement SSO with Google". The agent creates an integration, adds dependencies, changes auth, passes the build, and the screen opens. It looks like progress.
+- **Instructions**: files like `AGENTS.md`, rules, and skills that carry commands, standards, and project agreements.
+- **Context**: specs, technical decisions, architecture, product docs, and enough history so the agent is not working in the dark.
+- **Tools**: terminal, Git, browser, GitHub, logs, MCP servers, and other integrations that let the agent act in the right environment.
+- **Boundaries**: sandbox, permissions, human approvals, and blocks for destructive or sensitive actions.
+- **Validation**: lint, tests, typecheck, build, diff review, and checklists that push back against broken delivery.
+- **Observability**: UI, logs, metrics, traces, screenshots, and reproducible checks that the agent (and the human) can read to understand what happened.
+- **Learning**: each recurring failure becomes a rule, test, hook, doc, or skill. The harness improves because the team learned.
 
-But nobody answered:
-
-- which providers are supported;
-- how domains map to organizations;
-- what happens to existing users;
-- who can configure SSO;
-- how login is audited;
-- how to roll back if the provider fails;
-- which tests prove permissions do not leak.
-
-That is not enterprise engineering. It is a prototype in a blazer.
-
-### SDD + Harness flow
-
-**PM** writes the intent: enterprise customers need to authenticate users through the SSO provider configured for their organization.
-
-**Tech lead** turns that into a spec: flows, states, permissions, boundaries, schemas, endpoints, and risks.
-
-**QA** derives scenarios: user without an allowed domain, provider unavailable, expired invitation, organization without SSO, existing user with the same email.
-
-**Security** defines constraints: tokens cannot go into unsafe storage; logs cannot contain secrets; callback must validate state.
-
-**Agent** receives the spec, auth-module context, project rules, and validation commands.
-
-**Harness** runs the gates: typecheck, lint, unit tests, integration tests, build, diff review, and security checklist.
-
-If something fails, the team does not just ask the agent to "try again". It asks: was an acceptance criterion missing? A test? A rule? A tool? The answer becomes an improvement to the harness.
-
-## How to start without bureaucracy
-
-You do not need an agent laboratory before using this.
-
-Start small:
-
-1. Create a simple spec template for medium-risk features.
-2. Write a short `AGENTS.md` with commands, architecture, and essential rules.
-3. Define the minimum bar before accepting a PR: diff read, lint, typecheck, tests, and acceptance criteria.
-4. Review the harness once per sprint or before major delivery.
-
-The goal is not bureaucracy. The goal is reducing improvisation where improvisation is expensive.
+The goal is not to trap the agent. It is to create rails. Good rails do not prevent movement; they make movement predictable, reviewable, and safe.

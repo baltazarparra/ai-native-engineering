@@ -1,0 +1,128 @@
+---
+import SectionBlock from '../../../SectionBlock/SectionBlock.astro';
+import Badge from '../../../Badge/Badge.astro';
+---
+
+<!-- ═══════════════════════════════════════════════
+     CAPÍTULO 3 · MATURIDADE
+════════════════════════════════════════════════ -->
+<SectionBlock padding="lg" alt>
+  <div class="chapter-intro">
+    <Badge variant="green">Capítulo 3</Badge>
+    <span class="chapter-label">Maturidade</span>
+  </div>
+  <div class="section-stack">
+
+    <div class="section-copy">
+      <h2>O erro comum: tratar harness como wrapper</h2>
+      <p>
+        É tentador pensar em harness como uma camada fina ao redor do
+        modelo. Um pouco de prompt. Algumas tools. Um arquivo de
+        instruções. Talvez um script de teste. Isso é um começo, mas não é
+        suficiente.
+      </p>
+      <p>
+        <strong>Harness não é embalagem. Harness é infraestrutura
+        operacional.</strong>
+      </p>
+      <p>
+        Quando uma falha acontece, a pergunta madura não é apenas "o modelo
+        errou?". A pergunta madura é:
+        <em>o harness permitiu esse erro?</em>
+      </p>
+      <p>
+        Talvez o agente não tivesse contexto suficiente. Talvez o teste
+        correto não existisse. Talvez a ferramenta retornou sinal ambíguo.
+        Talvez o plano não tinha critério de aceite. Talvez a permissão era
+        ampla demais. Talvez o erro já tinha acontecido antes, mas não virou
+        memória, teste ou regra.
+      </p>
+      <blockquote class="key-insight">
+        Harness Engineering transforma falhas em melhoria estrutural. Cada
+        erro deveria deixar o sistema melhor: uma regra nova, um teste novo,
+        uma checagem nova, um limite de permissão, uma memória operacional.
+      </blockquote>
+
+      <h2>Avaliar o modelo é insuficiente</h2>
+      <p>
+        Hoje ainda comparamos agentes de forma superficial: "esse modelo é
+        melhor que aquele." Mas em sistemas reais, performance não vem só do
+        modelo. Ela vem do conjunto: qualidade do contexto, acesso ao
+        ambiente, ferramentas disponíveis, capacidade de executar, qualidade
+        dos testes, política de permissões, memória, recuperação de erro,
+        revisão humana, telemetry e design do workflow.
+      </p>
+      <p>
+        Dois times podem usar o mesmo modelo e obter resultados
+        completamente diferentes. A diferença está no harness.
+      </p>
+      <blockquote class="key-insight">
+        A pergunta mais relevante não é "qual modelo você usa?". É:
+        <em>como seu harness transforma intenção em mudança validada?</em>
+      </blockquote>
+
+      <h2>Cinco níveis de maturidade</h2>
+      <p>
+        Um harness fraco depende de confiança no output. Um harness forte
+        cria um ciclo controlado de mudança, validação, aprendizado e
+        governança.
+      </p>
+    </div>
+
+    <ol class="maturity-list">
+      <li class="maturity-card">
+        <div class="maturity-header">
+          <span class="maturity-number">1</span>
+          <h3>Resposta</h3>
+        </div>
+        <p>
+          O modelo responde com instruções ou código. Não há execução. Não
+          há validação. O humano precisa interpretar tudo.
+        </p>
+      </li>
+      <li class="maturity-card">
+        <div class="maturity-header">
+          <span class="maturity-number">2</span>
+          <h3>Ação assistida</h3>
+        </div>
+        <p>
+          O agente edita arquivos ou sugere diffs. Ainda depende muito do
+          humano para saber se funcionou.
+        </p>
+      </li>
+      <li class="maturity-card">
+        <div class="maturity-header">
+          <span class="maturity-number">3</span>
+          <h3>Execução validada</h3>
+        </div>
+        <p>
+          O agente altera, executa testes, lê erros e corrige. Aqui começa
+          o comportamento agentic real.
+        </p>
+      </li>
+      <li class="maturity-card">
+        <div class="maturity-header">
+          <span class="maturity-number">4</span>
+          <h3>Workflow governado</h3>
+        </div>
+        <p>
+          O agente opera com permissões, critérios de aceite, logs,
+          rollback, revisão e políticas de risco. O sistema passa a ser
+          parte do processo de engenharia.
+        </p>
+      </li>
+      <li class="maturity-card maturity-card--peak">
+        <div class="maturity-header">
+          <span class="maturity-number">5</span>
+          <h3>Harness evolutivo</h3>
+        </div>
+        <p>
+          O sistema aprende com falhas, melhora suas regras, adiciona
+          verificadores, registra memória operacional e reduz regressões ao
+          longo do tempo. O harness vira um ativo da organização.
+        </p>
+      </li>
+    </ol>
+
+  </div>
+</SectionBlock>

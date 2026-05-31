@@ -7,10 +7,15 @@ import Discussion from '../components/Discussion/Discussion.astro';
 import ProgressTracker from '../components/ProgressTracker/ProgressTracker.tsx';
 import ChapterNav from '../components/ChapterNav/ChapterNav.tsx';
 import ChapterFooter from '../components/ChapterFooter/ChapterFooter.tsx';
+import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs.astro';
 import type { Lang } from '../lib/i18n';
 import ReferencesList from '../components/ReferencesList/ReferencesList.astro';
-import { ui, getProjectAlternateLinks } from '../lib/i18n';
-import { CHAPTERS, resolveChapterReferences } from '../data/chapters';
+import { ui, getHomeHref, getProjectHref } from '../lib/i18n';
+import {
+  CHAPTERS,
+  getChapterAlternateLinks,
+  resolveChapterReferences,
+} from '../data/chapters';
 
 interface Props {
   chapterNumber: number;
@@ -20,12 +25,17 @@ interface Props {
 const { chapterNumber, lang } = Astro.props;
 const chapter = CHAPTERS.find((ch) => ch.number === chapterNumber)!;
 const labels = ui[lang].chapters;
-const alternateLinks = getProjectAlternateLinks();
+const alternateLinks = getChapterAlternateLinks(chapterNumber);
 const references = resolveChapterReferences(chapter, lang);
 const badgeVariant = chapter.isReference ? 'blue' : 'coral';
 const badgeText = chapter.isReference
   ? labels.reference
   : labels.chapterLabel(chapterNumber);
+const breadcrumbItems = [
+  { label: ui[lang].breadcrumb.home, href: getHomeHref(lang) },
+  { label: ui[lang].project.title, href: getProjectHref(lang) },
+  { label: chapter.title[lang] },
+];
 const gitReminder =
   lang === 'pt-BR'
     ? {
@@ -55,6 +65,7 @@ const gitReminder =
   />
   <main id="main-content" class="chapter-page">
     <SectionBlock as="header" padding="xl">
+      <Breadcrumbs items={breadcrumbItems} lang={lang} />
       <Badge variant={badgeVariant}>{badgeText}</Badge>
       <h1 class="chapter-title">{chapter.title[lang]}</h1>
       <p class="chapter-summary">{chapter.description[lang]}</p>

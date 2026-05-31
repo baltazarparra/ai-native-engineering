@@ -7,7 +7,6 @@ import Card from '../components/Card/Card.astro';
 import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
 import Discussion from '../components/Discussion/Discussion.astro';
-import HomeFoundations from '../components/HomeFoundations/HomeFoundations.astro';
 import HeroStickers from '../components/HeroStickers/HeroStickers';
 import HeroGhostCursors from '../components/HeroGhostCursors/HeroGhostCursors';
 import HeroCaptureCounter from '../components/HeroCaptureCounter/HeroCaptureCounter';
@@ -17,7 +16,6 @@ import {
   getHomeAlternateLinks,
   getSessionHref,
   getProjectHref,
-  getSkillsHref,
   getBlogHref,
   getHarnessHref,
   ui,
@@ -26,6 +24,7 @@ import {
 const lang = 'pt-BR';
 const labels = ui[lang];
 const sessions = getSessions(lang);
+const project = ui[lang].project;
 
 function levelToBadgeVariant(level: string) {
   const map = {
@@ -47,15 +46,15 @@ function levelToLabel(level: string) {
 ---
 
 <BaseLayout
-  title="Engenharia de Software na Era da IA"
-  description="Um guia prático para quem quer usar IA de verdade no dia a dia de desenvolvimento, sem hype e sem medo."
+  title="AI-Native Engineers"
+  description="Guia prático para programar com agentes de código"
   lang={lang}
   alternateLinks={getHomeAlternateLinks()}
 >
   <main id="main-content">
     <HeroStickers client:visible lang={lang} />
     <!-- hero -->
-    <SectionBlock as="header" padding="xl" maxWidth="lg">
+    <SectionBlock as="header" padding="md" maxWidth="lg" id="hero">
       <div class="hero-layer" data-screen-shake>
         <HeroGhostCursors client:visible />
         <HeroCursorTrail client:visible />
@@ -64,23 +63,21 @@ function levelToLabel(level: string) {
             <Badge variant="green">100% gratuito e open source</Badge>
             <HeroCaptureCounter client:visible lang={lang} />
           </span>
-          <h1 class="hero-title">Engenharia de Software na Era da IA</h1>
+          <h1 class="hero-title">AI-Native Engineers</h1>
           <p class="hero-tagline">
-            Um guia prático para quem quer usar IA de verdade no dia a dia de
-            desenvolvimento, sem hype e sem medo.
+            Guia prático para programar com agentes de código
           </p>
-          <Button href={getSessionHref(lang, sessions[0].slug)} size="lg">
-            Iniciar estudos
-          </Button>
         </div>
       </div>
     </SectionBlock>
 
-    <HomeFoundations lang={lang} />
-
     <!-- session cards -->
-    <SectionBlock padding="xl" id="sessoes">
-      <h2>Sessões</h2>
+    <SectionBlock padding="lg" id="sessoes">
+      <h2>Aulas</h2>
+      <p class="sessions-intro">
+        Três aulas em sequência: do vibe coding às ferramentas de IA e ao fluxo
+        profissional com agentes de código.
+      </p>
       <Grid columns={3} gap="lg" align="stretch">
         {
           sessions.map((session) => (
@@ -97,7 +94,15 @@ function levelToLabel(level: string) {
               </Fragment>
               <p>{session.summary}</p>
               <Fragment slot="footer">
-                <span class="session-order">Sessão {session.order}</span>
+                <div class="card-footer-row">
+                  <span class="session-order">Aula {session.order}</span>
+                  <span class="card-cta">
+                    Acessar aula
+                    <span class="card-cta-arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </span>
+                </div>
               </Fragment>
             </Card>
           ))
@@ -133,39 +138,18 @@ function levelToLabel(level: string) {
     </SectionBlock>
 
     <!-- projeto prático -->
-    <SectionBlock padding="xl">
+    <SectionBlock padding="xl" alt>
       <div class="project-cta-block">
         <Badge variant="coral">Novo</Badge>
-        <h2>Projeto Prático</h2>
-        <p>
-          Já viu a teoria? Agora crie um projeto do zero com seu agente de
-          código e publique no GitHub Pages. Um guia prático que ensina o fluxo
-          agêntico de verdade.
-        </p>
+        <h2>{project.title}</h2>
+        <p>{project.homeDesc}</p>
         <Button href={getProjectHref(lang)} size="lg">
-          Ir para o projeto prático
+          {project.homeCta}
         </Button>
       </div>
     </SectionBlock>
 
-    <!-- skills -->
-    <SectionBlock padding="xl">
-      <div class="skills-cta-block">
-        <Badge variant="blue">Skills</Badge>
-        <h2>Compartilhe processos com seus agentes</h2>
-        <p>
-          Entenda o que são skills, como elas ajudam times a manter boas
-          práticas e instale uma quality gate com um comando NPX.
-        </p>
-        <Button href={getSkillsHref(lang)} size="lg"> Ver skills </Button>
-      </div>
-    </SectionBlock>
-
-    <Discussion
-      lang={lang}
-      slug="home"
-      title="Engenharia de Software na Era da IA"
-    />
+    <Discussion lang={lang} slug="home" title="AI-Native Engineers" />
 
     <!-- footer -->
     <Footer lang={lang} />
@@ -204,11 +188,63 @@ function levelToLabel(level: string) {
     line-height: var(--leading-relaxed);
   }
 
+  .sessions-intro {
+    max-width: 60ch;
+    margin-block: var(--space-md) var(--space-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
   .session-order {
     font-family: var(--font-heading);
     font-weight: var(--weight-medium);
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+  }
+
+  .card-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+  }
+
+  .card-cta-arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  :global(.linkable):hover .card-cta-arrow {
+    transform: translateX(4px);
+  }
+
+  :global(#hero) {
+    padding-bottom: var(--space-lg);
+  }
+
+  :global(#sessoes) {
+    padding-top: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+  }
+
+  @media (min-width: 1024px) {
+    :global(#hero) {
+      padding-bottom: var(--space-xl);
+    }
+
+    :global(#sessoes) {
+      padding-top: var(--space-xl);
+      margin-bottom: var(--space-3xl);
+    }
   }
 
   .project-cta-block {
@@ -269,28 +305,6 @@ function levelToLabel(level: string) {
     margin-block: var(--space-md) var(--space-lg);
     color: var(--color-text-muted);
     line-height: var(--leading-relaxed);
-  }
-
-  .skills-cta-block {
-    border: var(--border-thick);
-    border-radius: var(--radius-md);
-    background-color: var(--color-bg-alt);
-    box-shadow: var(--shadow-lg);
-    padding: var(--space-xl);
-    max-width: 760px;
-    margin-inline: auto;
-    text-align: center;
-  }
-
-  .skills-cta-block h2 {
-    margin-top: var(--space-sm);
-  }
-
-  .skills-cta-block p {
-    margin: var(--space-md) auto var(--space-lg);
-    color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
-    max-width: 54ch;
   }
 
   h2 + p {

@@ -4,14 +4,17 @@ slug: 'maturidade'
 lang: 'pt-BR'
 translationKey: 'maturity'
 order: 3
-summary: 'SDD transforma intenção em planejamento. Harness Design organiza ferramentas e validações para agentes desenvolverem com qualidade e segurança.'
-readingTime: 24
+summary: 'Spec-Driven Development (SDD) transforma intenção em planejamento. Harness Design organiza ferramentas e validações para agentes desenvolverem com qualidade e segurança.'
+readingTime: 12
 level: 'advanced'
 tags: ['sdd', 'harness', 'agentes', 'governança', 'workflow']
 heroLabel: 'Fluxo profissional'
 references:
   [
     'openai-harness-engineering',
+    'anthropic-agentic-coding-trends-2026',
+    'openai-symphony-orchestration',
+    'github-copilot-cloud-agent-research-plan',
     'github-spec-kit',
     'kiro-specs',
     'shimony-sdd',
@@ -20,24 +23,24 @@ references:
     'claude-code-hooks',
     'cursor-docs',
     'mcp-spec',
+    'mcp-tool-poisoning-research',
     'owasp-llm-top-10',
     'owasp-agentic-ai-threats',
+    'owasp-agentic-applications-2026',
   ]
-updatedAt: 2026-05-04
+updatedAt: 2026-05-26
 ---
-
-import SDDHarnessFlow from '../../components/SDDHarnessFlow/SDDHarnessFlow.tsx';
 
 ## O salto que importa
 
-O problema em usar agentes de IA para desenvolver, não é "o modelo da semana". Modelos mudam rápido. A pergunta difícil é: **como transformar uma intenção humana em software confiável sem perder controle, qualidade e responsabilidade no caminho**.
+O problema de usar agentes de IA para desenvolver não é "o modelo da semana". Modelos mudam rápido. A pergunta difícil é: **como transformar uma intenção humana em software confiável sem perder controle, qualidade e responsabilidade no caminho**.
 
 Vibe coding, a prática de construir pela conversa com o modelo, mostrou que IA consegue gerar muito código a partir de linguagem natural. Isso é poderoso para protótipos. Mas, em ambiente corporativo, entregar software não termina quando o código aparece. A entrega também envolve alinhar escopo, preservar arquitetura, proteger dados, validar comportamento, revisar mudanças, auditar decisões e manter o sistema saudável depois do deploy.
 
 É aqui que entram duas ideias que precisam andar juntas:
 
 - **SDD**, ou Spec-Driven Development: escrever e evoluir especificações que funcionam como um contrato.
-- **Harness Design**: As ferramentas em volta do agente para que ele tenha contexto, limites e validação.
+- **Harness Design**: as ferramentas em volta do agente, para que ele tenha contexto, limites e validação.
 
 Separadas, essas ideias ajudam. Juntas, elas mudam o padrão da entrega.
 
@@ -45,7 +48,7 @@ Separadas, essas ideias ajudam. Juntas, elas mudam o padrão da entrega.
 
 SDD significa **Spec-Driven Development**, desenvolvimento guiado por especificação.
 
-Neste contexto, uma spec, ou especificação é um artefato vivo, versionado e revisável que responde:
+Neste contexto, uma spec, ou especificação, é um artefato vivo, versionado e revisável que responde:
 
 - qual problema estamos resolvendo;
 - para quem isso importa;
@@ -63,62 +66,24 @@ Harness Design é o ambiente do **agente de código**.
 
 Se SDD responde "o que precisa ser verdade?", o harness responde "como criamos um sistema onde o agente consegue executar, validar e melhorar sem depender de sorte ou contexto perdido na conversa?".
 
-Um harness pode incluir:
+### Modelo não é agente
 
-- instruções persistentes, como `AGENTS.md`, `CLAUDE.md` ou `.cursor/rules/`;
-- documentação versionada de arquitetura, produto e domínio;
-- templates de spec, PRD (documento de requisitos de produto), plano e revisão;
-- ferramentas disponíveis ao agente, como terminal, GitHub, navegador, logs e MCP servers, que conectam o agente a ferramentas externas;
-- limites de permissão e pontos de aprovação humana;
-- comandos de validação, CI, lint, typecheck, testes e checagens de segurança;
-- padrões de PR, responsáveis, rollback e auditoria;
-- loops de aprendizado para transformar falhas em regras, testes ou docs.
+Um modelo responde. Um agente tenta concluir uma tarefa usando ferramentas em ciclo: ele lê contexto, toma uma ação, observa o resultado e decide o próximo passo.
+
+O harness é o que torna esse ciclo útil no trabalho real. Ele diz ao agente quais regras respeitar, quais ferramentas usar, onde buscar contexto, quando pedir aprovação e como provar que terminou.
+
+> **agente = modelo + harness**
+
+### O que entra em um harness?
+
+Pense no harness como a infraestrutura de trabalho do agente. Não é uma ferramenta única. É o conjunto que permite sair da conversa e chegar numa entrega validável.
+
+- **Instruções**: arquivos como `AGENTS.md`, rules e skills que carregam comandos, padrões e combinados do projeto.
+- **Contexto**: specs, decisões técnicas, arquitetura, docs de produto e histórico suficiente para o agente não trabalhar no escuro.
+- **Ferramentas**: terminal, Git, navegador, GitHub, logs, MCP servers e outras integrações que deixam o agente agir no ambiente certo.
+- **Limites**: sandbox, permissões, aprovações humanas e bloqueios para ações destrutivas ou sensíveis.
+- **Validação**: lint, testes, typecheck, build, revisão de diff e checklists que criam pressão contra entrega quebrada.
+- **Observabilidade**: UI, logs, métricas, traces, screenshots e checks reproduzíveis que o agente (e o humano) conseguem ler para entender o que aconteceu.
+- **Aprendizado**: cada falha recorrente vira uma regra, teste, hook, doc ou skill. O harness melhora porque o time aprendeu.
 
 O ponto não é criar uma prisão para o agente. É criar trilhos. Bons trilhos não impedem movimento; eles tornam o movimento previsível, revisável e seguro.
-
-Se você quer aprofundar esse conceito antes de seguir para SDD, leia o guia completo de [Harness Engineering](/harness-engineering).
-
-## Exemplo aplicado: login único corporativo
-
-Imagine que uma empresa precisa adicionar SSO, ou login único, para clientes corporativos.
-
-### Fluxo amador
-
-Alguém pede ao agente: "implementa SSO com Google". O agente cria uma integração, adiciona dependências, muda autenticação, passa no build e a tela abre. Parece progresso.
-
-Mas ninguém respondeu:
-
-- quais provedores são suportados;
-- como mapear domínio para organização;
-- o que acontece com usuários existentes;
-- quem pode configurar SSO;
-- como auditar login;
-- como reverter se o provedor cair;
-- quais testes provam que permissões não vazam.
-
-Isso não é engenharia corporativa. É uma demo vestida de entrega.
-
-### Fluxo SDD + Harness
-
-**Pessoa de produto ou PM** escreve a intenção: clientes corporativos precisam autenticar usuários pelo provedor SSO configurado por organização.
-
-**Liderança técnica ou tech lead** transforma isso em spec: fluxos, estados, permissões, limites, schemas, endpoints e riscos.
-
-**QA** deriva cenários: usuário sem domínio permitido, provedor indisponível, convite expirado, organização sem SSO, usuário existente com e-mail igual.
-
-**Segurança** define restrições: tokens não podem ir para armazenamento inseguro; logs não podem conter segredos; o callback do provedor precisa validar estado.
-
-**Agente** recebe spec, contexto do módulo de autenticação, regras do projeto e comandos de validação.
-
-**Harness** executa os gates de validação, ou checagens obrigatórias: typecheck, lint, testes unitários, testes de integração, build, revisão de diff e checklist de segurança.
-
-Se algo falha, o time não só pede "tenta de novo". Ele pergunta: faltou critério de aceite? Faltou teste? Faltou regra? Faltou ferramenta? A resposta vira melhoria no harness.
-
-## Como começar sem burocratizar
-
-1. Crie um template simples para suas Specs.
-2. Escreva um `AGENTS.md` curto com comandos, arquitetura e regras essenciais.
-3. Defina o "mínimo aceitável" antes de aceitar PR: diff revisado, lint, typecheck, testes e critérios de aceite.
-4. Revise o harness uma vez por sprint ou por entrega importante.
-
-O objetivo não é burocracia. O objetivo é reduzir improviso onde improviso custa caro.

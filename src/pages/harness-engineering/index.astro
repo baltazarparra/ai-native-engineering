@@ -1,0 +1,28 @@
+---
+import HarnessChapterLayout from '../../layouts/HarnessChapterLayout.astro';
+import HarnessCourseOverview from '../../components/harness/HarnessCourseOverview';
+import {
+  HARNESS_OVERVIEW_DISCUSSION_SLUG,
+  HARNESS_SERIES,
+} from '../../data/harness-chapters';
+import { getHarnessAlternateLinks } from '../../lib/i18n';
+
+const lang = 'pt-BR';
+const alternateLinks = getHarnessAlternateLinks();
+const pageTitle = `${HARNESS_SERIES.title[lang]} | AI-Native Engineers`;
+---
+
+<HarnessChapterLayout
+  lang={lang}
+  activeTab="overview"
+  title={pageTitle}
+  description={HARNESS_SERIES.description[lang]}
+  alternateLinks={alternateLinks}
+  discussionSlug={HARNESS_OVERVIEW_DISCUSSION_SLUG}
+  discussionTitle={HARNESS_SERIES.title[lang]}
+  heroBadge="Fundamentos"
+  heroTitle={HARNESS_SERIES.title[lang]}
+  heroSummary={HARNESS_SERIES.summary[lang]}
+>
+  <HarnessCourseOverview client:visible lang={lang} />
+</HarnessChapterLayout>

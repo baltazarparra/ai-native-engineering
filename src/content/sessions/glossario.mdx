@@ -5,7 +5,7 @@ lang: 'pt-BR'
 translationKey: 'glossary'
 order: 1
 summary: 'O que é vibe coding, quais plataformas criam apps por prompt, onde isso ajuda, onde quebra e como transformar demo em software de verdade.'
-readingTime: 14
+readingTime: 10
 level: 'beginner'
 tags: ['glossario', 'vibe coding', 'ferramentas', 'fundamentos']
 heroLabel: 'Vocabulário essencial'
@@ -21,11 +21,11 @@ references:
     'metr-ai-productivity-2025',
     'stanford-insecure-code-ai-assistants',
     'owasp-llm-top-10',
+    'owasp-agentic-applications-2026',
+    'mcp-tool-poisoning-research',
   ]
-updatedAt: 2026-05-04
+updatedAt: 2026-05-26
 ---
-
-import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid.tsx';
 
 ## Fiz um app via prompt. E agora?
 
@@ -33,7 +33,7 @@ Você entra no Lovable, Bolt, v0, Replit Agent ou alguma plataforma parecida. Di
 
 Esse momento é viciante porque dá a sensação de ter pulado meses de aprendizado. E, para ser justo, tem valor real aí. Pela primeira vez, PMs, designers, founders, QAs e devs iniciantes conseguem transformar uma ideia em algo clicável sem começar por configuração de projeto, boilerplate ou medo do terminal.
 
-Mas aqui entra a frase mais importante desta sessão: **preview não é produção**.
+Mas aqui entra a frase mais importante desta aula: **preview não é produção**.
 
 Um app que abre no navegador ainda pode ter regra de acesso errada, segredo exposto, fluxo quebrado, código impossível de manter, dependência mal escolhida, teste inexistente e uma arquitetura que só funciona enquanto o projeto é pequeno.
 
@@ -51,7 +51,7 @@ Isso não é automaticamente ruim. Vibe coding é ótimo para:
 - testar fluxos de produto antes de gastar sprint de engenharia;
 - fazer ferramentas internas simples e descartáveis.
 
-Se você não entende o código, não revisou dados, não testou permissões e não sabe como fazer rollback, você ainda não é dono do software. Você só tem uma demo com autoestima.
+Se você não entende o código, não revisou os dados, não testou as permissões e não sabe reverter uma mudança, você ainda não é dono do software. Tem um protótipo, e protótipo não aguenta produção.
 
 ## Por que isso parece funcionar tão bem
 
@@ -63,19 +63,7 @@ Você não precisa esperar "saber tudo" para brincar com produto. Dá para const
 
 ## Como isso conecta com as próximas sessões
 
-Nesta sessão, você está pegando vocabulário para não cair no marketing. Nas próximas, a gente aprofunda:
+Nesta aula, você está pegando vocabulário para não cair no marketing. Nas próximas, a gente aprofunda:
 
-- [Sessão 2: Ferramentas e modelos](../ferramentas) mostra como escolher entre IDE com IA, CLI, agente na nuvem e modelos por tarefa.
-- [Sessão 3: SDD e Harness Design](../maturidade) mostra como transformar intenção em contrato verificável e operar agentes com contexto, validação e governança.
-
-## Busca rápida de termos
-
-Use a busca abaixo como mapa de bolso. A ideia não é decorar jargão; é entender o suficiente para fazer perguntas melhores.
-
-<GlossaryCardGrid client:visible />
-
-## O que levar daqui
-
-- Vibe coding é ótimo para começar, aprender e prototipar. Não é desculpa para parar de entender.
-- Plataformas prompt-to-app aceleram muito, mas fazem escolhas técnicas por você.
-- Preview não é produção. Código gerado precisa de spec, revisão, teste e dono.
+- [Aula 2: Ferramentas e modelos](../ferramentas) mostra como escolher entre IDE com IA, CLI, agente na nuvem e modelos por tarefa.
+- [Aula 3: SDD e Harness Design](../maturidade) mostra como transformar intenção em contrato verificável e operar agentes com contexto, validação e governança.

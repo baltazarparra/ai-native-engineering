@@ -5,7 +5,7 @@ lang: 'en'
 translationKey: 'glossary'
 order: 1
 summary: 'What vibe coding is, which platforms turn prompts into apps, where it helps, where it breaks, and how to turn a demo into real software.'
-readingTime: 14
+readingTime: 10
 level: 'beginner'
 tags: ['glossary', 'vibe coding', 'tools', 'fundamentals']
 heroLabel: 'Essential vocabulary'
@@ -21,11 +21,11 @@ references:
     'metr-ai-productivity-2025',
     'stanford-insecure-code-ai-assistants',
     'owasp-llm-top-10',
+    'owasp-agentic-applications-2026',
+    'mcp-tool-poisoning-research',
   ]
-updatedAt: 2026-04-23
+updatedAt: 2026-05-26
 ---
-
-import GlossaryCardGrid from '../../components/GlossaryCardGrid/GlossaryCardGrid.tsx';
 
 ## Made an app via prompts. Now what?
 
@@ -33,9 +33,9 @@ You open Lovable, Bolt, v0, Replit Agent, or a similar platform. You type: "crea
 
 That moment is addictive because it feels like you skipped months of learning. And to be fair, there is real value there. For the first time, PMs, designers, founders, QAs, and junior devs can turn an idea into something clickable without starting with project setup, boilerplate, or terminal anxiety.
 
-But this is the most important line in the session: **preview is not production**.
+But this is the most important line in this lesson: **preview is not production**.
 
-An app that opens in the browser can still have broken access rules, exposed secrets, fragile flows, unmaintainable code, odd dependencies, no tests, and an architecture that only works while the project is tiny. The flex is not generating something in 30 minutes. The flex is being able to maintain it tomorrow.
+An app that opens in the browser can still have broken access rules, exposed secrets, fragile flows, unmaintainable code, odd dependencies, no tests, and an architecture that only works while the project is tiny.
 
 ## What vibe coding is
 
@@ -51,7 +51,7 @@ That is not automatically bad. Vibe coding is great for:
 - testing product flows before spending engineering sprint time;
 - building simple internal or disposable tools.
 
-If you do not understand the code, have not reviewed data access, have not tested permissions, and do not know how to roll back, you do not own the software yet. You have a demo with confidence.
+If you do not understand the code, have not reviewed data access, have not tested permissions, and do not know how to roll back, you do not own the software yet. You have a prototype, and a prototype will not survive production.
 
 ## Why it feels like it works so well
 
@@ -61,21 +61,9 @@ It also works because many apps repeat patterns: login screen, list, form, dashb
 
 This changes the game: you do not need to wait until you "know everything" to play with product ideas. You can build, break, ask, compare, and learn in the loop. Just do not skip understanding. AI accelerates feedback. It does not replace fundamentals.
 
-## How this connects to the next sessions
+## How this connects to the next lessons
 
-In this session, you are getting the vocabulary to avoid falling for marketing. Next, we go deeper:
+In this lesson, you are getting the vocabulary to avoid falling for marketing. Next, we go deeper:
 
-- [Session 2: Tools and models](../tools) shows how to choose between AI IDEs, CLIs, cloud agents, and task-fit models.
-- [Session 3: SDD and Harness Design](../maturity) shows how to turn intent into a verifiable contract and operate agents with context, validation, and governance.
-
-## Quick term search
-
-Use the search below as a pocket map. The goal is not to memorize jargon; it is to understand enough to ask better questions.
-
-<GlossaryCardGrid lang="en" client:visible />
-
-## Takeaway
-
-- Vibe coding is great for starting, learning, and prototyping. It is not an excuse to stop understanding.
-- Prompt-to-app platforms move fast, but they make technical choices for you.
-- Preview is not production. Generated code needs a spec, review, tests, and an owner.
+- [Lesson 2: Tools and models](../tools) shows how to choose between AI IDEs, CLIs, cloud agents, and task-fit models.
+- [Lesson 3: SDD and Harness Design](../maturity) shows how to turn intent into a verifiable contract and operate agents with context, validation, and governance.

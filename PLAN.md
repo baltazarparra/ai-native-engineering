@@ -2,7 +2,7 @@
 
 ## 1. Project Summary
 
-Create an interactive, static, responsive website, published through GitHub Pages, that teaches in accessible human language what a person needs to understand to operate as an **AI-Native Engineer** in 2026.
+Create an interactive, static, responsive website, published through GitHub Pages, that teaches in accessible human language what a person needs to understand to operate as an **AI-Native Engineer**.
 
 The product must not speak only to senior developers. It needs to work for:
 
