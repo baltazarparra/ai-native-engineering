@@ -38,90 +38,30 @@ Each session follows a fixed template: 30-second summary, main explanation, why 
 - Every interaction must explain better, organize better, or improve retention
 - Acronyms are explained before any deep dive
 
-## Blog (Notion)
+## Blog (local MDX)
 
-The **`/blog/`** section is a **static** slice of the site: posts are authored in a **Notion database** and fetched **only at build time** (`astro build`). There is no Notion API in the browser and no blog backend.
-
-### Prerequisites
-
-- **Node.js 22.x** (see `engines` in `package.json`)
-- **pnpm**
-- Access to a Notion workspace where you can create an integration and database
-
-### Notion setup
-
-1. **Create an integration** at [Notion integrations](https://www.notion.so/my-integrations) and copy the **internal integration secret** → `NOTION_TOKEN`.
-2. **Create a database** with these properties (names must match exactly):
-
-   | Property      | Notion type | Notes                          |
-   | ------------- | ----------- | ------------------------------ |
-   | Title         | Title       | Post title                     |
-   | Slug          | Rich text   | URL segment; unique when Published |
-   | Status        | Select      | `Published` or `Draft`           |
-   | PublishedAt   | Date        | Listing sort (newest first)    |
-   | Summary       | Rich text   | Card / meta description        |
-   | Cover         | Files       | Optional hero image            |
-
-3. **Share the database** (or parent page) with your integration so API queries succeed.
-4. Copy the **database UUID** from the Notion URL → `NOTION_DATABASE_ID`.
-
-Canonical contract: [docs-blog/blog-plan.md](docs-blog/blog-plan.md).
-
-### Local environment
-
-```bash
-cp .env.example .env
-# Edit .env — set NOTION_TOKEN and NOTION_DATABASE_ID (never commit .env)
-pnpm install
-pnpm run build
-pnpm run preview
-```
-
-Open **`/blog/`** in the preview server. Post detail URLs are **`/blog/{slug}/`**.
-
-Optional env check (does not print secrets):
-
-```bash
-pnpm exec tsx notion-smoke.ts
-```
-
-### CI / GitHub Actions
-
-Production deploys use [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) (`push` to **`main`** or **workflow_dispatch**). The build step needs the same variables as local development, supplied as **encrypted repository secrets** (never commit them):
-
-| Secret name | Purpose |
-| ----------- | ------- |
-| `NOTION_TOKEN` | Notion integration secret |
-| `NOTION_DATABASE_ID` | Blog database UUID |
-
-**Setup:** Repository **Settings → Secrets and variables → Actions → New repository secret** for each name.
-
-**Policy:** If either secret is missing on a production deploy, the build **fails** with a missing-environment error from `src/lib/notion.ts` — the site does not silently ship an empty blog.
-
-**Forks and pull requests:** GitHub does not expose upstream repository secrets to workflows from untrusted forks. Fork PR CI may fail on `pnpm run build` without Notion env; use a local **`.env`** when working on blog features. Org admins can configure secrets on the canonical repository.
-
-**Rotation:** Update the secret in GitHub, then re-run the deploy workflow (or push to `main`).
+The **`/blog/`** section is **static**: each post is an **MDX file** in `src/content/blog/` with frontmatter validated at build time. No Notion API, no blog secrets in CI.
 
 ### Publishing workflow
 
-- Set **Status** to **Published** for rows that should appear on the site.
-- **Draft** rows are excluded from the listing and from static paths.
-- Each **Published** row needs a non-empty, **unique** **Slug** (duplicate slugs fail the build).
+1. Create or edit `src/content/blog/your-slug.mdx` (see [docs-blog/blog-plan.md](docs-blog/blog-plan.md) for the frontmatter contract).
+2. Set `draft: false` when the post should go live.
+3. Run `pnpm run build` and open **`/blog/`** (detail URLs: **`/blog/{slug}/`**).
+4. RSS feed: **`/rss.xml`**.
 
 ### Authoring tips
 
-- Use Notion **`/code`** blocks (with a language) for syntax highlighting on the site.
-- **Cover** and in-body **image** blocks are optimised at build time via Astro’s image pipeline; allowed remote hosts are listed in [`astro.config.mjs`](astro.config.mjs) (`image.remotePatterns`).
-- **Rebuild and redeploy** after content changes. Notion file URLs may be time-limited; a new build refreshes embedded assets.
+- Use fenced code blocks with a language for syntax highlighting.
+- Optional `cover` points to a file under `public/` (e.g. `/images/blog/hero.png`).
+- `draft: true` keeps the post off the site, sitemap paths, and RSS.
 
 ### Troubleshooting
 
 | Symptom | Likely cause |
 | ------- | ------------- |
-| Build error: missing `NOTION_TOKEN` / `NOTION_DATABASE_ID` | `.env` not set or variable names wrong |
-| Build error: duplicate slug | Two Published rows share the same **Slug** |
-| Empty `/blog/` but build succeeds | No rows with **Status = Published**, or empty database |
-| Images broken after deploy | Signed URL expired — trigger a rebuild |
+| Build error: duplicate slug | Two published posts share the same `slug` |
+| Post missing from `/blog/` | `draft: true` or wrong `lang` |
+| Empty listing but build OK | No published posts in `src/content/blog/` |
 
 ### Further reading
 
@@ -131,7 +71,7 @@ Production deploys use [`.github/workflows/deploy.yml`](.github/workflows/deploy
 
 Contributions are welcome — whether it's suggesting new content, fixing inaccuracies, or improving clarity.
 
-For **Notion-backed blog posts**, see **[Blog (Notion)](#blog-notion)** above before changing `src/lib/notion.ts` or blog pages.
+For **blog posts**, see **[Blog (local MDX)](#blog-local-mdx)** above before changing `src/lib/blog.ts` or blog pages.
 
 - **Report issues or suggest content:** [open an issue](https://github.com/baltazarparra/ai-native-engineering/issues)
 - **Start a conversation:** [join the discussions](https://github.com/baltazarparra/ai-native-engineering/discussions)
