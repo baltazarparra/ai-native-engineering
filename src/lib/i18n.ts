@@ -135,7 +135,7 @@ export const ui = {
       badge: 'Atualizações',
       heading: 'Blog',
       description:
-        'Artigos publicados no Notion e gerados no build do site — contexto, validação e fluxo no dia a dia.',
+        'Artigos em MDX no repositório — versionados no Git e gerados no build do site.',
       button: 'Ver blog',
     },
     footer: {

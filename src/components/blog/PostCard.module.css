@@ -83,3 +83,22 @@
 .summary:empty {
   display: none;
 }
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  padding: 0.15em 0.5em;
+  border: var(--border-thin);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-alt);
+  color: var(--color-text-muted);
+}

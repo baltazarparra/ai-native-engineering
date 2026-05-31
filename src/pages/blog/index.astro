@@ -3,11 +3,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
 import Footer from '../../components/Footer/Footer.astro';
 import PostCard from '../../components/blog/PostCard.astro';
-import { getPosts } from '../../lib/notion';
+import { getPublishedBlogPosts } from '../../lib/blog';
 import listStyles from './blog-index.module.css';
 
 const lang = 'pt-BR';
-const posts = await getPosts();
+const posts = await getPublishedBlogPosts(lang);
 
 const pageTitle = 'Blog | AI-Native Engineers';
 const description =
@@ -19,8 +19,8 @@ const description =
     <SectionBlock as="header" padding="xl">
       <h1>Blog</h1>
       <p class:list={[listStyles.pageIntro]}>
-        Publicações vindas do Notion. Quando há conteúdo publicado como
-        “Published”, ele aparece aqui em ordem de data mais recente.
+        Publicações em MDX no repositório — versionadas, revisáveis e geradas no
+        build do site, em ordem da data mais recente.
       </p>
     </SectionBlock>
 
@@ -29,10 +29,8 @@ const description =
         <SectionBlock padding="lg">
           <h2 class:list={[listStyles.emptyTitle]}>Nenhuma publicação ainda</h2>
           <p class:list={[listStyles.emptyBody]}>
-            Não há páginas com status “Published” no banco configurado (ou ele
-            está vazio). Publique pelo menos uma entrada no Notion com Slug válido
-            para ver esta lista aqui — o site continua a ser gerado corretamente
-            mesmo assim.
+            Crie um arquivo em <code>src/content/blog/</code> com{' '}
+            <code>draft: false</code> e rode o build para ver a lista aqui.
           </p>
         </SectionBlock>
       ) : (
@@ -41,11 +39,12 @@ const description =
             {posts.map((post) => (
               <li>
                 <PostCard
-                  title={post.title}
-                  slug={post.slug}
-                  summary={post.summary}
-                  publishedAt={post.publishedAt}
-                  coverUrl={post.coverUrl}
+                  title={post.data.title}
+                  slug={post.data.slug}
+                  summary={post.data.summary}
+                  publishedAt={post.data.publishedAt}
+                  cover={post.data.cover}
+                  tags={post.data.tags}
                 />
               </li>
             ))}

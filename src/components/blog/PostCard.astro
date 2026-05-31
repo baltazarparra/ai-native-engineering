@@ -1,9 +1,7 @@
 ---
 /**
- * Listing card — PRD Phase B3. Missing Cover: omit image band (omit placeholder).
- * Missing PublishedAt: show muted “Sem data”.
+ * Blog listing card — local MDX posts.
  */
-import NotionImage from './NotionImage.astro';
 import { withBase } from '../../lib/i18n';
 import styles from './PostCard.module.css';
 
@@ -11,36 +9,40 @@ interface Props {
   title: string;
   slug: string;
   summary: string;
-  publishedAt: Date | null;
-  coverUrl: string | null;
+  publishedAt: Date;
+  cover?: string;
+  tags?: string[];
 }
 
-const { title, slug, summary, publishedAt, coverUrl } = Astro.props;
+const { title, slug, summary, publishedAt, cover, tags = [] } = Astro.props;
 
 const href = withBase(`blog/${encodeURIComponent(slug)}`);
 
-const publishedLabel = publishedAt
-  ? publishedAt.toLocaleDateString('pt-BR', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })
+const coverSrc = cover
+  ? cover.startsWith('http://') || cover.startsWith('https://')
+    ? cover
+    : withBase(cover.replace(/^\//, ''))
   : null;
 
-const noDateLabel = 'Sem data';
+const publishedLabel = publishedAt.toLocaleDateString('pt-BR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
 ---
 
 <a href={href} class={styles.root}>
   {
-    coverUrl ? (
+    coverSrc ? (
       <div class={styles.coverWrap}>
-        <NotionImage
-          src={coverUrl}
+        <img
+          src={coverSrc}
           alt={title}
           class={styles.coverImg}
           width={800}
           height={450}
           loading="lazy"
+          decoding="async"
         />
       </div>
     ) : null
@@ -48,14 +50,17 @@ const noDateLabel = 'Sem data';
   <div class={styles.body}>
     <span class={styles.title}>{title}</span>
     <div class={styles.metaRow}>
-      {
-        publishedLabel && publishedAt ? (
-          <time datetime={publishedAt.toISOString()}>{publishedLabel}</time>
-        ) : (
-          <span class={styles.dateMuted}>{noDateLabel}</span>
-        )
-      }
+      <time datetime={publishedAt.toISOString()}>{publishedLabel}</time>
     </div>
+    {
+      tags.length > 0 ? (
+        <ul class={styles.tagList} aria-label="Tags">
+          {tags.map((tag) => (
+            <li class={styles.tag}>{tag}</li>
+          ))}
+        </ul>
+      ) : null
+    }
     {summary.trim() ? <p class={styles.summary}>{summary}</p> : null}
   </div>
 </a>
