@@ -1,0 +1,41 @@
+---
+title: "Por que o blog agora vive no repositório"
+slug: "posts-locais-mdx"
+summary: "Posts em MDX com frontmatter: versionados no Git, build previsível e sem API do Notion no deploy."
+publishedAt: 2026-05-29
+updatedAt: 2026-05-29
+draft: false
+lang: "pt-BR"
+tags: ["blog", "astro", "mdx"]
+---
+
+Trabalhar com IA de verdade não é só gerar código. É **contexto**, **validação** e **fluxo** — e o blog do site segue a mesma lógica: conteúdo claro, publicação confiável.
+
+## O que mudou
+
+Antes, os posts vinham de um banco no Notion na hora do `astro build`. Agora cada artigo é um arquivo `.mdx` em `src/content/blog/`, com metadados no frontmatter:
+
+- `title`, `slug`, `summary`
+- `publishedAt` e `updatedAt`
+- `draft: true` para rascunhos que não entram no site
+- `tags` opcionais
+
+## Por que MDX local
+
+**Histórico no Git** — dá para revisar texto e metadados em PR, como qualquer código.
+
+**Build mais simples** — não precisa de `NOTION_TOKEN` nem secrets no CI só para listar posts.
+
+**Mesma stack do site** — Astro Content Collections, igual às sessões educacionais.
+
+## Exemplo de código
+
+```ts
+import { getPublishedBlogPosts } from '../lib/blog';
+
+const posts = await getPublishedBlogPosts('pt-BR');
+```
+
+## Próximo passo
+
+Crie um novo arquivo em `src/content/blog/`, defina `draft: false`, rode `pnpm run build` e o post aparece em `/blog/` e em `/blog/seu-slug/`.
