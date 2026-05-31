@@ -17,10 +17,7 @@ Before writing any code, read:
 TASK
 Analyze phase [PHASE_NAME] from the DEV_PLAN.md, refine anything vague, and create a PRD for that phase.
 
-For the Notion blog (already shipped), use:
-- docs-blog/blog-plan.md
-
-For new features, create a PRD in the appropriate plan location (e.g. docs-blog/ or PLAN.md).
+For new features, create the PRD in the appropriate plan location (e.g. PLAN.md or the feature docs folder).
 
 The PRD must be in English and include:
 - Goal
@@ -50,7 +47,6 @@ Read these files:
 - DEV_PLAN.md
 - ROADMAP.md
 - AGENTS.md or CLAUDE.md
-- docs-blog/blog-plan.md (if this phase is blog-related)
 
 I am switching the tool to PLAN mode.
 
@@ -80,10 +76,9 @@ Use these files as context:
 - DEV_PLAN.md
 - ROADMAP.md
 - AGENTS.md or CLAUDE.md
-- docs-blog/blog-plan.md (if this phase is blog-related)
 
 TASK
-Document phase completion in English — e.g. update README or docs-blog/blog-plan.md if needed. Do not create files under docs-blog/reports/ (removed after B1–B8).
+Document phase completion in English — e.g. update README or the phase PRD if needed.
 
 The closure note must include:
 - summary of what was implemented
@@ -232,8 +227,7 @@ IMPORTANT RULES
   <div class="prompt-example prompt-good">
     <strong>Example execution request</strong>
     <p>
-      "Implement phase [PHASE_NAME] following the PRD
-      <code>docs-blog/blog-plan.md</code> (blog). Follow the rules in AGENTS.md (or
+      "Implement phase [PHASE_NAME] following the phase PRD. Follow the rules in AGENTS.md (or
       CLAUDE.md). Show me how to validate that the result satisfies the PRD."
     </p>
   </div>

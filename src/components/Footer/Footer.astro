@@ -2,7 +2,7 @@
 import GitHubIcon from '../Icons/GitHubIcon.astro';
 import styles from './Footer.module.css';
 import type { Lang } from '../../lib/i18n';
-import { getBlogHref, ui } from '../../lib/i18n';
+import { ui } from '../../lib/i18n';
 import { siteLinks } from '../../lib/siteLinks';
 
 interface Props {
@@ -22,13 +22,6 @@ const { lang = 'pt-BR' } = Astro.props;
       aria-label={ui[lang].footer.personalSite}
     >
       {ui[lang].footer.tagline}
-    </a>
-    <a
-      class={styles.blogLink}
-      href={getBlogHref(lang)}
-      aria-label={ui[lang].footer.blogLinkAria}
-    >
-      {ui[lang].footer.blogLink}
     </a>
     <div class={styles.meta}>
       <span class={styles.copy}>AI-Native Engineers</span>

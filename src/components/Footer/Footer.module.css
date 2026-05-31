@@ -32,29 +32,6 @@
   text-decoration: underline;
 }
 
-.blogLink {
-  font-family: var(--font-heading);
-  font-weight: var(--weight-medium);
-  color: var(--color-primary);
-  text-decoration: none;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.18em;
-  min-height: 2.25rem;
-  display: inline-flex;
-  align-items: center;
-}
-
-.blogLink:hover {
-  background-color: transparent;
-  color: var(--color-primary);
-  text-decoration: underline;
-}
-
-.blogLink:focus-visible {
-  outline: var(--focus-ring);
-  outline-offset: 2px;
-}
-
 .meta {
   display: inline-flex;
   align-items: center;
