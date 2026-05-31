@@ -33,4 +33,19 @@ const references = defineCollection({
   }),
 });
 
-export const collections = { sessions, references };
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    summary: z.string(),
+    publishedAt: z.coerce.date(),
+    updatedAt: z.coerce.date().optional(),
+    draft: z.boolean().default(false),
+    lang: z.enum(['pt-BR', 'en']).default('pt-BR'),
+    tags: z.array(z.string()).default([]),
+    cover: z.string().optional(),
+  }),
+});
+
+export const collections = { sessions, references, blog };

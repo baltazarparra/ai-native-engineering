@@ -16,6 +16,9 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  ogType?: 'website' | 'article';
+  publishedAt?: Date;
+  updatedAt?: Date;
   noindex?: boolean;
   lang?: Lang;
   alternateLinks?: AlternateLink[];
@@ -27,6 +30,9 @@ const {
   lang = 'pt-BR',
   description = ui[lang].siteDescription,
   ogImage,
+  ogType = 'website',
+  publishedAt,
+  updatedAt,
   noindex = false,
   alternateLinks = [],
   showHeader = true,
@@ -35,6 +41,11 @@ const {
 const ogImageUrl =
   ogImage ||
   new URL(`${import.meta.env.BASE_URL}og-default.png`, Astro.site).href;
+
+const rssHref = new URL(
+  `${import.meta.env.BASE_URL}rss.xml`.replace(/\/+/g, '/'),
+  Astro.site,
+).href;
 
 const absoluteAlternateLinks = alternateLinks.map((link) => ({
   ...link,
@@ -193,12 +204,37 @@ const navDirectionScript = `
     />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:locale" content={languages[lang].locale} />
+    {
+      ogType === 'article' && publishedAt ? (
+        <meta
+          property="article:published_time"
+          content={publishedAt.toISOString()}
+        />
+      ) : null
+    }
+    {
+      ogType === 'article' && updatedAt ? (
+        <meta
+          property="article:modified_time"
+          content={updatedAt.toISOString()}
+        />
+      ) : null
+    }
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <link rel="canonical" href={Astro.url.href} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="AI-Native Engineers Blog"
+      href={rssHref}
+    />
     {
       absoluteAlternateLinks.map((link) => (
         <link rel="alternate" hreflang={link.lang} href={link.href} />

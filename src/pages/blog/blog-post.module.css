@@ -6,6 +6,14 @@
   margin-block-end: var(--space-lg);
 }
 
+.metaSep {
+  margin-inline: var(--space-xs);
+}
+
+.tags {
+  color: var(--color-text-muted);
+}
+
 .dateMuted {
   color: var(--color-text-muted);
 }

@@ -1,0 +1,113 @@
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+}
+
+.prose :global(p) {
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.prose :global(h2) {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-snug);
+  color: var(--color-primary);
+  margin: var(--space-md) 0 0;
+}
+
+.prose :global(h3) {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+  color: var(--color-primary);
+  margin: var(--space-md) 0 0;
+}
+
+.prose :global(h4) {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--color-primary);
+  margin: var(--space-md) 0 0;
+}
+
+.prose :global(ul),
+.prose :global(ol) {
+  margin: 0;
+  padding-inline-start: var(--space-xl);
+}
+
+.prose :global(li) {
+  margin-block: var(--space-xs);
+}
+
+.prose :global(blockquote) {
+  margin: 0;
+  padding-inline-start: var(--space-lg);
+  border-left: var(--border-thick);
+  border-left-color: var(--color-accent-1);
+}
+
+.prose :global(a) {
+  color: var(--color-primary);
+  font-weight: var(--weight-bold);
+  text-underline-offset: 4px;
+}
+
+.prose :global(code) {
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    'Liberation Mono',
+    'Courier New',
+    monospace;
+  font-size: 0.92em;
+  padding: 0.1em 0.35em;
+  border: var(--border-thin);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-alt);
+}
+
+.prose :global(pre) {
+  margin: 0;
+  padding: var(--space-md);
+  overflow-x: auto;
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-bg-alt);
+}
+
+.prose :global(pre code) {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: var(--text-sm);
+  white-space: pre;
+}
+
+.prose :global(hr) {
+  border: none;
+  border-block-start: var(--border-thick);
+  margin-block: var(--space-lg);
+}
+
+.prose :global(img) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
