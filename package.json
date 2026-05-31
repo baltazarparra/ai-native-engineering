@@ -18,8 +18,8 @@
   "dependencies": {
     "@astrojs/mdx": "^5.0.1",
     "@astrojs/react": "^5.0.0",
+    "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
-    "@notionhq/client": "^5.21.0",
     "@liveblocks/client": "^3.19.1",
     "@liveblocks/react": "^3.19.1",
     "astro": "^6.0.5",
