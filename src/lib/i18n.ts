@@ -102,6 +102,10 @@ export const ui = {
     blog: {
       title: 'Blog',
       breadcrumb: 'Blog',
+      summary:
+        'Artigos sobre engenharia com agentes de código — práticos, diretos, sem hype.',
+      emptyState: 'Nenhum post publicado ainda. Volte em breve.',
+      cardCta: 'Ler post',
       publishedAt: 'Publicado em',
       tags: 'Tags',
     },
@@ -242,6 +246,10 @@ export const ui = {
     blog: {
       title: 'Blog',
       breadcrumb: 'Blog',
+      summary:
+        'Articles on engineering with code agents — practical, direct, no hype.',
+      emptyState: 'No published posts yet. Check back soon.',
+      cardCta: 'Read post',
       publishedAt: 'Published',
       tags: 'Tags',
     },

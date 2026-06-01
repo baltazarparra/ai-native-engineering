@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
+import Grid from '../../components/Grid/Grid.astro';
+import Card from '../../components/Card/Card.astro';
+import Badge from '../../components/Badge/Badge.astro';
+import Footer from '../../components/Footer/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs.astro';
+import { getPublishedPosts } from '../../lib/blog';
+import {
+  languages,
+  ui,
+  getBlogHref,
+  getHomeHref,
+} from '../../lib/i18n';
+
+const lang = 'pt-BR';
+const posts = await getPublishedPosts(lang);
+const labels = ui[lang].blog;
+
+const breadcrumbItems = [
+  { label: ui[lang].breadcrumb.home, href: getHomeHref(lang) },
+  { label: labels.title },
+];
+
+const dateOptions: Intl.DateTimeFormatOptions = {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+};
+
+function formatPublishedAt(date: Date): string {
+  return date.toLocaleDateString(languages[lang].dateLocale, dateOptions);
+}
+---
+
+<BaseLayout
+  title={`${labels.title} | AI-Native Engineers`}
+  description={labels.summary}
+  lang={lang}
+>
+  <main id="main-content" class="blog-index">
+    <SectionBlock as="header" padding="xl">
+      <Breadcrumbs items={breadcrumbItems} lang={lang} />
+      <Badge variant="default">{labels.title}</Badge>
+      <h1 class="blog-index-title">{labels.title}</h1>
+      <p class="blog-index-summary">{labels.summary}</p>
+    </SectionBlock>
+
+    <SectionBlock padding="lg">
+      {
+        posts.length === 0 ? (
+          <p class="blog-empty">{labels.emptyState}</p>
+        ) : (
+          <Grid columns={3} gap="lg" align="stretch">
+            {posts.map((post) => (
+              <Card
+                title={post.data.title}
+                href={getBlogHref(lang, post.data.slug)}
+              >
+                <Fragment slot="meta">
+                  <time datetime={post.data.publishedAt.toISOString()}>
+                    {labels.publishedAt}{' '}
+                    {formatPublishedAt(post.data.publishedAt)}
+                  </time>
+                  {post.data.tags.map((tag) => (
+                    <Badge size="sm">{tag}</Badge>
+                  ))}
+                </Fragment>
+                <p>{post.data.description}</p>
+                <Fragment slot="footer">
+                  <div class="card-footer-row">
+                    <span class="card-cta">
+                      {labels.cardCta}
+                      <span class="card-cta-arrow" aria-hidden="true">
+                        →
+                      </span>
+                    </span>
+                  </div>
+                </Fragment>
+              </Card>
+            ))}
+          </Grid>
+        )
+      }
+    </SectionBlock>
+
+    <Footer lang={lang} />
+  </main>
+</BaseLayout>
+
+<style>
+  .blog-index-title {
+    margin-top: var(--space-md);
+    max-width: 12ch;
+  }
+
+  .blog-index-summary {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-md);
+    max-width: 68ch;
+    color: var(--color-text-muted);
+  }
+
+  .blog-empty {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-muted);
+    max-width: 48ch;
+    padding-block: var(--space-xl);
+  }
+
+  .card-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+  }
+
+  .card-cta-arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  :global(.linkable):hover .card-cta-arrow {
+    transform: translateX(4px);
+  }
+</style>
