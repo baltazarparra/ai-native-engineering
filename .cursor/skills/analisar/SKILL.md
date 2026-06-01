@@ -10,8 +10,8 @@ disable-model-invocation: true
 
 # Analisar
 
-analisar o doc .md com o plano.
-Antes de implementar, o agente precisa entender o escopo, o estado atual do projeto e o que já foi decidido.
+Analyze the plan `.md` document.
+Before implementing, the agent must understand the scope, the current project state, and what has already been decided.
 
 **Do not implement.** Read-only analysis only. Produce a briefing the team can use to start or review work.
 
