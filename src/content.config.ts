@@ -33,4 +33,20 @@ const references = defineCollection({
   }),
 });
 
-export const collections = { sessions, references };
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    lang: z.enum(['pt-BR', 'en']),
+    description: z.string(),
+    publishedAt: z.coerce.date(),
+    updatedAt: z.coerce.date().optional(),
+    draft: z.boolean().default(false),
+    tags: z.array(z.string()).default([]),
+    author: z.string().default('AI-Native Engineers'),
+    translationKey: z.string().optional(),
+  }),
+});
+
+export const collections = { sessions, references, blog };
