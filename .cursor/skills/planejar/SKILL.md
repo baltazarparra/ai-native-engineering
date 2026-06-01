@@ -27,8 +27,8 @@ O plano da fase deve cobrir arquivos prováveis, sequência de trabalho, riscos 
 | --- | --- | --- |
 | 1 (optional) | `/analisar` | Readiness briefing: scope, repo state, locked decisions |
 | 2 | **`/planejar`** | Tactical plan: files, sequence, risks, validation |
-| 3 | Implement | Only when user explicitly asks |
-| 4 | `quality-gate` | Lint/build after code changes |
+| 3 | `/executar` | Review, implement, validate, and hand off the phase |
+| — | `quality-gate` | Runs inside `/executar` Step 3 (Validate) |
 
 If the user already ran `/analisar` in the same thread, reuse its findings; re-inspect the repo only if the phase or repo may have changed.
 
@@ -126,7 +126,7 @@ Use the output template below. Keep steps small and ordered — smallest safe ed
 [1–3 logical commits respecting 400-line policy; note src/content/** exempt]
 
 ## Próximo passo
-[Implement when user asks — then run quality-gate]
+[/executar to implement and validate this phase]
 ```
 
 ## Rules
