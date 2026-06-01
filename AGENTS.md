@@ -24,6 +24,28 @@ npm run format     # Prettier
 
 Deploy: GitHub Actions → GitHub Pages (auto-deploy on push to main).
 
+## Commit Discipline
+
+Keep each commit small enough to review, revert, and bisect. This matches the phased delivery style in `ROADMAP.md` and `BLOG-ROADMAP.md`.
+
+**Policy**
+
+- At most **400 changed lines** per commit (insertions + deletions combined)
+- Applies to code, layouts, components, config, styles, and data files outside editorial content
+- **Does not apply** to files under `src/content/**` (session MDX, blog Markdown, references JSON). Those may exceed 400 lines in a dedicated content commit
+- Prefer committing lockfiles (`package-lock.json`, `pnpm-lock.yaml`) separately from feature work when practical
+
+**When a change would exceed the limit**
+
+- Split into logical commits (for example: schema, then layout, then routes)
+- Use `git add -p` to stage partial changes
+- Do not bundle unrelated refactors with feature work
+- Content-only changes under `src/content/**` may stay in their own commits regardless of size
+
+**Enforcement**
+
+- Documented policy only; there is no pre-commit hook or CI check yet. Follow the rule by convention until automation is added.
+
 ## Tech Stack & Architecture
 
 **Astro + TypeScript + MDX + React islands + CSS Modules**
