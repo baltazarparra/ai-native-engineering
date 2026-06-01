@@ -1,11 +1,15 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
-import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
-import { getPublishedPosts, getBlogPostAlternateLinks, type BlogEntry } from '../../lib/blog';
+import BlogPostLayout from '../../../layouts/BlogPostLayout.astro';
+import {
+  getPublishedPosts,
+  getBlogPostAlternateLinks,
+  type BlogEntry,
+} from '../../../lib/blog';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getPublishedPosts('pt-BR');
+  const posts = await getPublishedPosts('en');
 
   return posts.map((post) => ({
     params: { slug: post.data.slug },
