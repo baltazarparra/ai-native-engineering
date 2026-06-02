@@ -45,7 +45,7 @@ Contributions are welcome — whether it's suggesting new content, fixing inaccu
 - **Report issues or suggest content:** [open an issue](https://github.com/baltazarparra/ai-native-engineering/issues)
 - **Start a conversation:** [join the discussions](https://github.com/baltazarparra/ai-native-engineering/discussions)
 - **Submit changes:** fork the repo, make your edits, and open a pull request
-- **Keep commits reviewable:** code and config changes should stay under **400 changed lines** per commit (insertions + deletions). Editorial files under `src/content/` are exempt. See [AGENTS.md](AGENTS.md) → Commit Discipline for the full policy.
+- **Keep PRs reviewable:** code and config changes should stay under **400 changed lines** per pull request (insertions + deletions), measured against the PR base branch and excluding `src/content/`. Editorial-only PRs under `src/content/` are exempt. See [AGENTS.md](AGENTS.md) → PR discipline for the full policy.
 
 ## License
 
