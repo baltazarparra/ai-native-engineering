@@ -4,7 +4,7 @@ import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
 import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs.astro';
-import type { Lang } from '../lib/i18n';
+import type { AlternateLink, Lang } from '../lib/i18n';
 import { languages, ui, getHomeHref, getBlogHref } from '../lib/i18n';
 
 interface Props {
@@ -15,6 +15,7 @@ interface Props {
   publishedAt: Date;
   updatedAt?: Date;
   tags: string[];
+  alternateLinks?: AlternateLink[];
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   publishedAt,
   updatedAt,
   tags,
+  alternateLinks = [],
 } = Astro.props;
 
 const labels = ui[lang];
@@ -53,7 +55,7 @@ const breadcrumbItems = [
   title={`${title} | AI-Native Engineers`}
   description={description}
   lang={lang}
-  alternateLinks={[]}
+  alternateLinks={alternateLinks}
 >
   <main id="main-content" class="blog-page">
     <SectionBlock as="header" padding="xl">
