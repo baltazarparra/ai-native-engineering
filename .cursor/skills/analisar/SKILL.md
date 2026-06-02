@@ -70,7 +70,7 @@ For `ROADMAP.md` / `BLOG-ROADMAP.md`, focus on the requested phase and its depen
 
 Read as needed:
 
-- `AGENTS.md`, `CLAUDE.md` — stack, architecture, commit discipline
+- `AGENTS.md`, `CLAUDE.md` — stack, architecture, PR discipline
 - `TONE.md` — editorial voice when content is in scope
 - Related roadmaps when work spans site + blog
 

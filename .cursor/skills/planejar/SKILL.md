@@ -83,7 +83,7 @@ Use the output template below. Keep steps small and ordered — smallest safe ed
 
 - Copy **Done When** and **How to Validate** from the roadmap
 - Turn them into concrete commands (`npm run build`, `npm run lint`, etc.) and manual checks
-- Suggest 1–3 logical commits aligned with **Commit Discipline** in `AGENTS.md`
+- Suggest 1–3 logical PRs aligned with **PR discipline** in `AGENTS.md`
 
 ## Output template
 
@@ -122,8 +122,8 @@ Use the output template below. Keep steps small and ordered — smallest safe ed
 ### Checks manuais
 - [From Done When / How to Validate]
 
-## Commits sugeridos
-[1–3 logical commits respecting 400-line policy; note src/content/** exempt]
+## PRs sugeridos
+[1–3 logical PRs, each ≤400 changed lines outside `src/content/**`; content-only PRs may be larger; commits inside each PR are optional and uncapped]
 
 ## Próximo passo
 [/executar to implement and validate this phase]
@@ -134,7 +134,7 @@ Use the output template below. Keep steps small and ordered — smallest safe ed
 - **Readonly** until the user explicitly asks to implement
 - Do not mark roadmap checkboxes as done — planning only
 - Cite roadmap sections and repo paths; use code citations for patterns to reuse
-- Align commit suggestions with **Commit Discipline** in `AGENTS.md`
+- Align PR split suggestions with **PR discipline** in `AGENTS.md`
 - If the plan and repo disagree, recommend updating the doc or the roadmap before coding
 - Do not skip Step 3; probable files must reflect actual repo state
 

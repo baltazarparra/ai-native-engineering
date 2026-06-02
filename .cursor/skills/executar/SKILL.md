@@ -69,7 +69,7 @@ Task Progress:
 ### Step 2: Executar
 
 1. Implement **What We Ship** for this phase only — smallest safe edits first.
-2. Follow `AGENTS.md` / `CLAUDE.md`: stack, architecture, commit discipline, editorial rules.
+2. Follow `AGENTS.md` / `CLAUDE.md`: stack, architecture, PR discipline, editorial rules.
 3. Reuse existing patterns; cite and extend files already in the repo.
 4. Stay inside phase scope — defer out-of-scope items to the handoff report.
 5. Do **not** create git commits unless the user explicitly asks.
@@ -133,7 +133,7 @@ Write the handoff report using the template below. The phase ends here.
 - **Implement** — this skill is not read-only
 - Do not mark roadmap checkboxes in markdown unless the user explicitly asks to update the roadmap
 - Do not declare the phase done without validation attempts and a clear change summary
-- Respect **Commit Discipline** (≤400 lines per commit outside `src/content/**`); split work if needed when user asks for commits
+- Respect **PR discipline** (≤400 changed lines per PR outside `src/content/**`); split into multiple PRs when over the limit
 - If the plan and repo disagree mid-execution, pause, report the conflict, and align before continuing
 - Prefer fixing validation failures over handing off broken work
 

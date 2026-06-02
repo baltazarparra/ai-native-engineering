@@ -24,27 +24,36 @@ npm run format     # Prettier
 
 Deploy: GitHub Actions → GitHub Pages (auto-deploy on push to main).
 
-## Commit Discipline
+## PR discipline
 
-Keep each commit small enough to review, revert, and bisect. This matches the phased delivery style in `ROADMAP.md` and `BLOG-ROADMAP.md`.
+Keep each **pull request** small enough to review, revert, and merge safely. This matches the phased delivery style in `ROADMAP.md` and `BLOG-ROADMAP.md`.
 
 **Policy**
 
-- At most **400 changed lines** per commit (insertions + deletions combined)
+- At most **400 changed lines per PR** (insertions + deletions combined), measured as `git diff <base>...HEAD` on paths **outside** `src/content/**`
 - Applies to code, layouts, components, config, styles, and data files outside editorial content
-- **Does not apply** to files under `src/content/**` (session MDX, blog Markdown, references JSON). Those may exceed 400 lines in a dedicated content commit
-- Prefer committing lockfiles (`package-lock.json`, `pnpm-lock.yaml`) separately from feature work when practical
+- **Does not apply** to PRs that only touch `src/content/**` (session MDX, blog Markdown, references JSON). Those may exceed 400 lines in a dedicated content-only PR
+- **Mixed PRs** (code + content): only non-`src/content/**` paths count toward the 400-line cap; prefer splitting into a code PR and a content PR when either side would exceed the limit
+- **Commits** inside a PR should still be logical and bisect-friendly, but there is **no per-commit line cap**
+- Prefer lockfiles (`package-lock.json`, `pnpm-lock.yaml`) in their own PR when practical
 
-**When a change would exceed the limit**
+**When a PR would exceed the limit**
 
-- Split into logical commits (for example: schema, then layout, then routes)
-- Use `git add -p` to stage partial changes
+- Split into stacked or independent PRs (for example: schema, then layout, then routes), not one giant PR with many small commits
+- Use branch-per-phase on top of the previous merge, or a split-to-PRs workflow before opening the PR
 - Do not bundle unrelated refactors with feature work
-- Content-only changes under `src/content/**` may stay in their own commits regardless of size
+- Content-only changes under `src/content/**` may stay in their own PR regardless of size
 
 **Enforcement**
 
-- Documented policy only; there is no pre-commit hook or CI check yet. Follow the rule by convention until automation is added.
+- Documented policy only; there is no pre-merge hook or CI check yet. Follow the rule by convention until automation is added.
+- Before opening a PR, check size against the base branch:
+
+```bash
+git diff upstream/main...HEAD --shortstat -- . ':(exclude)src/content'
+```
+
+Adjust `upstream/main` to the real base branch.
 
 ## Agent Skills
 
