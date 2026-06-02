@@ -99,6 +99,12 @@ export const ui = {
       sessions: 'Aulas',
       sessionsAnchor: '#sessoes',
     },
+    blog: {
+      title: 'Blog',
+      breadcrumb: 'Blog',
+      publishedAt: 'Publicado em',
+      tags: 'Tags',
+    },
     project: {
       title: 'Projeto Prático',
       heroLabel: 'Mão na massa',
@@ -233,6 +239,12 @@ export const ui = {
       sessions: 'Lessons',
       sessionsAnchor: '#sessions',
     },
+    blog: {
+      title: 'Blog',
+      breadcrumb: 'Blog',
+      publishedAt: 'Published',
+      tags: 'Tags',
+    },
     project: {
       title: 'Hands-on Project',
       heroLabel: 'Hands-on',
@@ -321,6 +333,12 @@ export function getHomeHref(lang: Lang): string {
 export function getSessionHref(lang: Lang, slug: string): string {
   const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
   return withBase(`${prefix}sessions/${slug}`);
+}
+
+export function getBlogHref(lang: Lang, slug?: string): string {
+  const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
+  const base = `${prefix}blog`;
+  return slug ? withBase(`${base}/${slug}`) : withBase(`${base}/`);
 }
 
 const projectSlugs: Record<Lang, string> = {
