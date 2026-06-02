@@ -5,6 +5,7 @@ lang: 'pt-BR'
 description: 'Prompt solto gera código rápido. Harness muda o que acontece depois: contexto, limites e validação antes do merge.'
 publishedAt: 2026-06-01
 draft: false
+translationKey: 'harness-daily-practice'
 tags: ['harness', 'agentes', 'workflow']
 author: 'AI-Native Engineers'
 ---
