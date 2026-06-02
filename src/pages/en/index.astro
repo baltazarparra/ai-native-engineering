@@ -16,6 +16,7 @@ import {
   getHomeAlternateLinks,
   getSessionHref,
   getProjectHref,
+  getBlogHref,
   ui,
 } from '../../lib/i18n';
 
@@ -23,6 +24,7 @@ const lang = 'en';
 const sessions = getSessions(lang);
 const levelLabels = ui[lang].levels;
 const project = ui[lang].project;
+const blog = ui[lang].blog;
 
 function levelToBadgeVariant(level: string) {
   const map = {
@@ -97,6 +99,17 @@ function levelToLabel(level: string) {
           ))
         }
       </Grid>
+    </SectionBlock>
+
+    <SectionBlock padding="lg" id="blog">
+      <div class="project-cta-block">
+        <Badge variant="default">{blog.title}</Badge>
+        <h2>{blog.title}</h2>
+        <p>{blog.summary}</p>
+        <Button href={getBlogHref(lang)} size="lg">
+          {blog.homeCta}
+        </Button>
+      </div>
     </SectionBlock>
 
     <SectionBlock padding="xl" alt>

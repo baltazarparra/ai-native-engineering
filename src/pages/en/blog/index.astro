@@ -1,21 +1,21 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
-import Grid from '../../components/Grid/Grid.astro';
-import Card from '../../components/Card/Card.astro';
-import Badge from '../../components/Badge/Badge.astro';
-import Footer from '../../components/Footer/Footer.astro';
-import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs.astro';
-import { getPublishedPosts } from '../../lib/blog';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionBlock from '../../../components/SectionBlock/SectionBlock.astro';
+import Grid from '../../../components/Grid/Grid.astro';
+import Card from '../../../components/Card/Card.astro';
+import Badge from '../../../components/Badge/Badge.astro';
+import Footer from '../../../components/Footer/Footer.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs/Breadcrumbs.astro';
+import { getPublishedPosts } from '../../../lib/blog';
 import {
   languages,
   ui,
   getBlogHref,
   getHomeHref,
   getBlogIndexAlternateLinks,
-} from '../../lib/i18n';
+} from '../../../lib/i18n';
 
-const lang = 'pt-BR';
+const lang = 'en';
 const posts = await getPublishedPosts(lang);
 const labels = ui[lang].blog;
 

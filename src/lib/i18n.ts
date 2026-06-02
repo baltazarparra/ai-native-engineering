@@ -103,7 +103,7 @@ export const ui = {
       title: 'Blog',
       breadcrumb: 'Blog',
       summary:
-        'Artigos sobre engenharia com agentes de código — práticos, diretos, sem hype.',
+        'Artigos sobre engenharia com agentes de código: práticos, diretos, sem hype.',
       emptyState: 'Nenhum post publicado ainda. Volte em breve.',
       cardCta: 'Ler post',
       homeCta: 'Ver artigos',
@@ -249,7 +249,7 @@ export const ui = {
       title: 'Blog',
       breadcrumb: 'Blog',
       summary:
-        'Articles on engineering with code agents — practical, direct, no hype.',
+        'Articles on engineering with code agents: practical, direct, no hype.',
       emptyState: 'No published posts yet. Check back soon.',
       cardCta: 'Read post',
       homeCta: 'Read articles',
@@ -402,6 +402,17 @@ export function getHomeAlternateLinks(): AlternateLink[] {
       label: languages[lang].label,
     })),
     { lang: 'x-default' as const, href: getHomeHref(defaultLang) },
+  ];
+}
+
+export function getBlogIndexAlternateLinks(): AlternateLink[] {
+  return [
+    ...supportedLangs.map((lang) => ({
+      lang,
+      href: getBlogHref(lang),
+      label: languages[lang].label,
+    })),
+    { lang: 'x-default' as const, href: getBlogHref(defaultLang) },
   ];
 }
 

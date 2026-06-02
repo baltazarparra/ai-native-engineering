@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { lang = 'pt-BR' } = Astro.props;
-const blogHref = getBlogHref('pt-BR');
+const blogHref = getBlogHref(lang);
 ---
 
 <!-- Phase 6 discovery: footer + home entry points to /blog/ (BLOG-ROADMAP) -->
