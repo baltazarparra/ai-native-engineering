@@ -2,7 +2,7 @@
 import GitHubIcon from '../Icons/GitHubIcon.astro';
 import styles from './Footer.module.css';
 import type { Lang } from '../../lib/i18n';
-import { getBlogHref, ui } from '../../lib/i18n';
+import { getBlogHref, getContactHref, ui } from '../../lib/i18n';
 import { siteLinks } from '../../lib/siteLinks';
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
 
 const { lang = 'pt-BR' } = Astro.props;
 const blogHref = getBlogHref(lang);
+const contactHref = getContactHref(lang);
 ---
 
 <!-- Phase 6 discovery: footer + home entry points to /blog/ (BLOG-ROADMAP) -->
@@ -27,6 +28,9 @@ const blogHref = getBlogHref(lang);
     </a>
     <a class={styles.navLink} href={blogHref}>
       {ui[lang].footer.blogLink}
+    </a>
+    <a class={styles.navLink} href={contactHref}>
+      {ui[lang].footer.contactLink}
     </a>
     <div class={styles.meta}>
       <span class={styles.copy}>AI-Native Engineers</span>

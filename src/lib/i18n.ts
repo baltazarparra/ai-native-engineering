@@ -178,6 +178,20 @@ export const ui = {
       personalSite: 'Site baltz.dev',
       repositoryLink: 'Repositório no GitHub',
       blogLink: 'Blog',
+      contactLink: 'Contato',
+    },
+    contact: {
+      title: 'Contato | AI-Native Engineers',
+      description:
+        'Fale com quem mantém o AI-Native Engineers — LinkedIn e email.',
+      breadcrumb: 'Contato',
+      heading: 'Contato',
+      summary:
+        'Dúvidas sobre o site, conteúdo ou colaboração? Escolha um canal abaixo.',
+      linkedinLabel: 'LinkedIn',
+      emailLabel: 'Email',
+      linkedinAria: 'Perfil no LinkedIn (abre em nova aba)',
+      emailAria: 'Enviar email',
     },
   },
   en: {
@@ -322,6 +336,20 @@ export const ui = {
       personalSite: 'baltz.dev website',
       repositoryLink: 'GitHub repository',
       blogLink: 'Blog',
+      contactLink: 'Contact',
+    },
+    contact: {
+      title: 'Contact | AI-Native Engineers',
+      description:
+        'Get in touch about AI-Native Engineers — LinkedIn and email.',
+      breadcrumb: 'Contact',
+      heading: 'Contact',
+      summary:
+        'Questions about the site, content, or collaboration? Pick a channel below.',
+      linkedinLabel: 'LinkedIn',
+      emailLabel: 'Email',
+      linkedinAria: 'LinkedIn profile (opens in a new tab)',
+      emailAria: 'Send email',
     },
   },
 } as const;
@@ -351,6 +379,27 @@ export function getBlogHref(lang: Lang, slug?: string): string {
   const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
   const base = `${prefix}blog`;
   return slug ? withBase(`${base}/${slug}`) : withBase(`${base}/`);
+}
+
+const contactSlugs: Record<Lang, string> = {
+  'pt-BR': 'contato',
+  en: 'contact',
+};
+
+export function getContactHref(lang: Lang): string {
+  const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
+  return withBase(`${prefix}${contactSlugs[lang]}/`);
+}
+
+export function getContactAlternateLinks(): AlternateLink[] {
+  return [
+    ...supportedLangs.map((lang) => ({
+      lang,
+      href: getContactHref(lang),
+      label: languages[lang].label,
+    })),
+    { lang: 'x-default' as const, href: getContactHref(defaultLang) },
+  ];
 }
 
 const projectSlugs: Record<Lang, string> = {
