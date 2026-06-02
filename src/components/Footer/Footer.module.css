@@ -32,6 +32,26 @@
   text-decoration: underline;
 }
 
+.navLink {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  text-underline-offset: 0.18em;
+}
+
+.navLink:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.navLink:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 .meta {
   display: inline-flex;
   align-items: center;

@@ -106,6 +106,7 @@ export const ui = {
         'Artigos sobre engenharia com agentes de código — práticos, diretos, sem hype.',
       emptyState: 'Nenhum post publicado ainda. Volte em breve.',
       cardCta: 'Ler post',
+      homeCta: 'Ver artigos',
       publishedAt: 'Publicado em',
       tags: 'Tags',
     },
@@ -176,6 +177,7 @@ export const ui = {
       tagline: 'baltz',
       personalSite: 'Site baltz.dev',
       repositoryLink: 'Repositório no GitHub',
+      blogLink: 'Blog',
     },
   },
   en: {
@@ -250,6 +252,7 @@ export const ui = {
         'Articles on engineering with code agents — practical, direct, no hype.',
       emptyState: 'No published posts yet. Check back soon.',
       cardCta: 'Read post',
+      homeCta: 'Read articles',
       publishedAt: 'Published',
       tags: 'Tags',
     },
@@ -318,6 +321,7 @@ export const ui = {
       tagline: 'baltz',
       personalSite: 'baltz.dev website',
       repositoryLink: 'GitHub repository',
+      blogLink: 'Blog',
     },
   },
 } as const;
