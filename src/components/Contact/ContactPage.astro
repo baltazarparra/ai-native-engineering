@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Badge from '../Badge/Badge.astro';
+import Footer from '../Footer/Footer.astro';
+import SectionBlock from '../SectionBlock/SectionBlock.astro';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs.astro';
+import {
+  getContactAlternateLinks,
+  getHomeHref,
+  ui,
+  type Lang,
+} from '../../lib/i18n';
+import { siteLinks } from '../../lib/siteLinks';
+import styles from './ContactPage.module.css';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const labels = ui[lang].contact;
+const mailtoHref = `mailto:${siteLinks.author.email}`;
+
+const breadcrumbItems = [
+  { label: ui[lang].breadcrumb.home, href: getHomeHref(lang) },
+  { label: labels.breadcrumb },
+];
+---
+
+<BaseLayout
+  title={labels.title}
+  description={labels.description}
+  lang={lang}
+  alternateLinks={getContactAlternateLinks()}
+>
+  <main id="main-content">
+    <SectionBlock as="header" padding="xl">
+      <Breadcrumbs items={breadcrumbItems} lang={lang} />
+      <Badge variant="default">{labels.breadcrumb}</Badge>
+      <h1>{labels.heading}</h1>
+      <p class={styles.summary}>{labels.summary}</p>
+    </SectionBlock>
+
+    <SectionBlock padding="lg">
+      <ul class={styles.links}>
+        <li>
+          <a
+            class={styles.link}
+            href={siteLinks.author.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={labels.linkedinAria}
+          >
+            <span class={styles.linkLabel}>{labels.linkedinLabel}</span>
+            <span class={styles.linkValue} aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class={styles.link}
+            href={mailtoHref}
+            aria-label={labels.emailAria}
+          >
+            <span class={styles.linkLabel}>{labels.emailLabel}</span>
+            <span class={styles.linkValue}>{siteLinks.author.email}</span>
+          </a>
+        </li>
+      </ul>
+    </SectionBlock>
+
+    <Footer lang={lang} />
+  </main>
+</BaseLayout>
