@@ -194,6 +194,12 @@ Last pass. Fix everything that is "good enough" and make it actually good.
 
 ---
 
+## Related Roadmaps
+
+- **Blog** (`/blog/`, Markdown `.md` posts + frontmatter): see [`BLOG-ROADMAP.md`](BLOG-ROADMAP.md). Sessions stay MDX; blog is a separate collection and layout.
+
+---
+
 ## Not in Scope (Post-MVP Backlog)
 
 Things we might do later, but absolutely not now:
