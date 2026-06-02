@@ -4,7 +4,7 @@ slug: 'post-exemplo'
 lang: 'pt-BR'
 description: 'Placeholder para validar a coleção blog na Phase 1.'
 publishedAt: 2026-05-31
-draft: true
+draft: false
 tags: ['blog']
 ---
 
