@@ -3,23 +3,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
 import Button from '../../components/Button/Button.astro';
 import {
-  HARNESS_CHAPTERS,
-  getHarnessChapterAlternateLinks,
-} from '../../data/harness-chapters';
+  HARNESS_REDIRECTS,
+  getHarnessRedirectAlternateLinks,
+} from '../../data/harness-redirects';
 import { getSessionHref } from '../../lib/i18n';
 
 export function getStaticPaths() {
-  return HARNESS_CHAPTERS.map((chapter) => ({
-    params: { slug: chapter.slug['pt-BR'] },
-    props: { chapterId: chapter.id },
+  return HARNESS_REDIRECTS.map((redirect) => ({
+    params: { slug: redirect.slug['pt-BR'] },
+    props: { redirectId: redirect.id },
   }));
 }
 
 const lang = 'pt-BR';
-const { chapterId } = Astro.props;
+const { redirectId } = Astro.props;
 const target = getSessionHref(lang, 'maturidade');
 const redirectScript = `window.location.replace(${JSON.stringify(target)});`;
-const alternateLinks = getHarnessChapterAlternateLinks(chapterId);
+const alternateLinks = getHarnessRedirectAlternateLinks(redirectId);
 ---
 
 <BaseLayout
