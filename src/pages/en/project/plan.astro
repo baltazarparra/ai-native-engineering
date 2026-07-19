@@ -3,7 +3,8 @@ import ChapterLayout from '../../../layouts/ChapterLayout.astro';
 import CopyPromptBlock from '../../../components/CopyPromptBlock/CopyPromptBlock.tsx';
 const lang = 'en';
 
-const roadmapPrompt = `I am going to build a live news newspaper published on GitHub Pages. I want to start with a simple, executable ROADMAP.md.
+const roadmapPrompt =
+  `I am going to build a live news newspaper published on GitHub Pages. I want to start with a simple, executable ROADMAP.md.
 
 PROJECT CONTEXT
 - Repository name: [REPO_NAME]
@@ -41,7 +42,8 @@ IMPORTANT RULES
 - do not invent features beyond the described scope
 - generate only the final ROADMAP.md content`.trim();
 
-const agentsPrompt = `The ROADMAP.md already exists in the repository. Use it as the primary source of truth.
+const agentsPrompt =
+  `The ROADMAP.md already exists in the repository. Use it as the primary source of truth.
 
 PROJECT CONTEXT
 - Repository name: [REPO_NAME]
@@ -91,7 +93,8 @@ IMPORTANT RULES
 - do not invent stack, commands, or structure that contradicts ROADMAP.md
 - generate only the final content of the correct file: AGENTS.md or CLAUDE.md`.trim();
 
-const devPlanPrompt = `The ROADMAP.md and the agent operation file (AGENTS.md or CLAUDE.md) already exist in the repository. Use them as the primary source of truth.
+const devPlanPrompt =
+  `The ROADMAP.md and the agent operation file (AGENTS.md or CLAUDE.md) already exist in the repository. Use them as the primary source of truth.
 
 PROJECT CONTEXT
 - Repository name: [REPO_NAME]
@@ -128,9 +131,11 @@ IMPORTANT RULES
 
 <ChapterLayout chapterNumber={2} lang={lang}>
   <p>
-    This chapter ends with three files in the repository: <code>ROADMAP.md</code>,
-    <code>AGENTS.md</code> or <code>CLAUDE.md</code>, and <code>DEV_PLAN.md</code>.
-    Together they form the project harness: product context, agent operation
+    This chapter ends with three files in the repository: <code>ROADMAP.md</code
+    >,
+    <code>AGENTS.md</code> or <code>CLAUDE.md</code>, and <code
+      >DEV_PLAN.md</code
+    >. Together they form the project harness: product context, agent operation
     rules, and a phased execution plan.
   </p>
 
@@ -155,14 +160,14 @@ IMPORTANT RULES
 
   <p>
     ROADMAP.md is the shortest harness document but the most important. It
-    defines the product in 2–3 lines, chooses a concrete stack, and organizes
+    defines the product in 2 to 3 lines, chooses a concrete stack, and organizes
     development into clear steps. Everything that comes next relies on it.
   </p>
 
   <p>
-    In the placeholders below, replace <code>[REPO_NAME]</code> with your
-    repository name and <code>[CHOSEN_TOOL]</code> with the tool you are using
-    (Cursor, Claude Code, Windsurf, etc.).
+    In the placeholders below, replace <code>[REPO_NAME]</code> with your repository
+    name and <code>[CHOSEN_TOOL]</code> with the tool you are using (Cursor, Claude
+    Code, Windsurf, etc.).
   </p>
 
   <CopyPromptBlock

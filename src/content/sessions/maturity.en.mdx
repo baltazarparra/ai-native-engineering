@@ -64,7 +64,7 @@ The shift is simple: the agent does not implement "the prompt". It implements a 
 
 Harness Design is the environment of the **coding agent**.
 
-If SDD answers "what needs to be true?", the harness answers "how do we create a system where the agent can execute, validate, and improve without depending on luck or context lost in the chat?".
+If SDD answers "what needs to be true?", the harness answers "how do we create a system where the agent can execute, validate, and improve without relying on luck or context that exists only in the chat?".
 
 ### A model is not an agent
 
@@ -76,7 +76,7 @@ The harness is what makes that loop useful in real work. It tells the agent whic
 
 ### What goes into a harness?
 
-Think of the harness as the agent's work infrastructure. It is not a single tool. It is the set that lets you leave the chat and arrive at a validatable delivery.
+Think of the harness as the agent's work infrastructure: the set of elements that lets you leave the chat and arrive at a validatable delivery.
 
 - **Instructions**: files like `AGENTS.md`, rules, and skills that load commands, patterns, and project agreements.
 - **Context**: specs, technical decisions, architecture, product docs, and enough history so the agent is not working in the dark.
@@ -86,7 +86,7 @@ Think of the harness as the agent's work infrastructure. It is not a single tool
 - **Observability**: UI, logs, metrics, traces, screenshots, and reproducible checks that the agent (and the human) can read to understand what happened.
 - **Learning**: each recurring failure becomes a rule, test, hook, doc, or skill. The harness improves because the team learned.
 
-The point is not to build a prison for the agent. It is to build rails. Good rails do not stop movement; they make movement predictable, reviewable, and safe.
+Good rails give the agent room to move while making that movement predictable, reviewable, and safe.
 
 ## Where this breaks
 
@@ -94,7 +94,7 @@ A bad harness becomes theater. README rules nobody follows. A skill nobody invok
 
 Bad SDD becomes a dead document: a spec nobody updates, criteria nobody tests, scope that only changes in chat.
 
-The maturity signal is not "we have more files". It is: when something fails, the team improves the system (rule, test, limit, doc) instead of only repeating the prompt louder.
+Maturity shows up when a failure leads the team to improve the system (rule, test, limit, doc) instead of only repeating the prompt louder.
 
 ## The engineer's role
 
@@ -108,7 +108,7 @@ Useful questions for an explicit harness:
 4. What must it never do alone (secrets, production, force push)?
 5. Where does today's failure become tomorrow's rule?
 
-AI-native is not "accept the diff faster". It is owning the system that produces the diff.
+AI-native work means owning the system that produces the diff, not accepting generated changes faster.
 
 ## In practice (PM, QA, leadership)
 

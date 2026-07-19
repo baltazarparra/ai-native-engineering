@@ -145,8 +145,8 @@ REGRAS IMPORTANTES
   <p>
     Essa parte é onde muitos primeiros deploys quebram. Se o site abrir sem CSS
     ou com caminhos incorretos, investigue se algum asset usa caminho absoluto
-    que aponta para <code>/</code> em vez de um caminho relativo. A documentação
-    do GitHub Pages explica como configurar a fonte de publicação corretamente.
+    que aponta para <code>/</code> em vez de um caminho relativo. A documentação do
+    GitHub Pages explica como configurar a fonte de publicação corretamente.
   </p>
 
   <hr />
@@ -208,12 +208,23 @@ REGRAS IMPORTANTES
   <ul>
     <li>Nenhum secret, token ou chave de API no client ou no repositório.</li>
     <li>Permissões e escopo mínimos: o site só faz o que a v1 promete.</li>
-    <li>CORS e chamadas de API funcionando na URL pública, não só no localhost.</li>
+    <li>
+      CORS e chamadas de API funcionando na URL pública, não só no localhost.
+    </li>
     <li>Estados de erro visíveis: loading, vazio e falha de rede.</li>
     <li>Console do navegador sem erro crítico no fluxo principal.</li>
-    <li>Plano simples de rollback: você sabe voltar para o commit ou deploy anterior.</li>
-    <li>Dependências revisadas: nada suspeito ou desnecessário para um site estático.</li>
-    <li>Validação manual do caminho crítico: página carrega, stories aparecem, links externos abrem.</li>
+    <li>
+      Plano simples de rollback: você sabe voltar para o commit ou deploy
+      anterior.
+    </li>
+    <li>
+      Dependências revisadas: nada suspeito ou desnecessário para um site
+      estático.
+    </li>
+    <li>
+      Validação manual do caminho crítico: página carrega, stories aparecem,
+      links externos abrem.
+    </li>
   </ul>
 
   <div class="checkpoint">
@@ -271,6 +282,58 @@ REGRAS IMPORTANTES
     pública e não tem restrição de CORS, então o problema provavelmente é de
     rede, URL incorreta ou erro no script de fetch.
   </p>
+
+  <hr />
+
+  <h2 id="quando-automatizar">Quando automatizar com GitHub Actions</h2>
+
+  <p>
+    A branch <code>gh-pages</code> funciona bem no primeiro deploy porque reduz a
+    quantidade de conceitos novos. Depois que você vir o projeto funcionando em público,
+    GitHub Actions começa a fazer mais sentido.
+  </p>
+
+  <p>
+    Automatize quando quiser publicar a cada push, evitar atualizações manuais
+    na branch de deploy, trabalhar em equipe ou manter um histórico claro dos
+    builds. Nesse momento, use a documentação oficial de
+    <a href="https://docs.astro.build/en/guides/deploy/github/"
+      >Astro no GitHub Pages</a
+    >
+    ou de
+    <a
+      href="https://docs.github.com/pt/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages"
+      >workflows personalizados no GitHub Pages</a
+    >.
+  </p>
+
+  <hr />
+
+  <h2 id="o-que-levar-daqui">O que levar daqui</h2>
+
+  <ul>
+    <li>
+      <strong>Primeiro, coloque a URL pública no ar</strong>. A automação pode
+      vir depois.
+    </li>
+    <li>
+      <strong>GitHub Pages publica arquivos estáticos</strong>, não o
+      código-fonte completo da aplicação.
+    </li>
+    <li>
+      <strong
+        ><code>main</code> e <code>gh-pages</code> têm papéis diferentes</strong
+      >: uma guarda o código; a outra, o site gerado.
+    </li>
+    <li>
+      <strong>A configuração de caminhos importa</strong>. Muitos sites quebram
+      por causa de <code>base</code> ou assets apontando para o lugar errado.
+    </li>
+    <li>
+      <strong>Referências oficiais importam</strong>. As documentações do Astro
+      e do GitHub são as fontes principais para publicar e automatizar depois.
+    </li>
+  </ul>
 
   <hr />
 

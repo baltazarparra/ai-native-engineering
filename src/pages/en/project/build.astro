@@ -105,17 +105,17 @@ IMPORTANT RULES
   <h2 id="devplan-as-guide">Before the loop: DEV_PLAN.md as the guide</h2>
 
   <p>
-    In the previous chapter you created the <code>DEV_PLAN.md</code>: a file with
-    numbered phases, each with an objective, deliverables, and acceptance
+    In the previous chapter you created the <code>DEV_PLAN.md</code>: a file
+    with numbered phases, each with an objective, deliverables, and acceptance
     criteria. It is the source of truth for this chapter. Before writing any
     code, open the file and find the first phase with status <code>TODO</code>.
   </p>
 
   <p>
-    The agent should always read <code>DEV_PLAN.md</code> before starting a
-    phase. When the phase is done, you mark it as <code>DONE</code> in the file.
-    That state is visible, auditable, and prevents the agent from repeating work
-    or skipping steps.
+    The agent should always read <code>DEV_PLAN.md</code> before starting a phase.
+    When the phase is done, you mark it as <code>DONE</code> in the file. That state
+    is visible, auditable, and prevents the agent from repeating work or skipping
+    steps.
   </p>
 
   <hr />
@@ -123,10 +123,12 @@ IMPORTANT RULES
   <h2 id="phase-loop">The loop for each phase</h2>
 
   <p>
-    You already have a <strong>DEV_PLAN.md</strong> split into <strong>phases</strong>.
-    The goal of this chapter is simple: show the loop you repeat starting with
-    <strong>phase 1</strong> and moving <strong>phase by phase</strong> until
-    the full plan is complete.
+    You already have a <strong>DEV_PLAN.md</strong> split into <strong
+      >phases</strong
+    >. The goal of this chapter is simple: show the loop you repeat starting
+    with
+    <strong>phase 1</strong> and moving <strong>phase by phase</strong> until the
+    full plan is complete.
   </p>
 
   <p>
@@ -142,7 +144,10 @@ IMPORTANT RULES
       TODO
     </li>
     <li>Review and refine that phase before execution</li>
-    <li>Ask the agent to create the PRD for that phase</li>
+    <li>
+      Ask the agent to create the Product Requirements Document (PRD) for that
+      phase
+    </li>
     <li>Switch the tool to PLAN mode</li>
     <li>Ask for an execution and validation plan based on that PRD</li>
     <li>Return to normal mode and implement the phase</li>
@@ -240,9 +245,10 @@ IMPORTANT RULES
   <div class="checkpoint">
     <strong>Practical note:</strong>
     <p>
-      The HackerNews Firebase API responds with <code>Access-Control-Allow-Origin: *</code>,
-      so there is no CORS issue in the browser. If a network error appears, check
-      the console and the exact URL before asking the agent to fix it.
+      The HackerNews Firebase API responds with <code
+        >Access-Control-Allow-Origin: *</code
+      >, so there is no CORS issue in the browser. If a network error appears,
+      check the console and the exact URL before asking the agent to fix it.
     </p>
   </div>
 
@@ -274,8 +280,8 @@ IMPORTANT RULES
     <p>
       Before moving on, confirm four things: the PRD exists, the phase was
       implemented, validation passed, and the commit was made. If that is true,
-      mark the phase as <code>DONE</code> in DEV_PLAN.md and repeat the loop for
-      the next phase.
+      mark the phase as <code>DONE</code> in DEV_PLAN.md and repeat the loop for the
+      next phase.
     </p>
   </div>
 </ChapterLayout>

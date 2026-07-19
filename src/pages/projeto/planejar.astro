@@ -3,7 +3,8 @@ import ChapterLayout from '../../layouts/ChapterLayout.astro';
 import CopyPromptBlock from '../../components/CopyPromptBlock/CopyPromptBlock.tsx';
 const lang = 'pt-BR';
 
-const roadmapPrompt = `Vou criar um jornal de notícias ao vivo publicado no GitHub Pages. Quero começar com um ROADMAP.md simples e executável.
+const roadmapPrompt =
+  `Vou criar um jornal de notícias ao vivo publicado no GitHub Pages. Quero começar com um ROADMAP.md simples e executável.
 
 CONTEXTO DO PROJETO
 - Nome do repositório: [NOME_DO_REPO]
@@ -41,7 +42,8 @@ REGRAS IMPORTANTES
 - não invente funcionalidades além do escopo descrito
 - gere apenas o conteúdo final do ROADMAP.md`.trim();
 
-const agentsPrompt = `O ROADMAP.md já existe no repositório. Use-o como fonte principal de verdade.
+const agentsPrompt =
+  `O ROADMAP.md já existe no repositório. Use-o como fonte principal de verdade.
 
 CONTEXTO DO PROJETO
 - Nome do repositório: [NOME_DO_REPO]
@@ -91,7 +93,8 @@ REGRAS IMPORTANTES
 - não invente stack, comandos ou estrutura que contradigam o ROADMAP.md
 - gere apenas o conteúdo final do arquivo correto: AGENTS.md ou CLAUDE.md`.trim();
 
-const devPlanPrompt = `O ROADMAP.md e o arquivo de operação do agente (AGENTS.md ou CLAUDE.md) já existem no repositório. Use-os como fonte principal de verdade.
+const devPlanPrompt =
+  `O ROADMAP.md e o arquivo de operação do agente (AGENTS.md ou CLAUDE.md) já existem no repositório. Use-os como fonte principal de verdade.
 
 CONTEXTO DO PROJETO
 - Nome do repositório: [NOME_DO_REPO]
@@ -128,9 +131,11 @@ REGRAS IMPORTANTES
 
 <ChapterLayout chapterNumber={2} lang={lang}>
   <p>
-    Este capítulo termina com três arquivos no repositório: <code>ROADMAP.md</code>,
-    <code>AGENTS.md</code> ou <code>CLAUDE.md</code>, e <code>DEV_PLAN.md</code>.
-    Juntos, eles formam o harness do projeto: contexto do produto, regras de
+    Este capítulo termina com três arquivos no repositório: <code
+      >ROADMAP.md</code
+    >,
+    <code>AGENTS.md</code> ou <code>CLAUDE.md</code>, e <code>DEV_PLAN.md</code
+    >. Juntos, eles formam o harness do projeto: contexto do produto, regras de
     operação do agente e plano de execução em fases.
   </p>
 
@@ -155,14 +160,14 @@ REGRAS IMPORTANTES
 
   <p>
     O ROADMAP.md é o documento mais curto do harness, mas o mais importante. Ele
-    define o produto em 2–3 linhas, escolhe uma stack concreta e organiza o
+    define o produto em 2 a 3 linhas, escolhe uma stack concreta e organiza o
     desenvolvimento em etapas claras. Tudo que vier depois se apoia nele.
   </p>
 
   <p>
-    Nos placeholders abaixo, substitua <code>[NOME_DO_REPO]</code> pelo nome do
-    seu repositório e <code>[FERRAMENTA_ESCOLHIDA]</code> pela ferramenta que
-    está usando (Cursor, Claude Code, Windsurf, etc.).
+    Nos placeholders abaixo, substitua <code>[NOME_DO_REPO]</code> pelo nome do seu
+    repositório e <code>[FERRAMENTA_ESCOLHIDA]</code> pela ferramenta que está usando
+    (Cursor, Claude Code, Windsurf, etc.).
   </p>
 
   <CopyPromptBlock
@@ -179,9 +184,7 @@ REGRAS IMPORTANTES
 
   <div class="checkpoint">
     <strong>✓ Checkpoint:</strong>
-    <p>
-      ROADMAP.md existe no repositório, foi lido e faz sentido para você.
-    </p>
+    <p>ROADMAP.md existe no repositório, foi lido e faz sentido para você.</p>
   </div>
 
   <hr />
@@ -190,13 +193,11 @@ REGRAS IMPORTANTES
 
   <p>
     Com o ROADMAP.md pronto, peça ao agente para criar o arquivo de operação.
-    Esse arquivo diz ao agente o que o projeto é, quais são as regras, o que
-    não deve ser inventado e como validar o trabalho.
+    Esse arquivo diz ao agente o que o projeto é, quais são as regras, o que não
+    deve ser inventado e como validar o trabalho.
   </p>
 
-  <p>
-    O nome do arquivo depende da ferramenta que você está usando:
-  </p>
+  <p>O nome do arquivo depende da ferramenta que você está usando:</p>
 
   <ul>
     <li>

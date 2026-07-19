@@ -112,10 +112,9 @@ REGRAS IMPORTANTES
   </p>
 
   <p>
-    O agente deve sempre ler o <code>DEV_PLAN.md</code> antes de começar uma
-    fase. Quando a fase termina, você marca como <code>DONE</code> no arquivo.
-    Esse estado é visível, auditável e evita que o agente repita trabalho ou
-    pule etapas.
+    O agente deve sempre ler o <code>DEV_PLAN.md</code> antes de começar uma fase.
+    Quando a fase termina, você marca como <code>DONE</code> no arquivo. Esse estado
+    é visível, auditável e evita que o agente repita trabalho ou pule etapas.
   </p>
 
   <hr />
@@ -123,9 +122,12 @@ REGRAS IMPORTANTES
   <h2 id="loop-da-fase">O loop de cada fase</h2>
 
   <p>
-    Você já deve ter um <strong>DEV_PLAN.md</strong> dividido em <strong>fases</strong>.
-    O objetivo deste capítulo é simples: mostrar o loop que você vai repetir
-    começando pela <strong>fase 1</strong> e seguindo <strong>fase por fase</strong>
+    Você já deve ter um <strong>DEV_PLAN.md</strong> dividido em <strong
+      >fases</strong
+    >. O objetivo deste capítulo é simples: mostrar o loop que você vai repetir
+    começando pela <strong>fase 1</strong> e seguindo <strong
+      >fase por fase</strong
+    >
     até fechar o plano inteiro.
   </p>
 
@@ -138,17 +140,20 @@ REGRAS IMPORTANTES
 
   <ol>
     <li>
-      Abra o DEV_PLAN.md e foque só na fase 1 ou na próxima ainda não
-      concluída
+      Abra o DEV_PLAN.md e foque só na fase 1 ou na próxima ainda não concluída
     </li>
     <li>Revise e refine essa fase antes de executar</li>
-    <li>Peça ao agente para criar a PRD dessa fase</li>
+    <li>
+      Peça ao agente para criar o Product Requirements Document (PRD), ou
+      documento de requisitos do produto, dessa fase
+    </li>
     <li>Mude a ferramenta para o modo PLAN</li>
     <li>Peça um plano de execução e validação baseado nessa PRD</li>
     <li>Volte para o modo normal e implemente a fase</li>
     <li>Teste e valide contra a PRD</li>
     <li>
-      Gere o report da fase, marque como DONE no DEV_PLAN.md e siga para a próxima
+      Gere o report da fase, marque como DONE no DEV_PLAN.md e siga para a
+      próxima
     </li>
   </ol>
 
@@ -163,16 +168,14 @@ REGRAS IMPORTANTES
 
   <hr />
 
-  <h2 id="passo-1-prd">
-    1. Ler o DEV_PLAN.md, revisar a fase e gerar a PRD
-  </h2>
+  <h2 id="passo-1-prd">1. Ler o DEV_PLAN.md, revisar a fase e gerar a PRD</h2>
 
   <p>
     O primeiro passo do loop é abrir o DEV_PLAN.md e pegar a
     <strong>fase 1</strong>. Nos ciclos seguintes, você sempre pega a próxima
     fase com status <code>TODO</code>. Antes de qualquer código, revise se essa
-    fase está clara o suficiente. Se estiver vaga, grande demais ou sem critérios
-    testáveis, ajuste antes de seguir.
+    fase está clara o suficiente. Se estiver vaga, grande demais ou sem
+    critérios testáveis, ajuste antes de seguir.
   </p>
 
   <p>
@@ -241,8 +244,9 @@ REGRAS IMPORTANTES
   <div class="checkpoint">
     <strong>Nota prática:</strong>
     <p>
-      A HackerNews Firebase API responde com <code>Access-Control-Allow-Origin: *</code>,
-      então não há problema de CORS no browser. Se aparecer erro de rede,
+      A HackerNews Firebase API responde com <code
+        >Access-Control-Allow-Origin: *</code
+      >, então não há problema de CORS no browser. Se aparecer erro de rede,
       verifique o console e a URL exata antes de pedir ao agente para corrigir.
     </p>
   </div>
