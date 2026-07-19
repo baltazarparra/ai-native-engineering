@@ -457,8 +457,3 @@ pre code {
     opacity: 1;
   }
 }
-
-/* Liveblocks injects this badge at runtime with inline positioning styles. */
-#liveblocks-badge {
-  display: none !important;
-}

@@ -11,7 +11,6 @@ export interface SessionCardData {
   readingTime: number;
   level: 'beginner' | 'intermediate' | 'advanced';
   heroLabel: string;
-  accent: 'yellow' | 'blue' | 'green' | 'coral';
 }
 
 export const sessions: SessionCardData[] = [
@@ -26,7 +25,6 @@ export const sessions: SessionCardData[] = [
     readingTime: 14,
     level: 'beginner',
     heroLabel: 'Vocabulário essencial',
-    accent: 'blue',
   },
   {
     title: 'Ferramentas e modelos de IA: IDEs, CLIs e LLMs',
@@ -39,7 +37,6 @@ export const sessions: SessionCardData[] = [
     readingTime: 18,
     level: 'intermediate',
     heroLabel: 'Mapa de escolha',
-    accent: 'green',
   },
   {
     title: 'SDD e Harness Design: o fluxo profissional com IA',
@@ -52,7 +49,6 @@ export const sessions: SessionCardData[] = [
     readingTime: 16,
     level: 'advanced',
     heroLabel: 'Fluxo profissional',
-    accent: 'coral',
   },
   {
     title: 'Glossary and vibe coding: the minimum map without the hype',
@@ -65,7 +61,6 @@ export const sessions: SessionCardData[] = [
     readingTime: 14,
     level: 'beginner',
     heroLabel: 'Essential vocabulary',
-    accent: 'blue',
   },
   {
     title: 'AI tools and models: IDEs, CLIs and LLMs',
@@ -78,7 +73,6 @@ export const sessions: SessionCardData[] = [
     readingTime: 18,
     level: 'intermediate',
     heroLabel: 'Choice map',
-    accent: 'green',
   },
   {
     title: 'SDD and Harness Design: professional AI-native development',
@@ -91,7 +85,6 @@ export const sessions: SessionCardData[] = [
     readingTime: 16,
     level: 'advanced',
     heroLabel: 'Professional flow',
-    accent: 'coral',
   },
 ];
 
