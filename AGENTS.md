@@ -65,6 +65,7 @@ Project skills live under `.cursor/skills/` and `skills/`. Invoke by name when y
 | `planejar` | `.cursor/skills/planejar/SKILL.md` | Before implementation: tactical dev plan for the current roadmap phase (files, sequence, risks, validation). Invoke with `/planejar`. Read-only — no code until explicitly requested. |
 | `executar` | `.cursor/skills/executar/SKILL.md` | During implementation: review the phase plan, implement, validate, and hand off. Invoke with `/executar`. |
 | `quality-gate` | `skills/quality-gate/SKILL.md` | After code edits: run lint, build, and other checks before handoff. Runs inside `/executar` Step 3 (Validate). |
+| `taste-skill` | `skills/taste-skill/SKILL.md` | Before any UI or redesign work: anti-slop frontend direction (brief inference, variance/motion/density dials, layout and copy bans, pre-flight check). Upstream: github.com/Leonxlnx/taste-skill (MIT). |
 
 Suggested order for phased work: `/analisar` (optional) → `/planejar` → `/executar` → `quality-gate`.
 
@@ -75,7 +76,7 @@ Suggested order for phased work: `/analisar` (optional) → `/planejar` → `/ex
 - **Astro** is the framework. It was chosen because this is content-first, not app-first. Ships minimal JS via island architecture.
 - **React** is used only for interactive islands (quizzes, comparators, steppers, filters), not for page-level rendering.
 - **CSS Modules + CSS Variables + design tokens**. No Tailwind. The editorial visual language ("The Institute", see `REDESIGN.md`) requires authorial control that utility-first CSS undermines.
-- **CSS-first animations**. Decorative and state-transition animations must be pure CSS, and calm: fades and small settles only — no springs, shake, or sound. JavaScript animation is reserved for _interactive physics_ (drag, pointer tracking, procedural motion) via bespoke `requestAnimationFrame` loops. Do not introduce animation libraries (GSAP, anime, react-spring, motion, etc) without explicit approval.
+- **CSS-first transitions + Motion for choreography**. Simple hover/state transitions stay pure CSS. Entrance sequences and scroll reveals use `motion/react` (approved by the owner) inside isolated React islands only — see `src/components/motion/Reveal.tsx`, the single motion primitive. Every animation must honor `prefers-reduced-motion`, animate only `transform`/`opacity`, and have a stated reason (hierarchy, sequence, feedback). No decorative springs, no shake, no sound. Other animation libraries (GSAP, anime, react-spring) still require explicit approval.
 - **Content Collections** with schema validation for all session content (MDX with typed frontmatter).
 
 ### Key Architecture Decisions
@@ -111,17 +112,17 @@ The home page contains a compact foundations primer for "AI-Native Engineer", "A
 
 Every session page follows a fixed template: hero → 30s summary → main explanation → why it matters → real example when useful → where it breaks → takeaway → references. Interactive blocks are used only when they clearly improve explanation, organization, or retention.
 
-## Design System: The Institute (Editorial)
+## Design System: The Institute (Editorial, anti-slop pass)
 
-The visual language is a quiet, typography-led editorial system inspired by institutional sites like mit.edu. Full art direction and rationale live in `REDESIGN.md`. It replaced the old Neo-Brutalist system.
+The visual language is a typography-led editorial system on a neutral monochrome base with one saturated signal red, art-directed with `skills/taste-skill/SKILL.md` (anti-slop rules: palette bans, eyebrow restraint, hero discipline, copy self-audit). Full rationale lives in `REDESIGN.md`. It replaced the old Neo-Brutalist system.
 
-- One accent only: signal red (`--color-accent`); everything else is paper, ink, and hairlines. Color never carries meaning alone (levels, statuses, and types are text labels).
-- Surfaces: warm paper background, white raised surfaces, charcoal dark theme (never blue-graphite).
+- One accent only: saturated signal red `#e10600` (`--color-accent`); everything else is neutral off-white, ink, and hairlines. Color never carries meaning alone (levels, statuses, and types are text labels). The warm cream/oxblood/espresso family is deliberately avoided as an AI-slop tell.
+- Surfaces: neutral off-white background, white raised surfaces, neutral near-black dark theme.
 - Structure: 1px hairlines (`var(--line)`) and whitespace separate sections. No thick borders, no hard offset shadows — all `--shadow-*` tokens are `none`; `var(--shadow-overlay)` exists only for floating UI.
-- Typography: Inter Tight for display/headings (`--font-display`, tracking -0.02em), Inter for body, Newsreader italic for ledes and pull quotes (`--font-serif`), JetBrains Mono for code.
-- Brand mark: typographic wordmark preceded by a small red square; favicon is the red square on paper.
-- Motion: calm only — fades and small settles with `var(--ease-standard)`. No springs, no screen shake, no audio.
-- Patterns: `.kicker` micro-labels mark sections; badges are neutral hairline chips (`variant="accent"` reserved for true highlights); cards are flat with hairline borders and underline-on-hover titles; the inverted ink band is reserved for the manifesto moment.
+- Typography: Inter Tight for display/headings and hero ledes (`--font-display`, tracking -0.02em), Inter for body, JetBrains Mono for meta and code. System serif italic (Georgia, `--font-serif`) only for article ledes and pull quotes, never for display type.
+- Brand mark: typographic wordmark preceded by a small red square; favicon is the red square on off-white.
+- Motion: CSS transitions for hover/state; `motion/react` islands for entrance and scroll reveals. Calm, motivated, reduced-motion safe.
+- Patterns: `.kicker` micro-labels with restraint (max ~1 per 3 sections); badges are neutral hairline chips (`variant="accent"` reserved for true highlights); cards are flat with hairline borders and underline-on-hover titles; the inverted ink band is reserved for the manifesto moment; heroes carry exactly one primary and one secondary CTA.
 - Mobile-first: single column, reduced decoration, comfortable touch targets.
 - WCAG contrast compliance and visible focus states.
 - Breakpoints: mobile ≤767px, tablet 768-1023px, desktop 1024px+, wide 1440px+

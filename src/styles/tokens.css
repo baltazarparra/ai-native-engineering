@@ -1,37 +1,38 @@
 /* ==========================================================================
    The Institute — editorial design tokens (see REDESIGN.md)
-   One accent. Hairlines. Type before decoration. Calm motion.
+   Anti-slop pass (skills/taste-skill): neutral monochrome base + one
+   saturated signal red. No warm-craft cream, no oxblood, no espresso.
    ========================================================================== */
 
 :root {
   color-scheme: light;
 
-  /* --- surfaces (warm paper) --- */
-  --color-surface: #faf8f4;
-  --color-surface-alt: #f2efe8;
+  /* --- surfaces (neutral off-white, not cream) --- */
+  --color-surface: #fbfbfa;
+  --color-surface-alt: #f4f4f3;
   --color-surface-raised: #ffffff;
 
-  /* --- text --- */
-  --color-text: #1c1b18;
-  --color-text-muted: #5b584f;
-  --color-heading: #0e0e0c;
+  /* --- text (neutral, not espresso) --- */
+  --color-text: #1b1b1e;
+  --color-text-muted: #5c5c64;
+  --color-heading: #0b0b0d;
 
   /* --- ink (inverted band, primary buttons) --- */
-  --color-ink: #0e0e0c;
-  --color-fg-on-ink: #faf8f4;
+  --color-ink: #0b0b0d;
+  --color-fg-on-ink: #fbfbfa;
 
-  /* --- the one accent: signal red --- */
-  --color-accent: #a31f34;
-  --color-accent-strong: #7c1626;
+  /* --- the one accent: saturated signal red --- */
+  --color-accent: #e10600;
+  --color-accent-strong: #b00500;
   --color-fg-on-accent: #ffffff;
 
   /* --- hairlines --- */
-  --color-line: #e1dcd2;
+  --color-line: #e4e4e2;
   --line: 1px solid var(--color-line);
 
   /* --- code (stays dark in both themes) --- */
-  --color-code-bg: #17150f;
-  --color-code-fg: #f2ede2;
+  --color-code-bg: #16161a;
+  --color-code-fg: #f0f0ee;
 
   /* --- focus (functional, not brand) --- */
   --color-focus: #2952e8;
@@ -52,7 +53,8 @@
 
   /* fonts */
   --font-display: 'Inter Tight', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Newsreader', Georgia, serif;
+  /* system serif stack: italic ledes/pull quotes only, never display type */
+  --font-serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   /* legacy alias — components still reference --font-heading */
@@ -114,6 +116,8 @@
   --motion-slow: 340ms;
   --motion-enter: 360ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  /* anti-slop reveal curve (taste-skill §5.C) */
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
   /* legacy aliases — springs retired, resolve to the standard ease */
   --ease-out-back: cubic-bezier(0.2, 0, 0, 1);
   --ease-snap: cubic-bezier(0.2, 0, 0, 1);
@@ -159,36 +163,36 @@
   --color-border: var(--color-line);
 }
 
-/* --- dark: charcoal, not blue-graphite --- */
+/* --- dark: neutral near-black, not charcoal-warm --- */
 [data-theme='dark'] {
   color-scheme: dark;
 
   /* surfaces */
-  --color-surface: #131311;
-  --color-surface-alt: #1a1916;
-  --color-surface-raised: #22211d;
+  --color-surface: #0c0c0e;
+  --color-surface-alt: #141416;
+  --color-surface-raised: #1c1c1f;
 
   /* text hierarchy */
-  --color-text: #e9e6de;
-  --color-text-muted: #a8a499;
-  --color-heading: #f5f3ec;
+  --color-text: #e8e8ea;
+  --color-text-muted: #a2a2ab;
+  --color-heading: #fafafa;
 
   /* ink inverts */
-  --color-ink: #ece9e2;
-  --color-fg-on-ink: #131311;
+  --color-ink: #f2f2f3;
+  --color-fg-on-ink: #0c0c0e;
 
-  /* accent brightened for contrast on charcoal */
-  --color-accent: #e04b42;
-  --color-accent-strong: #eb6a62;
+  /* accent brightened for contrast on near-black */
+  --color-accent: #ff5147;
+  --color-accent-strong: #ff6e66;
   /* bright red takes dark text, not white */
   --color-fg-on-accent: #131311;
 
   /* hairlines */
-  --color-line: #2e2c27;
+  --color-line: #2a2a2e;
 
   /* code stays deeper than surface */
-  --color-code-bg: #0f0e0c;
-  --color-code-fg: #ece9e2;
+  --color-code-bg: #0a0a0c;
+  --color-code-fg: #ececea;
 
   --color-focus: #8fb0ff;
 

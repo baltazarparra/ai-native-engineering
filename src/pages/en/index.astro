@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Card from '../../components/Card/Card.astro';
+import Button from '../../components/Button/Button.astro';
+import Reveal from '../../components/motion/Reveal.tsx';
 import { getSessions } from '../../data/sessions';
 import { TRACKABLE_CHAPTERS, getChapterHref } from '../../data/chapters';
 import { HARNESS_CHAPTERS, getHarnessChapterHref } from '../../data/harness-chapters';
@@ -34,26 +36,36 @@ const formatDate = (date: Date) =>
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero" aria-label="Introduction">
     <div class="container">
-      <p class="kicker">Open curriculum · AI-Native Engineering</p>
-      <h1 class="hero__title">AI-Native Engineering</h1>
-      <p class="hero__lede">
-        Working with AI is not adding one more tool — it is designing the entire system in which
-        agents work. This site teaches that craft in plain language.
-      </p>
-      <p class="hero__tagline">
-        for devs, QA, PMs, designers, recruiters, and founders — no senior title required
-      </p>
+      <Reveal client:load>
+        <p class="kicker">Open curriculum · AI-Native Engineering</p>
+      </Reveal>
+      <Reveal client:load delay={0.08}>
+        <h1 class="hero__title">AI-Native Engineering</h1>
+      </Reveal>
+      <Reveal client:load delay={0.16}>
+        <p class="hero__lede">
+          Learn to design the systems in which AI agents work: specification, context, validation,
+          and responsibility.
+        </p>
+      </Reveal>
+      <Reveal client:load delay={0.24}>
+        <div class="hero__ctas">
+          <Button href={getSessionHref(lang, 'glossary')} size="lg">Start now</Button>
+          <Button href="#sessions" variant="secondary" size="lg">See the curriculum</Button>
+        </div>
+      </Reveal>
     </div>
   </section>
 
   <!-- ═══════════ MANIFESTO ═══════════ -->
   <section class="manifesto section" aria-label="Manifesto">
     <div class="container">
-      <p class="kicker kicker--light">What changes</p>
-      <p class="manifesto__text">
-        Code stops being the central artifact. The central artifact becomes the
-        <strong>system</strong>: specifications, agents, context, validation, and responsibility.
-      </p>
+      <Reveal client:visible>
+        <p class="manifesto__text">
+          Code stops being the central artifact. The central artifact becomes the
+          <strong>system</strong>: specifications, agents, context, validation, and responsibility.
+        </p>
+      </Reveal>
     </div>
   </section>
 
@@ -61,69 +73,62 @@ const formatDate = (date: Date) =>
   <section class="primer section" id="fundamentals">
     <div class="container">
       <header class="section-head">
-        <p class="kicker">Start here</p>
         <h2 class="section-head__title">The basics, no jargon</h2>
       </header>
 
-      <div class="primer__blocks">
-        <article class="pblock">
-          <span class="pblock__numeral" aria-hidden="true">01</span>
-          <h3 class="pblock__title">AI-Native Engineer</h3>
-          <p>
-            Someone who designs the system agents work in: specification, context, validation, and
-            responsibility. Not "a dev who uses Copilot" — a shift from writing code to architecting
-            its production.
-          </p>
-        </article>
+      <Reveal client:visible>
+        <div class="primer__blocks">
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">01</span>
+            <h3 class="pblock__title">AI-Native Engineer</h3>
+            <p>
+              Someone who designs the system agents work in: specification, context, validation,
+              and responsibility. Not "a dev who uses Copilot". A shift from writing code to
+              architecting its production.
+            </p>
+          </article>
 
-        <article class="pblock">
-          <span class="pblock__numeral" aria-hidden="true">02</span>
-          <h3 class="pblock__title">AI agent</h3>
-          <p>
-            A program that pursues a goal in loops: it observes the environment, plans, acts with
-            tools, checks the result, and repeats. Unlike a chat that only answers, an agent executes
-            — editing files, running tests, navigating.
-          </p>
-        </article>
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">02</span>
+            <h3 class="pblock__title">AI agent</h3>
+            <p>
+              A program that pursues a goal in loops: it observes the environment, plans, acts with
+              tools, checks the result, and repeats. Unlike a chat that only answers, an agent
+              executes: it edits files, runs tests, navigates.
+            </p>
+          </article>
 
-        <article class="pblock">
-          <span class="pblock__numeral" aria-hidden="true">03</span>
-          <h3 class="pblock__title">Coding agent</h3>
-          <p>
-            An agent specialized in software. It reads your repository, proposes changes, opens
-            files, runs commands, and iterates until the task passes validation. Tools like Claude
-            Code, Cursor, and Windsurf are examples of the pattern.
-          </p>
-        </article>
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">03</span>
+            <h3 class="pblock__title">Coding agent</h3>
+            <p>
+              An agent specialized in software. It reads your repository, proposes changes, opens
+              files, runs commands, and iterates until the task passes validation. Claude Code,
+              Cursor, and Windsurf are examples of the pattern.
+            </p>
+          </article>
 
-        <article class="pblock">
-          <span class="pblock__numeral" aria-hidden="true">04</span>
-          <h3 class="pblock__title">SDD — Spec-Driven Development</h3>
-          <p>
-            The working method: the specification becomes the primary artifact. The agent implements
-            from it; tests validate its behavior; code becomes output, not the source of truth.
-          </p>
-        </article>
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">04</span>
+            <h3 class="pblock__title">SDD — Spec-Driven Development</h3>
+            <p>
+              The working method: the specification becomes the primary artifact. The agent
+              implements from it, tests validate its behavior, and code becomes output, not the
+              source of truth.
+            </p>
+          </article>
 
-        <article class="pblock">
-          <span class="pblock__numeral" aria-hidden="true">05</span>
-          <h3 class="pblock__title">Harness Engineering</h3>
-          <p>
-            The discipline of designing everything around the model: instructions, tools, memory,
-            checks, and limits. It is the chassis the agent runs on — and it determines the quality
-            of what comes out.
-          </p>
-        </article>
-
-        <article class="pblock">
-          <span class="pblock__numeral" aria-hidden="true">06</span>
-          <h3 class="pblock__title">Why it matters</h3>
-          <p>
-            Because leverage changed hands. One engineer with a good harness coordinates what used to
-            be an entire team. Those who do not design the system become its bottleneck.
-          </p>
-        </article>
-      </div>
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">05</span>
+            <h3 class="pblock__title">Harness Engineering</h3>
+            <p>
+              The discipline of designing everything around the model: instructions, tools, memory,
+              checks, and limits. It is the chassis the agent runs on, and it determines the
+              quality of what comes out.
+            </p>
+          </article>
+        </div>
+      </Reveal>
     </div>
   </section>
 
@@ -135,36 +140,38 @@ const formatDate = (date: Date) =>
         <h2 class="section-head__title">The curriculum in three sessions</h2>
       </header>
 
-      <div class="sessions__grid">
-        {
-          sortedSessions.map((session, i) => {
-            const href = getSessionHref(lang, session.slug);
-            const numeral = String(i + 1).padStart(2, '0');
-            const meta = `${session.readingTime} min read · ${t.levels[session.level]}`;
+      <Reveal client:visible>
+        <div class="sessions__grid">
+          {
+            sortedSessions.map((session, i) => {
+              const href = getSessionHref(lang, session.slug);
+              const numeral = String(i + 1).padStart(2, '0');
+              const meta = `${session.readingTime} min read · ${t.levels[session.level]}`;
 
-            return session.order === 3 ? (
-              <a href={href} class="feature-card">
-                <div class="feature-card__head">
-                  <span class="feature-card__numeral" aria-hidden="true">
-                    {numeral}
+              return session.order === 3 ? (
+                <a href={href} class="feature-card">
+                  <div class="feature-card__head">
+                    <span class="feature-card__numeral" aria-hidden="true">
+                      {numeral}
+                    </span>
+                    <span class="feature-card__meta">{meta}</span>
+                  </div>
+                  <h3 class="feature-card__title">{session.title}</h3>
+                  <p class="feature-card__summary">{session.summary}</p>
+                  <span class="feature-card__arrow" aria-hidden="true">
+                    →
                   </span>
-                  <span class="feature-card__meta">{meta}</span>
-                </div>
-                <h3 class="feature-card__title">{session.title}</h3>
-                <p class="feature-card__summary">{session.summary}</p>
-                <span class="feature-card__arrow" aria-hidden="true">
-                  →
-                </span>
-              </a>
-            ) : (
-              <Card href={href} index={numeral} title={session.title}>
-                <Fragment slot="meta">{meta}</Fragment>
-                <p>{session.summary}</p>
-              </Card>
-            );
-          })
-        }
-      </div>
+                </a>
+              ) : (
+                <Card href={href} index={numeral} title={session.title}>
+                  <Fragment slot="meta">{meta}</Fragment>
+                  <p>{session.summary}</p>
+                </Card>
+              );
+            })
+          }
+        </div>
+      </Reveal>
     </div>
   </section>
 
@@ -172,27 +179,28 @@ const formatDate = (date: Date) =>
   <section class="harness section">
     <div class="container">
       <header class="section-head">
-        <p class="kicker">The full system</p>
         <h2 class="section-head__title">Harness Engineering: the full system</h2>
         <p class="section-head__lede">
-          How AI models become trustworthy autonomous engineers — and what changes for teams,
+          How AI models become trustworthy autonomous engineers, and what changes for teams,
           products, and careers.
         </p>
       </header>
 
-      <div class="harness__grid">
-        {
-          harnessBlocks.map((chapter) => (
-            <article class="hblock">
-              <h3>{chapter.title[lang]}</h3>
-              <p>{chapter.description[lang]}</p>
-              <a class="text-link" href={getHarnessChapterHref(lang, chapter.id)}>
-                {chapter.shortLabel[lang]} →
-              </a>
-            </article>
-          ))
-        }
-      </div>
+      <Reveal client:visible>
+        <div class="harness__grid">
+          {
+            harnessBlocks.map((chapter) => (
+              <article class="hblock">
+                <h3>{chapter.title[lang]}</h3>
+                <p>{chapter.description[lang]}</p>
+                <a class="text-link" href={getHarnessChapterHref(lang, chapter.id)}>
+                  {chapter.shortLabel[lang]} →
+                </a>
+              </article>
+            ))
+          }
+        </div>
+      </Reveal>
     </div>
   </section>
 
@@ -200,22 +208,23 @@ const formatDate = (date: Date) =>
   <section class="section home-blog" id="blog">
     <div class="container">
       <header class="section-head">
-        <p class="kicker">Blog</p>
         <h2 class="section-head__title">Field essays</h2>
       </header>
 
-      <div class="linkrows">
-        {
-          latestPosts.map((post) => (
-            <a class="linkrow" href={getBlogHref(lang, post.data.slug)}>
-              <span class="linkrow__title">{post.data.title}</span>
-              <span class="linkrow__meta">
-                {post.data.author} · {formatDate(post.data.publishedAt)}
-              </span>
-            </a>
-          ))
-        }
-      </div>
+      <Reveal client:visible>
+        <div class="linkrows">
+          {
+            latestPosts.map((post) => (
+              <a class="linkrow" href={getBlogHref(lang, post.data.slug)}>
+                <span class="linkrow__title">{post.data.title}</span>
+                <span class="linkrow__meta">
+                  {post.data.author} · {formatDate(post.data.publishedAt)}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </Reveal>
       <p class="section-more">
         <a class="text-link" href={getBlogHref(lang)}>{t.blog.homeCta} →</a>
       </p>
@@ -226,28 +235,29 @@ const formatDate = (date: Date) =>
   <section class="section home-project" id="project">
     <div class="container">
       <header class="section-head">
-        <p class="kicker">Project</p>
         <h2 class="section-head__title">{t.project.heading}</h2>
       </header>
 
-      <div class="linkrows">
-        <a class="linkrow" href={getProjectHref(lang)}>
-          <span class="linkrow__title">{t.project.title}</span>
-          <span class="linkrow__meta">{t.project.readingTime}</span>
-        </a>
-        {
-          projectChapters.map((chapter) => (
-            <a class="linkrow" href={getChapterHref(chapter.number, lang)}>
-              <span class="linkrow__title">{chapter.title[lang]}</span>
-              <span class="linkrow__meta">{t.chapters.chapterLabel(chapter.number)}</span>
-            </a>
-          ))
-        }
-        <a class="linkrow" href={siteLinks.repository}>
-          <span class="linkrow__title">Source code on GitHub</span>
-          <span class="linkrow__meta">open repository</span>
-        </a>
-      </div>
+      <Reveal client:visible>
+        <div class="linkrows">
+          <a class="linkrow" href={getProjectHref(lang)}>
+            <span class="linkrow__title">{t.project.title}</span>
+            <span class="linkrow__meta">{t.project.readingTime}</span>
+          </a>
+          {
+            projectChapters.map((chapter) => (
+              <a class="linkrow" href={getChapterHref(chapter.number, lang)}>
+                <span class="linkrow__title">{chapter.title[lang]}</span>
+                <span class="linkrow__meta">{t.chapters.chapterLabel(chapter.number)}</span>
+              </a>
+            ))
+          }
+          <a class="linkrow" href={siteLinks.repository}>
+            <span class="linkrow__title">Source code on GitHub</span>
+            <span class="linkrow__meta">open repository</span>
+          </a>
+        </div>
+      </Reveal>
     </div>
   </section>
 </BaseLayout>
@@ -267,18 +277,19 @@ const formatDate = (date: Date) =>
   }
 
   .hero__lede {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: var(--text-lede);
-    line-height: 1.45;
+    line-height: 1.4;
     color: var(--color-text-muted);
-    max-width: 36ch;
+    max-width: 34ch;
     text-wrap: balance;
   }
 
-  .hero__tagline {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    margin-top: var(--space-xl);
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
   }
 
   /* ── Manifesto strip ──────────────────────────────────── */
@@ -292,7 +303,6 @@ const formatDate = (date: Date) =>
     font-size: var(--text-lede);
     line-height: 1.5;
     max-width: 34ch;
-    margin-top: var(--space-lg);
   }
 
   .manifesto__text strong {
@@ -311,6 +321,10 @@ const formatDate = (date: Date) =>
     font-weight: var(--weight-bold);
     letter-spacing: -0.02em;
     margin-top: var(--space-md);
+  }
+
+  .section-head .kicker + .section-head__title {
+    margin-top: var(--space-sm);
   }
 
   .section-head__lede {
@@ -408,8 +422,14 @@ const formatDate = (date: Date) =>
     font-weight: var(--weight-extrabold);
     letter-spacing: -0.02em;
     line-height: 1.05;
+    color: var(--color-fg-on-ink);
     margin-bottom: var(--space-md);
     max-width: 24ch;
+    transition: color var(--motion-fast) var(--ease-standard);
+  }
+
+  .feature-card:hover .feature-card__title {
+    color: var(--color-fg-on-accent);
   }
 
   .feature-card__summary {

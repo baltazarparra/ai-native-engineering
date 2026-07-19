@@ -19,7 +19,8 @@
   transition:
     background-color var(--transition-fast),
     color var(--transition-fast),
-    border-color var(--transition-fast);
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 /* sizes */
@@ -89,6 +90,12 @@
   color: var(--color-accent);
   text-decoration-color: var(--color-accent);
   text-underline-offset: 4px;
+}
+
+/* tactile press */
+
+.button:active {
+  transform: translateY(1px);
 }
 
 /* focus */
