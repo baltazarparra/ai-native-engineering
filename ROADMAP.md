@@ -237,6 +237,6 @@ Full visual redesign replacing Neo Brutalism with the editorial system defined i
 
 - [ ] `git rm -r src/components/HeroStickers src/components/HeroGhostCursors src/components/HeroCursorTrail src/components/HeroCaptureCounter` (already unwired from all pages/layouts)
 - [ ] Sweep legacy token aliases, then delete the alias block in `tokens.css` and the `brutal-*` keyframes in `globals.css`:
-  `grep -rn "accent-[1-4]\|fg-on-yellow\|fg-on-blue\|fg-on-green\|fg-on-coral\|border-thick\|color-shadow\|font-heading\|ease-snap\|ease-out-back\|brutal-\|color-white\|color-primary\|color-border\b" src/`
-- [ ] Migrate island CSS internals (ChapterNav, ChapterFooter, harness/*) to semantic tokens — they currently inherit the new look through the legacy aliases
+      `grep -rn "accent-[1-4]\|fg-on-yellow\|fg-on-blue\|fg-on-green\|fg-on-coral\|border-thick\|color-shadow\|font-heading\|ease-snap\|ease-out-back\|brutal-\|color-white\|color-primary\|color-border\b" src/`
+- [ ] Migrate island CSS internals (ChapterNav, ChapterFooter, harness/\*) to semantic tokens — they currently inherit the new look through the legacy aliases
 - [ ] PLAN.md design-language sweep (historical discovery doc; design source of truth is now `REDESIGN.md` + `AGENTS.md`)

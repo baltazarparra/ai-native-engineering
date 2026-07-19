@@ -2,7 +2,11 @@
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
-import { getPublishedPosts, getBlogPostAlternateLinks, type BlogEntry } from '../../lib/blog';
+import {
+  getPublishedPosts,
+  getBlogPostAlternateLinks,
+  type BlogEntry,
+} from '../../lib/blog';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getPublishedPosts('pt-BR');

@@ -23,7 +23,11 @@ const projectChapters = TRACKABLE_CHAPTERS;
 const latestPosts = (await getPublishedPosts(lang)).slice(0, 3);
 
 const formatDate = (date: Date) =>
-  date.toLocaleDateString(t.dateLocale, { day: 'numeric', month: 'short', year: 'numeric' });
+  date.toLocaleDateString(t.dateLocale, {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
 ---
 
 <BaseLayout
@@ -38,18 +42,24 @@ const formatDate = (date: Date) =>
         <p class="kicker">Open curriculum · AI-Native Engineers</p>
       </Reveal>
       <Reveal client:load delay={0.08}>
-        <h1 class="hero__title">AI-Native Engineers<span class="accent-dot">.</span></h1>
+        <h1 class="hero__title">
+          AI-Native Engineers<span class="accent-dot">.</span>
+        </h1>
       </Reveal>
       <Reveal client:load delay={0.16}>
         <p class="hero__lede">
-          Learn to design the systems in which AI agents work: specification, context, validation,
-          and responsibility.
+          Learn to design the systems in which AI agents work: specification,
+          context, validation, and responsibility.
         </p>
       </Reveal>
       <Reveal client:load delay={0.24}>
         <div class="hero__ctas">
-          <Button href={getSessionHref(lang, 'glossary')} size="lg">Start now</Button>
-          <Button href="#sessions" variant="secondary" size="lg">See the curriculum</Button>
+          <Button href={getSessionHref(lang, 'glossary')} size="lg"
+            >Start now</Button
+          >
+          <Button href="#sessions" variant="secondary" size="lg"
+            >See the curriculum</Button
+          >
         </div>
       </Reveal>
     </div>
@@ -60,8 +70,10 @@ const formatDate = (date: Date) =>
     <div class="container">
       <Reveal client:visible>
         <p class="manifesto__text">
-          Code stops being the central artifact. The central artifact becomes the
-          <strong>system</strong>: specifications, agents, context, validation, and responsibility.
+          Code stops being the central artifact. The central artifact becomes
+          the
+          <strong>system</strong>: specifications, agents, context, validation,
+          and responsibility.
         </p>
       </Reveal>
     </div>
@@ -80,9 +92,10 @@ const formatDate = (date: Date) =>
             <span class="pblock__numeral" aria-hidden="true">01</span>
             <h3 class="pblock__title">AI-Native Engineer</h3>
             <p>
-              Someone who designs the system agents work in: specification, context, validation,
-              and responsibility. Not "a dev who uses Copilot". A shift from writing code to
-              architecting its production.
+              Someone who designs the system agents work in: specification,
+              context, validation, and responsibility. Not "a dev who uses
+              Copilot". A shift from writing code to architecting its
+              production.
             </p>
           </article>
 
@@ -90,9 +103,10 @@ const formatDate = (date: Date) =>
             <span class="pblock__numeral" aria-hidden="true">02</span>
             <h3 class="pblock__title">AI agent</h3>
             <p>
-              A program that pursues a goal in loops: it observes the environment, plans, acts with
-              tools, checks the result, and repeats. Unlike a chat that only answers, an agent
-              executes: it edits files, runs tests, navigates.
+              A program that pursues a goal in loops: it observes the
+              environment, plans, acts with tools, checks the result, and
+              repeats. Unlike a chat that only answers, an agent executes: it
+              edits files, runs tests, navigates.
             </p>
           </article>
 
@@ -100,9 +114,10 @@ const formatDate = (date: Date) =>
             <span class="pblock__numeral" aria-hidden="true">03</span>
             <h3 class="pblock__title">Coding agent</h3>
             <p>
-              An agent specialized in software. It reads your repository, proposes changes, opens
-              files, runs commands, and iterates until the task passes validation. Claude Code,
-              Cursor, and Windsurf are examples of the pattern.
+              An agent specialized in software. It reads your repository,
+              proposes changes, opens files, runs commands, and iterates until
+              the task passes validation. Claude Code, Cursor, and Windsurf are
+              examples of the pattern.
             </p>
           </article>
 
@@ -110,9 +125,9 @@ const formatDate = (date: Date) =>
             <span class="pblock__numeral" aria-hidden="true">04</span>
             <h3 class="pblock__title">SDD (Spec-Driven Development)</h3>
             <p>
-              The working method: the specification becomes the primary artifact. The agent
-              implements from it, tests validate its behavior, and code becomes output, not the
-              source of truth.
+              The working method: the specification becomes the primary
+              artifact. The agent implements from it, tests validate its
+              behavior, and code becomes output, not the source of truth.
             </p>
           </article>
 
@@ -120,8 +135,9 @@ const formatDate = (date: Date) =>
             <span class="pblock__numeral" aria-hidden="true">05</span>
             <h3 class="pblock__title">Harness</h3>
             <p>
-              The environment around the model: instructions, tools, memory, checks, and limits. It
-              is the chassis the agent runs on, and it determines the quality of what comes out.
+              The environment around the model: instructions, tools, memory,
+              checks, and limits. It is the chassis the agent runs on, and it
+              determines the quality of what comes out.
             </p>
           </article>
         </div>
@@ -225,7 +241,9 @@ const formatDate = (date: Date) =>
             projectChapters.map((chapter) => (
               <a class="linkrow" href={getChapterHref(chapter.number, lang)}>
                 <span class="linkrow__title">{chapter.title[lang]}</span>
-                <span class="linkrow__meta">{t.chapters.chapterLabel(chapter.number)}</span>
+                <span class="linkrow__meta">
+                  {t.chapters.chapterLabel(chapter.number)}
+                </span>
               </a>
             ))
           }

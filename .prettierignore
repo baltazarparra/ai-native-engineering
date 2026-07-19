@@ -2,3 +2,6 @@ dist/
 .astro/
 node_modules/
 package-lock.json
+.agents/skills/
+.cursor/skills/
+skills/taste-skill/

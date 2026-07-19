@@ -59,12 +59,12 @@ Adjust `upstream/main` to the real base branch.
 
 Project skills live under `.cursor/skills/` and `skills/`. Invoke by name when you need a specific workflow.
 
-| Skill | Path | When to use |
-| --- | --- | --- |
-| `analisar` | `.cursor/skills/analisar/SKILL.md` | Before implementation: analyze a plan `.md` (scope, repo state, locked decisions). Invoke with `/analisar`. Read-only — no code until explicitly requested. |
-| `planejar` | `.cursor/skills/planejar/SKILL.md` | Before implementation: tactical dev plan for the current roadmap phase (files, sequence, risks, validation). Invoke with `/planejar`. Read-only — no code until explicitly requested. |
-| `executar` | `.cursor/skills/executar/SKILL.md` | During implementation: review the phase plan, implement, validate, and hand off. Invoke with `/executar`. |
-| `quality-gate` | `skills/quality-gate/SKILL.md` | After code edits: run lint, build, and other checks before handoff. Runs inside `/executar` Step 3 (Validate). |
+| Skill          | Path                               | When to use                                                                                                                                                                           |
+| -------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `analisar`     | `.cursor/skills/analisar/SKILL.md` | Before implementation: analyze a plan `.md` (scope, repo state, locked decisions). Invoke with `/analisar`. Read-only — no code until explicitly requested.                           |
+| `planejar`     | `.cursor/skills/planejar/SKILL.md` | Before implementation: tactical dev plan for the current roadmap phase (files, sequence, risks, validation). Invoke with `/planejar`. Read-only — no code until explicitly requested. |
+| `executar`     | `.cursor/skills/executar/SKILL.md` | During implementation: review the phase plan, implement, validate, and hand off. Invoke with `/executar`.                                                                             |
+| `quality-gate` | `skills/quality-gate/SKILL.md`     | After code edits: run lint, build, and other checks before handoff. Runs inside `/executar` Step 3 (Validate).                                                                        |
 
 Suggested order for phased work: `/analisar` (optional) → `/planejar` → `/executar` → `quality-gate`.
 

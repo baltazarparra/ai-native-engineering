@@ -94,45 +94,50 @@ function getHref(targetLang: Lang) {
       if (!header) return;
 
       const alternates = {};
-      doc.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function (link) {
-        const hreflang = link.getAttribute('hreflang');
-        if (hreflang && hreflang !== 'x-default') {
-          alternates[hreflang] = link.getAttribute('href');
-        }
-      });
+      doc
+        .querySelectorAll('link[rel="alternate"][hreflang]')
+        .forEach(function (link) {
+          const hreflang = link.getAttribute('hreflang');
+          if (hreflang && hreflang !== 'x-default') {
+            alternates[hreflang] = link.getAttribute('href');
+          }
+        });
 
       const currentLang = resolveCurrentLang(doc);
       const activeClass = header.getAttribute('data-active-class');
       const currentLanguageLabel =
         header.getAttribute('data-current-language-label') || '';
 
-      header.querySelectorAll('[data-language-choice]').forEach(function (link) {
-        const choice = link.getAttribute('data-language-choice');
-        if (choice && alternates[choice]) {
-          link.setAttribute('href', alternates[choice]);
-        }
+      header
+        .querySelectorAll('[data-language-choice]')
+        .forEach(function (link) {
+          const choice = link.getAttribute('data-language-choice');
+          if (choice && alternates[choice]) {
+            link.setAttribute('href', alternates[choice]);
+          }
 
-        const isCurrent = choice === currentLang;
-        if (activeClass) {
-          link.classList.toggle(activeClass, isCurrent);
-        }
-        if (isCurrent) {
-          link.setAttribute('aria-current', 'true');
-          const langLabel = link.getAttribute('data-lang-label') || choice || '';
-          link.setAttribute(
-            'aria-label',
-            currentLanguageLabel
-              ? langLabel + ': ' + currentLanguageLabel
-              : langLabel,
-          );
-        } else {
-          link.removeAttribute('aria-current');
-          link.setAttribute(
-            'aria-label',
-            link.getAttribute('data-lang-label') || choice || '',
-          );
-        }
-      });
+          const isCurrent = choice === currentLang;
+          if (activeClass) {
+            link.classList.toggle(activeClass, isCurrent);
+          }
+          if (isCurrent) {
+            link.setAttribute('aria-current', 'true');
+            const langLabel =
+              link.getAttribute('data-lang-label') || choice || '';
+            link.setAttribute(
+              'aria-label',
+              currentLanguageLabel
+                ? langLabel + ': ' + currentLanguageLabel
+                : langLabel,
+            );
+          } else {
+            link.removeAttribute('aria-current');
+            link.setAttribute(
+              'aria-label',
+              link.getAttribute('data-lang-label') || choice || '',
+            );
+          }
+        });
     }
 
     if (!window.__aiNativeLanguageLinkSync) {

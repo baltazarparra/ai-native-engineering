@@ -14,8 +14,7 @@ export async function getPublishedPosts(lang: Lang): Promise<BlogEntry[]> {
   return posts
     .filter((post) => post.data.lang === lang && !post.data.draft)
     .sort(
-      (a, b) =>
-        b.data.publishedAt.getTime() - a.data.publishedAt.getTime(),
+      (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime(),
     );
 }
 

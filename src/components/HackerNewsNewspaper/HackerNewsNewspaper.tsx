@@ -150,9 +150,15 @@ export default function HackerNewsNewspaper({ lang = 'pt-BR' }: Props) {
           </a>
         </h2>
         <div className={styles.storyMeta}>
-          <span>▲ {manchete.score} {labels.points}</span>
-          <span>{labels.by} {manchete.by}</span>
-          <span>{manchete.descendants ?? 0} {labels.comments}</span>
+          <span>
+            ▲ {manchete.score} {labels.points}
+          </span>
+          <span>
+            {labels.by} {manchete.by}
+          </span>
+          <span>
+            {manchete.descendants ?? 0} {labels.comments}
+          </span>
           <span>{timeAgo(manchete.time, lang)}</span>
         </div>
       </article>
@@ -172,8 +178,12 @@ export default function HackerNewsNewspaper({ lang = 'pt-BR' }: Props) {
               </a>
             </h3>
             <div className={styles.storyMeta}>
-              <span>▲ {story.score} {labels.points}</span>
-              <span>{story.descendants ?? 0} {labels.comments}</span>
+              <span>
+                ▲ {story.score} {labels.points}
+              </span>
+              <span>
+                {story.descendants ?? 0} {labels.comments}
+              </span>
               <span>{timeAgo(story.time, lang)}</span>
             </div>
           </article>
@@ -196,7 +206,9 @@ export default function HackerNewsNewspaper({ lang = 'pt-BR' }: Props) {
               </a>
               <div className={styles.storyMeta}>
                 <span>▲ {story.score}</span>
-                <span>{story.descendants ?? 0} {labels.comments}</span>
+                <span>
+                  {story.descendants ?? 0} {labels.comments}
+                </span>
                 <span>{timeAgo(story.time, lang)}</span>
               </div>
             </div>

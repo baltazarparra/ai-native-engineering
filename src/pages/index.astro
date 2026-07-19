@@ -23,7 +23,11 @@ const projectChapters = TRACKABLE_CHAPTERS;
 const latestPosts = (await getPublishedPosts(lang)).slice(0, 3);
 
 const formatDate = (date: Date) =>
-  date.toLocaleDateString(t.dateLocale, { day: 'numeric', month: 'short', year: 'numeric' });
+  date.toLocaleDateString(t.dateLocale, {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
 ---
 
 <BaseLayout
@@ -38,18 +42,24 @@ const formatDate = (date: Date) =>
         <p class="kicker">Currículo aberto · AI-Native Engineers</p>
       </Reveal>
       <Reveal client:load delay={0.08}>
-        <h1 class="hero__title">AI-Native Engineers<span class="accent-dot">.</span></h1>
+        <h1 class="hero__title">
+          AI-Native Engineers<span class="accent-dot">.</span>
+        </h1>
       </Reveal>
       <Reveal client:load delay={0.16}>
         <p class="hero__lede">
-          Aprenda a projetar os sistemas em que agentes de IA trabalham: especificação, contexto,
-          validação e responsabilidade.
+          Aprenda a projetar os sistemas em que agentes de IA trabalham:
+          especificação, contexto, validação e responsabilidade.
         </p>
       </Reveal>
       <Reveal client:load delay={0.24}>
         <div class="hero__ctas">
-          <Button href={getSessionHref(lang, 'glossario')} size="lg">Começar agora</Button>
-          <Button href="#sessoes" variant="secondary" size="lg">Ver o currículo</Button>
+          <Button href={getSessionHref(lang, 'glossario')} size="lg"
+            >Começar agora</Button
+          >
+          <Button href="#sessoes" variant="secondary" size="lg"
+            >Ver o currículo</Button
+          >
         </div>
       </Reveal>
     </div>
@@ -60,8 +70,10 @@ const formatDate = (date: Date) =>
     <div class="container">
       <Reveal client:visible>
         <p class="manifesto__text">
-          O código deixa de ser o artefato central. O artefato central passa a ser o
-          <strong>sistema</strong>: especificações, agentes, contexto, validação e responsabilidade.
+          O código deixa de ser o artefato central. O artefato central passa a
+          ser o
+          <strong>sistema</strong>: especificações, agentes, contexto, validação
+          e responsabilidade.
         </p>
       </Reveal>
     </div>
@@ -80,9 +92,10 @@ const formatDate = (date: Date) =>
             <span class="pblock__numeral" aria-hidden="true">01</span>
             <h3 class="pblock__title">AI-Native Engineer</h3>
             <p>
-              É quem projeta o sistema em que os agentes trabalham: especificação, contexto,
-              validação e responsabilidade. Não é "dev que usa Copilot". É uma mudança de papel:
-              de escrever código para arquitetar a produção dele.
+              É quem projeta o sistema em que os agentes trabalham:
+              especificação, contexto, validação e responsabilidade. Não é "dev
+              que usa Copilot". É uma mudança de papel: de escrever código para
+              arquitetar a produção dele.
             </p>
           </article>
 
@@ -90,9 +103,10 @@ const formatDate = (date: Date) =>
             <span class="pblock__numeral" aria-hidden="true">02</span>
             <h3 class="pblock__title">Agente de IA</h3>
             <p>
-              É um programa que persegue um objetivo em ciclos: observa o ambiente, planeja, age
-              com ferramentas, verifica o resultado e repete. Diferente de um chat que só responde,
-              o agente executa: edita arquivos, roda testes, navega.
+              É um programa que persegue um objetivo em ciclos: observa o
+              ambiente, planeja, age com ferramentas, verifica o resultado e
+              repete. Diferente de um chat que só responde, o agente executa:
+              edita arquivos, roda testes, navega.
             </p>
           </article>
 
@@ -100,9 +114,10 @@ const formatDate = (date: Date) =>
             <span class="pblock__numeral" aria-hidden="true">03</span>
             <h3 class="pblock__title">Agente de código</h3>
             <p>
-              É o agente especializado em software. Lê seu repositório, propõe mudanças, abre
-              arquivos, roda comandos e itera até a tarefa passar na validação. Claude Code, Cursor
-              e Windsurf são exemplos do padrão.
+              É o agente especializado em software. Lê seu repositório, propõe
+              mudanças, abre arquivos, roda comandos e itera até a tarefa passar
+              na validação. Claude Code, Cursor e Windsurf são exemplos do
+              padrão.
             </p>
           </article>
 
@@ -110,9 +125,10 @@ const formatDate = (date: Date) =>
             <span class="pblock__numeral" aria-hidden="true">04</span>
             <h3 class="pblock__title">SDD (Spec-Driven Development)</h3>
             <p>
-              É o método de trabalho: a especificação vira o artefato principal. O agente implementa
-              a partir dela, os testes validam o comportamento dela, e o código vira resultado, não
-              a fonte da verdade.
+              É o método de trabalho: a especificação vira o artefato principal.
+              O agente implementa a partir dela, os testes validam o
+              comportamento dela, e o código vira resultado, não a fonte da
+              verdade.
             </p>
           </article>
 
@@ -120,8 +136,9 @@ const formatDate = (date: Date) =>
             <span class="pblock__numeral" aria-hidden="true">05</span>
             <h3 class="pblock__title">Harness</h3>
             <p>
-              É o ambiente em volta do modelo: instruções, ferramentas, memória, verificações e
-              limites. É o chassi onde o agente roda, e é ele que determina a qualidade do que sai.
+              É o ambiente em volta do modelo: instruções, ferramentas, memória,
+              verificações e limites. É o chassi onde o agente roda, e é ele que
+              determina a qualidade do que sai.
             </p>
           </article>
         </div>
@@ -225,7 +242,9 @@ const formatDate = (date: Date) =>
             projectChapters.map((chapter) => (
               <a class="linkrow" href={getChapterHref(chapter.number, lang)}>
                 <span class="linkrow__title">{chapter.title[lang]}</span>
-                <span class="linkrow__meta">{t.chapters.chapterLabel(chapter.number)}</span>
+                <span class="linkrow__meta">
+                  {t.chapters.chapterLabel(chapter.number)}
+                </span>
               </a>
             ))
           }

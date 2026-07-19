@@ -8,15 +8,15 @@ We ship one phase at a time. Each phase is validated before the next starts. No 
 
 ## Decisions (locked)
 
-| Decision | Choice | Notes |
-| --- | --- | --- |
-| URL | `/blog/` | English routes later: `/en/blog/` |
-| v1 locale | PT-BR only | English is Phase 8, after PT v1 ships |
-| Content format | Markdown (`.md`) + frontmatter | Content Collections + Zod (same infra as sessions; sessions stay MDX) |
-| Collection | Separate `blog` collection | Do not extend `sessions`; different schema, layout, and file type |
-| Layout | `BlogPostLayout.astro` | Lighter than `SessionLayout.astro`; no SectionNav, ProgressTracker, NextSessionCTA, ReferencesList |
-| CMS | None | Repo + `.md` files; PR is the publishing workflow |
-| Reading time | Manual in frontmatter (optional) | Match sessions pattern; no auto-calculation in v1 |
+| Decision       | Choice                           | Notes                                                                                              |
+| -------------- | -------------------------------- | -------------------------------------------------------------------------------------------------- |
+| URL            | `/blog/`                         | English routes later: `/en/blog/`                                                                  |
+| v1 locale      | PT-BR only                       | English is Phase 8, after PT v1 ships                                                              |
+| Content format | Markdown (`.md`) + frontmatter   | Content Collections + Zod (same infra as sessions; sessions stay MDX)                              |
+| Collection     | Separate `blog` collection       | Do not extend `sessions`; different schema, layout, and file type                                  |
+| Layout         | `BlogPostLayout.astro`           | Lighter than `SessionLayout.astro`; no SectionNav, ProgressTracker, NextSessionCTA, ReferencesList |
+| CMS            | None                             | Repo + `.md` files; PR is the publishing workflow                                                  |
+| Reading time   | Manual in frontmatter (optional) | Match sessions pattern; no auto-calculation in v1                                                  |
 
 ---
 
@@ -45,16 +45,16 @@ flowchart LR
 
 **Key files (by phase):**
 
-| Phase | Files created or touched |
-| --- | --- |
-| 1 | `src/content.config.ts`, `src/content/blog/` |
-| 2 | `src/lib/blog.ts`, `src/lib/i18n.ts` |
-| 3 | `src/layouts/BlogPostLayout.astro` |
-| 4 | `src/pages/blog/[slug].astro` |
-| 5 | `src/pages/blog/index.astro` |
-| 6 | `src/pages/index.astro` or `src/components/Footer/Footer.astro` |
-| 7 | `src/content/blog/*.md` (real post) |
-| 8 | `src/pages/en/blog/`, schema extension |
+| Phase | Files created or touched                                        |
+| ----- | --------------------------------------------------------------- |
+| 1     | `src/content.config.ts`, `src/content/blog/`                    |
+| 2     | `src/lib/blog.ts`, `src/lib/i18n.ts`                            |
+| 3     | `src/layouts/BlogPostLayout.astro`                              |
+| 4     | `src/pages/blog/[slug].astro`                                   |
+| 5     | `src/pages/blog/index.astro`                                    |
+| 6     | `src/pages/index.astro` or `src/components/Footer/Footer.astro` |
+| 7     | `src/content/blog/*.md` (real post)                             |
+| 8     | `src/pages/en/blog/`, schema extension                          |
 
 ---
 
@@ -86,19 +86,19 @@ Phase 8  English (post-v1)
 
 ## Risks and mitigations
 
-| Risk | Impact | Mitigation | Phase |
-| --- | --- | --- | --- |
-| Blog posts mixed into sessions collection | Wrong template, wrong nav, curriculum pollution | Dedicated `blog` collection and routes under `/blog/` | 1 |
-| Draft posts published by mistake | Unfinished content goes live | `draft: true` default in sample; filter `draft === false` in `getStaticPaths` and index | 1, 4, 5 |
-| Layout inherits session-only UI | Bloated pages, confusing UX | Explicit exclusion list in Phase 3; no imports from SessionLayout zones | 3 |
-| Prose styles diverge from sessions | Inconsistent reading experience | Copy `.session-content` prose rules once into `.blog-content`; do not fork later without reason | 3 |
-| Blog confused with aulas (lessons) | Editorial and navigation blur | Distinct URL, layout, file type (`.md` vs `.mdx`), and tone; Phase 7 review against `TONE.md` | 7 |
-| MDX used for blog by default | Unnecessary complexity for prose-only posts | Loader accepts `**/*.md` only in v1; MDX reserved for backlog if a post needs React islands | 1 |
-| Blog unreachable after launch | Zero traffic | Phase 6 entry point (home or footer); validate ≤2 clicks | 6 |
-| Invalid frontmatter breaks production build | Deploy failure | Zod schema in Content Collections; test by breaking frontmatter in Phase 1 | 1 |
-| i18n added too early | Scope creep, duplicate work | PT-only until Phase 7 ships; EN in Phase 8 | 8 |
-| Empty index with all drafts | Broken-looking `/blog/` | Empty-state copy in Phase 5; document that at least one `draft: false` post is required for index cards | 5 |
-| Sitemap or OG tags missing | Poor discoverability and sharing | Phase 6 explicit checks on `dist/sitemap*.xml` and `<meta>` tags | 6 |
+| Risk                                        | Impact                                          | Mitigation                                                                                              | Phase   |
+| ------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Blog posts mixed into sessions collection   | Wrong template, wrong nav, curriculum pollution | Dedicated `blog` collection and routes under `/blog/`                                                   | 1       |
+| Draft posts published by mistake            | Unfinished content goes live                    | `draft: true` default in sample; filter `draft === false` in `getStaticPaths` and index                 | 1, 4, 5 |
+| Layout inherits session-only UI             | Bloated pages, confusing UX                     | Explicit exclusion list in Phase 3; no imports from SessionLayout zones                                 | 3       |
+| Prose styles diverge from sessions          | Inconsistent reading experience                 | Copy `.session-content` prose rules once into `.blog-content`; do not fork later without reason         | 3       |
+| Blog confused with aulas (lessons)          | Editorial and navigation blur                   | Distinct URL, layout, file type (`.md` vs `.mdx`), and tone; Phase 7 review against `TONE.md`           | 7       |
+| MDX used for blog by default                | Unnecessary complexity for prose-only posts     | Loader accepts `**/*.md` only in v1; MDX reserved for backlog if a post needs React islands             | 1       |
+| Blog unreachable after launch               | Zero traffic                                    | Phase 6 entry point (home or footer); validate ≤2 clicks                                                | 6       |
+| Invalid frontmatter breaks production build | Deploy failure                                  | Zod schema in Content Collections; test by breaking frontmatter in Phase 1                              | 1       |
+| i18n added too early                        | Scope creep, duplicate work                     | PT-only until Phase 7 ships; EN in Phase 8                                                              | 8       |
+| Empty index with all drafts                 | Broken-looking `/blog/`                         | Empty-state copy in Phase 5; document that at least one `draft: false` post is required for index cards | 5       |
+| Sitemap or OG tags missing                  | Poor discoverability and sharing                | Phase 6 explicit checks on `dist/sitemap*.xml` and `<meta>` tags                                        | 6       |
 
 ---
 
@@ -338,15 +338,15 @@ npm run dev
 
 Not in scope until PT v1 (Phase 7) ships:
 
-| Item | Notes |
-| --- | --- |
-| RSS feed | `@astrojs/rss` at `/blog/rss.xml` |
-| Giscus comments | Reuse `Discussion.astro` with term `page:blog:pt-BR:{slug}` |
-| Tag filter page | Only when post volume justifies it |
-| Pagination | Only when index exceeds ~10–15 posts |
-| Headless CMS | Out of scope; `.md` files in repo is the workflow |
+| Item                  | Notes                                                                   |
+| --------------------- | ----------------------------------------------------------------------- |
+| RSS feed              | `@astrojs/rss` at `/blog/rss.xml`                                       |
+| Giscus comments       | Reuse `Discussion.astro` with term `page:blog:pt-BR:{slug}`             |
+| Tag filter page       | Only when post volume justifies it                                      |
+| Pagination            | Only when index exceeds ~10–15 posts                                    |
+| Headless CMS          | Out of scope; `.md` files in repo is the workflow                       |
 | MDX for a single post | Only if a post needs embedded React islands; default format stays `.md` |
-| Auto reading time | Keep manual optional field like sessions |
+| Auto reading time     | Keep manual optional field like sessions                                |
 
 ---
 
@@ -362,11 +362,11 @@ Not in scope until PT v1 (Phase 7) ships:
 
 Every phase in this document follows the same structure:
 
-| Section | Purpose |
-| --- | --- |
-| **Objective** | Why the phase exists (intent) |
-| **What We Ship** | Concrete deliverables (scope) |
-| **Done When** | Testable acceptance criteria |
+| Section             | Purpose                                           |
+| ------------------- | ------------------------------------------------- |
+| **Objective**       | Why the phase exists (intent)                     |
+| **What We Ship**    | Concrete deliverables (scope)                     |
+| **Done When**       | Testable acceptance criteria                      |
 | **How to Validate** | Commands, URLs, and manual checks to confirm done |
 
 Do not mark a phase complete until every **Done When** item passes.

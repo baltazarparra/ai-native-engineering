@@ -13,7 +13,12 @@ interface Props {
  * Fade + small rise, taste-skill §5.C curve, fires once.
  * Collapses to static content under prefers-reduced-motion.
  */
-export default function Reveal({ children, className, delay = 0, y = 24 }: Props) {
+export default function Reveal({
+  children,
+  className,
+  delay = 0,
+  y = 24,
+}: Props) {
   const reduce = useReducedMotion();
 
   return (
