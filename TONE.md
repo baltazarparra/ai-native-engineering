@@ -50,7 +50,7 @@ clarity over cleverness, concrete over abstract, confidence without hype.
   - hedge filler ("é importante notar que", "vale lembrar que", "no geral");
   - perfectly balanced, symmetrical sentences back to back;
   - empty intensifiers ("realmente", "extremamente", "incrivelmente").
-  Read a draft aloud. If it sounds like a press release or a textbook, redo it.
+    Read a draft aloud. If it sounds like a press release or a textbook, redo it.
 - **Explain acronyms on first use,** before any deep dive (CLI, LLM, SDD, MCP, PRD).
 - **Never favor a specific tool.** Teach categories; name tools as a market
   snapshot ("foto de julho de 2026"). Brands change, categories last.
@@ -59,14 +59,14 @@ clarity over cleverness, concrete over abstract, confidence without hype.
 
 Use these exact forms. Do not mix synonyms.
 
-| Concept | Use | Do not use |
-| --- | --- | --- |
-| The brand / site name | **AI-Native Engineers** | "Engenharia AI-Native", "AI-Native Engineering" (PT titles) |
-| A content unit (the 3 lessons) | **Aula** (PT) / **Lesson** (EN) | "Sessão", "Session", "módulo" |
-| A unit of the hands-on project | **capítulo** (PT) / **chapter** (EN) | "etapa", "passo" (for the unit itself) |
-| An agent work run | "sessão de agente" / "agent session" | n/a (this is a different concept, keep it) |
-| The agent's environment | **harness** | "andaime", "estrutura" |
-| Build-by-talking practice | **vibe coding** | translating it |
+| Concept                        | Use                                  | Do not use                                                  |
+| ------------------------------ | ------------------------------------ | ----------------------------------------------------------- |
+| The brand / site name          | **AI-Native Engineers**              | "Engenharia AI-Native", "AI-Native Engineering" (PT titles) |
+| A content unit (the 3 lessons) | **Aula** (PT) / **Lesson** (EN)      | "Sessão", "Session", "módulo"                               |
+| A unit of the hands-on project | **capítulo** (PT) / **chapter** (EN) | "etapa", "passo" (for the unit itself)                      |
+| An agent work run              | "sessão de agente" / "agent session" | n/a (this is a different concept, keep it)                  |
+| The agent's environment        | **harness**                          | "andaime", "estrutura"                                      |
+| Build-by-talking practice      | **vibe coding**                      | translating it                                              |
 
 Note: URL slugs (`/sessions/`, `/projeto/`) are not display text and do not change
 here. This table governs words the reader sees in prose, headings, and labels.
@@ -83,18 +83,20 @@ here. This table governs words the reader sees in prose, headings, and labels.
 - Numbers: spell out one through ten in prose unless it is a measurement, version,
   or stat ("três aulas", but "128K tokens", "84% dos respondentes").
 
-## 7. Per-surface guidance (converging the three voices)
+## 7. Per-surface guidance
 
-The site currently speaks in three registers. They converge here.
+The site uses distinct registers for distinct jobs. They share the same voice
+and serve the narrative roles defined in section 9.
 
 - **Session/lesson MDX** (was the witty blog voice): keep the strong hooks and
   second-person energy. Trim slang and punchline irony. Keep "preview não é
   produção", lose "demo com autoestima".
-- **Harness deep-dives** (legacy series redirected into Lesson 3): keep the
-  precision and the strong definitions in Lesson 3 prose. Make it sound spoken,
-  not lectured. Avoid repeating anaphora.
-- **/projeto chapters** (was dry and instructional): keep the imperative clarity,
-  add a sentence of "why" before each step. Warmth comes from context, not jokes.
+- **Legacy Harness Engineering routes**: the deep-dive series was discontinued
+  and removed. Its old URLs redirect to Lesson 3. Do not create new content in
+  the legacy route tree.
+- **/projeto chapters**: use workshop language. Keep imperative clarity and
+  explain why before asking the reader to act. Warmth comes from context, not
+  jokes.
 
 ## 8. Quick before/after
 
@@ -107,3 +109,54 @@ The site currently speaks in three registers. They converge here.
 > Tem um protótipo, e protótipo não aguenta produção."
 
 The point survives. The voice grew up.
+
+## 9. Narrative canon
+
+Voice is how the site sounds. Narrative is the single journey every surface
+helps the reader complete.
+
+### 9.1 Throughline
+
+**Da demo ao sistema.** The reader may arrive able to produce a demo by
+prompting. The site takes them from that first result to owning the system that
+produces software: vocabulary, tools, method, practice, and validation.
+
+The destination is not faster acceptance of generated code. It is informed
+ownership of the context, rules, checks, and decisions behind the diff.
+
+### 9.2 Reader journey
+
+| Surface             | Role in the story                                | Register                                      |
+| ------------------- | ------------------------------------------------ | --------------------------------------------- |
+| Home                | State the promise and map the journey            | Editorial front page: short and confident     |
+| Aula 1: glossário   | Name the parts and expose the demo's limit       | Calm professor with concrete hooks            |
+| Aula 2: ferramentas | Choose instruments without hype                  | Calm professor using current market snapshots |
+| Aula 3: maturidade  | Connect spec, harness, validation, and ownership | Calm professor delivering the payoff          |
+| /projeto            | Practice the loop on a real artifact             | Workshop: imperative with a reason            |
+| Blog                | Show how the work feels in practice              | Field essay: timely and opinionated           |
+| Colinha             | Compress the loop for reuse                      | Reference card: minimal sentences             |
+| Microcopy           | Help the reader move through the building        | Short and benefit-first                       |
+
+### 9.3 Canonical vocabulary
+
+These phrases and devices already carry the site's argument. Reuse them when
+they fit. Do not force them into every surface or invent competing metaphors for
+the same idea.
+
+- "preview não é produção": the demo's limit;
+- "agente = modelo + harness": the operating equation;
+- "trilhos, não prisão": the role of constraints;
+- "dono do sistema que produz o diff": the destination;
+- "foto de [mês e ano]": a dated market snapshot, updated when the content is;
+- "harness mal feito vira teatro": the failure mode;
+- "Prompt solto explora. Entrega repetível pede sistema.": the closing
+  argument.
+
+### 9.4 Signature-move governance
+
+The two-beat contrast ("Não é X. É Y." or its EN equivalent) is the house move.
+It lands when rare and reads machine-written when repeated.
+
+Use at most one two-beat contrast per user-facing page. If a draft has more
+than one, keep the strongest and rewrite the others as direct prose. A
+canonical phrase does not override this limit.

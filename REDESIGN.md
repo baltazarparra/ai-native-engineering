@@ -1,5 +1,12 @@
 # REDESIGN.md — "The Institute" Editorial Redesign
 
+> **Historical design rationale.** This document records the redesign plan and
+> the decisions considered at that time. Some implementation details below,
+> including palette values, serif usage, dependencies, and legacy harness
+> surfaces, no longer describe the shipped site. `AGENTS.md` and `CLAUDE.md`
+> are the current operational and design sources of truth. Preserve this file
+> as history; record current requirements in the active guides instead.
+
 Art direction and execution plan for a full visual redesign of the AI-Native Engineers site, referencing the design language of <https://www.mit.edu/>.
 
 This is a planning document. No implementation until the phases below are explicitly approved. Follows the `/planejar` workflow (files, sequence, risks, validation). Delivery strategy: **work happens directly on `main` as a sequence of logical commits; nothing is pushed until the full validation gate in section 11 passes.** No PRs, no feature branches.
@@ -12,7 +19,7 @@ Replace the current playful Neo-Brutalist interface with a quiet, confident, typ
 
 ## 2. Diagnosis: why the current UI feels dated and amateur
 
-The current design is competently built, but its *language* works against the content's authority:
+The current design is competently built, but its _language_ works against the content's authority:
 
 - **Four loud accents at once** (yellow `#f5c518`, electric blue `#2952e8`, acid green `#00b34a`, coral `#ff5c5c`) — nothing is emphasized when everything is.
 - **Toy-layer interactions**: cursor-following ghost cursors (`HeroGhostCursors`), cursor trail (`HeroCursorTrail`), draggable stickers (`HeroStickers`), a "capture counter" game (`HeroCaptureCounter`), page-turn swoosh sounds, and screen shake. These read as gimmicks, not craft.
@@ -26,14 +33,14 @@ The site teaches judgment, validation, and professional rigor. The interface mus
 
 What makes mit.edu feel elegant and worth borrowing:
 
-| Trait | Observation | Translation for us |
-| --- | --- | --- |
+| Trait                    | Observation                                                           | Translation for us                                                                    |
+| ------------------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | Editorial, content-first | Homepage is a newsroom: one big feature story, then a grid of stories | Home becomes "the curriculum as front page": one feature session + a clean story grid |
-| Chromatic discipline | Black, white, grays, and ONE signal red (`#A31F34` cardinal) | Retire 4 accents → 1 signal red + ink + paper |
-| Typography is the brand | Huge, tight, confident headlines; minimal chrome | Investment moves from borders/shadows into type scale and spacing |
-| Restraint in motion | No playful cursors, no sound; content carries the page | Remove the entire toy layer; keep only quiet fades |
-| Hairline structure | Separation by whitespace and 1px rules, not boxes | 4px borders + offset shadows → 1px hairlines + whitespace |
-| Institutional wordmark | Simple, typographic, recognizable | Typographic wordmark + a single red square as the brand mark |
+| Chromatic discipline     | Black, white, grays, and ONE signal red (`#A31F34` cardinal)          | Retire 4 accents → 1 signal red + ink + paper                                         |
+| Typography is the brand  | Huge, tight, confident headlines; minimal chrome                      | Investment moves from borders/shadows into type scale and spacing                     |
+| Restraint in motion      | No playful cursors, no sound; content carries the page                | Remove the entire toy layer; keep only quiet fades                                    |
+| Hairline structure       | Separation by whitespace and 1px rules, not boxes                     | 4px borders + offset shadows → 1px hairlines + whitespace                             |
+| Institutional wordmark   | Simple, typographic, recognizable                                     | Typographic wordmark + a single red square as the brand mark                          |
 
 What we deliberately do **not** copy: photography-led heroes (we have no photo budget — we use typographic "covers" instead), and MIT's dense mega-footer (ours stays compact).
 
@@ -53,20 +60,20 @@ A reading institution, not an app. Principles, in order:
 
 Light theme (paper):
 
-| Token | Value | Role |
-| --- | --- | --- |
-| `--color-surface` | `#FAF8F4` | warm paper background (keeps brand warmth) |
-| `--color-surface-alt` | `#F2EFE8` | alternating section bands |
-| `--color-surface-raised` | `#FFFFFF` | cards, header |
-| `--color-text` | `#1C1B18` | body |
-| `--color-text-muted` | `#5B584F` | secondary text |
-| `--color-heading` | `#0E0E0C` | display type |
-| `--color-accent` | `#A31F34` | **the one accent** — signal red (MIT cardinal) |
-| `--color-accent-strong` | `#7C1626` | accent hover/active |
-| `--color-fg-on-accent` | `#FFFFFF` | text on red |
-| `--color-line` | `#E1DCD2` | 1px hairlines |
-| `--color-focus` | `#2952E8` | focus ring only (functional, not brand) |
-| `--color-code-bg` / `--color-code-fg` | `#17150F` / `#F2EDE2` | code stays dark in both themes |
+| Token                                 | Value                 | Role                                           |
+| ------------------------------------- | --------------------- | ---------------------------------------------- |
+| `--color-surface`                     | `#FAF8F4`             | warm paper background (keeps brand warmth)     |
+| `--color-surface-alt`                 | `#F2EFE8`             | alternating section bands                      |
+| `--color-surface-raised`              | `#FFFFFF`             | cards, header                                  |
+| `--color-text`                        | `#1C1B18`             | body                                           |
+| `--color-text-muted`                  | `#5B584F`             | secondary text                                 |
+| `--color-heading`                     | `#0E0E0C`             | display type                                   |
+| `--color-accent`                      | `#A31F34`             | **the one accent** — signal red (MIT cardinal) |
+| `--color-accent-strong`               | `#7C1626`             | accent hover/active                            |
+| `--color-fg-on-accent`                | `#FFFFFF`             | text on red                                    |
+| `--color-line`                        | `#E1DCD2`             | 1px hairlines                                  |
+| `--color-focus`                       | `#2952E8`             | focus ring only (functional, not brand)        |
+| `--color-code-bg` / `--color-code-fg` | `#17150F` / `#F2EDE2` | code stays dark in both themes                 |
 
 Dark theme (charcoal, not blue-graphite): surfaces `#131311` / `#1A1916` / `#22211D`; text `#E9E6DE` / muted `#A8A499`; heading `#F5F3EC`; accent brightened to `#E04B42` for contrast; lines `#2E2C27`; focus `#8FB0FF`.
 
@@ -134,17 +141,17 @@ MIT newsroom pattern, top to bottom:
 
 ## 6. Component direction
 
-| Component | From | To |
-| --- | --- | --- |
-| `Button` | thick border + hard shadow + press-translate | primary: solid ink → hover accent; secondary: 1px ink outline → hover fill; ghost: underlined text; radius 2px |
-| `Card` | 4px border, offset shadow, lift on hover | 1px hairline, flat, hover = border→ink + title underline; optional index numeral slot |
-| `Badge` | colored fill chips | uppercase 11px hairline chip, neutral; single `accent` variant (red text + red hairline) for "Novo" |
-| `Grid` / `SectionBlock` | unchanged API | retuned gaps/padding scale; `alt` band uses `surface-alt` |
-| `SiteHeader` | boxed, playful | sticky, `surface-raised`, 1px bottom hairline, red-square wordmark, quiet icon buttons (GitHub, theme, flags) |
-| `Footer` | — | hairline top rule, 3 quiet columns, small type |
-| `Breadcrumbs` / `SectionNav` / `ReferencesList` / `NextSessionCTA` | brutalist chrome | per 5.2 |
-| `Discussion` (Liveblocks) | boxed | hairline container; verify Liveblocks theming inherits our CSS vars |
-| `ThemeToggle` | — | restyle only (icon button, no border box) |
+| Component                                                          | From                                         | To                                                                                                             |
+| ------------------------------------------------------------------ | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `Button`                                                           | thick border + hard shadow + press-translate | primary: solid ink → hover accent; secondary: 1px ink outline → hover fill; ghost: underlined text; radius 2px |
+| `Card`                                                             | 4px border, offset shadow, lift on hover     | 1px hairline, flat, hover = border→ink + title underline; optional index numeral slot                          |
+| `Badge`                                                            | colored fill chips                           | uppercase 11px hairline chip, neutral; single `accent` variant (red text + red hairline) for "Novo"            |
+| `Grid` / `SectionBlock`                                            | unchanged API                                | retuned gaps/padding scale; `alt` band uses `surface-alt`                                                      |
+| `SiteHeader`                                                       | boxed, playful                               | sticky, `surface-raised`, 1px bottom hairline, red-square wordmark, quiet icon buttons (GitHub, theme, flags)  |
+| `Footer`                                                           | —                                            | hairline top rule, 3 quiet columns, small type                                                                 |
+| `Breadcrumbs` / `SectionNav` / `ReferencesList` / `NextSessionCTA` | brutalist chrome                             | per 5.2                                                                                                        |
+| `Discussion` (Liveblocks)                                          | boxed                                        | hairline container; verify Liveblocks theming inherits our CSS vars                                            |
+| `ThemeToggle`                                                      | —                                            | restyle only (icon button, no border box)                                                                      |
 
 ## 7. What gets removed
 
@@ -168,23 +175,23 @@ Rules of engagement:
 
 - **Phase 0 — safety baseline**: tag the pre-redesign HEAD before touching anything: `git tag pre-redesign-baseline`. Rollback is one `git reset --hard pre-redesign-baseline` away at any point.
 - **Commit per phase**: message convention `redesign: <phase name>` (e.g. `redesign: foundations — tokens, typography, fonts`). Split a phase into two commits only if it keeps the history clearer.
-- **Every commit must build**: run `npm run lint` + `npm run build` before each commit so every point in history is deployable. Intermediate *visual* states between phases may be rough (see risks) — that's fine, nothing ships until the final push.
+- **Every commit must build**: run `npm run lint` + `npm run build` before each commit so every point in history is deployable. Intermediate _visual_ states between phases may be rough (see risks) — that's fine, nothing ships until the final push.
 - **Push = release**: GitHub Actions deploys `main` to GitHub Pages on push, so the single final push happens only after section 11 is fully green.
 - The 400-line rule in `AGENTS.md` governs PRs and does not apply here; commits still stay scoped and logical.
 
-| Phase / commit | Scope | Main paths |
-| --- | --- | --- |
-| 0. Baseline | Tag current HEAD, confirm clean tree | `git tag pre-redesign-baseline` |
-| 1. Foundations | New tokens (both themes), globals.css typography + motion keyframes, font links, favicon | `src/styles/tokens.css`, `src/styles/globals.css`, `src/layouts/BaseLayout.astro`, `public/favicon.svg` |
-| 2. Primitives | Button, Badge, Card, Grid, SectionBlock restyle + kitchen-sink refresh (dev page) | `src/components/{Button,Badge,Card,Grid,SectionBlock}/`, `src/pages/kitchen-sink.astro`, `src/pages/en/kitchen-sink.astro` |
-| 3. Chrome | SiteHeader (+ ThemeToggle), Footer, Breadcrumbs, SectionNav | `src/components/{SiteHeader,ThemeToggle,Footer,Breadcrumbs,SectionNav}/` |
-| 4. Home de-gimmick | Delete toy layer (files + wiring + sound), strip hero to markup only | `src/pages/index.astro`, `src/pages/en/index.astro`, deleted component dirs, `BaseLayout.astro` script |
-| 5. Home editorial | New hero, feature card, curriculum grid, manifesto band, "more from" rows | `src/pages/index.astro`, `src/pages/en/index.astro` (+ page-level styles) |
-| 6. Article template | SessionLayout, NextSessionCTA, ReferencesList, ProgressTracker styles | `src/layouts/SessionLayout.astro`, `src/components/{NextSessionCTA,ReferencesList,ProgressTracker,Discussion}/` |
-| 7. Secondary templates I | blog index + post (pt/en), colinha (pt/en) | `src/pages/blog/`, `src/pages/en/blog/`, `src/pages/colinha.astro`, `src/pages/en/colinha.astro` |
-| 8. Secondary templates II | projeto 4 steps (pt/en), harness-engineering (pt/en), 404 (pt/en) | `src/pages/projeto/`, `src/pages/en/project/`, `src/pages/harness-engineering/`, `src/pages/en/harness-engineering/`, `src/pages/404.astro`, `src/pages/en/404.astro` |
-| 9. Deps & docs | remove `motion` if unused, update `AGENTS.md` design section, `PLAN.md`, `ROADMAP.md`; delete legacy token aliases | `package.json`, `package-lock.json`, `AGENTS.md`, `PLAN.md`, `ROADMAP.md`, `tokens.css` |
-| 10. Validate & push | Full gate from section 11; then the single `git push` | — |
+| Phase / commit            | Scope                                                                                                              | Main paths                                                                                                                                                            |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0. Baseline               | Tag current HEAD, confirm clean tree                                                                               | `git tag pre-redesign-baseline`                                                                                                                                       |
+| 1. Foundations            | New tokens (both themes), globals.css typography + motion keyframes, font links, favicon                           | `src/styles/tokens.css`, `src/styles/globals.css`, `src/layouts/BaseLayout.astro`, `public/favicon.svg`                                                               |
+| 2. Primitives             | Button, Badge, Card, Grid, SectionBlock restyle + kitchen-sink refresh (dev page)                                  | `src/components/{Button,Badge,Card,Grid,SectionBlock}/`, `src/pages/kitchen-sink.astro`, `src/pages/en/kitchen-sink.astro`                                            |
+| 3. Chrome                 | SiteHeader (+ ThemeToggle), Footer, Breadcrumbs, SectionNav                                                        | `src/components/{SiteHeader,ThemeToggle,Footer,Breadcrumbs,SectionNav}/`                                                                                              |
+| 4. Home de-gimmick        | Delete toy layer (files + wiring + sound), strip hero to markup only                                               | `src/pages/index.astro`, `src/pages/en/index.astro`, deleted component dirs, `BaseLayout.astro` script                                                                |
+| 5. Home editorial         | New hero, feature card, curriculum grid, manifesto band, "more from" rows                                          | `src/pages/index.astro`, `src/pages/en/index.astro` (+ page-level styles)                                                                                             |
+| 6. Article template       | SessionLayout, NextSessionCTA, ReferencesList, ProgressTracker styles                                              | `src/layouts/SessionLayout.astro`, `src/components/{NextSessionCTA,ReferencesList,ProgressTracker,Discussion}/`                                                       |
+| 7. Secondary templates I  | blog index + post (pt/en), colinha (pt/en)                                                                         | `src/pages/blog/`, `src/pages/en/blog/`, `src/pages/colinha.astro`, `src/pages/en/colinha.astro`                                                                      |
+| 8. Secondary templates II | projeto 4 steps (pt/en), harness-engineering (pt/en), 404 (pt/en)                                                  | `src/pages/projeto/`, `src/pages/en/project/`, `src/pages/harness-engineering/`, `src/pages/en/harness-engineering/`, `src/pages/404.astro`, `src/pages/en/404.astro` |
+| 9. Deps & docs            | remove `motion` if unused, update `AGENTS.md` design section, `PLAN.md`, `ROADMAP.md`; delete legacy token aliases | `package.json`, `package-lock.json`, `AGENTS.md`, `PLAN.md`, `ROADMAP.md`, `tokens.css`                                                                               |
+| 10. Validate & push       | Full gate from section 11; then the single `git push`                                                              | —                                                                                                                                                                     |
 
 Sequence is strictly ordered: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10. Phases 4 and 5 may land as one commit if that reads better in history.
 
@@ -197,17 +204,17 @@ Sequence is strictly ordered: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 
 
 ## 10. Risks and mitigations
 
-| Risk | Mitigation |
-| --- | --- |
-| Push to `main` = production deploy (GitHub Actions → Pages) | Nothing is pushed until section 11 is fully green; Phase 0 baseline tag gives instant rollback; if a defect slips through, fix-forward with a follow-up commit |
-| Token rewrite cascades into every CSS Module at once (after Phase 1, components look broken until Phases 2–3 land) | Keep old token names as aliases during Phase 1; accept rough intermediate visuals — nothing ships until the final push; kitchen-sink review after every phase |
-| Dark theme treated as an afterthought | Both themes specified in 4.2 and reviewed side-by-side in Phase 1; dark is part of every phase's manual check |
-| Red accent fails contrast somewhere | Contrast table in Phase 1 (`#A31F34` on paper/white = AA for large text; body-size red only for bold/uppercase; links stay ink + underline) |
-| Liveblocks `Discussion` theming doesn't inherit our vars | Inspect its theme API in Phase 6; worst case it keeps a neutral default that still matches the hairline container |
-| View-transition rename breaks shared-element refs | Do **not** rename `transition:name` values; only re-time/re-ease keyframes |
-| `motion` still imported by a kept island | Grep before removal in Phase 9; if used, keep the dep and note it |
-| pt-BR / en drift | Every page phase touches both locales in the same commit |
-| Long-lived local work lost or corrupted | Commit at every phase boundary (10 commits total); optionally push to a throwaway remote branch mid-way for backup without triggering the Pages deploy of `main` |
+| Risk                                                                                                               | Mitigation                                                                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Push to `main` = production deploy (GitHub Actions → Pages)                                                        | Nothing is pushed until section 11 is fully green; Phase 0 baseline tag gives instant rollback; if a defect slips through, fix-forward with a follow-up commit   |
+| Token rewrite cascades into every CSS Module at once (after Phase 1, components look broken until Phases 2–3 land) | Keep old token names as aliases during Phase 1; accept rough intermediate visuals — nothing ships until the final push; kitchen-sink review after every phase    |
+| Dark theme treated as an afterthought                                                                              | Both themes specified in 4.2 and reviewed side-by-side in Phase 1; dark is part of every phase's manual check                                                    |
+| Red accent fails contrast somewhere                                                                                | Contrast table in Phase 1 (`#A31F34` on paper/white = AA for large text; body-size red only for bold/uppercase; links stay ink + underline)                      |
+| Liveblocks `Discussion` theming doesn't inherit our vars                                                           | Inspect its theme API in Phase 6; worst case it keeps a neutral default that still matches the hairline container                                                |
+| View-transition rename breaks shared-element refs                                                                  | Do **not** rename `transition:name` values; only re-time/re-ease keyframes                                                                                       |
+| `motion` still imported by a kept island                                                                           | Grep before removal in Phase 9; if used, keep the dep and note it                                                                                                |
+| pt-BR / en drift                                                                                                   | Every page phase touches both locales in the same commit                                                                                                         |
+| Long-lived local work lost or corrupted                                                                            | Commit at every phase boundary (10 commits total); optionally push to a throwaway remote branch mid-way for backup without triggering the Pages deploy of `main` |
 
 ## 11. Validation
 

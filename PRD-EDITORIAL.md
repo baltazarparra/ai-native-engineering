@@ -1,92 +1,147 @@
 # PRD: Editorial Voice, Tone, and Narrative Revision
 
-| Field | Value |
-| --- | --- |
-| Status | Approved for execution |
-| Owner | baltz |
-| Created | 2026-07-19 |
-| Execution plan | `EDITORIAL-ROADMAP.md` (phases, PR split, validation) |
-| Voice source of truth | `TONE.md` |
+| Field                 | Value                                        |
+| --------------------- | -------------------------------------------- |
+| Status                | Approved for execution                       |
+| Owner                 | baltz                                        |
+| Created               | 2026-07-19                                   |
+| Execution plan        | [EDITORIAL-ROADMAP.md](EDITORIAL-ROADMAP.md) |
+| Voice source of truth | [TONE.md](TONE.md)                           |
 
 ## 1. Context
 
-AI-Native Engineers is an open PT-BR-first curriculum teaching what it means to work as an AI-Native Engineer, aimed at non-technical and junior audiences (QA, PM, designers, recruiters, founders). A full editorial audit ran on 2026-07-19 across every user-facing surface in both locales: 3 lessons, blog, home, /projeto chapters, colinha, 404, redirect pages, and i18n microcopy.
+AI-Native Engineers is an open PT-BR-first curriculum teaching what it means to
+work as an AI-Native Engineer. It serves non-technical and junior audiences,
+including QA, PM, designers, recruiters, and founders.
 
-The audit confirmed the voice work is largely done. Live content has zero violations of the `TONE.md` hard rules (no em dashes, no terminology drift, no hype, correct brand usage), and the English surfaces read native. The remaining problems are narrow and named below.
+An editorial audit ran on 2026-07-19 against commit `ceba3f4` across the three
+lessons, blog, home, project chapters, colinha, 404 pages, legacy redirect
+pages, i18n microcopy, and component strings in both locales. The live content
+is largely aligned with `TONE.md`. The remaining violations and structural
+cleanup are narrow and listed below.
 
 ## 2. Problem
 
-1. The site has no formalized narrative. A strong throughline exists implicitly (the reader moves from producing demos by prompting to owning the system that produces software), but no document states it, so future content has no arc to serve. The home page shows bare section titles with no connective tissue.
-2. The signature two-beat contrast ("Não é X. É Y.") is repeated 14+ times. 13 instances live in the deprecated harness series, which is dead content behind hard redirects and still sits in the tree.
-3. The PT reader, the primary audience, has the poorer version of the publish chapter: the EN mirror carries two sections PT lacks.
-4. Small compliance gaps: one banned intensifier in EN, "PRD" used without first-use expansion, one en dash range, and stale statements in `TONE.md` §7 and `REDESIGN.md` that contradict the shipped site.
+1. The site has no formal narrative canon. A throughline exists implicitly,
+   moving the reader from prompting a demo to owning the system that produces
+   software, but future content has no written arc to serve.
+2. The signature two-beat contrast ("Não é X. É Y.") is overused. Most
+   occurrences are in a discontinued Harness Engineering layer that remains in
+   the tree behind client-side redirect pages.
+3. The PT reader, the primary audience, has a poorer publish chapter than the
+   EN mirror.
+4. The home page presents the right sections without enough connective tissue
+   to make the reader journey explicit.
+5. Small compliance and documentation gaps remain: one banned EN intensifier,
+   translationese, an unexplained acronym, en dash ranges, and historical
+   design guidance presented without an errata.
 
 ## 3. Goals
 
-- G1: A written narrative canon (throughline, per-surface register, canonical phrases, signature-move governance) lives in `TONE.md` and governs all future content.
-- G2: Zero instances of the audited voice violations in the tree, achieved primarily by deleting the dead legacy layer rather than rewriting dead prose.
-- G3: PT and EN project chapters mirror heading-for-heading, with PT receiving the richer publish content.
-- G4: The home page carries the narrative arc using one-line section ledes, with no layout or design-system changes.
-- G5: Editorial guides (`TONE.md`, `REDESIGN.md`) describe the site as it actually ships.
+- G1: Add a written narrative canon to `TONE.md`: throughline, per-surface
+  register, canonical vocabulary, and signature-move governance.
+- G2: Remove the discontinued harness and hero-toy layers while preserving
+  every legacy redirect URL and locale alternate.
+- G3: Resolve the audited content violations and restore PT/EN parity in the
+  project chapters.
+- G4: Make the home page communicate the narrative arc through one-line
+  section ledes, without changing its layout or design system.
+- G5: Make active editorial and design guidance describe the site as it ships.
 
 ## 4. Non-goals
 
-- No visual redesign, token, or component changes beyond enabling the existing unused `.section-head__lede` style on the home page.
-- No rewriting of the 3 lessons; they passed the audit and were refreshed in commit `ceba3f4`.
-- No new routes, collections, or i18n structure changes.
-- New blog essays are recommended (roadmap Phase 5) but are not a requirement of this PRD.
+- No visual redesign, token changes, new components, or new animation.
+- No broad lesson rewrite. Only the targeted compliance edits listed in FR3
+  are allowed.
+- No new routes, collections, or i18n architecture.
+- No change from the existing client-side legacy redirect mechanism to HTTP
+  redirects.
+- New blog essays are a post-rollout backlog item, not part of this PRD.
 
 ## 5. Users and impact
 
-- PT-BR readers (primary): richer publish chapter, a home page that tells them where the journey goes, consistent voice everywhere.
-- EN readers: small polish fixes; mirrors stay 1:1.
-- Content contributors and agents: one canon to write against; less dead code to trip over; guides that match reality.
+- PT-BR readers: richer publish guidance and a clearer journey from theory to
+  practice.
+- EN readers: more natural lesson prose and a maintained locale mirror.
+- Contributors and agents: one narrative canon and less dead code to inspect.
 
 ## 6. Requirements
 
-### FR1: Narrative canon in TONE.md (roadmap Phase 1)
+### FR1: Narrative and documentation canon (roadmap Phase 1)
 
-- FR1.1: New "Narrative" section defining the throughline ("da demo ao sistema"), the reader-journey register table, the canonical phrase list, and the rule of at most one two-beat contrast per page.
-- FR1.2: §7 updated to reflect that /projeto already converged and the harness series is removed.
-- FR1.3: `REDESIGN.md` gains an errata note pointing to `CLAUDE.md` and `AGENTS.md` as the current design source of truth.
+- FR1.1: Add a "Narrative" section to `TONE.md` defining the throughline
+  ("da demo ao sistema"), reader journey, canonical vocabulary, and a limit of
+  one two-beat contrast per user-facing page.
+- FR1.2: Update `TONE.md` section 7 to describe the current project register and
+  the discontinued harness series accurately.
+- FR1.3: Add an errata to `REDESIGN.md` that identifies it as historical design
+  rationale and points to `AGENTS.md` and `CLAUDE.md` for current rules.
 
-### FR2: Dead layer removal (roadmap Phase 2)
+### FR2: Dead-layer removal with redirect preservation (roadmap Phases 2 and 3)
 
-- FR2.1: `src/components/harness/` (content pt/en, components, hooks), `HarnessChapterLayout.astro`, and `src/lib/harness-progress.ts` are removed.
-- FR2.2: `harness-chapters.ts` is reduced to the minimal data the redirect pages need, or inlined and deleted.
-- FR2.3: The dead `harness` block in `src/lib/i18n.ts`, the four unwired `Hero*` components, and the legacy `accent` field in `sessions.ts` are removed.
-- FR2.4: Kitchen-sink demo copy complies with the em dash ban and drops the stale Newsreader mention.
-- FR2.5: All `/harness-engineering/*` redirects keep working in both locales with correct hreflang.
+- FR2.1: Replace the large harness content model with a minimal redirect
+  manifest containing stable PT/EN slugs.
+- FR2.2: Remove `src/components/harness/`, `HarnessChapterLayout.astro`,
+  `harness-chapter.css`, `src/lib/harness-progress.ts`, and the old harness data
+  module.
+- FR2.3: Remove the dead harness i18n block, the four unwired hero-toy
+  components, their Liveblocks infrastructure, and the unused session `accent`
+  field.
+- FR2.4: Remove orphan Liveblocks dependencies, environment documentation, and
+  global CSS. Keep `motion`, which remains in use by the shared `Reveal` island.
+- FR2.5: Keep all 14 legacy Harness Engineering pages generated in both
+  locales, with `noindex`, correct alternate links, and the existing redirect
+  targets.
+- FR2.6: Make kitchen-sink copy match the shipped type system and punctuation
+  rules.
 
-### FR3: Live content fixes (roadmap Phase 3)
+### FR3: Targeted live-content corrections (roadmap Phase 4)
 
-- FR3.1: EN lesson polish: remove "extremely", naturalize the two flagged translationese passages, restructure the flagged "not only" sentence.
-- FR3.2: The two EN-only publish sections are backported to `projeto/publicar.astro` in the site's PT voice.
-- FR3.3: "PRD" is expanded on first use in the build chapter, both locales.
-- FR3.4: The "2–3 linhas" en dash range becomes "2 a 3 linhas".
+- FR3.1: Remove "extremely", naturalize the two flagged translationese
+  passages, and restructure the flagged "not only" sentence.
+- FR3.2: Reduce repeated two-beat contrasts in the PT and EN maturity lessons,
+  keeping the strongest closing move.
+- FR3.3: Backport the two EN-only publish sections to PT in the site's workshop
+  register.
+- FR3.4: Expand PRD on first use in both build chapters.
+- FR3.5: Replace the `2–3` range in both planning chapters with locale-natural
+  wording.
 
-### FR4: Home narrative pass (roadmap Phase 4)
+### FR4: Home narrative pass (roadmap Phase 5)
 
-- FR4.1: One-line ledes under the curriculum, blog, and project sections on both home pages, reusing existing styles and existing i18n copy where available (`t.project.homeDesc`).
-- FR4.2: Hero and manifesto remain untouched.
+- FR4.1: Add one-line ledes below the curriculum, blog, and project headings on
+  both home pages.
+- FR4.2: Reuse existing `.section-head__lede` styles and existing i18n copy
+  where it fits.
+- FR4.3: Keep the hero, manifesto, layout, and motion untouched.
 
 ## 7. Acceptance criteria
 
-- `npm run lint`, `npm run format:check`, and `npm run build` pass after every phase.
-- Grep guards return empty on user-facing sources: em dash in prose, "é importante notar", "vale lembrar", "extremely", "incredibly", "revolucionário" (except the existing critical usage in `ferramentas.mdx`).
-- PT/EN heading trees match on all mirrored surfaces.
-- A first-time visitor can retell the site's story from the home page alone.
-- Every PR respects the 400-line cap outside `src/content/**`; deletions are split across PRs as needed.
+- `npm run lint`, `npm run format:check`, and `npm run build` pass in Node 22.
+- All 14 legacy Harness Engineering pages are present in `dist`, keep their
+  redirect targets, and expose PT, EN, and `x-default` alternates.
+- No imports or runtime configuration remain for deleted harness, hero-toy, or
+  Liveblocks code.
+- Candidate scans for em dash, en dash separators, hedge filler, and banned
+  intensifiers contain no user-visible violation. Comment-only and historical
+  documentation matches are triaged separately.
+- PT and EN project chapter heading trees match by semantic position.
+- The PT and EN maturity lessons each contain at most one two-beat contrast.
+- A first-time visitor can explain the site's journey from the home page alone.
 
 ## 8. Risks
 
-| Risk | Mitigation |
-| --- | --- |
-| Deleting the harness layer breaks redirect slugs or hreflang | FR2.5 click-through in both locales before merge; slugs kept in data, not derived |
-| Backported PT sections drift from the site voice | Write against `TONE.md` checklist; read-aloud pass |
-| Narrative ledes read as marketing filler | Ledes state the arc in plain language; one line each; no adjectives without information |
-| Guides drift again after this pass | Phase 6 records an optional CI `tone-check` follow-up in `ROADMAP.md` |
+| Risk                                             | Mitigation                                                                              |
+| ------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| Legacy URLs disappear during harness deletion    | Introduce and build the minimal redirect manifest before deleting the old layer         |
+| Lockfile drift after removing Liveblocks         | Update both committed lockfiles with the same Node 22/npm runtime and run a clean build |
+| Targeted lesson edits turn into a broad rewrite  | Limit changes to the audited sentences and preserve frontmatter, structure, and claims  |
+| PT publish copy reads like a literal translation | Write against the workshop register in `TONE.md` and perform a read-aloud pass          |
+| Home ledes become marketing filler               | One line per section, concrete arc language, no layout or motion changes                |
 
 ## 9. Rollout
 
-Sequenced as `EDITORIAL-ROADMAP.md` phases 1 to 6, one phase per PR set, validated with the `quality-gate` skill before handoff. No feature flags; every merge deploys via the existing GitHub Pages workflow.
+Work lands directly on local `main` as logical commits following
+`EDITORIAL-ROADMAP.md`. Nothing is pushed until the final quality gate and
+manual checks pass. The existing GitHub Pages workflow deploys after the single
+final push.
