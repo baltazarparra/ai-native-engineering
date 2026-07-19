@@ -74,8 +74,8 @@ Suggested order for phased work: `/analisar` (optional) → `/planejar` → `/ex
 
 - **Astro** is the framework. It was chosen because this is content-first, not app-first. Ships minimal JS via island architecture.
 - **React** is used only for interactive islands (quizzes, comparators, steppers, filters), not for page-level rendering.
-- **CSS Modules + CSS Variables + design tokens**. No Tailwind. The Neo Brutalism visual language requires authorial control that utility-first CSS undermines.
-- **CSS-first animations**. Decorative and state-transition animations must be pure CSS. JavaScript animation is reserved for _interactive physics_ (drag, pointer tracking, procedural motion): use `motion` (drag only) or bespoke `requestAnimationFrame` loops. Do not introduce other animation libraries (GSAP, anime, react-spring, etc) without explicit approval.
+- **CSS Modules + CSS Variables + design tokens**. No Tailwind. The editorial visual language ("The Institute", see `REDESIGN.md`) requires authorial control that utility-first CSS undermines.
+- **CSS-first transitions + Motion for choreography**. Simple hover/state transitions stay pure CSS. Entrance sequences and scroll reveals use `motion/react` (approved by the owner) inside isolated React islands only — see `src/components/motion/Reveal.tsx`, the single motion primitive. Every animation must honor `prefers-reduced-motion`, animate only `transform`/`opacity`, and have a stated reason (hierarchy, sequence, feedback). No decorative springs, no shake, no sound. Other animation libraries (GSAP, anime, react-spring) still require explicit approval.
 - **Content Collections** with schema validation for all session content (MDX with typed frontmatter).
 
 ### Key Architecture Decisions
@@ -103,21 +103,27 @@ updatedAt: date
 
 ## Site Structure
 
-The home page contains a compact foundations primer for "AI-Native Engineer", "AI agent", and "coding agent". The deeper curriculum is organized into 3 sessions generated under the dynamic `/sessions/[slug]/` route:
+The home page contains a compact foundations primer for "AI-Native Engineer", "AI agent", "coding agent", SDD, and harness. The deeper curriculum is organized into 3 lessons under `/sessions/[slug]/`:
 
-- `/sessions/glossario/`: Terminology (Session 1)
-- `/sessions/ferramentas/`: Tools and models (Session 2)
-- `/sessions/maturidade/`: SDD and Harness Design for professional AI-native software delivery (Session 3, most important)
+- `/sessions/glossario/`: Glossary + vibe coding (Lesson 1)
+- `/sessions/ferramentas/`: Tools and models (Lesson 2)
+- `/sessions/maturidade/`: SDD and Harness Design (Lesson 3, most important)
 
-Every session page follows a fixed template: hero → 30s summary → main explanation → why it matters → real example when useful → where it breaks → takeaway → references. Interactive blocks are used only when they clearly improve explanation, organization, or retention.
+Legacy `/harness-engineering/` routes redirect to Lesson 3. Interactive blocks are used only when they clearly improve explanation, organization, or retention.
 
-## Design System: Neo Brutalism
+## Design System: The Institute (Editorial, anti-slop pass)
 
-- High contrast, block layout, thick black borders, hard offset shadows (no blur, no glassmorphism, no gradients)
-- Palette: warm light background, pure black, 2-3 vibrant accents (yellow, electric blue, acid green, or coral)
-- Heavy-weight headlines, neutral readable body text
-- Mobile-first: single column, reduced decoration, comfortable touch targets
-- WCAG contrast compliance and visible focus states
+The visual language is a typography-led editorial system on a neutral monochrome base with one saturated signal red, art-directed with `skills/taste-skill/SKILL.md` (anti-slop rules: palette bans, eyebrow restraint, hero discipline, copy self-audit). Full rationale lives in `REDESIGN.md`. It replaced the old Neo-Brutalist system.
+
+- One accent only: saturated signal red `#e10600` (`--color-accent`); everything else is neutral off-white, ink, and hairlines. Color never carries meaning alone (levels, statuses, and types are text labels). The warm cream/oxblood/espresso family is deliberately avoided as an AI-slop tell.
+- Surfaces: neutral off-white background, white raised surfaces, neutral near-black dark theme.
+- Structure: 1px hairlines (`var(--line)`) and whitespace separate sections. No thick borders, no hard offset shadows — all `--shadow-*` tokens are `none`; `var(--shadow-overlay)` exists only for floating UI.
+- Typography: Inter Tight for display/headings and hero ledes (`--font-display`, tracking -0.02em), Inter for body, JetBrains Mono for meta and code. System serif italic (Georgia, `--font-serif`) only for article ledes and pull quotes, never for display type.
+- Brand mark: typographic wordmark preceded by a small red square; favicon is the red square on off-white.
+- Motion: CSS transitions for hover/state; `motion/react` islands for entrance and scroll reveals. Calm, motivated, reduced-motion safe.
+- Patterns: `.kicker` micro-labels with restraint (max ~1 per 3 sections); badges are neutral hairline chips (`variant="accent"` reserved for true highlights); cards are flat with hairline borders and underline-on-hover titles; the inverted ink band is reserved for the manifesto moment; heroes carry exactly one primary and one secondary CTA.
+- Mobile-first: single column, reduced decoration, comfortable touch targets.
+- WCAG contrast compliance and visible focus states.
 - Breakpoints: mobile ≤767px, tablet 768-1023px, desktop 1024px+, wide 1440px+
 
 ## Editorial Rules
@@ -129,3 +135,4 @@ Every session page follows a fixed template: hero → 30s summary → main expla
 - Every interaction must explain better, organize better, or increase retention. If it doesn't, remove it.
 - Acronyms must be explained before technical deep-dives
 - `updatedAt` field per session to track content freshness
+- Follow `TONE.md` for voice, brand naming (**AI-Native Engineers**), and unit labels (**Aula** / **Lesson**)

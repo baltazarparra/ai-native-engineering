@@ -16,14 +16,14 @@ export interface SessionCardData {
 
 export const sessions: SessionCardData[] = [
   {
-    title: 'Glossário: vibe coding sem cair no hype',
+    title: 'Glossário e vibe coding: o mapa mínimo sem cair no hype',
     slug: 'glossario',
     lang: 'pt-BR',
     translationKey: 'glossary',
     order: 1,
     summary:
-      'O que é vibe coding, quais plataformas criam apps por prompt, onde isso ajuda, onde quebra e como transformar demo em software de verdade.',
-    readingTime: 10,
+      'Os termos que você precisa para continuar no site, mais vibe coding: onde ajuda, onde quebra e como transformar demo em software de verdade.',
+    readingTime: 14,
     level: 'beginner',
     heroLabel: 'Vocabulário essencial',
     accent: 'blue',
@@ -36,7 +36,7 @@ export const sessions: SessionCardData[] = [
     order: 2,
     summary:
       'Entenda a diferença entre ferramenta, produto e modelo para escolher melhor IDEs, CLIs, agentes na nuvem e LLMs.',
-    readingTime: 22,
+    readingTime: 18,
     level: 'intermediate',
     heroLabel: 'Mapa de escolha',
     accent: 'green',
@@ -49,20 +49,20 @@ export const sessions: SessionCardData[] = [
     order: 3,
     summary:
       'Spec-Driven Development (SDD) transforma intenção em planejamento. Harness Design organiza ferramentas e validações para agentes desenvolverem com qualidade e segurança.',
-    readingTime: 12,
+    readingTime: 16,
     level: 'advanced',
     heroLabel: 'Fluxo profissional',
     accent: 'coral',
   },
   {
-    title: 'Glossary: vibe coding without the hype',
+    title: 'Glossary and vibe coding: the minimum map without the hype',
     slug: 'glossary',
     lang: 'en',
     translationKey: 'glossary',
     order: 1,
     summary:
-      'What vibe coding is, which platforms turn prompts into apps, where it helps, where it breaks, and how to turn a demo into real software.',
-    readingTime: 10,
+      'The terms you need to keep reading this site, plus vibe coding: where it helps, where it breaks, and how to turn a demo into real software.',
+    readingTime: 14,
     level: 'beginner',
     heroLabel: 'Essential vocabulary',
     accent: 'blue',
@@ -75,7 +75,7 @@ export const sessions: SessionCardData[] = [
     order: 2,
     summary:
       'Understand the difference between tools, products, and models so you can choose IDEs, CLIs, cloud agents, and LLMs with intent.',
-    readingTime: 22,
+    readingTime: 18,
     level: 'intermediate',
     heroLabel: 'Choice map',
     accent: 'green',
@@ -88,7 +88,7 @@ export const sessions: SessionCardData[] = [
     order: 3,
     summary:
       'Spec-Driven Development (SDD) turns intent into a verifiable plan. Harness Design organizes tools and validation so agents can deliver with quality and safety.',
-    readingTime: 12,
+    readingTime: 16,
     level: 'advanced',
     heroLabel: 'Professional flow',
     accent: 'coral',

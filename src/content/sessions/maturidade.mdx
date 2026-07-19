@@ -5,7 +5,7 @@ lang: 'pt-BR'
 translationKey: 'maturity'
 order: 3
 summary: 'Spec-Driven Development (SDD) transforma intenção em planejamento. Harness Design organiza ferramentas e validações para agentes desenvolverem com qualidade e segurança.'
-readingTime: 12
+readingTime: 16
 level: 'advanced'
 tags: ['sdd', 'harness', 'agentes', 'governança', 'workflow']
 heroLabel: 'Fluxo profissional'
@@ -28,7 +28,7 @@ references:
     'owasp-agentic-ai-threats',
     'owasp-agentic-applications-2026',
   ]
-updatedAt: 2026-05-26
+updatedAt: 2026-07-19
 ---
 
 ## O salto que importa
@@ -87,3 +87,39 @@ Pense no harness como a infraestrutura de trabalho do agente. Não é uma ferram
 - **Aprendizado**: cada falha recorrente vira uma regra, teste, hook, doc ou skill. O harness melhora porque o time aprendeu.
 
 O ponto não é criar uma prisão para o agente. É criar trilhos. Bons trilhos não impedem movimento; eles tornam o movimento previsível, revisável e seguro.
+
+## Onde isso quebra
+
+Harness mal feito vira teatro. Regras no README que ninguém segue. Skill que ninguém invoca. Build que passa mas ninguém olha o diff. Contexto infinito jogado no prompt sem curadoria.
+
+SDD mal feito vira documento morto: spec que ninguém atualiza, critérios que ninguém testa, escopo que muda só no chat.
+
+O sinal de maturidade não é "temos mais arquivos". É: quando algo falha, o time melhora o sistema (regra, teste, limite, doc) em vez de só repetir o prompt com mais ênfase.
+
+## O papel do engenheiro
+
+Com agentes no fluxo, o trabalho se desloca. Menos tempo digitando boilerplate. Mais tempo em especificação, revisão, governança e qualidade do harness.
+
+Perguntas úteis para um harness explícito:
+
+1. O agente sabe o objetivo e o fora de escopo desta tarefa?
+2. Quais arquivos e ferramentas ele pode tocar sem aprovação?
+3. O que prova que terminou (teste, build, checklist)?
+4. O que nunca pode fazer sozinho (segredos, produção, force push)?
+5. Onde a falha de hoje vira regra de amanhã?
+
+AI-native não é "aceitar o diff mais rápido". É ser dono do sistema que produz o diff.
+
+## Na prática (PM, QA, liderança)
+
+- **PM**: a spec vira o contrato compartilhado. Menos "cadê a feature?", mais "este critério de aceite está coberto?".
+- **QA**: entra antes da implementação. Critérios e riscos viram checks, não só bug no fim.
+- **Liderança**: o risco deixa de ser só alucinação do modelo. Vira ausência de rastro: decisões só no chat, sem plano, sem validação, sem revisão no merge.
+
+Se quiser a versão de campo (o que muda na terça-feira), leia o ensaio [Harness no dia a dia](/blog/harness-no-dia-a-dia/).
+
+## Takeaway
+
+Modelos mudam. Categorias de ferramenta mudam. O padrão que fica é mais simples: intenção clara (SDD), ambiente com trilhos (harness), validação explícita, humano responsável no merge.
+
+Prompt solto explora. Entrega repetível pede sistema.

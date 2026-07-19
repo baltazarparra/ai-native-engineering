@@ -5,7 +5,7 @@ lang: 'en'
 translationKey: 'maturity'
 order: 3
 summary: 'Spec-Driven Development (SDD) turns intent into a verifiable plan. Harness Design organizes tools and validation so agents can deliver with quality and safety.'
-readingTime: 12
+readingTime: 16
 level: 'advanced'
 tags: ['sdd', 'harness', 'agents', 'governance', 'workflow']
 heroLabel: 'Professional flow'
@@ -28,62 +28,98 @@ references:
     'owasp-agentic-ai-threats',
     'owasp-agentic-applications-2026',
   ]
-updatedAt: 2026-05-26
+updatedAt: 2026-07-19
 ---
 
-## The shift that matters
+## The leap that matters
 
-The core problem in AI-assisted software work is not "which model should we use?" That changes constantly. The real problem is: **how do we turn human intent into reliable software without losing control, quality, and responsibility along the way?**
+The hard problem with AI coding agents is not "this week's model". Models change fast. The hard question is: **how do you turn human intent into trustworthy software without losing control, quality, and ownership along the way**.
 
-Vibe coding showed that models can generate a lot of code from natural language. That is powerful for prototypes. But in real product work, delivery cost is not just writing code. It is aligning scope, preserving architecture, protecting data, validating behavior, reviewing changes, auditing decisions, and keeping the system healthy after deployment.
+Vibe coding, the practice of building by talking to the model, showed that AI can generate a lot of code from natural language. That is powerful for prototypes. In a professional setting, shipping software does not end when code appears. Delivery also means aligning scope, preserving architecture, protecting data, validating behavior, reviewing changes, auditing decisions, and keeping the system healthy after deploy.
 
-Two ideas need to work together:
+That is where two ideas need to travel together:
 
-- **SDD**, or Spec-Driven Development: writing and evolving specifications that act as a contract.
-- **Harness Design**: designing the work system around the agent so it has context, tools, boundaries, validation, and governance.
+- **SDD**, or Spec-Driven Development: writing and evolving specifications that work as a contract.
+- **Harness Design**: the tooling around the agent so it has context, limits, and validation.
 
-Separately, these ideas help. Together, they change the level of the workflow.
+Apart, they help. Together, they change the delivery pattern.
 
 ## What SDD is
 
-SDD means **Spec-Driven Development**.
+SDD means **Spec-Driven Development**, development guided by specification.
 
 In this context, a spec is a living, versioned, reviewable artifact that answers:
 
-- what problem we are solving;
-- who it matters to;
+- which problem we are solving;
+- who it matters for;
 - what is in and out of scope;
 - which behaviors must exist;
 - which technical, legal, or product constraints must be respected;
-- which criteria prove the work is correct;
-- which risks require human review.
+- which criteria prove the delivery is correct;
+- which risks need human review.
 
-The central shift is simple: the agent does not implement "the idea that was implicit in the chat." It implements against a contract.
+The shift is simple: the agent does not implement "the prompt". It implements a solid, reviewable, verifiable plan.
 
 ## What Harness Design is
 
-Harness Design is the design of the **agent operating environment**.
+Harness Design is the environment of the **coding agent**.
 
-If SDD answers "what must be true?", the harness answers "how do we create a system where the agent can execute, validate, and improve without relying on informal memory?".
+If SDD answers "what needs to be true?", the harness answers "how do we create a system where the agent can execute, validate, and improve without depending on luck or context lost in the chat?".
 
 ### A model is not an agent
 
-A model responds. An agent tries to complete a task using tools in a loop: it reads context, takes an action, observes the result, and decides the next step.
+A model answers. An agent tries to finish a task using tools in a loop: it reads context, takes an action, observes the result, and decides the next step.
 
-The harness is what makes that loop useful in real work. It tells the agent which rules to follow, which tools to use, where to find context, when to ask for approval, and how to prove the work is done.
+The harness is what makes that loop useful in real work. It tells the agent which rules to respect, which tools to use, where to find context, when to ask for approval, and how to prove it is done.
 
 > **agent = model + harness**
 
 ### What goes into a harness?
 
-Think of the harness as the agent's work infrastructure. It is not one tool. It is the system that lets you move from conversation to a validated delivery.
+Think of the harness as the agent's work infrastructure. It is not a single tool. It is the set that lets you leave the chat and arrive at a validatable delivery.
 
-- **Instructions**: files like `AGENTS.md`, rules, and skills that carry commands, standards, and project agreements.
+- **Instructions**: files like `AGENTS.md`, rules, and skills that load commands, patterns, and project agreements.
 - **Context**: specs, technical decisions, architecture, product docs, and enough history so the agent is not working in the dark.
 - **Tools**: terminal, Git, browser, GitHub, logs, MCP servers, and other integrations that let the agent act in the right environment.
-- **Boundaries**: sandbox, permissions, human approvals, and blocks for destructive or sensitive actions.
-- **Validation**: lint, tests, typecheck, build, diff review, and checklists that push back against broken delivery.
+- **Limits**: sandbox, permissions, human approvals, and blocks for destructive or sensitive actions.
+- **Validation**: lint, tests, typecheck, build, diff review, and checklists that push against broken delivery.
 - **Observability**: UI, logs, metrics, traces, screenshots, and reproducible checks that the agent (and the human) can read to understand what happened.
 - **Learning**: each recurring failure becomes a rule, test, hook, doc, or skill. The harness improves because the team learned.
 
-The goal is not to trap the agent. It is to create rails. Good rails do not prevent movement; they make movement predictable, reviewable, and safe.
+The point is not to build a prison for the agent. It is to build rails. Good rails do not stop movement; they make movement predictable, reviewable, and safe.
+
+## Where this breaks
+
+A bad harness becomes theater. README rules nobody follows. A skill nobody invokes. A build that passes while nobody reads the diff. Infinite context dumped into the prompt with no curation.
+
+Bad SDD becomes a dead document: a spec nobody updates, criteria nobody tests, scope that only changes in chat.
+
+The maturity signal is not "we have more files". It is: when something fails, the team improves the system (rule, test, limit, doc) instead of only repeating the prompt louder.
+
+## The engineer's role
+
+With agents in the flow, the work shifts. Less time typing boilerplate. More time on specification, review, governance, and harness quality.
+
+Useful questions for an explicit harness:
+
+1. Does the agent know the goal and the out-of-scope for this task?
+2. Which files and tools can it touch without approval?
+3. What proves it finished (test, build, checklist)?
+4. What must it never do alone (secrets, production, force push)?
+5. Where does today's failure become tomorrow's rule?
+
+AI-native is not "accept the diff faster". It is owning the system that produces the diff.
+
+## In practice (PM, QA, leadership)
+
+- **PM**: the spec becomes the shared contract. Less "where is the feature?", more "is this acceptance criterion covered?".
+- **QA**: enters before implementation. Criteria and risks become checks, not only end-of-line bugs.
+- **Leadership**: the risk stops being only model hallucination. It becomes missing trail: decisions only in chat, no plan, no validation, no review at merge.
+
+If you want the field version (what changes on a Tuesday), read [Harness in daily work](/en/blog/harness-in-daily-work/).
+
+## Takeaway
+
+Models change. Tool categories change. The lasting pattern is simpler: clear intent (SDD), an environment with rails (harness), explicit validation, and a human accountable at merge.
+
+Loose prompting explores. Repeatable delivery needs a system.

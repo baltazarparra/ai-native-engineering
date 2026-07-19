@@ -5,7 +5,6 @@ import Button from '../../components/Button/Button.astro';
 import Reveal from '../../components/motion/Reveal.tsx';
 import { getSessions } from '../../data/sessions';
 import { TRACKABLE_CHAPTERS, getChapterHref } from '../../data/chapters';
-import { HARNESS_CHAPTERS, getHarnessChapterHref } from '../../data/harness-chapters';
 import { getPublishedPosts } from '../../lib/blog';
 import {
   getBlogHref,
@@ -20,7 +19,6 @@ const lang = 'en';
 const t = ui[lang];
 
 const sortedSessions = getSessions(lang);
-const harnessBlocks = HARNESS_CHAPTERS.slice(0, 4);
 const projectChapters = TRACKABLE_CHAPTERS;
 const latestPosts = (await getPublishedPosts(lang)).slice(0, 3);
 
@@ -37,10 +35,10 @@ const formatDate = (date: Date) =>
   <section class="hero" aria-label="Introduction">
     <div class="container">
       <Reveal client:load>
-        <p class="kicker">Open curriculum · AI-Native Engineering</p>
+        <p class="kicker">Open curriculum · AI-Native Engineers</p>
       </Reveal>
       <Reveal client:load delay={0.08}>
-        <h1 class="hero__title">AI-Native Engineering<span class="accent-dot">.</span></h1>
+        <h1 class="hero__title">AI-Native Engineers<span class="accent-dot">.</span></h1>
       </Reveal>
       <Reveal client:load delay={0.16}>
         <p class="hero__lede">
@@ -110,7 +108,7 @@ const formatDate = (date: Date) =>
 
           <article class="pblock">
             <span class="pblock__numeral" aria-hidden="true">04</span>
-            <h3 class="pblock__title">SDD — Spec-Driven Development</h3>
+            <h3 class="pblock__title">SDD (Spec-Driven Development)</h3>
             <p>
               The working method: the specification becomes the primary artifact. The agent
               implements from it, tests validate its behavior, and code becomes output, not the
@@ -120,11 +118,10 @@ const formatDate = (date: Date) =>
 
           <article class="pblock">
             <span class="pblock__numeral" aria-hidden="true">05</span>
-            <h3 class="pblock__title">Harness Engineering</h3>
+            <h3 class="pblock__title">Harness</h3>
             <p>
-              The discipline of designing everything around the model: instructions, tools, memory,
-              checks, and limits. It is the chassis the agent runs on, and it determines the
-              quality of what comes out.
+              The environment around the model: instructions, tools, memory, checks, and limits. It
+              is the chassis the agent runs on, and it determines the quality of what comes out.
             </p>
           </article>
         </div>
@@ -137,7 +134,7 @@ const formatDate = (date: Date) =>
     <div class="container">
       <header class="section-head">
         <p class="kicker">Curriculum</p>
-        <h2 class="section-head__title">The curriculum in three sessions</h2>
+        <h2 class="section-head__title">The curriculum in three lessons</h2>
       </header>
 
       <Reveal client:visible>
@@ -169,35 +166,6 @@ const formatDate = (date: Date) =>
                 </Card>
               );
             })
-          }
-        </div>
-      </Reveal>
-    </div>
-  </section>
-
-  <!-- ═══════════ HARNESS ═══════════ -->
-  <section class="harness section">
-    <div class="container">
-      <header class="section-head">
-        <h2 class="section-head__title">Harness Engineering: the full system</h2>
-        <p class="section-head__lede">
-          How AI models become trustworthy autonomous engineers, and what changes for teams,
-          products, and careers.
-        </p>
-      </header>
-
-      <Reveal client:visible>
-        <div class="harness__grid">
-          {
-            harnessBlocks.map((chapter) => (
-              <article class="hblock">
-                <h3>{chapter.title[lang]}</h3>
-                <p>{chapter.description[lang]}</p>
-                <a class="text-link" href={getHarnessChapterHref(lang, chapter.id)}>
-                  {chapter.shortLabel[lang]} →
-                </a>
-              </article>
-            ))
           }
         </div>
       </Reveal>

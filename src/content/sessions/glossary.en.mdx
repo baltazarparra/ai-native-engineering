@@ -1,11 +1,11 @@
 ---
-title: 'Glossary: vibe coding without the hype'
+title: 'Glossary and vibe coding: the minimum map without the hype'
 slug: 'glossary'
 lang: 'en'
 translationKey: 'glossary'
 order: 1
-summary: 'What vibe coding is, which platforms turn prompts into apps, where it helps, where it breaks, and how to turn a demo into real software.'
-readingTime: 10
+summary: 'The terms you need to keep reading this site, plus vibe coding: where it helps, where it breaks, and how to turn a demo into real software.'
+readingTime: 14
 level: 'beginner'
 tags: ['glossary', 'vibe coding', 'tools', 'fundamentals']
 heroLabel: 'Essential vocabulary'
@@ -24,8 +24,44 @@ references:
     'owasp-agentic-applications-2026',
     'mcp-tool-poisoning-research',
   ]
-updatedAt: 2026-05-26
+updatedAt: 2026-07-19
 ---
+
+## Minimum vocabulary
+
+If LLM, agent, MCP, and harness all sound like the same thing, you are not alone. Before vibe coding, align on the words the rest of this curriculum uses.
+
+**LLM** (Large Language Model): a large language model. It predicts the next stretch of text from what it has read. Chatbots and coding agents usually run on LLMs underneath.
+
+**Model**: the "brain" that generates text, code, or decisions. It is not the screen you type into. The same product can swap models without you noticing.
+
+**Inference**: running the model to produce an answer. Training is a different story. In day-to-day product work, almost everything you see is inference.
+
+**Token**: a chunk of text the model processes. Long words can become several tokens. Context windows and cost are usually measured in tokens.
+
+**Context**: what the model "sees" in that turn: prompt, files, history, rules. More context helps; noisy context hurts.
+
+**Prompt**: the request in natural language (or close to it). It can be short or a long brief.
+
+**System prompt**: base instructions that shape model behavior before the user request. In products, it is often hidden.
+
+**Autocomplete**: inline suggestions while you type. Great for speed, weak as the only architecture decision-maker.
+
+**Code context**: repository slices (open files, diffs, symbols) the tool attaches so the answer fits *your* code.
+
+**IDE**: a development environment with editor, terminal, and integrations. With AI, the IDE becomes a surface where the agent edits beside you.
+
+**CLI**: command-line interface. CLI agents read files, run commands, and change the repo directly in the terminal.
+
+**Agent**: a program that pursues a goal in a loop: observe, act with tools, check, decide the next step. Different from a chat that only answers.
+
+**Coding agent** (code agent): an agent specialized in software. It reads the repo, edits, tests, and iterates until the task passes validation.
+
+**MCP** (Model Context Protocol): a standard for connecting models to tools and context sources in a structured way. Useful, but a connected tool without governance also widens the risk surface.
+
+**Harness**: the environment around the model (instructions, tools, limits, validation). It turns "a model that answers" into "a system that operates".
+
+This site uses **harness** and **SDD** (Spec-Driven Development) practically, not as market dogma. Not every team uses these names. What matters is the pattern: a clear contract plus an environment that gives the agent rails.
 
 ## Made an app via prompts. Now what?
 
@@ -59,11 +95,11 @@ Because prototypes have a different bar. A prototype needs to show intent. It do
 
 It also works because many apps repeat patterns: login screen, list, form, dashboard, CRUD, filters, sidebar, table. Models have seen a lot of similar code and can recombine those patterns extremely fast.
 
-This changes the game: you do not need to wait until you "know everything" to play with product ideas. You can build, break, ask, compare, and learn in the loop. Just do not skip understanding. AI accelerates feedback. It does not replace fundamentals.
+You do not need to wait until you "know everything" to play with product ideas. You can build, break, ask, compare, and learn in the loop. Just do not skip understanding. AI accelerates feedback. It does not replace fundamentals.
 
 ## How this connects to the next lessons
 
-In this lesson, you are getting the vocabulary to avoid falling for marketing. Next, we go deeper:
+In this lesson, you got the minimum vocabulary and saw where vibe coding shines and where it lies. Next:
 
 - [Lesson 2: Tools and models](../tools) shows how to choose between AI IDEs, CLIs, cloud agents, and task-fit models.
 - [Lesson 3: SDD and Harness Design](../maturity) shows how to turn intent into a verifiable contract and operate agents with context, validation, and governance.

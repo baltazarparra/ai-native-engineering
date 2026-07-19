@@ -1,11 +1,11 @@
 ---
-title: 'Glossário: vibe coding sem cair no hype'
+title: 'Glossário e vibe coding: o mapa mínimo sem cair no hype'
 slug: 'glossario'
 lang: 'pt-BR'
 translationKey: 'glossary'
 order: 1
-summary: 'O que é vibe coding, quais plataformas criam apps por prompt, onde isso ajuda, onde quebra e como transformar demo em software de verdade.'
-readingTime: 10
+summary: 'Os termos que você precisa para continuar no site, mais vibe coding: onde ajuda, onde quebra e como transformar demo em software de verdade.'
+readingTime: 14
 level: 'beginner'
 tags: ['glossario', 'vibe coding', 'ferramentas', 'fundamentos']
 heroLabel: 'Vocabulário essencial'
@@ -24,8 +24,44 @@ references:
     'owasp-agentic-applications-2026',
     'mcp-tool-poisoning-research',
   ]
-updatedAt: 2026-05-26
+updatedAt: 2026-07-19
 ---
+
+## Vocabulário mínimo
+
+Se LLM, agente, MCP e harness soam a mesma coisa, você não está sozinho. Antes de falar de vibe coding, vale alinhar as palavras que o restante do currículo usa.
+
+**LLM** (Large Language Model): modelo de linguagem grande. É o tipo de modelo que prevê o próximo trecho de texto a partir do que leu. Chatbots e agentes de código costumam usar LLMs por baixo.
+
+**Modelo**: o "cérebro" que gera texto, código ou decisões. Não é a tela onde você digita. O mesmo produto pode trocar de modelo sem você perceber.
+
+**Inferência**: o ato de rodar o modelo para produzir uma resposta. Treinar é outra história. No dia a dia de produto, quase tudo que você vê é inferência.
+
+**Token**: pedaço de texto que o modelo processa. Palavras longas viram vários tokens. Janela de contexto e custo costumam ser medidos em tokens.
+
+**Contexto**: o que o modelo "vê" naquela rodada: prompt, arquivos, histórico, regras. Mais contexto ajuda, mas contexto ruído atrapalha.
+
+**Prompt**: o pedido em linguagem natural (ou quase). Pode ser curto ou um brief longo.
+
+**System prompt**: instruções de base que moldam o comportamento do modelo antes do pedido do usuário. Em produtos, muitas vezes fica escondido.
+
+**Autocomplete**: sugestão inline enquanto você digita. Útil para acelerar, fraco para decisões de arquitetura sozinho.
+
+**Code context**: trechos do repositório (arquivos abertos, diffs, símbolos) que a ferramenta anexa para a resposta fazer sentido no *seu* código.
+
+**IDE**: ambiente de desenvolvimento com editor, terminal e integrações. Com IA, a IDE vira uma superfície onde o agente edita ao seu lado.
+
+**CLI**: interface de linha de comando. Agentes de CLI leem arquivos, rodam comandos e mudam o repo direto no terminal.
+
+**Agente**: programa que persegue um objetivo em ciclo: observa, age com ferramentas, verifica e decide o próximo passo. Diferente de um chat que só responde.
+
+**Agente de código** (code agent): agente especializado em software. Lê o repo, edita, testa e itera até a tarefa passar na validação.
+
+**MCP** (Model Context Protocol): padrão para conectar modelos a ferramentas e fontes de contexto de forma estruturada. Útil, mas ferramenta conectada sem governança também aumenta superfície de risco.
+
+**Harness**: o ambiente em volta do modelo (instruções, ferramentas, limites, validação). É o que transforma "modelo que responde" em "sistema que opera".
+
+O site usa **harness** e **SDD** (Spec-Driven Development) de forma prática, não como dogma de mercado. Nem todo time usa esses nomes. O que importa é o padrão: contrato claro + ambiente que deixa o agente trabalhar com trilhos.
 
 ## Fiz um app via prompt. E agora?
 
@@ -61,9 +97,9 @@ Também funciona porque muitos apps têm padrões repetidos: tela de login, list
 
 Você não precisa esperar "saber tudo" para brincar com produto. Dá para construir, quebrar, perguntar, comparar e aprender no ciclo. Só não pula a parte de entender. A IA acelera feedback. Ela não substitui fundamento.
 
-## Como isso conecta com as próximas sessões
+## Como isso conecta com as próximas aulas
 
-Nesta aula, você está pegando vocabulário para não cair no marketing. Nas próximas, a gente aprofunda:
+Nesta aula, você pegou o vocabulário mínimo e viu onde vibe coding brilha e onde mente. Nas próximas:
 
 - [Aula 2: Ferramentas e modelos](../ferramentas) mostra como escolher entre IDE com IA, CLI, agente na nuvem e modelos por tarefa.
 - [Aula 3: SDD e Harness Design](../maturidade) mostra como transformar intenção em contrato verificável e operar agentes com contexto, validação e governança.

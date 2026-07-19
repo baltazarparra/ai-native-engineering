@@ -53,7 +53,7 @@ clarity over cleverness, concrete over abstract, confidence without hype.
   Read a draft aloud. If it sounds like a press release or a textbook, redo it.
 - **Explain acronyms on first use,** before any deep dive (CLI, LLM, SDD, MCP, PRD).
 - **Never favor a specific tool.** Teach categories; name tools as a market
-  snapshot ("foto de maio de 2026"). Brands change, categories last.
+  snapshot ("foto de julho de 2026"). Brands change, categories last.
 
 ## 5. Terminology canon
 
@@ -90,9 +90,9 @@ The site currently speaks in three registers. They converge here.
 - **Session/lesson MDX** (was the witty blog voice): keep the strong hooks and
   second-person energy. Trim slang and punchline irony. Keep "preview não é
   produção", lose "demo com autoestima".
-- **Harness content** (was academic/essayistic): shorten sentences, break long
-  enumerations, drop repeated anaphora ("Não sabe... Não sabe..."). Keep the
-  precision and the strong definitions. Make it sound spoken, not lectured.
+- **Harness deep-dives** (legacy series redirected into Lesson 3): keep the
+  precision and the strong definitions in Lesson 3 prose. Make it sound spoken,
+  not lectured. Avoid repeating anaphora.
 - **/projeto chapters** (was dry and instructional): keep the imperative clarity,
   add a sentence of "why" before each step. Warmth comes from context, not jokes.
 

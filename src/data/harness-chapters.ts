@@ -312,8 +312,8 @@ export const HARNESS_CHAPTERS: HarnessChapter[] = [
     },
     description: {
       'pt-BR':
-        'Tese central: sistemas capazes de transformar modelos em trabalho confiável. Referência acadêmica e próximo passo na Sessão 3.',
-      en: 'Central thesis: systems that turn models into reliable work. Academic reference and next step in Session 3.',
+        'Tese central: sistemas capazes de transformar modelos em trabalho confiável. Referência acadêmica e próximo passo na Aula 3.',
+      en: 'Central thesis: systems that turn models into reliable work. Academic reference and next step in Lesson 3.',
     },
     learningQuestion: {
       'pt-BR': 'Qual tese eu levo daqui?',
@@ -323,12 +323,12 @@ export const HARNESS_CHAPTERS: HarnessChapter[] = [
       'pt-BR': [
         'A tese central: capacidade vira trabalho confiável via sistema.',
         'Por que modelos melhores não eliminam a necessidade de harness.',
-        'O próximo passo na Sessão 3: SDD e Harness Design.',
+        'O próximo passo na Aula 3: SDD e Harness Design.',
       ],
       en: [
         'The central thesis: capability becomes reliable work through systems.',
         'Why better models do not remove the need for harness.',
-        'The next step in Session 3: SDD and Harness Design.',
+        'The next step in Lesson 3: SDD and Harness Design.',
       ],
     },
     pathRole: {

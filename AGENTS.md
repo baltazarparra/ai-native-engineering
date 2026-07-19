@@ -104,13 +104,13 @@ updatedAt: date
 
 ## Site Structure
 
-The home page contains a compact foundations primer for "AI-Native Engineer", "AI agent", and "coding agent". The deeper curriculum is organized into 3 sessions generated under the dynamic `/sessions/[slug]/` route:
+The home page contains a compact foundations primer for "AI-Native Engineer", "AI agent", "coding agent", SDD, and harness. The deeper curriculum is organized into 3 lessons under `/sessions/[slug]/`:
 
-- `/sessions/glossario/`: Terminology (Session 1)
-- `/sessions/ferramentas/`: Tools and models (Session 2)
-- `/sessions/maturidade/`: SDD and Harness Design for professional AI-native software delivery (Session 3, most important)
+- `/sessions/glossario/`: Glossary + vibe coding (Lesson 1)
+- `/sessions/ferramentas/`: Tools and models (Lesson 2)
+- `/sessions/maturidade/`: SDD and Harness Design (Lesson 3, most important)
 
-Every session page follows a fixed template: hero → 30s summary → main explanation → why it matters → real example when useful → where it breaks → takeaway → references. Interactive blocks are used only when they clearly improve explanation, organization, or retention.
+Legacy `/harness-engineering/` routes redirect to Lesson 3. Every lesson page follows a fixed template: hero → 30s summary → main explanation → why it matters → real example when useful → where it breaks → takeaway → references. Interactive blocks are used only when they clearly improve explanation, organization, or retention.
 
 ## Design System: The Institute (Editorial, anti-slop pass)
 

@@ -18,7 +18,7 @@ interface Props {
 
 const LABELS = {
   'pt-BR': {
-    masthead: 'Hacker News — Top Histórias',
+    masthead: 'Hacker News · Top Histórias',
     loading: 'Carregando histórias…',
     error: 'Não foi possível carregar as histórias.',
     retry: 'Tentar novamente',
@@ -29,7 +29,7 @@ const LABELS = {
     justNow: 'agora',
   },
   en: {
-    masthead: 'Hacker News — Top Stories',
+    masthead: 'Hacker News · Top Stories',
     loading: 'Loading stories…',
     error: 'Could not load stories.',
     retry: 'Try again',

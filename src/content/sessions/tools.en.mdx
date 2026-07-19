@@ -5,7 +5,7 @@ lang: 'en'
 translationKey: 'tools'
 order: 2
 summary: 'Understand the difference between tools, products, and models so you can choose IDEs, CLIs, cloud agents, and LLMs with intent.'
-readingTime: 22
+readingTime: 18
 level: 'intermediate'
 tags: ['tools', 'models', 'ide', 'cli', 'comparison']
 heroLabel: 'Choice map'
@@ -29,53 +29,64 @@ references:
     'meta-llama-docs',
     'vellum-llm-leaderboard',
   ]
-updatedAt: 2026-05-26
+updatedAt: 2026-07-19
 ---
 
 ## Two different choices
 
-When someone asks "which AI should I use for programming?", they are usually mixing two decisions:
+When someone asks "which AI should I use for coding?", they are usually mixing two decisions:
 
-1. **Tool**: where you work. It can be an IDE, a CLI, a cloud app, an editor plugin, or a prompt-to-app platform.
+1. **Tool**: where you work. It can be an IDE, a CLI, a cloud app, an editor with a plugin, or a prompt-to-app platform.
 
-2. **Model**: the brain generating the answer. It can be GPT, Claude, Gemini, Kimi, Llama, Gemma, DeepSeek, GLM, or another model.
+2. **Model**: the brain that generates the answer. It might be from the GPT, Claude, Gemini, Kimi, Llama, Gemma, DeepSeek, GLM, or another family.
 
-These layers combine, but they are not the same thing. Cursor and Claude Code are tools. GPT-5.3-Codex, Claude Sonnet 4.6, Gemini 2.5 Pro, and Kimi K2.6 are models. ChatGPT, Claude, Gemini, and Kimi are products that can embed different models underneath.
+These layers combine, but they are not the same thing. Cursor and Claude Code are tools. GPT/Codex-line, Claude Sonnet/Opus, Gemini, and Kimi models are example brains. ChatGPT, Claude, Gemini, and Kimi are products that can embed different models underneath.
 
-The simple rule: **product and tool are where you interact. Model is who generates or decides the next step.**
+The simple rule: **product and tool are where you interact. Model is what generates or decides the next step.**
 
 ## Three work surfaces
 
-> **Market note:** the names below are a snapshot from May 2026. Categories outlast brands.
+> **Market note:** the names below are a July 2026 snapshot. Categories last longer than brands.
 
-New tools appear every week promising to revolutionize how you code. Instead of listing everything that exists, think in three surfaces:
+Every week a new tool promises to revolutionize how you program. Instead of listing everything that exists, think in three surfaces:
 
 1. **AI-native IDEs**: code editors with AI built into the editing experience. Examples: Cursor, Windsurf, VS Code with GitHub Copilot, Google Antigravity.
 
-2. **AI CLIs**: command-line tools that read files, run commands, and make changes directly in the terminal. Examples: Claude Code, Kimi Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+2. **AI CLIs**: command-line tools that read files, run commands, and make changes directly in the terminal. Examples: Claude Code, Codex CLI, OpenCode, Kimi Code, GitHub Copilot CLI.
 
-3. **Cloud apps and agents**: you send a well-described task, the tool works in an isolated environment, researches the repo, proposes a plan, works on a branch, and returns a diff or pull request. Examples: Codex App, Google Jules, GitHub Copilot coding agent, Devin.
+3. **Cloud apps and agents**: you send a well-described task, the tool works in an isolated environment, researches the repo, proposes a plan, works on a branch, and returns a diff or pull request. Examples: Codex (cloud), Google Jules, GitHub Copilot coding agent, Devin.
 
-The boundaries are getting blurry. Kimi Code, for example, can show up in the terminal, a local browser, VS Code, and ACP-compatible IDEs. The category still helps, but the main question is not "which tool is best?". The question is: **which surface removes the most friction for this task?**
+The boundary is getting blurry. The same vendor shows up in the terminal, the editor, and the cloud. Categories still help, but the main question is not "which tool is best?". The question is: **which surface removes the most friction for this task?**
 
-In cloud agents, an emerging pattern is **Research → Plan → Code → Review**: research the repo, propose a plan, execute on a branch, and only open a PR after human review. No vendor owns this flow, but more tools are converging on it.
+In cloud agents, an emerging pattern is **Research → Plan → Code → Review**: research the repo, propose a plan, execute on a branch, and only open a PR after human review. No vendor owns that flow, but more tools converge on it.
 
-## What changes between models
+## What changes across models
 
-You do not need to become an AI researcher to work well with LLMs. But a few concepts change the quality of your decisions:
+You do not need to become an AI researcher to work well with LLMs. A few concepts still change decision quality:
 
 ### Context
 
-Models process text as tokens, and each model has a context window. In 2026, windows range from ~128K tokens to ~1M+, but a medium software project can contain much more than that. Although context helps, it does not remove the need to choose relevant files, examples, and constraints.
+Models process text in tokens and each model has a context window. In 2026, windows range from tens of thousands of tokens into the million range, but an average project can be much larger than that. Context helps, but it does not remove the need to choose relevant files, examples, and constraints.
 
 ### Reasoning, speed, and cost
 
-Larger models often reason better through long tasks, but they are usually slower and more expensive. Using the strongest model for everything can be wasteful. A quick exploration, an autocomplete, and an architecture plan do not need the same amount of power.
+Larger models often reason better on long tasks, and they also tend to be slower and more expensive. Using the strongest model for everything can be waste. An exploratory chat, autocomplete, and an architecture plan do not need the same power.
 
 ### Tool use
 
-Some models are tuned to work well with tools: reading files, calling APIs, running commands, observing results, and deciding the next step. That matters a lot for coding agents, because quality is not only in the generated text. It is in the ability to keep following a task across several steps.
+Some models are tuned to operate well with tools: read files, call APIs, run commands, observe the result, and decide the next step. That matters a lot for coding agents, because quality is not only in the generated text. It is in the ability to follow a task across many steps.
 
 ### Real limits
 
-Every model hallucinates, has a knowledge cutoff, and can generate code that looks correct but solves the wrong problem. A benchmark is a signal, not an oracle. A ranking measures standardized tasks; your project has its own context, history, constraints, and debt.
+Every model hallucinates, has a knowledge cutoff, and can generate code that looks right but does not solve the problem. Benchmarks are signals, not oracles. A leaderboard measures standardized tasks; your project has context, history, constraints, and its own debt.
+
+## How to choose without the hype
+
+Start from the task, not the ranking:
+
+- fast exploration and autocomplete: IDE surface + light or mid model;
+- multi-file refactor and deep investigation: agent CLI or IDE with a strong agent;
+- long task without you on the shoulder: cloud agent with a plan and a reviewable PR;
+- privacy, cost, or control: open-weight models or BYOK on an open-source CLI.
+
+Tools and models do not replace method. Without clear scope, validation, and human review, the "best" surface only creates debt faster.

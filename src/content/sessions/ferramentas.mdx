@@ -5,7 +5,7 @@ lang: 'pt-BR'
 translationKey: 'tools'
 order: 2
 summary: 'Entenda a diferença entre ferramenta, produto e modelo para escolher melhor IDEs, CLIs, agentes na nuvem e LLMs.'
-readingTime: 22
+readingTime: 18
 level: 'intermediate'
 tags: ['ferramentas', 'modelos', 'ide', 'cli', 'comparativo']
 heroLabel: 'Mapa de escolha'
@@ -29,7 +29,7 @@ references:
     'meta-llama-docs',
     'vellum-llm-leaderboard',
   ]
-updatedAt: 2026-05-26
+updatedAt: 2026-07-19
 ---
 
 ## Duas escolhas diferentes
@@ -38,25 +38,25 @@ Quando alguém pergunta "qual IA eu devo usar para programar?", geralmente está
 
 1. **Ferramenta**: onde você trabalha. Pode ser uma IDE, uma CLI, um app na nuvem, um editor com plugin ou uma plataforma prompt-to-app.
 
-2. **Modelo**: o cérebro que gera a resposta. Pode ser GPT, Claude, Gemini, Kimi, Llama, Gemma, DeepSeek, GLM ou outro.
+2. **Modelo**: o cérebro que gera a resposta. Pode ser da família GPT, Claude, Gemini, Kimi, Llama, Gemma, DeepSeek, GLM ou outra.
 
-Essas duas camadas se combinam, mas não são a mesma coisa. Cursor e Claude Code são ferramentas. GPT-5.3-Codex, Claude Sonnet 4.6, Gemini 2.5 Pro e Kimi K2.6 são modelos. ChatGPT, Claude, Gemini e Kimi são produtos que podem embutir modelos diferentes por baixo.
+Essas duas camadas se combinam, mas não são a mesma coisa. Cursor e Claude Code são ferramentas. Modelos da linha GPT/Codex, Claude Sonnet/Opus, Gemini e Kimi são exemplos de cérebros. ChatGPT, Claude, Gemini e Kimi são produtos que podem embutir modelos diferentes por baixo.
 
 A regra simples: **produto e ferramenta são onde você interage. Modelo é quem gera ou decide o próximo passo.**
 
 ## Três superfícies de trabalho
 
-> **Nota de mercado:** os nomes abaixo são uma foto de maio de 2026. Categorias duram mais que marcas.
+> **Nota de mercado:** os nomes abaixo são uma foto de julho de 2026. Categorias duram mais que marcas.
 
 Toda semana aparece ferramenta nova prometendo revolucionar como você programa. Em vez de listar tudo que existe, pense em três superfícies:
 
 1. **IDEs com IA integrada**: editores de código que embutem IA na interface de edição. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot, Google Antigravity.
 
-2. **CLIs de IA**: ferramentas de linha de comando que leem arquivos, executam comandos e fazem mudanças diretamente no terminal. Exemplos: Claude Code, Kimi Code, Codex CLI, OpenCode, GitHub Copilot CLI.
+2. **CLIs de IA**: ferramentas de linha de comando que leem arquivos, executam comandos e fazem mudanças diretamente no terminal. Exemplos: Claude Code, Codex CLI, OpenCode, Kimi Code, GitHub Copilot CLI.
 
-3. **Apps e agentes na nuvem**: você manda uma tarefa bem descrita, a ferramenta trabalha em um ambiente isolado, pesquisa o repositório, propõe plano, trabalha em branch e entrega diff ou pull request. Exemplos: Codex App, Google Jules, GitHub Copilot coding agent, Devin.
+3. **Apps e agentes na nuvem**: você manda uma tarefa bem descrita, a ferramenta trabalha em um ambiente isolado, pesquisa o repositório, propõe plano, trabalha em branch e entrega diff ou pull request. Exemplos: Codex (cloud), Google Jules, GitHub Copilot coding agent, Devin.
 
-A fronteira está ficando borrada. Kimi Code, por exemplo, pode aparecer no terminal, no browser local, no VS Code e em IDEs compatíveis via ACP. A categoria ainda ajuda, mas a pergunta principal não é "qual ferramenta é melhor?". A pergunta é: **qual superfície reduz mais fricção para esta tarefa?**
+A fronteira está ficando borrada. O mesmo fornecedor aparece no terminal, no editor e na nuvem. A categoria ainda ajuda, mas a pergunta principal não é "qual ferramenta é melhor?". A pergunta é: **qual superfície reduz mais fricção para esta tarefa?**
 
 Em agentes cloud, um padrão emergente é **Research → Plan → Code → Review**: pesquisar o repo, propor plano, executar em branch e só abrir PR depois de revisão humana. Nenhum fornecedor monopoliza esse fluxo, mas cada vez mais ferramentas convergem para ele.
 
@@ -66,7 +66,7 @@ Você não precisa virar pesquisador de IA para trabalhar bem com LLMs. Mas algu
 
 ### Contexto
 
-Modelos processam texto em tokens e cada modelo tem uma janela de contexto. Em 2026, janelas vão de ~128K tokens até ~1M+, mas um projeto médio pode ter muito mais do que isso. Embora o contexto ajude, ele não elimina a necessidade de escolher arquivos, exemplos e restrições relevantes.
+Modelos processam texto em tokens e cada modelo tem uma janela de contexto. Em 2026, janelas vão de dezenas de milhares de tokens até na casa do milhão, mas um projeto médio pode ter muito mais do que isso. Embora o contexto ajude, ele não elimina a necessidade de escolher arquivos, exemplos e restrições relevantes.
 
 ### Raciocínio, velocidade e custo
 
@@ -79,3 +79,14 @@ Alguns modelos foram ajustados para operar bem com ferramentas: ler arquivos, ch
 ### Limites reais
 
 Todo modelo alucina, tem corte de conhecimento e pode gerar código que parece correto mas não resolve o problema. Benchmark é sinal, não oráculo. Um ranking mede tarefas padronizadas; o seu projeto tem contexto, histórico, restrições e dívidas próprias.
+
+## Como escolher sem hype
+
+Comece pela tarefa, não pelo ranking:
+
+- exploração rápida e autocomplete: superfície de IDE + modelo leve ou médio;
+- refatoração multi-arquivo e investigação profunda: CLI de agente ou IDE com agente forte;
+- tarefa longa sem você no ombro: agente na nuvem com plano e PR revisável;
+- privacidade, custo ou controle: modelos open-weight ou BYOK em CLI open source.
+
+Ferramentas e modelos não substituem método. Sem escopo claro, validação e revisão humana, a superfície "melhor" só gera dívida mais rápido.

@@ -1,11 +1,12 @@
 ---
-import HarnessChapterLayout from '../../layouts/HarnessChapterLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
+import Button from '../../components/Button/Button.astro';
 import {
   HARNESS_CHAPTERS,
   getHarnessChapterAlternateLinks,
-  getHarnessChapterBySlug,
 } from '../../data/harness-chapters';
-import { getHarnessChapterContent } from '../../components/harness/chapter-content';
+import { getSessionHref } from '../../lib/i18n';
 
 export function getStaticPaths() {
   return HARNESS_CHAPTERS.map((chapter) => ({
@@ -16,30 +17,27 @@ export function getStaticPaths() {
 
 const lang = 'pt-BR';
 const { chapterId } = Astro.props;
-const chapter = HARNESS_CHAPTERS.find((ch) => ch.id === chapterId)!;
-const slugParam = Astro.params.slug;
-const resolved = slugParam ? getHarnessChapterBySlug(lang, slugParam) : undefined;
-
-if (!resolved || resolved.id !== chapter.id) {
-  throw new Error(`Harness chapter route mismatch for slug "${slugParam}"`);
-}
-
-const Content = getHarnessChapterContent(lang, chapter.id);
-const alternateLinks = getHarnessChapterAlternateLinks(chapter.id);
-const pageTitle = `${chapter.title[lang]} | Harness Engineering | AI-Native Engineers`;
+const target = getSessionHref(lang, 'maturidade');
+const redirectScript = `window.location.replace(${JSON.stringify(target)});`;
+const alternateLinks = getHarnessChapterAlternateLinks(chapterId);
 ---
 
-<HarnessChapterLayout
+<BaseLayout
+  title="Capítulo movido | AI-Native Engineers"
+  description="Este capítulo de Harness Engineering foi fundido com a aula SDD e Harness Design."
   lang={lang}
-  activeTab={chapter.id}
-  title={pageTitle}
-  description={chapter.description[lang]}
+  noindex
   alternateLinks={alternateLinks}
-  discussionSlug={chapter.discussionSlug}
-  discussionTitle={chapter.title[lang]}
-  heroBadge={chapter.shortLabel[lang]}
-  heroTitle={chapter.title[lang]}
-  heroSummary={chapter.description[lang]}
 >
-  <Content />
-</HarnessChapterLayout>
+  <main id="main-content">
+    <script is:inline set:html={redirectScript} />
+    <SectionBlock padding="xl">
+      <h1>Este capítulo foi fundido</h1>
+      <p>
+        A série Harness Engineering foi descontinuada. O conteúdo vive agora na
+        aula <strong>SDD e Harness Design</strong>.
+      </p>
+      <Button href={target} size="lg">Ir para a aula atualizada</Button>
+    </SectionBlock>
+  </main>
+</BaseLayout>
