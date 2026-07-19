@@ -135,6 +135,10 @@ const formatDate = (date: Date) =>
       <header class="section-head">
         <p class="kicker">Currículo</p>
         <h2 class="section-head__title">O currículo em três aulas</h2>
+        <p class="section-head__lede">
+          Vocabulário, ferramentas e método para sair da demo e assumir o
+          sistema que produz o software.
+        </p>
       </header>
 
       <Reveal client:visible>
@@ -177,6 +181,10 @@ const formatDate = (date: Date) =>
     <div class="container">
       <header class="section-head">
         <h2 class="section-head__title">Ensaios do campo</h2>
+        <p class="section-head__lede">
+          Relatos sobre o trabalho real com agentes, onde decisões, falhas e
+          ajustes aparecem fora do formato de aula.
+        </p>
       </header>
 
       <Reveal client:visible>
@@ -204,6 +212,7 @@ const formatDate = (date: Date) =>
     <div class="container">
       <header class="section-head">
         <h2 class="section-head__title">{t.project.heading}</h2>
+        <p class="section-head__lede">{t.project.homeDesc}</p>
       </header>
 
       <Reveal client:visible>
