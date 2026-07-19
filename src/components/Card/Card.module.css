@@ -1,35 +1,23 @@
 .card {
   width: 100%;
   min-width: 0;
-  background-color: var(--color-bg);
-  border: var(--border-thick);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  background-color: var(--color-surface-raised);
+  border: var(--line);
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  transform-origin: center;
-  will-change: transform, box-shadow;
   transition:
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast),
-    border-color var(--transition-fast);
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
 }
 
-/* accent top stripes */
+/* accent top rule — the one structural use of the signal red.
+   All legacy accent values resolve to the same 2px red rule. */
 
-.accent-yellow {
-  border-top: 6px solid var(--color-accent-1);
-}
-
-.accent-blue {
-  border-top: 6px solid var(--color-accent-2);
-}
-
-.accent-green {
-  border-top: 6px solid var(--color-accent-3);
-}
-
+.accent-yellow,
+.accent-blue,
+.accent-green,
 .accent-coral {
-  border-top: 6px solid var(--color-accent-4);
+  border-top: 2px solid var(--color-accent);
 }
 
 /* linkable card */
@@ -43,37 +31,44 @@
 }
 
 .linkable:hover {
-  transform: var(--motion-lift-md);
-  box-shadow: var(--shadow-lg);
-  background-color: inherit;
+  border-color: var(--color-ink);
 }
 
 .linkable:hover .title {
-  transform: translateX(2px);
-}
-
-.linkable:active {
-  transform: var(--motion-press);
-  box-shadow: none;
-  transition-duration: var(--motion-instant);
+  text-decoration-color: currentColor;
 }
 
 /* card zones */
 
 .header {
   padding: var(--space-md) var(--space-lg);
-  border-bottom: var(--border-thin);
+  border-bottom: var(--line);
   min-width: 0;
 }
 
+.index {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: var(--weight-extrabold);
+  font-size: var(--text-2xl);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
 .title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-weight: var(--weight-bold);
   font-size: var(--text-xl);
-  color: var(--color-primary);
+  color: var(--color-heading);
   line-height: var(--leading-snug);
   overflow-wrap: break-word;
-  transition: transform var(--transition-fast);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--transition-fast);
 }
 
 .body {
@@ -87,8 +82,7 @@
 
 .footer {
   padding: var(--space-md) var(--space-lg);
-  border-top: var(--border-thin);
-  background-color: var(--color-bg-alt);
+  border-top: var(--line);
   min-width: 0;
 }
 
@@ -121,11 +115,11 @@
 }
 
 .summary:hover {
-  background-color: var(--color-bg-alt);
+  background-color: var(--color-surface-alt);
 }
 
 .summary:hover .title {
-  transform: translateX(2px);
+  text-decoration-color: currentColor;
 }
 
 .summary::-webkit-details-marker {
@@ -138,7 +132,7 @@
 }
 
 .indicator {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: var(--weight-bold);
   line-height: 1;
@@ -147,11 +141,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var(--border-thin);
+  border: var(--line);
   border-radius: var(--radius-sm);
   flex-shrink: 0;
   transition:
-    transform var(--motion-normal) var(--ease-snap),
     background-color var(--transition-fast),
     color var(--transition-fast);
 }
@@ -167,14 +160,11 @@
 .expandable[open] .indicator {
   background-color: var(--color-ink);
   color: var(--color-fg-on-ink);
-  transform: rotate(45deg);
-  animation: var(--motion-key-scale-pop) var(--motion-normal)
-    var(--ease-out-back);
 }
 
 .expandableBody {
   padding: 0 var(--space-lg) var(--space-lg);
-  border-top: var(--border-thin);
+  border-top: var(--line);
   animation: var(--motion-key-details-in) var(--motion-normal)
     var(--ease-standard);
 }

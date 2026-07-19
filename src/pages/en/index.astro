@@ -1,248 +1,538 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
-import Grid from '../../components/Grid/Grid.astro';
-import Button from '../../components/Button/Button.astro';
 import Card from '../../components/Card/Card.astro';
-import Badge from '../../components/Badge/Badge.astro';
-import Footer from '../../components/Footer/Footer.astro';
-import Discussion from '../../components/Discussion/Discussion.astro';
-import HeroStickers from '../../components/HeroStickers/HeroStickers';
-import HeroGhostCursors from '../../components/HeroGhostCursors/HeroGhostCursors';
-import HeroCaptureCounter from '../../components/HeroCaptureCounter/HeroCaptureCounter';
-import HeroCursorTrail from '../../components/HeroCursorTrail/HeroCursorTrail';
 import { getSessions } from '../../data/sessions';
+import { TRACKABLE_CHAPTERS, getChapterHref } from '../../data/chapters';
+import { HARNESS_CHAPTERS, getHarnessChapterHref } from '../../data/harness-chapters';
+import { getPublishedPosts } from '../../lib/blog';
 import {
-  getHomeAlternateLinks,
-  getSessionHref,
-  getProjectHref,
   getBlogHref,
+  getHomeAlternateLinks,
+  getProjectHref,
+  getSessionHref,
   ui,
 } from '../../lib/i18n';
+import { siteLinks } from '../../lib/siteLinks';
 
 const lang = 'en';
-const sessions = getSessions(lang);
-const levelLabels = ui[lang].levels;
-const project = ui[lang].project;
-const blog = ui[lang].blog;
+const t = ui[lang];
 
-function levelToBadgeVariant(level: string) {
-  const map = {
-    beginner: 'yellow',
-    intermediate: 'blue',
-    advanced: 'green',
-  } as const;
-  return map[level as keyof typeof map] || 'default';
-}
+const sortedSessions = getSessions(lang);
+const harnessBlocks = HARNESS_CHAPTERS.slice(0, 4);
+const projectChapters = TRACKABLE_CHAPTERS;
+const latestPosts = (await getPublishedPosts(lang)).slice(0, 3);
 
-function levelToLabel(level: string) {
-  return levelLabels[level as keyof typeof levelLabels] || level;
-}
+const formatDate = (date: Date) =>
+  date.toLocaleDateString(t.dateLocale, { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 
 <BaseLayout
   title="AI-Native Engineers"
-  description="A practical guide to building with coding agents"
   lang={lang}
   alternateLinks={getHomeAlternateLinks()}
 >
-  <main id="main-content">
-    <HeroStickers client:visible lang={lang} />
-    <SectionBlock as="header" padding="md" maxWidth="lg" id="hero">
-      <div class="hero-layer" data-screen-shake>
-        <HeroGhostCursors client:visible />
-        <HeroCursorTrail client:visible />
-        <div class="hero-content">
-          <span class="hero-badge-row">
-            <Badge variant="green">100% free and open source</Badge>
-            <HeroCaptureCounter client:visible lang={lang} />
-          </span>
-          <h1 class="hero-title">AI-Native Engineers</h1>
-          <p class="hero-tagline">
-            A practical guide to building with coding agents
-          </p>
-        </div>
-      </div>
-    </SectionBlock>
-
-    <SectionBlock padding="lg" id="sessions">
-      <h2>Lessons</h2>
-      <p class="sessions-intro">
-        Three lessons in sequence: from vibe coding to AI tools and the
-        professional workflow with coding agents.
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" aria-label="Introduction">
+    <div class="container">
+      <p class="kicker">Open curriculum · AI-Native Engineering</p>
+      <h1 class="hero__title">AI-Native Engineering</h1>
+      <p class="hero__lede">
+        Working with AI is not adding one more tool — it is designing the entire system in which
+        agents work. This site teaches that craft in plain language.
       </p>
-      <Grid columns={3} gap="lg" align="stretch">
+      <p class="hero__tagline">
+        for devs, QA, PMs, designers, recruiters, and founders — no senior title required
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════ MANIFESTO ═══════════ -->
+  <section class="manifesto section" aria-label="Manifesto">
+    <div class="container">
+      <p class="kicker kicker--light">What changes</p>
+      <p class="manifesto__text">
+        Code stops being the central artifact. The central artifact becomes the
+        <strong>system</strong>: specifications, agents, context, validation, and responsibility.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════ PRIMER ═══════════ -->
+  <section class="primer section" id="fundamentals">
+    <div class="container">
+      <header class="section-head">
+        <p class="kicker">Start here</p>
+        <h2 class="section-head__title">The basics, no jargon</h2>
+      </header>
+
+      <div class="primer__blocks">
+        <article class="pblock">
+          <span class="pblock__numeral" aria-hidden="true">01</span>
+          <h3 class="pblock__title">AI-Native Engineer</h3>
+          <p>
+            Someone who designs the system agents work in: specification, context, validation, and
+            responsibility. Not "a dev who uses Copilot" — a shift from writing code to architecting
+            its production.
+          </p>
+        </article>
+
+        <article class="pblock">
+          <span class="pblock__numeral" aria-hidden="true">02</span>
+          <h3 class="pblock__title">AI agent</h3>
+          <p>
+            A program that pursues a goal in loops: it observes the environment, plans, acts with
+            tools, checks the result, and repeats. Unlike a chat that only answers, an agent executes
+            — editing files, running tests, navigating.
+          </p>
+        </article>
+
+        <article class="pblock">
+          <span class="pblock__numeral" aria-hidden="true">03</span>
+          <h3 class="pblock__title">Coding agent</h3>
+          <p>
+            An agent specialized in software. It reads your repository, proposes changes, opens
+            files, runs commands, and iterates until the task passes validation. Tools like Claude
+            Code, Cursor, and Windsurf are examples of the pattern.
+          </p>
+        </article>
+
+        <article class="pblock">
+          <span class="pblock__numeral" aria-hidden="true">04</span>
+          <h3 class="pblock__title">SDD — Spec-Driven Development</h3>
+          <p>
+            The working method: the specification becomes the primary artifact. The agent implements
+            from it; tests validate its behavior; code becomes output, not the source of truth.
+          </p>
+        </article>
+
+        <article class="pblock">
+          <span class="pblock__numeral" aria-hidden="true">05</span>
+          <h3 class="pblock__title">Harness Engineering</h3>
+          <p>
+            The discipline of designing everything around the model: instructions, tools, memory,
+            checks, and limits. It is the chassis the agent runs on — and it determines the quality
+            of what comes out.
+          </p>
+        </article>
+
+        <article class="pblock">
+          <span class="pblock__numeral" aria-hidden="true">06</span>
+          <h3 class="pblock__title">Why it matters</h3>
+          <p>
+            Because leverage changed hands. One engineer with a good harness coordinates what used to
+            be an entire team. Those who do not design the system become its bottleneck.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SESSIONS ═══════════ -->
+  <section class="sessions section" id="sessions">
+    <div class="container">
+      <header class="section-head">
+        <p class="kicker">Curriculum</p>
+        <h2 class="section-head__title">The curriculum in three sessions</h2>
+      </header>
+
+      <div class="sessions__grid">
         {
-          sessions.map((session) => (
-            <Card
-              title={session.title}
-              href={getSessionHref(lang, session.slug)}
-              accent={session.accent}
-            >
-              <Fragment slot="meta">
-                <Badge variant={levelToBadgeVariant(session.level)} size="sm">
-                  {levelToLabel(session.level)}
-                </Badge>
-                <Badge size="sm">{session.readingTime} min</Badge>
-              </Fragment>
-              <p>{session.summary}</p>
-              <Fragment slot="footer">
-                <div class="card-footer-row">
-                  <span class="session-order">Lesson {session.order}</span>
-                  <span class="card-cta">
-                    Read lesson
-                    <span class="card-cta-arrow" aria-hidden="true">→</span>
+          sortedSessions.map((session, i) => {
+            const href = getSessionHref(lang, session.slug);
+            const numeral = String(i + 1).padStart(2, '0');
+            const meta = `${session.readingTime} min read · ${t.levels[session.level]}`;
+
+            return session.order === 3 ? (
+              <a href={href} class="feature-card">
+                <div class="feature-card__head">
+                  <span class="feature-card__numeral" aria-hidden="true">
+                    {numeral}
                   </span>
+                  <span class="feature-card__meta">{meta}</span>
                 </div>
-              </Fragment>
-            </Card>
+                <h3 class="feature-card__title">{session.title}</h3>
+                <p class="feature-card__summary">{session.summary}</p>
+                <span class="feature-card__arrow" aria-hidden="true">
+                  →
+                </span>
+              </a>
+            ) : (
+              <Card href={href} index={numeral} title={session.title}>
+                <Fragment slot="meta">{meta}</Fragment>
+                <p>{session.summary}</p>
+              </Card>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ HARNESS ═══════════ -->
+  <section class="harness section">
+    <div class="container">
+      <header class="section-head">
+        <p class="kicker">The full system</p>
+        <h2 class="section-head__title">Harness Engineering: the full system</h2>
+        <p class="section-head__lede">
+          How AI models become trustworthy autonomous engineers — and what changes for teams,
+          products, and careers.
+        </p>
+      </header>
+
+      <div class="harness__grid">
+        {
+          harnessBlocks.map((chapter) => (
+            <article class="hblock">
+              <h3>{chapter.title[lang]}</h3>
+              <p>{chapter.description[lang]}</p>
+              <a class="text-link" href={getHarnessChapterHref(lang, chapter.id)}>
+                {chapter.shortLabel[lang]} →
+              </a>
+            </article>
           ))
         }
-      </Grid>
-    </SectionBlock>
-
-    <SectionBlock padding="lg" id="blog">
-      <div class="project-cta-block">
-        <Badge variant="default">{blog.title}</Badge>
-        <h2>{blog.title}</h2>
-        <p>{blog.summary}</p>
-        <Button href={getBlogHref(lang)} size="lg">
-          {blog.homeCta}
-        </Button>
       </div>
-    </SectionBlock>
+    </div>
+  </section>
 
-    <SectionBlock padding="xl" alt>
-      <div class="project-cta-block">
-        <Badge variant="coral">New</Badge>
-        <h2>{project.title}</h2>
-        <p>{project.homeDesc}</p>
-        <Button href={getProjectHref(lang)} size="lg">
-          {project.homeCta}
-        </Button>
+  <!-- ═══════════ BLOG ═══════════ -->
+  <section class="section home-blog" id="blog">
+    <div class="container">
+      <header class="section-head">
+        <p class="kicker">Blog</p>
+        <h2 class="section-head__title">Field essays</h2>
+      </header>
+
+      <div class="linkrows">
+        {
+          latestPosts.map((post) => (
+            <a class="linkrow" href={getBlogHref(lang, post.data.slug)}>
+              <span class="linkrow__title">{post.data.title}</span>
+              <span class="linkrow__meta">
+                {post.data.author} · {formatDate(post.data.publishedAt)}
+              </span>
+            </a>
+          ))
+        }
       </div>
-    </SectionBlock>
+      <p class="section-more">
+        <a class="text-link" href={getBlogHref(lang)}>{t.blog.homeCta} →</a>
+      </p>
+    </div>
+  </section>
 
-    <Discussion
-      lang={lang}
-      slug="home"
-      title="AI-Native Engineers"
-    />
+  <!-- ═══════════ PROJECT ═══════════ -->
+  <section class="section home-project" id="project">
+    <div class="container">
+      <header class="section-head">
+        <p class="kicker">Project</p>
+        <h2 class="section-head__title">{t.project.heading}</h2>
+      </header>
 
-    <Footer lang={lang} />
-  </main>
+      <div class="linkrows">
+        <a class="linkrow" href={getProjectHref(lang)}>
+          <span class="linkrow__title">{t.project.title}</span>
+          <span class="linkrow__meta">{t.project.readingTime}</span>
+        </a>
+        {
+          projectChapters.map((chapter) => (
+            <a class="linkrow" href={getChapterHref(chapter.number, lang)}>
+              <span class="linkrow__title">{chapter.title[lang]}</span>
+              <span class="linkrow__meta">{t.chapters.chapterLabel(chapter.number)}</span>
+            </a>
+          ))
+        }
+        <a class="linkrow" href={siteLinks.repository}>
+          <span class="linkrow__title">Source code on GitHub</span>
+          <span class="linkrow__meta">open repository</span>
+        </a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-  .hero-layer {
-    position: relative;
-    z-index: 1;
-    isolation: isolate;
+  /* ── Hero ─────────────────────────────────────────────── */
+  .hero {
+    padding-block: var(--space-4xl) var(--space-3xl);
   }
 
-  .hero-content {
-    position: relative;
-    z-index: 3;
-    isolation: isolate;
+  .hero__title {
+    font-size: var(--text-display);
+    font-weight: var(--weight-extrabold);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-block: var(--space-lg) var(--space-xl);
   }
 
-  .hero-badge-row {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-
-  .hero-title {
-    margin-top: var(--space-md);
-  }
-
-  .hero-tagline {
-    font-size: var(--text-xl);
+  .hero__lede {
+    font-family: var(--font-serif);
+    font-size: var(--text-lede);
+    line-height: 1.45;
     color: var(--color-text-muted);
-    max-width: 42ch;
-    margin-block: var(--space-lg);
-    line-height: var(--leading-relaxed);
+    max-width: 36ch;
+    text-wrap: balance;
   }
 
-  .sessions-intro {
-    max-width: 60ch;
-    margin-block: var(--space-md) var(--space-lg);
-    color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
-  }
-
-  .session-order {
-    font-family: var(--font-heading);
-    font-weight: var(--weight-medium);
+  .hero__tagline {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+    margin-top: var(--space-xl);
   }
 
-  .card-footer-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-sm);
+  /* ── Manifesto strip ──────────────────────────────────── */
+  .manifesto {
+    background: var(--color-ink);
+    color: var(--color-fg-on-ink);
+    padding-block: var(--space-3xl);
   }
 
-  .card-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    font-family: var(--font-heading);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-sm);
-    color: var(--color-primary);
+  .manifesto__text {
+    font-size: var(--text-lede);
+    line-height: 1.5;
+    max-width: 34ch;
+    margin-top: var(--space-lg);
   }
 
-  .card-cta-arrow {
-    transition: transform var(--transition-fast);
+  .manifesto__text strong {
+    color: var(--color-fg-on-ink);
   }
 
-  :global(.linkable):hover .card-cta-arrow {
-    transform: translateX(4px);
-  }
-
-  :global(#hero) {
-    padding-bottom: var(--space-lg);
-  }
-
-  :global(#sessions) {
+  /* ── Section headers ──────────────────────────────────── */
+  .section-head {
+    border-top: var(--line);
     padding-top: var(--space-lg);
     margin-bottom: var(--space-2xl);
   }
 
-  @media (min-width: 1024px) {
-    :global(#hero) {
-      padding-bottom: var(--space-xl);
-    }
-
-    :global(#sessions) {
-      padding-top: var(--space-xl);
-      margin-bottom: var(--space-3xl);
-    }
+  .section-head__title {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.02em;
+    margin-top: var(--space-md);
   }
 
-  .project-cta-block {
-    text-align: center;
-    max-width: 42ch;
-    margin-inline: auto;
-  }
-
-  .project-cta-block h2 {
-    margin-top: var(--space-sm);
-  }
-
-  .project-cta-block p {
-    margin-block: var(--space-md) var(--space-lg);
+  .section-head__lede {
+    font-size: var(--text-lede);
     color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
+    max-width: 56ch;
+    margin-top: var(--space-md);
   }
 
-  h2 + p {
-    margin-block: var(--space-md);
+  /* ── Primer ───────────────────────────────────────────── */
+  .primer__blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--space-2xl);
+    row-gap: var(--space-2xl);
   }
 
+  .pblock {
+    border-top: 2px solid var(--color-ink);
+    padding-top: var(--space-md);
+    padding-bottom: var(--space-xl);
+  }
 
+  .pblock__numeral {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .pblock__title {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.01em;
+    margin-block: var(--space-sm) var(--space-md);
+  }
+
+  .pblock p {
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Sessions ─────────────────────────────────────────── */
+  .sessions__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+    align-items: stretch;
+  }
+
+  .feature-card {
+    grid-column: 1 / -1;
+    display: block;
+    background: var(--color-ink);
+    color: var(--color-fg-on-ink);
+    padding: var(--space-2xl);
+    text-decoration: none;
+    position: relative;
+    transition: background var(--motion-fast) var(--ease-standard);
+  }
+
+  .feature-card:hover {
+    background: var(--color-accent);
+    color: var(--color-fg-on-accent);
+  }
+
+  .feature-card:hover .feature-card__meta,
+  .feature-card:hover .feature-card__summary {
+    color: var(--color-fg-on-accent);
+  }
+
+  .feature-card__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-xl);
+  }
+
+  .feature-card__numeral {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+
+  .feature-card__meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: color-mix(in srgb, var(--color-fg-on-ink) 60%, transparent);
+    transition: color var(--motion-fast) var(--ease-standard);
+  }
+
+  .feature-card__title {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-extrabold);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: var(--space-md);
+    max-width: 24ch;
+  }
+
+  .feature-card__summary {
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--color-fg-on-ink) 75%, transparent);
+    max-width: 58ch;
+    transition: color var(--motion-fast) var(--ease-standard);
+  }
+
+  .feature-card__arrow {
+    position: absolute;
+    right: var(--space-2xl);
+    bottom: var(--space-2xl);
+    font-size: var(--text-2xl);
+    line-height: 1;
+  }
+
+  /* ── Harness ──────────────────────────────────────────── */
+  .harness__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--space-2xl);
+    row-gap: var(--space-2xl);
+  }
+
+  .hblock {
+    border-top: 2px solid var(--color-ink);
+    padding-top: var(--space-md);
+    padding-bottom: var(--space-xl);
+  }
+
+  .hblock h3 {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-md);
+  }
+
+  .hblock p {
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Link rows (blog / project) ───────────────────────── */
+  .linkrows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .linkrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-xl);
+    padding-block: var(--space-md);
+    border-bottom: var(--line);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: background var(--motion-fast) var(--ease-standard);
+  }
+
+  .linkrow:first-child {
+    border-top: var(--line);
+  }
+
+  .linkrow:hover {
+    background: var(--color-surface-alt);
+  }
+
+  .linkrow__title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+  }
+
+  .linkrow__meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .section-more {
+    margin-top: var(--space-xl);
+  }
+
+  /* ── Responsive ───────────────────────────────────────── */
+  @media (max-width: 1023px) {
+    .primer__blocks {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      padding-block: var(--space-3xl) var(--space-2xl);
+    }
+
+    .primer__blocks,
+    .sessions__grid,
+    .harness__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+      padding: var(--space-xl);
+    }
+
+    .feature-card__arrow {
+      right: var(--space-xl);
+      bottom: var(--space-xl);
+    }
+
+    .linkrow {
+      flex-direction: column;
+      gap: var(--space-2xs);
+    }
+
+    .linkrow__meta {
+      text-align: left;
+    }
+  }
 </style>

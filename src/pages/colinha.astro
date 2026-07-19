@@ -63,12 +63,6 @@ const blocks = [
     ],
   },
 ] as const;
-
-const modeVariant = {
-  Ask: 'yellow',
-  Plan: 'blue',
-  Agent: 'green',
-} as const;
 ---
 
 <BaseLayout
@@ -94,9 +88,7 @@ const modeVariant = {
                   <li class="step-card">
                     <div class="step-topline">
                       <span class="step-number">{index + 1}</span>
-                      <Badge variant={modeVariant[step.mode]} size="sm">
-                        modo {step.mode}
-                      </Badge>
+                      <Badge size="sm">modo {step.mode}</Badge>
                     </div>
                     <h3>{step.title}</h3>
                     <p>{step.body}</p>
@@ -111,7 +103,7 @@ const modeVariant = {
 
     <SectionBlock padding="md" alt maxWidth="md">
       <aside class="closing-note" aria-label="Lembrete final">
-        <Badge variant="green">Lembrete</Badge>
+        <Badge variant="accent">Lembrete</Badge>
         <p>
           Não pule o planejamento. O agente executa melhor quando a próxima fase
           está pequena, clara e validável.
@@ -134,12 +126,12 @@ const modeVariant = {
   }
 
   .eyebrow {
-    font-family: var(--font-heading);
-    font-size: var(--text-sm);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-snug);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-text);
+    color: var(--color-text-muted);
   }
 
   .recipe-grid {
@@ -152,18 +144,14 @@ const modeVariant = {
     gap: var(--space-lg);
     min-width: 0;
     padding: var(--space-md);
-    border: var(--border-thick);
-    border-radius: var(--radius-md);
+    border: var(--line);
+    border-radius: var(--radius-sm);
     background-color: var(--color-surface-raised);
-    box-shadow: var(--shadow-lg);
   }
 
-  .recipe-block.planning {
-    border-top-color: var(--color-accent-1);
-  }
-
+  .recipe-block.planning,
   .recipe-block.execution {
-    border-top-color: var(--color-accent-2);
+    border-top: 2px solid var(--color-accent);
   }
 
   .step-list {
@@ -177,10 +165,9 @@ const modeVariant = {
     gap: var(--space-sm);
     min-width: 0;
     padding: var(--space-md);
-    border: var(--border-thin);
-    border-radius: var(--radius-md);
-    background-color: var(--color-bg);
-    box-shadow: var(--shadow-sm);
+    border: var(--line);
+    border-radius: var(--radius-sm);
+    background-color: transparent;
   }
 
   .step-topline {
@@ -195,11 +182,10 @@ const modeVariant = {
     place-items: center;
     width: 2.5rem;
     aspect-ratio: 1;
-    border: var(--border-thick);
     border-radius: var(--radius-sm);
     background-color: var(--color-ink);
     color: var(--color-fg-on-ink);
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: var(--text-xl);
     font-weight: var(--weight-bold);
     line-height: 1;
@@ -220,16 +206,16 @@ const modeVariant = {
     display: grid;
     gap: var(--space-md);
     padding: var(--space-lg);
-    border: var(--border-thick);
-    border-radius: var(--radius-md);
+    border: var(--line);
+    border-radius: var(--radius-sm);
     background-color: var(--color-surface-raised);
-    box-shadow: var(--shadow-md);
   }
 
   .closing-note p {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: var(--text-xl);
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.01em;
     line-height: var(--leading-snug);
     color: var(--color-heading);
   }

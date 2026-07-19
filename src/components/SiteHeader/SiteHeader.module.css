@@ -2,12 +2,8 @@
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
-  border-bottom: var(--border-thick);
-  background-color: var(--color-bg);
-  box-shadow: 0 0 0 var(--color-shadow);
-  transition:
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
+  background-color: var(--color-surface-raised);
+  border-bottom: var(--line);
 }
 
 .inner {
@@ -33,28 +29,33 @@
 .brand {
   display: inline-flex;
   align-items: center;
+  gap: var(--space-sm);
   flex: 0 1 auto;
   min-width: 0;
   min-height: 2.25rem;
-  color: var(--color-primary);
-  font-family: var(--font-heading);
+  color: var(--color-heading);
+  font-family: var(--font-display);
   font-size: var(--text-sm);
   font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
   text-decoration: none;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transform-origin: left center;
-  transition:
-    transform var(--transition-fast),
-    text-decoration-color var(--transition-fast);
+}
+
+/* the red square — the whole logo */
+.brand::before {
+  content: '';
+  width: 0.6em;
+  height: 0.6em;
+  background-color: var(--color-accent);
+  flex-shrink: 0;
 }
 
 .brand:hover {
-  color: var(--color-primary);
-  background-color: transparent;
   text-decoration: underline;
-  transform: translateX(2px);
+  text-underline-offset: 3px;
 }
 
 .iconLink {
@@ -64,28 +65,17 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: var(--border-thin);
-  box-shadow: var(--shadow-sm);
-  background-color: var(--color-white);
-  color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
   text-decoration: none;
   transition:
-    background-color var(--transition-fast),
     color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
+    background-color var(--transition-fast);
 }
 
 .iconLink:hover {
-  background-color: var(--color-accent-2);
-  color: var(--color-fg-on-blue);
-  box-shadow: var(--shadow-md);
-  transform: var(--motion-lift-sm);
-}
-
-.iconLink:active {
-  transform: translateY(1px);
-  transition-duration: var(--motion-instant);
+  color: var(--color-heading);
+  background-color: var(--color-surface-alt);
 }
 
 .icon {
@@ -105,17 +95,9 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  border: var(--border-thin);
-  box-shadow: var(--shadow-sm);
-  background-color: var(--color-white);
-  transition:
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast);
-}
-
-.langNav:hover {
-  transform: var(--motion-lift-sm);
-  box-shadow: var(--shadow-md);
+  border: var(--line);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
 }
 
 .langLink {
@@ -125,48 +107,35 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-xs);
-  color: var(--color-primary);
-  font-family: var(--font-heading);
+  color: var(--color-text-muted);
   font-size: var(--text-sm);
-  font-weight: var(--weight-bold);
   line-height: 1;
   text-decoration: none;
   transition:
-    background-color var(--transition-fast),
     color var(--transition-fast),
-    transform var(--transition-fast);
+    background-color var(--transition-fast);
 }
 
 .langLink + .langLink {
-  border-left: var(--border-thin);
+  border-left: var(--line);
 }
 
 .langLink:hover {
-  background-color: var(--color-accent-1);
-  color: var(--color-fg-on-yellow);
-  transform: translateY(-1px);
-}
-
-.langLink:active {
-  transform: translateY(1px);
-  transition-duration: var(--motion-instant);
+  color: var(--color-heading);
+  background-color: var(--color-surface-alt);
 }
 
 .active {
-  background-color: var(--color-ink);
-  color: var(--color-fg-on-ink);
-}
-
-.active:hover {
-  background-color: var(--color-ink);
-  color: var(--color-fg-on-ink);
+  color: var(--color-heading);
+  background-color: var(--color-surface-alt);
 }
 
 .flagIcon {
   display: block;
-  width: 1.65rem;
+  width: 1.5rem;
   height: auto;
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--color-line);
+  border-radius: 1px;
 }
 
 @media (min-width: 768px) {

@@ -53,12 +53,6 @@ const {
   nextSession,
 } = Astro.props;
 
-const levelVariants: Record<string, 'yellow' | 'blue' | 'green'> = {
-  beginner: 'yellow',
-  intermediate: 'blue',
-  advanced: 'green',
-};
-
 const labels = ui[lang];
 const alternateLinks = getSessionAlternateLinks(translationKey);
 
@@ -91,17 +85,15 @@ const formattedUpdatedAt = updatedAt.toLocaleDateString(
     ariaLabel={labels.progressLabel}
   />
   <main id="main-content" class="session-page">
-    <!-- hero -->
+    <!-- article header -->
     <SectionBlock as="header" padding="xl">
       <Breadcrumbs items={breadcrumbItems} lang={lang} />
-      <Badge variant="default">{heroLabel}</Badge>
+      <span class="kicker">{heroLabel}</span>
       <h1 class="session-title" transition:name="session-hero-title">
         {title}
       </h1>
       <div class="session-meta">
-        <Badge variant={levelVariants[level]} size="sm">
-          {labels.levels[level]}
-        </Badge>
+        <Badge size="sm">{labels.levels[level]}</Badge>
         <Badge size="sm">{labels.readingMinutes(readingTime)}</Badge>
         <time class="session-date" datetime={updatedAt.toISOString()}>
           {labels.updatedAt}
@@ -166,7 +158,10 @@ const formattedUpdatedAt = updatedAt.toLocaleDateString(
     flex-wrap: wrap;
     align-items: center;
     gap: var(--space-sm);
-    margin-top: var(--space-md);
+    margin-top: var(--space-lg);
+    padding-block: var(--space-md);
+    border-top: var(--line);
+    border-bottom: var(--line);
   }
 
   .session-date {
@@ -175,10 +170,12 @@ const formattedUpdatedAt = updatedAt.toLocaleDateString(
   }
 
   .summary-text {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lede);
+    line-height: var(--leading-snug);
     margin-top: var(--space-md);
-    max-width: 68ch;
+    max-width: 60ch;
   }
 
   .session-body {
@@ -242,32 +239,35 @@ const formattedUpdatedAt = updatedAt.toLocaleDateString(
     contain-intrinsic-size: auto 320px;
   }
 
+  /* pull quote — the serif moment with a 2px signal rule */
   .session-content :global(blockquote) {
-    border-left: 4px solid var(--color-accent-1);
+    border-left: 2px solid var(--color-accent);
     padding-left: var(--space-lg);
-    margin-block: var(--space-lg);
+    margin-block: var(--space-xl);
+    font-family: var(--font-serif);
     font-style: italic;
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
     color: var(--color-text-muted);
   }
 
   .session-content :global(hr) {
     border: none;
-    border-top: var(--border-thin);
+    border-top: var(--line);
     margin-block: var(--space-2xl);
   }
 
   .session-content :global(img) {
-    border: var(--border-thin);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    border: var(--line);
+    border-radius: var(--radius-sm);
   }
 
-  /* table wrapper: horizontal scroll on narrow viewports */
+  /* editorial table — hairline rules, no fills */
   .session-content :global(table) {
     width: 100%;
     border-collapse: collapse;
-    border: var(--border-thick);
-    box-shadow: var(--shadow-sm);
+    border-top: var(--line);
+    border-bottom: var(--line);
     margin-block: var(--space-lg);
     display: block;
     overflow-x: auto;
@@ -286,29 +286,25 @@ const formattedUpdatedAt = updatedAt.toLocaleDateString(
   }
 
   .session-content :global(th) {
-    background: var(--color-accent-1);
-    color: var(--color-fg-on-yellow);
-    font-family: var(--font-heading);
+    background: transparent;
+    color: var(--color-heading);
+    font-family: var(--font-display);
     font-weight: var(--weight-bold);
     font-size: var(--text-sm);
     text-align: left;
     padding: var(--space-sm) var(--space-md);
-    border-bottom: var(--border-thick);
+    border-bottom: 2px solid var(--color-ink);
   }
 
   .session-content :global(td) {
     padding: var(--space-sm) var(--space-md);
-    border-bottom: var(--border-thin);
+    border-bottom: var(--line);
     font-size: var(--text-sm);
     vertical-align: top;
   }
 
   .session-content :global(tr:last-child td) {
     border-bottom: none;
-  }
-
-  .session-content :global(tr:nth-child(even) td) {
-    background: var(--color-surface-alt);
   }
 
   .session-content :global(h2:first-child) {

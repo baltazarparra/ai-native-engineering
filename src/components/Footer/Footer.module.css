@@ -1,7 +1,6 @@
 .footer {
-  border-top: var(--border-thick);
-  background-color: var(--color-bg-alt);
-  padding: var(--space-lg) var(--space-lg);
+  border-top: var(--line);
+  padding: var(--space-xl) var(--space-lg);
 }
 
 .inner {
@@ -19,35 +18,32 @@
 }
 
 .tagline {
-  font-family: var(--font-heading);
-  font-weight: var(--weight-medium);
-  color: var(--color-primary);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.18em;
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  color: var(--color-heading);
+  text-decoration: none;
 }
 
 .tagline:hover {
-  background-color: transparent;
-  color: var(--color-primary);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .navLink {
-  font-family: var(--font-heading);
-  font-weight: var(--weight-medium);
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   text-decoration: none;
-  text-underline-offset: 0.18em;
+  transition: color var(--transition-fast);
 }
 
 .navLink:hover {
-  color: var(--color-primary);
+  color: var(--color-accent);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .navLink:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
@@ -70,28 +66,17 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: var(--border-thin);
-  box-shadow: var(--shadow-sm);
-  background-color: var(--color-white);
-  color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
   text-decoration: none;
   transition:
-    background-color var(--transition-fast),
     color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
+    background-color var(--transition-fast);
 }
 
 .socialLink:hover {
-  background-color: var(--color-accent-2);
-  color: var(--color-fg-on-blue);
-  box-shadow: var(--shadow-md);
-  transform: var(--motion-lift-sm);
-}
-
-.socialLink:active {
-  transform: translateY(1px);
-  transition-duration: var(--motion-instant);
+  color: var(--color-heading);
+  background-color: var(--color-surface-alt);
 }
 
 .icon {

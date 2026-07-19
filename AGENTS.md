@@ -74,8 +74,8 @@ Suggested order for phased work: `/analisar` (optional) → `/planejar` → `/ex
 
 - **Astro** is the framework. It was chosen because this is content-first, not app-first. Ships minimal JS via island architecture.
 - **React** is used only for interactive islands (quizzes, comparators, steppers, filters), not for page-level rendering.
-- **CSS Modules + CSS Variables + design tokens**. No Tailwind. The Neo Brutalism visual language requires authorial control that utility-first CSS undermines.
-- **CSS-first animations**. Decorative and state-transition animations must be pure CSS. JavaScript animation is reserved for _interactive physics_ (drag, pointer tracking, procedural motion): use `motion` (drag only) or bespoke `requestAnimationFrame` loops. Do not introduce other animation libraries (GSAP, anime, react-spring, etc) without explicit approval.
+- **CSS Modules + CSS Variables + design tokens**. No Tailwind. The editorial visual language ("The Institute", see `REDESIGN.md`) requires authorial control that utility-first CSS undermines.
+- **CSS-first animations**. Decorative and state-transition animations must be pure CSS, and calm: fades and small settles only — no springs, shake, or sound. JavaScript animation is reserved for _interactive physics_ (drag, pointer tracking, procedural motion) via bespoke `requestAnimationFrame` loops. Do not introduce animation libraries (GSAP, anime, react-spring, motion, etc) without explicit approval.
 - **Content Collections** with schema validation for all session content (MDX with typed frontmatter).
 
 ### Key Architecture Decisions
@@ -111,13 +111,19 @@ The home page contains a compact foundations primer for "AI-Native Engineer", "A
 
 Every session page follows a fixed template: hero → 30s summary → main explanation → why it matters → real example when useful → where it breaks → takeaway → references. Interactive blocks are used only when they clearly improve explanation, organization, or retention.
 
-## Design System: Neo Brutalism
+## Design System: The Institute (Editorial)
 
-- High contrast, block layout, thick black borders, hard offset shadows (no blur, no glassmorphism, no gradients)
-- Palette: warm light background, pure black, 2-3 vibrant accents (yellow, electric blue, acid green, or coral)
-- Heavy-weight headlines, neutral readable body text
-- Mobile-first: single column, reduced decoration, comfortable touch targets
-- WCAG contrast compliance and visible focus states
+The visual language is a quiet, typography-led editorial system inspired by institutional sites like mit.edu. Full art direction and rationale live in `REDESIGN.md`. It replaced the old Neo-Brutalist system.
+
+- One accent only: signal red (`--color-accent`); everything else is paper, ink, and hairlines. Color never carries meaning alone (levels, statuses, and types are text labels).
+- Surfaces: warm paper background, white raised surfaces, charcoal dark theme (never blue-graphite).
+- Structure: 1px hairlines (`var(--line)`) and whitespace separate sections. No thick borders, no hard offset shadows — all `--shadow-*` tokens are `none`; `var(--shadow-overlay)` exists only for floating UI.
+- Typography: Inter Tight for display/headings (`--font-display`, tracking -0.02em), Inter for body, Newsreader italic for ledes and pull quotes (`--font-serif`), JetBrains Mono for code.
+- Brand mark: typographic wordmark preceded by a small red square; favicon is the red square on paper.
+- Motion: calm only — fades and small settles with `var(--ease-standard)`. No springs, no screen shake, no audio.
+- Patterns: `.kicker` micro-labels mark sections; badges are neutral hairline chips (`variant="accent"` reserved for true highlights); cards are flat with hairline borders and underline-on-hover titles; the inverted ink band is reserved for the manifesto moment.
+- Mobile-first: single column, reduced decoration, comfortable touch targets.
+- WCAG contrast compliance and visible focus states.
 - Breakpoints: mobile ≤767px, tablet 768-1023px, desktop 1024px+, wide 1440px+
 
 ## Editorial Rules

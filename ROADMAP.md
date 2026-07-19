@@ -216,3 +216,27 @@ Things we might do later, but absolutely not now:
 - auth / user accounts
 - CMS integration
 - gamification
+
+---
+
+## Redesign Track: The Institute (Editorial)
+
+Full visual redesign replacing Neo Brutalism with the editorial system defined in `REDESIGN.md`. Implemented as sequential commits on `main` (no PRs), validated and pushed once at the end.
+
+- [x] Phase 1 — Foundations: tokens (both themes), typography, fonts, favicon
+- [x] Phase 2 — Primitives: Button, Badge, Card (+ `index` prop), kitchen-sink as permanent design-system page
+- [x] Phase 3 — Chrome: SiteHeader (red-square wordmark), ThemeToggle, Footer, SectionNav
+- [x] Phase 4+5 — Home de-gimmick (toy layer unwired; dirs pending `git rm`) + editorial home (pt/en): masthead hero, feature story, curriculum grid, manifesto band, more-from rows
+- [x] Phase 6 — Article template: SessionLayout, BlogPostLayout, NextSessionCTA, ReferencesList (numbered endnotes), ProgressTracker (2px bar), Discussion
+- [x] Phase 7 — Secondary templates I: blog index (pt/en), colinha (pt/en)
+- [x] Phase 8 — Secondary templates II: projeto pages, harness pages, 404 (pt/en), ChapterLayout, HarnessChapterLayout, `harness-chapter.css`
+- [x] Phase 9 — Deps & docs: `motion` dependency removed, AGENTS.md design section replaced, this track
+- [ ] Phase 10 — Final validation gate (`lint` + `format:check` + `build`, full click-through, both themes/locales) + single push
+
+### Follow-ups after the redesign ships
+
+- [ ] `git rm -r src/components/HeroStickers src/components/HeroGhostCursors src/components/HeroCursorTrail src/components/HeroCaptureCounter` (already unwired from all pages/layouts)
+- [ ] Sweep legacy token aliases, then delete the alias block in `tokens.css` and the `brutal-*` keyframes in `globals.css`:
+  `grep -rn "accent-[1-4]\|fg-on-yellow\|fg-on-blue\|fg-on-green\|fg-on-coral\|border-thick\|color-shadow\|font-heading\|ease-snap\|ease-out-back\|brutal-\|color-white\|color-primary\|color-border\b" src/`
+- [ ] Migrate island CSS internals (ChapterNav, ChapterFooter, harness/*) to semantic tokens — they currently inherit the new look through the legacy aliases
+- [ ] PLAN.md design-language sweep (historical discovery doc; design source of truth is now `REDESIGN.md` + `AGENTS.md`)

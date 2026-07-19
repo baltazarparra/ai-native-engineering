@@ -7,9 +7,17 @@ interface Props {
   accent?: 'yellow' | 'blue' | 'green' | 'coral';
   href?: string;
   open?: boolean;
+  index?: string | number;
 }
 
-const { title, expandable = false, accent, href, open = false } = Astro.props;
+const {
+  title,
+  expandable = false,
+  accent,
+  href,
+  open = false,
+  index,
+} = Astro.props;
 
 const accentClass = accent ? styles[`accent-${accent}`] : undefined;
 ---
@@ -30,9 +38,14 @@ const accentClass = accent ? styles[`accent-${accent}`] : undefined;
     </details>
   ) : href ? (
     <a href={href} class:list={[styles.card, styles.linkable, accentClass]}>
-      {title && (
+      {(title || index !== undefined) && (
         <div class={styles.header}>
-          <h3 class={styles.title}>{title}</h3>
+          {index !== undefined && (
+            <span class={styles.index} aria-hidden="true">
+              {index}
+            </span>
+          )}
+          {title && <h3 class={styles.title}>{title}</h3>}
         </div>
       )}
       {Astro.slots.has('meta') && (
@@ -51,9 +64,14 @@ const accentClass = accent ? styles[`accent-${accent}`] : undefined;
     </a>
   ) : (
     <div class:list={[styles.card, accentClass]}>
-      {title && (
+      {(title || index !== undefined) && (
         <div class={styles.header}>
-          <h3 class={styles.title}>{title}</h3>
+          {index !== undefined && (
+            <span class={styles.index} aria-hidden="true">
+              {index}
+            </span>
+          )}
+          {title && <h3 class={styles.title}>{title}</h3>}
         </div>
       )}
       {Astro.slots.has('meta') && (

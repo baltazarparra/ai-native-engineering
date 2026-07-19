@@ -36,12 +36,12 @@
   }
 
   .harness-page .chapter-label {
-    font-family: var(--font-heading);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-sm);
+    font-family: var(--font-body);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-xs);
     color: var(--color-text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.12em;
   }
 
   /* ── Equation card ─────────────────────────────── */
@@ -49,16 +49,15 @@
     display: grid;
     gap: var(--space-sm);
     padding: var(--space-xl);
-    border: var(--border-thick);
-    border-top-color: var(--color-accent-1);
-    border-radius: var(--radius-md);
-    background: var(--color-white);
-    box-shadow: var(--shadow-md);
-    font-family: var(--font-heading);
+    border: var(--line);
+    border-top: 2px solid var(--color-accent);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-raised);
+    font-family: var(--font-display);
   }
 
   .harness-page .equation-card span {
-    font-size: var(--text-md);
+    font-size: var(--text-base);
     color: var(--color-text-muted);
   }
 
@@ -79,10 +78,9 @@
     align-items: center;
     gap: var(--space-md);
     padding: var(--space-lg);
-    border: var(--border-thick);
-    border-radius: var(--radius-md);
-    background: var(--color-white);
-    box-shadow: var(--shadow-md);
+    border: var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-raised);
   }
 
   .harness-page .contrast-side {
@@ -106,14 +104,16 @@
 
   /* ── Key insight blockquote ────────────────────── */
   .harness-page .key-insight {
-    border-left: 4px solid var(--color-accent-1);
+    border-left: 2px solid var(--color-accent);
     padding: var(--space-md) var(--space-lg);
     margin: 0;
     background: var(--color-surface-alt);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-family: var(--font-serif);
     font-style: italic;
+    font-size: var(--text-lg);
     color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
+    line-height: var(--leading-snug);
     max-width: 74ch;
   }
 
@@ -125,18 +125,18 @@
 
   .harness-page .comparison-card {
     padding: var(--space-lg);
-    border: var(--border-thick);
-    border-radius: var(--radius-md);
-    background: var(--color-white);
-    box-shadow: var(--shadow-md);
+    border: var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-raised);
   }
 
+  /* weak/anti-pattern gets the red rule; strong gets ink */
   .harness-page .comparison-card.weak {
-    border-top-color: var(--color-accent-4);
+    border-top: 2px solid var(--color-accent);
   }
 
   .harness-page .comparison-card.strong {
-    border-top-color: var(--color-accent-3);
+    border-top: 2px solid var(--color-ink);
   }
 
   .harness-page .comparison-card h3 {
@@ -171,10 +171,9 @@
     flex-direction: column;
     gap: var(--space-lg);
     padding: var(--space-xl);
-    border: var(--border-thick);
-    border-radius: var(--radius-md);
-    background: var(--color-white);
-    box-shadow: var(--shadow-md);
+    border: var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-raised);
   }
 
   .harness-page .layer-header {
@@ -189,11 +188,10 @@
     place-items: center;
     width: 2.5rem;
     aspect-ratio: 1;
-    border: var(--border-thick);
     border-radius: var(--radius-sm);
     background-color: var(--color-ink);
     color: var(--color-fg-on-ink);
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: var(--text-xl);
     font-weight: var(--weight-bold);
     line-height: 1;
@@ -215,7 +213,7 @@
     display: grid;
     gap: var(--space-lg);
     padding-top: var(--space-md);
-    border-top: var(--border-thin);
+    border-top: var(--line);
   }
 
   .harness-page .layer-point {
@@ -236,9 +234,10 @@
   }
 
   .harness-page .layer-point blockquote {
-    border-left: 3px solid var(--color-accent-1);
+    border-left: 2px solid var(--color-accent);
     padding-left: var(--space-md);
     margin: 0;
+    font-family: var(--font-serif);
     font-style: italic;
     color: var(--color-text-muted);
     line-height: var(--leading-relaxed);
@@ -270,14 +269,13 @@
     gap: var(--space-md);
     align-items: start;
     padding: var(--space-lg);
-    border: var(--border-thick);
-    border-radius: var(--radius-md);
-    background: var(--color-white);
-    box-shadow: var(--shadow-md);
+    border: var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-raised);
   }
 
   .harness-page .maturity-card--peak {
-    border-top-color: var(--color-accent-3);
+    border-top: 2px solid var(--color-accent);
   }
 
   .harness-page .maturity-header {
@@ -293,11 +291,10 @@
     place-items: center;
     width: 2.5rem;
     aspect-ratio: 1;
-    border: var(--border-thick);
     border-radius: var(--radius-sm);
     background-color: var(--color-ink);
     color: var(--color-fg-on-ink);
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: var(--text-xl);
     font-weight: var(--weight-bold);
     line-height: 1;
@@ -331,10 +328,9 @@
     gap: var(--space-md);
     align-items: center;
     padding: var(--space-md) var(--space-lg);
-    border: var(--border-thick);
-    border-radius: var(--radius-md);
-    background: var(--color-white);
-    box-shadow: var(--shadow-sm);
+    border: var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-raised);
   }
 
   .harness-page .question-number {
@@ -342,12 +338,11 @@
     place-items: center;
     width: 2rem;
     aspect-ratio: 1;
-    border: var(--border-thick);
     border-radius: var(--radius-sm);
-    background-color: var(--color-accent-1);
-    color: var(--color-fg-on-yellow);
-    font-family: var(--font-heading);
-    font-size: var(--text-md);
+    background-color: var(--color-ink);
+    color: var(--color-fg-on-ink);
+    font-family: var(--font-display);
+    font-size: var(--text-base);
     font-weight: var(--weight-bold);
     line-height: 1;
     flex-shrink: 0;
@@ -355,29 +350,29 @@
 
   .harness-page .question-card p {
     margin: 0;
-    font-size: var(--text-md);
+    font-size: var(--text-base);
     line-height: var(--leading-relaxed);
   }
 
   /* ── Thesis blockquote ─────────────────────────── */
   .harness-page .thesis {
-    border-left: 4px solid var(--color-ink);
     padding: var(--space-lg) var(--space-xl);
     margin: 0;
     background: var(--color-ink);
     color: var(--color-fg-on-ink);
-    border-radius: var(--radius-md);
-    font-family: var(--font-heading);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-display);
     font-size: var(--text-xl);
     font-style: normal;
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-relaxed);
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.01em;
+    line-height: var(--leading-snug);
   }
 
   .harness-page .thesis.secondary {
     background: var(--color-surface-alt);
-    color: var(--color-ink);
-    border-left-color: var(--color-accent-1);
+    color: var(--color-heading);
+    border-left: 2px solid var(--color-accent);
   }
 
   /* ── Footer grid ───────────────────────────────── */
@@ -387,8 +382,9 @@
   }
 
   .harness-page .footer-grid a {
-    color: var(--color-ink);
-    font-weight: var(--weight-bold);
+    color: var(--color-heading);
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
   }
 
   /* ── Card prose ─────────────────────────────────── */

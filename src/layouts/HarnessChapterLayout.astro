@@ -1,7 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
-import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
 import Discussion from '../components/Discussion/Discussion.astro';
 import HarnessChapterTabs from '../components/harness/HarnessChapterTabs';
@@ -68,7 +67,7 @@ const breadcrumbItems =
   <main id="main-content" class="harness-page">
     <SectionBlock as="header" padding="xl">
       <Breadcrumbs items={breadcrumbItems} lang={lang} />
-      {heroBadge ? <Badge variant="coral">{heroBadge}</Badge> : null}
+      {heroBadge ? <span class="kicker">{heroBadge}</span> : null}
       <h1 class="harness-page-title">{heroTitle}</h1>
       {heroSummary ? <p class="harness-page-summary">{heroSummary}</p> : null}
       <HarnessShareBar
@@ -118,9 +117,11 @@ const breadcrumbItems =
   }
 
   .harness-page-summary {
-    font-size: var(--text-xl);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lede);
     color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
+    line-height: var(--leading-snug);
     margin-top: var(--space-md);
     max-width: 58ch;
   }

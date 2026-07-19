@@ -25,22 +25,31 @@ const alternateLinks = [
 >
   <main id="main-content">
     <SectionBlock padding="xl">
+      <span class="kicker">The Institute — design system</span>
       <h1>Kitchen Sink</h1>
       <p>
-        Todos os componentes do design system em todos os estados. Essa página é
-        temporária, vai sumir depois da Fase 2.
+        Todos os componentes do sistema editorial em todos os estados. Esta
+        página é permanente (dev-only): é a referência visual de cada fase do
+        redesign e o checklist de regressão antes de cada commit.
       </p>
     </SectionBlock>
 
     <!-- typography -->
     <SectionBlock padding="xl" alt>
       <h2>Tipografia</h2>
-      <h1>Heading 1 - Space Grotesk Bold</h1>
-      <h2>Heading 2 - O subtítulo grandão</h2>
-      <h3>Heading 3 - Seções dentro de seções</h3>
-      <h4>Heading 4 - Labels importantes</h4>
-      <h5>Heading 5 - Detalhes</h5>
-      <h6>Heading 6 - O menor que existe</h6>
+      <span class="kicker">Kicker / eyebrow — uppercase 12px tracking 0.12em</span>
+      <h1>Heading 1 — Inter Tight Bold, tracking -0.02em</h1>
+      <p
+        style="font-family: var(--font-serif); font-style: italic; font-size: var(--text-lede); line-height: var(--leading-snug); color: var(--color-text-muted);"
+      >
+        Lede em Newsreader itálico — o momento serifado do sistema, usado no
+        hero da home, em pull quotes e na faixa manifesto.
+      </p>
+      <h2>Heading 2 — o subtítulo grandão</h2>
+      <h3>Heading 3 — seções dentro de seções</h3>
+      <h4>Heading 4 — labels importantes</h4>
+      <h5>Heading 5 — detalhes</h5>
+      <h6>Heading 6 — o menor que existe</h6>
       <p>
         Parágrafo normal em Inter 400. A gente precisa garantir que esse texto é
         confortável de ler em qualquer tela. Linha comprida demais cansa, curta
@@ -61,49 +70,45 @@ console.log(resultado);</code></pre>
     <SectionBlock padding="xl">
       <h2>Paleta de cores</h2>
       <p>
-        As cores de acento só funcionam como fundo com texto preto (exceto azul
-        que usa branco).
+        Um único acento: o vermelho-sinal. O resto é papel, tinta e fios de
+        cabelo. No dark, o acento clareia para manter contraste.
       </p>
       <Grid columns={4} gap="md">
-        <div
-          style="background: var(--color-bg); border: var(--border-thick); padding: 1rem;"
-        >
-          bg<br />#faf5ee
+        <div style="background: var(--color-surface); border: var(--line); padding: 1rem;">
+          surface<br />papel
         </div>
-        <div
-          style="background: var(--color-bg-alt); border: var(--border-thick); padding: 1rem;"
-        >
-          bg-alt<br />#f0e9df
+        <div style="background: var(--color-surface-alt); border: var(--line); padding: 1rem;">
+          surface-alt<br />faixa
         </div>
-        <div
-          style="background: var(--color-primary); color: var(--color-bg); border: var(--border-thick); padding: 1rem;"
-        >
-          primary<br />#000000
+        <div style="background: var(--color-surface-raised); border: var(--line); padding: 1rem;">
+          raised<br />cards
         </div>
-        <div
-          style="background: var(--color-text-muted); color: var(--color-bg); border: var(--border-thick); padding: 1rem;"
-        >
-          muted<br />#4a4a4a
+        <div style="background: var(--color-line); border: var(--line); padding: 1rem;">
+          line<br />hairline 1px
         </div>
-        <div
-          style="background: var(--color-accent-1); border: var(--border-thick); padding: 1rem;"
-        >
-          accent-1<br />#f5c518
+        <div style="background: var(--color-ink); color: var(--color-fg-on-ink); border: var(--line); padding: 1rem;">
+          ink<br />botão primário
         </div>
-        <div
-          style="background: var(--color-accent-2); color: white; border: var(--border-thick); padding: 1rem;"
-        >
-          accent-2<br />#2952e8
+        <div style="background: var(--color-text); color: var(--color-surface); border: var(--line); padding: 1rem;">
+          text<br />corpo
         </div>
-        <div
-          style="background: var(--color-accent-3); border: var(--border-thick); padding: 1rem;"
-        >
-          accent-3<br />#00b34a
+        <div style="background: var(--color-text-muted); color: var(--color-surface); border: var(--line); padding: 1rem;">
+          muted<br />secundário
         </div>
-        <div
-          style="background: var(--color-accent-4); border: var(--border-thick); padding: 1rem;"
-        >
-          accent-4<br />#ff5c5c
+        <div style="background: var(--color-heading); color: var(--color-surface); border: var(--line); padding: 1rem;">
+          heading<br />display
+        </div>
+        <div style="background: var(--color-accent); color: var(--color-fg-on-accent); border: var(--line); padding: 1rem;">
+          accent<br />vermelho-sinal
+        </div>
+        <div style="background: var(--color-accent-strong); color: var(--color-fg-on-accent); border: var(--line); padding: 1rem;">
+          accent-strong<br />hover
+        </div>
+        <div style="background: var(--color-focus); color: #ffffff; border: var(--line); padding: 1rem;">
+          focus<br />anel de foco
+        </div>
+        <div style="background: var(--color-code-bg); color: var(--color-code-fg); border: var(--line); padding: 1rem;">
+          code<br />sempre escuro
         </div>
       </Grid>
     </SectionBlock>
@@ -111,6 +116,10 @@ console.log(resultado);</code></pre>
     <!-- badges -->
     <SectionBlock padding="xl" alt>
       <h2>Badges / Labels</h2>
+      <p>
+        Níveis não usam mais cor — todo badge é um chip neutro de hairline. O
+        único colorido é o <code>accent</code>, reservado para destaques reais.
+      </p>
       <div
         style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;"
       >
@@ -118,9 +127,9 @@ console.log(resultado);</code></pre>
         <Badge variant="yellow">beginner</Badge>
         <Badge variant="blue">intermediate</Badge>
         <Badge variant="green">advanced</Badge>
-        <Badge variant="coral">anti-padrão</Badge>
+        <Badge variant="accent">Novo</Badge>
         <Badge size="sm">tag pequena</Badge>
-        <Badge size="sm" variant="yellow">5 min de leitura</Badge>
+        <Badge size="sm" variant="coral">5 min de leitura</Badge>
       </div>
     </SectionBlock>
 
@@ -128,7 +137,7 @@ console.log(resultado);</code></pre>
     <SectionBlock padding="xl">
       <h2>Botões</h2>
 
-      <h3>Primary</h3>
+      <h3>Primary — tinta sólida, vermelho no hover</h3>
       <div
         style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: var(--space-xl);"
       >
@@ -138,7 +147,7 @@ console.log(resultado);</code></pre>
         <Button disabled>Desabilitado</Button>
       </div>
 
-      <h3>Secondary</h3>
+      <h3>Secondary — contorno de tinta, preenche no hover</h3>
       <div
         style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: var(--space-xl);"
       >
@@ -147,7 +156,7 @@ console.log(resultado);</code></pre>
         <Button variant="secondary" size="lg">Grandão</Button>
       </div>
 
-      <h3>Ghost</h3>
+      <h3>Ghost — texto sublinhado</h3>
       <div
         style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: var(--space-xl);"
       >
@@ -167,21 +176,24 @@ console.log(resultado);</code></pre>
     <SectionBlock padding="xl" alt>
       <h2>Cards</h2>
 
-      <h3>Cards simples com acentos</h3>
+      <h3>Cards simples</h3>
       <Grid columns={3} gap="lg">
-        <Card title="Card sem acento">
-          <p>Conteúdo padrão do card. Borda preta grossa, sombra dura.</p>
+        <Card title="Card neutro">
+          <p>Hairline de 1px, sem sombra. A hierarquia vem do tipo e do ar.</p>
         </Card>
-        <Card title="Card amarelo" accent="yellow">
-          <p>Esse tem a faixa amarela no topo.</p>
+        <Card title="Com numeral" index="01">
+          <p>O numeral editorial opcional, para listas tipo currículo.</p>
           <Fragment slot="footer">
             <Button variant="secondary" size="sm">Ver mais</Button>
           </Fragment>
         </Card>
-        <Card title="Card azul" accent="blue">
-          <p>Faixa azul elétrico.</p>
+        <Card title="Com fio vermelho" accent="yellow">
+          <p>
+            Qualquer valor legado de <code>accent</code> vira o mesmo filete
+            vermelho de 2px no topo.
+          </p>
           <Fragment slot="meta">
-            <Badge variant="blue">intermediate</Badge>
+            <Badge>intermediate</Badge>
             <Badge size="sm">8 min</Badge>
           </Fragment>
         </Card>
@@ -191,11 +203,11 @@ console.log(resultado);</code></pre>
     <SectionBlock padding="xl">
       <h3>Card como link</h3>
       <Grid columns={2} gap="lg">
-        <Card title="Clicável inteiro" href={base} accent="green">
-          <p>Esse card todo é um link. Hover levanta, click empurra.</p>
+        <Card title="Clicável inteiro" href={base} index="02">
+          <p>Esse card todo é um link. Hover escurece a borda e sublinha o título.</p>
         </Card>
-        <Card title="Outro link" href={base} accent="coral">
-          <p>Coral pra coisas de anti-padrão.</p>
+        <Card title="Outro link" href={base}>
+          <p>Nada levanta, nada empurra. Só cor e sublinhado.</p>
         </Card>
       </Grid>
     </SectionBlock>
@@ -203,7 +215,7 @@ console.log(resultado);</code></pre>
     <SectionBlock padding="xl" alt>
       <h3>Cards expansíveis</h3>
       <div style="display: flex; flex-direction: column; gap: var(--space-md);">
-        <Card title="O que é um LLM?" expandable accent="yellow">
+        <Card title="O que é um LLM?" expandable>
           <p>
             <strong>Versão simples:</strong> é um programa de computador treinado
             pra ler e escrever texto.
@@ -214,7 +226,7 @@ console.log(resultado);</code></pre>
             condicional.
           </p>
         </Card>
-        <Card title="O que é um agente?" expandable accent="blue" open>
+        <Card title="O que é um agente?" expandable open>
           <p>Esse já começa aberto pra mostrar que dá.</p>
         </Card>
       </div>
@@ -226,43 +238,33 @@ console.log(resultado);</code></pre>
 
       <h3>2 colunas</h3>
       <Grid columns={2} gap="md">
-        <div
-          style="background: var(--color-accent-1); border: var(--border-thick); padding: 1rem;"
-        >
+        <div style="background: var(--color-surface-alt); border: var(--line); padding: 1rem;">
           Col 1
         </div>
-        <div
-          style="background: var(--color-accent-3); border: var(--border-thick); padding: 1rem;"
-        >
+        <div style="background: var(--color-surface-alt); border: var(--line); padding: 1rem;">
           Col 2
         </div>
       </Grid>
 
       <h3>3 colunas</h3>
       <Grid columns={3} gap="md">
-        <div
-          style="background: var(--color-accent-1); border: var(--border-thick); padding: 1rem;"
-        >
+        <div style="background: var(--color-surface-alt); border: var(--line); padding: 1rem;">
           1
         </div>
-        <div
-          style="background: var(--color-accent-2); border: var(--border-thick); padding: 1rem; color: white;"
-        >
-          2
+        <div style="background: var(--color-accent); color: var(--color-fg-on-accent); border: var(--line); padding: 1rem;">
+          2 — o único vermelho
         </div>
-        <div
-          style="background: var(--color-accent-3); border: var(--border-thick); padding: 1rem;"
-        >
+        <div style="background: var(--color-surface-alt); border: var(--line); padding: 1rem;">
           3
         </div>
       </Grid>
 
       <h3>4 colunas</h3>
       <Grid columns={4} gap="sm">
-        <div style="border: var(--border-thick); padding: 1rem;">A</div>
-        <div style="border: var(--border-thick); padding: 1rem;">B</div>
-        <div style="border: var(--border-thick); padding: 1rem;">C</div>
-        <div style="border: var(--border-thick); padding: 1rem;">D</div>
+        <div style="border: var(--line); padding: 1rem;">A</div>
+        <div style="border: var(--line); padding: 1rem;">B</div>
+        <div style="border: var(--line); padding: 1rem;">C</div>
+        <div style="border: var(--line); padding: 1rem;">D</div>
       </Grid>
     </SectionBlock>
 
@@ -296,8 +298,8 @@ console.log(resultado);</code></pre>
     <SectionBlock padding="xl" alt>
       <h2>Links</h2>
       <p>
-        Um <a href="#">link normal inline</a> dentro de texto. Tem que ser óbvio que
-        é clicável sem precisar de cor sozinha pra indicar.
+        Um <a href="#">link normal inline</a> dentro de texto. Tinta +
+        sublinhado; o vermelho só aparece no hover.
       </p>
       <p>
         Outro parágrafo com <a href="#">mais um link</a> pra ver o padrão se repetindo.

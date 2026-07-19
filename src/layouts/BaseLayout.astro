@@ -166,15 +166,6 @@ const themePersistScript = `
   });
 })();
 `;
-
-const navDirectionScript = `
-(function () {
-  document.addEventListener('astro:before-preparation', function (event) {
-    var dir = event && event.direction ? event.direction : 'forward';
-    document.documentElement.dataset.navDirection = dir;
-  });
-})();
-`;
 ---
 
 <!doctype html>
@@ -184,7 +175,6 @@ const navDirectionScript = `
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline set:html={themeInitScript} />
     <script is:inline set:html={themePersistScript} />
-    <script is:inline set:html={navDirectionScript} />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link
@@ -217,29 +207,11 @@ const navDirectionScript = `
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&family=Space+Grotesk:wght@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400&family=Newsreader:ital,opsz,wght@1,6..72,400;500&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
     <ClientRouter />
-    <script>
-      import {
-        initAudioOnGesture,
-        playPageSwoosh,
-      } from '../components/HeroStickers/sound';
-
-      let navDirection: 'forward' | 'back' = 'forward';
-
-      document.addEventListener('astro:before-preparation', (event) => {
-        const ev = event as Event & { direction?: 'forward' | 'back' };
-        navDirection = ev.direction ?? 'forward';
-        initAudioOnGesture();
-      });
-
-      document.addEventListener('astro:before-swap', () => {
-        playPageSwoosh(navDirection);
-      });
-    </script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">{ui[lang].skipToContent}</a>

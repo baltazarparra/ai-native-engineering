@@ -44,7 +44,7 @@ function formatPublishedAt(date: Date): string {
   <main id="main-content" class="blog-index">
     <SectionBlock as="header" padding="xl">
       <Breadcrumbs items={breadcrumbItems} lang={lang} />
-      <Badge variant="default">{labels.title}</Badge>
+      <span class="kicker">{labels.title}</span>
       <h1 class="blog-index-title">{labels.title}</h1>
       <p class="blog-index-summary">{labels.summary}</p>
     </SectionBlock>
@@ -98,10 +98,12 @@ function formatPublishedAt(date: Date): string {
   }
 
   .blog-index-summary {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lede);
+    line-height: var(--leading-snug);
     margin-top: var(--space-md);
-    max-width: 68ch;
+    max-width: 60ch;
     color: var(--color-text-muted);
   }
 
@@ -123,10 +125,10 @@ function formatPublishedAt(date: Date): string {
     display: inline-flex;
     align-items: center;
     gap: var(--space-xs);
-    font-family: var(--font-heading);
-    font-weight: var(--weight-bold);
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
     font-size: var(--text-sm);
-    color: var(--color-primary);
+    color: var(--color-heading);
   }
 
   .card-cta-arrow {

@@ -12,35 +12,28 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-xs);
-  border: var(--border-thin);
-  box-shadow: var(--shadow-sm);
-  background-color: var(--color-surface-raised);
-  color: var(--color-ink);
+  border: none;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--color-text-muted);
   cursor: pointer;
   transition:
-    background-color var(--transition-fast),
     color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
+    background-color var(--transition-fast);
 }
 
 .toggle:hover {
-  transform: var(--motion-lift-sm);
-  box-shadow: var(--shadow-md);
-  background-color: var(--color-accent-1);
-  color: var(--color-fg-on-yellow);
+  color: var(--color-heading);
+  background-color: var(--color-surface-alt);
 }
 
 .toggle:active {
-  transform: translateY(1px);
-  box-shadow: 2px 2px 0 var(--color-shadow);
-  transition-duration: var(--motion-instant);
+  color: var(--color-accent);
 }
 
 .toggle:focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 3px;
-  box-shadow: var(--shadow-md);
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 .iconSlot {
@@ -75,11 +68,11 @@
   pointer-events: none;
 }
 
-/* Give the entering icon a subtle brutal pop on theme change (CSS-only, stateless). */
+/* Entering icon settles in quietly on theme change (CSS-only, stateless). */
 :global(html[data-theme='light']) .sun,
 :global(html[data-theme='dark']) .moon {
   animation: var(--motion-key-scale-pop) var(--motion-normal)
-    var(--ease-out-back);
+    var(--ease-standard);
 }
 
 /* View Transition flourish: a quick, tokenized crossfade on theme change.

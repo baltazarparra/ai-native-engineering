@@ -40,13 +40,12 @@ const lang = 'en';
 
   .error-code {
     display: block;
-    font-family: var(--font-heading);
-    font-weight: var(--weight-bold);
-    font-size: 8rem;
+    font-family: var(--font-display);
+    font-weight: var(--weight-extrabold);
+    font-size: clamp(4rem, 2rem + 10vw, 9rem);
     line-height: 1;
-    color: var(--color-accent-1);
-    -webkit-text-stroke: 3px var(--color-primary);
-    paint-order: stroke fill;
+    letter-spacing: -0.03em;
+    color: var(--color-heading);
   }
 
   .error-page h1 {
@@ -69,10 +68,6 @@ const lang = 'en';
   }
 
   @media (max-width: 767px) {
-    .error-code {
-      font-size: 5rem;
-    }
-
     .error-actions {
       flex-direction: column;
       align-items: center;

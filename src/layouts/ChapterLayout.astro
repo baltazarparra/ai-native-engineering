@@ -1,7 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
-import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
 import Discussion from '../components/Discussion/Discussion.astro';
 import ProgressTracker from '../components/ProgressTracker/ProgressTracker.tsx';
@@ -27,8 +26,7 @@ const chapter = CHAPTERS.find((ch) => ch.number === chapterNumber)!;
 const labels = ui[lang].chapters;
 const alternateLinks = getChapterAlternateLinks(chapterNumber);
 const references = resolveChapterReferences(chapter, lang);
-const badgeVariant = chapter.isReference ? 'blue' : 'coral';
-const badgeText = chapter.isReference
+const kickerText = chapter.isReference
   ? labels.reference
   : labels.chapterLabel(chapterNumber);
 const breadcrumbItems = [
@@ -66,7 +64,7 @@ const gitReminder =
   <main id="main-content" class="chapter-page">
     <SectionBlock as="header" padding="xl">
       <Breadcrumbs items={breadcrumbItems} lang={lang} />
-      <Badge variant={badgeVariant}>{badgeText}</Badge>
+      <span class="kicker">{kickerText}</span>
       <h1 class="chapter-title">{chapter.title[lang]}</h1>
       <p class="chapter-summary">{chapter.description[lang]}</p>
     </SectionBlock>
@@ -74,7 +72,7 @@ const gitReminder =
     <div class="chapter-body">
       <aside class="chapter-sidebar">
         <ChapterNav client:idle currentChapter={chapterNumber} lang={lang} />
-      </aside>
+        </aside>
       <article class="session-content">
         <slot />
         <div class="git-reminder">
@@ -118,10 +116,12 @@ git push`}</code></pre>
   }
 
   .chapter-summary {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lede);
+    line-height: var(--leading-snug);
     margin-top: var(--space-md);
-    max-width: 68ch;
+    max-width: 60ch;
     color: var(--color-text-muted);
   }
 
@@ -178,16 +178,19 @@ git push`}</code></pre>
   }
 
   .session-content :global(blockquote) {
-    border-left: 4px solid var(--color-accent-1);
+    border-left: 2px solid var(--color-accent);
     padding-left: var(--space-lg);
-    margin-block: var(--space-lg);
+    margin-block: var(--space-xl);
+    font-family: var(--font-serif);
     font-style: italic;
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
     color: var(--color-text-muted);
   }
 
   .session-content :global(hr) {
     border: none;
-    border-top: var(--border-thin);
+    border-top: var(--line);
     margin-block: var(--space-2xl);
   }
 
@@ -195,56 +198,58 @@ git push`}</code></pre>
     margin-top: 0;
   }
 
+  /* checkpoint callout — hairline + 2px signal rule */
   .session-content :global(.checkpoint) {
-    border: var(--border-thick);
-    border-left: 6px solid var(--color-accent-3);
-    background-color: var(--color-bg-alt);
+    border: var(--line);
+    border-left: 2px solid var(--color-accent);
+    background-color: var(--color-surface-alt);
     padding: var(--space-md) var(--space-lg);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     margin-block: var(--space-lg);
   }
 
   .session-content :global(.checkpoint strong) {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     display: block;
     margin-bottom: var(--space-xs);
   }
 
   .session-content :global(.prompt-example) {
-    border: var(--border-thin);
-    background-color: var(--color-bg-alt);
+    border: var(--line);
+    background-color: var(--color-surface-alt);
     padding: var(--space-md) var(--space-lg);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     margin-block: var(--space-md);
   }
 
+  /* good example = ink rule; anti-pattern = red rule */
   .session-content :global(.prompt-good) {
-    border-left: 6px solid var(--color-accent-3);
+    border-left: 2px solid var(--color-ink);
   }
 
   .session-content :global(.prompt-bad) {
-    border-left: 6px solid var(--color-accent-4);
+    border-left: 2px solid var(--color-accent);
   }
 
   .session-content :global(.prompt-example strong) {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: var(--text-sm);
     display: block;
     margin-bottom: var(--space-xs);
   }
 
   .session-content :global(.git-reminder) {
-    border: var(--border-thick);
-    border-left: 6px solid var(--color-accent-1);
-    background-color: var(--color-bg-alt);
+    border: var(--line);
+    border-left: 2px solid var(--color-accent);
+    background-color: var(--color-surface-alt);
     padding: var(--space-md) var(--space-lg);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     margin-top: var(--space-3xl);
     margin-bottom: var(--space-xl);
   }
 
   .session-content :global(.git-reminder strong) {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     display: block;
     margin-bottom: var(--space-xs);
   }

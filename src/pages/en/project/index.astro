@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import SectionBlock from '../../../components/SectionBlock/SectionBlock.astro';
-import Badge from '../../../components/Badge/Badge.astro';
 import Footer from '../../../components/Footer/Footer.astro';
 import ChapterStepper from '../../../components/ChapterStepper/ChapterStepper.tsx';
 import HackerNewsNewspaper from '../../../components/HackerNewsNewspaper/HackerNewsNewspaper.tsx';
@@ -26,7 +25,7 @@ const breadcrumbItems = [
   <main id="main-content" class="project-landing">
     <SectionBlock as="header" padding="xl">
       <Breadcrumbs items={breadcrumbItems} lang={lang} />
-      <Badge variant="coral">{labels.heroLabel}</Badge>
+      <span class="kicker">{labels.heroLabel}</span>
       <h1 class="landing-title">{labels.heading}</h1>
       <p class="landing-summary">
         A practical guide to building a live news newspaper with the HackerNews
@@ -51,7 +50,7 @@ const breadcrumbItems = [
     </SectionBlock>
 
     <SectionBlock padding="lg">
-      <Badge variant="yellow">Live demo</Badge>
+      <span class="kicker">Live demo</span>
       <h2 class="section-heading demo-heading">This is the project you'll build</h2>
       <p class="demo-desc">
         The component below fetches the HackerNews API right now and renders the

@@ -24,17 +24,6 @@ const labels = ui[lang].references;
 
 if (references.length === 0) return;
 
-const typeBadgeVariant: Record<
-  string,
-  'default' | 'yellow' | 'blue' | 'green' | 'coral'
-> = {
-  artigo: 'default',
-  documentacao: 'blue',
-  talk: 'yellow',
-  video: 'coral',
-  pesquisa: 'green',
-};
-
 // group by type, sort by priority within each group
 const grouped = Object.entries(
   references.reduce(
@@ -65,9 +54,7 @@ const grouped = Object.entries(
                 {ref.title}
               </a>
               <span class={styles.source}>({ref.source})</span>
-              <Badge variant={typeBadgeVariant[ref.type]} size="sm">
-                {labels.badgeLabels[ref.type]}
-              </Badge>
+              <Badge size="sm">{labels.badgeLabels[ref.type]}</Badge>
             </li>
           ))}
         </ul>

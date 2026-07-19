@@ -1,48 +1,43 @@
+/* ==========================================================================
+   The Institute — editorial design tokens (see REDESIGN.md)
+   One accent. Hairlines. Type before decoration. Calm motion.
+   ========================================================================== */
+
 :root {
   color-scheme: light;
 
-  /* --- neutral surfaces (warm paper) --- */
-  --color-surface: #faf5ee;
-  --color-surface-alt: #f0e9df;
+  /* --- surfaces (warm paper) --- */
+  --color-surface: #faf8f4;
+  --color-surface-alt: #f2efe8;
   --color-surface-raised: #ffffff;
 
   /* --- text --- */
-  --color-text: #1a1a1a;
-  --color-text-muted: #4a4a4a;
-  --color-heading: #000000;
+  --color-text: #1c1b18;
+  --color-text-muted: #5b584f;
+  --color-heading: #0e0e0c;
 
-  /* --- brutalist ink (borders, inverted blocks, shadows) --- */
-  --color-ink: #000000;
-  --color-shadow: var(--color-ink);
-  --color-fg-on-ink: var(--color-surface);
+  /* --- ink (inverted band, primary buttons) --- */
+  --color-ink: #0e0e0c;
+  --color-fg-on-ink: #faf8f4;
 
-  /* --- accents --- */
-  --color-accent-1: #f5c518; /* yellow */
-  --color-accent-2: #2952e8; /* electric blue */
-  --color-accent-3: #00b34a; /* acid green */
-  --color-accent-4: #ff5c5c; /* coral */
+  /* --- the one accent: signal red --- */
+  --color-accent: #a31f34;
+  --color-accent-strong: #7c1626;
+  --color-fg-on-accent: #ffffff;
 
-  /* --- fixed text on colored backgrounds (same role across themes) --- */
-  --color-fg-on-yellow: #000000;
-  --color-fg-on-blue: #ffffff;
-  --color-fg-on-green: #000000;
-  --color-fg-on-coral: #000000;
+  /* --- hairlines --- */
+  --color-line: #e1dcd2;
+  --line: 1px solid var(--color-line);
 
-  /* --- code (never inverts; stays dark in both themes) --- */
-  --color-code-bg: #1a1612;
-  --color-code-fg: #f6ecd9;
-  --color-code-border: var(--color-ink);
+  /* --- code (stays dark in both themes) --- */
+  --color-code-bg: #17150f;
+  --color-code-fg: #f2ede2;
 
-  /* --- focus --- */
+  /* --- focus (functional, not brand) --- */
   --color-focus: #2952e8;
 
-  /* --- legacy aliases (don't edit downstream CSS that references these) --- */
-  --color-bg: var(--color-surface);
-  --color-bg-alt: var(--color-surface-alt);
-  --color-white: var(--color-surface-raised);
-  --color-primary: var(--color-ink);
-  --color-border: var(--color-ink);
-  --color-fg-on-accent: var(--color-fg-on-blue);
+  /* --- elevation (flat by default; overlay only for floating UI) --- */
+  --shadow-overlay: 0 8px 24px rgb(0 0 0 / 0.08);
 
   /* spacing */
   --space-2xs: 0.125rem;
@@ -56,9 +51,12 @@
   --space-4xl: 6rem;
 
   /* fonts */
-  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-display: 'Inter Tight', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* legacy alias — components still reference --font-heading */
+  --font-heading: var(--font-display);
 
   /* font sizes */
   --text-xs: 0.75rem;
@@ -70,12 +68,15 @@
   --text-3xl: 2rem;
   --text-4xl: 2.5rem;
   --text-5xl: 3.5rem;
+  --text-display: clamp(2.75rem, 1.5rem + 5vw, 4.5rem);
+  --text-lede: clamp(1.25rem, 1.05rem + 0.8vw, 1.5rem);
 
   /* font weights */
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
+  --weight-extrabold: 800;
 
   /* line heights */
   --leading-tight: 1.1;
@@ -83,15 +84,16 @@
   --leading-normal: 1.6;
   --leading-relaxed: 1.75;
 
-  /* borders */
-  --border-thin: 2px solid var(--color-border);
-  --border-thick: 4px solid var(--color-border);
+  /* borders — hairlines */
+  --border-thin: 1px solid var(--color-line);
+  /* legacy alias — thick borders are retired */
+  --border-thick: 1px solid var(--color-line);
 
-  /* shadows (neo brutalism: hard offset, zero blur) */
-  --shadow-sm: 2px 2px 0 var(--color-shadow);
-  --shadow-md: 4px 4px 0 var(--color-shadow);
-  --shadow-lg: 6px 6px 0 var(--color-shadow);
-  --shadow-xl: 8px 8px 0 var(--color-shadow);
+  /* shadows — hard offsets retired */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
 
   /* radii */
   --radius-none: 0;
@@ -112,17 +114,18 @@
   --motion-slow: 340ms;
   --motion-enter: 360ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  --ease-out-back: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-snap: cubic-bezier(0.34, 1.18, 0.64, 1);
+  /* legacy aliases — springs retired, resolve to the standard ease */
+  --ease-out-back: cubic-bezier(0.2, 0, 0, 1);
+  --ease-snap: cubic-bezier(0.2, 0, 0, 1);
   --motion-lift-sm: translateY(-1px);
-  --motion-lift-md: translate(-2px, -2px);
-  --motion-press: translate(1px, 1px);
-  --motion-key-rise-in: brutal-rise-in;
-  --motion-key-pop-in: brutal-pop-in;
-  --motion-key-panel-in: brutal-panel-in;
-  --motion-key-details-in: brutal-details-in;
-  --motion-key-scale-pop: brutal-scale-pop;
-  --motion-key-fill-kick: brutal-fill-kick;
+  --motion-lift-md: translateY(-1px);
+  --motion-press: none;
+  --motion-key-rise-in: rise-in;
+  --motion-key-pop-in: pop-in;
+  --motion-key-panel-in: panel-in;
+  --motion-key-details-in: details-in;
+  --motion-key-scale-pop: scale-in;
+  --motion-key-fill-kick: fade-in;
 
   /* transitions */
   --transition-fast: var(--motion-fast) var(--ease-standard);
@@ -133,42 +136,61 @@
   --z-above: 10;
   --z-sticky: 100;
   --z-overlay: 1000;
+
+  /* ==========================================================================
+     Legacy color aliases (Phase 1 transition layer — removed in Phase 9).
+     Every old accent resolves to the one signal red; text-on-accent resolves
+     accordingly. Do not reference these in new code.
+     ========================================================================== */
+  --color-accent-1: var(--color-accent);
+  --color-accent-2: var(--color-accent);
+  --color-accent-3: var(--color-accent);
+  --color-accent-4: var(--color-accent);
+  --color-fg-on-yellow: var(--color-fg-on-accent);
+  --color-fg-on-blue: var(--color-fg-on-accent);
+  --color-fg-on-green: var(--color-fg-on-accent);
+  --color-fg-on-coral: var(--color-fg-on-accent);
+  --color-shadow: transparent;
+  --color-code-border: var(--color-line);
+  --color-bg: var(--color-surface);
+  --color-bg-alt: var(--color-surface-alt);
+  --color-white: var(--color-surface-raised);
+  --color-primary: var(--color-ink);
+  --color-border: var(--color-line);
 }
 
-/* --- dark: graphite + Arc/Framer brutalism --- */
+/* --- dark: charcoal, not blue-graphite --- */
 [data-theme='dark'] {
   color-scheme: dark;
 
-  /* graphite surfaces, clearly stepped */
-  --color-surface: #282c33;
-  --color-surface-alt: #2e323a;
-  --color-surface-raised: #363b44;
+  /* surfaces */
+  --color-surface: #131311;
+  --color-surface-alt: #1a1916;
+  --color-surface-raised: #22211d;
 
   /* text hierarchy */
-  --color-text: #acb2be;
-  --color-text-muted: #b3bbc7;
-  --color-heading: #d1d5dc;
+  --color-text: #e9e6de;
+  --color-text-muted: #a8a499;
+  --color-heading: #f5f3ec;
 
-  /* brutalist cool ink for borders + inverted blocks + hard shadows */
-  --color-ink: #edf0f5;
-  --color-shadow: var(--color-ink);
-  --color-fg-on-ink: var(--color-surface);
+  /* ink inverts */
+  --color-ink: #ece9e2;
+  --color-fg-on-ink: #131311;
 
-  /* fresh dark-native accents */
-  --color-accent-1: #c8ff4d; /* electric chartreuse (new brand pop) */
-  --color-accent-2: #7cd7ff; /* icy cyan */
-  --color-accent-3: #5be37a; /* neon green */
-  --color-accent-4: #ff8aa0; /* coral-pink */
+  /* accent brightened for contrast on charcoal */
+  --color-accent: #e04b42;
+  --color-accent-strong: #eb6a62;
+  /* bright red takes dark text, not white */
+  --color-fg-on-accent: #131311;
 
-  /* text on accents: all accents are bright, text goes dark */
-  --color-fg-on-yellow: #1e2128;
-  --color-fg-on-blue: #1e2128;
-  --color-fg-on-green: #1e2128;
-  --color-fg-on-coral: #1e2128;
+  /* hairlines */
+  --color-line: #2e2c27;
 
   /* code stays deeper than surface */
-  --color-code-bg: #1e2128;
-  --color-code-fg: #edf0f5;
+  --color-code-bg: #0f0e0c;
+  --color-code-fg: #ece9e2;
 
-  --color-focus: #7cd7ff;
+  --color-focus: #8fb0ff;
+
+  --shadow-overlay: 0 8px 24px rgb(0 0 0 / 0.4);
 }
