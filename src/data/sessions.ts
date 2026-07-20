@@ -15,13 +15,13 @@ export interface SessionCardData {
 
 export const sessions: SessionCardData[] = [
   {
-    title: 'Glossário e vibe coding: o mapa mínimo sem cair no hype',
+    title: 'Glossário: o mapa mínimo sem cair no hype',
     slug: 'glossario',
     lang: 'pt-BR',
     translationKey: 'glossary',
     order: 1,
     summary:
-      'Os termos que você precisa para continuar no site, mais vibe coding: onde ajuda, onde quebra e como transformar demo em software de verdade.',
+      'Os termos que você precisa para continuar no site e como transformar demo em software de verdade.',
     readingTime: 14,
     level: 'beginner',
     heroLabel: 'Vocabulário essencial',

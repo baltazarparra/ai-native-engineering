@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Card from '../components/Card/Card.astro';
+import Footer from '../components/Footer/Footer.astro';
 import Button from '../components/Button/Button.astro';
 import Reveal from '../components/motion/Reveal.tsx';
 import { getSessions } from '../data/sessions';
@@ -38,9 +39,6 @@ const formatDate = (date: Date) =>
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero" aria-label="Apresentação">
     <div class="container">
-      <Reveal client:load>
-        <p class="kicker">Currículo aberto · AI-Native Engineers</p>
-      </Reveal>
       <Reveal client:load delay={0.08}>
         <h1 class="hero__title">
           AI-Native Engineers<span class="accent-dot">.</span>
@@ -48,19 +46,9 @@ const formatDate = (date: Date) =>
       </Reveal>
       <Reveal client:load delay={0.16}>
         <p class="hero__lede">
-          Aprenda a projetar os sistemas em que agentes de IA trabalham:
+          Aprenda a projetar o ambiente em que agentes de IA trabalham:
           especificação, contexto, validação e responsabilidade.
         </p>
-      </Reveal>
-      <Reveal client:load delay={0.24}>
-        <div class="hero__ctas">
-          <Button href={getSessionHref(lang, 'glossario')} size="lg"
-            >Começar agora</Button
-          >
-          <Button href="#sessoes" variant="secondary" size="lg"
-            >Ver o currículo</Button
-          >
-        </div>
       </Reveal>
     </div>
   </section>
@@ -72,76 +60,9 @@ const formatDate = (date: Date) =>
         <p class="manifesto__text">
           O código deixa de ser o artefato central. O artefato central passa a
           ser o
-          <strong>sistema</strong>: especificações, agentes, contexto, validação
+          <strong>ambiente</strong>: especificações, agentes, contexto, validação
           e responsabilidade.
         </p>
-      </Reveal>
-    </div>
-  </section>
-
-  <!-- ═══════════ PRIMER ═══════════ -->
-  <section class="primer section" id="fundamentos">
-    <div class="container">
-      <header class="section-head">
-        <h2 class="section-head__title">O básico, sem jargão</h2>
-      </header>
-
-      <Reveal client:visible>
-        <div class="primer__blocks">
-          <article class="pblock">
-            <span class="pblock__numeral" aria-hidden="true">01</span>
-            <h3 class="pblock__title">AI-Native Engineer</h3>
-            <p>
-              É quem projeta o sistema em que os agentes trabalham:
-              especificação, contexto, validação e responsabilidade. Não é "dev
-              que usa Copilot". É uma mudança de papel: de escrever código para
-              arquitetar a produção dele.
-            </p>
-          </article>
-
-          <article class="pblock">
-            <span class="pblock__numeral" aria-hidden="true">02</span>
-            <h3 class="pblock__title">Agente de IA</h3>
-            <p>
-              É um programa que persegue um objetivo em ciclos: observa o
-              ambiente, planeja, age com ferramentas, verifica o resultado e
-              repete. Diferente de um chat que só responde, o agente executa:
-              edita arquivos, roda testes, navega.
-            </p>
-          </article>
-
-          <article class="pblock">
-            <span class="pblock__numeral" aria-hidden="true">03</span>
-            <h3 class="pblock__title">Agente de código</h3>
-            <p>
-              É o agente especializado em software. Lê seu repositório, propõe
-              mudanças, abre arquivos, roda comandos e itera até a tarefa passar
-              na validação. Claude Code, Cursor e Windsurf são exemplos do
-              padrão.
-            </p>
-          </article>
-
-          <article class="pblock">
-            <span class="pblock__numeral" aria-hidden="true">04</span>
-            <h3 class="pblock__title">SDD (Spec-Driven Development)</h3>
-            <p>
-              É o método de trabalho: a especificação vira o artefato principal.
-              O agente implementa a partir dela, os testes validam o
-              comportamento dela, e o código vira resultado, não a fonte da
-              verdade.
-            </p>
-          </article>
-
-          <article class="pblock">
-            <span class="pblock__numeral" aria-hidden="true">05</span>
-            <h3 class="pblock__title">Harness</h3>
-            <p>
-              É o ambiente em volta do modelo: instruções, ferramentas, memória,
-              verificações e limites. É o chassi onde o agente roda, e é ele que
-              determina a qualidade do que sai.
-            </p>
-          </article>
-        </div>
       </Reveal>
     </div>
   </section>
@@ -150,8 +71,7 @@ const formatDate = (date: Date) =>
   <section class="sessions section" id="sessoes">
     <div class="container">
       <header class="section-head">
-        <p class="kicker">Currículo</p>
-        <h2 class="section-head__title">O currículo em três aulas</h2>
+        <h2 class="section-head__title">O conceito em três partes</h2>
         <p class="section-head__lede">
           Vocabulário, ferramentas e método para sair da demo e assumir o
           sistema que produz o software.
@@ -193,34 +113,65 @@ const formatDate = (date: Date) =>
     </div>
   </section>
 
-  <!-- ═══════════ BLOG ═══════════ -->
-  <section class="section home-blog" id="blog">
+  <!-- ═══════════ PRIMER ═══════════ -->
+  <section class="primer section" id="fundamentos">
     <div class="container">
       <header class="section-head">
-        <h2 class="section-head__title">Ensaios do campo</h2>
-        <p class="section-head__lede">
-          Relatos sobre o trabalho real com agentes, onde decisões, falhas e
-          ajustes aparecem fora do formato de aula.
-        </p>
+        <h2 class="section-head__title">Novos termos</h2>
       </header>
 
       <Reveal client:visible>
-        <div class="linkrows">
-          {
-            latestPosts.map((post) => (
-              <a class="linkrow" href={getBlogHref(lang, post.data.slug)}>
-                <span class="linkrow__title">{post.data.title}</span>
-                <span class="linkrow__meta">
-                  {post.data.author} · {formatDate(post.data.publishedAt)}
-                </span>
-              </a>
-            ))
-          }
+        <div class="primer__blocks">
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">01</span>
+            <h3 class="pblock__title">AI-Native Engineer</h3>
+            <p>
+              É quem projeta o ambiente em que os agentes trabalham:
+              loops, especificação, contexto e responsabilidade. Não é "dev
+              que usa Copilot".
+            </p>
+          </article>
+
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">02</span>
+            <h3 class="pblock__title">Agente de IA</h3>
+            <p>
+              É um programa que persegue um objetivo em ciclos: observa o
+              ambiente, planeja, age com ferramentas, verifica o resultado e
+              repete. Diferente de um chat que só responde, o agente executa:
+              edita arquivos, roda testes, navega.
+            </p>
+          </article>
+
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">03</span>
+            <h3 class="pblock__title">LLM (O Modelo)</h3>
+            <p>
+              Large Language Model, O "cérebro" que confere inteligência ao Agente de IA.
+              Integrado ao harness, é o LLM que processa as definições do SDD, analisa o contexto do repositório e toma decisões matemáticas a cada ciclo
+            </p>
+          </article>
+
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">04</span>
+            <h3 class="pblock__title">SDD (Spec-Driven Development)</h3>
+            <p>
+              É o artefato principal que define a especificação e o método de trabalho.
+              O agente implementa e valida o trabalho a partir das definições na Spec
+            </p>
+          </article>
+
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">05</span>
+            <h3 class="pblock__title">Harness</h3>
+            <p>
+              É o ambiente em volta do modelo: instruções, ferramentas, memória,
+              verificações e limites. É o chassi onde o agente roda, e é ele que
+              determina a qualidade do que sai.
+            </p>
+          </article>
         </div>
       </Reveal>
-      <p class="section-more">
-        <a class="text-link" href={getBlogHref(lang)}>{t.blog.homeCta} →</a>
-      </p>
     </div>
   </section>
 
@@ -256,8 +207,35 @@ const formatDate = (date: Date) =>
       </Reveal>
     </div>
   </section>
-</BaseLayout>
 
+    <!-- ═══════════ BLOG ═══════════ -->
+  <section class="section home-blog" id="blog">
+    <div class="container">
+      <header class="section-head">
+        <h2 class="section-head__title">Escritas</h2>
+      </header>
+
+      <Reveal client:visible>
+        <div class="linkrows">
+          {
+            latestPosts.map((post) => (
+              <a class="linkrow" href={getBlogHref(lang, post.data.slug)}>
+                <span class="linkrow__title">{post.data.title}</span>
+                <span class="linkrow__meta">
+                  {post.data.author} · {formatDate(post.data.publishedAt)}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </Reveal>
+      <p class="section-more">
+        <a class="text-link" href={getBlogHref(lang)}>{t.blog.homeCta} →</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+<Footer lang={lang} />
 <style>
   /* ── Hero ─────────────────────────────────────────────── */
   .hero {
