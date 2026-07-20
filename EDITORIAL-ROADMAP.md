@@ -34,10 +34,10 @@ changing content.
 
 ### What we ship
 
-- [ ] Add the narrative canon to `TONE.md`.
-- [ ] Update `TONE.md` section 7 for the current project and legacy-route state.
-- [ ] Add a historical errata to `REDESIGN.md`.
-- [ ] Correct the PRD and this roadmap so scope, terminology, rollout, and
+- [x] Add the narrative canon to `TONE.md`.
+- [x] Update `TONE.md` section 7 for the current project and legacy-route state.
+- [x] Add a historical errata to `REDESIGN.md`.
+- [x] Correct the PRD and this roadmap so scope, terminology, rollout, and
       acceptance criteria agree.
 
 ### Done when
@@ -57,10 +57,10 @@ content model before deleting it.
 
 ### What we ship
 
-- [ ] Create `src/data/harness-redirects.ts` with stable IDs and PT/EN slugs.
-- [ ] Move legacy alternate-link generation into the redirect manifest.
-- [ ] Update both dynamic redirect routes to consume the new manifest.
-- [ ] Keep both overview redirect routes unchanged except for any helper rename
+- [x] Create `src/data/harness-redirects.ts` with stable IDs and PT/EN slugs.
+- [x] Move legacy alternate-link generation into the redirect manifest.
+- [x] Update both dynamic redirect routes to consume the new manifest.
+- [x] Keep both overview redirect routes unchanged except for any helper rename
       required by the manifest.
 
 ### Done when
@@ -83,17 +83,17 @@ infrastructure without changing live features.
 
 ### What we ship
 
-- [ ] Delete `src/components/harness/`, `HarnessChapterLayout.astro`,
+- [x] Delete `src/components/harness/`, `HarnessChapterLayout.astro`,
       `harness-chapter.css`, `src/lib/harness-progress.ts`, and
       `src/data/harness-chapters.ts`.
-- [ ] Remove the harness UI block from `src/lib/i18n.ts`.
-- [ ] Delete the four unwired `Hero*` directories.
-- [ ] Delete `src/lib/liveblocks.ts`, remove Liveblocks dependencies, update
+- [x] Remove the harness UI block from `src/lib/i18n.ts`.
+- [x] Delete the four unwired `Hero*` directories.
+- [x] Delete `src/lib/liveblocks.ts`, remove Liveblocks dependencies, update
       both lockfiles, remove the obsolete environment entry, and remove the global
       Liveblocks badge rule.
-- [ ] Keep `motion`; `src/components/motion/Reveal.tsx` still imports it.
-- [ ] Remove the unused session `accent` property.
-- [ ] Update PT/EN kitchen-sink copy to the current type system and dash rules.
+- [x] Keep `motion`; `src/components/motion/Reveal.tsx` still imports it.
+- [x] Remove the unused session `accent` property.
+- [x] Update PT/EN kitchen-sink copy to the current type system and dash rules.
 
 ### Done when
 
@@ -115,12 +115,12 @@ curriculum.
 
 ### What we ship
 
-- [ ] Naturalize the four flagged EN lesson passages.
-- [ ] Reduce the repeated two-beat contrasts in both maturity lessons, keeping
+- [x] Naturalize the four flagged EN lesson passages.
+- [x] Reduce the repeated two-beat contrasts in both maturity lessons, keeping
       the strongest closing move.
-- [ ] Backport "When to automate" and "What to take from here" to PT publish.
-- [ ] Expand PRD on first use in both build chapters.
-- [ ] Replace the `2–3` range in both planning chapters.
+- [x] Backport "When to automate" and "What to take from here" to PT publish.
+- [x] Expand PRD on first use in both build chapters.
+- [x] Replace the `2–3` range in both planning chapters.
 
 ### Done when
 
@@ -141,11 +141,11 @@ possible copy-only change.
 
 ### What we ship
 
-- [ ] One-line curriculum lede naming vocabulary, tools, method, and ownership.
-- [ ] One-line blog lede distinguishing field essays from the curriculum.
-- [ ] One-line project lede connecting theory to practice.
-- [ ] Equivalent treatment in English.
-- [ ] Reuse `.section-head__lede`; do not add components, layout rules, images,
+- [x] One-line curriculum lede naming vocabulary, tools, method, and ownership.
+- [x] One-line blog lede distinguishing field essays from the curriculum.
+- [x] One-line project lede connecting theory to practice.
+- [x] Equivalent treatment in English.
+- [x] Reuse `.section-head__lede`; do not add components, layout rules, images,
       or motion.
 
 ### Done when
@@ -167,14 +167,15 @@ possible copy-only change.
 
 ### What we ship
 
-- [ ] Update the redesign track and follow-ups in `ROADMAP.md` to remove stale
+- [x] Update the redesign track and follow-ups in `ROADMAP.md` to remove stale
       harness, hero-toy, and Liveblocks work.
-- [ ] Run the full quality gate under Linux Node 22.
-- [ ] Verify all generated legacy redirect pages and locale alternates.
-- [ ] Run editorial candidate scans and manually triage comment-only matches.
-- [ ] Review both locales, both themes, and representative mobile/desktop
+- [x] Run the full quality gate under Linux Node 22.
+- [x] Verify all generated legacy redirect pages and locale alternates.
+- [x] Run editorial candidate scans and manually triage comment-only matches.
+- [x] Review both locales, both themes, and representative mobile/desktop
       widths.
-- [ ] Push local `main` once all checks pass.
+- Push local `main` once all checks pass. This is the final release operation,
+  performed after the completion commit.
 
 ### Quality gate
 

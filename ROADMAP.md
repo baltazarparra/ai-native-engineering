@@ -226,17 +226,31 @@ Full visual redesign replacing Neo Brutalism with the editorial system defined i
 - [x] Phase 1 — Foundations: tokens (both themes), typography, fonts, favicon
 - [x] Phase 2 — Primitives: Button, Badge, Card (+ `index` prop), kitchen-sink as permanent design-system page
 - [x] Phase 3 — Chrome: SiteHeader (red-square wordmark), ThemeToggle, Footer, SectionNav
-- [x] Phase 4+5 — Home de-gimmick (toy layer unwired; dirs pending `git rm`) + editorial home (pt/en): masthead hero, feature story, curriculum grid, manifesto band, more-from rows
+- [x] Phase 4+5 — Home de-gimmick + editorial home (pt/en): masthead hero, feature story, curriculum grid, manifesto band, more-from rows; toy layer removed in the editorial cleanup track
 - [x] Phase 6 — Article template: SessionLayout, BlogPostLayout, NextSessionCTA, ReferencesList (numbered endnotes), ProgressTracker (2px bar), Discussion
 - [x] Phase 7 — Secondary templates I: blog index (pt/en), colinha (pt/en)
-- [x] Phase 8 — Secondary templates II: projeto pages, harness pages, 404 (pt/en), ChapterLayout, HarnessChapterLayout, `harness-chapter.css`
-- [x] Phase 9 — Deps & docs: `motion` dependency removed, AGENTS.md design section replaced, this track
-- [ ] Phase 10 — Final validation gate (`lint` + `format:check` + `build`, full click-through, both themes/locales) + single push
+- [x] Phase 8 — Secondary templates II: projeto pages, legacy harness redirect pages, 404 (pt/en), ChapterLayout
+- [x] Phase 9 — Deps & docs: `motion` retained for the shared Reveal island, AGENTS.md design section replaced, this track
+- [x] Phase 10 — Final validation gate (`lint` + `format:check` + `build`, full click-through, both themes/locales)
 
 ### Follow-ups after the redesign ships
 
-- [ ] `git rm -r src/components/HeroStickers src/components/HeroGhostCursors src/components/HeroCursorTrail src/components/HeroCaptureCounter` (already unwired from all pages/layouts)
 - [ ] Sweep legacy token aliases, then delete the alias block in `tokens.css` and the `brutal-*` keyframes in `globals.css`:
       `grep -rn "accent-[1-4]\|fg-on-yellow\|fg-on-blue\|fg-on-green\|fg-on-coral\|border-thick\|color-shadow\|font-heading\|ease-snap\|ease-out-back\|brutal-\|color-white\|color-primary\|color-border\b" src/`
-- [ ] Migrate island CSS internals (ChapterNav, ChapterFooter, harness/\*) to semantic tokens — they currently inherit the new look through the legacy aliases
+- [ ] Migrate remaining island CSS internals, including ChapterNav and ChapterFooter, to semantic tokens; the discontinued harness islands were removed
 - [ ] PLAN.md design-language sweep (historical discovery doc; design source of truth is now `REDESIGN.md` + `AGENTS.md`)
+
+---
+
+## Editorial Track: Voice, Tone, and Narrative
+
+The editorial cleanup and narrative canon are defined in
+[`PRD-EDITORIAL.md`](PRD-EDITORIAL.md) and executed through
+[`EDITORIAL-ROADMAP.md`](EDITORIAL-ROADMAP.md).
+
+- [x] Phase 1 — Narrative canon and active-documentation alignment
+- [x] Phase 2 — Stable manifest for all legacy harness redirect URLs
+- [x] Phase 3 — Discontinued harness, hero toys, and Liveblocks removed
+- [x] Phase 4 — Targeted lesson corrections and PT/EN project parity
+- [x] Phase 5 — Home narrative ledes in both locales
+- [x] Phase 6 — Quality gate, editorial scans, redirect checks, and browser review
