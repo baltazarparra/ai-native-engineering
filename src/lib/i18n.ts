@@ -151,6 +151,8 @@ export const ui = {
     footer: {
       tagline: 'baltz',
       personalSite: 'Site baltz.dev',
+      taglinePachi: 'pachi',
+      personalSitePachi: 'Site pachi.dev',
       repositoryLink: 'Repositório no GitHub',
       blogLink: 'Blog',
     },

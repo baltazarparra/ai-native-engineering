@@ -25,6 +25,17 @@ const blogHref = getBlogHref(lang);
     >
       {ui[lang].footer.tagline}
     </a>
+|
+    <a
+      class={styles.tagline}
+      href={siteLinks.pachi}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={ui[lang].footer.personalSitePachi}
+    >
+      {ui[lang].footer.taglinePachi}
+    </a>
+
     <a class={styles.navLink} href={blogHref}>
       {ui[lang].footer.blogLink}
     </a>
