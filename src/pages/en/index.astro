@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Card from '../../components/Card/Card.astro';
-import Button from '../../components/Button/Button.astro';
+import Footer from '../../components/Footer/Footer.astro';
 import Reveal from '../../components/motion/Reveal.tsx';
 import { getSessions } from '../../data/sessions';
 import { TRACKABLE_CHAPTERS, getChapterHref } from '../../data/chapters';
@@ -38,9 +38,6 @@ const formatDate = (date: Date) =>
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero" aria-label="Introduction">
     <div class="container">
-      <Reveal client:load>
-        <p class="kicker">Open curriculum · AI-Native Engineers</p>
-      </Reveal>
       <Reveal client:load delay={0.08}>
         <h1 class="hero__title">
           AI-Native Engineers<span class="accent-dot">.</span>
@@ -48,19 +45,9 @@ const formatDate = (date: Date) =>
       </Reveal>
       <Reveal client:load delay={0.16}>
         <p class="hero__lede">
-          Learn to design the systems in which AI agents work: specification,
-          context, validation, and responsibility.
+          Learn to design the environment in which AI agents work:
+          specification, context, validation, and responsibility.
         </p>
-      </Reveal>
-      <Reveal client:load delay={0.24}>
-        <div class="hero__ctas">
-          <Button href={getSessionHref(lang, 'glossary')} size="lg"
-            >Start now</Button
-          >
-          <Button href="#sessions" variant="secondary" size="lg"
-            >See the curriculum</Button
-          >
-        </div>
       </Reveal>
     </div>
   </section>
@@ -72,75 +59,9 @@ const formatDate = (date: Date) =>
         <p class="manifesto__text">
           Code stops being the central artifact. The central artifact becomes
           the
-          <strong>system</strong>: specifications, agents, context, validation,
-          and responsibility.
+          <strong>environment</strong>: specifications, agents, context,
+          validation, and responsibility.
         </p>
-      </Reveal>
-    </div>
-  </section>
-
-  <!-- ═══════════ PRIMER ═══════════ -->
-  <section class="primer section" id="fundamentals">
-    <div class="container">
-      <header class="section-head">
-        <h2 class="section-head__title">The basics, no jargon</h2>
-      </header>
-
-      <Reveal client:visible>
-        <div class="primer__blocks">
-          <article class="pblock">
-            <span class="pblock__numeral" aria-hidden="true">01</span>
-            <h3 class="pblock__title">AI-Native Engineer</h3>
-            <p>
-              Someone who designs the system agents work in: specification,
-              context, validation, and responsibility. Not "a dev who uses
-              Copilot". A shift from writing code to architecting its
-              production.
-            </p>
-          </article>
-
-          <article class="pblock">
-            <span class="pblock__numeral" aria-hidden="true">02</span>
-            <h3 class="pblock__title">AI agent</h3>
-            <p>
-              A program that pursues a goal in loops: it observes the
-              environment, plans, acts with tools, checks the result, and
-              repeats. Unlike a chat that only answers, an agent executes: it
-              edits files, runs tests, navigates.
-            </p>
-          </article>
-
-          <article class="pblock">
-            <span class="pblock__numeral" aria-hidden="true">03</span>
-            <h3 class="pblock__title">Coding agent</h3>
-            <p>
-              An agent specialized in software. It reads your repository,
-              proposes changes, opens files, runs commands, and iterates until
-              the task passes validation. Claude Code, Cursor, and Windsurf are
-              examples of the pattern.
-            </p>
-          </article>
-
-          <article class="pblock">
-            <span class="pblock__numeral" aria-hidden="true">04</span>
-            <h3 class="pblock__title">SDD (Spec-Driven Development)</h3>
-            <p>
-              The working method: the specification becomes the primary
-              artifact. The agent implements from it, tests validate its
-              behavior, and code becomes output, not the source of truth.
-            </p>
-          </article>
-
-          <article class="pblock">
-            <span class="pblock__numeral" aria-hidden="true">05</span>
-            <h3 class="pblock__title">Harness</h3>
-            <p>
-              The environment around the model: instructions, tools, memory,
-              checks, and limits. It is the chassis the agent runs on, and it
-              determines the quality of what comes out.
-            </p>
-          </article>
-        </div>
       </Reveal>
     </div>
   </section>
@@ -149,8 +70,7 @@ const formatDate = (date: Date) =>
   <section class="sessions section" id="sessions">
     <div class="container">
       <header class="section-head">
-        <p class="kicker">Curriculum</p>
-        <h2 class="section-head__title">The curriculum in three lessons</h2>
+        <h2 class="section-head__title">The concept in three parts</h2>
         <p class="section-head__lede">
           Vocabulary, tools, and method for moving beyond the demo and owning
           the system that produces the software.
@@ -163,7 +83,7 @@ const formatDate = (date: Date) =>
             sortedSessions.map((session, i) => {
               const href = getSessionHref(lang, session.slug);
               const numeral = String(i + 1).padStart(2, '0');
-              const meta = `${session.readingTime} min read · ${t.levels[session.level]}`;
+              const meta = `${session.readingTime} min · ${t.levels[session.level]}`;
 
               return session.order === 3 ? (
                 <a href={href} class="feature-card">
@@ -192,34 +112,68 @@ const formatDate = (date: Date) =>
     </div>
   </section>
 
-  <!-- ═══════════ BLOG ═══════════ -->
-  <section class="section home-blog" id="blog">
+  <!-- ═══════════ PRIMER ═══════════ -->
+  <section class="primer section" id="fundamentals">
     <div class="container">
       <header class="section-head">
-        <h2 class="section-head__title">Field essays</h2>
-        <p class="section-head__lede">
-          Essays about real work with agents, where decisions, failures, and
-          adjustments appear outside the lesson format.
-        </p>
+        <h2 class="section-head__title">New terms</h2>
       </header>
 
       <Reveal client:visible>
-        <div class="linkrows">
-          {
-            latestPosts.map((post) => (
-              <a class="linkrow" href={getBlogHref(lang, post.data.slug)}>
-                <span class="linkrow__title">{post.data.title}</span>
-                <span class="linkrow__meta">
-                  {post.data.author} · {formatDate(post.data.publishedAt)}
-                </span>
-              </a>
-            ))
-          }
+        <div class="primer__blocks">
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">01</span>
+            <h3 class="pblock__title">AI-Native Engineer</h3>
+            <p>
+              Someone who designs the environment agents work in: loops,
+              specification, context, and responsibility. Not "a dev who uses
+              Copilot".
+            </p>
+          </article>
+
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">02</span>
+            <h3 class="pblock__title">AI agent</h3>
+            <p>
+              A program that pursues a goal in loops: it observes the
+              environment, plans, acts with tools, checks the result, and
+              repeats. Unlike a chat that only answers, an agent executes: it
+              edits files, runs tests, navigates.
+            </p>
+          </article>
+
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">03</span>
+            <h3 class="pblock__title">LLM (The Model)</h3>
+            <p>
+              Large Language Model — the "brain" that gives the AI agent its
+              intelligence. Wired into the harness, the LLM processes the SDD
+              definitions, analyzes the repository context, and makes
+              mathematical decisions on every cycle.
+            </p>
+          </article>
+
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">04</span>
+            <h3 class="pblock__title">SDD (Spec-Driven Development)</h3>
+            <p>
+              The primary artifact that defines the specification and the
+              working method. The agent implements and validates the work from
+              the definitions in the Spec.
+            </p>
+          </article>
+
+          <article class="pblock">
+            <span class="pblock__numeral" aria-hidden="true">05</span>
+            <h3 class="pblock__title">Harness</h3>
+            <p>
+              The environment around the model: instructions, tools, memory,
+              checks, and limits. It is the chassis the agent runs on, and it
+              determines the quality of what comes out.
+            </p>
+          </article>
         </div>
       </Reveal>
-      <p class="section-more">
-        <a class="text-link" href={getBlogHref(lang)}>{t.blog.homeCta} →</a>
-      </p>
     </div>
   </section>
 
@@ -255,8 +209,35 @@ const formatDate = (date: Date) =>
       </Reveal>
     </div>
   </section>
-</BaseLayout>
 
+  <!-- ═══════════ BLOG ═══════════ -->
+  <section class="section home-blog" id="blog">
+    <div class="container">
+      <header class="section-head">
+        <h2 class="section-head__title">Writings</h2>
+      </header>
+
+      <Reveal client:visible>
+        <div class="linkrows">
+          {
+            latestPosts.map((post) => (
+              <a class="linkrow" href={getBlogHref(lang, post.data.slug)}>
+                <span class="linkrow__title">{post.data.title}</span>
+                <span class="linkrow__meta">
+                  {post.data.author} · {formatDate(post.data.publishedAt)}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </Reveal>
+      <p class="section-more">
+        <a class="text-link" href={getBlogHref(lang)}>{t.blog.homeCta} →</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+<Footer lang={lang} />
 <style>
   /* ── Hero ─────────────────────────────────────────────── */
   .hero {
