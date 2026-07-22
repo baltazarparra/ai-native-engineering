@@ -14,6 +14,7 @@ interface Props {
   description: string;
   publishedAt: Date;
   updatedAt?: Date;
+  author: string;
   tags: string[];
   alternateLinks?: AlternateLink[];
 }
@@ -24,6 +25,7 @@ const {
   description,
   publishedAt,
   updatedAt,
+  author,
   tags,
   alternateLinks = [],
 } = Astro.props;
@@ -55,6 +57,10 @@ const breadcrumbItems = [
   title={`${title} | AI-Native Engineers`}
   description={description}
   lang={lang}
+  ogType="article"
+  articlePublishedTime={publishedAt.toISOString()}
+  articleModifiedTime={updatedAt?.toISOString()}
+  articleAuthor={author}
   alternateLinks={alternateLinks}
 >
   <main id="main-content" class="blog-page">
