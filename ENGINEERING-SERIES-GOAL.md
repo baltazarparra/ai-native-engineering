@@ -1,6 +1,6 @@
 # Engineering Series GOAL
 
-Status: complete locally. Direct commit and push to `main` authorized by the owner.
+Status: complete and pushed directly to `origin/main` with owner authorization.
 
 Last updated: 2026-08-09
 
@@ -385,6 +385,7 @@ deletion or destructive Git recovery.
       corrected and revalidated.
 - [x] 2026-08-09: after local completion, the owner explicitly authorized a
       direct commit and push to `main`, with no pull request.
+- [x] 2026-08-09: publication commit `36c97bc` was pushed to `origin/main`.
 
 ## Surprises & Discoveries
 
@@ -485,10 +486,12 @@ and dark, keyboard focus, reduced motion, saved and browser-derived language,
 direct language switching, overflow, and JavaScript-disabled fallback behavior.
 The repository has no dedicated test script, so no test-suite claim is made.
 
-Git remains on local `main`, one owner commit ahead of `origin/main`, with the
-series uncommitted in the working tree. Nothing was staged, committed, pushed,
-merged, or deployed. A publication pass must first split the work into the
-recorded PR layers and measure every non-content PR against the 400-line cap.
+The owner explicitly replaced the proposed PR path with direct-main publication.
+Commit `36c97bc` contains the complete validated series and was pushed to
+`origin/main` on 2026-08-09 without a pull request. The previously local owner
+commit was preserved and pushed in the same fast-forward update. No history was
+rewritten or force-pushed. GitHub Pages deployment is triggered externally by the
+repository workflow and is not treated as complete without separate evidence.
 
 Residual risk: GitHub Pages cannot provide an application-level HTTP 301 or 308
 from these static route files. JavaScript performs the automatic redirect; readers
