@@ -44,47 +44,18 @@ Essas duas camadas se combinam, mas não são a mesma coisa. Cursor e Open Code 
 
 A regra simples: **ferramenta é o ambiente. Modelo é quem "pensa".**
 
-## Três superfícies de trabalho
+## Quatro superfícies de trabalho
 
-Toda semana aparece ferramenta nova prometendo revolucionar como você programa. Em vez de listar tudo que existe, pense em três superfícies:
+Toda semana aparece ferramenta nova prometendo revolucionar como você programa. Em vez de listar tudo que existe, pense em quatro superfícies:
 
-1. **IDEs com IA integrada**: editores de código que embutem IA na interface de edição. Exemplos: Cursor, Windsurf, VS Code com GitHub Copilot, Google Antigravity.
+1. **IDEs com IA integrada**: editores clássicos que ganharam camada de IA no fluxo de edição. Autocomplete, chat inline e sugestões enquanto você digita. A IA ajuda; você continua no centro. Exemplos: VS Code com GitHub Copilot, JetBrains AI Assistant, Kimi Code for VS Code.
 
-2. **CLIs de IA**: ferramentas de linha de comando que leem arquivos, executam comandos e fazem mudanças diretamente no terminal. Exemplos: Claude Code, Codex CLI, OpenCode, Kimi Code, GitHub Copilot CLI.
+2. **ADEs** (Ambientes de Desenvolvimento para Agentes de IA): ambientes pensados em torno do agente. Editor, terminal e integrações existem para o agente ler o repositório, editar vários arquivos, rodar comandos e iterar com validação. Exemplos: Cursor, Windsurf, Google Antigravity, Zed, Kiro.
 
-3. **Apps e agentes na nuvem**: você manda uma tarefa bem descrita, a ferramenta trabalha em um ambiente isolado, pesquisa o repositório, propõe plano, trabalha em branch e entrega diff ou pull request. Exemplos: Codex (cloud), Google Jules, GitHub Copilot coding agent, Devin.
+3. **CLIs de IA**: ferramentas de linha de comando que leem arquivos, executam comandos e fazem mudanças diretamente no terminal. Exemplos: Claude Code, Codex CLI, OpenCode, Kimi Code, GitHub Copilot CLI.
+
+4. **Apps e agentes na nuvem**: você manda uma tarefa bem descrita, a ferramenta trabalha em um ambiente isolado, pesquisa o repositório, propõe plano, trabalha em branch e entrega diff ou pull request. Exemplos: Codex (cloud), Google Jules, GitHub Copilot coding agent, Devin.
 
 A fronteira está ficando borrada. O mesmo fornecedor aparece no terminal, no editor e na nuvem. A categoria ainda ajuda, mas a pergunta principal não é "qual ferramenta é melhor?". A pergunta é: **qual superfície reduz mais fricção para esta tarefa?**
 
 Em agentes cloud, um padrão emergente é **Research → Plan → Code → Review**: pesquisar o repo, propor plano, executar em branch e só abrir PR depois de revisão humana. Nenhum fornecedor monopoliza esse fluxo, mas cada vez mais ferramentas convergem para ele.
-
-## O que muda entre modelos
-
-Você não precisa virar pesquisador de IA para trabalhar bem com LLMs. Mas alguns conceitos mudam a qualidade das suas decisões:
-
-### Contexto
-
-Modelos processam texto em tokens e cada modelo tem uma janela de contexto. Em 2026, janelas vão de dezenas de milhares de tokens até na casa do milhão, mas um projeto médio pode ter muito mais do que isso. Embora o contexto ajude, ele não elimina a necessidade de escolher arquivos, exemplos e restrições relevantes.
-
-### Raciocínio, velocidade e custo
-
-Modelos maiores tendem a raciocinar melhor em tarefas longas, mas também costumam ser mais lentos e caros. Usar o modelo mais forte para tudo pode ser desperdício. Uma conversa exploratória, um autocomplete e um plano de arquitetura não exigem a mesma potência.
-
-### Uso de ferramentas
-
-Alguns modelos foram ajustados para operar bem com ferramentas: ler arquivos, chamar APIs, executar comandos, observar resultado e decidir o próximo passo. Isso importa muito para agentes de código, porque a qualidade não está só no texto gerado. Está na capacidade de seguir uma tarefa por vários passos.
-
-### Limites reais
-
-Todo modelo alucina, tem corte de conhecimento e pode gerar código que parece correto mas não resolve o problema. Benchmark é sinal, não oráculo. Um ranking mede tarefas padronizadas; o seu projeto tem contexto, histórico, restrições e dívidas próprias.
-
-## Como escolher sem hype
-
-Comece pela tarefa, não pelo ranking:
-
-- exploração rápida e autocomplete: superfície de IDE + modelo leve ou médio;
-- refatoração multi-arquivo e investigação profunda: CLI de agente ou IDE com agente forte;
-- tarefa longa sem você no ombro: agente na nuvem com plano e PR revisável;
-- privacidade, custo ou controle: modelos open-weight ou BYOK em CLI open source.
-
-Ferramentas e modelos não substituem método. Sem escopo claro, validação e revisão humana, a superfície "melhor" só gera dívida mais rápido.
