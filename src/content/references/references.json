@@ -538,5 +538,135 @@
     "category": "maturidade",
     "relatedSessions": ["maturidade"],
     "priority": 2
+  },
+  {
+    "id": "anthropic-effective-harnesses",
+    "title": "Effective harnesses for long-running agents",
+    "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+    "type": "artigo",
+    "source": "Anthropic",
+    "category": "harness-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "anthropic-building-effective-agents",
+    "title": "Building effective agents",
+    "url": "https://www.anthropic.com/engineering/building-effective-agents",
+    "type": "artigo",
+    "source": "Anthropic",
+    "category": "loop-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "aihero-agent-friendly-codebases",
+    "title": "How To Make Codebases AI Agents Love",
+    "url": "https://www.aihero.dev/how-to-make-codebases-ai-agents-love",
+    "type": "artigo",
+    "source": "AI Hero",
+    "category": "harness-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 2
+  },
+  {
+    "id": "aihero-typescript-feedback-loops",
+    "title": "Essential AI Coding Feedback Loops For TypeScript Projects",
+    "url": "https://www.aihero.dev/essential-ai-coding-feedback-loops-for-type-script-projects",
+    "type": "artigo",
+    "source": "AI Hero",
+    "category": "loop-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 2
+  },
+  {
+    "id": "kimi-ralph-loop",
+    "title": "Ralph Loop Example",
+    "url": "https://github.com/MoonshotAI/kimi-agent-sdk/tree/main/examples/go/ralph-loop",
+    "type": "documentacao",
+    "source": "Moonshot AI",
+    "category": "loop-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "zcode-goal-mode",
+    "title": "Goal Mode",
+    "url": "https://zcode.z.ai/en/docs/goal",
+    "type": "documentacao",
+    "source": "Z.ai",
+    "category": "loop-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 2
+  },
+  {
+    "id": "addy-loop-engineering",
+    "title": "Loop Engineering",
+    "url": "https://addyosmani.com/blog/loop-engineering/",
+    "type": "artigo",
+    "source": "Addy Osmani",
+    "category": "loop-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "openai-agent-orchestration",
+    "title": "Orchestration and handoffs",
+    "url": "https://developers.openai.com/api/docs/guides/agents/orchestration",
+    "type": "documentacao",
+    "source": "OpenAI",
+    "category": "graph-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "zcode-subagents",
+    "title": "Subagents",
+    "url": "https://zcode.z.ai/en/docs/subagents",
+    "type": "documentacao",
+    "source": "Z.ai",
+    "category": "graph-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 2
+  },
+  {
+    "id": "kimi-agent-swarm",
+    "title": "Kimi Introduces Agent Swarm",
+    "url": "https://www.kimi.com/blog/agent-swarm",
+    "type": "artigo",
+    "source": "Moonshot AI",
+    "category": "graph-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 3
+  },
+  {
+    "id": "addy-software-factories",
+    "title": "Software Factories, Light and Dark",
+    "url": "https://addyosmani.com/blog/software-factories/",
+    "type": "artigo",
+    "source": "Addy Osmani",
+    "category": "graph-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "langchain-graph-engineering",
+    "title": "3 Years of Graph Engineering with LangGraph",
+    "url": "https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph",
+    "type": "artigo",
+    "source": "LangChain",
+    "category": "graph-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
+  },
+  {
+    "id": "langgraph-graph-api",
+    "title": "Graph API overview",
+    "url": "https://docs.langchain.com/oss/python/langgraph/graph-api",
+    "type": "documentacao",
+    "source": "LangChain",
+    "category": "graph-engineering",
+    "relatedSessions": ["maturidade"],
+    "priority": 1
   }
 ]

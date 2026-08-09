@@ -1,12 +1,33 @@
 # Blog Roadmap
 
-Execution reference for adding a frontmatter-driven blog to AI-Native Engineers. Blog posts are plain **Markdown (`.md`)** files, not MDX. Sessions remain MDX; do not conflate the two content types. This document is the source of truth for scope, order, acceptance criteria, and risks. Implementation code follows this file; if code and this doc disagree, update one or the other before merging.
+Current-state reference for the frontmatter-driven blog in AI-Native Engineers.
+Blog posts are plain **Markdown (`.md`)** files, not MDX. Lessons remain MDX;
+do not conflate the two content types. The current operating state below is the
+source of truth. The original phased rollout remains afterward as history.
 
-We ship one phase at a time. Each phase is validated before the next starts. No skipping ahead, no half-finished work leaking forward.
+## Current operating state (2026-08-09)
+
+- The blog is bilingual: `/blog/` for PT-BR and `/en/blog/` for English.
+- Locale pairs use `translationKey`, direct alternates, and `x-default`.
+- Posts may carry typed series metadata and native references to
+  `src/content/references/references.json`.
+- Series posts sort deterministically and render part identity, sources, and
+  previous/next navigation. Standalone posts remain supported.
+- User-facing dates are formatted in UTC so date-only frontmatter does not shift.
+- The editorial visual direction is The Institute: typography, whitespace, and
+  hairlines, with no blog-specific client JavaScript.
+- Drafts do not generate routes. A complete localized series is published
+  atomically after source, parity, route, and browser validation.
+
+The active three-part Harness, Loop, and Graph release is governed by
+`ENGINEERING-SERIES-GOAL.md`.
 
 ---
 
-## Decisions (locked)
+## Historical v1 decisions
+
+The table and phases below record how the first PT-BR blog was introduced. Where
+they differ from the current operating state above, the current state wins.
 
 | Decision       | Choice                           | Notes                                                                                              |
 | -------------- | -------------------------------- | -------------------------------------------------------------------------------------------------- |

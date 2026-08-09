@@ -1,6 +1,6 @@
 # Engineering Series GOAL
 
-Status: planned, awaiting owner decisions. Implementation has not started.
+Status: complete locally. Direct commit and push to `main` authorized by the owner.
 
 Last updated: 2026-08-09
 
@@ -42,16 +42,16 @@ The repository supports the following defaults, but the original request did not
 approve them. Mark every row `confirmed` or record a replacement in `Decision Log`
 before implementation.
 
-| Decision           | Recommended default                                                    | Status         |
-| ------------------ | ---------------------------------------------------------------------- | -------------- |
-| Locale             | Three PT-BR and three English files, preserving current parity         | awaiting owner |
-| Graph scope        | Execution and orchestration graphs, not knowledge graphs               | awaiting owner |
-| Old URLs           | Locale-specific redirects to the new Harness article                   | awaiting owner |
-| Release            | Draft all parts, then publish the complete series atomically           | awaiting owner |
-| Series model       | Typed metadata, ordered previous/next navigation, native reference IDs | awaiting owner |
-| Continuous example | Fixing TypeScript errors in an unfamiliar repository                   | awaiting owner |
-| Publication date   | One explicit owner-provided date for every article pair                | awaiting owner |
-| Delivery           | Owner-approved base, branch/PR flow, and publish authority             | awaiting owner |
+| Decision           | Recommended default                                                    | Status    |
+| ------------------ | ---------------------------------------------------------------------- | --------- |
+| Locale             | Three PT-BR and three English files, preserving current parity         | confirmed |
+| Graph scope        | Execution and orchestration graphs, not knowledge graphs               | confirmed |
+| Old URLs           | Locale-specific redirects to the new Harness article                   | confirmed |
+| Release            | Draft all parts, then publish the complete series atomically           | confirmed |
+| Series model       | Typed metadata, ordered previous/next navigation, native reference IDs | confirmed |
+| Continuous example | Fixing TypeScript errors in an unfamiliar repository                   | confirmed |
+| Publication dates  | 2026-05-31 Harness; 2026-06-30 Loop; 2026-07-31 Graph                  | confirmed |
+| Delivery           | Implement and validate locally; no commit, push, merge, or deploy      | confirmed |
 
 ## Claude Code `/goal`
 
@@ -67,7 +67,8 @@ show current evidence. Run this only after all owner decisions above are resolve
 
 - Current content is `src/content/blog/harness-no-dia-a-dia.md` plus
   `harness-in-daily-work.md`, paired by `translationKey`.
-- `maturidade.mdx` and `maturity.en.mdx` link directly to those slugs.
+- The recorded base removed the former direct links from `maturidade.mdx` and
+  `maturity.en.mdx`; do not reintroduce them until the new series is published.
 - Blog schema has no series or source relationship. Published posts sort only by
   date, so same-date order is not guaranteed.
 - Home and blog indexes are dynamic. Exactly three published parts already fill
@@ -196,6 +197,29 @@ conditions.
 
 The requested LinkedIn profile returned HTTP 429 on 2026-08-09. Use Addy's
 canonical site for claims; an inaccessible profile snippet is not evidence.
+
+### Executed claim map
+
+All pages below were reopened on 2026-08-09. Vendor experiments remain labeled
+as vendor reports in the article copy; the series does not generalize their
+throughput or benchmark results.
+
+| Part    | Source                                       | Claim type             | Destination                                                        |
+| ------- | -------------------------------------------- | ---------------------- | ------------------------------------------------------------------ |
+| Harness | Anthropic, effective long-running harnesses  | reported experiment    | Incremental work, durable progress, end-to-end checks              |
+| Harness | OpenAI, Harness Engineering                  | reported experiment    | Repository legibility, progressive disclosure, enforced invariants |
+| Harness | AI Hero, agent-friendly codebases            | practitioner opinion   | Familiar modules, interfaces, test seams                           |
+| Harness | Addy Osmani, Agent Harness Engineering       | practitioner synthesis | Model plus harness, failure-derived constraints                    |
+| Loop    | Anthropic, Building Effective Agents         | documented pattern     | Environmental evidence, checkpoints, stop conditions               |
+| Loop    | Kimi Agent SDK, Ralph Loop example           | documented mechanism   | External command verification, iteration cap, small tasks          |
+| Loop    | AI Hero, TypeScript feedback loops           | practitioner tutorial  | Typecheck, tests, formatting, dev-server feedback                  |
+| Loop    | Addy Osmani, Loop Engineering                | practitioner synthesis | Replacing repeated prompting with a designed cycle                 |
+| Graph   | Anthropic, Building Effective Agents         | documented pattern     | Routing, parallelization, orchestrator-workers, evaluator loop     |
+| Graph   | OpenAI, orchestration and multi-agent guides | documented mechanism   | Handoffs, manager patterns, bounded orchestration                  |
+| Graph   | Z.ai, Goal Mode and subagents                | product documentation  | Evidence-based rounds, persistent goal state, delegated work       |
+| Graph   | Kimi, Agent Swarm                            | vendor claim           | Parallel work only when tasks can be separated; preview limits     |
+| Graph   | LangChain, graph engineering and Graph API   | documented mechanism   | Nodes, edges, shared state, cycles, conditional routing            |
+| Graph   | Addy Osmani, Software Factories              | practitioner synthesis | Execution graph, not knowledge graph; human authority and debt     |
 
 ## Technical contract if proposed defaults are confirmed
 
@@ -331,19 +355,56 @@ deletion or destructive Git recovery.
 - [x] 2026-08-09: audited repository, migration contracts, tone, and date defect.
 - [x] 2026-08-09: researched vendor, practitioner, and graph-mechanics sources.
 - [x] 2026-08-09: created and independently reviewed this execution GOAL.
-- [ ] Owner decisions confirmed.
-- [ ] M0 through M7 complete.
+- [x] 2026-08-09: owner authorized execution, confirming every recommended
+      default except the publication date; delivery is local-only.
+- [x] 2026-08-09: recorded base `92ef0af`, `origin/main` `a9b581e`, clean
+      working tree, and Node 22.22.2 baseline. Build and `git diff --check` pass;
+      format and lint have pre-existing failures in `Footer.astro`, both edited home
+      content surfaces, and the owner's maturity-session changes.
+- [x] M0 complete: every owner decision is confirmed.
+- [x] M1 complete: canonical sources reopened and claim map recorded.
+- [x] M2 complete: typed metadata, native references, parity validation, stable
+      sorting, localized identity/navigation, canonical override support, UTC dates,
+      and current tone/roadmap contracts implemented.
+- [x] M3 complete: three PT-BR drafts written and structurally reviewed.
+- [x] M4 complete: three English adaptations written and parity-reviewed.
+- [x] 2026-08-09: safe pre-publication work exhausted after three consecutive
+      goal turns without an owner date. Six posts remain `draft: true`; the existing
+      article pair remains published and no redirect, Git, or deployment action ran.
+- [x] 2026-08-09: owner resumed execution with the last day of the previous three
+      completed months: Harness `2026-05-31`, Loop `2026-06-30`, and Graph
+      `2026-07-31`, and explicitly authorized removal of the old article pair.
+- [x] M5 complete: the six localized parts are published atomically, the old
+      content files are removed, locale-aware fallback redirects own the old URLs,
+      the sitemap excludes those URLs, and legacy chapter-route copy is unambiguous.
+- [x] M6 complete: formatting, lint, build, diff, rendered-route, metadata,
+      sitemap, source-link, browser, accessibility, responsive, theme, motion,
+      language, redirect, and JavaScript-disabled checks have current evidence.
+- [x] M7 complete: an independent editorial, route, build, accessibility, and
+      migration audit found no remaining P0-P2 issues after its findings were
+      corrected and revalidated.
+- [x] 2026-08-09: after local completion, the owner explicitly authorized a
+      direct commit and push to `main`, with no pull request.
 
 ## Surprises & Discoveries
 
-- The current article is a PT-BR/English pair with two hardcoded lesson links.
+- The current article is a PT-BR/English pair. The two hardcoded lesson links
+  existed on `origin/main`, but the owner's current `HEAD` removed them.
 - Graph Engineering is a recent label for established execution-graph mechanics,
   not a settled discipline. Loops are cyclic graphs and are not replaced by them.
 - The old Harness route copy conflicts semantically with the requested new series.
 - The visible date can shift one day, and the blog roadmap is stale.
 - LinkedIn returned HTTP 429; Addy's canonical blog is the usable evidence source.
-- Concurrent commits and edits appeared during planning. This task changed only
-  this GOAL and did not create, rewrite, push, or authorize those changes.
+- Concurrent commits and edits appeared during planning. Execution preserved the
+  owner's recorded base changes and did not rewrite, commit, push, or publish them.
+- Astro logs a warning rather than failing when `getEntries` receives an unknown
+  reference. An explicit undefined-entry check is required to make the build gate
+  enforce the native relationship.
+- The browser CLI launch flag did not actually disable JavaScript. A direct Chrome
+  DevTools Protocol probe did: the old PT-BR URL stayed in place, rendered its
+  fallback heading and target link, and did not contain the removed article body.
+- The owner base intentionally removed the old article links and adjacent lesson
+  sections. The migration must not reintroduce that deleted lesson copy.
 
 ## Decision Log
 
@@ -355,12 +416,81 @@ deletion or destructive Git recovery.
 - Decision: references use Astro-native relationships, not merely named strings.
 - Decision: redirect canonical, sitemap, hreflang, and language-preference behavior
   are explicit acceptance criteria.
+- Decision: the user's `execute` instruction confirms the recommended defaults
+  that have concrete values in this plan. It does not invent a publication date.
+- Decision: `92ef0af` is the series base. Its maturity-session edits are unrelated
+  owner work and must remain untouched.
+- Decision: use the last day of the previous three completed months in series
+  order: Harness `2026-05-31`, Loop `2026-06-30`, and Graph `2026-07-31`. Locale
+  pairs share the date for their part. Rationale: explicit owner direction on
+  2026-08-09.
+- Decision: the UI change preserves The Institute design at variance 4, motion 1,
+  and density 3. It adds only hairline metadata and previous/next navigation.
+- Decision: every article remains a substantial long-form piece of roughly 1,800
+  to 2,100 words. Locale pairs keep matching claims, limitations, examples,
+  section flow, and source identity without line-by-line translation.
+- Decision: temporary fixtures proved that a missing source and a partially
+  published locale fail the build. Both fixtures were removed immediately.
+- Decision: a temporary `2026-05-30` date on the English Harness part proved that
+  mismatched locale-pair dates fail the build. The fixture was restored to
+  `2026-05-31`, and the final gate rebuilt all 52 pages.
+- Decision: series validation now covers drafts as well as published posts. It
+  requires exactly three parts per locale, one draft state, matching publication
+  dates within every locale pair, stable localized titles, matching and unique
+  translation keys, and resolvable reference IDs.
+- Decision: preserve the 400-line policy with five delivery layers if publication
+  is authorized: schema/query validation; series UI/routes/index integration;
+  redirects/legacy/sitemap migration; operational documents; and a dedicated
+  content-only release for articles and reference records. No PR exists yet, so
+  the combined local worktree is not presented as one reviewable PR.
+- Decision: the later explicit direct-main instruction supersedes the proposed PR
+  delivery path for this publication. The 400-line rule governs pull requests;
+  no pull request will be opened for the owner-authorized direct push.
+- Evidence: the published standalone post pair still renders without series or
+  reference UI. Browser checks covered PT-BR desktop light, PT-BR 390px dark,
+  English desktop light, visible keyboard focus, no horizontal overflow, no error
+  overlay, canonical URLs, and both saved and browser-derived language routing.
+- Evidence: final series browser checks covered PT-BR and English at 1440px and
+  390px, light and dark themes, reduced motion, visible keyboard focus, exact
+  localized dates, all three navigation states, direct language switching, source
+  lists, saved and browser-derived redirect destinations, and the static no-script
+  fallback. Every rendered source URL reopened successfully on 2026-08-09.
 
 ## Outcomes & Retrospective
 
-Planning produced a repository-grounded GOAL with an official `/goal` condition,
-article contracts, source pool, technical migration contract, owner gates,
-milestones, evidence requirements, rollback, and independent review. No article or
-site behavior was changed by this planning task. Complete this section after
-execution with final routes, evidence, deviations, residual risks, and exact Git
-and deployment state.
+Execution completed M0 through M7. The collection now contains exactly three
+localized article pairs, published in series order with these visible dates:
+
+- Harness: `2026-05-31`
+- Loop: `2026-06-30`
+- Graph: `2026-07-31`
+
+The old Markdown pair is removed. Its PT-BR and English URLs now render noindex
+fallback pages with canonical, Open Graph, hreflang, language-aware one-hop client
+redirects, and working links when JavaScript is unavailable. The six new articles
+and both indexes are in the sitemap; the two old blog URLs, fourteen legacy
+Harness routes, and kitchen-sink pages are excluded.
+
+The final independent audit found and resolved repeated synthetic-sounding
+contrasts, unexplained acronyms, an ambiguous PT-BR heading, an unnamed English
+footer link, motion that survived reduced-motion mode, incorrect short-date locale
+selection, no-script-hidden home links, and inconsistent trailing slashes. It
+rechecked the corrected source and rebuilt output with no remaining P0-P2 issue.
+
+Current evidence: Node 22.22.2 formatting, lint, build, and `git diff --check`
+pass; Astro generates 52 static pages; negative fixtures fail closed for missing
+references, partial publication, and mismatched locale-pair dates; source links
+were reopened; and browser evidence covers both locales, 1440px and 390px, light
+and dark, keyboard focus, reduced motion, saved and browser-derived language,
+direct language switching, overflow, and JavaScript-disabled fallback behavior.
+The repository has no dedicated test script, so no test-suite claim is made.
+
+Git remains on local `main`, one owner commit ahead of `origin/main`, with the
+series uncommitted in the working tree. Nothing was staged, committed, pushed,
+merged, or deployed. A publication pass must first split the work into the
+recorded PR layers and measure every non-content PR against the 400-line cap.
+
+Residual risk: GitHub Pages cannot provide an application-level HTTP 301 or 308
+from these static route files. JavaScript performs the automatic redirect; readers
+without it receive an accessible same-locale fallback link. The LinkedIn profile
+remained rate-limited, so Addy Osmani claims use his reachable canonical blog.

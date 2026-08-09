@@ -91,9 +91,9 @@ and serve the narrative roles defined in section 9.
 - **Session/lesson MDX** (was the witty blog voice): keep the strong hooks and
   second-person energy. Trim slang and punchline irony. Keep "preview não é
   produção", lose "demo com autoestima".
-- **Legacy Harness Engineering routes**: the deep-dive series was discontinued
-  and removed. Its old URLs redirect to Lesson 3. Do not create new content in
-  the legacy route tree.
+- **Legacy Harness Engineering routes**: the retired six-chapter route tree
+  redirects to Lesson 3. The new Harness, Loop, and Graph essay series lives in
+  the bilingual blog. Do not create content in the legacy route tree.
 - **/projeto chapters**: use workshop language. Keep imperative clarity and
   explain why before asking the reader to act. Warmth comes from context, not
   jokes.

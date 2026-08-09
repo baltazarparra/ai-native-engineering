@@ -5,6 +5,8 @@ import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
 import {
   getPublishedPosts,
   getBlogPostAlternateLinks,
+  getBlogReferences,
+  getBlogSeriesContext,
   type BlogEntry,
 } from '../../lib/blog';
 
@@ -23,7 +25,15 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const alternateLinks = await getBlogPostAlternateLinks(post);
+const [alternateLinks, series, referenceEntries] = await Promise.all([
+  getBlogPostAlternateLinks(post),
+  getBlogSeriesContext(post),
+  getBlogReferences(post),
+]);
+const references = referenceEntries.map((reference) => ({
+  id: reference.id,
+  ...reference.data,
+}));
 ---
 
 <BlogPostLayout
@@ -35,6 +45,8 @@ const alternateLinks = await getBlogPostAlternateLinks(post);
   updatedAt={post.data.updatedAt}
   tags={post.data.tags}
   alternateLinks={alternateLinks}
+  series={series}
+  references={references}
 >
   <Content />
 </BlogPostLayout>

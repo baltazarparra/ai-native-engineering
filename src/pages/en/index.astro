@@ -11,6 +11,7 @@ import {
   getHomeAlternateLinks,
   getProjectHref,
   getSessionHref,
+  languages,
   ui,
 } from '../../lib/i18n';
 import { siteLinks } from '../../lib/siteLinks';
@@ -23,10 +24,11 @@ const projectChapters = TRACKABLE_CHAPTERS;
 const latestPosts = (await getPublishedPosts(lang)).slice(0, 3);
 
 const formatDate = (date: Date) =>
-  date.toLocaleDateString(t.dateLocale, {
+  date.toLocaleDateString(languages[lang].dateLocale, {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
+    timeZone: 'UTC',
   });
 ---
 
@@ -217,20 +219,21 @@ const formatDate = (date: Date) =>
         <h2 class="section-head__title">Writings</h2>
       </header>
 
-      <Reveal client:visible>
-        <div class="linkrows">
-          {
-            latestPosts.map((post) => (
-              <a class="linkrow" href={getBlogHref(lang, post.data.slug)}>
-                <span class="linkrow__title">{post.data.title}</span>
-                <span class="linkrow__meta">
-                  {post.data.author} · {formatDate(post.data.publishedAt)}
-                </span>
-              </a>
-            ))
-          }
-        </div>
-      </Reveal>
+      <div class="linkrows">
+        {
+          latestPosts.map((post) => (
+            <a class="linkrow" href={getBlogHref(lang, post.data.slug)}>
+              <span class="linkrow__title">{post.data.title}</span>
+              <span class="linkrow__meta">
+                {post.data.series
+                  ? `${post.data.series.title} · ${t.blog.seriesPart(post.data.series.order, post.data.series.total)} · `
+                  : `${post.data.author} · `}
+                {formatDate(post.data.publishedAt)}
+              </span>
+            </a>
+          ))
+        }
+      </div>
       <p class="section-more">
         <a class="text-link" href={getBlogHref(lang)}>{t.blog.homeCta} →</a>
       </p>

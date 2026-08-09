@@ -23,8 +23,8 @@ const alternateLinks = getHarnessRedirectAlternateLinks(redirectId);
 ---
 
 <BaseLayout
-  title="Chapter moved | AI-Native Engineers"
-  description="This Harness Engineering chapter was merged into the SDD and Harness Design lesson."
+  title="Previous chapter moved | AI-Native Engineers"
+  description="This chapter from the former Harness Engineering guide was consolidated into the SDD and Harness Design lesson."
   lang={lang}
   noindex
   alternateLinks={alternateLinks}
@@ -32,10 +32,11 @@ const alternateLinks = getHarnessRedirectAlternateLinks(redirectId);
   <main id="main-content">
     <script is:inline set:html={redirectScript} />
     <SectionBlock padding="xl">
-      <h1>This chapter was merged</h1>
+      <h1>This previous chapter was consolidated</h1>
       <p>
-        The Harness Engineering series was discontinued. The content now lives
-        in the <strong>SDD and Harness Design</strong> lesson.
+        This chapter belongs to the former Harness Engineering guide. Its
+        content now lives in the <strong>SDD and Harness Design</strong> lesson. The
+        new editorial series continues in the articles section.
       </p>
       <Button href={target} size="lg">Go to the updated lesson</Button>
     </SectionBlock>

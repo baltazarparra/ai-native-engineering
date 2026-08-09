@@ -4,6 +4,9 @@ import SectionBlock from '../components/SectionBlock/SectionBlock.astro';
 import Badge from '../components/Badge/Badge.astro';
 import Footer from '../components/Footer/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs.astro';
+import ReferencesList from '../components/ReferencesList/ReferencesList.astro';
+import BlogSeriesNav from '../components/BlogSeriesNav/BlogSeriesNav.astro';
+import type { BlogSeriesContext } from '../lib/blog';
 import type { AlternateLink, Lang } from '../lib/i18n';
 import { languages, ui, getHomeHref, getBlogHref } from '../lib/i18n';
 
@@ -16,6 +19,16 @@ interface Props {
   updatedAt?: Date;
   tags: string[];
   alternateLinks?: AlternateLink[];
+  series?: BlogSeriesContext;
+  references?: Array<{
+    id: string;
+    title: string;
+    url: string;
+    type: 'artigo' | 'documentacao' | 'talk' | 'video' | 'pesquisa';
+    source: string;
+    category: string;
+    priority?: number;
+  }>;
 }
 
 const {
@@ -26,6 +39,8 @@ const {
   updatedAt,
   tags,
   alternateLinks = [],
+  series,
+  references = [],
 } = Astro.props;
 
 const labels = ui[lang];
@@ -33,6 +48,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
+  timeZone: 'UTC',
 };
 
 const formattedPublishedAt = publishedAt.toLocaleDateString(
@@ -60,7 +76,13 @@ const breadcrumbItems = [
   <main id="main-content" class="blog-page">
     <SectionBlock as="header" padding="xl">
       <Breadcrumbs items={breadcrumbItems} lang={lang} />
-      <span class="kicker">{labels.blog.title}</span>
+      <span class="kicker">
+        {
+          series
+            ? `${series.title} · ${labels.blog.seriesPart(series.order, series.total)}`
+            : labels.blog.title
+        }
+      </span>
       <h1 class="blog-title">{title}</h1>
       <p class="blog-description">{description}</p>
       <div class="blog-meta">
@@ -93,6 +115,12 @@ const breadcrumbItems = [
       <article class="blog-content">
         <slot />
       </article>
+      {
+        references.length > 0 && (
+          <ReferencesList references={references} lang={lang} />
+        )
+      }
+      {series && <BlogSeriesNav lang={lang} series={series} />}
     </div>
 
     <Footer lang={lang} />

@@ -1,4 +1,4 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, reference } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -46,6 +46,15 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     author: z.string().default('AI-Native Engineers'),
     translationKey: z.string().optional(),
+    series: z
+      .object({
+        key: z.string(),
+        title: z.string(),
+        order: z.number().int().positive(),
+        total: z.number().int().positive(),
+      })
+      .optional(),
+    references: z.array(reference('references')).default([]),
   }),
 });
 

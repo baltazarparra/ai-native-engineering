@@ -28,6 +28,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
+  timeZone: 'UTC',
 };
 
 function formatPublishedAt(date: Date): string {
@@ -61,6 +62,15 @@ function formatPublishedAt(date: Date): string {
                 href={getBlogHref(lang, post.data.slug)}
               >
                 <Fragment slot="meta">
+                  {post.data.series && (
+                    <span>
+                      {post.data.series.title} ·{' '}
+                      {labels.seriesPart(
+                        post.data.series.order,
+                        post.data.series.total,
+                      )}
+                    </span>
+                  )}
                   <time datetime={post.data.publishedAt.toISOString()}>
                     {labels.publishedAt}{' '}
                     {formatPublishedAt(post.data.publishedAt)}

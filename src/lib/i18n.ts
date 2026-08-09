@@ -109,6 +109,11 @@ export const ui = {
       homeCta: 'Ver artigos',
       publishedAt: 'Publicado em',
       tags: 'Tags',
+      seriesPart: (order: number, total: number) =>
+        `Parte ${order} de ${total}`,
+      seriesNav: 'Navegação da série',
+      previousPart: 'Parte anterior',
+      nextPart: 'Próxima parte',
     },
     project: {
       title: 'Projeto Prático',
@@ -232,6 +237,10 @@ export const ui = {
       homeCta: 'Read articles',
       publishedAt: 'Published',
       tags: 'Tags',
+      seriesPart: (order: number, total: number) => `Part ${order} of ${total}`,
+      seriesNav: 'Series navigation',
+      previousPart: 'Previous part',
+      nextPart: 'Next part',
     },
     project: {
       title: 'Hands-on Project',
@@ -273,6 +282,8 @@ export const ui = {
     footer: {
       tagline: 'baltz',
       personalSite: 'baltz.dev website',
+      taglinePachi: 'pachi',
+      personalSitePachi: 'pachi.dev website',
       repositoryLink: 'GitHub repository',
       blogLink: 'Blog',
     },
@@ -303,7 +314,7 @@ export function getSessionHref(lang: Lang, slug: string): string {
 export function getBlogHref(lang: Lang, slug?: string): string {
   const prefix = lang === defaultLang ? '' : `${languages[lang].pathPrefix}/`;
   const base = `${prefix}blog`;
-  return slug ? withBase(`${base}/${slug}`) : withBase(`${base}/`);
+  return slug ? withBase(`${base}/${slug}/`) : withBase(`${base}/`);
 }
 
 const projectSlugs: Record<Lang, string> = {

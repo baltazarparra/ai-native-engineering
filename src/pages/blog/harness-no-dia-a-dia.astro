@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionBlock from '../../components/SectionBlock/SectionBlock.astro';
+import Button from '../../components/Button/Button.astro';
+import {
+  getHarnessArticleRedirect,
+  getHarnessArticleTargetAlternateLinks,
+} from '../../data/blog-redirects';
+import {
+  defaultLang,
+  getBlogHref,
+  languagePreferenceStorageKey,
+} from '../../lib/i18n';
+
+const lang = 'pt-BR';
+const redirect = getHarnessArticleRedirect(lang);
+const target = getBlogHref(lang, redirect.targetSlug);
+const alternateLinks = getHarnessArticleTargetAlternateLinks();
+const redirectTargets = Object.fromEntries(
+  alternateLinks
+    .filter((link) => link.lang !== 'x-default')
+    .map((link) => [link.lang, link.href]),
+);
+const redirectScript = `
+(function () {
+  var targets = ${JSON.stringify(redirectTargets)};
+  var storageKey = ${JSON.stringify(languagePreferenceStorageKey)};
+  var currentLang = ${JSON.stringify(lang)};
+  var defaultLang = ${JSON.stringify(defaultLang)};
+  var storedLang = null;
+
+  try {
+    storedLang = window.localStorage.getItem(storageKey);
+  } catch (error) {
+    storedLang = null;
+  }
+
+  function browserLang() {
+    var values = navigator.languages && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language || ''];
+
+    for (var index = 0; index < values.length; index += 1) {
+      var value = String(values[index] || '').toLowerCase().replace('_', '-');
+      if (value === 'pt' || value.indexOf('pt-') === 0) return 'pt-BR';
+      if (value === 'en' || value.indexOf('en-') === 0) return 'en';
+    }
+
+    return defaultLang;
+  }
+
+  var hasStoredPreference = Boolean(storedLang && targets[storedLang]);
+  var targetLang = hasStoredPreference
+    ? storedLang
+    : currentLang === defaultLang
+      ? browserLang()
+      : currentLang;
+  var destination = targets[targetLang] || targets[currentLang];
+
+  if (destination) window.location.replace(destination);
+})();
+`;
+---
+
+<BaseLayout
+  title="Artigo atualizado | AI-Native Engineers"
+  description="Este artigo foi substituído pela nova abertura da série sobre Harness, Loop e Graph Engineering."
+  lang={lang}
+  noindex
+  canonicalHref={target}
+  alternateLinks={alternateLinks}
+>
+  <main id="main-content">
+    <script is:inline set:html={redirectScript} />
+    <SectionBlock padding="xl">
+      <h1>Este artigo foi atualizado</h1>
+      <p>
+        A nova versão abre uma série em três partes e explica Harness
+        Engineering desde o começo, com exemplos para quem está trazendo agentes
+        para o dia a dia de desenvolvimento.
+      </p>
+      <Button href={target} size="lg">Ler Harness Engineering</Button>
+    </SectionBlock>
+  </main>
+</BaseLayout>
