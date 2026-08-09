@@ -40,7 +40,7 @@ be surfaced before completion.
 Start from the repository root and paste this command:
 
 ```text
-/goal Implement ENGINEERING-SERIES-GOAL.md completely. The goal is achieved only when every Definition of Done item is satisfied with current evidence; the existing PT-BR and English post files have been removed; their public URLs preserve readers through intentional redirects to the new Harness Engineering article; six localized Markdown files exist as three PT-BR and English article pairs; typed series metadata and navigation produce Harness Engineering -> Loop Engineering -> Graph Engineering in both locales; the maturity lesson links, legacy Harness wording, source records, TONE.md, and BLOG-ROADMAP.md are coherent; visible publication dates match frontmatter; formatting, lint, static build, diff checks, source-link checks, sitemap checks, hreflang checks, tone scans, and browser checks pass; no unrelated pre-existing changes are modified or included in the series work; and the execution evidence, decisions, surprises, and retrospective are recorded in ENGINEERING-SERIES-GOAL.md. Do not commit, push, deploy, or change publication workflow without explicit owner authorization. If repository evidence conflicts with this plan or a material decision lacks evidence, stop and ask instead of guessing.
+/goal Implement ENGINEERING-SERIES-GOAL.md completely. The goal is achieved only when every Definition of Done item is satisfied with current evidence; the existing PT-BR and English post files have been removed; their public URLs preserve readers through intentional redirects to the new Harness Engineering article; six localized Markdown files exist as three PT-BR and English article pairs; typed series metadata and navigation produce Harness Engineering -> Loop Engineering -> Graph Engineering in both locales; the maturity lesson links, legacy Harness wording, source records, TONE.md, and BLOG-ROADMAP.md are coherent; visible publication dates match frontmatter; formatting, lint, static build, diff checks, source-link checks, sitemap checks, hreflang checks, tone scans, and browser checks pass; the planning-artifact integration gate and 400-line PR policy have owner-approved evidence; no unrelated pre-existing changes are modified or included in the series work; and the execution evidence, decisions, surprises, and retrospective are recorded in ENGINEERING-SERIES-GOAL.md. Do not commit, push, deploy, or change publication workflow without explicit owner authorization. If repository evidence conflicts with this plan or a material decision lacks evidence, stop and ask instead of guessing.
 ```
 
 The condition is intentionally measurable, names the checks that prove it, and
@@ -160,6 +160,14 @@ series.
 - The repository has a 400-line changed-line cap for non-content paths in one
   pull request. Files under `src/content/**` are exempt, but unrelated refactors
   remain out of scope.
+
+This planning file is itself longer than 400 lines and therefore cannot be
+introduced through a policy-compliant implementation PR unless it is already in
+that PR's actual base. During planning, a concurrent commit placed the first
+version of this file and unrelated edits on local `main`, ahead of `origin/main`.
+The planning task did not create or authorize that commit. Do not push it or use
+it as proof that the plan has been integrated. Resolve the planning-artifact gate
+with the owner before opening any implementation PR.
 
 ### Date defect to fix in scope
 
@@ -876,6 +884,30 @@ it. Add unexpected files to `Decision Log` with the reason before modifying them
 
 ## Delivery and review strategy
 
+### Planning-artifact integration gate
+
+Before implementation, compare local `main`, the intended upstream base, and the
+current working tree. The owner must explicitly choose and authorize one valid
+path:
+
+1. integrate this planning artifact separately so it is present in the actual
+   base before implementation PRs are measured;
+2. approve a documented one-time exception to the PR line cap for the planning
+   artifact; or
+3. replace this file with a shorter owner-approved GOAL that fits the cap before
+   it is proposed through a pull request.
+
+Until one path is recorded in `Decision Log`, local implementation may not be
+presented as ready for a policy-compliant pull request. The executor must not push
+the concurrent local commit merely to clear this gate.
+
+After the plan is present in the actual base, measure implementation PRs against
+that base with the command from `AGENTS.md`, substituting the real base branch:
+
+```bash
+git diff upstream/main...HEAD --shortstat -- . ':(exclude)src/content'
+```
+
 Keep the public migration atomic even if review is split:
 
 1. Infrastructure can ship without visible content if all new fields are optional
@@ -888,10 +920,10 @@ Keep the public migration atomic even if review is split:
 
 If pull requests are used, a safe stacked sequence is:
 
-- PR A: series schema, helpers, layout support, date fix, and documentation;
+- PR A: series schema, helpers, layout support, and date fix;
 - PR B: six draft content files and required reference records;
 - PR C: atomic publication, old-content removal, redirects, internal-link updates,
-  and final evidence.
+  documentation reconciliation, and final evidence.
 
 Keep each PR's non-content diff at or below 400 changed lines. Content lines under
 `src/content/**` are exempt from the formal cap, but each article still needs a
@@ -908,6 +940,8 @@ produce evidence that the next session can inspect.
 
 - [ ] Read `AGENTS.md`, `TONE.md`, `BLOG-ROADMAP.md`, and this GOAL completely.
 - [ ] Inspect Git status and record pre-existing changes. Do not overwrite them.
+- [ ] Resolve the planning-artifact integration gate with explicit owner evidence
+      before claiming any PR is policy-compliant.
 - [ ] Re-open the current post pair, their lesson links, blog schema, helpers,
       routes, layout, home cards, indexes, legacy redirects, and source collection.
 - [ ] Confirm the execution runtime from `.tool-versions` and use Linux Node
@@ -1106,6 +1140,9 @@ The GOAL is complete only when every statement below is true and demonstrated.
       keyboard use, reduced motion, and JavaScript-disabled reading.
 - [ ] The final reviewed series diff contains no unrelated changes, preserves any
       unrelated pre-existing work, and respects the non-content PR size rule.
+- [ ] The planning artifact is either in the actual base, covered by an explicit
+      owner-approved exception, or replaced by an approved version that fits the
+      standard PR policy.
 - [ ] The living-plan sections contain current progress, decisions, discoveries,
       evidence, outcomes, and residual risks.
 
@@ -1248,6 +1285,8 @@ any removal. Do not use destructive Git commands to recover.
 - [x] (2026-08-09) Defined the series arc, terminology boundary, shared example,
       migration contract, source policy, milestones, and Definition of Done.
 - [x] (2026-08-09) Created the persistent Claude Code `/goal` execution plan.
+- [ ] Resolve how the planning artifact enters the delivery base without violating
+      the 400-line non-content PR policy.
 - [ ] Milestone 0: Re-establish ground truth and authority.
 - [ ] Milestone 1: Reconcile the blog contract.
 - [ ] Milestone 2: Integrate series and source presentation.
@@ -1280,6 +1319,12 @@ any removal. Do not use destructive Git commands to recover.
   warns that open-ended work can be worse when forced into a predefined graph.
 - The requested LinkedIn profile returned HTTP 429 on 2026-08-09. Addy Osmani's
   canonical blog provides accessible versions of the relevant arguments.
+- During review, local `main` changed concurrently. Commit `2d0d614` included the
+  first GOAL version and unrelated glossary, layout, and home changes, leaving the
+  branch ahead of `origin/main`. This planning task did not create that commit.
+- The 1,300-line planning artifact exceeds the standard non-content PR cap by
+  itself. It requires an explicit integration decision before implementation PRs
+  can be called policy-compliant.
 
 ## Decision Log
 
@@ -1316,6 +1361,10 @@ any removal. Do not use destructive Git commands to recover.
 - Decision: include the existing timezone defect in this execution.
   Rationale: publication dates are part of the visible article contract and the
   defect will affect all three new posts.
+- Open decision: how this planning artifact enters the actual delivery base.
+  Rationale: the file exceeds the 400-line non-content PR cap, and a concurrent
+  local commit is not authorization to push or an exception to repository policy.
+  Owner evidence is required at Milestone 0.
 
 ## Outcomes & Retrospective
 
@@ -1325,8 +1374,9 @@ Planning outcome on 2026-08-09:
   exists.
 - The original request has been translated into observable editorial, content,
   localization, migration, technical, and evidence requirements.
-- No article, route, schema, source record, or production behavior has been
-  changed during planning.
+- This planning task changed only this GOAL. The repository also changed through a
+  concurrent local commit, which is recorded above and was not created, pushed,
+  or authorized by this task.
 
 Complete this section after implementation with:
 
