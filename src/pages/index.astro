@@ -67,52 +67,6 @@ const formatDate = (date: Date) =>
     </div>
   </section>
 
-  <!-- ═══════════ SESSÕES ═══════════ -->
-  <section class="sessions section" id="sessoes">
-    <div class="container">
-      <header class="section-head">
-        <h2 class="section-head__title">O conceito em três partes</h2>
-        <p class="section-head__lede">
-          Vocabulário, ferramentas e método para sair da demo e assumir o
-          sistema que produz o software.
-        </p>
-      </header>
-
-      <Reveal client:visible>
-        <div class="sessions__grid">
-          {
-            sortedSessions.map((session, i) => {
-              const href = getSessionHref(lang, session.slug);
-              const numeral = String(i + 1).padStart(2, '0');
-              const meta = `${session.readingTime} min · ${t.levels[session.level]}`;
-
-              return session.order === 3 ? (
-                <a href={href} class="feature-card">
-                  <div class="feature-card__head">
-                    <span class="feature-card__numeral" aria-hidden="true">
-                      {numeral}
-                    </span>
-                    <span class="feature-card__meta">{meta}</span>
-                  </div>
-                  <h3 class="feature-card__title">{session.title}</h3>
-                  <p class="feature-card__summary">{session.summary}</p>
-                  <span class="feature-card__arrow" aria-hidden="true">
-                    →
-                  </span>
-                </a>
-              ) : (
-                <Card href={href} index={numeral} title={session.title}>
-                  <Fragment slot="meta">{meta}</Fragment>
-                  <p>{session.summary}</p>
-                </Card>
-              );
-            })
-          }
-        </div>
-      </Reveal>
-    </div>
-  </section>
-
   <!-- ═══════════ PRIMER ═══════════ -->
   <section class="primer section" id="fundamentos">
     <div class="container">
@@ -175,6 +129,52 @@ const formatDate = (date: Date) =>
     </div>
   </section>
 
+  <!-- ═══════════ SESSÕES ═══════════ -->
+  <section class="sessions section" id="sessoes">
+    <div class="container">
+      <header class="section-head">
+        <h2 class="section-head__title">O conceito em três partes</h2>
+        <p class="section-head__lede">
+          Vocabulário, ferramentas e método para sair da demo e assumir o
+          sistema que produz o software.
+        </p>
+      </header>
+
+      <Reveal client:visible>
+        <div class="sessions__grid">
+          {
+            sortedSessions.map((session, i) => {
+              const href = getSessionHref(lang, session.slug);
+              const numeral = String(i + 1).padStart(2, '0');
+              const meta = `${session.readingTime} min · ${t.levels[session.level]}`;
+
+              return session.order === 3 ? (
+                <a href={href} class="feature-card">
+                  <div class="feature-card__head">
+                    <span class="feature-card__numeral" aria-hidden="true">
+                      {numeral}
+                    </span>
+                    <span class="feature-card__meta">{meta}</span>
+                  </div>
+                  <h3 class="feature-card__title">{session.title}</h3>
+                  <p class="feature-card__summary">{session.summary}</p>
+                  <span class="feature-card__arrow" aria-hidden="true">
+                    →
+                  </span>
+                </a>
+              ) : (
+                <Card href={href} index={numeral} title={session.title}>
+                  <Fragment slot="meta">{meta}</Fragment>
+                  <p>{session.summary}</p>
+                </Card>
+              );
+            })
+          }
+        </div>
+      </Reveal>
+    </div>
+  </section>
+  
   <!-- ═══════════ PROJETO ═══════════ -->
   <section class="section home-project" id="projeto">
     <div class="container">

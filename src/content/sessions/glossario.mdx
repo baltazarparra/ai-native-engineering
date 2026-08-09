@@ -29,11 +29,9 @@ updatedAt: 2026-07-19
 
 ## Vocabulário mínimo
 
-Se LLM, agente, MCP e harness soam a mesma coisa, você não está sozinho. Antes de falar de vibe coding, vale alinhar as palavras que o restante do currículo usa.
+Se LLM, agente, MCP e harness soam como a mesma coisa para você, você não está sozinho. Antes de falar de vibe coding, vale entender os novos termos.
 
 **LLM** (Large Language Model): modelo de linguagem grande. É o tipo de modelo que prevê o próximo trecho de texto a partir do que leu. Chatbots e agentes de código costumam usar LLMs por baixo.
-
-**Modelo**: o "cérebro" que gera texto, código ou decisões. Não é a tela onde você digita. O mesmo produto pode trocar de modelo sem você perceber.
 
 **Inferência**: o ato de rodar o modelo para produzir uma resposta. Treinar é outra história. No dia a dia de produto, quase tudo que você vê é inferência.
 
@@ -43,63 +41,14 @@ Se LLM, agente, MCP e harness soam a mesma coisa, você não está sozinho. Ante
 
 **Prompt**: o pedido em linguagem natural (ou quase). Pode ser curto ou um brief longo.
 
-**System prompt**: instruções de base que moldam o comportamento do modelo antes do pedido do usuário. Em produtos, muitas vezes fica escondido.
-
-**Autocomplete**: sugestão inline enquanto você digita. Útil para acelerar, fraco para decisões de arquitetura sozinho.
-
 **Code context**: trechos do repositório (arquivos abertos, diffs, símbolos) que a ferramenta anexa para a resposta fazer sentido no _seu_ código.
 
-**IDE**: ambiente de desenvolvimento com editor, terminal e integrações. Com IA, a IDE vira uma superfície onde o agente edita ao seu lado.
+**ADE**: ambiente de desenvolvimento para o Agente de IA, terminal e integrações.
 
 **CLI**: interface de linha de comando. Agentes de CLI leem arquivos, rodam comandos e mudam o repo direto no terminal.
-
-**Agente**: programa que persegue um objetivo em ciclo: observa, age com ferramentas, verifica e decide o próximo passo. Diferente de um chat que só responde.
 
 **Agente de código** (code agent): agente especializado em software. Lê o repo, edita, testa e itera até a tarefa passar na validação.
 
 **MCP** (Model Context Protocol): padrão para conectar modelos a ferramentas e fontes de contexto de forma estruturada. Útil, mas ferramenta conectada sem governança também aumenta superfície de risco.
 
 **Harness**: o ambiente em volta do modelo (instruções, ferramentas, limites, validação). É o que transforma "modelo que responde" em "sistema que opera".
-
-O site usa **harness** e **SDD** (Spec-Driven Development) de forma prática, não como dogma de mercado. Nem todo time usa esses nomes. O que importa é o padrão: contrato claro + ambiente que deixa o agente trabalhar com trilhos.
-
-## Fiz um app via prompt. E agora?
-
-Você entra no Lovable, Bolt, v0, Replit Agent ou alguma plataforma parecida. Digita: "cria um app para organizar meus estudos, com login, dashboard e lista de tarefas". A ferramenta pensa, instala coisas, gera telas, cria código, abre um preview e pronto: parece software.
-
-Esse momento é viciante porque dá a sensação de ter pulado meses de aprendizado. E, para ser justo, tem valor real aí. Pela primeira vez, PMs, designers, founders, QAs e devs iniciantes conseguem transformar uma ideia em algo clicável sem começar por configuração de projeto, boilerplate ou medo do terminal.
-
-Mas aqui entra a frase mais importante desta aula: **preview não é produção**.
-
-Um app que abre no navegador ainda pode ter regra de acesso errada, segredo exposto, fluxo quebrado, código impossível de manter, dependência mal escolhida, teste inexistente e uma arquitetura que só funciona enquanto o projeto é pequeno.
-
-## O que é vibe coding
-
-Vibe coding é criar software descrevendo intenção em linguagem natural e deixando a IA gerar boa parte do código. O termo ficou popular depois de Andrej Karpathy descrever um jeito de programar em que você "segue a vibe", conversa com o agente, aceita mudanças, cola erros de volta e deixa o código crescer sem escrever tudo manualmente.
-
-Em português bem direto: você fala o que quer, a IA tenta construir, você olha o resultado, pede ajustes, roda de novo. É menos "eu escrevo cada linha" e mais "eu dirijo o resultado".
-
-Isso não é automaticamente ruim. Vibe coding é ótimo para:
-
-- tirar uma ideia da cabeça e colocar na tela;
-- criar protótipos navegáveis para conversar com usuários;
-- aprender olhando código gerado e pedindo explicação;
-- testar fluxos de produto antes de gastar sprint de engenharia;
-- fazer ferramentas internas simples e descartáveis.
-
-Se você não entende o código, não revisou os dados, não testou as permissões e não sabe reverter uma mudança, você ainda não é dono do software. Tem um protótipo, e protótipo não aguenta produção.
-
-## Por que isso parece funcionar tão bem
-
-Porque para protótipo a barra é outra. Um protótipo precisa mostrar intenção, não sustentar tráfego, auditoria, pagamento, LGPD, permissões finas e manutenção por dois anos.
-
-Também funciona porque muitos apps têm padrões repetidos: tela de login, lista, formulário, dashboard, CRUD, filtros, sidebar, tabela. Modelos viram muito código parecido durante o treino e conseguem recombinar esses padrões com velocidade absurda.
-
-Você não precisa esperar "saber tudo" para brincar com produto. Dá para construir, quebrar, perguntar, comparar e aprender no ciclo. Só não pula a parte de entender. A IA acelera feedback. Ela não substitui fundamento.
-
-## Como isso conecta com as próximas aulas
-
-Nesta aula, você pegou o vocabulário mínimo e viu onde vibe coding brilha e onde mente. Nas próximas:
-
-- [Aula 2: Ferramentas e modelos](../ferramentas) mostra como escolher entre IDE com IA, CLI, agente na nuvem e modelos por tarefa.
-- [Aula 3: SDD e Harness Design](../maturidade) mostra como transformar intenção em contrato verificável e operar agentes com contexto, validação e governança.
