@@ -386,6 +386,10 @@ deletion or destructive Git recovery.
 - [x] 2026-08-09: after local completion, the owner explicitly authorized a
       direct commit and push to `main`, with no pull request.
 - [x] 2026-08-09: publication commit `36c97bc` was pushed to `origin/main`.
+- [x] 2026-08-09: the owner requested a moderate editorial condensation. All six
+      localized articles now sit between 1,280 and 1,371 words while preserving
+      their examples, conventional-engineering parallels, limitations, sources,
+      dates, routes, and series navigation.
 
 ## Surprises & Discoveries
 
@@ -427,9 +431,10 @@ deletion or destructive Git recovery.
   2026-08-09.
 - Decision: the UI change preserves The Institute design at variance 4, motion 1,
   and density 3. It adds only hairline metadata and previous/next navigation.
-- Decision: every article remains a substantial long-form piece of roughly 1,800
-  to 2,100 words. Locale pairs keep matching claims, limitations, examples,
-  section flow, and source identity without line-by-line translation.
+- Decision: after the owner's follow-up request for moderate condensation, every
+  article targets roughly 1,250 to 1,450 words. Locale pairs keep matching claims,
+  limitations, examples, section flow, and source identity without line-by-line
+  translation.
 - Decision: temporary fixtures proved that a missing source and a partially
   published locale fail the build. Both fixtures were removed immediately.
 - Decision: a temporary `2026-05-30` date on the English Harness part proved that
@@ -477,6 +482,11 @@ contrasts, unexplained acronyms, an ambiguous PT-BR heading, an unnamed English
 footer link, motion that survived reduced-motion mode, incorrect short-date locale
 selection, no-script-hidden home links, and inconsistent trailing slashes. It
 rechecked the corrected source and rebuilt output with no remaining P0-P2 issue.
+
+A follow-up editorial pass reduced the six articles by about 32 percent as a set.
+Repeated explanations were merged while the continuous TypeScript example,
+pre-AI engineering parallels, operational guidance, and failure modes stayed in
+place across both locales.
 
 Current evidence: Node 22.22.2 formatting, lint, build, and `git diff --check`
 pass; Astro generates 52 static pages; negative fixtures fail closed for missing

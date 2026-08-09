@@ -23,74 +23,47 @@ references:
   - 'langgraph-graph-api'
 ---
 
-Nosso loop já consegue escolher um erro de TypeScript, corrigir, verificar e repetir. Então aparecem três erros na camada de dados, cinco na Interface de Programação de Aplicações, ou API, e doze na interface visual. Algumas correções dependem de uma decisão no tipo central. Outras podem avançar ao mesmo tempo. Uma mudança de contrato exige aprovação. Se o teste de integração falhar, o trabalho precisa voltar para a implementação certa, não recomeçar do zero.
+Nosso loop já escolhe um erro de TypeScript, corrige, verifica e repete. Então aparecem três erros na camada de dados, cinco na Interface de Programação de Aplicações, ou API, e doze na interface visual. Algumas correções dependem de uma decisão no tipo central. Outras podem avançar juntas. Uma mudança de contrato exige aprovação.
 
-Um único ciclo começa a esconder perguntas importantes: o que depende de quê, quem pode decidir, quais etapas são obrigatórias e para onde cada falha deve voltar.
+Um único ciclo começa a esconder perguntas importantes: o que depende de quê, quem pode decidir e para onde cada falha deve voltar.
 
-Neste artigo, **Graph Engineering significa engenharia do grafo de execução e orquestração**. Knowledge graphs, ou grafos de conhecimento, pertencem a outro assunto. Loops continuam dentro do desenho: um loop é um grafo cíclico pequeno, e o grafo maior dá forma a vários passos, decisões e loops que precisam trabalhar juntos.
+Neste artigo, **Graph Engineering significa engenharia do grafo de execução e orquestração**. Grafos de conhecimento são outro assunto. Loops continuam no desenho: um loop é um grafo cíclico pequeno, e o grafo maior conecta passos, decisões e loops.
 
-O nome Graph Engineering é recente e ainda não tem uma definição única. As mecânicas são antigas: flowcharts, máquinas de estado, grafos de build, pipelines de Integração e Entrega Contínuas, ou CI/CD, e orquestradores de jobs já tornam fluxo e dependências explícitos há décadas.
+O nome é recente e ainda não tem uma definição única. As mecânicas são antigas. Flowcharts, máquinas de estado, grafos de build e pipelines de Integração e Entrega Contínuas, ou CI/CD, já explicitam fluxo e dependências há décadas.
 
 ## Desenhe o trabalho antes de distribuí-lo
 
-Imagine que a correção dos tipos siga este fluxo:
+Imagine este fluxo:
 
 ```text
-triagem
-  -> diagnóstico
-  -> decisão de contrato, se necessária
-  -> atualização do tipo central
-  -> implementação da API + implementação da interface
-  -> testes de cada ramo
-  -> typecheck completo
-  -> revisão
-  -> aprovação humana
-  -> concluído
+triagem -> diagnóstico -> decisão de contrato, se necessária
+        -> atualização do tipo central
+        -> implementação da API + implementação da interface
+        -> testes dos dois ramos -> typecheck -> revisão
+        -> aprovação humana -> concluído
 ```
 
-Se o typecheck falhar na API, o fluxo volta ao ramo da API. Se a interface depender de uma decisão ainda aberta, ela espera. Se o contrato público mudar, uma pessoa aprova antes da implementação continuar.
+Se os testes da API falham, o trabalho volta ao ramo da API. Se a interface espera uma decisão, ela não começa. Se o contrato público muda, uma pessoa aprova antes da implementação.
 
-Isso é um grafo dirigido. As caixas são nós. As setas são arestas. Cada nó representa trabalho ou decisão, e cada aresta define um caminho permitido.
+Isso é um grafo dirigido. As caixas são nós, as setas são arestas e cada caminho representa uma transição permitida.
 
-O agente ainda pode investigar e escolher uma solução dentro de um nó. A diferença é que ele não inventa o processo inteiro enquanto trabalha. O sistema preserva os gates e os caminhos que importam.
+O agente ainda pode investigar livremente dentro de um nó. O sistema apenas preserva os gates e caminhos que não deveriam ser inventados no meio da execução.
 
-## O trabalho acontece nos nós
+## Nós fazem trabalho. Arestas definem o caminho
 
-Um nó pode ser quase qualquer unidade executável:
+Um nó pode ser código comum, uma chamada a um modelo, um agente com ferramentas, uma aprovação humana, um loop inteiro ou uma espera por evento.
 
-- código determinístico que lê uma saída;
-- uma chamada a um modelo;
-- um agente com ferramentas próprias;
-- uma aprovação humana;
-- um loop completo de implementação e verificação;
-- uma espera por evento externo.
+Nem todo nó precisa de inteligência. Quanto mais previsível a etapa, mais sentido faz usar código determinístico. Rodar `npm run typecheck`, ler o código de saída e escolher o próximo caminho não exige modelo de linguagem. Diagnosticar a causa de um tipo incompatível talvez exija.
 
-Nem todo nó precisa ser inteligente. Na verdade, quanto mais previsível for uma etapa, mais sentido faz escrevê-la como código comum. Rodar `npm run typecheck`, comparar o código de saída e escolher a próxima aresta não exige um modelo de linguagem.
+Sistemas descritos por Anthropic e OpenAI combinam justamente essas peças: roteadores, sequências programadas, workers, handoffs e agentes que usam ferramentas.
 
-Reserve decisão probabilística para onde existe ambiguidade útil. Diagnosticar a causa de um tipo incompatível pode pedir exploração. Verificar se um comando saiu com zero não pede.
+As arestas também carregam mais do que ordem. Podem transportar dados, condições, dependências, limites e autoridade. Entre diagnóstico e implementação, uma condição pergunta se a correção muda um contrato público. Se mudar, o fluxo passa pela aprovação. Se não, continua.
 
-Essa mistura aparece em sistemas de agentes descritos por Anthropic e OpenAI. Há roteadores, sequências programadas, workers, handoffs e agentes que escolhem ferramentas. O desenho pode combinar código fixo e decisões do modelo sem transformar tudo num agente autônomo.
-
-## Arestas carregam mais que ordem
-
-Uma seta não precisa dizer apenas "depois disso, faça aquilo". Ela pode carregar:
-
-- dados produzidos pelo nó anterior;
-- uma condição, como teste passou ou falhou;
-- uma dependência, como contrato aprovado;
-- autoridade, como revisão humana obrigatória;
-- um limite, como número máximo de tentativas;
-- um evento, como resposta do time de produto.
-
-No exemplo, a aresta entre diagnóstico e mudança do tipo central pode perguntar se a correção altera um contrato público. Se não alterar, o fluxo continua. Se alterar, vai para o nó de decisão. Essa condição faz uma regra de governança aparecer no desenho e no runtime.
-
-Em código tradicional, isso poderia ser um `if`, uma transição de máquina de estado ou uma regra no pipeline. O grafo transforma a topologia dessa lógica existente em um artefato que conseguimos ler, testar e observar.
+Em código tradicional, isso seria um `if`, uma transição de máquina de estado ou uma regra de pipeline. O grafo torna essa lógica visível, testável e observável.
 
 ## Estado é a memória do fluxo
 
-Cada nó precisa saber o suficiente para fazer seu trabalho. Isso não significa enviar todo o histórico para todos.
-
-Um estado compartilhado pode conter o objetivo, o erro atual, decisões aprovadas, artefatos produzidos, tentativas e resultados de checks. Cada nó lê os campos necessários e escreve uma saída explícita.
+Cada nó precisa receber apenas o necessário para cumprir sua responsabilidade. Um estado compartilhado pode guardar objetivo, decisões, artefatos, tentativas e resultados:
 
 ```json
 {
@@ -100,94 +73,65 @@ Um estado compartilhado pode conter o objetivo, o erro atual, decisões aprovada
     "api": "tests-passed",
     "ui": "in-progress"
   },
-  "typecheck": "waiting",
   "review": "waiting"
 }
 ```
 
-Frameworks como LangGraph formalizam essa ideia com estado, nós e arestas. A implementação específica pode mudar, mas o princípio é o mesmo de um workflow engine: transições leem e atualizam um estado durável.
+Frameworks como LangGraph formalizam essa ideia com estado, nós e arestas. A ferramenta pode variar. O princípio é o mesmo de um workflow engine: transições leem e atualizam estado durável.
 
-Checkpoints permitem retomar depois de uma falha. Se o ramo da API já passou nos testes, uma queda no worker da interface não deveria apagar esse resultado. Persistir o estado também permite auditoria: sabemos que decisão liberou qual caminho.
+Checkpoints permitem retomar depois de uma falha. Se o ramo da API passou, a queda do worker da interface não deveria apagar esse resultado. O estado persistido também cria auditoria, porque mostra qual decisão liberou cada caminho.
 
-O risco é criar um objeto global enorme que todo nó pode modificar. Aí o grafo fica acoplado e difícil de entender. Contratos pequenos entre nós, com ownership claro, funcionam melhor que uma sacola de contexto compartilhado.
+O perigo é transformar o estado numa sacola global que todos modificam. Contratos pequenos e ownership claro entre nós funcionam melhor.
 
-## Paralelo só funciona quando o trabalho é independente
+## Paralelismo exige independência
 
-Agentes paralelos chamam atenção porque prometem velocidade. A condição vem antes da quantidade: os ramos precisam poder avançar sem disputar o mesmo estado ou tomar a mesma decisão.
+Agentes paralelos prometem velocidade, mas os ramos precisam avançar sem disputar o mesmo estado ou tomar a mesma decisão.
 
-Depois que o tipo central foi aprovado e atualizado, API e interface talvez possam trabalhar em paralelo. Antes disso, colocar dois agentes nos ramos apenas cria duas interpretações incompatíveis do contrato.
+Depois que o tipo central foi aprovado, API e interface talvez possam trabalhar ao mesmo tempo. Antes disso, dois agentes só criariam interpretações diferentes do contrato.
 
-Um fan-out divide o trabalho em ramos. Um fan-in junta os resultados e espera as condições necessárias. No nosso grafo, a implementação abre dois ramos, cada um roda seus testes, e o typecheck completo só começa quando ambos terminam.
+Um fan-out abre os ramos. Um fan-in espera e reúne os resultados. Worktrees ou sandboxes separados evitam colisões de arquivos. Ownership explícito define quem pode mudar cada módulo. No encontro, uma etapa de integração verifica o sistema completo.
 
-Isolamento mecânico também importa. Worktrees ou sandboxes separados evitam colisão de arquivos. Ownership explícito diz quem pode mudar cada módulo. Uma especificação comum reduz divergência. No encontro dos ramos, uma etapa de integração resolve conflitos e verifica o sistema como um todo.
+A Anthropic recomenda paralelização quando as subtarefas são realmente independentes ou quando perspectivas separadas ajudam a avaliação. A Kimi apresenta seu Agent Swarm para trabalho amplo e paralelizável, mas ainda como research preview e com números do próprio fornecedor. Isso não prova que muitos agentes ajudam qualquer projeto. Em código muito acoplado, eles podem apenas multiplicar o trabalho de integração.
 
-A Anthropic apresenta a paralelização como útil quando subtarefas são realmente independentes ou quando perspectivas separadas melhoram a avaliação. A Kimi descreve seu Agent Swarm para trabalhos amplos e paralelizáveis, mas o apresenta como research preview e publica números do próprio fornecedor. Esses números não são evidência de que cem agentes ajudam qualquer codebase. Em software com dependências apertadas, mais workers podem produzir mais trabalho de integração.
+## Handoff transfere responsabilidade
 
-## Handoff é uma mudança de responsabilidade
-
-Em um handoff, um agente ou etapa transfere o controle para outro. Não basta encaminhar uma mensagem dizendo "continue daqui".
-
-Um bom handoff informa:
+Um handoff não é só uma mensagem dizendo “continue daqui”. Ele precisa informar:
 
 - qual objetivo continua ativo;
 - o que já foi comprovado;
 - quais artefatos são a fonte de verdade;
 - quais decisões estão bloqueadas;
-- que ações o próximo nó pode executar;
+- o que o próximo nó pode executar;
 - qual saída encerra sua responsabilidade.
 
-Isso se parece com a passagem entre times, com um contrato de API ou com uma mensagem bem desenhada numa fila. O receptor não deveria precisar reconstruir a intenção a partir de um chat enorme.
+É parecido com uma passagem entre times ou uma mensagem bem desenhada numa fila. O receptor não deveria reconstruir a intenção lendo um chat enorme.
 
-A documentação de subagentes da Z.ai e os guias de orquestração da OpenAI mostram produtos atuais usando agentes especializados, managers e handoffs. A categoria é útil, mas o desenho ainda precisa responder a perguntas comuns de sistemas distribuídos: quem é dono do estado, o que acontece com falhas parciais e como evitar trabalho duplicado.
+Subagentes da Z.ai e guias de orquestração da OpenAI usam managers e handoffs. Mesmo assim, continuam valendo perguntas de sistemas distribuídos: quem é dono do estado, o que acontece com falhas parciais e como evitar trabalho duplicado.
 
-O manager também pode virar gargalo. Se ele lê todo arquivo, repassa toda mensagem e revisa toda saída, o sistema ganhou um ponto central caro e carregado de contexto. Delegação boa reduz informação no topo e devolve evidência compacta.
+O manager pode virar gargalo. Se lê todos os arquivos e revisa toda saída, concentra contexto demais. Uma delegação saudável devolve evidência compacta e mantém a responsabilidade perto de quem executa.
 
-## Falhas devem voltar ao lugar certo
+## Falhas voltam ao nó responsável
 
-Um retry global é grosseiro. Se apenas os testes da interface falharam, repetir diagnóstico, decisão de contrato e implementação da API desperdiça trabalho e pode introduzir novas diferenças.
+Se apenas os testes da interface falharam, repetir diagnóstico, decisão e implementação da API desperdiça trabalho. O grafo permite recuperação específica: teste falhou, volta ao ramo; integração falhou, volta à reconciliação; requisito faltou, chama uma pessoa; infraestrutura oscilou, tenta novamente com limite.
 
-O grafo permite rotas de recuperação específicas. Falha de teste volta ao ramo responsável. Falha de integração volta ao nó que reconcilia os contratos. Falta de requisito segue para uma pessoa. Erro transitório de infraestrutura tenta novamente com limite.
+Por isso grafos de produção costumam ter ciclos. Um grafo direcionado acíclico, ou DAG na sigla em inglês, funciona quando as dependências só avançam. Workflows de agentes frequentemente precisam corrigir e voltar. LangChain destaca que loops são uma forma simples de grafo.
 
-Grafos de produção, por isso, costumam ter ciclos. Um grafo direcionado acíclico, ou DAG na sigla em inglês, não admite retorno. Ele funciona bem para dependências que avançam numa direção, como muitos builds e pipelines de dados. Workflows de agente frequentemente precisam corrigir, verificar e voltar. LangChain chama atenção para esse ponto ao explicar que os grafos reais nem sempre são DAGs e que loops são uma forma simples de grafo.
+Cada retorno ainda precisa dos freios do artigo anterior: orçamento, máximo de tentativas, checkpoint e escalada. Desenhar uma seta de volta não torna a repetição segura.
 
-Cada ciclo ainda precisa dos freios do artigo anterior: orçamento, número máximo de tentativas, checkpoint e escalada. Desenhar uma seta de volta não torna o retry seguro por conta própria.
+## Pessoas ocupam nós com autoridade real
 
-## A pessoa ocupa um nó com autoridade real
+Uma caixa “revisão humana” no diagrama não resolve governança. A pessoa precisa receber evidência, ter tempo para julgar e poder bloquear.
 
-Adicionar uma caixa "human review" no diagrama não resolve governança. A pessoa precisa receber evidência suficiente, ter tempo para julgar e possuir autoridade para bloquear.
+No nosso fluxo, a decisão de contrato vem antes dos ramos porque mudar depois multiplicaria retrabalho. A aprovação final recebe diff, checks e decisões registradas. O agente prepara a evidência. O veredito pertence a quem responde pelo sistema.
 
-No nosso fluxo, a decisão de contrato acontece antes dos ramos porque mudar esse contrato depois multiplicaria retrabalho. A aprovação final recebe o diff, os resultados dos checks e as decisões registradas. O agente pode preparar tudo. O veredito pertence a quem responde pelo sistema.
+Addy Osmani chama de comprehension debt a distância entre o código produzido e o quanto alguém ainda entende. Um grafo eficiente pode aumentar essa dívida se as pessoas passam a confiar apenas nas luzes verdes.
 
-Addy Osmani chama atenção para comprehension debt, a distância entre o volume de código produzido e o quanto alguém ainda entende. Um grafo muito eficiente pode aumentar essa dívida se pessoas deixam de ler as decisões e passam a confiar apenas em luzes verdes.
+Também não vale desenhar grafo para tudo. Investigação aberta pode funcionar melhor num único loop bem instrumentado. Use grafo quando há dependências estáveis, gates obrigatórios, permissões diferentes, paralelismo real ou recuperação auditável. Muitos sistemas combinam os dois: o grafo controla triagem e aprovação; dentro do diagnóstico, um agente explora em loop.
 
-Os checks reduzem custo de revisão, mas não medem todas as qualidades. Arquitetura sustentável, intenção de produto e impacto de uma mudança podem exigir julgamento fora do alcance de um teste rápido.
+Grafos quebram quando os contratos são vagos, dois nós disputam os mesmos arquivos, um join espera para sempre ou um resumo esconde o risco principal. Mais agentes também significam mais contextos para revisar. Worktrees resolvem colisões, mas não aumentam a capacidade humana de compreender dez mudanças ao mesmo tempo.
 
-## Quando um loop simples é melhor
+Para começar, desenhe uma entrega recente como ela realmente aconteceu. Inclua retornos, esperas, aprovações e checks que falharam. Transforme em nós e arestas apenas os pontos ligados a uma dependência, um risco ou uma decisão real.
 
-Um grafo explícito cobra um preço. Estados, transições, persistência, observabilidade e recuperação viram código que precisa ser mantido.
+Essa é a linha da série. O harness prepara o ambiente. O loop transforma ação em progresso repetível. O grafo conecta loops, ferramentas e pessoas sem esconder quem decide.
 
-Se a tarefa é pequena, reversível e aberta, um único agente num loop bem instrumentado pode ser suficiente. Investigar uma falha desconhecida exige liberdade para seguir pistas que você ainda não consegue desenhar. Forçar todos os caminhos antes de entender o problema cria um flowchart fictício.
-
-Use o grafo quando o fluxo tem dependências estáveis, gates obrigatórios, diferentes permissões, paralelismo real ou caminhos de recuperação que precisam ser auditáveis. Use o loop quando os próximos passos dependem de descoberta e o custo de deixar o agente escolher é aceitável.
-
-Muitos sistemas combinam os dois. Um grafo determinístico controla triagem, aprovação e integração. Dentro do nó de diagnóstico, um agente opera em loop até produzir uma hipótese com evidência ou atingir o limite.
-
-## Onde o grafo quebra
-
-Um diagrama bonito pode esconder contratos vagos. Dois nós podem escrever no mesmo arquivo. Um join pode esperar para sempre por um ramo que morreu. Um revisor pode receber um resumo que omite o risco principal.
-
-Paralelismo multiplica contextos para acompanhar. Worktrees resolvem colisões mecânicas, não a capacidade humana de entender dez mudanças ao mesmo tempo. Quanto mais agentes entram, maior o custo de coordenação, integração e revisão.
-
-Há ainda o risco de automatizar o organograma da empresa com todos os seus gargalos. Criar um agente de produto, um agente arquiteto, cinco implementadores e três revisores não garante separação útil. Às vezes, é apenas teatro de processo com mais chamadas de modelo.
-
-Produto e garantia de qualidade, ou QA, ajudam a impedir isso quando transformam autoridade e critérios em transições concretas. Um gate de QA deve dizer que evidência recebe e o que pode bloquear. Um nó de produto deve existir porque uma decisão muda o resultado, não para representar uma função no diagrama.
-
-## Desenhe o fluxo que já existe
-
-Pegue uma entrega recente e desenhe como ela realmente aconteceu. Inclua esperas, retornos, aprovações e checks que falharam. Marque onde uma decisão ficou escondida no chat e onde duas pessoas trabalharam com premissas diferentes.
-
-Depois transforme apenas esses pontos em nós e arestas explícitos. Remova todo nó que não responde a uma dependência, um risco ou uma ambiguidade observada.
-
-Essa é a linha que atravessa a série. O harness prepara o ambiente. O loop transforma ação em progresso repetível. O grafo conecta loops, ferramentas e pessoas sem esconder quem decide.
-
-A tecnologia parece nova. A responsabilidade de projetar um sistema legível, verificável e recuperável continua sendo engenharia de software.
+A tecnologia parece nova. A responsabilidade de criar sistemas legíveis, verificáveis e recuperáveis continua sendo engenharia de software.

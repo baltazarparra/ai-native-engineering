@@ -21,100 +21,83 @@ references:
   - 'addy-loop-engineering'
 ---
 
-The harness from the first article gave our coding agent clear context, safe tools, and real feedback. Its first TypeScript fix was good. The agent selected one error, made a focused change, reran the compiler, and showed the diff.
+In the previous article, we prepared an agent to fix TypeScript errors with context, tools, limits, and feedback. The run went well. It selected one error, made a small change, reran the compiler, and showed the diff.
 
-Tomorrow, the repository still has 47 errors. You start a new session, repeat the instruction, point out the right command, ask for verification, and wait. Then you do it again.
+The next day, the repository has another 47 errors. You open the agent, repeat the instruction, point out the right command, and wait. Then you do it again.
 
-Each run has improved, but the process still depends on a person conducting every round. Loop Engineering picks up from there.
+The harness improved each run, but the process still depends on you conducting every round. Loop Engineering starts there.
 
-## Design the system that continues
+## The loop is the system that continues
 
-An agent loop is a bounded cycle. It reads a goal and the current state, selects one useful action, uses a tool, observes the result, verifies progress, and decides what to do next.
-
-In compact form:
+An agent loop is a bounded cycle. It reads the goal and current state, chooses an action, observes the result, checks progress, and decides what comes next.
 
 ```text
 read goal and state
-choose a small task
+choose one small task
 act
-observe evidence
-verify
+observe and verify
 record state
 continue, stop, or ask for help
 ```
 
-Loop Engineering is an emerging label, not a formal industry standard. It describes the work of designing this cycle rather than manually repeating prompts until the output looks complete.
+Loop Engineering is still a recent term, not a formal industry standard. It names the work of designing this cycle instead of repeating prompts until something looks finished.
 
-The foundations are old. Engineers have used edit, compile, and test cycles for decades. Test-Driven Development, or TDD, moves through red, green, and refactor. A queue worker reads a job, runs it, then acknowledges or retries. An infrastructure controller compares desired state with observed state and reconciles the difference.
+The foundation is familiar. Developers have edited, compiled, and tested for decades. Test-Driven Development, or TDD, follows red, green, and refactor. Queue workers read a message, execute, and acknowledge or retry. With agents, some actions are probabilistic, but goals, signals, state, and limits remain engineering problems.
 
-An agent can make probabilistic choices inside the cycle. The surrounding engineering still owns the objective, state, evidence, and limits.
+## Start with a verifiable goal
 
-## Give the loop a verifiable goal
+“Fix the project” does not say when the work is done. Which project? What changes are acceptable? What proves completion?
 
-"Fix the project" sounds like a goal, but it cannot tell the system when to stop. Which problems are in scope? What changes are allowed? Which evidence counts as success?
-
-Our TypeScript goal can be more operational:
+Our goal can be more operational:
 
 ```text
 Reduce the errors returned by npm run typecheck.
 Handle one error per round.
 Do not change public contracts or disable checks.
-After every change, run the typecheck and related tests.
-Stop when the typecheck exits with zero or when the next fix requires
-an architecture decision.
+After each change, run the typecheck and relevant tests.
+Stop when the command exits with zero or when the next fix
+requires an architecture decision.
 ```
 
-Now the loop can compare desired and observed state. The command exit code, error count, tests, and diff provide evidence outside the model's own response.
+Now the loop can compare the desired state with external signals: exit code, error count, tests, and diff.
 
-Current agent products use this distinction. Z.ai's Goal Mode, for example, separates execution into rounds and says that a plan or confident answer does not establish completion. Its verifier looks for changed files, command output, and check results. That is product documentation, not a guarantee that any goal will be solved. The useful mechanism is that execution and verdict are separate steps.
+Z.ai's Goal Mode uses a similar idea by splitting execution into rounds and requiring changes and check results as evidence of completion. This is a product description, not a promise that every goal will succeed. The useful pattern is the separation between doing and judging.
 
-## Keep one round small
+## Keep each round small
 
-Give an agent 47 errors at once and it may try to reorganize the whole project. The diff grows, causes become entangled, and a failure at the end is hard to trace.
+Faced with 47 errors, an agent may try to reorganize the whole project. The diff grows, causes mix together, and failures become hard to trace.
 
-A small round reduces that space. The agent picks one error, understands the cause, fixes it, verifies the result, and records the new state. If the error count increases, the recovery point is close. If the fix works, the next round starts from a cleaner base.
+A small round narrows that space. The agent picks an error, understands the cause, fixes it, verifies it, and records the result. If the change makes things worse, the return point is close. If it works, the next round starts from a cleaner state.
 
-This is the logic behind tracer bullets and vertical slices. Instead of constructing every layer before checking the result, make one thin change that crosses the system and produces real feedback. Then expand.
+This is the same idea behind tracer bullets and vertical slices: send one small change through the system, get real feedback, then expand.
 
-One task does not necessarily mean one file. Fixing a type may require an interface, its implementation, and a test to change together. The boundary should follow a verifiable outcome, not an arbitrary line count.
+“One task” does not always mean “one file.” Fixing a type may touch an interface, an implementation, and a test. The unit should fit in one context window, have a pass-or-fail condition, and leave the repository usable.
 
-A good loop task fits within one context window, has a clear pass or fail condition, and leaves the repository usable. If it cannot meet those conditions, the task needs more decomposition.
+## Action needs independent observation
 
-## Action needs external observation
+After editing, the agent needs to inspect something outside its own response. That might be compiler output, tests, the diff, or browser behavior. AI Hero calls typechecks, tests, and hooks essential feedback loops because they keep action close to consequence.
 
-After editing code, the agent has to inspect something outside its generated answer.
+Fast checks encourage small rounds. If verification takes forty minutes, the loop is likely to stack several changes before it learns anything.
 
-For this project, observation may include fresh compiler output, tests, the diff, and user interface behavior in a browser. AI Hero treats TypeScript checks, tests, hooks, and a visible development server as essential feedback because they let an agent observe whether its change worked.
+Signals do not have to be binary. Moving from 47 errors to 46 shows progress. Dropping to 12 because a folder disappeared from the configuration shows a misleading metric. That is why diff inspection and guardrails sit next to the main count.
 
-Feedback speed matters. A check that takes forty minutes makes every round expensive and encourages a large batch of changes before validation. Incremental type checking and focused tests keep action close to consequence.
+Whenever possible, the implementer should not be the only source of approval. The verifier can be deterministic code, another agent with a short rubric, or a person when the decision involves product, security, or architecture.
 
-Signals do not all have to be binary. The error count may fall from 47 to 46. The job is not complete, but the loop has evidence of progress. On the other hand, dropping to 12 by excluding a folder from `tsconfig.json` is false progress. Diff inspection and guardrails have to protect the primary metric.
-
-Software teams already know the danger of one metric. Coverage does not prove test quality. Closed ticket counts do not prove customer value. A loop can only react to what its sensors make visible.
-
-## Do not let the implementer be the only judge
-
-An agent can review its own work, and that first pass is useful. It also carries the same context and assumptions that produced the change.
-
-Use an independent verifier when the risk warrants it. That verifier may be deterministic code such as a compiler. It may be a second agent with a short rubric and access to the diff. It may be a person when product, security, or architecture judgment is required.
-
-Anthropic describes an evaluator-optimizer pattern where one model call generates and another evaluates against explicit criteria. Feedback returns to the generator until the condition is met. The same source recommends adding complexity only when it demonstrates value. Two agents with no criteria are still just two opinions.
-
-For our TypeScript loop, the verifier can ask:
+Anthropic describes an evaluator-optimizer pattern where one step produces and another judges against clear criteria. For our task, the evaluation asks:
 
 - did the selected error disappear for the right reason?
 - did any new error appear?
 - were tests or configuration weakened?
-- did the diff stay within the expected module?
-- did a public interface change?
+- did the diff stay inside the expected module?
+- did the public interface change?
 
-If the final answer is yes, the loop should escalate rather than invent an architecture decision.
+If the last answer is yes, the loop escalates instead of improvising.
 
-## Put state somewhere durable
+## Make state and checkpoints durable
 
-A loop that relies on the complete conversation becomes more fragile with every turn. Tool output takes space. Old hypotheses remain nearby. Solved and unsolved work start to blur together.
+A loop that depends on the entire conversation becomes more fragile with every round. Tool output takes space, and old hypotheses get mixed with open work.
 
-Store the essential state outside the chat. For this example, a small file could hold:
+Keep the essential state outside chat:
 
 ```json
 {
@@ -122,66 +105,39 @@ Store the essential state outside the chat. For this example, a small file could
   "errorsAtStart": 47,
   "errorsNow": 31,
   "currentError": "TS2322 in src/billing/format.ts",
-  "blocked": [],
   "iterations": 16
 }
 ```
 
-Git preserves code checkpoints. The state file preserves the operational view. A short log explains decisions that are not obvious from the diff. A fresh session can rebuild the job from those artifacts and start with a clean context.
+Git keeps code checkpoints. A state file holds the operational view. A short log explains decisions that the diff cannot. A new session can resume with a clean context.
 
-The Ralph Loop example in Kimi's Software Development Kit, or SDK, implements a direct version of this cycle. It passes a prompt to an agent, runs an external verification command, and continues when that command fails. It also exposes an iteration limit and recommends small tasks. The example is educational. A production implementation still needs to handle partial failures, concurrency, cost, and recovery.
+The Ralph Loop in Kimi's Software Development Kit, or SDK, shows a teaching version of this pattern. The agent runs a task, an external command verifies it, and the loop continues when verification fails. The example limits iterations and recommends small tasks. Production code still needs to handle concurrency, cost, and recovery.
 
-## A checkpoint is more than a timestamp
-
-Saving progress might mean committing code, updating the state file, recording an event, or preserving a test artifact. The right choice depends on the system.
-
-A checkpoint should answer two questions: what do we know now, and where can we safely resume? The first clean typecheck after fifteen rounds deserves a durable point. A half-finished refactor does not become safe simply because the loop logged it.
-
-Small commits help teams review and reverse changes. A local experiment may only need a preserved diff and snapshot. Either way, recorded activity and recoverable state are different things.
+A checkpoint is more than a timestamp. It should tell us what we know and where it is safe to resume. A commit with passing tests may be a good checkpoint. Half of an unfinished refactor is not.
 
 ## Every loop needs a brake
 
-Stochastic systems can repeat a bad strategy with cosmetic variations. Without a limit, the agent spends time and money while staying in place.
+A probabilistic system can repeat one bad strategy with superficial variations. Decide up front:
 
-Define these conditions before the run:
-
-- a maximum number of rounds;
+- the maximum number of rounds;
 - a time or cost budget;
-- a retry limit for the same failure;
+- tolerated attempts on the same error;
 - actions that require approval;
 - an explicit completion signal;
-- the recovery action when a limit is reached.
+- recovery when the limit is reached.
 
-In our loop, three attempts on the same error can trigger a pause with a diagnosis. A public interface change asks for human judgment. An increased error count reverts the round. A zero typecheck exits.
+In our loop, three attempts without progress produce a paused diagnosis. A public contract change calls a person. A higher error count reverts the round. A zero-error typecheck finishes the job.
 
-The brake is the agent equivalent of a timeout, circuit breaker, or dead-letter queue. It keeps a local failure visible and stops it from consuming the whole process.
+This brake resembles a timeout, circuit breaker, or dead-letter queue in distributed systems. It stops one local failure from consuming the entire process.
 
-## Start with a human in the loop
+## Start with a person watching
 
-Unattended execution is appealing, but reliable verification has to earn it.
+Unattended execution is earned through good verification. At first, watch the rounds. Notice where the agent gets confused, how it responds to failure, and which shortcuts it tries. This human-in-the-loop mode provides the history you need to improve the harness.
 
-Watch the early rounds. Notice which commands the agent chooses, where it gets confused, how it responds to failed checks, and what it tries to fit inside a supposedly small fix. This human-in-the-loop period produces the failure history you need to improve the harness.
+A task can run alone when risk is low, scope is narrow, rollback is easy, and the definition of done is hard to fake. Fixing mechanical lint on an isolated branch might qualify. Changing authentication, billing, or customer data requires different authority.
 
-A task can run unattended when risk is low, scope is narrow, reversal is easy, and completion is hard to fake. Fixing one mechanical lint rule on an isolated branch may qualify. Changing authentication, billing, or customer data needs a different evidence and approval model.
+Loops also fail. They may fix the test instead of the product, repeat a bad repository pattern, or keep checks green while increasing architecture debt. Actions such as sending email, charging a card, or running a destructive migration cannot use naive retries. Idempotency, deduplication, and approval still matter.
 
-The practical question is how much work you can verify cheaply and reliably.
+To try the idea, choose a reversible task that takes a few minutes. Define three moves: act, check, and record. Name the command that proves progress, where state lives, and when to stop. Watch the first rounds and note one flaw in the cycle, not just in the code.
 
-## Where loops fail
-
-A loop can spend hours fixing the test rather than the product. It can learn a poor pattern already present in the repository and repeat that pattern 47 times. It can keep every check green while building architectural debt that only becomes visible months later.
-
-Context degrades too. Large tasks accumulate details, and summaries lose information. A reset with persistent state helps, but a bad state file simply carries the misunderstanding forward.
-
-Some actions should never use naive retries. Sending email, charging a card, or running a destructive migration requires idempotency, approvals, and deduplication keys.
-
-For Quality Assurance, or QA, and product teams, the boundary appears in the definition of done. If the only criterion is "fix the types," the loop may produce compiling software with incorrect behavior. Functional acceptance criteria and business risks need their own gates when they are part of the outcome.
-
-## Build a three-move loop
-
-Choose a reversible task that takes a few minutes, such as one type error, a broken test, or a lint violation.
-
-Define three moves: act, check, and record. Specify which command proves progress, where state will live, and when the agent must stop. Watch the first rounds and record one failure in the cycle itself, not only in the generated code.
-
-Once that loop becomes predictable, you have a reusable unit of work.
-
-Real delivery rarely fits inside one unit. Tasks depend on other tasks. Some checks can run in parallel. Reviewers have different permissions, and failures need to return to the right place. The final article makes that larger flow visible through Graph Engineering.
+Once the loop becomes predictable, you have a reusable unit of work. In the next article, we will connect several units, dependencies, and decisions with Graph Engineering.

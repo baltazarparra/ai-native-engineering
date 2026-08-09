@@ -20,43 +20,33 @@ references:
   - 'addy-agent-harness-engineering'
 ---
 
-Você entrega um repositório para um agente de código e pede algo aparentemente simples: corrija os erros de TypeScript. Alguns minutos depois, ele diz que terminou. O compilador ainda falha, um teste foi comentado e três arquivos que não tinham relação com a tarefa mudaram no caminho.
+Você entrega um repositório para um agente de código e pede algo simples: corrija os erros de TypeScript. Pouco depois, ele diz que terminou. O compilador ainda falha, um teste foi comentado e três arquivos sem relação com a tarefa mudaram.
 
-É tentador concluir que o modelo não é bom o bastante. Pode ser. Só que, muitas vezes, o problema está em volta dele.
+É fácil culpar o modelo. Só que ele também não sabia qual comando representava sucesso, quais arquivos estavam fora do escopo nem quando deveria parar e pedir ajuda. Recebeu capacidade para editar código, mas não um ambiente confiável para trabalhar.
 
-O agente não sabia qual comando representava sucesso, quais arquivos estavam fora do escopo, onde encontrar as decisões de arquitetura nem quando deveria parar e pedir ajuda. Ele recebeu capacidade para editar código, mas não recebeu um ambiente de trabalho confiável.
-
-É disso que trata Harness Engineering.
+É desse ambiente que trata Harness Engineering.
 
 ## Agente é modelo mais harness
 
-Um modelo de linguagem produz a próxima resposta. Um agente consegue observar um ambiente, escolher ferramentas, executar ações e usar o resultado para decidir o que fazer depois.
+Um modelo de linguagem produz respostas. Um agente observa um ambiente, escolhe ferramentas, executa ações e usa o resultado para decidir o próximo passo.
 
-Para isso, existe uma camada ao redor do modelo. Essa camada entrega contexto, expõe ferramentas, controla permissões, registra estado e devolve sinais sobre a qualidade do trabalho. Chamamos esse conjunto de **harness**.
-
-Em linguagem direta:
+Para isso, existe uma camada ao redor do modelo. Ela entrega contexto, expõe ferramentas, controla permissões, registra estado e devolve sinais sobre a qualidade do trabalho. Esse conjunto é o **harness**.
 
 > agente = modelo + harness
 
-O modelo é o motor de decisão. O harness é o sistema que permite usar esse motor dentro de um trabalho real.
+O modelo é o motor de decisão. O harness permite usar esse motor em trabalho real. Ele inclui instruções do repositório, sistema de arquivos, Git, testes, sandbox, aprovações, logs e caminhos de recuperação.
 
-Isso inclui o arquivo de instruções do repositório, mas vai muito além dele. Entram também o sistema de arquivos, Git, comandos de teste, sandbox, limites de acesso, regras de aprovação, logs, memória de progresso e caminhos de recuperação.
+Se você já configurou um runtime, um pipeline de Integração Contínua, ou CI, e um runbook de incidentes, a ideia é familiar. Antes da Inteligência Artificial, ou IA, nós já projetávamos o ambiente em que o software seria executado e verificado. Agora também projetamos o ambiente em que o agente trabalha.
 
-Se você já configurou um runtime, um pipeline de Integração Contínua, ou CI, um test harness e um runbook de incidentes, a ideia não é tão nova. Muito antes da Inteligência Artificial, ou IA, nós já projetávamos o ambiente em que o software podia ser executado e verificado. Agora também projetamos o ambiente em que o agente pode trabalhar.
+## Seu repositório não cabe num prompt
 
-## Um prompt não conhece seu repositório
+Você sabe que o projeto usa `npm`, que arquivos gerados não devem ser editados e que a camada de domínio não pode importar componentes de interface. Para uma sessão nova, nada disso é óbvio.
 
-Voltemos aos erros de TypeScript. Você sabe que o projeto usa `npm`, que o comando correto é `npm run lint`, que arquivos gerados não devem ser editados e que a camada de domínio não pode importar componentes de interface. Esse conhecimento parece óbvio porque já está na sua cabeça.
+Pense num engenheiro que acabou de entrar no time e perdeu a memória do dia anterior. Ele precisa de um mapa curto e de um caminho para buscar detalhes quando necessário. Colocar o repositório inteiro no contexto só cria ruído.
 
-Para uma nova sessão de agente, nada disso é óbvio.
+A OpenAI relatou algo parecido ao descrever um `AGENTS.md` monolítico que ficou grande e difícil de manter. A saída foi transformar o arquivo inicial num mapa para fontes específicas. Primeiro vem a orientação, depois o detalhe. É documentação navegável aplicada a um leitor sem memória.
 
-Pense em um engenheiro que acabou de entrar no time e perdeu toda a memória do dia anterior. Ele precisa de um mapa curto, interfaces legíveis e uma forma de descobrir detalhes quando forem necessários. Jogar o repositório inteiro no contexto não resolve. Contexto demais compete com a tarefa atual e torna regras importantes mais fáceis de perder.
-
-A OpenAI relatou esse problema ao descrever um `AGENTS.md` monolítico que virou um manual grande, difícil de manter e de verificar. A alternativa adotada foi usar o arquivo inicial como mapa para fontes mais específicas. É a velha ideia de documentação navegável aplicada a um leitor novo: primeiro a orientação, depois o detalhe.
-
-Esse desenho é chamado de divulgação progressiva. O agente começa com o mínimo que vale para qualquer tarefa e abre documentos, skills e arquivos específicos conforme a necessidade.
-
-No nosso exemplo, o primeiro nível poderia dizer:
+No nosso exemplo, a entrada poderia ser:
 
 ```text
 Use Node 22.
@@ -65,106 +55,79 @@ Antes de encerrar, rode npm run lint e npm run build.
 Leia docs/architecture.md antes de mudar dependências entre camadas.
 ```
 
-O documento de arquitetura continua separado. A instrução inicial só mostra quando ele deve ser lido.
+O documento de arquitetura continua separado. A instrução curta só diz quando abri-lo. Esse acesso gradual ao contexto costuma ser mais útil do que um manual enorme carregado em toda tarefa.
 
-## Guias dizem como agir. Sensores mostram o que aconteceu
+## Guias orientam. Sensores mostram o resultado
 
-Um jeito prático de organizar o harness é separar **guias** de **sensores**.
+Um jeito simples de organizar o harness é separar **guias** de **sensores**.
 
-Guias orientam o comportamento antes da ação. Uma especificação delimita o resultado esperado. Um arquivo de instruções explica convenções. A descrição de uma ferramenta mostra os argumentos válidos. Uma regra de permissão diz que alterar dados de produção exige aprovação humana.
+Guias atuam antes da ação. Uma especificação delimita o resultado, um arquivo explica convenções e uma regra diz que alterar produção exige aprovação.
 
-Sensores observam o mundo depois da ação. O compilador encontra incompatibilidades de tipo. Um teste verifica comportamento. O linter encontra violações locais. O diff mostra o que realmente mudou. Logs e uma automação de navegador revelam problemas que a leitura do código não mostrou.
+Sensores observam o que aconteceu. O compilador encontra incompatibilidades, testes verificam comportamento, o diff mostra as mudanças e os logs revelam problemas que a leitura do código não mostrou.
 
-Essa separação também existe na engenharia tradicional. Um guia se parece com um contrato de interface ou um runbook. Um sensor se parece com uma assertion, uma métrica ou um alarme. O harness conecta os dois ao ciclo do agente.
+Na engenharia tradicional, um guia se parece com um contrato ou runbook. Um sensor se parece com uma assertion, uma métrica ou um alarme.
 
-Só uma instrução como "não quebre os tipos" é fraca. O modelo pode interpretá-la, esquecer uma exceção ou acreditar que cumpriu. O comando `tsc --noEmit` devolve um sinal externo e objetivo. A combinação é melhor: a regra explica a intenção e o compilador mostra se o resultado respeitou essa intenção.
+A instrução “não quebre os tipos” é fraca sozinha. O modelo pode acreditar que cumpriu. Já `tsc --noEmit` devolve um sinal externo. A regra explica a intenção e o compilador mostra se o resultado a respeitou.
 
-## Ferramentas precisam ser legíveis
+## Ferramentas, código e permissões formam a interface
 
-Dar acesso a um terminal não basta. O agente precisa entender qual ferramenta usar, em que diretório, com quais argumentos e como interpretar a saída.
+Dar acesso a um terminal não basta. O agente precisa entender qual ferramenta usar, em qual diretório e como interpretar a saída. Nomes claros, parâmetros explícitos e erros úteis importam tanto aqui quanto numa Interface de Programação de Aplicações, ou API, feita para pessoas.
 
-Uma boa interface de ferramenta tem nome claro, descrição curta, parâmetros explícitos e erros úteis. Isso é muito parecido com desenhar uma Interface de Programação de Aplicações, ou API, para outros engenheiros. Se duas ferramentas parecem fazer a mesma coisa, o agente terá a mesma dúvida que uma pessoa teria.
+O próprio código faz parte dessa interface. Pastas previsíveis, módulos com fronteiras claras, tipos bem nomeados e testes próximos do comportamento ajudam uma pessoa nova e também um agente. O AI Hero usa justamente essa imagem: cada sessão chega ao repositório sem memória. Encapsulamento, coesão e bons pontos de teste continuam valendo, agora também como recursos de navegação.
 
-O próprio repositório também faz parte dessa interface. Pastas previsíveis, módulos com fronteiras claras, tipos bem nomeados e testes perto do comportamento tornam o código mais navegável. O AI Hero resume a ideia tratando cada sessão de agente como a chegada de uma pessoa nova, sem memória. Práticas antigas como encapsulamento e test seams continuam valendo. Agora elas também reduzem o custo de orientação do agente.
+Para corrigir os erros de TypeScript, o agente deveria conseguir:
 
-No caso dos erros de TypeScript, um harness útil permite que o agente:
+1. encontrar o comando oficial de verificação;
+2. escolher um erro pequeno;
+3. ler apenas os módulos envolvidos;
+4. aplicar a correção;
+5. rodar novamente compilador e testes;
+6. inspecionar o diff antes de concluir.
 
-1. encontre o comando oficial de verificação;
-2. rode o comando e guarde a saída completa;
-3. escolha um erro pequeno e rastreável;
-4. leia apenas os módulos envolvidos;
-5. aplique a mudança;
-6. rode novamente o compilador e os testes relacionados;
-7. inspecione o diff antes de declarar conclusão.
+Permissão também entra no desenho. Para essa tarefa, ele precisa editar o repositório e executar comandos conhecidos. Não precisa de credenciais de produção. Se a correção mudar um contrato público, o harness deve parar e chamar quem tem autoridade.
 
-O modelo continua responsável por diagnosticar e implementar a correção. O harness torna essa tentativa observável.
+É o velho princípio do menor privilégio. Sandbox, comandos permitidos e aprovações limitam o impacto de uma decisão errada sem travar todo o trabalho.
 
-## Permissão é parte do projeto
+## “Terminei” precisa virar evidência
 
-Um agente com acesso irrestrito ao computador pode apagar arquivos, instalar dependências, chamar serviços externos ou mudar dados que não deveriam entrar na tarefa. Em vez de bloquear tudo, desenhe as permissões conforme o risco.
+Agentes escrevem relatórios de sucesso convincentes. Isso não prova que o software funciona.
 
-Uma sandbox oferece um espaço isolado para executar código. Uma lista de comandos permitidos reduz a superfície de dano. Aprovações humanas protegem ações irreversíveis, como publicar uma versão, mexer em produção ou enviar uma mensagem para um cliente.
+A Anthropic observou agentes de longa duração encerrando cedo porque viam bastante código pronto. Também encontrou validações parciais, sem prova ponta a ponta. Por isso, a conclusão precisa estar ligada a sinais concretos.
 
-Essa lógica já aparece em sistemas operacionais, contas de serviço e pipelines de deploy. Aplicamos o princípio do menor privilégio: cada processo recebe só o acesso necessário para fazer seu trabalho.
+No nosso caso:
 
-Para corrigir tipos localmente, o agente provavelmente precisa ler e editar o repositório, além de rodar comandos conhecidos. Ele não precisa de credenciais de produção. Se uma correção exigir uma decisão de contrato público, o harness deve parar e trazer a questão para quem tem autoridade.
+- o comando de tipos termina com código zero;
+- os testes relacionados passam;
+- o diff não inclui arquivos fora do escopo;
+- nenhum teste foi removido ou enfraquecido;
+- o agente registra o que não conseguiu verificar.
 
-Ao ampliar a autonomia, deslocamos a decisão humana para pontos explícitos do processo.
+Pedir uma autorrevisão ajuda, mas preserva as mesmas suposições da implementação. Compiladores, testes e revisores independentes criam outra fonte de sinal.
 
-## "Terminei" ainda é uma afirmação
+Para produto e garantia de qualidade, ou QA, isso começa nos critérios de aceite. “A tela funciona” diz pouco. “Ao salvar um e-mail inválido, a API responde 422 e o formulário preserva os dados” oferece um contrato que pode ser implementado e verificado.
 
-Agentes geram texto convincente. Isso inclui relatórios de sucesso.
+## Estado e recuperação ficam fora da conversa
 
-O problema é que uma frase bem escrita não prova que o software funciona. A Anthropic relatou agentes de longa duração que encerravam o trabalho cedo porque viam bastante código pronto e concluíam que o objetivo tinha sido atingido. Também observou mudanças testadas de forma parcial, sem comprovação ponta a ponta.
+Trabalhos maiores que uma janela de contexto precisam sobreviver a sessões diferentes. O chat não é uma base confiável para isso.
 
-O harness precisa transformar conclusão em evidência. Para a tarefa de TypeScript, isso pode significar:
+Git registra o código. Um plano guarda decisões e próximos passos. Um log curto explica o que foi tentado. Critérios de aceite mantêm a definição de pronto disponível. Uma sessão nova consegue retomar o trabalho sem reconstruir tudo por adivinhação.
 
-- o comando de tipos terminou com código de saída zero;
-- os testes relacionados passaram;
-- o diff não contém arquivos fora do escopo;
-- nenhum teste foi removido, pulado ou enfraquecido;
-- o agente registrou o que mudou e o que não conseguiu verificar.
+Em um experimento com agentes de longa duração, a Anthropic combinou histórico do Git, uma lista estruturada de funcionalidades e um arquivo de progresso. Cada sessão trabalhava numa parte pequena e preparava a passagem para a seguinte. É uma solução daquele contexto, não uma fórmula universal, mas o mecanismo é antigo: passagem de turno com estado persistente.
 
-Cada item responde a uma falha possível. Nenhum deles existe para decorar o processo.
+Recuperação faz parte do mesmo desenho. Se uma tentativa piora o repositório, o agente deve reconhecer o último estado válido e voltar com segurança.
 
-Há uma diferença importante entre autoavaliação e verificação. Pedir ao mesmo agente que "revise com cuidado" pode ajudar, mas ele continua carregando as mesmas suposições da implementação. Um compilador, um teste determinístico ou um revisor independente cria outra fonte de sinal.
+## Deixe as falhas ensinarem o harness
 
-## Estado fora da conversa
+Não comece criando quinze arquivos de regras e vinte integrações. Um harness útil cresce a partir de falhas observadas.
 
-Trabalho maior que uma janela de contexto precisa sobreviver a sessões diferentes. O histórico do chat não é uma base confiável para isso.
+Se o agente editou um arquivo gerado, adicione uma orientação curta e, se possível, uma checagem mecânica. Se comentou um teste para fazer o pipeline passar, bloqueie esse padrão. Se sempre se perde num módulo, melhore o mapa ou a fronteira do próprio código.
 
-Git registra o estado do código. Um plano registra decisões e próximos passos. Um log curto de progresso explica o que foi tentado. Critérios de aceite mantêm a definição de pronto disponível. Juntos, esses artefatos permitem que uma sessão nova retome o trabalho sem adivinhar.
+Addy Osmani descreve isso como uma catraca: um erro real vira uma melhoria durável no ambiente. O objetivo é evitar a repetição das falhas que o repositório já conhece, sem tentar prever todo erro imaginável.
 
-Em um experimento com agentes de longa duração, a Anthropic combinou histórico do Git, uma lista estruturada de funcionalidades e um arquivo de progresso. Cada sessão trabalhava em uma parte pequena e deixava o ambiente limpo para a próxima. Os autores apresentam isso como uma solução possível para aquele cenário, não como fórmula universal. O mecanismo, porém, é familiar: passagem de turno com estado persistente.
+O harness também tem limites. Build verde pode esconder produto errado. Documentação envelhece. Checks ruins automatizam definições ruins de sucesso. Regras demais criam contradições, e regras de menos deixam tudo na sorte.
 
-Recuperação também entra aqui. Se uma tentativa piora o repositório, o agente precisa reconhecer o último estado válido, entender o erro e voltar com segurança. A capacidade de desfazer uma mudança é parte do harness, assim como é parte de qualquer pipeline de mudança bem projetado.
-
-## O harness cresce a partir das falhas
-
-É fácil ler uma lista de componentes e criar quinze arquivos de instrução, vinte skills e vários conectores antes da primeira tarefa. Isso só troca falta de contexto por excesso de configuração.
-
-Um harness útil nasce de falhas observadas. Se o agente editou um arquivo gerado, adicione uma orientação curta e, quando possível, uma checagem mecânica. Se comentou um teste para fazer o pipeline passar, bloqueie esse padrão. Se sempre se perde num módulo, melhore o mapa ou a fronteira do próprio código.
-
-Addy Osmani descreve essa prática como uma catraca: um erro real vira uma melhoria durável no ambiente. O objetivo é reduzir a chance de repetir os erros que o seu repositório já conhece, sem tentar proibir todo erro imaginável.
-
-Esse cuidado evita dois extremos. Um harness vazio depende da sorte. Um harness cheio de regras copiadas de outros projetos carrega contradições, instruções vencidas e ferramentas que ninguém precisa.
-
-## Onde isso quebra
-
-Um build verde pode esconder um produto errado. Testes ruins só automatizam uma definição ruim de sucesso. Permissões estreitas demais impedem qualquer avanço, enquanto permissões amplas demais aumentam o impacto de uma decisão equivocada.
-
-Documentação envelhece. Logs podem ser ruidosos. Um agente pode otimizar para passar no check e ignorar uma qualidade que o check não mede. Por isso o harness nunca remove a necessidade de entender o produto e revisar decisões caras.
-
-Para produto e garantia de qualidade, ou QA, a consequência é concreta. Critérios de aceite precisam aparecer antes da implementação e virar sinais observáveis. "A tela funciona" não ajuda muito. "Ao salvar um e-mail inválido, a API responde 422 e a interface preserva os dados do formulário" oferece um contrato que o agente consegue implementar e que QA consegue verificar.
-
-Harness Engineering ajuda a concentrar supervisão onde ela realmente vale o custo.
-
-## Um primeiro harness para testar hoje
-
-Escolha uma falha que já aconteceu no seu repositório. Só uma.
-
-Escreva uma orientação de duas ou três linhas explicando o comportamento esperado. Depois adicione um sensor que produza evidência, como um typecheck, um teste, uma regra de lint ou uma inspeção de diff. Dê ao agente uma tarefa pequena e observe se ele consegue usar os dois sem ajuda.
+Para começar, escolha uma falha que já aconteceu. Escreva uma orientação de duas linhas e adicione um sensor, como typecheck, teste ou inspeção de diff. Dê ao agente uma tarefa pequena e observe se ele usa os dois sem ajuda.
 
 Se funcionar, você transformou uma boa orientação em uma propriedade reutilizável do ambiente.
 
-No próximo artigo, vamos colocar esse harness em movimento. A pergunta deixa de ser "como o agente trabalha bem nesta execução?" e passa a ser "como uma execução boa vira um processo que consegue repetir, registrar e parar?".
+No próximo artigo, vamos colocar esse harness em movimento e transformar uma boa execução num processo que sabe continuar, registrar e parar.
