@@ -40,7 +40,7 @@ be surfaced before completion.
 Start from the repository root and paste this command:
 
 ```text
-/goal Implement ENGINEERING-SERIES-GOAL.md completely. The goal is achieved only when every Definition of Done item is satisfied with current evidence; the existing PT-BR and English post files have been removed; their public URLs preserve readers through intentional redirects to the new Harness Engineering article; six localized Markdown files exist as three PT-BR and English article pairs; typed series metadata and navigation produce Harness Engineering -> Loop Engineering -> Graph Engineering in both locales; the maturity lesson links, legacy Harness wording, source records, TONE.md, and BLOG-ROADMAP.md are coherent; visible publication dates match frontmatter; formatting, lint, static build, diff checks, source-link checks, sitemap checks, hreflang checks, tone scans, and browser checks pass; no unrelated files are changed; and the execution evidence, decisions, surprises, and retrospective are recorded in ENGINEERING-SERIES-GOAL.md. Do not commit, push, deploy, or change publication workflow without explicit owner authorization. If repository evidence conflicts with this plan or a material decision lacks evidence, stop and ask instead of guessing.
+/goal Implement ENGINEERING-SERIES-GOAL.md completely. The goal is achieved only when every Definition of Done item is satisfied with current evidence; the existing PT-BR and English post files have been removed; their public URLs preserve readers through intentional redirects to the new Harness Engineering article; six localized Markdown files exist as three PT-BR and English article pairs; typed series metadata and navigation produce Harness Engineering -> Loop Engineering -> Graph Engineering in both locales; the maturity lesson links, legacy Harness wording, source records, TONE.md, and BLOG-ROADMAP.md are coherent; visible publication dates match frontmatter; formatting, lint, static build, diff checks, source-link checks, sitemap checks, hreflang checks, tone scans, and browser checks pass; no unrelated pre-existing changes are modified or included in the series work; and the execution evidence, decisions, surprises, and retrospective are recorded in ENGINEERING-SERIES-GOAL.md. Do not commit, push, deploy, or change publication workflow without explicit owner authorization. If repository evidence conflicts with this plan or a material decision lacks evidence, stop and ask instead of guessing.
 ```
 
 The condition is intentionally measurable, names the checks that prove it, and
@@ -1104,8 +1104,8 @@ The GOAL is complete only when every statement below is true and demonstrated.
       article pages.
 - [ ] Browser checks cover PT-BR and English, desktop and mobile, light and dark,
       keyboard use, reduced motion, and JavaScript-disabled reading.
-- [ ] The final reviewed diff contains no unrelated changes and respects the
-      non-content PR size rule.
+- [ ] The final reviewed series diff contains no unrelated changes, preserves any
+      unrelated pre-existing work, and respects the non-content PR size rule.
 - [ ] The living-plan sections contain current progress, decisions, discoveries,
       evidence, outcomes, and residual risks.
 
