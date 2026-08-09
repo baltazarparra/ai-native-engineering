@@ -33,9 +33,9 @@ updatedAt: 2026-07-19
 
 ## The leap that matters
 
-The hard problem with AI coding agents is not "this week's model". Models change fast. The hard question is: **how do you turn human intent into trustworthy software without losing control, quality, and ownership along the way**.
+The problem with using AI agents for development is not "this week's model". Models change fast. The hard question is: **how do you turn human intent into trustworthy software without losing control, quality, and accountability along the way**.
 
-Vibe coding, the practice of building by talking to the model, showed that AI can generate a lot of code from natural language. That is powerful for prototypes. In a professional setting, shipping software does not end when code appears. Delivery also means aligning scope, preserving architecture, protecting data, validating behavior, reviewing changes, auditing decisions, and keeping the system healthy after deploy.
+Vibe coding, the practice of building by talking to the model, showed that AI can generate a lot of code from natural language. That is powerful for prototypes. But in a corporate setting, shipping software does not end when code appears. Delivery also means aligning scope, preserving architecture, protecting data, validating behavior, reviewing changes, auditing decisions, and keeping the system healthy after deploy.
 
 That is where two ideas need to travel together:
 
@@ -48,7 +48,7 @@ Apart, they help. Together, they change the delivery pattern.
 
 SDD means **Spec-Driven Development**, development guided by specification.
 
-In this context, a spec is a living, versioned, reviewable artifact that answers:
+In this context, a spec, or specification, is a living, versioned, reviewable artifact that answers:
 
 - which problem we are solving;
 - who it matters for;
@@ -64,7 +64,7 @@ The shift is simple: the agent does not implement "the prompt". It implements a 
 
 Harness Design is the environment of the **coding agent**.
 
-If SDD answers "what needs to be true?", the harness answers "how do we create a system where the agent can execute, validate, and improve without relying on luck or context that exists only in the chat?".
+If SDD answers "what needs to be true?", the harness answers "how do we create a system where the agent can execute, validate, and improve without relying on luck or context lost in the conversation?".
 
 ### A model is not an agent
 
@@ -88,14 +88,6 @@ Think of the harness as the agent's work infrastructure: the set of elements tha
 
 Good rails give the agent room to move while making that movement predictable, reviewable, and safe.
 
-## Where this breaks
-
-A bad harness becomes theater. README rules nobody follows. A skill nobody invokes. A build that passes while nobody reads the diff. Infinite context dumped into the prompt with no curation.
-
-Bad SDD becomes a dead document: a spec nobody updates, criteria nobody tests, scope that only changes in chat.
-
-Maturity shows up when a failure leads the team to improve the system (rule, test, limit, doc) instead of only repeating the prompt louder.
-
 ## The engineer's role
 
 With agents in the flow, the work shifts. Less time typing boilerplate. More time on specification, review, governance, and harness quality.
@@ -110,16 +102,4 @@ Useful questions for an explicit harness:
 
 AI-native work means owning the system that produces the diff, not accepting generated changes faster.
 
-## In practice (PM, QA, leadership)
-
-- **PM**: the spec becomes the shared contract. Less "where is the feature?", more "is this acceptance criterion covered?".
-- **QA**: enters before implementation. Criteria and risks become checks, not only end-of-line bugs.
-- **Leadership**: the risk stops being only model hallucination. It becomes missing trail: decisions only in chat, no plan, no validation, no review at merge.
-
-If you want the field version (what changes on a Tuesday), read [Harness in daily work](/en/blog/harness-in-daily-work/).
-
-## Takeaway
-
-Models change. Tool categories change. The lasting pattern is simpler: clear intent (SDD), an environment with rails (harness), explicit validation, and a human accountable at merge.
-
-Loose prompting explores. Repeatable delivery needs a system.
+At first glance, it may look like you have less control over the code you generate. The reality is the exact opposite.
