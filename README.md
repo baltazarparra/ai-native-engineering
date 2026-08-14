@@ -1,8 +1,10 @@
+
+
 # AI-Native Engineers
 
 **No hype. No empty buzzwords. Just the map that matters.**
 
-An educational, interactive, visually strong website that teaches what you actually need to understand to work in engineering in a world of agents, using accessible, human language.
+An educational, interactive, visually strong website that teaches what you actually need to understand to work in engineering in a world of agents, using accessible, human language. User-facing content is primarily in Portuguese (PT-BR).
 
 [Visit the site](https://ai-native-engineers.com)
 
